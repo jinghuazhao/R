@@ -1,4 +1,13 @@
 # R
-R packages for analysis of genetic data
 
-This directory contains packages not available or not as up-to-date from CRAN.
+This directory contains packages 
+
+CGR
+
+not available from CRAN
+
+and kinship which has additional update compared to those in CRAN archive below:
+
+https://cran.r-project.org/src/contrib/Archive/kinship/
+
+I have also maintained gap, lmm, pan, tdthap at CRAN.
