@@ -2,7 +2,7 @@
 
 This directory contains packages 
 
-CGR
+**CGR**
 
 not available from CRAN
 
@@ -12,18 +12,10 @@ https://cran.r-project.org/src/contrib/Archive/kinship/
 
 I have also maintained several other packages at CRAN.
 
-gap
+**gap** | https://cran.r-project.org/package=gap
 
-https://cran.r-project.org/package=gap
+**lmm** | https://cran.r-project.org/package=lmm
 
-lmm
+**pan** | https://cran.r-project.org/package=pan
 
-https://cran.r-project.org/package=lmm
-
-pan
-
-https://cran.r-project.org/package=pan
-
-tdthap
-
-https://cran.r-project.org/package=tdthap
+**tdthap**  | https://cran.r-project.org/package=tdthap
