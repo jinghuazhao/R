@@ -4,7 +4,7 @@ This directory contains packages **CGR** not available from CRAN and **kinship**
 
 https://cran.r-project.org/src/contrib/Archive/kinship/
 
-I have also maintained several other packages at CRAN.
+I have also maintained several other packages at CRAN. **gap** and **tdthap** are featured in [task views for genetics] (https://cran.r-project.org/web/views/Genetics.html).
 
 **Packages** | URLs
 --------|---------------------------------------
