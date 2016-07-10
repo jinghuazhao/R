@@ -13,4 +13,4 @@ I have also maintained several other packages at CRAN.
 **pan** | https://cran.r-project.org/package=pan
 **tdthap**  | https://cran.r-project.org/package=tdthap
 
- Packages **gap** and **tdthap** are featured in [task views for genetics] (https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
+ Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
