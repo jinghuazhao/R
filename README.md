@@ -7,7 +7,7 @@ https://cran.r-project.org/src/contrib/Archive/kinship/
 Links to other packages I have maintained at [CRAN](http://cran.r-project.org) are as shown in the following table, with individual files provided by [GitHub](https://github.com/cran)
 
 **Packages** | URLs | Files
---------|---------------------------------------------+----------------------------
+--------|---------------------------------------------|----------------------------
 **gap** | https://cran.r-project.org/package=gap      | https://github.com/cran/gap
 **lmm** | https://cran.r-project.org/package=lmm      | https://github.com/cran/lmm
 **pan** | https://cran.r-project.org/package=pan      | https://github.com/cran/pan
