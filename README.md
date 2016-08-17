@@ -1,6 +1,6 @@
 # R
 
-This directory contains packages **CGR** not available from CRAN and **kinship** which has additional update compared to those in CRAN archive below:
+This directory contains packages **CGR** which is not available from CRAN, and **kinship** which has additional update compared to those in CRAN archive below:
 
 https://cran.r-project.org/src/contrib/Archive/kinship/
 
