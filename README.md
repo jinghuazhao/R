@@ -4,7 +4,7 @@ This directory contains packages **CGR** not available from CRAN and **kinship**
 
 https://cran.r-project.org/src/contrib/Archive/kinship/
 
-Links to other packages I have maintained at [CRAN](http://cran.r-project.org) are as shown in the following table, with individual files provided by [GitHub](https://github.com/cran)
+Links to other packages I have maintained at [CRAN](http://cran.r-project.org) are as shown in the following table, with individual files listed by [GitHub](https://github.com/cran)
 
 **Packages** | URLs | Files
 --------|---------------------------------------------|----------------------------
