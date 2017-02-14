@@ -15,4 +15,6 @@ Links to other packages I have maintained at [CRAN](http://cran.r-project.org) a
 
 Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
  
-I have also contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
+I have earliercontributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
+
+My recent contribution is [**ITHIM** injurymodel][https://github.com/ithim/injurymodel].
