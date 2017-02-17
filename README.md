@@ -17,4 +17,4 @@ Packages **gap** and **tdthap** are featured in [task view for genetics](https:/
  
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
-My recent contribution is [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
+My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
