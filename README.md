@@ -12,6 +12,7 @@ Links to other packages I have maintained at [CRAN](http://cran.r-project.org) a
 **lmm** | https://cran.r-project.org/package=lmm      | https://github.com/cran/lmm
 **pan** | https://cran.r-project.org/package=pan      | https://github.com/cran/pan
 **tdthap**  | https://cran.r-project.org/package=tdthap | https://github.com/cran/tdthap
+**gap.datasets** | https://cran.r-project.org/package=gap.datasets | https://github.com/cran/gap.datasets
 
 Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
  
