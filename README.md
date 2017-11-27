@@ -1,6 +1,6 @@
 # R
 
-This directory contains packages **CGR** which is not available from CRAN, and **kinship** which has additional update compared to those in CRAN archive. Links to packages I have maintained at [CRAN](http://cran.r-project.org) are as shown in the following table, with individual files listed by [GitHub](https://github.com/cran)
+This directory contains packages **CGR** which is not available from  [CRAN](http://cran.r-project.org), and **kinship** which has additional update compared to those in CRAN archive. Links to packages I have maintained at are as shown in the following table, with individual files listed by [GitHub](https://github.com/cran)
 
 **Packages** | URLs | Files
 --------|---------------------------------------------|----------------------------
