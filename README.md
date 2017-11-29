@@ -1,8 +1,8 @@
 # R
 
-This repository contains packages **CGR** which is not available from  [CRAN](http://cran.r-project.org), and **kinship** which has additional update. Links to packages I have maintained  are as shown in the following table, with individual files listed by [GitHub](https://github.com/cran)
+This repository contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. Links to packages I have maintained  are as shown in the following table, with individual files listed by GitHub.
 
-**Packages** | URLs | Files
+**Packages** | [CRAN](http://cran.r-project.org) | [GitHub](https://github.com/cran)
 --------|---------------------------------------------|----------------------------
 **gap** | https://cran.r-project.org/package=gap      | https://github.com/cran/gap
 **gap.datasets** | https://cran.r-project.org/package=gap.datasets | https://github.com/cran/gap.datasets
