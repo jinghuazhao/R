@@ -1,0 +1,91 @@
+\name{mhtplot2}
+\alias{mhtplot2}
+\title{Manhattan plot with annotations}
+\usage{mhtplot2(data, control=mht.control(), hcontrol=hmht.control(), ...)}
+\description{
+To generate Manhattan plot with annotations. The function is generic and for instance could be used for genomewide
+p values or any random variable that is uniformly distributed. By default, a log10-transformation is applied.
+Note that with real chromosomal positions, it is also appropriate to plot and some but not all chromosomes.
+
+It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other 
+context.
+
+To maintain back compatibility options as in \code{\link[gap]{mhtplot}} are used. The positions of the horizontal
+labels are now in the middle rather than at the beginning of their bands in the plot.
+}
+
+\arguments{
+\item{data}{a data frame with three columns representing chromosome, position and p values}
+\item{control}{A control function named mht.control() with the following arguments,
+    \enumerate{
+    \item type. a flag with value "p" or "l" indicating if points or lines are to be drawn.
+    \item usepos. a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE
+    \item logscale. a flag to indicate if p value is to be log-transformed with default value TRUE
+    \item base. the base of the logarithm with default value 10
+    \item cutoffs. the cut-offs where horizontal line(s) are drawn with default value NULL
+    \item colors. the color for different chromosome(s), and random if unspecified with default values NULL
+    \item labels. labels for the ticks on x-axis with default value NULL
+    \item srt. degree to which labels are rotated with default value of 45
+    \item gap. gap between chromosomes with default value NULL
+    \item cex. cex for the data points
+    \item yline. Margin line position
+    \item xline. Margin line position}}
+\item{hcontrol}{A control function named hmht.control() with the following arguments,
+    \enumerate{
+    \item data. chunk of data to be highlighted with default value NULL
+    \item colors. colors for annotated genes
+    \item yoffset. offset above the data point showing most significant p value with default value 0.5
+    \item cex. shrinkage factor for data points with default value 1.5
+    \item boxed. if the label for the highlited region with default value FALSE}}
+\item{...}{other options in compatible with the R plot function}
+}
+
+\value{
+The plot is shown on or saved to the appropriate device.
+}
+
+\section{References}{
+den Hoed M, et al. (2013). Heart rate-associated loci and their effects on cardiac conduction and rhythm disorders.
+Nat Genet 45:621-631
+}
+
+\examples{
+\dontrun{
+# The following example uses only chromosomes 14 and 20 of the Nat Genet paper.
+#
+mdata <- within(hr1420,{
+  c1<-colour==1
+  c2<-colour==2
+  c3<-colour==3
+  colour[c1] <- 62
+  colour[c2] <- 73
+  colour[c3] <- 552
+})
+mdata <- mdata[,c("CHR","POS","P","gene","colour")]
+ops <- mht.control(colors=rep(c("lightgray","gray"),11),yline=1.5,xline=2,srt=0)
+hops <- hmht.control(data=subset(mdata,!is.na(gene)))
+v <- "Verdana"
+ifelse(Sys.info()['sysname']=="Windows", windowsFonts(ffamily=windowsFont(v)),
+       ffamily <- v)
+tiff("mh.tiff", width=.03937*189, height=.03937*189/2, units="in", res=1200,
+     compress="lzw")
+par(las=2, xpd=TRUE, cex.axis=1.8, cex=0.4)
+mhtplot2(with(mdata,cbind(CHR,POS,P,colour)),ops,hops,pch=19,
+         ylab=expression(paste(plain("-"),log[10],plain("p-value"),sep=" ")),
+         family="ffamily")
+axis(2,pos=2,at=seq(0,25,5),family="ffamily",cex=0.5,cex.axis=1.1)
+dev.off()
+
+# To exemplify the use of chr, pos and p without gene annotation
+# in response to query from Vallejo, Roger <Roger.Vallejo@ARS.USDA.GOV>
+opar <- par()
+par(cex=0.4)
+ops <- mht.control(colors=rep(c("lightgray","lightblue"),11),srt=0,yline=2.5,xline=2)
+mhtplot2(data.frame(mhtdata[,c("chr","pos","p")],gene=NA,color=NA),ops,xlab="",ylab="",srt=0)
+axis(2,at=1:16)
+title("data in mhtplot used by mhtplot2")                 
+par(opar)
+}
+}
+\author{Jing Hua Zhao}
+\keyword{hplot}

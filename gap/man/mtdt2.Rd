@@ -1,0 +1,66 @@
+\name{mtdt2}
+\alias{mtdt2}
+\title{Transmission/disequilibrium test of a multiallelic marker by Bradley-Terry model}
+\usage{mtdt2(x, verbose=TRUE, n.sim=NULL, ...)}
+\description{
+This function calculates transmission-disequilibrium statistics involving
+multiallelic marker according to Bradley-Terry model.
+}
+\arguments{
+\item{x}{the data table}
+\item{verbose}{To print out test statistics if TRUE}
+\item{n.sim}{Number of simulations}
+\item{...}{other options compatible with the BTm function}
+}
+
+\value{
+It returned list contains the following components:
+\item{c2b}{A data frame in four-column format showing transmitted vs nontransmitted counts}
+\item{BTm}{A fitted Bradley-Terry model object}
+\item{X2}{Allele-wise, genotype-wise and goodness-of-fit Chi-squared statistics}
+\item{df}{Degrees of freedom}
+\item{p}{P value}
+\item{pn}{Monte Carlo p values when n.sim is specified}
+}
+
+\section{References}{
+Firth, D. (2005). Bradley-terry models in R. Journal of Statistical Software 12(1):1-12
+
+Sham PC, Curtis D (1995) An extended transmission/disequilibrium
+test (TDT) for multi-allelic marker loci. Ann. Hum. Genet. 59:323-336
+
+Turner H, Firth D (2010) Bradley-Terry models in R: The BradleyTerry2 package.
+http://cran.r-project.org/web/packages/BradleyTerry2/vignettes/BradleyTerry.pdf.
+
+Zhao JH, Sham PC, Curtis D (1999) A program for the Monte Carlo evaluation
+of significance of the extended transmission/disequilibrium test.
+Am. J. Hum. Genet. 64:1484-1485
+
+}
+\seealso{
+\code{\link[gap]{mtdt}}
+}
+
+\examples{
+\dontrun{
+# Copeman et al (1995) Nat Genet 9: 80-5
+
+x <- matrix(c(0,0, 0, 2, 0,0, 0, 0, 0, 0, 0, 0,
+              0,0, 1, 3, 0,0, 0, 2, 3, 0, 0, 0,
+              2,3,26,35, 7,0, 2,10,11, 3, 4, 1,
+              2,3,22,26, 6,2, 4, 4,10, 2, 2, 0,
+              0,1, 7,10, 2,0, 0, 2, 2, 1, 1, 0,
+              0,0, 1, 4, 0,1, 0, 1, 0, 0, 0, 0,
+              0,2, 5, 4, 1,1, 0, 0, 0, 2, 0, 0,
+              0,0, 2, 6, 1,0, 2, 0, 2, 0, 0, 0,
+              0,3, 6,19, 6,0, 0, 2, 5, 3, 0, 0,
+              0,0, 3, 1, 1,0, 0, 0, 1, 0, 0, 0,
+              0,0, 0, 2, 0,0, 0, 0, 0, 0, 0, 0,
+              0,0, 1, 0, 0,0, 0, 0, 0, 0, 0, 0),nrow=12)
+
+xx <- mtdt2(x,refcat="12")
+}
+}
+\author{Jing Hua Zhao}
+\keyword{models}
+\keyword{htest}

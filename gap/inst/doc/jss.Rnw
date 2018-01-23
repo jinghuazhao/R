@@ -1,0 +1,826 @@
+%% \VignetteIndexEntry{gap: genetic analysis package}
+%% \Vignettekeywords{genetic data analysis}
+%% \VignettePackage{gap}
+
+\documentclass[article,shortnames]{jss}
+\usepackage{thumbpdf,graphicx}
+
+\author{Jing Hua Zhao\\MRC Epidemiology Unit}
+\Plainauthor{Jing Hua Zhao}
+
+\title{\pkg{gap}: Genetic Analysis Package}
+\Plaintitle{gap: Genetic Analysis Package}
+
+\Abstract{A preliminary attempt at collecting tools and utilities
+for genetic data as an \proglang{R} package called \pkg{gap} is
+described. Genomewide association is then described as a specific
+example, linking the work of \cite{risch96}, \cite{ll97} for
+family-based and population-based studies, and the counterpart for
+case-cohort design established by \cite{cz04}. Analysis of staged
+design as outlined by \cite{skol06} and associate methods are
+discussed. The package is flexible, customizable, and should  prove
+useful to researchers especially in its application to genomewide
+association studies.}
+
+\Keywords{genetic data analysis, genomewide association, \proglang{R}}
+\Plainkeywords{genetic data analysis, genomewide association, R}
+
+\Volume{23}
+\Issue{8}
+\Month{December}
+\Year{2007}
+\Submitdate{2007-01-03}
+\Acceptdate{2007-06-08}
+
+\Address{
+  Jing Hua Zhao\\
+  MRC Epidemiology Unit\\
+  Institute of Metabolic Science\\
+  Addenbrooke's Hospital\\
+  Hills Road\\
+  Cambridge CB2 0QQ\\
+  United Kingdom\\
+  E-mail: \email{jinghua.zhao@mrc-epid.cam.ac.uk}\\
+}
+
+\begin{document}
+
+\section{Introduction}
+
+Approaches to understanding the genetic basis of human diseases have
+been widely discussed, e.g., \cite{morton83}, \cite{khoury93},
+\cite{thomas04}. Methods include the assessment of familial
+aggregation for heritability, identification of major gene effect,
+study of cosegregation of genetic marker with putative
+disease-predisposing loci in the so-called linkage studies and
+association studies in search of frequency differences between cases
+and controls and/or correlation between genotype and phenotype as a
+quantitative trait. Recently, owing to the availability of large
+number of genetic variants and particularly single nucleotide
+polymorphisms (SNPs), attention has focused on association designs
+including both families and unrelated individuals from general
+populations. Three initiatives of interest are:
+\begin{enumerate}
+\item The hapmap project (\url{http://www.hapmap.org/}), a
+partnership of scientists and funding agencies from Canada, China,
+Japan, Nigeria, the United Kingdom and the United States to develop
+a public resource that will help researchers find genes associated
+with human disease and response to pharmaceuticals.
+
+\item The Wellcome Trust Case Control Consortium (WTCCC,
+\url{http://www.wtccc.org.uk/}), a collaboration of human
+geneticists who analyse thousands of DNA samples from patients
+suffering with different diseases to identify common genetic
+variations for each condition. It is hoped that by identifying these
+genetic signposts, researchers will be able to understand which
+people are most at risk, and also produce more effective treatments.
+The WTCCC searches for the genetic signposts for tuberculosis,
+coronary heart disease, type 1 diabetes, type 2 diabetes, rheumatoid
+arthritis, Crohn's disease, bipolar disorder and hypertension. The
+research is conducted at a number of institutes throughout
+the UK, including the Wellcome Trust Sanger Institute, Cambridge
+University and Oxford University.
+
+\item The genetic association information network
+(GAIN, \url{http://www.fnih.org/GAIN2/home_new.shtml}), a
+public-private partnership of the Foundation for the National
+Institutes of Health, Inc., which include corporations, private
+foundations, advocacy groups, concerned individuals, and the
+National Institutes of Health. This initiative will take the next
+step in the search to understand the genetic factors influencing
+risk for complex human diseases.
+\end{enumerate}
+
+Following successes in localization of Mendelian diseases such as
+Huntington's disease \citep{guesella83}, cystic fibrosis
+\citep{tsui85}, some recent successes in non-Mendelian diseases come
+from breast cancer \citep{hall90}, macular degenration
+\citep{klein05}, and non-insulin-dependent (Type-2) diabetes
+\citep{grant06}. Here, we will focus specifically on methodological
+issues concerning the design and analysis of genomewide association
+studies as largely foreseen by the seminal paper of \cite{risch96}.
+As it dealt with the power of association studies using family-based
+designs, an immediate argument for case-control designs as an
+alternative to family-based designs was made by \cite{ll97} on the
+basis of (1). its ease of implementation; (2). the increased
+prospects for extension from established epidemiological cohorts;
+(3). for late onset diseases such as Type-2 diabetes and
+hypertension, the difficulty of typing parents for family-based
+studies; (4). the issue that, for equivalent power, the number of
+individuals genotyped needs to be doubled for linkage, tripled for
+singleton, and quadrupled for sib-pair designs, assuming both
+parents are genotyped in an affected sibling study. Concerns over
+cost-efficiency have led to the adoption of staged design in some
+studies. In the most popular two-staged design, the first stage uses
+only a proportion of individuals and are genotyped at all SNPs,
+among which a percentage of SNPs showing statistical significance is
+carried over to the second stage. For analysis of two-staged design,
+\cite{skol06} recognized that joint analysis could be more powerful.
+The high cost of genotyping has motivated researchers to seek
+generic controls for a range of traits as in a case-cohort design,
+in which a small random sample of the whole cohort and all the
+diseased subjects are used. It is possible the subcohort also
+contains some cases but it is fully representative of the population
+and can be used in conjunction with a range of case definitions. The
+merits of such a design in genetic association studies have only
+recently been recognized \citep{langholz99,manolio06}. Some of the
+terms used in this paper can be found in the paper by \cite{bgm06},
+and more generally in a review paper by \cite{ea06} on recent
+developments in statistical genetics, and in a tutorial specifically
+for genetic association analysis by \cite{balding06}.
+
+Analysis for population association studies generally involves
+preliminary analyses such as quality control, Hardy-Weinberg
+equilibrium tests, examination of linkage disequilibrium and
+recombination, to be followed by tests of association for single
+and/or multiple SNPs, both may involve case-control or binary
+phenotype or continuous outcomes. Further issues involve handling of
+large data, multiple testing, among others. The implementation of
+analytical approaches to these problems has so far scattered and not
+integrated with established software systems. Preliminary reviews
+have shown that \proglang{R} is a strong alternative which offers
+many desirable facilities and can be used in conjunction with other
+software systems \citep{zt06b}. It is possible that in the near
+future, many tools for genetic data analysis will be available on
+these software systems.
+
+We have recently carried out a study of obesity using Affymetrix
+(\url{http://www.affymetrix.com/}) 500K and Illumina
+(\url{http://www.illumina.com/}) 317K systems following an earlier
+pilot using Perlegen (\url{http://www.perlegen.com/}) platform with
+about 250K SNPs. The samples were based on European Prospective
+Investigation of Cancer (EPIC) Norfolk study
+(\url{http://www.srl.cam.ac.uk/epic/}). Our particular concern is
+cost-efficiency, not only because the experiment is expensive but we
+wish to take full advantage of it. We adopted a two-stage
+case-cohort design which is advantageous in cost-efficiency over the
+standard case-control design. While seeking for appropriate methods
+for joint analyses, we have recast the problem within the missing
+data framework. We believe our approach will be invaluable to other
+colleagues.
+
+Here, I describe a genetic analysis package, \pkg{gap}, created and
+maintained by the author and is available from the Comprehensive
+\proglang{R} Archive Network (CRAN,
+\url{http://CRAN.R-project.org/}), taking advantages of the portable
+environment of \proglang{R} for data management, analysis, graphics
+and object-oriented programming. The functions implemented for
+genetic association analysis include Hardy-Weinberg equilibrium
+tests, measures of linkage disequilibrium between SNPs or
+multiallelic markers and haplotype analysis. I will give a brief
+overview of the package, and a specific example concerning design
+and analysis of genetic association, which was used in the design of
+the case-cohort study aforementioned. I will also use a dataset from
+our case-control association study of Type-2 diabetes with
+chromosome 20, to illustrate joint analysis within \proglang{R}. It
+is clear that many statistical issues can be handled with ease and
+used in conjunction with other packages available from CRAN. The
+calculation as in some original work is also given for reference,
+with results not seen in the genetic analysis literature. At the end
+I will provide a brief summary.
+
+\section{Overview of implemented methods}
+This package was designed in 2003 to integrate some programs in
+\proglang{C}/\proglang{Fortran} and \proglang{SAS} \citep{SASstat} I
+have written or used over the years, by taking advantage of the
+ability of \proglang{R} to use foreign language routines in
+\proglang{C}/\proglang{Fortran} or its facilities similar to
+\proglang{SAS}. The recent implementations are more native to
+\proglang{R}. The collection therefore somewhat reflects the
+evolution of (or more exactly my appreciation of) statistical
+genetics (or genetic epidemiology) over years. The description of
+the main functions is given in Table~\ref{pkggap}, while a list of
+data sets is given in Table~\ref{dataset}. They can be conveniently
+obtained with \proglang{R} command \code{library(help = "gap")} once
+\pkg{gap} is installed.
+\begin{table}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Function name & Description\\
+\hline
+\texttt{BFDP}     & Bayesian false-discovery probability \\
+\texttt{FPRP}     & False-positive report probability\\
+\texttt{bt}       & Bradley-Terry model for contingency table\\
+\texttt{ccsize}   & Power and sample size for case-cohort design\\
+\texttt{chow.test}& Chow's test for heterogeneity in two regressions\\
+\texttt{fbsize}   & Sample size for family-based linkage and association design\\
+\texttt{gc.em}    & Gene counting for haplotype analysis\\
+\texttt{gcontrol} & genomic control\\
+\texttt{gcp}      & Permutation tests using \pkg{GENECOUNTING}\\
+\texttt{genecounting} & Gene counting for haplotype analysis\\
+\texttt{gif}      & Kinship coefficient and genetic index of familiality\\
+\texttt{hap}      & Haplotype reconstruction\\
+\texttt{hap.em}   & Gene counting for haplotype analysis\\
+\texttt{hap.score}& Score statistics for association of traits with haplotypes\\
+\texttt{htr}          & Haplotype trend regression\\
+\texttt{hwe}          & Hardy-Weinberg equilibrium test for a multiallelic marker\\
+\texttt{hwe.hardy}    & Hardy-Weinberg equilibrium test using MCMC\\
+\texttt{kbyl}         & Linkage disequilibrium statistics for two multiallelic loci\\
+\texttt{kin.morgan}   & Kinship matrix for simple pedigree\\
+\texttt{makeped}      & A function to prepare pedigrees in post-\pkg{MAKEPED} format\\
+\texttt{mia}          & Multiple imputation analysis for hap\\
+\texttt{mtdt}         & Transmission/disequilibrium test of a multiallelic marker\\
+\texttt{muvar}        & Means and variances under 1- and 2- locus (biallelic) QTL model\\
+\texttt{pbsize}       & Power for population-based association design\\
+\texttt{pedtodot}     & Converting pedigree(s) to \texttt{dot} file(s)\\
+\texttt{pfc}          & Probability of familial clustering of disease\\
+\texttt{pfc.sim}      & Probability of familial clustering of disease\\
+\texttt{pgc}          & Preparing weight for \pkg{GENECOUNTING}\\
+\texttt{plot.hap.score} & Plot haplotype frequencies versus haplotype score statistics\\
+\texttt{print.hap.score}& Print a \texttt{hap.score} object\\
+\texttt{s2k}          & Statistics for 2 by K table\\
+\texttt{tbyt}         & Linkage disequilibrium statistics for two SNPs\\
+\texttt{tscc}         & Power calculation for two-stage case-control design\\
+\texttt{twinan90}     & Classic twin models\\
+\texttt{whscore}      & Whittemore-Halpern scores for allele-sharing\\
+\hline
+\end{tabular}
+\caption{\label{pkggap} A list of functions in \pkg{gap}.}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Data sets & Description\\
+\hline
+\texttt{aldh2}        & ALDH2 markers and alcoholism\\
+\texttt{apoeapoc}     & APOE/APOC1 markers and schizophrenia\\
+\texttt{cf}           & Cystic fibrosis data\\
+\texttt{crohn}        & Crohn's disease data\\
+\texttt{fa}           & Friedreich ataxia data\\
+\texttt{fsnps}        & A case-control data involving four SNPs with missing genotype\\
+\texttt{hla}          & HLA markers and schizophrenia\\
+\texttt{mao}          & A study of Parkinson's disease and MAO gene\\
+\texttt{nep499}       & A study of Alzheimer's disease with eight SNPs and APOE\\
+\texttt{snca}         & A study of Parkinson's disease and SNCA markers\\
+\hline
+\end{tabular}
+\caption{\label{dataset} A list of data sets in \pkg{gap}.}
+\end{center}
+\end{table}
+
+Some of the functions are highlighted as follows:
+\begin{itemize}
+\item \texttt{BFDP}: Bayesian false-discovery probability according to \cite{wakefield07}.
+
+\item \texttt{FPRP}: False-positive report probability according to
+\cite{wacholder04}.
+
+\item \texttt{gif}: kinship coefficient and genetic index of familiality according to \cite{gholamic94}.
+
+\item \texttt{genecounting}, \texttt{gcp}, \texttt{gc.em}, \texttt{pgc}: expectation-maximization (EM) method
+to infer haplotype and case-control haplotype association similar to
+\proglang{SAS}/\pkg{Genetics} \citep{sasgenetics} as reported in
+\cite{zhao02}, \cite{zhao04}.
+
+\item \texttt{hap}, \texttt{hap.em}, \texttt{mia}: a multiallelic version of progressive EM algorithm for haplotype inference as reported in \cite{zhao04}.
+
+\item \texttt{tbyt}, \texttt{kbyl}: linkage disequilibrium statistics between two
+biallelic or multiallelic markers, including standard error for $D'$
+as reported in \cite{zhao04}.
+
+\item \texttt{pfc}, \texttt{pfc.sim}: probability of familial clustering of diseases according to \cite{yz02}.
+
+\item \texttt{htr}: haplotype-trend regression as accorded to \cite{zaykin02}.
+
+\item \texttt{hap.score}, \texttt{print.hap.score}, \texttt{plot.hap.score}: score statistics
+for haplotype-trait association with revised algorithms according to
+\cite{srt02}.
+
+\item \texttt{pbsize}, \texttt{fbsize}, \texttt{ccsize}: sample
+size/power for population-based, family-based case-control designs,
+or population-based case-cohort design, according to \cite{ll97},
+\cite{risch96}, \cite{cz04}.
+
+\item \texttt{s2k}: statistics from $2\times K$ table according
+to \cite{hirotsu01}.
+
+\item \texttt{hwe}, \texttt{hwe.hardy}: Hardy-Weinberg equilibrium test for
+multiallelic markers, the latter implements a Markov chain Monte
+Carlo (MCMC) algorithm according to \cite{guo92}.
+
+\item \texttt{makeped}: a utility to prepare for post-\pkg{MAKEPED} format file as
+required by \pkg{LINKAGE} \citep{lathrop84} or other computer
+programs, a version distributed with \pkg{LINKAGE} by Wentian Li.
+
+\item \texttt{pedtodot}: a utility to produce \pkg{Graphviz}
+\citep{graphviz} command file based on a \proglang{GAWK} script by
+David Duffy.
+
+\item \texttt{tscc}: power of two-stage case-control
+design under several models, similar to \cite{skol06}.
+
+\item \texttt{muvar}, \texttt{whscore}: utility functions to obtain mean and variance
+under two-locus model, and score \citep{whittemore94b}.
+\end{itemize}
+A brief summary of a given function, including appropriate
+reference(s), can be obtained with \code{help(function-name, package
+= "gap")} within \proglang{R}. There are a number of example
+datasets. For instance, the cystic fibrosis data \citep{kerem89} has
+been used in many papers on fine-mapping.
+
+\section{Example: Study design and analysis of genetic association}
+Since the range of problems to be tackled by \pkg{gap} is quite
+broad, I now give specific examples of how some functions have been
+developed to facilitate our design and analysis of genetic
+association. The three popular designs outlined earlier are shown in
+Figure~\ref{3design}.
+
+\begin{figure}
+\begin{center}
+\includegraphics{figures/figure1.jpg}
+\caption{\label{3design} Three common genetic association designs involving
+unrelated individuals (left), nuclear families with affected
+singletons (middle) and affected sib-pairs (right). Males and
+females are denoted by squares and circles with affected individuals
+filled with black and unaffect individuals being
+empty.}
+\end{center}
+\end{figure}
+
+Because of the importance of work by \cite{risch96} and \cite{ll97},
+functions \texttt{pbsize} and \texttt{fbsize} have been written to
+implement their methods and correct a programming error in
+\cite{risch96}. The table to be obtained could be used as a quick
+reference and the code be tailored to particular designs. Power for
+case-cohort design established by \cite{cz04} is given in function
+\texttt{ccsize}. The method by \cite{skol06} for two-stage design
+has been implemented in function \texttt{tscc}.
+
+\subsection{Some preliminaries}
+A widely used general model consists of a disease susceptible locus
+with two alleles (A and a) and population frequencies $p$, $q=1-p$,
+and penetrances as $f_0$, $f_1$ and $f_2$ (i.e., the conditional
+probability of getting the disease, the subscripts 0, 1 and 2 are
+copies of the disease-predisposing allele A). Hardy-Weinberg
+equilibrium states that the distribution of the three genotypes, aa,
+Aa, and AA are according to $(p+q)^2$, so that the population
+prevalence of the disease $K = p^2f^2+2pqf_1+q^2f_0$. Other
+statistics, which are often used, are additive $V_A =
+2pq[p(f_2-f_1)+q(f1-f_0)]^2$ and dominance $V_D =
+p^2q^2(f_2-2f_1+f_0)^2$, variances, respectively. It is also common
+to specify further the relationship between the three genotypes. As
+for multiplicative models to be considered here, the genotypic
+relative risk (GRR) is $\gamma$ and $\gamma^2$ for genotypes Aa and
+AA compared to aa as baseline, the population disease prevalence,
+the additive and dominance variances are therefore
+$K=p^2\gamma^2+2pq\gamma+q^2=(p\gamma+q)^2$,
+$V_A=2pq(\gamma-1)^2(p\gamma+q)^2$ and $V_D=p^2q^2(\gamma-1)^4$,
+respectively. These can be used to define offspring/sibling relative
+risks, which are the probability ratios of a offspring/sibling of an
+affected parent/child being affected relative to the general
+population and they are shown to be $\lambda_O=1+{1/2V_A}/{K^2}$ and
+$\lambda_S=1+{(V_A/2+V_D/4)}/{K^2}$ so $\lambda_O=1+w$ and
+$\lambda_S=(1+1/2w)^2$, where
+$w={(pq(\gamma-1)^2)}/{(p\gamma+q)^2}$.
+
+Linkage and association designs using family data were the
+state-of-the-art designs for localising disease-predisposing loci. A
+key concept relates to genes shared by relatives from common
+ancestor and is called identity by descent (IBD), which is
+associated with a model-free approach of linkage whereby
+allele-sharing between affected members in a pedigree is compared to
+test for linkage between a marker locus and a disease locus. The
+simplest allele-sharing method uses affected sib-pairs. Assuming the
+recombination fraction between the disease locus and a marker to be
+$\theta$, and defining $\Psi = \theta^2+(1-\theta)^2$,
+\cite{suarez78} derived the IBD probabilities for affected sib-pair,
+$P(IBD=0)  = {1}/{4}- [(\Psi-1/2)V_A+(2 \Psi - \Psi^2 - 3/4)V_D] /
+[4(K^2 + V_A/2 + V_D/4)]$, $P(IBD=1) = {1}/{2}-
+[2(\Psi^2-\Psi+1/4)V_D]/ [4(K^2 + V_A/2 + V_D/4)]$, $P(IBD=2) =
+{1}/{4}+ [(\Psi-1/2)V_A+(\Psi^2 - 1/4)V_D] / [4(K^2 + V_A/2 +
+V_D/4)]$, respectively. Under no linkage, the probabilities of
+affected sib pair sharing 0, 1, and 2 alleles IBD are 1/4, 1/2, and
+1/4. This result can be used to form a nonparametric test for
+linkage. The corresponding expressions under multiplicative model
+can also be obtained, where probabilities of siblings sharing none
+or one allele by descent is $z_0=1/(4\lambda_S)$ and
+$z_1={\lambda_O}/(2\lambda_S)$, the nonshared probability is
+$Y=1-z_1/2-z_0=1-{(\lambda_O+1)}/(4\lambda_S)={(1+w)}/{(2+w)}$. When
+a candidate or dense collection of markers is available, one can use
+nuclear families in which affected offsprings and their parents are
+genotyped, the transmitted versus nontransmitted alleles from
+parents to offsprings are compared in the so-called transmission
+disequilibrium test (TDT), which can be based on nuclear families
+with affected singletons only.
+
+In the following standard results related to normal distribution
+will be used. For a set of $N$ independent identically distributed
+random variables $B_i$ with mean and variance being 0 and 1 under
+the null hypothesis, $\mu$ and $\sigma^2$ under the alternative
+hypothesis, the statistic $\sum_{i=1}^N B_i/N$ has mean 0 and
+variance 1 under the null but mean $\sqrt{N}\mu$ and variance
+$\sigma^2$ under the alternative. The sample size ($N$) for a given
+significance level $\alpha$ and power $1-\beta$ can be estimated by
+$(Z_\alpha-\sigma Z_{1-\beta})^2/\mu^2$. In the actual calculation
+below, the type I error rate ($\alpha$) and type II error rate
+($\beta$) are $5\times 10^{-8}$ and 0.2, respectively.
+
+\subsection{Power/sample size for family and case-control/case-cohort designs}
+We recall some results on affected sib-pair linkage analysis, and
+define the alleles shared and nonshared from the $i$th parent as a
+random variable $B_i, i=1,\ldots,N$, scoring $1$ and $-1$. The mean
+($\mu$) and variance ($\sigma^2$) of $B_i$ are 0 and 1 under the
+null hypothesis as the shared and nonshared each has probability
+0.5, and $2Y-1$ and $4Y(1-Y)$ under the alternative. Assuming
+sharing of alleles from both parent to be independent, the required
+sample size ($N$) for affected sib-pair under $\theta=0$ and no
+linkage disequilibrium is ${(Z_\alpha-\sigma
+Z_{1-\beta})^2}/{2\mu^2}$, where $Y$ and $w$ are defined as before.
+
+As with TDT, we assume that the disease locus and a nearby locus are
+in complete disequilibrium, the number of transmissions of allele A
+are scored from heterozygous parents, where the probability ($h$) of
+a parent of an affected child being heterozygous is given by
+${pq(\gamma+1)}/{(p\gamma+q)}$ and ${pq(\gamma+1)^2}/{[2(\gamma
+p+q)^2+pq(\gamma-1)^2]}$ for singletons and sib-pairs, respectively.
+For singletons, a random variable $B_i$ is defined taking values
+$1/\sqrt{h}$ if parent is heterozygous and transmits A, $0$ if
+parent is homozygous, $-1/\sqrt{h}$ if parent is heterozygous and
+transmits a. The mean and variance of $B_i$ are 0 and 1 under the
+null hypothesis, $\sqrt{h}{(\gamma-1)}/{(\gamma+1)}$ and
+$1-h[{(\gamma-1)}/{(\gamma+1)}]^2$ under the alternative. When
+sib-pairs instead of singletons are used in TDT analysis, the same
+formula for sample size calculation can be applied and the required
+number of families is half the expected number since there are two
+independent affected sibs.
+
+The results of \code{example("fbsize", package = "gap")} are shown
+Table~\ref{asptdt}. Column $N_L$ contains the correct calculation
+corresponding to the original paper. The Alzheimer's disease model
+is based on \cite{sph97}.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{ccccccccccc}
+\hline
+&&\multicolumn{2}{c}{Linkage}&&\multicolumn{4}{c}{Association} \\
+\cline{3-4} \cline{6-8}
+$\gamma$& $p$ &$Y$ & $N_{L}$
+& $P_A$& $H_1$ &  $N_{\mathit{tdt}}$ & $H_2$ &$N_{\mathit{asp}/\mathit{tdt}}$&$\lambda_o$ & $\lambda_s$ \\
+\hline
+\\
+4.00 & 0.01 & 0.520 &      6400 & 0.800 & 0.048 &    1098 & 0.112 &     235 & 1.08 & 1.09\\
+     & 0.10 & 0.597 &       277 & 0.800 & 0.346 &     151 & 0.537 &      48 & 1.48 & 1.54\\
+     & 0.50 & 0.576 &       445 & 0.800 & 0.500 &     104 & 0.424 &      62 & 1.36 & 1.39\\
+     & 0.80 & 0.529 &      3023 & 0.800 & 0.235 &     223 & 0.163 &     162 & 1.12 & 1.13\\
+\\
+2.00 & 0.01 & 0.502 &    445839 & 0.667 & 0.029 &    5824 & 0.043 &    1970 & 1.01 & 1.01\\
+     & 0.10 & 0.518 &      8085 & 0.667 & 0.245 &     696 & 0.323 &     265 & 1.07 & 1.08\\
+     & 0.50 & 0.526 &      3752 & 0.667 & 0.500 &     340 & 0.474 &     180 & 1.11 & 1.11\\
+     & 0.80 & 0.512 &     17904 & 0.667 & 0.267 &     640 & 0.217 &     394 & 1.05 & 1.05\\
+\\
+1.50 & 0.01 & 0.501 &   6942837 & 0.600 & 0.025 &   19321 & 0.031 &    7777 & 1.00 & 1.00\\
+     & 0.10 & 0.505 &    101898 & 0.600 & 0.214 &    2219 & 0.253 &     941 & 1.02 & 1.02\\
+     & 0.50 & 0.510 &     27041 & 0.600 & 0.500 &     950 & 0.490 &     485 & 1.04 & 1.04\\
+     & 0.80 & 0.505 &    101898 & 0.600 & 0.286 &    1663 & 0.253 &     941 & 1.02 & 1.02\\
+\\
+\multicolumn{3}{c}{Alzheimer's:}\\
+\\
+4.50 & 0.15 & 0.626 &       163 & 0.818 & 0.460 &     100 & 0.621 &      37 & 1.67 & 1.78\\
+\\
+\hline
+\end{tabular}
+\caption{\label{asptdt} Comparison of linkage and association in nuclear
+families required for identification of disease gene:
+$\gamma$=genotypic risk ratio; $p$=frequency of disease
+allele A; $Y$=probability of allele sharing; $N_{L}$=number of ASP
+families required for linkage; $P_A$=probability of transmitting
+disease allele A; $H_1$, $H_2$=proportions of heterozygous parents;
+$N_{\mathit{tdt}}$=number of family trios; $N_{\mathit{asp}/\mathit{tdt}}$=number of ASP.
+families}
+\end{center}
+\end{table}
+
+It turns out that with $\gamma\le 2$, the expected marker-sharing
+only marginally exceeds 50\% for any allele frequency ($p$). The use
+of linkage would need large sample size, but direct tests of
+association with a disease locus itself can still be quite strong
+although it may involve large amount of statistical testing of
+associated alleles. Clearly, it is most favorable for diseases that
+are relatively common, which has important implications for complex
+traits.
+
+Now we consider the case-control design with a statistic directly
+testing association between marker and disease. Following
+\cite{ll97} and supposing we have a randomly ascertained population
+sample, the frequencies of the three disease genotypes AA, Aa and aa
+in cases are $\pi\gamma^2 p^2$, $2\pi\gamma pq$, and $\pi q^2$,
+respectively, where $\pi$ is the ``baseline'' probability that an
+individual with $aa$ genotype being affected. Similarly, the three
+frequencies in controls are $(1-\pi\gamma^2)p^2$, $2(1-\pi\gamma)pq$
+and $(1-\pi)q^2$.  A unit $\chi^2$ statistic can be constructed
+using Table~\ref{exprop} as $X^2=\sum (O-E)^2/E$, where $E$s
+indicate expected unit frequencies ($\pi p(\gamma p+q)^2$, $\pi
+q(\gamma p+q)^2$, $p-\pi p(\gamma p+q)^2$ and $q-\pi q(\gamma
+p+q)^2$), and the discrepancies between observed and expected
+frequencies all have factor $\pi pq(\gamma p+q)(\gamma-1)$ but with
+negative sign before the second and the third items.  The statistic
+$X^2$ has $\chi_1^2$ distribution under the null hypothesis
+($\gamma=1$), and noncentral $\chi_{1,\delta}^2$ distribution with
+noncentrality parameter $\delta=[\pi pq(\gamma-1)^2]/[1-\pi (\gamma
+p+q)^2]$ or $[\gamma^2 p+q-(\gamma p+q)^2]/[1-\pi (\gamma p+q)^2]$
+under the alternative ($\gamma>1$). It is equivalent to derive the
+power by $Y=\sqrt{X^2}\sim N(\sqrt{\delta},1)$.
+$1-\beta=\Phi(-Z<Y<Z)$, where $Z$ is a preassigned standard normal
+deviate, $\Phi(.)$ is the cumulative normal distribution function.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{cccl}
+\\
+\hline
+& Affected genotype & Nonaffected genotype & \\
+\hline
+A & $\pi\gamma^2p^2+\pi\gamma pq$ & $(1-\pi\gamma^2)p^2+(1-\pi\gamma)pq$ &$p$\\
+a & $\pi\gamma pq+\pi q^2$ & $(1-\pi\gamma)pq+(1-\pi)q^2$ & $q$ \\
+\hline
+  & $\pi(\gamma p+q)^2$ & $1-\pi(\gamma p+q)^2$ & $1$ \\
+\hline
+\end{tabular}
+\caption{\label{exprop} Expected frequencies for allele by case/control genotypes.}
+\end{center}
+\end{table}
+
+The power for random case-control ascertainment with three different
+disease prevalences as from \code{example("pbsize", package = "gap")} is
+shown in Table~\ref{ccpower}.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{ccccc}
+\\
+\hline && \multicolumn{3}{c}{$K$}\\\cline{3-5}
+$\gamma$ & $p$   &  1\%   &5\%   &  10\% \\
+\hline
+  4.0 & 0.01 &   46638&        8951&        4240\\
+      & 0.10 &    8173&        1569&         743\\
+      & 0.50 &   10881&        2089&         990\\
+      & 0.80 &   31444&        6035&        2859\\
+\\
+  2.0 & 0.01 &  403594&       77458&       36691\\
+      & 0.10 &   52660&       10107&        4788\\
+      & 0.50 &   35252&        6766&        3205\\
+      & 0.80 &   79317&       15223&        7211\\
+\\
+  1.5 & 0.01 & 1598430&      306770&      145312\\
+      & 0.10 &  191926&       36835&       17448\\
+      & 0.50 &   97922&       18793&        8902\\
+      & 0.80 &  191926&       36835&       17448\\
+\hline
+\end{tabular}
+\caption{\label{ccpower} Estimated sample sizes required for association
+detection using population data.}
+\end{center}
+\end{table}
+
+So the most favorable scenario is when both the genotypic relative
+risk ($\gamma$) and allele frequency ($p$) are high for a given
+locus, and the disease is common.
+
+Lastly we turn to case-cohort design. \cite{cz04} showed that power
+of a case-cohort design can be obtained by $\Phi(Z_\alpha+m^{0.5}
+\theta\sqrt{p_1p_2p_D/q+(1-q)p_D})$, where $\alpha$ is the
+significance level, $\theta$ is the log-hazard ratio for two groups,
+$p_j, j=1, 2$, are the proportion of the two groups in the
+population, $m$ is the total number of subjects in the subcohort,
+$p_D$ is the proportion of the failures in the full cohort, and $q$
+is the sampling fraction of the subcohort. Alternatively, the sample
+size required for the subcohort is $m=nBp_D/(n-B(1-p_D))$, where
+$B=(Z_{1-\alpha}+Z_\beta)^2/(\theta^2p_1p_2p_D))$ and $n$ is the
+size of cohort. The method has been implemented in function
+\texttt{ccsize}.
+
+\subsection{Joint analysis in staged design and related issues}
+\cite{skol06} examined tests of allele frequency differences between
+cases and controls in a two-stage design and is described here. The
+usual test of proportions can be written as
+$z(p_1,p_2,n_1,n_2,\pi_{samples})$=$(p_1-p_2)/\sqrt{p_1(1-p_1)/(2n_1\pi_{sample})+p_2(1-p_2)/(2n_2\pi_{sample})}$,
+where $p_1$ and $p_2$ are the allele frequencies, $n_1$ and $n_2$
+are the sample sizes, $\pi_{samples}$ is the proportion of samples
+to be genotyped at stage 1. The test statistics for stage 1, for
+stage 2 as replication and for stages 1 and 2 in a joint analysis
+are then $z_1 = z(\hat p_1,\hat p_2,n_1,n_2,\pi_{samples})$, $z_2 =
+z(\hat p_1,\hat p_2,n_1,n_2,1-\pi_{samples})$, $z_j =
+\sqrt{\pi_{samples}}z_1+\sqrt{1-\pi_{samples}}z_2$, respectively.
+Let $C_1$, $C_2$, and $C_j$ be the thresholds for these statistics,
+\cite{skol06} derived the false positive rates according to
+$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$ and
+$P(|z_1|>C_1)P(|z_j|>C_j||z_1|>C_1)$ for replication-based and joint
+analyses, respectively. As our primary interest is the power for the
+two types of analyses, we implement it in function \texttt{tscc}
+whose format is
+\begin{verbatim}
+  tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)
+\end{verbatim}
+which requires specification of disease model (multiplicative,
+additive, dominant, recessive), genotypic relative risk (GRR), the
+estimated risk allele frequency in cases ($p_1$), total number of
+cases ($n_1$) total number of controls ($n_2$), total number of
+markers ($M$), the false positive rate at genome level
+($\alpha_\mathit{genome}$), the proportion of markers to be selected
+($\pi_\mathit{markers}$, also used as the false positive rate at
+stage 1) and the population prevalence ($K$). Note the disease risks
+involving the three genotypes for additive, dominant and recessive
+models are calculated as $(1,\mathit{GRR},2\cdot\mathit{GRR}-1)$,
+$(1,\mathit{GRR},\mathit{GRR})$, $(1,1,\mathit{GRR})$, respectively.
+Power for a number of scenarios for two-stage designs can be
+obtained with slight modification of example code in the
+documentation of \texttt{tscc}. Interestingly, the \proglang{R}
+implementation is much shorter than the \proglang{C} program by
+\cite{skol06}.
+
+\cite{lin06} recently proposed a method of analysis for two-stage
+designs. Like other contributions, the focus was on the markers
+genotyped at both stages. Given that in most studies such as the
+case-cohort design outlined above, there is a rich collection of
+covariate information and perhaps an equally important aspect is to
+use all markers and covariates at both stages in a unified analysis.
+This amounts to a standard analysis with missing independent
+variables with which statistical methods have been well developed,
+e.g., \cite{ibrahim90}, \cite{schafer96}, \cite{vbk99}. The packages
+for multiple imputation available from CRAN, such as \pkg{cat},
+\pkg{mix}, \pkg{norm}, \pkg{pan} \citep{cat, mix, norm, pan},
+\pkg{mice} \citep{mice}, \pkg{mitools} \citep{mitools} can be used.
+
+A useful point relates to prospective versus retrospective methods.
+The retrospective counterpart requires more attention but far from
+clear \citep{ea06}, although the equivalence of retrospective
+versus prospective methods is known \citep{pp79,sr04}. It
+has been shown \citep{kt00,tcc05} that prospective
+likelihood can give biased estimate due to over representation of
+cases or the extremes of the traits compared with the general
+population, so that a retrospective model of
+allele/genotype/haplotype frequencies conditional on the disease
+phenotype via logistic model is preferred. The model is applicable
+to a wide range of traits and provides unbiased estimates. This is
+in contrast to prospective methods \citep{srt02,sm05}.
+
+These two aspects are well illustrated with a concrete example. We
+have recently conducted a study of Type-2 diabetes involving 5,013
+Ashkenazi and four UK populations using two-staged design and 4,570
+SNPs across a 10Mb region of chromosome 20q. A subset of 2,502
+individuals were genotyped on these SNPs at stage one, from which
+SNPs with significance level 0.1 together and those within regions
+of interest (e.g., HNF4A) were further genotyped on remaining sample
+at stage two. In the analysis, a meta-analysis was applied to take
+into account the heterogeneity between populations. The two-stage
+method by \cite{lin06} would be rather complicated. A useful
+prospective formulation for a particular marker not genotyped at
+stage two is to treat it as missing and considered in a weighted
+regression on trait, where the weight is associated with the three
+genotypes, similar to \cite{srt02}. For the retrospective method,
+one can augment the missing genotype similarly, in much the same way
+as \cite{bgm06}. However, recall that this is exactly the kind of
+problem multiple imputation will deal with, such that we simply
+apply the appropriate packages aforementioned which accounts for the
+uncertainty due to missing genotypes. This has not been used in
+staged design although it was recognized recently in haplotype
+analysis \citep{sorensen06,cordell06}. Now with our data
+contained in \texttt{chr20}, and stage one marker rs1419383 is to be
+analyzed, we can use \pkg{mice} as follows,
+\begin{verbatim}
+R> data("chr20")
+R> imp <- mice(chr20)
+R> fit <- lm.mids(cc ~ rs1419383 + ethnicity, data = imp)
+R> pool(fit)
+\end{verbatim}
+The function \texttt{mice} by default performs five imputations and
+therefore five analyses whose results are combined with
+\texttt{pool} command. We can also load Bioconductor
+(\url{http://www.bioconductor.org/}) package \pkg{RSNPper}
+\citep{Carey06} and report metadata (e.g., genome annotation) and
+population information based on hapmap, as follows.
+\begin{verbatim}
+R> library("RSNPper")
+R> mysnp <- SNPinfo("rs1419383")
+R> popDetails(mysnp)
+R> geneInfo("HNF4A")
+\end{verbatim}
+Markers involved in a multistage design can largely be seen as
+monotonic missing by design and can be dealt with similarly. For
+large data from a typical genomewide association involving much more
+SNPs, we can use database connection mechanisms such as open
+database connectivity (ODBC).
+
+\subsection{The EPIC-Norfolk study of obesity}
+Our EPIC-Norfolk genomewide association study of obesity serves as a
+good example which many principles just outlined apply. The study
+was initially designed as a case-control study with the following
+definition of cases and controls: cases are those with body mass
+index (BMI) $> 30 kg/m^2$ and controls with $20 kg/m^2 \leq
+\mbox{BMI} < 25 kg/m^2$. This leads to all obese individuals of the
+EPIC-Norfolk cohort (3425), and 3400 controls. Half of the samples
+are to be genotyped at stage one, to be followed by the remaining
+half at stage two. When adapting this into a case-cohort design, we
+wished to know the power/sample size required and this turned to be
+straightforward to obtain. Part of calculation in \cite{cz04} and
+the required sample size or power in our case can be obtained with
+\code{example("ccsize", package = "gap")}. It turned out a
+comparable case-cohort design has approximately 2500 controls.
+Interestingly, this also corresponds to about 10\% of the size of
+our cohort ($n$), which would expect to give stable estimate for a
+range of covariates measured in the cohort.
+
+\section{Summary}
+This short report shows that the design and implementation of the
+\pkg{gap} package allows for a wide range of functions available in
+a unified fashion. The package is still under development and can be
+seen as a prototype for a future more fully established environment.
+As a reviewer pointed out that ``A strength of the `\pkg{gap}'
+package is that it aims to be the seed point for a general
+compilation of such methods, which means it implements many
+different kinds of methods, not just the ones developed by the
+author'', the author would like to take this opportunity to invite
+comments, suggestions and contributions to consolidate the package.
+Because of the broad scope of applications, we focus on genomewide
+association as a particular application. Part of Table~\ref{asptdt},
+Table~\ref{ccpower}, and the use of multiple imputation in staged
+design, have not been seen in the literature. The latter requires
+more elaborate development with respect to probability weighting.
+Function \texttt{tscc} is a much more transparent implementation
+than the original authors' \proglang{C}/\proglang{C++} software. For
+power calculation, it is desirable to implement other commonly used
+models such as additive, dominant and recessive models. Recently,
+\cite{skol07} further examined the design issues associated with
+two-stage design. I am aware of related efforts which may be useful,
+such as \pkg{pbatR} \citep{hoffmann06}, \pkg{SNPassoc}
+\citep{gonzalez07}, \pkg{GenABEL} \citep{ aulchenko07} and
+\pkg{snpMatrix} \citep{clayton07}. Among others, the \pkg{RSNPper}
+\citep{Carey06} is useful for accessing SNP metadata while
+\pkg{biomaRt} \citep{Durinck06} enables a large collection of
+biological data to be available in \proglang{R}. The focus here is
+largely single point analysis, but multilocus methods such as
+haplotype analysis have been implemented in \pkg{gap}. For instance,
+the function \texttt{hap.score} is an adaptation of
+\texttt{haplo.score} function based on \cite{srt02} which can easily
+take haplotype frequency estimates and haplotype assignments from
+other source and use them within the generalized linear models
+framework.
+
+Although the availability of SNP data is overwhelming, the \pkg{gap}
+package was conceived such that it will handle not only SNPs but
+multiallelic loci and X-chromosome data. Examples include
+\texttt{genecounting} and \texttt{hap}, with the former being
+flexible enough to include features such as X-linked data and the
+latter being able to handle large number of SNPs. But they are unable
+to recode allele labels automatically, so functions \texttt{gc.em}
+and \texttt{hap.em} are in \texttt{haplo.em} format and used by a
+modified function \texttt{hap.score} in association testing. Owing
+to limitation in timing, we have used \proglang{SAS} for many tasks
+in analyzing our obesity data \citep{zhao07} which partly
+contributes to the delay in consolidating SNP specific analyses in
+the package. Nevertheless, it will be of value to adapt some of the
+utilities developed in \proglang{SAS}.
+
+After the package was posted to CRAN, other packages have appeared
+with somewhat overlapping functions, notably \pkg{powerpkg}
+\citep{powerpkg}; a recent version of \pkg{genetics} package
+\citep{warnes03} also contains a function \texttt{power.casectrl}.
+It would be useful to make some comparisons. Another point relates
+to the sequence of development of functions for a package. In
+retrospect, it would have been easier if all codes were implemented
+in native \proglang{R} language and avoiding foreign language calls,
+but the latter may be advantageous in speed given some tuning is
+done. Notably, the following functions need further work:
+\texttt{bt}, \texttt{kin.morgan}, \texttt{twinan90} \citep{wcn92},
+\texttt{gcontrol} \citep{dr99}, \texttt{mtdt} \citep{sham97},
+\texttt{s2k} \citep{hirotsu01}. The overall target would involve
+better memory management, maintaining numerical precision or
+extensions, and use more native \code{.Call} and \proglang{S4}
+classes of \proglang{R}. It is likely that existing functions and
+data would continue to evolve.
+
+The major driving force to integrate many tools for genetic data
+analysis is in line with the observation that statistical genetic
+methods or genetic epidemiology is increasingly becoming part of the
+general epidemiology with focus on both genetic and nongenetic
+factors for diseases, where statistical and computational methods
+are more established. On this point, I wish to emphasize the benefit
+of shifting to or working on \proglang{R} from my own experience,
+which has been a very rewarding one, e.g., \cite{zhao05} and
+\cite{zhao06} in relation to package \pkg{kinship}
+\citep{therneau03}. I noted a similar but more formal effort has
+been launched (\url{http://rgenetics.org/}) but certainly an
+informal approach also has its place, as for example in the case of
+\pkg{haplo.stats} \citep{sinnwell07}. The best data structures have
+yet to be established and collaborative work would be beneficial. I
+hope eventually this will be part of a bigger effort to fulfill most
+of the requirements foreseen by many e.g., \cite{guo00}.
+
+\section*{Acknowledgments}
+
+The \proglang{R} development team, particularly Prof.~Kurt Hornik,
+gave many inputs during the package development. Dr.~Anthony Long
+kindly provided me their results similar to Table~\ref{ccpower}
+based on an approximation algorithm. Dr.~Jian'an Luan provided the
+chromosome 20 data. Dr.~Mike Weale kindly read through the manuscript
+and provided useful comments. Comments from anonymous referees and
+the editor Achim Zeileis also help to improve the manuscript.
+
+%\bibliographystyle{jss}
+\bibliography{jss}
+\end{document}

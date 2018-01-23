@@ -1,0 +1,382 @@
+Version history of the R genetic analysis package (R/gap)
+
+Version 1.1-21
+23-01-2018	Amend URL and makeped example
+
+Version 1.1-20
+24-11-2017	Resize by removing programs available from GitHub
+		Revise gap.Rnw
+
+Version 1.1-19
+23-11-2017	Remove a4wide.sty from gap.Rnw and rnews.Rnw
+		Drop www.graphviz.org
+
+Version 1.1-18
+23-11-2017	Enlarge c[3] to c[7] from CRAN check and Prof Ripley
+
+Version 1.1-17
+19-04-2017	Change fac(8000) to fac(0:8000) in pfc.sim.f for error from R 3.4
+		as alerted by Rainer Johannes <Johannes.Rainer@eurac.edu>
+02-03-2017	Drop \url from hap.Rd, mia.Rd/revise url in CITATION
+		Add import statements to NAMESPACE as suggested by R CMD check --as-cran
+		Change useDynLib(gap) to useDynLib(gap, .registration = TRUE)
+		run tools::package_native_routine_registration_skeleton("gap") to /src
+13-03-2016	Replace URL with desktop service version
+05-01-2016	Add InterAct code snipets to inst/tests/h2
+10-12-2015	Extend h2GE to handle multiple GxE's
+06-06-2015	Reset width=8.5in for h2.Rnw.
+
+Version 1.1-16
+06-06-2015	Change h2.Rnw to h2.pdf generated locally as it would invoke multicore
+		computing.
+
+Version 1.1-15
+05-06-2015	Revise h2.Rnw
+
+Version 1.1-14
+04-06-2015	Drop R2OpenBUGS and coda
+		Revise h2.Rnw
+
+Version 1.1-13
+03-06-2015	Revise gap.Rnw
+		Title case compliance
+		Add information on suggested packages through require()
+		Add meyer data and example code
+		Replace uniform RNG to be R's in hap and hwe.hardy
+		Update h2.Rnw adding contents on MCMCglmm, MCMCgrm, OpenBUGS and JAGS
+		Suggest bdsmatrix, Matrix, MCMCglmm, R2OpenBUGS, R2jags and drop NCBI2R
+		Update references.txt (no) and crohn.Rd
+
+Version 1.1-12
+18-08-2014	Revise packageStartupMessage and NAMESPACE
+		Use scope operator for external function calls as suggested by Prof Ripley
+		Add Repository to DESCRIPTION according to R CMD check --as-cran
+		replace "<=" with "<" at line 502 of makeped.c according to Prof Brian Ripley <ripley@stats.ox.ac.uk>
+
+Version 1.1-11
+18-08-2014	Use Unit URL, suggest mets and add INDEX, use of packageStartupMessage
+		Add WriteGRMSAS and SAS code for l51
+		Add ReadGRM/WriteGRM/ReadGRMPCA/ReadGRMPLINK/h2G/h2GE/VR and revise .Rd files
+		Revise demo/gap.R and kin.morgan.c in accordance with recent changes
+		Move doc/ to tests/ as in kinship to make room for vignettes
+		Replace gets() by fgets() in makeped.c as suggested by Fedora 19
+		Add source codes of associate R functions for cross-checking, e.g., 2ld
+		(first full release of GENECOUNTING source code)
+		Enhance the resolutions of figures in gap.Rnw by mixing pdf/png formats
+		Add rnews.Rnw, pedtodot.Rnw, jss.Rnw and h2.Rnw as additional vignettes
+
+Version 1.1.10
+30-09-2013	Create vignettes subdirectory for associate files from inst/doc
+		Remove url from DESCRIPTION
+		Add functions during experiments with GCTA
+		Add chicken GWAS example from Titan <lone9@qq.com> to vignette
+		Wrap lines longer than 100 characters
+
+Version 1.1-9
+03-08-2013	Revise example in mhtplot in reply to query from Titan [mailto:lone9@qq.com] 
+		Further revision on cutoffs to mhtplot
+08-04-2013	Replace .file.path(.package.path) with system.file
+27-02-2013	Add SOLAR code for l51.Rd
+		Reorder columns in mdata as in mhtplot2.Rd so that gene annotations are produced
+
+Version 1.1-8
+26-02-2013	Remove attach/detach in gc.em.R filter through --as-cran with installation of qpdf
+
+Version 1.1-7
+26-02-2013	Rmove \synopsis in muvar.Rd from CRAN check results
+25-02-2013	Add mhtplot2 after the Nature Genetics paper on heart rate
+		Add l51 following a side project at the work place
+		Suggest coxme, pedigreemm, regress
+15-09-2012	Remove .tm_properties according to CRAN check
+06-08-2012	Add AE3 function, mfblong.rda, and CITATION, suggesting nlme
+
+Version 1.1-6
+15-03-2012	Change version to MAKEPED_VERSION in makeped.c according to Prof Brian Ripley
+14-03-2012	Add inst/doc/results, figures to .Rinstignore
+		Revise mtdt2
+
+Version 1.1-5
+14-03-2012	Add .Rinstignore
+		Remove Sweave.sty in inst/doc and reorganse sub-directories there
+13-03-2012	Change env to envir and lapply to sapply in tscc
+
+Version 1.1-4
+13-03-2012	Withdraw twinan90 to comply with new R CMD check
+		Suppress write statements in pfc.f, pfc.sim.f; replace stop with rexit
+		Replace fprintf(stderr,) with REprintf(), printf() with Rprint(), exit() with error()
+		Restore allele.recode, geno.recode
+		Remove Hmisc and suggests kinship2
+
+Version 1.1-3
+06-12-2011	Revise gap.Rnw to be compatible with kinship_1.1.2
+30-11-2011	Revise hwe.cc components and therefore NAMESPACE according to Wang, Li [li.wang@vanderbilt.edu]
+		Suggest rms instead of Design in DESCRIPTIOIN and therefore modify hap.score.R
+11-11-2011	Add examples of HWE for multiple markers as done for Roger Vallejo [Roger.Vallejo@ARS.USDA.GOV]
+03-10-2011	Add url to twinan90 example and .png example for mhtplot
+29-08-2011	Revise asplot to allow for is.na(RSQR) and add NCBI2R example
+12-08-2011	Revise asplot as with the package vignette
+09-06-2011	Activate ylab, according to Marcel den Hoed [marcel.denhoed@mrc-epid.cam.ac.uk]
+03-06-2011	Replace snca.RData with PD.rda
+31-05-2011	Refine mhtplot and documentation according to Franco, Luis Miguel [lfranco@bcm.edu]
+04-05-2011	Tidy up some loose ends from Version 1.1-2
+
+Version 1.1-2
+03-05-2011	Modify package vignette after cross-check with package kinship
+01-05-2011	Revise kin.morgan (finally) with bug-fix as reported by Lukas Keller [lukas.keller@ieu.uzh.ch]
+14-04-2011	Add --resave-data option when running R CMD build
+
+Version 1.1-1
+10-12-2010	Add into vignette results from pbsize/fbsize/ccsize and figures as produced by asplot, ESplot, mhtplot, and qqunif
+25-11-2010	Add type argument to mht.control() so that it is appropriate for lod score analysis
+23-11-2010	Clarify colors and hcolors in mhtplot
+19-11-2010	Add /usr/share/texlive/texmf-dist/tex/latex/ltxmisc/a4wide.sty under Fedora 13
+		and Comment on \usepackage{a4wide/amsmath/epsfig} in gap.Rnw enable build/check
+		Change some table() calls to unique in Mhtplot to keep genes in order
+
+Version 1.1-0
+17-11-2010	Enable rotated ticks on the x-axis and retain cutoffs argument after HaemGenRBC plot
+14-11-2010	Relocate highlight region in mhtplot after the usual data points
+05-11-2010	Remove attach/detach data statements in mtdt2 due to bug-fix in BradleyTerry2
+03-11-2010	Further reivision of mhtplot using real data from Tuomas.Kilpelainen@mrc-epid.cam.ac.uk
+07-07-2010	Revise mhtplot at suggestion of Peter Ehlers [ehlers@ucalgary.ca]
+30-06-2010	Replace qqplot within gcontrol2 by qqunif
+
+Version 1.0-23
+24-06-2010	Refine keywords
+23-06-2010	Add masize for sample size calculation in mediation analysis
+08-06-2010	Add references to apoeapoc following a query from Breitling Lutz [l.breitling@Dkfz-Heidelberg.de]
+27-05-2010	Rename abc as ab, pending addition of a formal abc
+14-05-2010	Add hwe.cc based on codes by Chang Yu [chang.yu@vanderbilt.edu]
+29-04-2010	Add ACE.R for ACE, AE, CE and E twin models using OpenMx and create h2
+20-04-2010      Add mtdt2 calling BradleyTerry2
+01-04-2010	Add klem with .C("kbylem") for LD statistics based on imputed SNPs to be calculated
+24-03-2010	Fix problems of no specification of ylim=NULL at mhtplot
+03-01-2010	Add example data to comp.score and refine makeped example
+
+Version 1.0-22
+01-01-2010	Refine ccsize, fbsize and pbsize
+21-11-2009	Add outfile and outfileonly arguments to read.ms.output
+
+Version 1.0-21
+20-11-2009	Fix bug on read.ms.output when nsam==1 and make mhtplot to accommodate generic data as pointed
+		by Dagmar Kapell [Dagmar.Kapell@sac.ac.uk]
+19-11-2009	Add function read.ms.output after work on EJHG paper and revise link to qqfun from qqunif
+10-11-2009	Add function abc based on EPIC-Norfolk data for QQR for Shengxu Li [shengxu.li@mrc-epid.cam.ac.uk]
+08-11-2009	Add confidence interval option to qqunif as required by Andy Wood [arwood@pms.ac.uk]
+28-08-2009	Remove references to qqline, qqplot of stats in qqfun.Rd and depreciated power.casectrl of genetics
+
+Version 1.0-20
+26-08-2009	Rename kbyl as LDkl in geneecounting.Rd, add references to vignette for b2r/mvmeta 
+
+Version 1.0-19
+25-08-2009	Attempt to do away with warning from 2ld.c
+
+Version 1.0-18
+25-08-2009	Remove braces for enumerate items in genecounting.Rd and hap.Rd
+18-08-2009	Add b2r in order for meta-analysis via correlations to be conducted
+17-08-2009	Add arguments alpha and beta to fbsize as needed by Tetyana Zayats [zayatst@Cardiff.ac.uk]
+		Add mvmeta from an earlier test, pending on further work on using linear regression estimates
+11-08-2009	Suggests pedigree package
+23-07-2009	Fix subscript for QW in metareg as pointed by Emmanouela Repapi [er82@leicester.ac.uk]
+08-06-2009	Revise mhtplot documentation example according to Meg Rose [mrose19@jhu.edu]
+03-01-2009	Fix link to Citations.txt
+		Modify gap-package.Rd and mhtplot.Rd
+
+Version 1.0-17
+02-01-2009	Remove braces from Rd files according to CRAN check
+
+Version 1.0-16
+02-01-2009	Refine asplot and mhtplot
+01-01-2009	Modify mhtplot with real position, colors for available chromosomes, default cutoffs and gap
+31-12-2008	Remove psfig.sty from gap.Rnw
+14-11-2008	Change pos <- data[,2] to pos <- 1:length(data[,2]) according to Aron Chiang
+07-11-2008	Add 'base' to mhtplot as pointed by Aron Chiang [Yutin.A.Chiang@uth.tmc.edu]
+		Add detach(hapdat) to gc.em according to Jose Osorio [Jose.OSORIOYFORTEA@limagrain.com]
+		Add comments on permutation test of r2 as for Sofiane MEZMOUK [Sofiane.MEZMOUK@biogemma.com]
+20-08-2008	Revise links to LDkl in gc.em.Rd and hap.em.Rd
+                Add HapDesign and HapFreqSE by Andrea Foulkes
+23-04-2008	add mzdz.dat
+
+Version 1.0-15
+10-04-2008	Rename tbyt/kbyl as LD22/LDkl and fix hap.c
+07-04-2008	Add ESplot for Grace Jing Wang's query
+28-03-2008	Add regional association plot (asplot)
+25-03-2008	Add qqfun according to qq.plot of package car by John Fox
+22-03-2008	Add gcontrol2 (experimental)
+21-03-2008	Remove labels "chr" in mhtplot
+20-03-2008	Swap order of x, y in qqunif
+14-03-2008	Create mhtplot for Manhattan plot of genomewide p values
+                Add example to qqunif for highlighting p values above certain threshold
+10-03-2008	Revise pedtodot according to pedigrees from Jinliang Wang/Richard Mott
+07-03-2008	Add Fisher's method for meta-analysis to metap
+06-03-2008	Replace get() with data[""] in metap/metareg
+		Refine metap.Rd to make it consistent with the GIANT example
+		Document some functions in gap-internal.Rd
+		Provide option for file of haplotype assignment
+04-03-2008	Add metap, and modify metareg to accept multiple records
+		Add PARn, snp.ES, snp.HWE, snp.PAR
+03-03-2008	Add metareg
+02-03-2008      Add citations.txt to inst/doc
+
+Version 1.0-14
+01-03-2008	Add pbsize2 and make an internal function from pexp/fexp
+                Add jss07.pdf to inst/doc
+                Add mao.dat to inst/tests and therefore modify genecounting.Rd
+27-02-2008	Change license to GPL (>=2) as suggested by Kurt Hornik
+20-02-2008	Correct reference as suggested by Mark N Grote
+		Change V = -1.,2.1,.1 to J = 1,32, V=-1+0.1*(J-1) in twinan90.f
+
+Version 1.0-13
+01-08-2007	Refine BFDP,FPRP,qqunif
+
+Version 1.0-12
+16-06-2007	Add haplo.stats to Suggest and remove associate functions
+28-07-2007	Add BFDP,FPRP,qqunif
+
+Version 1.0-11
+12-06-2007	Add gap-package.Rd and reformat this file with tabs
+18-04-2007	Add comp.score
+08-04-2007	DESCRIPTION:
+		Suggests: Design, Hmisc
+
+Version 1.0-10
+02-01-2007	Remove P1 in powerj of tscc function
+		Rename mi.inference to micombine to avoid confusion
+11-10-2006	add \method markup to plot.hap.score and print.hap.score
+
+Version 1.0-9
+21-9-2006	Add Design, Hmisc to DESCRIPTION as required by R 2.4.0
+		Add more summary statistics to twinan90
+		Add mi.inference to mia
+		Add power calculation for joint analysis of two-stage design
+		Add recent references to gap.Rnw
+
+Version 1.0-8
+04-04-2006	Add heritability estimate to twinan90
+		Remove unused definitions according to compiling error from Kurt Hornik
+		Temporarily disable dependence on R/genetics due to problems with mvtnorm
+
+Version 1.0-7
+01-04-2006	Remove comments about haplo.score in gap.Rnw
+		Add twinan90 by Chris Williams
+		Add byrow=TRUE to a number of matrix() calls
+
+Version 1.0-6
+12-02-2006	Fix bug in genecounting when multiple runs of chromosome X data is used
+		Add example to pedtodot as in R News and Bioinformatics
+
+Version 1.0-5
+16-01-2006	Drop pathmix and pointer
+
+Version 1.0-4
+13-12-2005	Add ccsize
+
+Version 1.0-3
+24-07-2005	genecounting (gc.c):
+		Change nhet2 from short to long (int)
+		Change ll() in gc.c according to report by Iris Grossman on a "Crazy" data
+
+		hwe.hardy:
+		Fix bug report by Lize van der Merwe <lize.van.der.merwe@mrc.ac.za> on data
+		three=c("A/A",rep("A/B",4),rep("B/B",4),rep("A/C",14),rep("B/C",28),rep("C/C",49))
+		g3=genotype(three)
+		hwe.hardy(g3)
+
+		It benefits from the original author of HWE ("Guo, Sun-Wei" <swguo@mail.mcw.edu>)
+17-04-2005	Refine 2ld.R and 2ld.c according to the C program 2LD 
+		Revisit pfm.sim.f (f95 -PIC -xlibmil -xO5 -dalign -c by Brian Ripley).
+
+Version 1.0-2
+14-04-2005	Done with genecounting involving Chromosome X data.
+		Comment on code for hrt which is useless and causes crashes.
+		Move fine controls of genecounting and hap to gc.control/hap.control.
+
+Version 0.8-4
+18-03-2005	add NAMESPACE
+		change bt, gcontrol, mtdt
+		add pedtodot
+		add datasets mao, nep499, snca, cf, fa, crohn
+		modify hwe.hardy by Gregor Gorjanc <Gregor.Gorjanc@bfro.uni-lj.si>,
+		which requires package genetics
+		change onLoad to .onLoad
+
+Version 0.8-3
+08-11-2004	Ddapt haplo.score fully for hap.score
+		Create examples for hwe.hardy using pgc, etc.
+		Add gcp
+		Modify gc.em, hap.em to allow for any allele labels
+		Change hwe to accept allele, genotype and genotype count more naturally
+		Change digit2 and digitm from int to void because of a complaint by Brian Ripley
+
+Version 0.8-2
+16-08-2004	Add keyword as required by R 2.x
+		Change hwe.hardy.c, pgc.h and makeped.c according to gcc -Wall -pedantic
+
+Version 0.8-1
+05-06-2004	Add kin.matrix to kin.morgan using algorithm similar to g2a
+		Replace tril/triu in mtdt with standard function lower.tri/upper.tri
+		Add resid and scale prob in genecounting
+		Relabel gret in pgc.Rd as cdata
+		Delete comma in pfc.R and fix problem with loop index in pfc.f
+		Add pfc.sim
+
+Version 0.8
+04-02-2004	Crashes by hwe.hardy go away, chi-squared tests to be implemented
+08-02-2004	Add hwe, decided any details should go to the R code itself
+17-02-2004	Add static to outfile in pgc.h and hap.c, pointed by Jan de Leeuw (deleeuw@stat.ucla.edu)
+21-02-2004	Completion of the first comprehensive analysis of data on Parkinson's disease and SNCA markers from
+		Abbas Parsian (parsian@louisville.edu) (HWE, haplotype frequency estimation, score tests, Fisher's
+		exact test, hwde, genetics) and gap obtained comparable results with SAS combined with hwe of 
+		Jurg Ott (ott@rockefeller.edu) but dealing with missing data; this could be released as an example
+		later on. It was decided that auxiliary functions are better added after the actual linkage analysis
+		codes are working.
+
+		Fix lr statistic in gc.em.R due to rename of lnlx to lx
+
+26-02-2004	Reverse the order of version history in this file (starting from the most recent)
+
+Version 0.7
+02-02-2004	Warnings pointed by Kurt Hornik
+		Change %lf to %f in several places of pgc.c
+		Remove semicolon after } of rsort1
+
+Version 0.6
+28-01-2004	Changes for Mac OS X 10.3 (Panther) according to Michael Barmada (michael.barmada@hgen.pitt.edu):
+		. do_switch --> ndo_switch in hwe.hardy.c
+		. malloc.h --> malloc/malloc.h in gcontrol.c and makeped.c; but it seems ok to stick to stdlib.h
+		. add static to n_loci, etc. in hap.c, mia.c to avoid conflict
+
+31-01-2004	Rename genecounting.R to gc.R and change lnl0 and lnl1 to l0 and l1
+		Add pgc function but with same problem as hwe.hardy
+
+01-02-2004	Fix error and handle.miss functions in pgc when with.id=0
+		Change cat() to c() in gap.demo.R to avoid generating data files
+		Merge muvar1 and muvar2 into muvar and add their synopsis
+
+Version 0.5
+19-01-2004	To remove warnings earlier found in PC and pointed by Prof Brian Ripley
+		Resubmission to CRAN
+
+22-1-2004	Add haplotype diversity to genecounting
+		Add default value to optrho in kbyl
+		Change "for" to "with" when describing fsnps
+
+Version 0.4
+14-01-2004	Create this file
+		Change DESCRIPTION
+		Correct author of mtdt
+		Delete hap.out in R directory
+		Add docoumentation of htrtable in gc.em
+		See also pfc rather than gif in gif.Rd
+		Add right bracket in dat1 of chow.test
+		Change ad to y in htr.Rd and the annotation in apoeapoc.Rd
+
+Version 0.3
+13-01-2004 	Refine Vignette and change gap.demo.R
+
+Version 0.2
+12-01-2004	Change %lf and %lg to %f according to check by Prof Kurt Hornik
+
+Version 0.1
+11-01-2004	First submission to CRAN with Vignette and revised Rd
+07-06-2003	Draft plan (home edition) shortly before RSS 2003

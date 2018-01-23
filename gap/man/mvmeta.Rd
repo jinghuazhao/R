@@ -1,0 +1,95 @@
+\name{mvmeta}
+\alias{mvmeta}
+\title{Multivariate meta-analysis based on generalized least squares}
+\usage{mvmeta(b,V)}
+\description{
+This function accepts a data matrix of parameter estimates and their variance-covariance matrix
+from individual studies and obtain a generalized least squares (GLS) estimate and heterogeneity statistic.
+
+For instance, this would be appropriate for combining linear correlation coefficients of single
+nucleotide polymorphisms (SNPs) for a given region.
+
+}
+\arguments{
+  \item{b}{the parameter estimates}
+  \item{V}{the triangular variance-covariance matrix}
+}
+
+\value{
+The returned value is a list containing:
+
+\item{d}{the compact parameter estimates}
+\item{Psi}{the compact covariance-covariance matrix}
+\item{X}{the design matrix}
+\item{beta}{the pooled parameter estimates}
+\item{cov.beta}{the pooled variance-covariance matrix}
+\item{X2}{the Chi-squared statistic for heterogeneity}
+\item{df}{the degrees(s) of freedom}
+\item{p}{the p value}
+}
+
+\section{References}{
+Hartung J, Knapp G, Sinha BK. Statistical Meta-analysis with Applications, Wiley 2008.
+}
+\seealso{
+\code{\link[gap]{metareg}}
+}
+
+\examples{
+\dontrun{
+# example 11.3 from Hartung et al.
+#
+b <- matrix(c(
+0.808, 1.308, 1.379, NA, NA,
+NA, 1.266, 1.828, 1.962, NA,
+NA, 1.835, NA, 2.568, NA,
+NA, 1.272, NA, NA, 2.038,
+1.171, 2.024, 2.423, 3.159, NA,
+0.681, NA, NA, NA, NA),ncol=5, byrow=TRUE)
+
+psi1 <- psi2 <- psi3 <- psi4 <- psi5 <- psi6 <- matrix(0,5,5)
+
+psi1[1,1] <- 0.0985
+psi1[1,2] <- 0.0611
+psi1[1,3] <- 0.0623
+psi1[2,2] <- 0.1142
+psi1[2,3] <- 0.0761
+psi1[3,3] <- 0.1215
+
+psi2[2,2] <- 0.0713
+psi2[2,3] <- 0.0539
+psi2[2,4] <- 0.0561
+psi2[3,3] <- 0.0938
+psi2[3,4] <- 0.0698
+psi2[4,4] <- 0.0981
+
+psi3[2,2] <- 0.1228
+psi3[2,4] <- 0.1119
+psi3[4,4] <- 0.1790
+
+psi4[2,2] <- 0.0562
+psi4[2,5] <- 0.0459
+psi4[5,5] <- 0.0815
+
+psi5[1,1] <- 0.0895
+psi5[1,2] <- 0.0729
+psi5[1,3] <- 0.0806
+psi5[1,4] <- 0.0950
+psi5[2,2] <- 0.1350
+psi5[2,3] <- 0.1151
+psi5[2,4] <- 0.1394
+psi5[3,3] <- 0.1669
+psi5[3,4] <- 0.1609
+psi5[4,4] <- 0.2381
+
+psi6[1,1] <- 0.0223
+
+V <- rbind(psi1[upper.tri(psi1,diag=TRUE)],psi2[upper.tri(psi2,diag=TRUE)],
+psi3[upper.tri(psi3,diag=TRUE)],psi4[upper.tri(psi4,diag=TRUE)],
+psi5[upper.tri(psi5,diag=TRUE)],psi6[upper.tri(psi6,diag=TRUE)])
+
+mvmeta(b,V)
+}
+}
+\author{Jing Hua Zhao}
+\keyword{datagen}

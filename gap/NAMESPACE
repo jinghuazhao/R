@@ -1,0 +1,44 @@
+useDynLib(gap, .registration = TRUE)
+export(AE3, ab, allele.recode, a2g, asplot,
+   BFDP, bt, b2r,
+   Cox.est, Cox.T, ccsize, chow.test, comp.score, cov.invlogit,
+   DevH0dominant,
+   DevH0dominant.est,
+   DevH0recessive,
+   DevH0recessive.est,
+   DevHaGdominant,
+   DevHaGdominant.est,
+   DevHaGrecessive,
+   DevHaGrecessive.est,
+   ESplot,
+   fbsize, FPRP,
+   g2a, g2a.c, gc.control, gc.em, gcode, gcontrol, gcontrol2, gcp, genecounting, geno.recode, 
+        getPTE, getb1star, gif, grec2g, MCMCgrm,
+   h2, h2G, h2GE, h2l, hap, hap.control, hap.em, hap.score, hmht.control, htr,
+        hwe, hwe.cc, hwe.hardy, HapDesign, HapFreqSE,
+   invlogit, 
+   KCC, k, klem, kin.morgan,
+   LD22, LDkl, logit,
+   m2plem, makeped, masize, metap, metareg, mhtplot, mhtplot2, mht.control, mia, micombine,
+        mtdt, mtdt2, muvar, mvmeta,
+   PARn, pbsize, pbsize2, pedtodot, pfc, pfc.sim, pgc, plem2m, plot.hap.score, print.hap.score,
+   qqfun, qqunif,
+   read.ms.output, revhap, revhap.i, ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA,
+   s2k, se.exp, se.invlogit, snp.ES, snp.HWE, snp.PAR, solve_skol,
+   toETDT, tscc,
+   ungcode,
+   VR,
+   whscore, WriteGRM, WriteGRMBin, WriteGRMSAS,
+   x2,
+   z)
+S3method(plot, hap.score)
+S3method(print, hap.score)
+import(utils)
+importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
+           "legend", "lines", "mtext", "par", "plot", "points",
+           "segments", "text")
+importFrom("grDevices", "palette", "xy.coords")
+importFrom("stats", "as.formula", "coefficients", "cor", "dnorm",
+           "glm", "integrate", "median", "nlm", "pchisq", "pf",
+           "pnorm", "ppoints", "pt", "qchisq", "qnorm", "qqplot", "qt",
+           "quantile", "rbinom", "rexp", "rnorm", "runif", "var")
