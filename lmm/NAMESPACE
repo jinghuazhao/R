@@ -1,0 +1,2 @@
+useDynLib(lmm)
+export(ecmeml, ecmerml, fastmcmc, fastml, fastmode, fastrml, mgibbs)

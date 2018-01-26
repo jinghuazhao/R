@@ -1,0 +1,48 @@
+Version 1.0
+
+2015-02-10	Convert rngs to real function in accordance with pan
+		Cast rangen explicitly as real
+		Revise DESCRIPTION and remove .Rinstignore
+
+Version 0.9
+
+2013-12-10	Change LICENSE following advince from Kurt Hornik
+
+Version 0.8
+
+2013-12-10	date stamp for CRAN submssion
+2013-09-30	mv inst/doc vignettes
+		rmdir inst
+
+Version 0.7
+2013-09-27	Add MIT to LICENSE
+
+Version 0.6
+
+2012-04-16	Change "integer gmax/50/" into "integer gmax, data gmax/50/" in lmm.f
+		as suggested by Brook Milligan [mailto:brook@nmsu.edu]
+2012-04-11	Revise example.Rd
+2012-04-06	Include incomplete data in marijuana.rda
+		Accommodate the change in example.Rd
+2012-04-05	Fix typos and add title to Table 1 in lmm-tr.Rnw
+
+Version 0.5
+
+2012-04-05	Add argument err to .Fortran calls in functions including
+		ecmeml, ecmerml, fastmcmc, fastml, fastrml, mgibbs
+		as suggested by R -d valgrind --vanilla < example.R
+		To enable LazyData and LazyLoad
+2012-04-04	Remove .lmm suffixes to functions
+		Collect data in example.Rd into marijuana.rda and tabulated in lmm-tr
+
+Version 0.4
+
+2012-03-16	Add ChangeLog, .Rinstignore and lmm-tr.Rnw
+
+Version 0.3-5
+
+2008-08-26	Add NAMESPACE
+
+Version 0.1
+
+2003-11-15	Made availale from CRAN

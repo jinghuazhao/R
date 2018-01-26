@@ -1,0 +1,13 @@
+Package: lmm
+Version: 1.0
+Date: 2015-02-24
+Title: Linear Mixed Models
+Author: Original by Joseph L. Schafer
+Maintainer: Jing hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+Depends: R (>= 2.0.0)
+LazyData: Yes
+LazyLoad: Yes
+Description: Some improved procedures for linear mixed models.
+License: Unlimited
+URL: http://www.stat.psu.edu/~jls/misoftwa.html
+Packaged: 2015-02-10 09:46:33 UTC; jhz22
