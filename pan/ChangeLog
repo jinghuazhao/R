@@ -1,3 +1,6 @@
+Version 1.5
+2018-01-25	Employ tools::package_native_routine_registration_skeleton("tdthap")
+
 Version 1.4
 
 2016-02-10	Minor change to pan example as suggested by 이찬영 <srh0926@gmail.com>
