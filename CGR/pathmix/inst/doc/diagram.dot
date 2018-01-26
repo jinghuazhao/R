@@ -1,0 +1,62 @@
+digraph pathmod {
+label="Path model of nuclear family data" ;
+ "IFA" [shape= box,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "GFA" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "GFC" [shape= circle,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "G1" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "P1" [shape= box,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "PFA" [shape= box ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "CF" [shape= circle,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "C1" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "I1" [shape= box,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+   "H" [shape= circle,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+   "B" [shape= circle,regular=1 ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "PMA" [shape= box ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "CM" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "C2" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "I2" [shape= box ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "IMA" [shape= box ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "GMA" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+ "GMC" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "G2" [shape= circle ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+  "P2" [shape= box ,height= 0.5 ,width= 0.75 ,style=filled,color= grey ] ;
+"GFA"  ->  "IFA"  [dir=forward, weight=1, label="jw"] ;
+"GFA"  ->  "PFA"  [dir=forward, weight=1, label="hz"] ;
+"CF"   ->  "IFA"  [dir=forward, weight=1, label="iv"] ;
+"CF"   ->  "PFA"  [dir=forward, weight=1, label="cy"] ;
+"GFA"  ->  "GFC"  [dir=none, weight=1, label="rG"] ;
+"GFC"  ->   "G1"  [dir=forward, weight=1, label="0.5"] ;
+ "G1"  ->   "P1"  [dir=forward, weight=1, label="h"] ;
+ "G1"  ->   "I1"  [dir=forward, weight=1, label="j"] ;
+ "CF"  ->   "C1"  [dir=forward, weight=1, label="fF"] ;
+ "C1"  ->   "P1"  [dir=none, weight=1, label="c"] ;
+ "C1"  ->   "I1"  [dir=none, weight=1, label="i"] ;
+ 
+"GMA"  ->  "IMA"  [dir=forward, weight=1, label="jw"] ;
+"GMA"  ->  "PMA"  [dir=forward, weight=1, label="hz"] ;
+ "CM"  ->  "IMA"  [dir=forward, weight=1, label="iv"] ;
+ "CM"  ->  "PMA"  [dir=forward, weight=1, label="cy"] ;
+"GMA"  ->  "GMC"  [dir=none, weight=1, label="rG"] ;
+"GMC"  ->   "G2"  [dir=forward, weight=1, label="0.5"] ;
+ "G2"  ->   "P2"  [dir=forward, weight=1, label="h"] ;
+ "G2"  ->   "I2"  [dir=forward, weight=1, label="j"] ;
+ "CM"  ->   "C2"  [dir=forward, weight=1, label="fM"] ;
+ "C2"  ->   "P2"  [dir=none, weight=1, label="c"] ;
+ "C2"  ->   "I2"  [dir=none, weight=1, label="i"] ;
+
+  "H"  ->  "GFA"  [dir=forward, weight=1, label="sqrt(m)"] ;
+  "H"  ->   "CF"  [dir=forward, weight=1, label="sqrt(n)"] ;
+  "H"  ->   "CM"  [dir=forward, weight=1, label="sqrt(n)"] ;
+  "H"  ->  "GMA"  [dir=forward, weight=1, label="sqrt(m)"] ;
+  "B"  ->   "C1"  [dir=forward, weight=1, label="b"] ;
+  "B"  ->   "C2"  [dir=forward, weight=1, label="b"] ;
+
+ "CF"  ->   "C2"  [dir=forward, weight=1, label="fF"] ;
+ "CM"  ->   "C1"  [dir=forward, weight=1, label="fM"] ;
+"GFC"  ->   "G2"  [dir=forward, weight=1, label="fF"] ;
+"GMC"  ->   "G1"  [dir=forward, weight=1, label="0.5"] ;
+
+"GFA"  ->   "CF"  [dir=both, weight=1, label="a-s"] ;
+"GMA"  ->   "CM"  [dir=both, weight=1, label="a-s"] ;
+"PFA"  ->  "PMA"  [dir=none, weight=1, label="p"] ;
+}

@@ -1,0 +1,120 @@
+    This is the first of two diskettes comprising "method 3" of our 
+PATHMIX 2 package.  Together these diskettes contain two executable 
+programs and five files which are used to illustrate the procedure by 
+way of example.  The files are summarized as follows: 
+
+
+PATHIN.EXE  -- transforms nuclear family data into a form useable by 
+               the "PATH3" program
+
+PATH3.EXE   -- fits path models to the family data
+
+T3.BAT      -- bat file to run a sample job
+
+TEST.DAT    -- sample nuclear family data (50 families with phenotypes 
+               and indices for 2 parents and three children each)
+
+T3.JF       -- sample job file
+
+T3.IN1      -- sample interactive input for PATHIN
+
+T3.IN2      -- sample interactive input for PATH3
+
+
+               comments on the enclosed sample job
+
+    PATHMIX method 3 requires two files as input: a "data file" and a 
+"job file".  The data file contains nuclear family data where each 
+record represents an individual, and where the records for the members 
+of the same nuclear family are adjacent.  Each record must contain a 
+family identification number, a position code number (1 to 3), a 
+quantitative measure of the phenotypic trait, and a quantitative measure 
+of the environmental index (see reference).  A record may optionally 
+contain other information (e.g. age, sex, other phenotypic measures) 
+which is ignored by PATHMIX, but may be incorporated in data 
+transformations.  
+
+    In the enclosed example, the first nuclear family is:
+
+  151 01  -0.2710  -0.5329
+  151 02   0.4345   0.2091
+  151 03  -0.9180  -0.0746
+  151 03  -1.3383   0.5475
+  151 03  -1.3663  -0.0592
+
+These 5 records are identified as belonging to the same family by their 
+family number (151).  The fact that both parents and three children are 
+present, is indicated by the position codes 01 (father), 02 (mother), 
+and 03 (child).  Any unknown phenotypes or indices may be left blank if 
+unknown.  In the enclosed data file (created by simulation for testing) 
+all 50 families have the same family structure in order to speed up the 
+execution time of the test problem.  In practice, the nuclear families 
+would not have the same structure and the program would take much longer
+to run.  
+
+    All of our PATHMIX programs require an input job file to specify the 
+operations to be performed.  The job file is divided into logical 
+subfiles, each of which ends in a record containing "<EOF>".  For method 
+3, the job file has two parts, which occur in the first and third 
+subfile, respectively.  The first specifies the position and format of 
+the data fields (described above), as they occur within each record of 
+the data file.  The second specifes the path model(s) to be applied to 
+the data.  All alphabetic information in the job file must be in upper 
+case.  The first part of the enclosed sample job file is: 
+
+PX (3) (ID=1,PO=2,PH=3,IN=4)
+FM (F5.0,F3.0,F9.0,F9.0)
+TX IF (X2 = 4) X2 = 3
+TX X4 = (X4-.17362) / SQRT(1.15718)
+TX X3 = (X3-.04026) / SQRT(1.05745)
+CC SAMPLE JOBFILE FOR PATHMIX
+
+This is used by the PATHIN program to create an intermediate file which 
+will be used by PATH3.  The first record specifies the order of the four 
+required fields in the data records, ID = family identification number, 
+PO = position code number, PH = quantitative measure of phenotype, IN = 
+quantitative measure of index.  The second record specifies the format 
+of each data field, in the form used in Fortran.  (Note that integers 
+are specifed using "F#.0" notation.)  Records 3 through 5 specify 
+optional transformations to apply to the input data when creating the 
+intermedate data file.  In this example, position code 4 is translated 
+to 3, and index and phenotype fields are standardized by subracting the 
+means and dividing by the standard deviations.   The last record is 
+simply a comment identifying the input data.  
+
+    The second part of the enclosed sample job file (in the third 
+subfile) is: 
+
+CC METHOD 3 ESTIMATION OF 10 PARAMETERS ON REIMUT'S SIMULATED FAMILY DATA
+PA (H=.5,Z=1.0,C=.5,Y=1.0,I=.5,V=1.0,U=.5,FF=.2,FM=.2,B=.5)
+IT (VPC,VIC,H,Z,C,Y,I,V,U,FF,FM,B) (TOL=.0000001)
+
+This directs the PATH3 program to estimate, by maximum likelihood, the 
+values of the ten path coefficients and two variances listed in the IT 
+card.  The PA card specifies starting values to be used in the 
+estimation.  If a value is specified in the PA card for a parameter not 
+occurring in the subsequent IT card, the parameter will be fixed to that 
+value and not estimated.  Similarly, default values are assigned to all 
+parameters which are not listed in the PA card.  In the above example, 
+all six of the means are fixed at their default value (the sample means), 
+and all of the variances are started at their defaults (the sample 
+variances), two being estimated and four being fixed.  Had parameter "H" 
+been omitted from the PA card, it would have taken its default value of 
+zero.
+
+
+For general information about the methodology used in our Path 
+Analysis programs, and the procedure used to obtain quantitative 
+environmental indices, refer to:
+
+D.C. Rao, P. Laskarzewski, J. Morrison, P. Khoury, K. Kelley, R. Wette, 
+J. Russell and C.J. Glueck.  The Cincinnati Lipid Research Clinic Family 
+Study:  Cultural and Biological Determinants of Lipids and Lipoprotein 
+Concentrations.  Am J Hum Genet.  34:888-903, 1982.
+
+For specific information on "method 3", refer to: 
+
+D.C. Rao, M. McGue, R. Wette and C.J. Glueck.  Path analysis in genetic 
+epidemiology.  In:  Chakravarti A, ed.  Human Population Genetics:  The 
+Pittsburgh Symposium.  Van Nostrand Reinhold Company, Inc., 
+Stroudsburgh, PA., pp. 35-81, 1984.

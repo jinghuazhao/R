@@ -1,0 +1,17 @@
+Bundle: CGR
+Contains: pathmix pointer
+Version: 1.0-5
+Date: 2006-5-22
+Title: Classic Genetics in R
+Depends:  R (>= 2.0.0)
+LazyData: Yes
+LazyLoad: Yes
+Author: Jing Hua Zhao in collaboration with other colleagues
+Maintainer: Jing Hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+BundleDescription: This is an experimental package bundle based on the 
+         R packages pathmix and pointer.
+License: Programs included in this package by Jing hua Zhao will be
+        under GPL. Specific requirement may be possible for programs
+        written by other authors.
+URL: http://www.mrc-epid.cam.ac.uk
+Packaged: Mon May 22 14:22:06 2006; jhz22

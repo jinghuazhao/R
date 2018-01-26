@@ -1,0 +1,46 @@
+      SUBROUTINE WRINIT(LFN,H,TRUPB,TOL,PAR,XALL,ITP,I1,I2)
+C
+C WRITES INITIAL VALUES OF PARAMETERS I1 THROUGH I2 TO UNIT LFN
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      CHARACTER   PAR(*)*(*)
+      DIMENSION   XALL(*),ITP(*)
+C
+      CHARACTER   ITST(18)*7
+C
+C WRITE INITIAL STUFF ON FIRST CALL
+C
+      IF (I1 .EQ. 1) WRITE (LFN,1100) H,TRUPB,TOL
+ 1100 FORMAT(/' ','H = ',F10.8,16X,'TRUPB = ',F10.8,16X,'TOL = ',F10.8,
+     +      //' ','INITIAL ESTIMATES:')
+C
+      IF (I2 .LT. I1 .OR. I2-I1 .GE. 18) THEN
+         call intpr('WRINIT: INVALID RANGE',-1,0,0)
+         STOP
+      END IF
+C
+C GET ITERATED/FIXED STATUS
+C
+      DO 100 I=I1,I2
+         J = I - I1 + 1
+         IF (ITP(I) .LT. 0) THEN
+            ITST(J) = '=' // PAR( -ITP(I) )
+         ELSE IF (ITP(I) .GT. 0) THEN
+            ITST(J) = ' EST'
+         ELSE
+            ITST(J) = ' '
+         END IF
+100   CONTINUE
+C
+C WRITE TO LFN
+C
+      WRITE (LFN,1110) (PAR(I),       I=I1,I2)
+      WRITE (LFN,1120) (XALL(I),      I=I1,I2)
+      WRITE (LFN,1130) (ITST(I-I1+1), I=I1,I2)
+C
+ 1110 FORMAT(/1X,18A7)
+ 1120 FORMAT( 1X,18F7.3)
+ 1130 FORMAT( 1X,2X,18A7)
+C
+      RETURN
+      END

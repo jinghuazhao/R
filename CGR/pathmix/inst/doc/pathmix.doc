@@ -1,0 +1,479 @@
+                     "PATHMIX method 3"
+
+    On this diskette, you should find the following files:
+
+PATHMIX.DOC -- this document
+
+PATH3A.EXE  -- estimates familial correlations from the family data
+
+PATH3B.EXE  -- fits path models to the family data
+
+TEST.BAT    -- DOS batch file to run a sample job
+
+TEST.DAT    -- sample nuclear family data (50 families with phenotypes and
+               environmental indices for 2 parents and 3 children each)
+
+TEST.JF     -- sample job file (control cards)
+
+IN3A        -- sample interactive input for PATH3A
+
+IN3B        -- sample interactive input for PATH3B
+
+
+1.0   overview:
+
+           The programs PATH3A and PATH3B are collectively called
+      "PATHMIX method 3".  Together they are used to estimate correlations in
+      nuclear families and/or to fit path models to the family data.  They
+      will run on an IBM PC or compatible with a hard disk and will require
+      approximately 512K of memory.  A math coprocessor, while not absolutely
+      required, is highly recommended.  The programs will run up to 20 times
+      faster when a math coprocessor is present.
+
+           PATHMIX requires two input files:  a "job file" which contains a
+      short list of control specifications for each of the three programs,
+      and a data file containing the quantitative family data.  Each program
+      writes a summary of its results to a "terse file", and diagnostic
+      output to a "prolix file".
+
+
+1.1   the data file:
+
+           The data file sould contain nuclear family data of the following
+      form:
+
+      -- Each record represents an individual.
+
+      -- Records for members of the same nuclear family should be contiguous.
+
+      -- Each record must contain the following fields:
+
+            -- a family identification number;
+            -- a position code number in the range 1 to 3, where 1=father,
+               2=mother, 3=offspring;
+            -- a quantitative measure of the phenotypic trait; and
+            -- a quantitative measure of the environmental index
+
+         A record may optionally contain other information (e.g. age, sex,
+         other phenotypic measures) which is ignored by PATHMIX, but may
+         be used in data transformations.
+
+      example:
+
+           In the data file from the enclosed sample job, the first nuclear
+      family is:
+
+        151 01  -0.2710  -0.5329
+        151 02   0.4345   0.2091
+        151 03  -0.9180  -0.0746
+        151 03  -1.3383   0.5475
+        151 03  -1.3663  -0.0592
+
+      These 5 records are identified as belonging to the same family by their
+      family number (151).  The fact that both parents and three children are
+      present is indicated by the position codes 01 (father), 02 (mother),
+      and 03 (offspring).  The missing value code for any unknown phenotype
+      or index is a blank field.  In the enclosed data file (created by
+      simulation for testing) all 50 families have the same family structure
+      in order to speed up the execution time of the test problem (all have
+      two parents and three offspring).  In practice, the nuclear families
+      would not have the same structure and the program would take much
+      longer to run.  However, no special coding is needed when the data
+      consists of families with different structures.
+
+
+1.2   the job file:
+
+           Both of programs require "control cards" to specify the operations
+      to be performed.  The job file is divided into logical subfiles,
+      separated by the control card "<EOF>".  The control cards for the PATH3A
+      program appear in the first and second subfiles, those for the PATH3B
+      program appear in the first and third subfiles.  The first subfile
+      contains information about the input data and is identical for both
+      programs.  Note that all alphabetic information in the job file must
+      be in upper case.
+
+
+2.0   Reading the Data
+      ----------------
+
+           The first subfile of the job file is used by both PATH3A and
+      PATH3B.  The control cards in this subfile specify the position and
+      format of the data fields (described in 1.1 above) as they occur
+      within each record of the data file.
+
+      The first subfile from the enclosed sample job is:
+
+      CC SAMPLE JOBFILE FOR PATHMIX
+      FM (F5.0,F3.0,F9.0,F9.0) ID PO PH IN
+      TX IF (PO EQ 4) PO = 3
+      TX IN = (IN-.17362) / SQRT(1.15718)
+      TX PH = (PH-.04026) / SQRT(1.05745)
+
+
+           The first control card, the "CC" card is simply a comment.
+
+
+           The "FM" control card specifies the format of each data record
+      using a Fortran format statement.  Use "F" format for data fields.  "X"
+      specifiers are used to skip unused columns, and "T" specifiers are used
+      to skip to a specific column in the record.
+
+           Following the format portion of the FM card is a list of variable
+      names in the order that they are defined in the format portion.  As many
+      names should be given as there are format fields.  Four variable names
+      are required.  They are:
+
+            ID = family identification number
+            PO = position code number
+            PH = quantitative measure of phenotype
+            IN = quantitative measure of index
+
+      Other variables may be read from the data file as required for data
+      transformations.  If the FM card exceeds 80 columns, it may be
+      split into as many as three lines.  To indicate that a control card
+      is continued on the next line, place a '*' in column 79.
+
+
+           "TX" control cards specify optional transformations to apply to the
+      input data when it is initially read into the program.  Transformations
+      take any of three forms:
+
+               1)    TX <variable name> = <expression>
+
+               2)    TX IF ( <condition> ) <variable name> = <expression>
+
+               3)    TX IF ( <condition> ) REJECT
+
+      where <variable name> is the name given in the FM card (or a new
+      variable name), <expression> is an algrebraic expression, and
+      <condition> is a boolean expression.  The following operators and
+      functions are defined:
+
+         operators:              +        addition
+                                 -        subtraction or unary minus
+                                 *        multiplication
+                                 /        division
+                                 **       exponentiation
+
+         elementary functions:   LOG x    natural log.
+                                 LOG10 x  common log.
+                                 EXP x    inverse natural log.
+                                 x MOD y  modulus
+                                 INT x    truncate to integer
+                                 SQRT x   square root
+                                 SIN x    sine
+                                 COS x    cosine
+                                 TAN x    tangent
+                                 ASIN x   arc-sine
+                                 ACOS x   arc-cosine
+                                 ATAN x   arc-tangent
+
+         constants:              PI       3.14159...
+
+         boolean functions:      x EQ y   equal to
+                                 x LT y   less than
+                                 x GT y   greater than
+                                 x LE y   less than or equal to
+                                 x GE y   greater than or equal to
+                                 x NE y   not equal to
+                                 x AND y  logical conjunction
+                                 x OR y   logical disjunction
+                                 BLANK i  test vbl. i for missing value
+
+      In addition, the function Xi evaluates to the current value of a
+      variable, where i is the ordinal number defining a variable in the
+      variable table.  (The first variable difined is X1, the second X2 and
+      so on.)  Operator precedence is defined in the traditional manner,
+      e.g. exponentiation before multiplication, etc., but can be made
+      explicit through the use of parentheses.
+
+      In the example above, the following operations are performed:
+
+            1. if the position code (PO) has a value of 4 for any
+               record, it is replaced with the value 3;
+
+            2. the index (IN) is standardized by subracting the mean and
+               dividing by the standard deviation.
+
+            3. the phenotype (PH) is standardized by subracting the mean
+               and dividing by the standard deviation.
+
+      These last two transformations are included to illustrate the use of
+      transformations.  In practice, means and variances are model parameters
+      which can be fixed at specified values or estimated within the PATH3A or
+      PATH3B, so prior standardization is not required.
+
+
+3.0   PATH3A
+      ------
+
+           The second subfile of the job file specifies the correlations
+      which are to be estimated by PATH3A from the processed data file.  The
+      resultant log-likelihood value can be compared with a log-likelihood
+      obtained using PATH3B to assess the overall fit of a particular path
+      model.  Normally, one would run PATH3A once and PATH3B several times.
+
+           In PATH3A, three control cards are allowed:  the "CC" card, the
+      "PA" card, and the "IT" card.  As in the first subfile, the CC card is
+      simply a comment.  The PA card specifies starting values to be used in
+      the estimation; and the IT cards lists the paramaters which are to be
+      estimated.  PA cards take the form "PA (PAR1=0,PAR2=.12)" where PAR1
+      and PAR2 are names of estimable parameters.  If a value is specified
+      in the PA card for a parameter not occurring in the subsequent IT card,
+      that parameter will be fixed to the specified value and not estimated.
+      Similarly, default values are assigned to all parameters which are not
+      listed in the PA card.
+
+           The names of the estimable parameters in PATH3A are as follows:
+
+      UPF -- mean of father's phenotype
+      UIF -- mean of father's index
+      UPM -- mean of mother's phenotype
+      UIM -- mean of mother's index
+      UPC -- mean of child's phenotype
+      UIC -- mean of child's index
+      VPF -- variance of father's phenotype
+      VIF -- variance of father's index
+      VPM -- variance of mother's phenotype
+      VIM -- variance of mother's index
+      VPC -- variance of child's phenotype
+      VIC -- variance of child's index
+      R12 -- correlation between father's phenotype and his own index
+      R13 -- correlation between father's phenotype and mother's phenotype
+      R14 -- correlation between father's phenotype and mother's index
+      R15 -- correlation between father's phenotype and child's phenotype
+      R16 -- correlation between father's phenotype and child's index
+      R23 -- correlation between father's index and mother's phenotype
+      R24 -- correlation between father's index and mother's index
+      R25 -- correlation between father's index and child's phenotype
+      R26 -- correlation between father's index and child's index
+      R34 -- correlation between mother's phenotype and her own index
+      R35 -- correlation between mother's phenotype and child's phenotype
+      R36 -- correlation between mother's phenotype and child's index
+      R45 -- correlation between mother's index and child's phenotype
+      R46 -- correlation between mother's index and child's index
+      R55 -- correlation between child's phenotype and sib's phenotype
+      R66 -- correlation between child's index and sib's index
+      R56 -- correlation between child's phenotype and sib's index
+      R65 -- correlation between child's phenotype and his/her own index
+
+           The default fixed and/or starting values for all estimable
+      parameters in PATH3A are as follows:
+
+      -- mean (UPF through UIC) = sample mean
+      -- variance (VPF through VIC) = sample variance
+      -- correlation (R12 through R65) = sample product-moment correlation
+
+      One can override any of these defaults with an entry in the PA card.
+
+           The IT card takes the form "IT (PAR1,PAR2,PAR3=PAR4)" where PAR1
+      through PAR4 are names of estimable parameters.  Each parameter listed
+      will be estimated.  Two or more parameters may be "set equal" using
+      equal signs, in which case they will be estimated simultaneously, thus
+      sharing the same value.
+
+           For convenience, the keyword "ALL" has been defined for use in the
+      IT card.  It is used as an abbreviation for the following:
+
+            VPC,VIC,R12=R34,R13,R14=R23,R15,R16,R24,R25,R26,R35,R36,R45,R46,
+            R55,R66,R56,R65
+
+      which specifies that the two sib variances should be estimated, as well
+      as all correlations, except that the two spouse phenotype-index
+      correlations are set equal to one another, and similarly the two
+      parent self phenotype-index correlations are set equal to one another.
+      The ALL keyword may be accompanied by additional parameters names.
+      However, the ALL specification, used alone, is sufficient for most
+      PATHMIX applications.
+
+           Both PA cards and IT cards may be continued across several lines.
+      (Do not use a '*' in column 79, as in the first subfile.)  Each line
+      is limited to 80 columns.
+
+           In addition to specifying the list of iterated parameters, the IT
+      card can optionally contain a second set of parentheses to override
+      the default values of one or more program variables.  The variables
+      which can be controlled in this way include the following:
+
+         H     -- the numerical differentiation interval (default = .0001)
+         TOL   -- the value at which the normalized gradient "UKU" is deemed
+                  successfully converged (default = .0001)
+         IVERB -- verbosity of diagnostic output (5=most verbose, 0=least
+                  verbose, default=2)
+
+           In the enclosed sample job, the second subfile of the jobfile is:
+
+      CC ESTIMATION OF CORRELATIONS IN REIMUT'S SIMULATED FAMILY DATA
+      PA ()
+      IT (ALL)
+
+           This directs the PATH3A program to estimate, by maximum likelihood,
+      the values of two variances and 16 correlations.  All six of the means
+      are fixed at their default value (the sample means), and all of the
+      variances are started at their defaults (the sample variances), two
+      being estimated and four being fixed.
+
+
+4.0   PATH3B
+      ------
+
+           The third subfile of the job file specifes the path model(s) to
+      be applied to the data.  The control cards function identically to
+      those in PATH3A, except that in PATH3B, estimable path coefficients
+      replace the correlations.
+
+           The parameters corresponding to path coefficients are described as
+      follows:
+
+      H  -- effect of childhood genotype on childhood phenotype (default=0)
+
+      Z  -- multiplied by H to give effect of adulthood genotype on adulthood
+            phenotype (default=1)
+
+      C  -- effect of childhood transmissible environment on childhood
+            phenotype (default=0)
+
+      Y  -- multiplied by C to give effect of adulthood transmissible
+            environment on adulthood phenotype (default=1)
+
+      M  -- correlation between parental adulthood genotypes, through
+            social homogamy (default=0)
+
+      U  -- correlation between parental adulthood transmissible
+            environments, through social homogamy (default=0)
+
+      P  -- correlation between parental adulthood phenotypes, through
+            phenotypic homogamy, treated as a copath (Cloninger,PNAS,1980)
+            (default=0)
+
+      RG -- correlation between the childhood and adulthood genotypes of
+            an individual, treated as a copath (default=1)
+
+      FF -- effect of father's transmissible environment on that of a
+            child he rears, both environments measured at the same time
+            (default=0)
+
+      FM -- effect of mother's transmissible environment on that of a
+            child she rears, both environments measured at the same time
+            (default=0)
+
+      B  -- effect of non-transmitted common sibship environment on the
+            environment of a child (default=0)
+
+      X --  multiplied by B to give the effect of non-transmitted common
+            sibship environment on the environment of an adult offspring
+            (default=1)
+
+      I  -- effect of childhood transmissible environment on child's index
+            (default=0)
+
+      V  -- multiplied by I to give the effect of adulthood transmissible
+            environment on adult's index (default=1)
+
+      J  -- effect of childhood genotype on child's index (default=0)
+
+      W  -- multiplied by J to give the effect of adulthood genotype on
+            adult's index (default=1)
+
+           The names of the estimable means and variances are as in PATH3A:
+
+      UPF -- mean of father's phenotype
+      UIF -- mean of father's index
+      UPM -- mean of mother's phenotype
+      UIM -- mean of mother's index
+      UPC -- mean of child's phenotype
+      UIC -- mean of child's index
+      VPF -- variance of father's phenotype
+      VIF -- variance of father's index
+      VPM -- variance of mother's phenotype
+      VIM -- variance of mother's index
+      VPC -- variance of child's phenotype
+      VIC -- variance of child's index
+
+           Just as in PATH3A, default fixed and/or starting values for
+      the means and variances are the sample values.
+
+         In the enclosed sample job, the third subfile is:
+
+      CC ESTIMATION OF 10 PARAMETERS USING REIMUT'S SIMULATED FAMILY DATA
+      PA (H=.5,Z=1.0,C=.5,Y=1.0,I=.5,V=1.0,U=.5,FF=.2,FM=.2,B=.5)
+      IT (VPC,VIC,H,Z,C,Y,I,V,U,FF,FM,B) (TOL=.0000001)
+
+           This directs the PATH3B program to estimate, by maximum likelihood,
+      the values of the ten path coefficients and two variances listed in the
+      IT control card.  The PA card specifies starting values to be used in
+      the estimation.  If a value is specified in the PA card for a parameter
+      not occurring in the subsequent IT card, the parameter will be fixed to
+      that value and not estimated.  Similarly, default values are assigned to
+      all parameters which are not listed in the PA card.  In the above
+      example, all six of the means are fixed at their default value (the
+      sample means), and all of the variances are started at their defaults
+      (the sample variances), two being estimated and four being fixed.  Had
+      parameter "H" been omitted from the PA card, it would have taken its
+      default value of zero.  Multiple sets of CC/PA/IT cards may appear in
+      this subfile.
+
+
+5.0   Running the program under DOS
+      -----------------------------
+
+           After preparing the two input files as described above, one is
+      ready to run "PATHMIX method 3".  Begin by simply entering either
+      "PATH3A" or "PATH3B", whereupon you will be prompted for the names
+      of the input and output files.  If an error is detected while reading
+      the job file, a message elucidating the problem will appear in the
+       terse output file.  Re-edit the job file and try again.
+
+           A note on output files: be aware that if you specify the name of
+      an output file which already exists, the old file will be overwritten.
+      If a blank line is entered when asked for the name of the prolix file,
+      the prolix output will be directed to CON in order to monitor the 
+      progress of the optimization procedure within the program as it is 
+      executing.  Also note that in addition to disk file names, the two
+      DOS device names "CON" and "PRN" are available as output devices.
+      CON refers to the PC's screen and PRN refers to the default printer.  
+
+
+6.0   The sample job:
+      ---------------
+
+           A sample job has been included on this diskette.  It includes
+      the files beginning with TEST and the files IN3A and IN3B.  The batch
+      file TEST.BAT can be used to run both PATH3A and PATH3B successively.
+
+           The test problem writes output to the the printer (device LPT1).
+      Since the program writes 132 column output, I set my Epson printer to
+      compressed mode by using the DOS command "MODE LPT1:132,8".
+
+
+7.0   References:
+      -----------
+
+      For general information about the methodology used in our Path
+      Analysis programs, and the procedure used to obtain quantitative
+      environmental indices, refer to:
+
+      D.C. Rao, P. Laskarzewski, J. Morrison, P. Khoury, K. Kelley, R. Wette,
+      J. Russell and C.J. Glueck.  The Cincinnati Lipid Research Clinic Family
+      Study:  Cultural and biological determinants of lipids and lipoprotein
+      concentrations.  Am J Hum Genet.  34:888-903, 1982.
+
+
+      For background information on path analysis of nuclear families, refer
+      to:
+
+      N.E. Morton.  Analysis of family resemblance. I. Introduction.
+      Am J Hum Genet.  26:318-330, 1974.
+
+
+      For specific information on "method 3", refer to:
+
+      D.C. Rao, M. McGue, R. Wette and C.J. Glueck.  Path analysis in genetic
+      epidemiology.  In:  Chakravarti A, ed.  Human Population Genetics:  The
+      Pittsburgh Symposium.  Van Nostrand Reinhold Company, Inc.,
+      Stroudsburgh, PA., pp. 35-81, 1984.
+
+-------------------------------------------------------------------------------
+This document was written Aug 3, 1987 by Skip Russell
+last revised June 17, 1988 by SR

@@ -1,0 +1,154 @@
+26-JUN-** 16:58:19                                          P A T H - 3 A                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+
+ JOB FILE:           test.jf
+ DATA FILE:          TEST.DAT
+ TERSE OUTPUT FILE:  terse
+ PROLIX OUTPUT FILE: prolix
+ 
+ 
+ CC SAMPLE JOBFILE FOR PATHMIX
+ FM (F5.0,F3.0,F9.0,F9.0) ID PO PH IN
+ TX IF (PO EQ 4) PO = 3
+ TX IN = (IN-.17362) / SQRT(1.15718)
+ TX PH = (PH-.04026) / SQRT(1.05745)
+
+
+ TOTAL INPUT RECORDS         =    250
+          REJECTED BY:
+              BLANK CHECK    =      0
+              TRANSFORMATION =      0
+          MISSING FIELDS     =      0
+          PROCESSED RECORDS  =    250
+          NO. OF FAMILIES    =     50
+
+
+                     PF           IF           PM           IM           PC           IC
+
+ MEAN:          -0.03941     -0.32171      0.06932     -0.27498      0.00000      0.00000
+
+ VARIANCE:       0.76895      0.83901      1.09851      1.08663      1.00000      1.00000
+
+ NO. OBS.:            50           50           50           50          150          150
+
+ MAX / FAM:            1            1            1            1            3            3
+
+
+                                     APPROXIMATE CORRELATIONS
+
+                            PF        IF        PM        IM        PC        IC
+
+                   PF   1.00000
+
+                   IF   0.38357   1.00000
+
+                   PM   0.20482   0.13946   1.00000
+
+                   IM  -0.07719   0.11571   0.45140   1.00000
+
+                   PC   0.17722   0.05698   0.18506   0.01916   0.31475
+
+                   IC   0.14354   0.16526   0.16915   0.27317   0.26467   0.39046
+
+
+                                     APPROXIMATE SAMPLE SIZES
+
+                             PF        IF        PM        IM        PC        IC
+
+                   PF         0
+
+                   IF        50         0
+
+                   PM        50        50         0
+
+                   IM        50        50        50         0
+
+                   PC        50        50        50        50        50
+
+                   IC        50        50        50        50        50        50
+26-JUN-** 16:58:20                                          P A T H - 3 A                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+ CC ESTIMATION OF CORRELATIONS IN REIMUT'S SIMULATED FAMILY DATA
+ PA ()
+ IT (ALL)
+
+ H = 0.00010000                TRUPB = 0.10000000                TOL = 0.00010000
+
+ INITIAL ESTIMATES:
+
+     UPF    UIF    UPM    UIM    UPC    UIC    VPF    VIF    VPM    VIM    VPC    VIC
+  -0.039 -0.322  0.069 -0.275  0.000  0.000  0.769  0.839  1.099  1.087  1.000  1.000
+                                                                          EST    EST   
+
+     R12    R13    R14    R15    R16    R23    R24    R25    R26    R34    R35    R36    R45    R46    R56    R55    R66    R65
+   0.384  0.205 -0.077  0.177  0.144  0.139  0.116  0.057  0.165  0.451  0.185  0.169  0.019  0.273  0.265  0.315  0.390  0.340
+    EST    EST    EST    EST    EST   =R14    EST    EST    EST   =R12    EST    EST    EST    EST    EST    EST    EST    EST   
+
+
+ =========================================================== FINAL OUTPUT ==========================================================
+
+
+
+ FACTORIZATION OF B-MATRIX HAS SUCCEEDED
+
+ COVARIANCE MATRIX
+       VPC    VIC    R12    R13    R14    R15    R16    R24    R25    R26    R35    R36    R45    R46    R56    R55    R66    R65
+ VPC  0.016
+ VIC  0.003  0.018
+ R12  0.000  0.000  0.006
+ R13  0.001  0.001 -0.001  0.018
+ R14  0.000  0.001  0.002  0.008  0.012
+ R15  0.002  0.002  0.000  0.002  0.001  0.009
+ R16  0.001  0.003  0.001  0.002  0.003  0.004  0.010
+ R24  0.000  0.002  0.000  0.003  0.008  0.000  0.002  0.019
+ R25  0.000  0.002  0.001  0.001  0.002  0.004  0.002  0.001  0.010
+ R26  0.000  0.003  0.001  0.001  0.002  0.002  0.004  0.005  0.005  0.010
+ R35  0.002  0.001  0.000  0.003  0.001  0.002  0.001  0.000 -0.001  0.000  0.010
+ R36  0.002  0.001  0.002  0.003  0.003  0.001  0.002  0.001  0.000 -0.001  0.005  0.010
+ R45  0.001  0.003  0.001  0.001  0.002  0.001  0.001  0.001  0.002  0.001  0.004  0.002  0.010
+ R46  0.000  0.004  0.000  0.001  0.002  0.000  0.001  0.003  0.001  0.001  0.002  0.004  0.005  0.009
+ R56  0.003  0.004  0.000  0.001  0.001  0.002  0.002  0.000  0.002  0.001  0.001  0.002  0.003  0.001  0.006
+ R55  0.004  0.002  0.000  0.001  0.000  0.002  0.001  0.000  0.000  0.000  0.002  0.001  0.001  0.000  0.003  0.008
+ R66  0.002  0.006  0.000  0.000  0.001  0.001  0.002  0.001  0.001  0.002  0.001  0.001  0.002  0.003  0.003  0.001  0.008
+ R65  0.003  0.003  0.000  0.000  0.001  0.002  0.002  0.000  0.002  0.000  0.001  0.002  0.003  0.000  0.004  0.002  0.002  0.006
+
+
+
+ OPTIMIZATION TOOK:        0.02 MIN. CPU TIME
+
+ ITERATIVE PROCESS TERMINATED BECAUSE: (IDG = 4)
+          *** SPECIFIED TOLERANCE ON NORMALIZED GRADIENT WAS MET ***
+26-JUN-** 16:58:21                                          P A T H - 3 A                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  SUMMARY OUTPUT  - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+ UK-1U =    0.0000954234    -2 LN L =    399.8377444        FC =  0.        NK =  1    NIT =  22    NFE =  637
+
+                                                                                                      EFFECTIVE
+ PARAMETER           GROUP(S)             ESTIMATE             U-SCORE          STANDARD ERROR       SAMPLE SIZE
+ ---------------------------------------------------------------------------------------------------------------
+ VPC - VARIANCE          (PC )             0.99933             0.00114             0.12538
+ VIC - VARIANCE          (IC )             1.00889            -0.01874             0.13329
+ R12 - CORRELATION   (PF ,IF )             0.41702            -0.08062             0.07786               112.6
+ R13 - CORRELATION   (PF ,PM )             0.20457            -0.01393             0.13260                52.2
+ R14 - CORRELATION   (PF ,IM )             0.03087             0.02800             0.10793                85.7
+ R15 - CORRELATION   (PF ,PC )             0.19604            -0.01327             0.09737                97.5
+ R16 - CORRELATION   (PF ,IC )             0.19341             0.03463             0.09918                94.2
+ R23 - CORRELATION   (IF ,PM )             0.03087 (=R14)
+ R24 - CORRELATION   (IF ,IM )             0.11539            -0.00397             0.13860                50.7
+ R25 - CORRELATION   (IF ,PC )             0.05008             0.01595             0.10118                97.2
+ R26 - CORRELATION   (IF ,IC )             0.18339            -0.04142             0.10243                89.0
+ R34 - CORRELATION   (PM ,IM )             0.41702 (=R12)
+ R35 - CORRELATION   (PM ,PC )             0.17949            -0.00502             0.09819                97.2
+ R36 - CORRELATION   (PM ,IC )             0.14092             0.01708             0.10247                91.5
+ R45 - CORRELATION   (IM ,PC )             0.03164             0.05232             0.10136                97.1
+ R46 - CORRELATION   (IM ,IC )             0.27556            -0.02438             0.09479                95.0
+ R56 - CORRELATION   (PC1,IC2)             0.22403            -0.11218             0.07904               144.4
+ R55 - CORRELATION   (PC ,PC )             0.30672             0.03213             0.09103                99.0
+ R66 - CORRELATION   (IC ,IC )             0.38877             0.07006             0.08885                91.3
+ R65 - CORRELATION   (PC1,IC1)             0.33989             0.07343             0.07972               123.1
+ ---------------------------------------------------------------------------------------------------------------

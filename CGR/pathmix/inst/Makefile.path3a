@@ -1,0 +1,40 @@
+# description file for path3a
+
+LIBS = libpath.a libalm.a
+       
+FFLAGS = -O1
+#FFLAGS = -O
+
+path3a:	\
+		path3a.o \
+		files.o \
+		pathin.o \
+		fmcard.o \
+		ixno.o \
+		txcard.o \
+		eval.o \
+		random.o \
+		pxfamr.o \
+		defalt3a.o \
+		input3a.o \
+		output3a.o \
+		fun3a.o \
+		$(LIBS)
+	f77 *.o $(LIBS) -o $@
+	chmod 755 $@
+
+# use partial optimzer on fun re Optimizer bug:
+
+fun3a.o: fun3a.F
+	f77 -O1 -c $*.F
+
+# dependencies on include files
+
+pathin.o:	field.inc
+fmcard.o:	field.inc
+txcard.o:	field.inc
+eval.o:		tx.inc
+pxfamr.o:	field.inc path3.inc
+defalt3a.o:	path3.inc
+output3a.o:	path3.inc
+fun3a.o:	path3.inc

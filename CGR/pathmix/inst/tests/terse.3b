@@ -1,0 +1,212 @@
+26-JUN-** 17:01:29                                          P A T H - 3 B                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+
+ JOB FILE:           test.jf
+ DATA FILE:          TEST.DAT
+ TERSE OUTPUT FILE:  terse.1
+ PROLIX OUTPUT FILE: prolix.1
+ 
+ 
+ CC SAMPLE JOBFILE FOR PATHMIX
+ FM (F5.0,F3.0,F9.0,F9.0) ID PO PH IN
+ TX IF (PO EQ 4) PO = 3
+ TX IN = (IN-.17362) / SQRT(1.15718)
+ TX PH = (PH-.04026) / SQRT(1.05745)
+
+
+ TOTAL INPUT RECORDS         =    250
+          REJECTED BY:
+              BLANK CHECK    =      0
+              TRANSFORMATION =      0
+          MISSING FIELDS     =      0
+          PROCESSED RECORDS  =    250
+          NO. OF FAMILIES    =     50
+
+
+                     PF           IF           PM           IM           PC           IC
+
+ MEAN:          -0.03941     -0.32171      0.06932     -0.27498      0.00000      0.00000
+
+ VARIANCE:       0.76895      0.83901      1.09851      1.08663      1.00000      1.00000
+
+ NO. OBS.:            50           50           50           50          150          150
+
+ MAX / FAM:            1            1            1            1            3            3
+
+
+                                     APPROXIMATE CORRELATIONS
+
+                            PF        IF        PM        IM        PC        IC
+
+                   PF   1.00000
+
+                   IF   0.38357   1.00000
+
+                   PM   0.20482   0.13946   1.00000
+
+                   IM  -0.07719   0.11571   0.45140   1.00000
+
+                   PC   0.17722   0.05698   0.18506   0.01916   0.31475
+
+                   IC   0.14354   0.16526   0.16915   0.27317   0.26467   0.39046
+
+
+                                     APPROXIMATE SAMPLE SIZES
+
+                             PF        IF        PM        IM        PC        IC
+
+                   PF         0
+
+                   IF        50         0
+
+                   PM        50        50         0
+
+                   IM        50        50        50         0
+
+                   PC        50        50        50        50        50
+
+                   IC        50        50        50        50        50        50
+26-JUN-** 17:01:29                                          P A T H - 3 B                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+ CC ESTIMATION OF 10 PARAMETERS USING REIMUT'S SIMULATED FAMILY DATA
+ PA (H=.5,Z=1.0,C=.5,Y=1.0,I=.5,V=1.0,U=.5,FF=.2,FM=.2,B=.5)
+ IT (VPC,VIC,H,Z,C,Y,I,V,U,FF,FM,B) (TOL=.0000001)
+
+ H = 0.00010000                TRUPB = 0.10000000                TOL = 0.00000010
+
+ INITIAL ESTIMATES:
+
+     H      C      Y      Z      M      U      P  
+   0.500  0.500  1.000  1.000  0.000  0.500  0.000
+    EST    EST    EST    EST           EST          
+
+     FF     FM     B      I      V      J      W  
+   0.200  0.200  0.500  0.500  1.000  0.000  1.000
+    EST    EST    EST    EST    EST                 
+
+     UPF    UIF    UPM    UIM    UPC    UIC    VPF    VIF    VPM    VIM    VPC    VIC
+  -0.039 -0.322  0.069 -0.275  0.000  0.000  0.769  0.839  1.099  1.087  1.000  1.000
+                                                                          EST    EST   
+
+
+ =========================================================== FINAL OUTPUT ==========================================================
+
+
+
+ FACTORIZATION OF B-MATRIX HAS SUCCEEDED
+
+ COVARIANCE MATRIX
+       H      C      Y      Z      U      FF     FM     B      I      V      VPC    VIC
+ H    0.019
+ C   -0.005  0.012
+ Y    0.011 -0.025  0.184
+ Z   -0.025  0.004 -0.026  0.103
+ U   -0.002  0.004  0.016  0.000  0.052
+ FF  -0.001  0.003  0.004 -0.004 -0.001  0.027
+ FM   0.000  0.002 -0.004 -0.003 -0.002 -0.007  0.023
+ B   -0.003  0.004 -0.013  0.006 -0.001 -0.003 -0.005  0.018
+ I    0.003 -0.005  0.008 -0.002 -0.002 -0.003 -0.002 -0.008  0.013
+ V    0.000 -0.002 -0.064  0.010 -0.022 -0.006  0.001  0.013 -0.010  0.073
+ VPC  0.002  0.004 -0.008 -0.003  0.002  0.002  0.001  0.001 -0.001 -0.003  0.015
+ VIC -0.001  0.002 -0.007  0.000  0.002  0.002  0.002  0.001  0.003 -0.003  0.002  0.017
+
+
+ OPTIMIZATION TOOK:        0.01 MIN. CPU TIME
+
+ ITERATIVE PROCESS TERMINATED BECAUSE: (IDG = 4)
+          *** SPECIFIED TOLERANCE ON NORMALIZED GRADIENT WAS MET ***
+26-JUN-** 17:01:30                                          P A T H - 3 B                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  SUMMARY OUTPUT  - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+ UK-1U =    0.0000000629    -2 LN L =    405.8746145        FC =  0.        NK =  1    NIT =  22    NFE =  424
+
+ PARAMETER:    H        C        Y        Z        M        U        P  
+ ESTIMATES:  0.61256  0.41618  1.33579  0.58106  0.00000  0.19067  0.00000
+ U-SCORES : -0.00081  0.00017  0.00014 -0.00009  0.00000 -0.00072  0.00000
+ S.E.     :  0.13916  0.10833  0.42952  0.32065  0.00000  0.22797  0.00000
+
+ PARAMETER:    FF       FM       B        I        V        J        W  
+ ESTIMATES:  0.23966  0.32882  0.64444  0.79953  0.96781  0.00000  1.00000
+ U-SCORES : -0.00062 -0.00090 -0.00024 -0.00085 -0.00009  0.00000  0.00000
+ S.E.     :  0.16350  0.15074  0.13575  0.11229  0.27026  0.00000  0.00000
+
+ PARAMETER:    UPF      UIF      UPM      UIM      UPC      UIC      VPF      VIF      VPM      VIM      VPC      VIC
+ ESTIMATES: -0.03941 -0.32171  0.06932 -0.27498  0.00000  0.00000  0.76895  0.83901  1.09851  1.08663  0.98854  0.99907
+ U-SCORES :  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00068 -0.00092
+ S.E.     :  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.12239  0.13099
+
+
+                                     CORRELATION ESTIMATES
+
+                           PF        IF        PM        IM        PC        IC
+
+                  PF   1.00000
+
+                  IF   0.43017   1.00000
+
+                  PM   0.05893   0.08202   1.00000
+
+                  IM   0.08202   0.11417   0.43017   1.00000
+
+                  PC   0.17897   0.09737   0.19567   0.12061   0.29343
+
+                  IC   0.13439   0.18706   0.16647   0.23170   0.20328   0.39052
+
+
+                       SIBLING PHENOTYPE -VS- SELF-INDEX CORRELATION =   0.33275
+26-JUN-** 17:01:30                                          P A T H - 3 B                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+
+                                 VARIANCE COMPONENTS WITH STANDARD ERRORS:
+
+                                 **********************************************
+                                 SOURCE                     PHENOTYPE
+                                                   CHILDREN           ADULTS   
+                                 **********************************************
+
+                                 GENETIC        0.375(0.171)       0.127(0.117)
+                                 CULTURAL       0.173(0.090)       0.309(0.176)
+                                 COVARIANCE     0.000(0.000)       0.000(0.000)
+                                 RESIDUAL       0.452(0.162)       0.564(0.191)
+
+                                 **********************************************
+
+
+                                 GENOTYPE ENVIRONMENT CORRELATION =    0.0000
+
+                                 VALUES OF NON-LINEAR CONSTRAINTS:
+
+                                 VARIANCE OF CHILD'S PHENOTYPE    =    0.5484
+                                 VARIANCE OF ADULT'S PHENOTYPE    =    0.4357
+                                 VARIANCE OF CHILD'S ENVIRONMENT  =    0.6109
+                                 VARIANCE OF ADULT'S ENVIRONMENT  =    0.6109
+                                 VARIANCE OF CHILD'S INDEX        =    0.6392
+                                 VARIANCE OF ADULT'S INDEX        =    0.5987
+                                 CORRELATION BETWEEN MARITAL C'S  =    0.1907
+                                 CORRELATION BETWEEN MARITAL G'S  =    0.0000
+                                 MARITAL C  MARITAL G CORRELATION =    0.0000
+                                 U * M                            =    0.0000
+26-JUN-** 17:01:30                                          P A T H - 3 B                                               VERSION 2/89
+                                 DIVISION OF BIOSTATISTICS, WASHINGTON UNIVERSITY, ST. LOUIS, MISSOURI
+
+ > > > > > > > > > > > > > > > > > > > > JOBFILE > > > > > > > > > > > > > > > > > > > >
+
+ CC SAMPLE JOBFILE FOR PATHMIX                                                   
+ FM (F5.0,F3.0,F9.0,F9.0) ID PO PH IN                                            
+ TX IF (PO EQ 4) PO = 3                                                          
+ TX IN = (IN-.17362) / SQRT(1.15718)                                             
+ TX PH = (PH-.04026) / SQRT(1.05745)                                             
+ <EOF>
+ CC ESTIMATION OF CORRELATIONS IN REIMUT'S SIMULATED FAMILY DATA                 
+ PA ()                                                                           
+ IT (ALL)                                                                        
+ <EOF>
+ CC ESTIMATION OF 10 PARAMETERS USING REIMUT'S SIMULATED FAMILY DATA             
+ PA (H=.5,Z=1.0,C=.5,Y=1.0,I=.5,V=1.0,U=.5,FF=.2,FM=.2,B=.5)                     
+ IT (VPC,VIC,H,Z,C,Y,I,V,U,FF,FM,B) (TOL=.0000001)                               

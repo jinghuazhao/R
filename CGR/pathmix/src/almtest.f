@@ -1,0 +1,331 @@
+C              A L M I N I    T E S T    R O U T I N E
+C              -----------    -------    -------------
+C
+C DRIVING PROCEDURE FOR  A L M I N I, JUL. 82, J.M.LALOUEL, S.RUSSELL
+C
+C *********************************************************************
+C
+      SUBROUTINE ALMTEST
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+      PARAMETER (MAXPAR=5, MAXITP=MAXPAR, MAXCC=3)
+      DIMENSION   XALL(MAXPAR),ITP(MAXPAR),SE(MAXPAR),BND(MAXPAR,2)
+      DIMENSION   TL(MAXITP,MAXITP),WORK(MAXITP,16)
+      DIMENSION   CC(MAXCC),IAC(MAXCC),WRKNLC(MAXCC,4)
+C
+C ******* TST BLOCK IS TEMPORARY FOR MULTIPLE RUNS *******
+      COMMON /TST/   IRUN
+C
+C DEFINE LOGICAL FILES (IQ=TERSE FILE, IP=PROLIX FILE)
+C
+      IQ = 21
+      OPEN (IQ, FILE='ALMTEST.OUT')
+C
+      IP = 22
+      OPEN (IP, FILE='ALMTEST.PLX')
+C
+C LOOP ON SEVERAL TESTS
+C
+      NRUN = 4
+      DO 10 IRUN=1,NRUN
+         CALL INPUTalm(NALL,XALL,ITP,BND,MAXPAR,
+     +      IBND,IHESS,IVAR,IHX,IQOB,IVERB,MAXIT,H,TOL,TRUPB,
+     +      INLC,NC,ISCAL,RATE,SCL,EPSCC,IAC,IQ)
+         CALL ALMINI(FX,NALL,XALL,ITP,SE,BND,
+     +      IBND,IHESS,IVAR,IHX,IQOB,IVERB,MAXIT,IP,H,TOL,TRUPB,
+     +      NIT,NFE,PTG,IDG,TL,MAXPAR,MAXITP,WORK,
+     +      INLC,NC,ISCAL,RATE,SCL,EPSCC,FC,FXC,NK,CC,IAC,WRKNLC,1)
+         CALL OUTPUTalm(FX,FC,NALL,XALL,SE,IVAR,NK,NIT,NFE,PTG,IDG,
+     +      NC,CC,IQ)
+10    CONTINUE
+C
+      RETURN
+      END
+      SUBROUTINE INPUTalm(NALL,XALL,ITP,BND,MAXPAR,
+     +   IBND,IHESS,IVAR,IHX,IQOB,IVERB,MAXIT,H,TOL,TRUPB,
+     +   INLC,NC,ISCAL,RATE,SCL,EPSCC,IAC,IQ)
+C---
+C--- READ INPUT DATA AND PARAMETERS
+C---
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      DIMENSION XALL(*),ITP(*),BND(MAXPAR,2),IAC(*)
+C
+      CHARACTER TITLE*80
+C
+      COMMON /TST/   IRUN
+C
+C DEFINE MACHINE PRECISION AS 2**-P WHERE P IS SIZE OF MANTISSA
+C
+CCC      PRECIS = 2.**(-38)   ! 38 BIT MANTISSA ON HARRIS COMPUTERS
+C
+      IPOWER = 0
+10    PRECIS = 2.0D0**IPOWER
+      IF (1.0D0+PRECIS .NE. 1.0D0) THEN
+         IPOWER = IPOWER - 1
+         GO TO 10
+      END IF
+C
+C DEFINE INPUT PARAMETERS FOR TEST PROBLEMS
+C ONE MAY DECIDE TO READ THE FOLLOWING FROM AN INPUT JOB FILE
+C
+      H = SQRT(PRECIS)
+      TRUPB = 10.*SQRT(H)
+      TOL   = .0000001
+      IHESS = 0
+      IVAR  = 1
+      IHX   = 1
+      IQOB  = 0
+      IVERB = 3
+      INLC  = 1
+      RATE  = .25
+      SCL   = 10.0
+      EPSCC = .0001
+      ISCAL = 1
+C
+      IF (IRUN .EQ. 1) THEN
+         TITLE = 'POWELL TEST EXAMPLE FOR NLC'
+         NALL = 5
+         IBND = 0
+         XALL(1) = -2.
+         XALL(2) = 2.0
+         XALL(3) = 2.0
+         XALL(4) = -1.
+         XALL(5) = -1.
+         DO 100 I=1,NALL
+            ITP(I) = 1
+100      CONTINUE
+         NC = 3
+         DO 110 I=1,NC
+            IAC(I) = 0
+110      CONTINUE
+C
+      ELSE IF (IRUN .EQ. 2) THEN
+         TITLE = 'AOKI TEST PROBLEM'
+         NALL = 2
+         IBND = 1
+         DO 200 I=1,NALL
+            XALL(I) = 1.0
+            ITP(I) = 1
+            BND(I,1) = 0.0
+            BND(I,2) = 1000.
+200      CONTINUE
+         NC = 1
+         IAC(1) = 1
+C
+      ELSE IF (IRUN .EQ. 3) THEN
+         TITLE = 'WALSH PROBLEM'
+         NALL = 3
+         IBND = 1
+         XALL(1) = 1.0
+         XALL(2) = 4.0
+         XALL(3) = 2.0
+         DO 300 I=1,NALL
+            ITP(I) = 1
+            BND(I,1) = 0.0
+            BND(I,2) = 1000.
+300      CONTINUE
+         NC = 1
+         IAC(1) = 0
+C
+      ELSE IF (IRUN .EQ. 4) THEN
+         TITLE = 'ROSEN AND SUZUKI COM. ACM (1965) , CORRECTED'
+         NALL = 4
+         IBND = 1
+         DO 400 I=1,NALL
+            XALL(I) = 3.0
+            ITP(I) = 1
+            BND(I,1) = -100.
+            BND(I,2) = 1000.
+400      CONTINUE
+         NC = 3
+         DO 410 I=1,NC
+            IAC(I) = 0
+410      CONTINUE
+C
+      END IF
+C
+C WRITE INPUT DATA TO TERSE FILE
+C
+      call dblepr (TITLE,-1,0,0)
+C
+      WRITE (IQ,1010) TITLE
+      WRITE (IQ,1020) NALL,IBND,IHESS,H,TRUPB,TOL
+      WRITE (IQ,1030) (XALL(I),I=1,NALL)
+      WRITE (IQ,1040) (ITP(I),I=1,NALL)
+      IF (INLC.NE.0) THEN
+         WRITE (IQ,1050)
+         WRITE (IQ,1060) (IAC(I),I=1,NC)
+         WRITE (IQ,1070) RATE,SCL,EPSCC
+      END IF
+      IF (ISCAL.EQ.1) WRITE (IQ,1080)
+C
+ 1010 FORMAT(/1X,100('*'),
+     +      //10X,A,//)
+ 1020 FORMAT (10X,'NALL=',I3,'  IBND=',I3,'  IHESS=',I3,
+     +          '  H=',G10.3,'  TRUPB=',G10.3,'  TOLERANCE=',G10.3)
+ 1030 FORMAT (10X,'INITIAL VALUES OF PARAMETERS:',
+     +      /(10X,10F8.5))
+ 1040 FORMAT (10X,'IT. INDICATORS  ',50I2)
+ 1050 FORMAT (20X,'***** CONSTRAINTS ACTIVE *****')
+ 1060 FORMAT (10X,'CONSTRAINT STATUS: (0=EQUALITY,1=INEQUALITY) ',50I2)
+ 1070 FORMAT (10X,'RATE=',F10.5,'  SCL=',F10.5,'  EPSCC=',F10.8)
+ 1080 FORMAT (10X,'*** SCALING OF CONSTRAINTS DISABLED ***')
+C
+C DEFINE MAXIT BASED ON NUMBER OF ITERATED PARAMETERS
+C
+      N = 0
+      DO 500 I=1,NALL
+         IF (ITP(I) .EQ. 1) N = N + 1
+500   CONTINUE
+C
+      MAXIT = 20 * N
+C
+      RETURN
+      END
+      SUBROUTINE OUTPUTalm(FX,FC,NALL,XALL,SE,IVAR,NK,NIT,NFE,PTG,IDG,
+     +   NC,CC,IQ)
+C---
+C--- WRITE FINAL OUTPUT ON LOGICAL UNIT IQ
+C---
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      DIMENSION XALL(NALL),SE(NALL),CC(NC)
+C
+      WRITE (IQ,1000)
+      WRITE (IQ,1010) NK,NIT,NFE,PTG,FX,FC
+      WRITE (IQ,1020) (CC(I),I=1,NC)
+      WRITE (IQ,1030) (XALL(I),I=1,NALL)
+      IF (IVAR.GT.0)  WRITE (IQ,1040) (SE(I),I=1,NALL)
+C
+ 1000 FORMAT(/10X,33('-'),' FINAL OUTPUT ',33('-'),/)
+ 1010 FORMAT (10X,'NK=',I3,'  NIT=',I4,'  NFE=',I5,'   PTG=',E18.11,
+     +   '   FX=', F14.11,'   FC=',F14.11,/)
+ 1020 FORMAT (10X,'FINAL CC=       ', 5F18.11)
+ 1030 FORMAT (10X,'FINAL XALL=     ', 5F18.11)
+ 1040 FORMAT (10X,'STANDARD-ERRORS=', 5F18.11)
+C
+C INDICATE REASON FOR TERMINATION
+C
+      WRITE (IQ,1500) IDG
+ 1500 FORMAT(/10X,'ITERATIVE PROCESS TERMINATED BECAUSE:   ',
+     +        '(FINAL IDG =',I2,')')
+C
+      GO TO (900,901,902,903,904,905,906,907,908,909,910), IDG+1
+      call intpr('INVALID IDG',-1,0,0)
+      STOP
+C
+900   WRITE (IQ,1900)
+      GO TO 999
+901   WRITE (IQ,1901)
+      GO TO 999
+902   WRITE (IQ,1902)
+      GO TO 999
+903   WRITE (IQ,1903)
+      GO TO 999
+904   WRITE (IQ,1904)
+      GO TO 999
+905   WRITE (IQ,1905)
+      GO TO 999
+906   WRITE (IQ,1906)
+      GO TO 999
+907   WRITE (IQ,1907)
+      GO TO 999
+908   WRITE (IQ,1908)
+      GO TO 999
+909   WRITE (IQ,1909)
+      GO TO 999
+910   WRITE (IQ,1910)
+      GO TO 999
+C
+ 1900 FORMAT(10X,'*** MAXIMUM POSSIBLE ACCURACY REACHED ***')
+ 1901 FORMAT(10X,'*** SEARCH DIRECTION NOT DOWNHILL ANYMORE ***')
+ 1902 FORMAT(10X,'*** ACCUMULATION OF ROUNDING ERRORS PREVENTS ',
+     +               'FURTHER PROGRESS ***')
+ 1903 FORMAT(10X,'*** ALL SIGNIFICANT DIGITS LOST THROUGH ',
+     +               'CANCELLATION IN OPTIMAL CONDITIONING ***')
+ 1904 FORMAT(10X,'*** SPECIFIED TOLERANCE ON NORMALIZED GRADIENT ',
+     +               'WAS MET ***')
+ 1905 FORMAT(10X,'*** EXCESSIVE CANCELLATION IN GRADIENT ***')
+ 1906 FORMAT(10X,'*** MAXIMUM NUMBER OF ITERATIONS REACHED ***')
+ 1907 FORMAT(10X,'*** EXCESSIVE CANCELLATION IN GRADIENT ',
+     +               'CALCULATION ***')
+ 1908 FORMAT(10X,'*** NO ITERATED PARAMETERS ***')
+ 1909 FORMAT(10X,'*** PARAMETER SET TO A BOUND ***')
+ 1910 FORMAT(10X,'*** UNABLE TO MEET TOLERANCE ON CONSTRAINT ',
+     +               'VIOLATION ***')
+C
+999   CONTINUE
+C
+      RETURN
+      END
+      SUBROUTINE FUNalm(FX,XALL,NALL,CC,NC)
+C---
+C--- TEST FUNCTIONS TO BE MINIMIZED
+C---
+C--- FX = THE FUNCTION TO MINIMIZE SUBJECT TO CONSTRAINTS
+C---
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      DIMENSION XALL(NALL), CC(NC)
+C
+      COMMON /TST/   IRUN
+C
+C GET VALUE OF F(X)
+C
+      IF (IRUN .EQ. 1) THEN
+C                                   ! POWELL 1969 TEST
+         FX = XALL(1)*XALL(2)*XALL(3)*XALL(4)*XALL(5)
+         IF (FX.LE.80.0) FX = EXP(FX)
+C
+      ELSE IF (IRUN .EQ. 2) THEN
+C                                   ! AOKI
+         FX = (XALL(1)-1.)*(XALL(1)-1.) + (XALL(2)-1.)*(XALL(2)-1.)
+C
+      ELSE IF (IRUN .EQ. 3) THEN
+C                                   ! WALSH PROBLEM
+         FX = XALL(1)*XALL(2)*XALL(3)
+C
+      ELSE IF (IRUN .EQ. 4) THEN
+C                                   ! ROSEN AND SUZUKI
+         FX = -XALL(1)*XALL(1) - XALL(2)*XALL(2) - 2.*XALL(3)*XALL(3) -
+     +      XALL(4)*XALL(4) + 5.*XALL(1) + 5.*XALL(2) + 21.*XALL(3) -
+     +      7.*XALL(4)
+      END IF
+C
+C GET VALUE OF CONSTRAINTS
+C
+C ( CC(I) CONSTRAINED TO BE EQUAL TO ZERO FOR EQUALITY CONSTRAINTS;
+C GREATER THAN OR EQUAL TO ZERO FOR INEQUALITY CONSTRAINTS )
+C
+      IF (IRUN .EQ. 1) THEN
+C                                   ! POWELL 1969 TEST
+         CC(1) = XALL(1)*XALL(1) + XALL(2)*XALL(2) + XALL(3)*XALL(3) +
+     +           XALL(4)*XALL(4) + XALL(5)*XALL(5) - 10.
+         CC(2) = XALL(2)*XALL(3) - 5.*XALL(4)*XALL(5)
+         CC(3) = XALL(1)*XALL(1)*XALL(1) + XALL(2)*XALL(2)*XALL(2) + 1.
+         CC(1) = - CC(1)
+         CC(2) = - CC(2)
+         CC(3) = - CC(3)
+C
+      ELSE IF (IRUN .EQ. 2) THEN
+C                                   ! AOKI
+         CC(1) = 1. - XALL(1)*XALL(1) - XALL(2)*XALL(2)
+C
+      ELSE IF (IRUN .EQ. 3) THEN
+C                                   ! WALSH PROBLEM
+         CC(1) = - 10.*XALL(1)*XALL(1) - XALL(2)*XALL(2) -
+     +              4.*XALL(3)*XALL(3) + 69.0
+C
+      ELSE IF (IRUN .EQ. 4) THEN
+C                                   ! ROSEN AND SUZUKI
+         CC(1) = - XALL(1)*XALL(1) - XALL(2)*XALL(2) -
+     +             XALL(3)*XALL(3) - XALL(4)*XALL(4) - XALL(1) +
+     +             XALL(2) - XALL(3) + XALL(4) + 8.
+         CC(2) = - XALL(1)*XALL(1) - 2.*XALL(2)*XALL(2) -
+     +             XALL(3)*XALL(3) - 2.*XALL(4)*XALL(4) + XALL(1) +
+     +             XALL(4) + 9.
+         CC(3) = - 2.*XALL(1)*XALL(1) - XALL(2)*XALL(2) -
+     +             XALL(3)*XALL(3) - 2.*XALL(1) + XALL(2) +
+     +             XALL(4) + 5.
+      END IF
+C
+      RETURN
+      END

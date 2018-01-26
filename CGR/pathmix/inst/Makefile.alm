@@ -1,0 +1,24 @@
+# description file for almini library and test programs
+
+LIB = libalm.a
+FFLAGS = -O
+
+$(LIB):	almini.o invert.o
+#	/bin/rm $(LIB)
+	ar rcv $(LIB) almini.o invert.o
+	ranlib $(LIB)
+	chmod g+r $(LIB)
+
+############################## test programs ##############################
+
+all:	gemtest almtest
+
+gemtest:	gemtest.o $(LIB)	# test program without constraints
+	f77 gemtest.o $(LIB) -o gemtest
+
+almtest:	almtest.o $(LIB)	# test program with constraints
+	f77 almtest.o $(LIB) -o almtest
+
+cleanup:
+	rm *.o gemtest almtest *.OUT *.PLX $(LIB)
+

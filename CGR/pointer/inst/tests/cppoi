@@ -1,0 +1,6 @@
+rm -f  poipro
+rm -f  poiter
+nucfama poidat poijob poipro poiter
+mv INTERMED.1 INTERMEDFILE
+pointr  poijob poipro poiter
+rm -f INTERMED* 

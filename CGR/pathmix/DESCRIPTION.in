@@ -1,0 +1,4 @@
+Package: pathmix
+Title:  Path analysis of pairs of relatives
+Description:  Path analysis of pairs of relatives in R, based on the
+              original Fortran program

@@ -1,0 +1,4 @@
+useDynLib(pointer)
+export (control.pointer,
+        pointer
+)

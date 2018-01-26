@@ -1,0 +1,41 @@
+Version 1.0-5
+
+2006-4-27
+
+Rework as CGR after getting around with gfortran problems with R/gap
+
+
+Version 1.0-4
+
+2005-9-15
+
+Fix SNCA data
+Create gap.bib and modify gap.Rnw
+Update contact information
+
+Version 1.0-3
+
+2005-7-24
+
+Fix problems with genecounting and hwe.hardy in gap
+
+Version 1.0-2
+
+2005-4-14
+
+genecounting with Chromosome X data in place
+
+Version 1.0-1 
+
+2005-4-2
+
+Pass tests under Sun with pathmix, full R-style control (PA,IT,etc) awaits
+to be implemented for both pointer and pathmix.
+
+2005-3-25
+
+Add pathmix and post gap as alpha
+
+2005-3-19
+
+First bundle of R/gap and pointer

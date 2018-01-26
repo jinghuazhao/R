@@ -1,0 +1,40 @@
+# description file for path3b
+
+LIBS = libpath.a libalm.a
+FFLAGS = -O
+
+path3b: \
+		path3b.o \
+		files.o \
+		pathin.o \
+		fmcard.o \
+		ixno.o \
+		txcard.o \
+		eval.o \
+		random.o \
+		pxfamr.o \
+		defalt3b.o \
+		input3b.o \
+		vap.o \
+		output3b.o \
+		fun3b.o \
+		rhodef.o \
+		$(LIBS)
+	f77 *.o $(LIBS) -o $@
+	chmod 755 $@
+
+# use partial optimzer on fun re Optimizer bug:
+
+fun3b.o: fun3b.F
+	f77 -O1 -c $*.F
+
+# dependencies on include files
+
+pathin.o:	field.inc
+fmcard.o:	field.inc
+txcard.o:	field.inc
+eval.o:		tx.inc
+pxfamr.o:	field.inc path3.inc
+defalt3b.o:	path3.inc
+output3b.o:	path3.inc
+fun3b.o:	path3.inc

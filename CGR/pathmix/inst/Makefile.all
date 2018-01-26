@@ -1,0 +1,60 @@
+FC = g77
+FFLAGS = -fPIC -g -O2
+%.o: %.f
+	$(FC) $(CPPFLAGS) $(FFLAGS) -c -o $@ $<
+%.o: %.F
+	$(FC) -xf77-cpp-input $(CPPFLAGS) $(FFLAGS) -c -o $@ $<
+LIB = pathmix.so
+
+$(LIB):		almini.o \
+		invert.o \
+		timeut.o \
+		almize.o \
+		cpyfil.o \
+		getfam.o \
+		gof.o \
+		header.o \
+		jacobi.o \
+		merlin.o \
+		pdinv.o \
+		poof.o \
+		rdcorr.o \
+		rdpait.o \
+		strlib.o \
+		wrinit.o \
+		path3a.o \
+		files.o \
+		pathin.o \
+		fmcard.o \
+		ixno.o \
+		txcard.o \
+		eval.o \
+		random.o \
+		pxfamr.o \
+		defalt3a.o \
+		input3a.o \
+		output3a.o \
+		fun3a.o \
+		path3b.o \
+		defalt3b.o \
+		input3b.o \
+		vap.o \
+		output3b.o \
+		fun3b.o \
+		rhodef.o
+	$(FC) -G -lg2c -lm *.o -o $@
+#	ar rcv $(LIB) *.o
+
+# dependencies on include files
+
+pathin.o:	field.inc
+fmcard.o:	field.inc
+txcard.o:	field.inc
+eval.o:		tx.inc
+pxfamr.o:	field.inc path3.inc
+defalt3a.o:	path3.inc
+output3a.o:	path3.inc
+fun3a.o:	path3.inc
+defalt3b.o:	path3.inc
+output3b.o:	path3.inc
+fun3b.o:	path3.inc

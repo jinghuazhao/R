@@ -1,0 +1,77 @@
+2005-4-16
+
+The illegal jump to for-loop in emx.f has been fixed (masked 
+with -w Makevars but gfortran -w -fPIC -O2 -g -c picks it up).
+
+2005-3-23
+
+To apply -Wall -pedantic to emx.f, nucfama.f, pointr.f.
+
+
+2005-3-18
+
+add control.pointer function and reflect in INDEX
+
+emx.f:
+. pass ascertainmentr selection as strings
+
+nucfama.f:
+. add err= in backsapce
+
+pointer.R:
+. unlink junkfile as wild card fails under Windows
+
+
+Note that when added a blank line to example file poijob,
+.Fortran("nucfama") would work under Windows, hopefully
+this problem can now be dealt with by backspace(err=).
+
+
+2005-3-16
+
+Redo with successful testing of the docuementation example
+
+emx.f:
+
+. warnings in emx.f to be fixed
+
+nucfama.f:
+
+. add 'n' (to differentiate from pointr.f):
+  nspace, nsp1, odds, par, xno, xno1, xno2
+. odds, reorder
+. /add/ block and reorder x(60)
+. /pets/ block size
+. program --> subroutine, comment getarg, stop --> return
+
+pointr.f:
+
+. reorder /para/, /auxp1/, /odds/, /intg/, /mini/, /data/, /data2/
+. debug --> idebug
+. add three commas (,) to =e18.11, and two 1h;4x
+
+The changes required for emx.f, nucfama.f and pointr.f
+for stand-alone executables under Windows
+
+. comment subroutine statement
+. uncomment getarg
+. return --> stop
+
+However, it remains to work out under Windows. A way out is
+to use the Cygwin program obtained in 2001, or include this R
+package in a bundle with R/gap.
+
+Other things to implement relate to split=T, e.g.,
+
+ MATING TYPE SELECTION(00,01,02,10,11,12,20,21,22)?
+ POINTER SELECTION(0,4,5,6)?
+ POINTER DEGREE SELECTION(1,2,3,4,5)?
+ ASCERTAINMENT COMPLETE(C) OR MULTIPLE INCOMPLETE(M)?
+
+along with some warnings in the compiling, but thse may not 
+be a priority. 
+
+
+2005-3-15
+first pass.
+

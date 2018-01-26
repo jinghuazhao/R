@@ -1,0 +1,4 @@
+Package: pointer
+Title:  Complex Segregation analysis
+Description:  Complex segregation analysis in R, based on the
+              original Fortran program

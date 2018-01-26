@@ -1,0 +1,80 @@
+2005-4-2
+
+Add common /parms/ to fun3b.f and rhodef.f so that rhoexp no longer
+returns non-existent values.
+
+2005-3-31
+
+Rewrap all stop 'message' commands with call intpr, but pathmix(4, 
+remains to be fixed.
+
+2005-3-30
+
+Tidy up *.f. It turns out most problems were caused by arrays ncount and
+bin in pxfamr.f -- with sucess of path3a after this fix.
+
+2005-3-29
+
+Add do i=1, ngroup / ncount(i)=0 /enddo to pxfamr.f. First dry run of 
+pathmix(3,) and pathmix(4,) with istat=-1
+
+2005-3-28
+
+Redo ALPHA = -1.0 within almini.f so that gemtest.f works. It remains to
+fix data I/O.
+
+2005-3-24
+
+Note that reverse to "implicit double precision" actually makes almtest
+work but not gemtest; this is after fix calls to alfun via iop. Also 
+note that -O2 (as in R CMD check) actually does away with the f77 and g77
+problem come across earlier.
+
+2005-3-23
+
+Note that there are HUGE differences between g77 and f77 therefore mask
+'implicit double precison', also add -w to FFLAGS in Makevars. It is 
+further noted that switch defined by iop is not accessible to alfun.
+
+2005-3-22
+
+Inform Kathryn V Steiger <ksteiger@illumigen.com> about POINTER and PATHMIX
+Reuse Makevars so that .inc can be used, all *.F remain as *.f.
+
+files.f, path3a.f, path3b.f:
+Add FILNAM1, FILNAM2, FILNAM3, FILNAM4
+inst/doc:
+Add pathmod.dot, pathmod.ps and pathmod.pdf
+
+2005-3-21
+
+Attach '3a', '3b' to defalt.F, input.F, output.F, path3a.F, path3b.F.
+It appears the key element is FUN(), therefore add 'iop' to ALMINI and therfore 
+ALMIZE, with iop=1,2,3,4 for almtest, gemtest, path3a and path3b. There is 
+insufficient argument with 'call dtime (TArray)' and therefore change it to 
+'call dtime(TArray, result)'. As the data, job, prolix and terse files are
+specified through files.F, it is simpler to call path3a and path3b. 
+
+almini.f:
+Alter branch to "200     ALPHA = -1" within if/endif block
+
+rdcorr.f:
+Reorder CORDAT
+
+path3.inc:
+/CORDAT/, /GOF/ have different sizes from gof.f and rdcorr.F
+
+Note that *.F are required since they have #include directive, but R would
+not take *.F therefore the first pass was gained with all *.F as *.f.
+
+2005-3-20
+
+Redo compiling under Sun with the original pathmix and create the template for R
+It remains to fix the differences between path3a and path3b w.r.t. the following 
+subroutines,  
+
+defalt.F, fun.F, input.F, output.F
+
+The same is true with almtest.f and gemtest.f which contains other definitions
+of INPUT. A method is necessary to get over these problems, possibly via an extrat
+argument for these subroutines, or ignore these tests entirely.

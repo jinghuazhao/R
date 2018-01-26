@@ -1,0 +1,52 @@
+
+rm -f INTERMED.*
+echo -n "AUTOSOMAL (A) OR SEX-LINKED (S)? "
+read AORS
+echo -n "DATA FILE IS "
+read DFILE
+echo -n "JOB FILE IS "
+read JFILE
+echo -n "SUMMARY FILE IS "
+read TFILE
+echo -n "PROLIX FILE IS "
+read PFILE
+echo -n "SPLIT FILE? (Y OR N) "
+read YORN
+echo -n "CP FILE IS "
+read BAT
+case $AORS in
+     A|a)
+           echo "rm -f " $PFILE > $BAT
+             echo "rm -f " $TFILE >> $BAT
+	     echo nucfama $DFILE $JFILE $PFILE $TFILE >> $BAT
+	     case $YORN in
+	        Y|y) echo "emx " $PFILE $TFILE $AORS >> $BAT
+	             echo "mv " INTERMED.2 INTERMEDFILE >> $BAT
+	             echo "pointr " $JFILE $PFILE $TFILE >> $BAT
+	             echo "mv " INTERMED.3 INTERMEDFILE >> $BAT
+		     echo "pointr " $JFILE $PFILE $TFILE >> $BAT
+                     echo "rm -f INTERMED*" >> $BAT 
+		     chmod +x $BAT;;
+	          *) echo "mv INTERMED.1 INTERMEDFILE" >> $BAT
+	             echo "pointr " $JFILE $PFILE $TFILE >> $BAT
+                     echo "rm -f INTERMED* " >> $BAT 
+		     chmod +x $BAT;;
+	     esac ;;
+
+	*)   echo "rm -f " $PFILE > $BAT
+             echo "rm -f " $TFILE >> $BAT
+	     echo nucfams $DFILE $JFILE $PFILE $TFILE >> $BAT
+	     case $YORN in
+	        Y|y) echo "emx " $PFILE $TFILE $AORS >> $BAT
+	             echo "mv " INTERMED.2 INTERMEDFILE >> $BAT
+	             echo rpoints $JFILE $PFILE $TFILE >> $BAT
+	             echo "mv " INTERMED.3 INTERMEDFILE >> $BAT
+		     echo rpoints $JFILE $PFILE $TFILE >> $BAT
+                     echo "rm -f INTERMED*" >> $BAT
+		     chmod +x $BAT;;
+	          *) echo "mv INTERMED.1 INTERMEDFILE" >> $BAT
+	             echo rpoints $JFILE $PFILE $TFILE >> $BAT
+                     echo "rm -f INTERMED* " >> $BAT
+		     chmod +x $BAT;;
+             esac
+            esac  

@@ -1,0 +1,6 @@
+PX (3) (ID=1,PO=2,PH=3,IN=4)                                                    
+FM (F5.0,F3.0,F9.0,F9.0)                                                        
+TX IF (X2 = 4) X2 = 3                                                           
+TX X4 = (X4-.17362) / SQRT(1.15718)                                             
+TX X3 = (X3-.04026) / SQRT(1.05745)                                             
+CC SAMPLE JOBFILE FOR PATHMIX                                                   

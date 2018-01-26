@@ -1,0 +1,23 @@
+# description file for pathmix library
+
+LIB = libpath.a
+#FFLAGS = -O
+FFLAGS = -C -Nl100 -misalign
+
+$(LIB):		timeut.o \
+		almize.o \
+		cpyfil.o \
+		getfam.o \
+		gof.o \
+		header.o \
+		jacobi.o \
+		merlin.o \
+		pdinv.o \
+		poof.o \
+		rdcorr.o \
+		rdpait.o \
+		strlib.o \
+		wrinit.o
+#	/bin/rm $(LIB)
+	ar rcv $(LIB) *.o
+	ranlib $(LIB)

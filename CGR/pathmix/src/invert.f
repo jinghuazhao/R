@@ -1,0 +1,109 @@
+      SUBROUTINE INVERT(A,N,IDIM,DETLOG,ISTAT)
+C---
+C--- IN-PLACE INVERSION OF A POSITIVE-DEFINITE SYMMETRIC MATRIX
+C---
+C--- INPUT ARGUMENTS:
+C---     A(,)   -- INPUT MATRIX (ONLY A(I,J) WHERE I.LE.J IS USED)
+C---     N      -- ORDER OF MATRIX
+C---     IDIM   -- DIMENSION OF MATRIX
+C---
+C--- OUTPUT ARGUMENTS:
+C---     A(,)   -- OUTPUT MATRIX
+C---     DETLOG -- LOG OF DETERMINANT OF INPUT MATRIX
+C---     ISTAT  -- STATUS: 0=SUCCESSFUL, -1=A WAS NON-POSITIVE DEFINITE
+C---
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      DIMENSION   A(IDIM,IDIM)
+C
+C GET CHOLESKY DECOMPOSITION OF A
+C
+      CALL CHLSKY(A,N,IDIM,DETLOG,ISTAT)
+      IF (ISTAT .NE. 0) GO TO 800
+C
+C GET INVERSE OF CHOLESKY DECOMPOSITION OF A
+C
+      DO 130 J=1,N-1
+         DO 120 I=J+1,N
+            SUM = 0.0
+            DO 110 K=J,I-1
+               SUM = SUM + A(K,I)*A(J,K)
+110         CONTINUE
+            A(J,I) = -A(I,I)*SUM
+120      CONTINUE
+130   CONTINUE
+C
+C GET A-INVERSE
+C
+      DO 230 I=1,N
+         DO 220 J=I,N
+            SUM = 0.0
+            DO 210 K=J,N
+               SUM = SUM + A(I,K)*A(J,K)
+210         CONTINUE
+            A(I,J) = SUM
+            A(J,I) = SUM
+220      CONTINUE
+230   CONTINUE
+C
+800   RETURN
+      END
+
+      SUBROUTINE CHLSKY(A,N,IDIM,DETLOG,ISTAT)
+C---
+C--- IN-PLACE CHOLESKY DECOMPOSITION OF A POSITIVE-DEFINITE
+C--- SYMMETRIC MATRIX
+C---
+C--- INPUT ARGUMENTS:
+C---     A(,)   -- INPUT MATRIX (ONLY A(I,J) WHERE I.LE.J IS USED)
+C---     N      -- ORDER OF MATRIX
+C---     IDIM   -- DIMENSION OF MATRIX
+C---
+C--- OUTPUT ARGUMENTS:
+C---     A(,)   -- FACTORIZED MATRIX, (SEE NOTE BELOW)
+C---     DETLOG -- LOG OF DETERMINANT
+C---     ISTAT  -- STATUS: 0=SUCCESSFUL, -1=UNSUCCESSFUL
+C---
+C--- NOTE: DIAGONAL ELEMENTS OF A ARE RECIPROCALS OF TRUE ELEMENTS
+C---
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      DIMENSION   A(IDIM,IDIM)
+C
+      DETLOG = 0.0
+C
+      DO 30 I = 1,N
+         DO 20 J = 1,I
+            X = A(J,I)
+            DO 10  K=1,J-1
+               X = X - A(K,J)*A(K,I)
+10          CONTINUE
+C
+            IF (I .EQ. J) THEN
+               IF (X .LE. 0.0) GO TO 800
+               DETLOG = DETLOG + LOG(X)
+               A(I,I) = 1.0 / SQRT(X)
+C
+            ELSE
+               A(J,I) = X * A(J,J)
+            END IF
+20       CONTINUE
+30    CONTINUE
+      GO TO 900
+C
+C UNSUCCESSFUL -- INPUT MATRIX WAS NON-POSITIVE DEFINITE
+C
+800   DO 820 I = 1,N
+         DO 810 J = 1,I
+            A(J,I) = 0.0
+810      CONTINUE
+820   CONTINUE
+C
+      ISTAT = -1
+      DETLOG = 0.0
+      GO TO 999
+C
+C SUCCESSFUL
+C
+900   ISTAT = 0
+999   RETURN
+      END
+

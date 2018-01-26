@@ -1,0 +1,4 @@
+useDynLib(pathmix)
+export (
+        pathmix
+)
