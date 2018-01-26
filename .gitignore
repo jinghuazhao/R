@@ -1,0 +1,3 @@
+st.sh
+gap.Rcheck gap.datasets.Rcheck kinship.Rcheck lmm.Rcheck pan.Rcheck tdthap.Rcheck
+check.sh
