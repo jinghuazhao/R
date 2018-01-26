@@ -1,0 +1,105 @@
+The "tdthap" package
+====================
+
+This file contains "tdthap" as an R package. This package implements much of 
+the work described in: 
+
+Clayton, D. and Jones, H.B. (1999), Transmission/disequilibrium tests for 
+extended marker haplotypes, Am.J.Hum.Gen., 65:1161-1169.
+
+Note that, in common with that paper, no satisfactory solution is offered 
+in this distribution for the problem of phase uncertainty for haplotype 
+assignment --- omission of phase-uncertain data is the only remedy (and this
+has its pitfalls).
+
+You should be aware that this is very experimental software at present and 
+it comes with absolutely no guarantees.
+
+If you don't have R yet, you should have! R is available from CRAN (the 
+Comprehensive R Archive Network) at 
+
+http://www.ci.tuwien.ac.at/R/contents.html
+
+and various mirror sights world-wide. If you are new to R, I recommend that 
+you also download the faq document! R is a dialect of the S language for 
+statistics and graphics, and I shall shortly add an Splus version to 
+this distribution. 
+
+After unzipping and untarring the distribution you will have this file, a 
+short test "pedfile", and a sub-directory called tdthap/. If you are 
+installing the package in the main system R library, all you have to do is, 
+from the current directory,
+
+R CMD INSTALL tdthap
+
+If the install is OK you should now be able to go into R and use the package.
+At the R prompt this is done by
+
+library(tdthap)
+
+Once the library is successfully loaded you should
+follow the instructions in the documentation. For R novices, to read 
+LINKAGE "pedfiles", you can use read.table(). If the file contains a 
+header line which defines the variable names, 
+
+ped <- read.table("myfile.ped", header=T)
+
+should work (although you may also need to define the field separator eg. 
+sep="\t" for a tab delimited file). If the header line is not present, use
+
+ped <- read.table("myfile.ped", rownames=NULL)
+
+read.table() uses lots of memory and you might need more than the default. 
+To start R with more memory use the -v and -n options on the command line 
+(see the "man" page)
+
+
+To load the package in the system-wide R library you may need system 
+permissions. If you want to load the package in a private library, eg.
+/home/me/R/library, then you should install with 
+
+R CMD INSTALL tdthap -l /home/me/R/library
+
+You should remember then that R needs to know about this directory. This can 
+be done by appending this to the variable .lib.loc (perhaps in your 
+.First function or your .Rprofile file), as follows
+
+.lib.loc <- c("/home/me/R/library", .lib.loc)
+
+Alternatively, the R_LIBS environment variable can be used to specify search 
+paths for private libraries.
+
+After installation of the library,  the html help files can be accessed via 
+the online help system, which can be strated up using the help.start() command.
+They are stored in  
+
+(library directory)/tdthap/html  
+
+LaTex versions are also available in 
+
+(library directory)/tdthap/latex
+
+The library includes C code and, therefore, a C compiler is required. R
+is available for Windows, but I have no experience of installing R libraries
+in Windows. I can only say that this works on Sun (Solaris) and Linux 
+platforms.
+
+
+
+
+In order to test installation, I have included a small test pedigree file. 
+To read this into R as a  dataframe, you need to type
+
+testped <- read.table("test.ped")
+
+The functions require the dataframe to be in this standard LINKAGE format.
+
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/todd/
+
+

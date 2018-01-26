@@ -1,0 +1,10 @@
+get.similarity          Interogate similarity function for Geary-Moran
+                        TDT tests
+hap.transmit            Build parental haplotypes in nuclear families
+set.similarity          Set similarity function for Geary-Moran type
+                        TDT tests
+tdt.quad                TDT tests for extended haplotypes
+tdt.rr                  Calculate haplotype relative risks in TDT
+                        studies
+tdt.select              Select informative transmissions of
+                        sub-haplotypes for the TDT test

@@ -1,0 +1,43 @@
+%% \VignettePackage{tdthap}
+%% \VignetteIndexEntry{Disequilibrium Tests for Extended Marker Haplotypes}
+%% \Vignettekeywords{genetic association, family studies}
+
+\documentclass[12pt]{article}
+\usepackage{Sweave,hyperref,pdfpages}
+\usepackage{url}
+\usepackage{a4wide}
+\usepackage{amsmath,epsfig}
+\usepackage{graphicx}
+\usepackage[authoryear,round]{natbib}
+\bibliographystyle{plainnat}
+
+\parindent 0in
+
+\begin{document}
+\title{Transmission/Disequilibrium Tests for Extended Marker Haplotypes}
+\author{David Clayton and Hywel Jones}
+\date{}
+\maketitle
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\thispagestyle{empty}
+\section{Maintainer's note}
+The citation reads
+
+\vskip 0.25cm
+
+Clayton D, Jones H (1999). Transmission/disequilibrium tests for extended marker haplotypes. Am J Hum Gen 65:1161-1169
+
+\vskip 0.5cm
+
+which is now freely available from \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1288249/pdf/AJHGv65p1161.pdf}
+
+\section{Paper}
+The paper starts from next page.
+
+\includepdf[pages=-,width=8.5in]{clayton99.pdf}\label{clayton99}.
+
+\end{document}

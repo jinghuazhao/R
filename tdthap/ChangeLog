@@ -1,0 +1,45 @@
+v1.1-8
+
+2014-09-03	Add references.txt
+
+V1.1-7
+
+2013-12-10	date stamp for CRAN submission
+                Revise hap.transmit.Rd according to CRAN results
+2013-11-23	add package="tdthap" to hap.transmit documentation example following a query from
+		Voorrips, Roeland <roeland.voorrips@wur.nl>
+2013-9-30	mv inst/doc vignettes
+
+v1.1-6
+
+2013-4-08	Replace file.path(package.path()) with system.file
+		Mask .First.lib in zzz.R
+2012-3-22	Remove `l' after the VignetteIndexEntry
+2012-3-21	Change argument of get.similarity(nl=1) to get.similarity(nloci=1)
+
+v1.1-5
+
+2012-3-21	Add inst/tests according to hap.transmit documentation example
+		Move README into inst/doc
+2012-3-20	Fix VignetteIndexEntry and URL for the AJHG paper in tdthap-paper.Rnw
+
+v1.1-4
+
+2012-3-19	Revise the example slightly
+		Add the AJHG paper as part of the vignette along with .Rinstignore as required
+		Change similar.c to match .C calls and create _sav as global variables
+2012-3-6	Remove hap-transmit-temporary-file from inst/
+		Replace remaining long with similar.c
+
+v1.1-3
+
+2012-3-6	Artistic-2.0 as suggested by Kurt Hornik [Kurt.Hornik@wu.ac.at]
+		Add NAMESPACE
+		Change long to int in several C routines according to ``Writing R Extensions''
+		Replace fprintf(stderr,...) with REprintf(...)
+		Amend the example slightly
+
+v1.1-2
+
+2007-11-22	Artistic License as suggested by Achim Zeileis [Achim.Zeileis@wu-wien.ac.at]
+		David experssed his intention not to maintain the package anymore

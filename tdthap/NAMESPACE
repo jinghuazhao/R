@@ -1,0 +1,2 @@
+useDynLib(tdthap)
+export ("get.similarity", "hap.transmit", "set.similarity", "tdt.quad", "tdt.rr",  "tdt.select")

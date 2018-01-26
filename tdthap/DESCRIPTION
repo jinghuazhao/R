@@ -1,0 +1,9 @@
+Package: tdthap
+Version: 1.1-8
+Date: 2014-9-3
+Title: TDT tests for extended haplotypes
+Author: David Clayton
+Maintainer: Jing Hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+Depends: R (>= 1.5.0)
+Description: Transmission/disequilibrium tests for extended marker haplotypes
+License: Artistic-2.0
