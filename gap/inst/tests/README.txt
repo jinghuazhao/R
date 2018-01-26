@@ -2,16 +2,10 @@ This directory contains information on experimental work connected to the
 main package.
 
 R/		Additional R functinos
-chrsim/		Chromosome-based simulation	
 comp.score/	Example files using comp.score
 haplo.stats/	Example files using haplo.stats
 klem/		Example files using klem
-2ld/		2ld source code
-ehp/		EHPLUS source code
-fehp/		fastEHPLUS source code
-genecounting/	GENECOUNTING source code
 h2/		Files from InterAct analysis
-hap/		HAP source code
 kinship/	Some work related to kinship modeling
 misc/		Miscellaneous collection of codes
 ms/		ms source code associated with read.ms.output
