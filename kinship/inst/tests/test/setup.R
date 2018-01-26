@@ -1,0 +1,5 @@
+# library(genetics)
+# attach("..")
+library(kinship)
+date()
+aeq <- function(x,y) all.equal(as.vector(x), as.vector(y))

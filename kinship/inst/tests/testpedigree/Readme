@@ -1,0 +1,10 @@
+This test files check a variety of different pedigrees, mostly created or
+found by Curtis Olswold, that caused the pedigree plotting function to fail
+at one time or another.  The file testplots.R demonstrates how to further
+manipulate the plots (add in a spouse w/ no kids, rearrange siblings,
+etc.).  The postscript files provide examples of what the plots should look
+like - there isn't any direct way to compare the plots other than looking
+at them.
+
+
+

@@ -1,0 +1,23 @@
+ At this time, these test files check the computations only, not the
+printout.  If successful, testall.out should contain a lot of calls
+to "aeq", each of which is immediately followed by "T", showing that
+the test succeeded.
+  You will also see a lot of warnings "X matrix deemed to be singular".
+They are a result of how I am using coxph.detail, and can be ignored.
+
+ One test of interest is found near to the end of the output from ftest2:
+
+> c("Non-sparse log|H|"=det2a, "Sparse log|H|"= det2c)  #of interest
+ Non-sparse log|H| Sparse log|H| 
+          255.9002       255.903
+
+This was a check to see how much inaccuracy was created by using a sparse
+approximation to the Hessian.  I was very surprised at how little it is.
+
+Note: a lot of the files end with rm(x, y, etc).  I got in the habit of
+this due to latent bugs.  I would make some addition to the library, write
+a new testfile, and get strange results.  Some temp variable within the
+function would have been misspelled or not yet defined, and instead of getting
+the "variable not found" error that would have helped, it instead picked up
+one of my many temporary variables from earlier test runs.  So I keep the
+total number of retained variable names in the directory minimal.

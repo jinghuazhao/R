@@ -1,0 +1,32 @@
+%*%                     Basic Linear Algebra for classes bdsmatrix and
+                        gchol.bdsmatrix
+align.pedigree          Generate plotting information for a pedigree
+as.matrix.bdsmatrix     a function for bdsmatrix
+autohint                Align a pedigree to print well
+bdsBlock                Block diagonal matrices.
+bdsI                    Sparse identity matrices
+bdsmatrix               Create a sparse symmetric block diagonal matrix
+                        object
+bdsmatrix-class         Class "bdsmatrix"
+bdsmatrix.ibd           Create a bdsmatrix from a list
+besthint                Create a hints matrix for a pedigree.
+coxme                   Fit a mixed-effects Cox model
+coxme.control           Control parameters for coxme
+familycheck             Error check for a family classification
+gchol                   Generalized Cholesky decompostion
+gchol.bdsmatrix-class   Class "gchol.bdsmatrix"
+gchol-class             Class "gchol"
+gchol-methods           Methods for Function gchol in Package 'kinship'
+kinship                 Compute a kinship matrix
+list or NULL-class      Class "list or NULL"
+lmekin                  Linear Mixed Effects model using a kinship
+                        matrix.
+makefamid               Identify family groups
+makekinship             Create a sparse kinship matrix
+pedigree                Create pedigree structure
+plot.pedigree           plot pedigrees
+solve.bdsmatrix         Solve a matrix equation using the generalized
+                        Cholesky decompostion
+solve.gchol             Solve a matrix equation using the generalized
+                        Cholesky decompostion
+solve.gchol.bdsmatrix   function solve for gchol.bdsmatrix

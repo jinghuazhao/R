@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage{Sweave,hyperref,pdfpages}
+\usepackage{url}
+\usepackage{a4wide}
+\usepackage{amsmath,epsfig}
+\usepackage{graphicx}
+\usepackage[authoryear,round]{natbib}
+\bibliographystyle{plainnat}
+
+%% \VignetteIndexEntry{On mixed-effect Cox models, sparse matrices, and modeling data from large pedigrees}
+%% \Vignettekeywords{human genetics, linkage analysis, association analysis}
+%% \VignettePackage{kinship}
+
+\parindent 0in
+
+\begin{document}
+\title{On mixed-effect Cox models, sparse matrices, and modeling data from large pedigrees
+\footnote{Note that both documentations are available from the kinship/doc directory and contain hyperlinks}}
+\author{Terry Therneau}
+\date{}
+\maketitle
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\section{Current documentation}
+\thispagestyle{empty}
+Note that this documentation is also available from kinship/doc directory. The file is originally from
+\url{http://mayoresearch.mayo.edu/mayo/research/biostat/upload/kinship.pdf}.
+\includepdf[pages=-,width=8.5in]{current.pdf}\label{current}.
+
+\section{Previous documentation}
+\thispagestyle{empty}
+Note that this documentation is also available from kinship/doc directory. The file is no longer available
+from the Mayo web site.
+\includepdf[pages=-,width=8.5in]{releasep.pdf}\label{previous}
+
+\end{document}

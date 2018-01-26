@@ -1,0 +1,18 @@
+Package: kinship
+Version: 1.1.4
+Date: 2012-10-15
+Title: mixed-effects Cox models, sparse matrices, and modeling data from large pedigrees
+Author: Beth Atkinson (atkinson@mayo.edu) for pedigree
+        functions. Terry Therneau (therneau@mayo.edu) for all other functions.
+Maintainer: Jing hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+Depends: methods, survival, nlme, lattice, R (>= 2.8.0)
+LazyLoad: Yes
+LazyData: Yes
+Description: coxme: general mixed-effects Cox models; kinship: routines
+        to create and manipulate n by n matrices that describe the
+        genetic relationships between n persons; pedigree: create and
+        plot pedigrees; bdsmatrix: a class of objects for sparse
+        block-diagonal matrices (which is how kinship matrices are
+        stored); gchol: generalized cholesky decompositions
+License: GPL (>= 2)
+Packaged: 2009-08-25 13:03:30 UTC; jhz22

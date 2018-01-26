@@ -1,0 +1,103 @@
+15/10/2012 change align.pedigree call argument hint= to hints= for besthint.R
+17/01/2012 keep setGeneric("%*%"), rename BDSmatrix_%_%.R as bdsmatrix.%_%.R
+16/01/2012 revise for an error reported by Prof Brian Ripley
+02/12/2011 new plot.pedigree function with x,y in order of individuals in the input
+	   replace print with packageStartupMessage() in .onLoad
+06/06/2011 hook up kinship.pdf and releasep.pdf
+25/08/2009 replace \ldots with \dots in function arguments of coxme, plot.pedigree,
+	   solve.bdsmatrix/solve.gchol/solve.gchol.bdsmatrix
+30/12/2008 test of plot.pedigree under Linux R 2.8.1 so add requirement for this version
+25/12/2008 apply a patch to alignped4 as suggested by Stuart Horswell <stuart.horswell@csc.mrc.ac.uk>
+	   modify plot.pedigree to accommodate plotting of twins
+	   recall releasep.pdf to inst/doc
+24/12/2008 tac dated changes and toggle Imports/Depentds for methods in DESCRIPTION/NAMESPACE
+10/06/2008 change max(affected)>min(affected) in pedigree() according to Liping Hou [houliping@gmail.com]
+09/06/2008 add importFrom() as suggested by CRAN check
+14/04/2008 restore methods in DESCRIPTION
+12/04/2008 change Sint to int as in coxmeS.h, so coxme works on Linux 64
+11/04/2008 remove SaveImage from CRAN warning and drop methods from Depends
+19/02/2008 an updated documentation from http://mayoresearch.mayo.edu/mayo/research/biostat/upload/kinship.pdf
+13/12/2207 update align.pedigree.s, autohint.s, check.hint.s from S by Terry Therneau for baboon.pre from Jinliang Wang
+22/10/2007 change License to GPL (>=2) following Kurt Hornik's e-mail
+07/06/2007 add affected==2 in !all(affected=0 | affected==1) of plot.pedigree
+31/05/2007 add Wald test for fixed effects in print.lmekin as suggested by Qiong Yang
+30/05/2007 export S3 methods in NAMESPACE, change sys.frame(sys.parents()) back to sys.parent() in coxme and lmekin
+24/05/2007 change match.call(expand=F) to match.call(expand.dots=F)
+27/04/2007 add standard errors to lmekin (lm.fit --> lm) as pointed by Qiong Yand and Yangchun Du from Boston Univ
+02/01/2007 add ... to as.matrix according to R 2.5.0
+11/10/2006 add \method markup to solve.* and as.matrix.bdsmatrix (1.1.0-14) according to Kurt Hornik
+10/10/2006 remove S3 definitions assoiated with %*% (1.1.0-13) and use setGeneric (environment=NULL invalid in R 2.4.0)
+	   recover methods in import list and remove 'Summary' from exportMethods (NAMESPACE) by Kurt Hornik
+06/10/2006 add methods to depends list in DESCRIPTION (1.1.0-12) according to R 2.4.0
+13/02/2006 remove assign.dat in R directory
+12/02/2006 add example to plot.pedigree
+24/01/2006 remove c6 in coxfit6.h from error message posted by Jan de Leeuw, so coxfit6?.c compile
+24/05/2005 fix formals in coxme.fit according to Anissa Alfakir, add coxph.wtest and rearrange c6 in coxfit6.h
+21/04/2005 update according to kinship_S.1.2.tar.gz
+21/03/2005 move tests into inst
+07/03/2005 add c6 to coxfit6.h
+16/01/2005 refine NAMESPACE
+01/01/2005 success with NAMESPACE and kinship-internal.Rd is now defunct
+30/12/2004 add #undef c6 to coxfit6a, coxfit6b, coxfit6c
+20/12/2004 LazyLoad, LazyData
+03/09/2004 replace sys.parent() with parent.frame() in coxme/lmekin; uncomment !is.matrix in coxme.fit
+02/09/2004 document is.*.*
+01/09/2004 return of is.matrix.* and is.list.* for bdsmatrix,gchol.bdsmatrix, change eval()
+31/08/2004 remove <s-expression> contained in title of coxme.control.Rd
+27/08/2004 add version switch for R 2.x as required by setClassUnion("list or NULL",c())
+25/08/2004 add keywords as required by R 2.x
+25/07/2004 further fix on optim in coxme.fit, so no more complaints
+11/07/2004 fix problem in lmekin due to optim
+06/04/2004 the use of get("%*%",pos=NULL,mode="function")(x,y) makes complaints gone
+31/03/2004 confusion with full=T in solve.gchol, solve.bdsmatrix remains
+28/03/2004 R CMD check kinship!
+27/03/2004 gchol now gives gchol.bdsmatrix class if argument is bdsmatrix
+26/03/2004 force bdsmatrix to be a matrix but not a list, customize as.vector(bdsmatrix)
+23/03/2004 separate dmatrix/chsolve2 from bdsS.h
+21/03/2004 inform changes to Terry Therneau
+19/03/2004 plot.pedigree working
+18/03/2004 use '%*%.default' to get around the problem of overwritting system '%*%'
+16/03/2004 place %*% in UseMethod working but overwrites system's
+15/03/2004 debug coxme.fit
+14/03/2004 gchol(), solve(gchol.bdsmatrix) working
+12/03/2004 bdsmatrix.ibd,solve.gchol,solve.bdsmatrix working
+11/03/2004 chol, bdsmatrix, bdsI, familycheck, makefamid, makekinship working
+06/03/2004 first pass
+
+A summary of early changes necessary to make it work:
+
+1. documented or obvious
+
+.h                      <- Sint and other changes
+nlminb                  <- optim
+.C()                    <- add PACKAGE = "kinship" as required by R 1.9.0
+.First.Lib              <- add nlme, survival, methods
+significant:            kinship.so and kinship/R/kinship directly debugged
+
+2. sequence of statements
+
+BDSmatrix.R             <- bdsmatrix.R
+BDSmatrix_%_%.R         <- %_%.bdsmatrix.R
+
+3. amend disturbing statements
+
+UseMethod               <- add setGeneric
+list or NULL            <- setClassUnion          
+unique                  <- add 'missing' to 'bdsmatrix'
+setMethod('diag',       <- add nrow=1,ncol=1
+setMethod('['           <- add i, j
+gchol.bdsmatrix.R       <- omit ... in setMethod('dim') and setMethod('show'
+
+thus ... in the function arguments are dropped
+
+4. other changes
+
+assign                  <- envir as specified in R-FAQ
+nDotArgs                <- length(list(...)
+object                  <- from in places
+diag                    <- setMethod("diag", "diag<-"
+gchol                   <- as.matrix()
+solve.gchol.bdsmatrix   <- temp@ <--> $
+par()$"1em"[2]          <- par()$"cin"[2]/7
+plot.pedigree           <- comment on segments at 118,119,124
+align.pedigree          <- modify remove()

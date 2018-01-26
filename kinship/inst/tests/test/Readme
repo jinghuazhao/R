@@ -1,0 +1,9 @@
+ To do the collection of tests:
+	sh testall.sh
+
+This will start a batch job, which will in turn create the file testall.out.
+Normally, we compare this with testall.save.  In this particular test suite,
+everything is based on all.equal(), and the result file should be a
+long sequence of "T" results.
+
+  
