@@ -1,3 +1,4 @@
+26/01/2018 employ tools::package_native_routine_registration_skeleton("kinship")
 15/10/2012 change align.pedigree call argument hint= to hints= for besthint.R
 17/01/2012 keep setGeneric("%*%"), rename BDSmatrix_%_%.R as bdsmatrix.%_%.R
 16/01/2012 revise for an error reported by Prof Brian Ripley

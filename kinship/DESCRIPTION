@@ -1,6 +1,6 @@
 Package: kinship
-Version: 1.1.4
-Date: 2012-10-15
+Version: 1.1.5
+Date: 2018-1-26
 Title: mixed-effects Cox models, sparse matrices, and modeling data from large pedigrees
 Author: Beth Atkinson (atkinson@mayo.edu) for pedigree
         functions. Terry Therneau (therneau@mayo.edu) for all other functions.
