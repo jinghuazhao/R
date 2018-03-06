@@ -12,7 +12,12 @@ This repository contains packages **CGR** which is not available from CRAN and *
 **kinship** | https://cran.r-project.org/src/contrib/Archive/kinship/ | https://github.com/cran/kinship
 
 Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
- 
+
+You can install these packages either from CRAN or GitHub, e.g., 
+```
+library(devtools)
+install_github("jinghuazhao/R/pan")
+```
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
 My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
