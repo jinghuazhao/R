@@ -6,3 +6,4 @@ lmm.Rcheck
 pan.Rcheck
 tdthap.Rcheck
 check.sh
+packages.R
