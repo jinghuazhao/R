@@ -1,4 +1,3 @@
-st.sh
 gap.Rcheck
 gap.datasets.Rcheck
 gap_*
