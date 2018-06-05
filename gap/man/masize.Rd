@@ -178,7 +178,7 @@ Vittinghoff E, Sen S, McCulloch CE. Sample size calculations for evaluating medi
 \code{\link[gap]{ab}}
 }
 
-\source{\url{http://www.epibiostat.ucsf.edu/biostat/mediation/}}
+\source{Originally from http://www.epibiostat.ucsf.edu/biostat/mediation/}
 \examples{
 \dontrun{
 ## linear model

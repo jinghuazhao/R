@@ -1,5 +1,9 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.1-22
+05-06-2018	Replce email address
+		R-devel CMD check --as-cran
+
 Version 1.1-21
 23-01-2018	Amend URL and makeped example
 

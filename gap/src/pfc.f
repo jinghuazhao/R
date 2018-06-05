@@ -13,7 +13,7 @@ c       DZ   3/96,   7/99, 1/02
       integer maxfac,m(20),sib,aff,freq,oldsib,ns,
      &   naff,nsibs,nfam,fm(20,20),j,maxsize
 c     logical done
-      double precision fac(8000),fac0(8001),ptail,psum,dcase
+      double precision fac(0:8000),fac0(8001),ptail,psum,dcase
       double precision pobs,tailp,sump,nenum
       equivalence (fac(1),fac0(2))
       common/factab/fac0
@@ -21,7 +21,7 @@ c     logical done
       data maxfac/8000/, zero/0.000d0/, fm/400*0/
           
 c                  build table of log factorials w/ zero subscript
-      fac0(1)=zero
+      fac(0)=zero
       do 1 j=1,maxfac
       const=j
    1  fac(j)=fac(j-1)+ dlog(const)
@@ -74,7 +74,7 @@ c===========================================================
 c    Compute test statistics for the set of family 
 c       frequencies in -fm-. If -trace- then print them out
 
-      double precision fac(8000),fac0(8001)
+      double precision fac(0:8000),fac0(8001)
       equivalence (fac(1),fac0(2))
       common/factab/fac0
       integer first,last,m(1),fm(20,20),naff,nsibs,ns,j,i,
@@ -245,7 +245,7 @@ c   const  = constant part of the log-likelihood
       integer fm(20,20),naff,nsibs,first,last,i,j,
      &    m(20),fmij,nfam
       double precision const,zero
-      double precision fac(8000),fac0(8001)
+      double precision fac(0:8000),fac0(8001)
       equivalence (fac(1),fac0(2))
       common/factab/fac0
       data zero/0.0000d0/
@@ -278,7 +278,7 @@ c  Find the probability of the table -fm-
 
       integer fm(20,20),first,last,i,j
       double precision zero,const,p,dexp,lminf,slf
-      double precision fac(8000),fac0(8001)
+      double precision fac(0:8000),fac0(8001)
       equivalence (fac(1),fac0(2))
       common/factab/fac0
 c       lminf is log of smallest positive dp number
@@ -438,7 +438,7 @@ c  allocation -alloc- ('m' in paper) of cases
       integer m(1),alloc(1),maxsize,naff,nsibs,j
       double precision proba,dexp,lminf
 c   table of log factorials, with zero subscript
-      double precision fac(8000),fac0(8001)
+      double precision fac(0:8000),fac0(8001)
       equivalence (fac(1),fac0(2))
       common/factab/fac0
 c    log of smallest positive double precision number
@@ -506,7 +506,7 @@ C                                       done when we run off the end
       done=.TRUE.
       return
 c                        initialize on the first call to cmulte
-  500 do 600 i=2,k
+  500 do 600 i=1,k
   600 n(I)=0
       n(1)=m
       done=.FALSE.

@@ -214,13 +214,7 @@ for a particular computer system.\\
 I have included {ms} code (which is required by \texttt{read.ms.output}) and .xls files
 to accompany {\em read.ms.output} and {\em FPRP} and {\em BFDP} functions as with a 
 classic twin example for ACE model in {\bf OpenMx}. The package is now available from
-CRAN and earlier it can be installed with command,
-
-\begin{Schunk}
-\begin{Scode}
-source('http://openmx.psyc.virginia.edu/getOpenMx.R')
-\end{Scode}
-\end{Schunk}
+CRAN.
 
 For these models it is actually simpler to use facilities as in package {\bf mets}, which I
 now suggest.\\
@@ -563,4 +557,4 @@ skol06, wakefield07}.
 \bibliography{gap}
 \end{document}
 
-% Date last modified: 19-2-2015
+% Date last modified: 4-6-2018

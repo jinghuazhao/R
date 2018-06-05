@@ -346,7 +346,7 @@ C                                          DONE WHEN WE RUN OFF THE END
        DONE=.TRUE.
        RETURN
 C                               INITIALIZE FOR THE FIRST CALL TO CMULTE
- 500     DO 600 I=2,K
+ 500     DO 600 I=1,K
  600          N(I)=0
        N(1)=M
        DONE=.FALSE.
