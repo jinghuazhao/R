@@ -1,9 +1,13 @@
 st.sh
 gap.Rcheck
 gap.datasets.Rcheck
+gap_*
 kinship.Rcheck
 lmm.Rcheck
+lmm_*
 pan.Rcheck
+pan_*
 tdthap.Rcheck
+tdthap_*
 check.sh
 packages.R
