@@ -1,4 +1,4 @@
-# 2-3-2008 MRC-Epid JHZ
+# 6-6-2018 MRC-Epid JHZ
 
 KCC <- function(model,GRR,p1,K)
 {
@@ -13,7 +13,7 @@ KCC <- function(model,GRR,p1,K)
    f <- switch(model.idx,multiplicative,additive,recessive,dominant,overdominant)
    scale <- K/(f[1]*(1-p1)^2+f[2]*2*p1*(1-p1)+f[3]*p1^2)
    f <- f*scale
-   if(f[3]>1) stop("misspecified model")
+#  if(f[3]>1) stop("misspecified model")
    pprime <- (f[3]*p1^2+f[2]*p1*(1-p1))/K
    p <- ((1-f[3])*p1^2+(1-f[2])*p1*(1-p1))/(1-K)
    invisible(list(pprime=pprime,p=p))

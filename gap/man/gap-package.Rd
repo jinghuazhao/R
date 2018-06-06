@@ -18,7 +18,7 @@ analysis with or without environmental covariates.
 \details{
 \tabular{ll}{
 Package: \tab gap\cr
-Version: \tab 1.1-20\cr
+Version: \tab 1.1-22\cr
 Depends: \tab R(>= 2.1.0)\cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, NCBI2R, bdsmatrix, coxme, foreign, grid, \cr
         \tab  haplo.stats, kinship2, magic, mets, nlme, pedigree, pedigreemm, regress, rms, survival \cr
