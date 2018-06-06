@@ -145,8 +145,8 @@ lambda=pi*(pow(gamma,2)*p+q-pow(gamma*p+q,2))/(1-pi*pow(gamma*p+q,2));
 /*my own*/
 lambda=pi*p*q*pow(gamma-1,2)/(1-pi*pow(gamma*p+q,2));
 
-/*not sure about +/-!*/
-n=pow(z1_beta+z_alpha,2)/lambda;
+/* - for lower tail*/
+n=pow(-z1_beta+z_alpha,2)/lambda;
 
 /*may be used to correct for population prevalence*/
 printf("\nThe population-based result: Kp=%f Kq=%f n=%10.0f\n",k,s,n);
@@ -161,7 +161,7 @@ for(i=0;i<12;i++) {
     k=kp[j];
     pi=k/pow(gamma*p+q,2);
     lambda=pi*p*q*pow(gamma-1,2)/(1-pi*pow(gamma*p+q,2));
-    n=pow(z1_beta-z_alpha,2)/lambda;
+    n=pow(-z1_beta+z_alpha,2)/lambda;
     printf(" %10.f",n);
   } printf("\n");
   if((i+1)%4==0) printf("\n");

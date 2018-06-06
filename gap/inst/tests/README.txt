@@ -8,7 +8,4 @@ ms/		ms source code associated with read.ms.output
 twinan90/	Deprecated twinan90 files
 xls/		Original BFDP and FPRP function
 
-references.txt	The references associated with these software
-no		# of references
-
 README.txt	This file
