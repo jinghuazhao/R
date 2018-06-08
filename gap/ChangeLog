@@ -4,7 +4,7 @@ Version 1.1-23
 08-06-2018	Minor changes
 
 Version 1.1-22
-06-06-2018	Replce email address
+06-06-2018	Replace email address
 		TIdy up inst/tests
 		R-devel CMD check --as-cran
 
