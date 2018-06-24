@@ -1,9 +1,9 @@
 Package: pan
 Version: 1.5
-Date: 2018-02-04
+Date: 2018-06-24
 Title:  Multiple Imputation for Multivariate Panel or Clustered Data
 Author: Original by Joseph L. Schafer 
-Maintainer: Jing hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Suggests: mitools, lme4
 LazyData: Yes
 LazyLoad: Yes

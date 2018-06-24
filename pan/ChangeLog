@@ -1,4 +1,5 @@
 Version 1.5
+2018-06-24	Change email address
 2018-02-04	Remove a4wide.sty
 2018-01-25	Employ tools::package_native_routine_registration_skeleton("pan")
 
