@@ -1,7 +1,9 @@
-# 5-6-2018 JHZ
+# 24-6-2018 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
+git add R-packages.R
+git commit -m "Required packages for R-devel CMD check --as-cran"
 git add CGR_1.0-5.tar.gz
 git commit -m "Classic Genetics in R"
 git add kinship_1.1.4.tar.gz
