@@ -30,7 +30,7 @@ The reference should read\footnote{Note that the technical report is now availab
 \vskip 0.25cm
 
 Schafer, J.L. (1997) Imputation of missing covariates under a multivariate linear mixed model. Technical report 97-04, 
-Dept. of Statistics, The Pennsylvania State University..
+Dept. of Statistics, The Pennsylvania State University.
 
 \vskip 0.25cm
 
