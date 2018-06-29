@@ -1,5 +1,10 @@
 useDynLib(kinship)
 import(lattice,methods,nlme,survival)
+importFrom("graphics", "frame", "lines", "par", "points", "polygon",
+           "segments", "strheight", "strwidth", "text")
+importFrom("stats", "as.formula", "formula", "lm", "median",
+           "model.extract", "model.matrix", "naprint", "optim",
+           "pchisq", "runif", "terms", "var")
 export ("align.pedigree",
        "alignped1",
        "alignped2",

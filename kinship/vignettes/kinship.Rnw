@@ -1,7 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage{Sweave,hyperref,pdfpages}
 \usepackage{url}
-\usepackage{a4wide}
 \usepackage{amsmath,epsfig}
 \usepackage{graphicx}
 \usepackage[authoryear,round]{natbib}

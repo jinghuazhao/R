@@ -1,3 +1,11 @@
+29/06/2018 Change email, Description
+	   Create vignettes/ and remove a4wide.sty from kinship.Rnw
+	   Run tools::compactPDF(".") from inst/doc and add to NAMESPACE
+	   importFrom("graphics", "frame", "lines", "par", "points", "polygon",
+             "segments", "strheight", "strwidth", "text")
+	   importFrom("stats", "as.formula", "formula", "lm", "median",
+             "model.extract", "model.matrix", "naprint", "optim",
+             "pchisq", "runif", "terms", "var")
 26/01/2018 employ tools::package_native_routine_registration_skeleton("kinship")
 15/10/2012 change align.pedigree call argument hint= to hints= for besthint.R
 17/01/2012 keep setGeneric("%*%"), rename BDSmatrix_%_%.R as bdsmatrix.%_%.R
