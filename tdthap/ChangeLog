@@ -1,8 +1,9 @@
-V.1.1-9
-2018-01-26	Employ tools::package_native_routine_registration_skeleton("tdthap")
-
 v1.1-8
 
+2018-06-29	Remove a4wide.sty
+		Change email, Description
+		Add importFrom("stats", "pf", "qbeta", "runif") to NAMESPACE as suggested
+2018-01-26	Employ tools::package_native_routine_registration_skeleton("tdthap")
 2014-09-03	Add references.txt
 
 V1.1-7
