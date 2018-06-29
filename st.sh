@@ -1,4 +1,4 @@
-# 24-6-2018 JHZ
+# 29-6-2018 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -26,6 +26,8 @@ git add tdthap
 git commit -m "Transmission/disequilibrium tests for extended marker haplotypes"
 git add README.md
 git commit -m "README"
+git add check.sh
+git commit -m "check.sh"
 git add st.sh
 git commit -m "st.sh"
 git push
