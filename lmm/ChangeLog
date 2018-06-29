@@ -1,6 +1,9 @@
 Version 1.1
+
+2018-06-29	Change email address, URL and Description
+		Adress complaints about lmm.f and lmm.R (duplicated registries due to a missing argument for fastmode)
 2018-02-04	Remove a4wide.sty
-2018-01-26	Employ tools::package_native_routine_registration_skeleton("lmm")
+2018-01-26	Employ tools::package_native_routine_registration_skeleton("lmm",con="package_native_routine_registration_skeleton.c")
 
 Version 1.0
 

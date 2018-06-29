@@ -34,7 +34,7 @@ The reference should read\footnote{The technical report was originally obtained 
 \vskip 0.15cm
 
 Schafer, J.L. (1998) Some improved proedures for linear mixed models. Dept. of Statistics, The Pennsylvania State 
-University
+University.
 
 \vskip 0.15cm
 

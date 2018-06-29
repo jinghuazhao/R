@@ -193,6 +193,7 @@ fastmode <- function(y,subj,pred,xcol,zcol,prior,vmax,occ,start,maxits=100,
 		ztvinv=array(0,c(q,nmax,m)),
 		ztvinvz=array(0,c(q,q,m)),
 		isflag=c(iflag,sflag),
+                err=integer(1),
 		msg=integer(1),u=array(0,c(q,q,m)),
 		iter=integer(1),
 		#

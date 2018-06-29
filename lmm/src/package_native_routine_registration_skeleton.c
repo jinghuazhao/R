@@ -2,15 +2,6 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/*
-  The following name(s) appear with different usages
-  e.g., with different numbers of arguments:
-
-    fastmode
-
-  This needs to be resolved in the tables and any declarations.
-*/
-
 /* FIXME: 
    Check these declarations against the C/Fortran source code.
 */
@@ -21,7 +12,6 @@ extern void F77_NAME(ecmeml)(void *, void *, void *, void *, void *, void *, voi
 extern void F77_NAME(ecmerml)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(fastmcmc)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(fastml)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void F77_NAME(fastmode)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(fastmode)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(fastrml)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(mgibbs)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
@@ -33,7 +23,6 @@ static const R_FortranMethodDef FortranEntries[] = {
     {"ecmerml",  (DL_FUNC) &F77_NAME(ecmerml),  46},
     {"fastmcmc", (DL_FUNC) &F77_NAME(fastmcmc), 50},
     {"fastml",   (DL_FUNC) &F77_NAME(fastml),   47},
-    {"fastmode", (DL_FUNC) &F77_NAME(fastmode), 50},
     {"fastmode", (DL_FUNC) &F77_NAME(fastmode), 51},
     {"fastrml",  (DL_FUNC) &F77_NAME(fastrml),  50},
     {"mgibbs",   (DL_FUNC) &F77_NAME(mgibbs),   41},

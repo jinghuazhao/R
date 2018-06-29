@@ -110,7 +110,7 @@ C***********************************************************************
         real function rngs(seed)
 C initializes rangen with seed
         integer seed
-        real tmp,rangen
+        real rangen
         rngs=rangen(seed)
         return
         end
@@ -139,7 +139,7 @@ C           q=(y/exp(y-1))**(a-1)
            b=(e+a)/e
            p=b*u
            if(p.gt.1) goto 4
-3          continue
+           continue
            x=p**(1/a)
            u1=rangen(0)
            if(u1.gt.(e**(-x)))then
@@ -162,24 +162,24 @@ C           q=(y/exp(y-1))**(a-1)
         return
         end
 C***********************************************************************
-	function gauss()
-	integer alt
-	real next,pi,u1,u2,gauss,rangen
-        save alt,next
-	data pi/3.141593/
-        if((alt.ne.0).and.(alt.ne.1)) alt=0
-	if(alt.eq.0)then
-	  u1=rangen(0)
-	  u2=rangen(0)
-	  gauss=sqrt(-2*log(u1))*cos(2*pi*u2)
-	  next=sqrt(-2*log(u1))*sin(2*pi*u2)
-	  alt=1
-	else
-	  gauss=next
-	  alt=0
-	endif
-	return
-	end
+       function gauss()
+       integer alt
+       real next,pi,u1,u2,gauss,rangen
+       save alt,next
+       data pi/3.141593/
+       if((alt.ne.0).and.(alt.ne.1)) alt=0
+       if(alt.eq.0)then
+          u1=rangen(0)
+          u2=rangen(0)
+          gauss=sqrt(-2*log(u1))*cos(2*pi*u2)
+          next=sqrt(-2*log(u1))*sin(2*pi*u2)
+          alt=1
+       else
+          gauss=next
+          alt=0
+       endif
+       return
+       end
 C***********************************************************************
       subroutine mku2(q,xi,m,ztvinvz,u,wkqq1,wkqq2,ldxi,ldu,err,sqrtu)
 C Like mku, except that it also saves the square roots of U_i, 
@@ -860,7 +860,7 @@ C        *** accumulate rest of wkgg ********************
  680           continue
  690        continue
  700     continue
- 799     continue
+        continue
  800  continue
       wkgg(0,0)=dfloat(ntot-p)*(sigma2**2)/dble(2.)
       gi=0
