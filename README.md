@@ -9,9 +9,9 @@ This repository contains packages **CGR** which is not available from CRAN and *
 **lmm** | https://cran.r-project.org/package=lmm      | https://github.com/cran/lmm
 **pan** | https://cran.r-project.org/package=pan      | https://github.com/cran/pan
 **tdthap**  | https://cran.r-project.org/package=tdthap | https://github.com/cran/tdthap
-**kinship**<sup>[1](#myfootnote1)</sup> | https://cran.r-project.org/src/contrib/Archive/kinship/ | https://github.com/cran/kinship
+**kinship**<sup>[+](#myfootnote1)</sup> | https://cran.r-project.org/src/contrib/Archive/kinship/ | https://github.com/cran/kinship
 
-<a name="myfootnote1">1</a>: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
+<a name="myfootnote1">+</a>: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
 
 Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
 
