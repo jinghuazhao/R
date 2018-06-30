@@ -11,7 +11,7 @@
 #   This routine isn't smart enough to do that.
 #
 autohint <- function(ped) {
-    spousid <- NULL
+    spouseid <- NULL
     n <- length(ped$depth)
     #
     # First, find out if we have any twins
@@ -235,7 +235,7 @@ autohint <- function(ped) {
                 #  already mapped to each other, leave things alone.
                 if ((hints[id]==0 || hints[spouseid]==0) && 
                         (abs(hints[id]) != spouseid)  &&
-                        (abs(hints[spousid]) != id)) {
+                        (abs(hints[spouseid]) != id)) {
                     if (hints[spouseid,2] == 0) hints[spouseid,2] <- -id
                     else                        hints[id,2] <- spouseid
 		

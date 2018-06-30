@@ -384,7 +384,17 @@ coxme.fit <- function(x, y, strata, offset, init, control,
             logfun1 <- function(x, iblock, rmat, nf, gdet, ofile, fit0, 
                                iter, init) {
                 if (x<=0) return(-1)# return a "same as null" fit
-                fit <- .C(ofile,
+                if(ofile=="agfit6b")
+                fit <- .C("agfit6b",
+                          iter=as.integer(c(iter,iter)),
+                          beta = as.double(init),
+                          loglik = double(2),
+                          as.double(iblock/x),
+                          as.double(rmat/x),
+                          hdet = double(1),
+                          copy=c(F,T,T,T,F,F,T), PACKAGE="kinship")
+                else
+                fit <- .C("coxfit6b",
                           iter=as.integer(c(iter,iter)),
                           beta = as.double(init),
                           loglik = double(2),
@@ -417,7 +427,17 @@ coxme.fit <- function(x, y, strata, offset, init, control,
 		if (any(diag(ikmat) <=0)) { #Not an spd matrix
 		    return(0)  # return a "worse than null" fit
 		    }
-                fit <- .C(ofile,
+                if (ofile=="agfit6b")
+                fit <- .C("agfit6b",
+                          iter= as.integer(c(iter,iter)),
+                          beta = as.double(init),
+                          loglik = double(2),
+                          as.double(ikmat@blocks),
+                          as.double(ikmat@rmat),
+                          hdet = double(1),
+                          copy=c(F,T,T,T,F,F,T), PACKAGE="kinship")
+                else
+                fit <- .C("coxfit6b",
                           iter= as.integer(c(iter,iter)),
                           beta = as.double(init),
                           loglik = double(2),

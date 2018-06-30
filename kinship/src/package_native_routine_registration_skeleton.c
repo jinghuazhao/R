@@ -1,14 +1,6 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/*
-  The following symbols/expressions for .NAME have been omitted
-
-    ofile
-
-  Most likely possible values need to be added below.
-*/
-
 /* FIXME: 
    Check these declarations against the C/Fortran source code.
 */
