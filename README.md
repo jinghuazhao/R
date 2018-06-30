@@ -28,4 +28,4 @@ My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/in
 
 ---
 
-<a name="footnote1">1</a> Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
+<a name="footnote1"><sup>1</sup></a> Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
