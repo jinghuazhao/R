@@ -1,7 +1,7 @@
 Package: tdthap
-Version: 1.1-8
+Version: 1.1-9
 Date: 2018-6-30
-Title: TDT tests for extended haplotypes
+Title: TDT Tests for Extended Haplotypes
 Author: David Clayton
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Depends: R (>= 1.5.0)
