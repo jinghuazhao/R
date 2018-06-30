@@ -1,5 +1,5 @@
 30/06/2018 Change onAttach as in gap
-	   Remove coxph.wtest since as promised.
+	   Remove coxph.wtest as promised.
 	   Be more explicit with routines in coxme.fit.R
 	   Initialise spousid <- NULL in autohint and rmat in bdsmatrix.R
 	   To document [
