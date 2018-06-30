@@ -22,6 +22,8 @@ or GitHub,
 library(devtools)
 install_github("jinghuazhao/R/pan")
 ```
+The Windows version of [kinship_1.1.4.zip][kinship_1.1.4.zip] is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) using https://win-builder.r-project.org/.
+
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
 My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
