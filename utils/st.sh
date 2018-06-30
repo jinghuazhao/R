@@ -4,6 +4,8 @@ git add .gitignore
 git commit -m "These are ignored"
 git add CGR CGR_1.0-5.tar.gz
 git commit -m "Classic Genetics in R"
+git add kinship_1.1.4.tar.gz kinship_1.1.4.zip
+git commit -m "kinship source (.tar.gz) and Windows (.zip) packages"
 git add gap
 git commit -m "genetic analysis package"
 git add gap.datasets
