@@ -11,6 +11,7 @@
 #   This routine isn't smart enough to do that.
 #
 autohint <- function(ped) {
+    spousid <- NULL
     n <- length(ped$depth)
     #
     # First, find out if we have any twins

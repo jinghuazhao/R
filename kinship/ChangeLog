@@ -1,3 +1,9 @@
+30/06/2018 Change onAttach as in gap
+	   Remove coxph.wtest since as promised.
+	   Be more explicit with routines in coxme.fit.R
+	   Initialise spousid <- NULL in autohint and rmat in bdsmatrix.R
+	   To document [
+	   Regenerate package_native_routine_registration_skeleton.c using utils/register.R
 29/06/2018 Change email, Description
 	   Create vignettes/ and remove a4wide.sty from kinship.Rnw
 	   Run tools::compactPDF(".") from inst/doc and add to NAMESPACE

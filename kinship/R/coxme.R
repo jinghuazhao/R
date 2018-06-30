@@ -9,34 +9,6 @@ coxme <- function(fixed=formula(data), data=parent.frame(), random,
 	control, ties= c("efron", "breslow", "exact"),
 	singular.ok =T, varlist=NULL, variance, vinit=.2, sparse=c(50,.02),
 	rescale=T, pdcheck=T, x=F, y=T, shortlabel=T, ...) {
-   ## the following function will be removed when available from survival
-   coxph.wtest <- function (var, b, toler.chol = 1e-09) 
-   {
-    if (is.matrix(b)) {
-        nvar <- nrow(b)
-        ntest <- ncol(b)
-    }
-    else {
-        nvar <- length(b)
-        ntest <- 1
-    }
-    if (length(var) == 1) {
-        if (nvar == 1) 
-            return(list(test = b * b/var, df = 1, solve = b/var))
-        else stop("Argument lengths do not match")
-    }
-    if (!is.matrix(var) || (nrow(var) != ncol(var))) 
-        stop("First argument must be a square matrix")
-    if (nrow(var) != nvar) 
-        stop("Argument lengths do not match")
-    temp <- .C("coxph_wtest", df = as.integer(nvar), as.integer(ntest), 
-        as.double(var), tests = as.double(b), solve = double(nvar * 
-            ntest), as.double(toler.chol), PACKAGE = "survival")
-    if (ntest == 1) 
-        list(test = temp$tests[1], df = temp$df, solve = temp$solve)
-    else list(test = temp$tests[1:ntest], df = temp$df, solve = matrix(temp$solve, 
-        nvar, ntest))
-    }
     time0 <- proc.time()
     ties <- match.arg(ties)
     call <- match.call()

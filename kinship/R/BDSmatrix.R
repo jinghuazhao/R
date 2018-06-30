@@ -1,4 +1,5 @@
 # $Id: bdsmatrix.s,v 1.3 2002/12/26 22:54:48 Therneau Exp $
+rmat <- NULL
 if(version$major>=2) setClassUnion("list or NULL",c("list","NULL"))
 if(version$major==1 && version$minor>=8.0) setClassUnion("list or NULL",c("list","NULL"))
 if(version$major==1 && version$minor <8.0) {

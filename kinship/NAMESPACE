@@ -5,6 +5,7 @@ importFrom("graphics", "frame", "lines", "par", "points", "polygon",
 importFrom("stats", "as.formula", "formula", "lm", "median",
            "model.extract", "model.matrix", "naprint", "optim",
            "pchisq", "runif", "terms", "var")
+importFrom("utils", "packageDescription")
 export ("align.pedigree",
        "alignped1",
        "alignped2",

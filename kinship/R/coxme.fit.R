@@ -31,7 +31,7 @@ coxme.fit <- function(x, y, strata, offset, init, control,
 	    newstrat  <- cumsum(table(strata))
 	    }
 	status <- y[,3]
-        routines <- c('coxfit6a', 'agfit6b', 'coxfit6c')
+        routines <- 'agfit6b'
         }
     else {
 	if (length(strata) ==0) {
@@ -44,7 +44,7 @@ coxme.fit <- function(x, y, strata, offset, init, control,
 	    newstrat <-  cumsum(table(strata))
 	    }
 	status <- y[,2]
-        routines <- c('coxfit6a', 'coxfit6b', 'coxfit6c')
+        routines <- 'coxfit6b'
         }
     
     #
@@ -273,7 +273,7 @@ coxme.fit <- function(x, y, strata, offset, init, control,
         else control$sparse.calc <- 1 
         }
 
-    ifit <- .C(routines[1], 
+    ifit <- .C("coxfit6a", 
                as.integer(n),
                as.integer(nvar),
                as.integer(ncol(y)),
@@ -321,7 +321,17 @@ coxme.fit <- function(x, y, strata, offset, init, control,
     # The initial fit to the data
     #  If the thetas are fixed, this is the only fit, otherwise it
     #  provides starting estimates for the ms() controlled ones.
-    fit <- .C(routines[2],
+    if (ncol(y) ==3)
+    fit <- .C("agfit6b",
+              iter= as.integer(c(0, control$iter.max)),
+              beta = as.double(init),
+              loglik = double(2),
+              as.double(ikmat@blocks),
+              as.double(ikmat@rmat),
+              hdet = double(1),
+              copy=c(F,T,T,T,F,F,T), PACKAGE="kinship")
+    else
+    fit <- .C("coxfit6b",
               iter= as.integer(c(0, control$iter.max)),
               beta = as.double(init),
               loglik = double(2),
@@ -393,7 +403,7 @@ coxme.fit <- function(x, y, strata, offset, init, control,
 			  lower=control$lower, upper=control$upper,
 			  control=list(pgtol=control$toler.ms),    # pgtol as reltol
 			  iblock=itemp1, rmat=itemp2, init=fit$beta,
-                          nf=nfrail, ofile=routines[2], gdet=gdet,
+                          nf=nfrail, ofile=routines, gdet=gdet,
                           fit0=fit$loglik[1], iter=control$inner.iter)
             }
         else {
@@ -421,11 +431,11 @@ coxme.fit <- function(x, y, strata, offset, init, control,
 		}
     
 	    if (control$simplex <2) {
-		mfit <- optim(par= vinit, logfun, method="L-BFGS-B",
+		mfit <- optim(par=vinit, logfun, method="L-BFGS-B",
 			      lower=control$lower, upper=control$upper,
- 			      control=list(pgtol=control$toler.ms),       # pgtol as reltol
+                              control=list(pgtol=control$toler.ms),       # pgtol as reltol
 			      varlist=varlist, theta=theta, tindex=tindex,
-			      init=fit$beta, ofile=routines[2], kfun=kfun,
+			      init=fit$beta, ofile=routines, kfun=kfun,
                               fit0=fit$loglik[1], iter=control$inner.iter)
 		}
 	    else {
@@ -538,7 +548,17 @@ coxme.fit <- function(x, y, strata, offset, init, control,
         theta[tindex] <- mfit$par
         gkmat <- gchol(kfun(theta, varlist))
         ikmat <- solve(gkmat,full=T)  #the inverse of K, not of gchol(K)
-        fit <- .C(routines[2],
+        if (ncol(y) ==3)
+        fit <- .C("agfit6b",
+                  iter=as.integer(c(0,control$iter.max)),
+                  beta = as.double(fit$beta),
+                  loglik = double(2),
+                  as.double(ikmat@blocks),
+                  as.double(ikmat@rmat),
+                  hdet = double(1),
+                  copy=c(F,T,T,T,F,F,T), PACKAGE="kinship")
+        else
+        fit <- .C("coxfit6b",
                   iter=as.integer(c(0,control$iter.max)),
                   beta = as.double(fit$beta),
                   loglik = double(2),
@@ -559,7 +579,7 @@ coxme.fit <- function(x, y, strata, offset, init, control,
     nvar2 <- nvar + nfrail -nsparse  #number dense terms
     nvar3 <- nfrail + nvar           #total coefficients
     btot <- length(ikmat@blocks)
-    fit3 <- .C(routines[3],
+    fit3 <- .C("coxfit6c",
                u    = double(nvar3),
                h.b  = double(btot),
                h.r  = double(nvar2*nvar3),
