@@ -22,6 +22,8 @@ or GitHub,
 library(devtools)
 install_github("jinghuazhao/R/pan")
 ```
+The Windows version of kinship 1.1.4 is now built from https://win-builder.r-project.org/.
+
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
 My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
