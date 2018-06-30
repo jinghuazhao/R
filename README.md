@@ -1,6 +1,6 @@
 # R
 
-This repository contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. Links to packages I have maintained  are as shown in the following table, with individual files listed by GitHub.
+This repository contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. Links to packages I have maintained are as shown in the following table, with individual files listed by GitHub.
 
 **Packages** | [CRAN](http://cran.r-project.org) | [GitHub](https://github.com/cran)
 --------|---------------------------------------------|----------------------------
@@ -22,8 +22,6 @@ or GitHub,
 library(devtools)
 install_github("jinghuazhao/R/pan")
 ```
-The Windows version of kinship 1.1.4 is now built from https://win-builder.r-project.org/.
-
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
 My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
