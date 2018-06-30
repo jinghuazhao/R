@@ -22,7 +22,7 @@ or GitHub,
 library(devtools)
 install_github("jinghuazhao/R/pan")
 ```
-The Windows version of kinship 1.1.4, [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) using https://win-builder.r-project.org/.
+<a name="myfootnote1">1</a>: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
 
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
