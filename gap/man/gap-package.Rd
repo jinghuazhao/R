@@ -115,7 +115,6 @@ metap             \tab      Meta-analysis of p values\cr
 metareg           \tab      Fixed and random effects model for meta-analysis\cr
 muvar             \tab      Means and variances under 1- and 2- locus (diallelic) QTL model\cr
 read.ms.output    \tab      A utility function to read ms output\cr
-twinan90          \tab      Classic twin models\cr
 whscore           \tab      Whittemore-Halpern scores for allele-sharing\cr
 GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS\cr
                   \tab      handle genomic relationship matrix involving other software\cr

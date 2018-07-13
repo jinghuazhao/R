@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
+13-05-2018	Remove twinan90 from INDEX|man/gap-package.Rd
 08-06-2018	Minor changes
 
 Version 1.1-22
