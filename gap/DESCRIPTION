@@ -1,14 +1,15 @@
 Package: gap
 Version: 1.1-23
-Date: 2018-6-8
+Date: 2018-7-17
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Depends: R (>= 2.10)
 Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
-        coda, coxme, foreign, grid, haplo.stats, kinship2, lattice,
-        magic, mets, nlme, pedigree, pedigreemm, regress, rms, survival
+        coda, coxme, foreign, gap.datasets, grid, haplo.stats, kinship2,
+        lattice, magic, mets, nlme, pedigree, pedigreemm, regress, rms,
+        survival
 LazyData: Yes
 LazyLoad: Yes
 Description: It is designed as an integrated package for genetic data
