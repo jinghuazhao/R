@@ -29,6 +29,7 @@ Science 2007;316(5829):1331-6
 
 \examples{
 \dontrun{
+require(gap.datasets)
 asplot(CDKNlocus, CDKNmap, CDKNgenes)
 title("CDKN2A/CDKN2B Region")
 asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))
@@ -41,7 +42,7 @@ hit <- subset(p,PVAL==min(PVAL,na.rm=TRUE))$SNP
 
 library(NCBI2R)
 # LD under build 36
-pos <- apply(as.data.frame(p$SNP),1,GetSNPPosHapmap)
+pos <- apply(as.data.frame(p$SNP),1,GetSNPPosHapMap)
 chr_pos <- do.call("rbind",pos)
 l <- with(chr_pos,min(as.numeric(chrpos),na.rm=TRUE))
 u <- with(chr_pos,max(as.numeric(chrpos),na.rm=TRUE))
