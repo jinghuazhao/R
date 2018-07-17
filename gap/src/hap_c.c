@@ -377,7 +377,7 @@ int *converged,char **hapfile, char **assignfile
       sample_prior(n_hap, ho_list, df); /* P step */
     }
     if (of1name[0]) {
-      sprintf(tempname,"%s.%03d", of1name, j);
+      sprintf(tempname,"%s.%d", of1name, j);
       outfile = fopen(tempname, "w");
       hap_posterior(n_hap, so_list, min_posterior, &logl, 0);
       if(!ss) {
@@ -389,7 +389,7 @@ int *converged,char **hapfile, char **assignfile
       fclose(outfile);
     }
     if (of2name[0]) {
-      sprintf(tempname,"%s.%03d", of2name, j);
+      sprintf(tempname,"%s.%d", of2name, j);
       outfile = fopen(tempname, "w");
       hap_write(outfile, n_loci, names, coding, order, n_hap, so_list, 1, 0.0, num, ss);
       fclose(outfile);

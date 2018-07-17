@@ -116,8 +116,7 @@ The positions, names and haplotype blocks reported are as follows,
 890710   GENS020ex1_1	BLOCK 11
 }
 
-However it has been updated after the paper was published
-(posted on \url{http://www.broad.mit.edu/humgen/IBD5/haplodata.html})
+However it has been changed after the paper was published.
 
 An example use of the data is with the following paper,
 Kelly M. Burkett, Celia M. T. Greenwood, BradMcNeney, Jinko Graham.
@@ -129,7 +128,7 @@ Fron Genet 2013, 4(260) doi: 10.3389/fgene.2013.00260
 \format{A data frame containing 387 rows and 212 columns}
 
 \source{
-MJ Daly, JD Rioux, SF Schaffner, TJ Hudson, ES Lander (2001) 
+Daly MJ, Rioux JD, Schaffner SF, Hudson TJ, Lander ES (2001).
 High-resolution haplotype structure in the human genome Nature 
 Genetics 29:229-232
 }
