@@ -42,11 +42,12 @@ hit <- subset(p,PVAL==min(PVAL,na.rm=TRUE))$SNP
 
 library(NCBI2R)
 # LD under build 36
-pos <- apply(as.data.frame(p$SNP),1,GetSNPPosHapMap)
-chr_pos <- do.call("rbind",pos)
+chr_pos <- GetSNPInfo(with(p,SNP))[c("chr","chrpos")]
 l <- with(chr_pos,min(as.numeric(chrpos),na.rm=TRUE))
 u <- with(chr_pos,max(as.numeric(chrpos),na.rm=TRUE))
 LD <- with(chr_pos,GetLDInfo(unique(chr),l,u))
+# We have complaints; a possibility is to get around with 
+# ftp://ftp.ncbi.nlm.nih.gov/hapmap/ld_data/2009-04_rel27/
 hit_LD <- subset(LD,SNPA==hit)
 hit_LD <- within(hit_LD,{RSQR=r2})
 info <- GetSNPInfo(p$SNP)
