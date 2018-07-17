@@ -1,8 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
-17-07-2018	Revise asplot.Rd after query from Dhanaprakash Jambulingam <dhanaprakash.jambulingam@utu.fi>
-		Remove URL in crohn.Rd
+17-07-2018	Revise asplot.Rd/gap.Rnw after query from Dhanaprakash Jambulingam <dhanaprakash.jambulingam@utu.fi>
+		Remove URL in crohn.Rd as it is unavailable
 		Change hap_c.c for complaints over %03d
 13-07-2018	Remove twinan90 from INDEX|man/gap-package.Rd
 08-06-2018	Minor changes

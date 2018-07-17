@@ -499,6 +499,7 @@ the function's documentation example.
 The code below obtains a regional association plot with the {\em asplot} function,
 <<echo=TRUE,eval=FALSE>>=
 library(gap)
+library(gap.datasets)
 pdf("figures/asplot.pdf",height=14,width=14)
 asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))
 title("CDKN2A/CDKN2B Region")
