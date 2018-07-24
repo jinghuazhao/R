@@ -1,5 +1,5 @@
 hwe.jags <- function(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
-                     parms=c("f","delta","lambda"), ...)
+                     parms=c("p","f","theta","lambda"), ...)
 {
   ncell <- k*(k+1)/2
   N <- sum(n)
