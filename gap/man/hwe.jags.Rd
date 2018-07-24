@@ -2,7 +2,7 @@
 \alias{hwe.jags}
 \title{Hardy-Weinberg equlibrium test for a multiallelic marker using JAGS}
 \usage{hwe.jags(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
-              parms=c("p","f","theta","lambda"),...)}
+              parms=c("p","f","q","theta","lambda"),...)}
 
 \description{
 Hardy-Weinberg equilibrium test
