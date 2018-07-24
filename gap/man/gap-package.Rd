@@ -48,6 +48,7 @@ htr               \tab      Haplotype trend regression\cr
 hwe               \tab      Hardy-Weinberg equilibrium test for a multiallelic marker\cr
 hwe.cc            \tab      A likelihood ratio test of population Hardy-Weinberg equilibrium \cr
 hwe.hardy         \tab      Hardy-Weinberg equilibrium test using MCMC\cr
+hwe.jags          \tab      ardy-Weinberg equlibrium test for a multiallelic marker using JAGS\cr
 kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr

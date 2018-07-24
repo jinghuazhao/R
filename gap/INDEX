@@ -19,6 +19,7 @@ hwe                     Hardy-Weinberg equilibrium test for a multiallelic marke
 hwe.cc                  A likelihood ratio test of population Hardy-Weinberg equilibrium 
                         for case-control studies
 hwe.hardy               Hardy-Weinberg equilibrium test using MCMC
+hwe.jags                ardy-Weinberg equlibrium test for a multiallelic marker using JAGS
 kin.morgan              kinship matrix for simple pedigree
 LD22                    LD statistics for two diallelic markers
 LDkl                    LD statistics for two multiallelic markers
