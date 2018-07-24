@@ -2,14 +2,14 @@
 \alias{hwe.jags}
 \title{Hardy-Weinberg equlibrium test for a multiallelic marker using JAGS}
 \usage{hwe.jags(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
-              parms=c("delta","lambda","theta"),...)}
+              parms=c("f","delta","lambda"),...)}
 
 \description{
 Hardy-Weinberg equilibrium test
 }
 \arguments{
  \item{k}{number of alleles}
- \item{n}{a vector of k(k+1)/2 genotype count}
+ \item{n}{a vector of k(k+1)/2 genotype counts}
  \item{delta}{initial parameter values}
  \item{lambda}{initial parameter values}
  \item{lambdamu}{initial parameter values}

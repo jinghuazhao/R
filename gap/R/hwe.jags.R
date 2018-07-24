@@ -1,6 +1,11 @@
 hwe.jags <- function(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
-                     parms=c("delta","lambda","theta"), ...)
+                     parms=c("f","delta","lambda"), ...)
 {
+  ncell <- k*(k+1)/2
+  N <- sum(n)
+  data <- list(k=k,n=n,ncell=ncell,N=N,lambdamu=lambdamu,lambdasd=lambdasd)
+  inits <- function() list(delta=delta,lambda=lambda)
+  parms <- parms
 #
 # Model for Hardy-Weinberg data in which we have genotypes corresponding to k alleles-
 # we have k parameters, k-1 distinct allele probabilities q and an inbreeding coefficient f.
@@ -36,10 +41,5 @@ hwe.jags <- function(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
   theta[k] <- log((f-fmin)/(1-f))
   }
   require(R2jags)
-  ncell <- k*(k+1)/2
-  N <- sum(n)
-  data <- list(k=k,n=n,ncell=ncell,N=N,lambdamu=lambdamu,lambdasd=lambdasd)
-  inits <- function() list(delta=delta,lambda=lambda)
-  parms <- parms
-  jagsfit <- jags(data, inits, parms, modelfile,...)
+  jagsfit <- jags(data, inits, parms, modelfile, ...)
 }
