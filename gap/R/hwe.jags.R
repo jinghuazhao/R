@@ -5,7 +5,6 @@ hwe.jags <- function(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
   N <- sum(n)
   data <- list(k=k,n=n,ncell=ncell,N=N,lambdamu=lambdamu,lambdasd=lambdasd)
   inits <- function() list(delta=delta,lambda=lambda)
-  parms <- parms
 #
 # Model for Hardy-Weinberg data in which we have genotypes corresponding to k alleles-
 # we have k parameters, k-1 distinct allele probabilities q and an inbreeding coefficient f.
