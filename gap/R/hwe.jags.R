@@ -12,32 +12,33 @@ hwe.jags <- function(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
 # is the minimum of q[1],...,q[k].
 # 
 #
-  modelfile <- function() {
-# genotype frequencies, q's are allele frequencies, f is the common inbreeding coefficient
-  for (i in 1:k)
+  modelfile <- function()
   {
-      for(j in 1:i)
-      {
-        p[i*(i-1)/2+j] <- equals(i,j)*(q[i]*q[i] + f*q[i]*(1-q[i])) + (1-equals(i,j))*2*q[i]*q[j]*(1-f)
-      }
-  }
-# likelihood
-  n[1:ncell] ~ dmulti(p[],N)
-# priors
-  for (i in 1:k)
-  {
-      q[i]  <- delta[i]/sum(delta[])
-      delta[i] ~ dgamma(1,1)
-  }
-  qmin <- sort(q[])
-  fmin <- -qmin[1]/(1-qmin[1])
-  lambda ~ dnorm(lambdamu,lambdasd)
-  f <- (exp(lambda)+fmin)/(exp(lambda)+1)
-  for (i in 1:(k-1))
-  {
-      theta[i] <- log(q[i]/q[k])
-  }
-  theta[k] <- log((f-fmin)/(1-f))
+  # genotype frequencies, q's are allele frequencies, f is the common inbreeding coefficient
+    for (i in 1:k)
+    {
+        for (j in 1:i)
+        {
+           p[i*(i-1)/2+j] <- equals(i,j)*(q[i]*q[i] + f*q[i]*(1-q[i])) + (1-equals(i,j))*2*q[i]*q[j]*(1-f)
+        }
+    }
+  # likelihood
+    n[1:ncell] ~ dmulti(p[],N)
+  # priors
+    for (i in 1:k)
+    {
+        q[i]  <- delta[i]/sum(delta[])
+        delta[i] ~ dgamma(1,1)
+    }
+    qmin <- sort(q[])
+    fmin <- -qmin[1]/(1-qmin[1])
+    lambda ~ dnorm(lambdamu,lambdasd)
+    f <- (exp(lambda)+fmin)/(exp(lambda)+1)
+    for (i in 1:(k-1))
+    {
+        theta[i] <- log(q[i]/q[k])
+    }
+    theta[k] <- log((f-fmin)/(1-f))
   }
   jagsfit <- R2jags::jags(data, inits, parms, modelfile, ...)
 }
