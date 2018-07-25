@@ -45,6 +45,7 @@ hap               \tab      Haplotype reconstruction\cr
 hap.em            \tab      Gene counting for haplotype analysis\cr
 hap.score         \tab      Score statistics for association of traits with haplotypes\cr
 htr               \tab      Haplotype trend regression\cr
+h2.jags           \tab      Heritability estimation based on genomic relationship matrix using JAGS\cr
 hwe               \tab      Hardy-Weinberg equilibrium test for a multiallelic marker\cr
 hwe.cc            \tab      A likelihood ratio test of population Hardy-Weinberg equilibrium \cr
 hwe.hardy         \tab      Hardy-Weinberg equilibrium test using MCMC\cr

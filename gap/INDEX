@@ -15,6 +15,7 @@ hap                     Haplotype reconstruction
 hap.em                  Gene counting for haplotype analysis
 hap.score               Score statistics for association of traits with haplotypes
 htr                     Haplotype trend regression
+h2.jags                 Heritability estimation based on genomic relationship matrix using JAGS
 hwe                     Hardy-Weinberg equilibrium test for a multiallelic marker
 hwe.cc                  A likelihood ratio test of population Hardy-Weinberg equilibrium 
                         for case-control studies

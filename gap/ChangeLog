@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
+25-07-2018	Add h2.jags
 24-07-2018	Add hwe.jags
 17-07-2018	Revise asplot.Rd/gap.Rnw after query from Dhanaprakash Jambulingam <dhanaprakash.jambulingam@utu.fi>
 		Remove URL in crohn.Rd as it is unavailable

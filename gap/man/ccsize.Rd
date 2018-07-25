@@ -41,6 +41,7 @@ Biometrics 2004, 60:1015-1024
 }
 
 \examples{
+\dontrun{
 # Table 1 of Cai & Zeng (2004).
 outfile <- "table1.txt"
 cat("n","pD","p1","theta","q","power\n",file=outfile,sep="\t")
@@ -144,6 +145,7 @@ for(pD in s_pD)
 }
 search<-read.table(outfile,header=TRUE,sep="\t")
 unlink(outfile)
+}
 }
 \author{Jing Hua Zhao}
 \note{Programmed for EPIC study}

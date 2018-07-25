@@ -39,6 +39,5 @@ hwe.jags <- function(k,n,delta=rep(1/k,k),lambda=0,lambdamu=-1,lambdasd=1,
   }
   theta[k] <- log((f-fmin)/(1-f))
   }
-  require(R2jags)
-  jagsfit <- jags(data, inits, parms, modelfile, ...)
+  jagsfit <- R2jags::jags(data, inits, parms, modelfile, ...)
 }

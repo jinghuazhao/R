@@ -28,7 +28,7 @@ The returned value is a fitted model from jags().
 }
 
 \section{References}{
-Wakefield J (2010). Bayesian methods for examining Hardy-Weinberg equilibrium. Biometrics 2010;66:257-65
+Wakefield J (2010). Bayesian methods for examining Hardy-Weinberg equilibrium. Biometrics 66:257-265
 }
 
 \seealso{
@@ -43,7 +43,8 @@ ex2 <- hwe.jags(2,c(49,45,6))
 print(ex2)
 ex3 <- hwe.jags(4,c(0,3,1,5,18,1,3,7,5,2),lambda=0.5,lambdamu=-2.95,lambdasd=1.07)
 print(ex3)
-ex4 <- hwe.jags(9,c(1236,120,3,18,0,0,982,55,7,249,32,1,0,12,0,2582,132,20,1162,29,1312,6,0,0,4,0,4,0,2,0,0,0,0,0,0,0,115,5,2,53,1,149,0,0,4),
+ex4 <- hwe.jags(9,c(1236,120,3,18,0,0,982,55,7,249,32,1,0,12,0,2582,132,20,1162,29,
+                    1312,6,0,0,4,0,4,0,2,0,0,0,0,0,0,0,115,5,2,53,1,149,0,0,4),
                 delta=c(1,1,1,1,1,1,1,1,1),lambdamu=-4.65,lambdasd=0.21)
 print(ex4)
 ex5 <- hwe.jags(8,n=c(
