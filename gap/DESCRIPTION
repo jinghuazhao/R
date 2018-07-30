@@ -1,10 +1,12 @@
 Package: gap
 Version: 1.1-23
-Date: 2018-7-25
+Date: 2018-7-30
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
+URL: https://github.com/jinghuazhao/R
+BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 2.10)
 Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
         coda, coxme, foreign, gap.datasets, grid, haplo.stats, kinship2,
@@ -21,7 +23,6 @@ Description: It is designed as an integrated package for genetic data
         markers including haplotype analysis with or without environmental
         covariates.
 License: GPL (>= 2)
-URL: https://jinghuazhao.github.io
 NeedsCompilation: yes
 Repository: CRAN
 Packaged: 2017-11-24 23:42:52 UTC; jhz22
