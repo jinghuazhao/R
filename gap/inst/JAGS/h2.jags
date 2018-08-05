@@ -1,6 +1,6 @@
 model
 {
-  for (i in 1:2)
+  for (i in 1:M)
   {
       b[i] ~ dnorm(0, 0.001)
   }
