@@ -14,7 +14,6 @@ Version 1.1-23
 Version 1.1-22
 06-06-2018	Replace email address
 		TIdy up inst/tests
-		R-devel CMD check --as-cran
 
 Version 1.1-21
 23-01-2018	Amend URL and makeped example
