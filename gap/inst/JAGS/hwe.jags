@@ -2,7 +2,6 @@
 # we have k parameters, k-1 distinct allele probabilities q and an inbreeding coefficient f.
 # We have a dirichlet prior on q. f is constrained to be > fmin =  -qmin/(1-qmin) where qmin
 # is the minimum of q[1],...,q[k].
-# 
 #
 
 model
