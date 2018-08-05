@@ -1,0 +1,23 @@
+model
+{
+  for (i in 1:2)
+  {
+      b[i] ~ dnorm(0, 0.001)
+  }
+  sigma.p ~ dunif(0,1000)
+  sigma.r ~ dunif(0,1000)
+  p <- pow(sigma.p, 2)
+  r <- pow(sigma.r, 2)
+  tau <- pow(sigma.r, -2)
+  g[1:N] <- sigma.p*CG[,]%*%z[]
+  for (i in 1:N)
+  {
+      z[i] ~ dnorm(0,1)
+  }
+  for (i in 1:N)
+  {
+      xb[i] <- inprod(b[], x[i,])
+      y[i] ~ dnorm(xb[i] + g[i], tau)
+  }
+  h2 <- p / (p * (1 + eps) + r)
+}
