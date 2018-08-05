@@ -57,6 +57,51 @@ ex5 <- hwe.jags(8,n=c(
          0, 0, 1, 0, 0, 0, 0,
          0, 0, 0, 2, 1, 0, 0, 0))
 print(ex5)
+
+# Data and code accordining to the following URL,
+# http://darwin.eeb.uconn.edu/eeb348-notes/testing-hardy-weinberg.pdf
+hwe.jags.ABO <- function(n,...)
+{
+  hwe <- function() {
+     # likelihood
+     pi[1] <- p.a*p.a + 2*p.a*p.o
+     pi[2] <- 2*p.a*p.b
+     pi[3] <- p.b*p.b + 2*p.b*p.o
+     pi[4] <- p.o*p.o
+     n[1:4] ~ dmulti(pi[],N)
+     # priors
+     a1 ~ dexp(1)
+     b1 ~ dexp(1)
+     o1 ~ dexp(1)
+     p.a <- a1/(a1 + b1 + o1)
+     p.b <- b1/(a1 + b1 + o1)
+     p.o <- o1/(a1 + b1 + o1)
+  }
+  hwd <- function() {
+     # likelihood
+     pi[1] <- p.a*p.a + f*p.a*(1-p.a) + 2*p.a*p.o*(1-f)
+     pi[2] <- 2*p.a*p.b*(1-f)
+     pi[3] <- p.b*p.b + f*p.b*(1-p.b) + 2*p.b*p.o*(1-f)
+     pi[4] <- p.o*p.o + f*p.o*(1-p.o)
+     n[1:4] ~ dmulti(pi[],N)
+     # priors
+     a1 ~ dexp(1)
+     b1 ~ dexp(1)
+     o1 ~ dexp(1)
+     p.a <- a1/(a1 + b1 + o1)
+     p.b <- b1/(a1 + b1 + o1)
+     p.o <- o1/(a1 + b1 + o1)
+     f ~ dunif(0,1)
+  }
+  N <- sum(n)
+  ABO.hwe <- R2jags::jags(list(n=n,N=N),,c("pi","p.a","p.b","p.o"),hwe,...)
+  ABO.hwd <- R2jags::jags(list(n=n,N=N),,c("pi","p.a","p.b","p.o","f"),hwd,...)
+  invisible(list(hwe=ABO.hwe,hwd=ABO.hwd))
+}
+
+hwe.jags.ABO.results <- hwe.jags.ABO(n=c(862, 131, 365, 702))
+hwe.jags.ABO.results
+
 }
 }
 \author{Jing Hua Zhao, Jon Wakefield}
