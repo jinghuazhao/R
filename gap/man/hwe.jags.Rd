@@ -101,7 +101,6 @@ hwe.jags.ABO <- function(n,...)
 
 hwe.jags.ABO.results <- hwe.jags.ABO(n=c(862, 131, 365, 702))
 hwe.jags.ABO.results
-
 }
 }
 \author{Jing Hua Zhao, Jon Wakefield}
