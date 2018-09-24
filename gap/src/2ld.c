@@ -62,7 +62,7 @@ return;
 
 }
 
-#define maxalleles 100
+#define maxalleles 1000
 #define maxgenotypes maxalleles*(maxalleles+1)/2
 #define minval(a,b) ((a<b)?a:b)
 
