@@ -26,6 +26,7 @@
 \alias{g2a}
 \alias{g2a.c}
 \alias{gc.control}
+\alias{gc.lambda}
 \alias{gcode}
 \alias{geno.p}
 \alias{getb1star}
@@ -103,6 +104,8 @@ g2a returns two alleles according to a genotype identifier.
 g2a.c is the C version of g2c.
 
 gc.control() is used by gc.em().
+
+gc.lambda estimates the genomic control inflation statistic (lambda)
 
 gcode is as a2g.
 

@@ -515,3 +515,17 @@ ReadGRMPCA <- function(prefix)
   negGRM <- vectors[,s]%*%diag(values[s])%*%t(vectors[,s])
   invisible(list(N=N,posGRM=posGRM,negGRM=negGRM,id=id))
 }
+
+# gc.lambda by Daniel Barnes
+# Estimation of the genomic control inflation statistic (lambda)
+
+gc.lambda <- function(p) {
+  p <- p[!is.na(p)]
+  n <- length(p)
+
+  obs <- qchisq(p,1,lower.tail=FALSE)
+  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
+
+  lambda <- median(obs)/median(exp)
+  return(lambda)
+}
