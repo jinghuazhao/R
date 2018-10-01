@@ -534,8 +534,7 @@ gc.lambda <- function(p) {
   return(lambda)
 }
 
-miamiplot <-
-function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP", 
+miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP", 
     col = c("midnightblue", "chartreuse4"), col2 = c("royalblue1", 
         "seagreen1"), ymax = NULL, highlight = NULL, highlight.add = NULL, 
     pch = 19, cex = 0.75, cex.lab = 1, xlab = "Chromosome", ylab = "-log10(P) [y>0]; log10(P) [y<0]", 
