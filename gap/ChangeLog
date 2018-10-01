@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
-01-10-2018	Add gc.lambda as in CEU
+01-10-2018	Add gc.lambda and miamiplot as in CEU
 05-08-2018	Add ABO example contrasting HWE/HWD for hwe.jags.Rd
 30-07-2018	Redirect URL/BugReports to GitHub
 25-07-2018	Add h2.jags

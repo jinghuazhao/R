@@ -108,6 +108,11 @@ title("Manhattan plot with genes highlighted",cex.main=1.8)
 mhtplot(data,mht.control(cutoffs=c(4,6,8,16)),pch=19)
 title("Another plain Manhattan plot")
 
+# Miami plot
+
+test <- within(test, {pr=1-p})
+miamiplot(test,chr="chr",bp="pos",p="p",pr="pr")
+
 }
 }
 \author{Jing Hua Zhao}

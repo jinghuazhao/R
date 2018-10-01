@@ -47,6 +47,7 @@
 \alias{logit}
 \alias{m2plem}
 \alias{mht.control}
+\alias{miamiplot}
 \alias{micombine}
 \alias{plem2m}
 \alias{revhap}
@@ -130,6 +131,8 @@ and pbsize2.
 k obtains 1st and 2nd order culumants for correlation coefficient.
 
 m2plem is an experimental function for PLEM format.
+
+miamiplot is for Miami plot.
 
 micombine is used to combine imputation results.
 
