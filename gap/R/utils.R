@@ -516,7 +516,7 @@ ReadGRMPCA <- function(prefix)
   invisible(list(N=N,posGRM=posGRM,negGRM=negGRM,id=id))
 }
 
-# gc.lambda by Daniel Barnes
+# gc.lambda by Daniel R Barnes
 # Estimation of the genomic control inflation statistic (lambda)
 
 gc.lambda <- function(p) {
