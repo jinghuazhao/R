@@ -123,6 +123,10 @@ hap.control() is used by hap.em().
 
 hap.score.glm, hap.score.podds are used by hap.score().
 
+invlogit, inverse logit transformation.
+
+invnormal, inverse normal transformation.
+
 is.miss is undocumented.
 
 KCC calculates disease prevalences in cases and controls for a given genotype relative risk, 
