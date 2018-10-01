@@ -516,6 +516,11 @@ ReadGRMPCA <- function(prefix)
   invisible(list(N=N,posGRM=posGRM,negGRM=negGRM,id=id))
 }
 
+# GLGC-GIANT code for inverse normal transformation on x with missing data 
+
+invnormal <- function(x)
+  qnorm((rank(x,na.last="keep”)-0.5)/sum(!is.na(x))) 
+
 # gc.lambda and miamiplot functions hosted at CEU by Daniel R Barnes
 
 gc.lambda <- function(p) {

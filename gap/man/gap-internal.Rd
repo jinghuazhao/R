@@ -41,6 +41,7 @@
 \alias{hmht.control}
 \alias{hw}
 \alias{invlogit}
+\alias{invnormal}
 \alias{is.miss}
 \alias{KCC}
 \alias{k}
