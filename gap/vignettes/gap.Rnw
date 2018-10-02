@@ -85,6 +85,7 @@ LD22              &      LD statistics for two diallelic markers\\
 LDkl              &      LD statistics for two multiallelic markers\\
 masize            &      Sample size calculation for mediation analysis\\
 mia               &      multiple imputation analysis for hap\\
+miamiplot         &      Miami plot (experimental)
 mtdt              &      Transmission/disequilibrium test of a multiallelic marker\\
 mtdt2             &      Transmission/disequilibrium test of a multiallelic marker\\
                   &      by Bradley-Terry model\\
