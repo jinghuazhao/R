@@ -68,6 +68,7 @@ gc.em             &      Gene counting for haplotype analysis\\
 gcontrol          &      genomic control\\
 gcontrol2         &      genomic control based on p values\\
 gcp               &      Permutation tests using GENECOUNTING\\
+gc.lambda         &      Estionmation of the genomic control inflation statistic (lambda)
 genecounting      &      Gene counting for haplotype analysis\\
 gif               &      Kinship coefficient and genetic index of familiality\\
 grmMCMC           &      Mixed modeling with genetic relationship matrices\\
@@ -78,6 +79,7 @@ htr               &      Haplotype trend regression\\
 hwe               &      Hardy-Weinberg equilibrium test for a multiallelic marker\\
 hwe.cc            &      A likelihood ratio test of population Hardy-Weinberg equilibrium \\
 hwe.hardy         &      Hardy-Weinberg equilibrium test using MCMC\\
+invnormal         &      Inverse normal transformation
 kin.morgan        &      kinship matrix for simple pedigree\\
 LD22              &      LD statistics for two diallelic markers\\
 LDkl              &      LD statistics for two multiallelic markers\\

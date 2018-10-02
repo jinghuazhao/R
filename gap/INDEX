@@ -9,6 +9,7 @@ gc.em                   Gene counting for haplotype analysis
 gcontrol                genomic control
 gcontrol2               genomic control based on p values
 gcp                     Permutation tests using GENECOUNTING
+gc.lambda               Estionmation of the genomic control inflation statistic (lambda)
 genecounting            Gene counting for haplotype analysis
 gif                     Kinship coefficient and genetic index of familiality
 hap                     Haplotype reconstruction
@@ -20,7 +21,8 @@ hwe                     Hardy-Weinberg equilibrium test for a multiallelic marke
 hwe.cc                  A likelihood ratio test of population Hardy-Weinberg equilibrium 
                         for case-control studies
 hwe.hardy               Hardy-Weinberg equilibrium test using MCMC
-hwe.jags                ardy-Weinberg equlibrium test for a multiallelic marker using JAGS
+hwe.jags                Hardy-Weinberg equlibrium test for a multiallelic marker using JAGS
+invnormal               Inverse normal transformation
 kin.morgan              kinship matrix for simple pedigree
 LD22                    LD statistics for two diallelic markers
 LDkl                    LD statistics for two multiallelic markers
