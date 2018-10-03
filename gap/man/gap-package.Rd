@@ -59,7 +59,6 @@ log10p            \tab      log10(p) for a standard normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr
 MCMCgrm           \tab	    Mixed modeling with genetic relationship matrices\cr
 mia               \tab      multiple imputation analysis for hap\cr
-miamiplot         \tab      Miami plot (Experimental)\cr
 mtdt              \tab      Transmission/disequilibrium test of a multiallelic marker\cr
 mtdt2             \tab      Transmission/disequilibrium test of a multiallelic marker\cr
                   \tab      by Bradley-Terry model\cr
@@ -80,6 +79,7 @@ asplot            \tab      Regional association plot\cr
 ESplot            \tab      Effect-size plot\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
+miamiplot         \tab      Miami plot (Experimental)\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 qqfun             \tab      Quantile-comparison plots\cr

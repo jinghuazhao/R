@@ -86,7 +86,6 @@ LDkl              &      LD statistics for two multiallelic markers\\
 log10p            &      log10(p) for a standard normal deviate\\
 masize            &      Sample size calculation for mediation analysis\\
 mia               &      multiple imputation analysis for hap\\
-miamiplot         &      Miami plot (experimental)\\
 mtdt              &      Transmission/disequilibrium test of a multiallelic marker\\
 mtdt2             &      Transmission/disequilibrium test of a multiallelic marker\\
                   &      by Bradley-Terry model\\
@@ -109,6 +108,7 @@ asplot            &      Regional association plot\\
 ESplot            &      Effect-size plot\\
 mhtplot           &      Manhattan plot\\
 mhtplot2          &      Manhattan plot with annotations\\
+miamiplot         &      Miami plot (experimental)\\
 pedtodot          &      Converting pedigree(s) to dot file(s)\\
 plot.hap.score    &      Plot haplotype frequencies versus haplotype score statistics\\
 qqfun             &      Quantile-comparison plots\\
