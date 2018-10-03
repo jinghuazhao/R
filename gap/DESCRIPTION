@@ -1,10 +1,6 @@
 Package: gap
 Version: 1.1-23
-<<<<<<< HEAD
 Date: 2018-10-3
-=======
-Date: 2018-10-2
->>>>>>> 9cde7cd5032b3390baafd868c6739371a7bdc69d
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
