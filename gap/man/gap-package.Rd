@@ -39,6 +39,7 @@ gc.em             \tab      Gene counting for haplotype analysis\cr
 gcontrol          \tab      genomic control\cr
 gcontrol2         \tab      genomic control based on p values\cr
 gcp               \tab      Permutation tests using GENECOUNTING\cr
+gc.lambda         \tab      Estimation of the genomic control inflation statistic (lambda)\cr
 genecounting      \tab      Gene counting for haplotype analysis\cr
 gif               \tab      Kinship coefficient and genetic index of familiality\cr
 hap               \tab      Haplotype reconstruction\cr
@@ -49,7 +50,8 @@ h2.jags           \tab      Heritability estimation based on genomic relationshi
 hwe               \tab      Hardy-Weinberg equilibrium test for a multiallelic marker\cr
 hwe.cc            \tab      A likelihood ratio test of population Hardy-Weinberg equilibrium \cr
 hwe.hardy         \tab      Hardy-Weinberg equilibrium test using MCMC\cr
-hwe.jags          \tab      ardy-Weinberg equlibrium test for a multiallelic marker using JAGS\cr
+hwe.jags          \tab      Hardy-Weinberg equlibrium test for a multiallelic marker using JAGS\cr
+invnormal         \tab      inverse Normal transformation\cr
 kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr
@@ -57,6 +59,7 @@ log10p            \tab      log10(p) for a standard normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr
 MCMCgrm           \tab	    Mixed modeling with genetic relationship matrices\cr
 mia               \tab      multiple imputation analysis for hap\cr
+miamiplot         \tab      Miami plot (Experimental)\cr
 mtdt              \tab      Transmission/disequilibrium test of a multiallelic marker\cr
 mtdt2             \tab      Transmission/disequilibrium test of a multiallelic marker\cr
                   \tab      by Bradley-Terry model\cr
