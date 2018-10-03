@@ -53,6 +53,7 @@ hwe.jags          \tab      ardy-Weinberg equlibrium test for a multiallelic mar
 kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr
+log10p            \tab      log10(p) for a standard normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr
 MCMCgrm           \tab	    Mixed modeling with genetic relationship matrices\cr
 mia               \tab      multiple imputation analysis for hap\cr

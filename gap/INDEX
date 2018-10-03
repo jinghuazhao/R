@@ -26,6 +26,7 @@ invnormal               Inverse normal transformation
 kin.morgan              kinship matrix for simple pedigree
 LD22                    LD statistics for two diallelic markers
 LDkl                    LD statistics for two multiallelic markers
+log10p                  log10(p) for a standard normal deviate
 masize                  Sample size calculation for mediation analysis
 MCMCgrm                 Mixed modeling with genetic relationship matrices
 mia                     multiple imputation analysis for hap

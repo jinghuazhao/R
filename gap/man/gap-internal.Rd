@@ -42,6 +42,7 @@
 \alias{hw}
 \alias{invlogit}
 \alias{invnormal}
+\alias{log10p}
 \alias{is.miss}
 \alias{KCC}
 \alias{k}
@@ -134,6 +135,8 @@ allele frequency and prevalencen of the disease in the whole population. It is u
 and pbsize2.
 
 k obtains 1st and 2nd order culumants for correlation coefficient.
+
+log10p is log10(p) for a standard normal deviate
 
 m2plem is an experimental function for PLEM format.
 

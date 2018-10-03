@@ -521,6 +521,11 @@ ReadGRMPCA <- function(prefix)
 invnormal <- function(x)
   qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x))) 
 
+# log10(p) for a standard normal deviate z based on log()
+
+log10p <- function(z)
+  log(2, base=10)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)/log(10)
+
 # gc.lambda and miamiplot functions hosted at CEU by Daniel R Barnes
 
 gc.lambda <- function(p) {
