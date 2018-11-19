@@ -700,6 +700,7 @@ cis.vs.trans.classification <- function(hits, proteins=inf1, radius=1e6)
 # any variant on a different chromosome to the gene encoding the target protein is not cis
 
     dist.inds <<- which(Chr != p.chrom)
+    cis <- rep(NA, N)
     if (length(dist.inds)>0)  cis[dist.inds] <- FALSE
 
 # for ones on the same chr, we can't be sure without looking at position
@@ -708,7 +709,6 @@ cis.vs.trans.classification <- function(hits, proteins=inf1, radius=1e6)
 
   # see if variant lies in the cis region
 
-    cis <- rep(NA, N)
     if (length(same.inds)>0) cis[same.inds] <- bp[same.inds] > cis.start[same.inds] & bp[same.inds] < cis.end[same.inds]
     cis.trans <- rep(NA, N)
     cis.trans[cis==TRUE] <- "cis"
