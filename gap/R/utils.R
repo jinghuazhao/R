@@ -721,6 +721,5 @@ cis.vs.trans.classification <- function(hits, proteins=inf1, radius=1e6)
 
 # get the breakdown of cis vs trans per protein
 
-  rm(dist.inds,same.inds)
   cis.trans.per.prot <- with(hits_proteins,table(p.Gene, cis.trans))
 }
