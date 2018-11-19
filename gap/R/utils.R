@@ -727,5 +727,4 @@ cis.vs.trans.classification <- function(hits, proteins=inf1)
 
   cis.trans.per.prot <- with(hits_proteins,table(p.Gene, cis.trans))
   cis.trans.per.prot
-  sum(as.matrix(cis.trans.per.prot))
 }

@@ -73,7 +73,7 @@
 \title{Internal functions for gap}
 \usage{
 a2g(a1,a2)
-cis.vs.trans.classification(hits,proteins=inf1)
+cis.vs.trans.classification(hits=hits,proteins=inf1)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
