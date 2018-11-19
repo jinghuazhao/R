@@ -714,7 +714,7 @@ cis.vs.trans.classification <- function(hits, proteins=inf1, radius=1e6)
     cis.trans[cis==TRUE] <- "cis"
     cis.trans[cis==FALSE] <- "trans"
   })
-  rm(dist.inds,same.inds,enir=.GlobalEnv
+  rm(dist.inds,same.inds,enir=.GlobalEnv)
 
 # split by protein
 
