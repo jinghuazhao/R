@@ -2,7 +2,7 @@
 \docType{data}
 \alias{hits}
 \title{A data containing GWAS hits}
-\description{This data is used to illustrate cis/trans classification}
+\description{This data is used to illustrate cis/trans classification, containg the following columns:
 \preformatted{
     prot Chr                SNP       bp refA       freq          b        se
 1 4E.BP1  19 chr19:54327313_A_C 54327313    A 0.20550900  0.4510040 0.0243056

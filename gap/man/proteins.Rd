@@ -2,7 +2,7 @@
 \docType{data}
 \alias{proteins}
 \title{A data containing protein panel}
-\description{This data is used to illustrate cis/trans classification}
+\description{This data is used to illustrate cis/trans classification, containing the following columns:
 \preformatted{
 }
                                                         Target Target.Short
