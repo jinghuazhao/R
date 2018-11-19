@@ -1,6 +1,6 @@
-\name{proteins}
+\name{inf1}
 \docType{data}
-\alias{proteins}
+\alias{inf1}
 \title{A data containing protein panel}
 \description{This data is used to illustrate cis/trans classification, containing the following columns:
 \preformatted{
@@ -20,7 +20,7 @@
 5    O15444     CCL25    19   8117651   8127534
 6    O43508   TNFSF12    17   7452208   7464925
 }
-\usage{data(proteins)}
+\usage{data(inf1)}
 \format{A data frame containing 92 rows and 7 columns}
 \source{Undisclosed}
   

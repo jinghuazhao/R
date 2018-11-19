@@ -664,7 +664,7 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
     }
 }
 
-cis.vs.trans.classification <- function(hits, proteins)
+cis.vs.trans.classification <- function(hits, proteins=inf1)
 {
 # "Thu Nov  8 12:13:07 2018"
 
