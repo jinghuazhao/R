@@ -707,17 +707,18 @@ cis.vs.trans.classification <- function(hits, proteins=inf1, radius=1e6)
 
     same.inds <<- which(Chr == p.chrom)
 
-  # see if variant lies in the cis region
+# see if variant lies in the cis region
 
     if (length(same.inds)>0) cis[same.inds] <- bp[same.inds] > cis.start[same.inds] & bp[same.inds] < cis.end[same.inds]
     cis.trans <- rep(NA, N)
     cis.trans[cis==TRUE] <- "cis"
     cis.trans[cis==FALSE] <- "trans"
-  })
 
 # split by protein
 
-  list.by.prot <- split(hits_proteins, f=p.Gene)
+    list.by.prot <- split(hits_proteins, f=p.Gene)
+
+  })
 
 # get the breakdown of cis vs trans per protein
 
