@@ -81,6 +81,7 @@ FPRP                    False-positive report probability
 ab                      Test/Power calculation for mediating effect
 b2r                     Obtain correlation coefficients and their variance-covariances
 chow.test               Chow's test for heterogeneity in two regressions
+cis.vs.trans.classification a cis/trans classifier
 comp.score              score statistics for testing genetic linkage of quantitative trait
 h2                      Heritability estimation according to twin correlations
 klem                    Haplotype frequency estimation based on a genotype table
