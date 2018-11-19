@@ -664,7 +664,7 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
     }
 }
 
-cis.vs.trans.classification <- function(hits, proteins=inf1)
+cis.vs.trans.classification <- function(hits, proteins=inf1, radius <- 1e+6)
 {
 # "Thu Nov  8 12:13:07 2018"
 
@@ -680,50 +680,37 @@ cis.vs.trans.classification <- function(hits, proteins=inf1)
 
 # add a prefix 'p.' so we know these cols refer to the protein being GWAS'd
 
-  colnames(proteins) <- paste("p", colnames(proteins), sep=".")
+  colnames(proteins) <- paste0("p.", colnames(proteins))
 
 # map on to the hits file, using UniProtID as the common reference
 
   hits_proteins <- merge(x=hits, y=proteins, by.x='UniProtID', by.y='p.UniProtID', all.x=TRUE)
-  N <- nrow(hits_proteins)
 
 # classify into cis and trans
 
 # set cis as -1MB upstream to +1MB downstream
 
-  radius <- 1e+6
-
+  N <- nrow(hits_proteins)
   hits_proteins <- within(hits_proteins,
   { 
     cis.start <- p.Start - radius
-    if (any(cis.start < 0 )){
-       cis.start[which(cis.start<0)] <- 0
-    }
-
+    if (any(cis.start < 0 )) cis.start[which(cis.start<0)] <- 0
     cis.end <- p.End + radius
-
     cis <- rep(NA, N)
 
 # any variant on a different chromosome to the gene encoding the target protein is not cis
 
     dist.inds <- which(Chr != p.chrom)
-
-    if (length(dist.inds)>0){
-       cis[dist.inds] <- FALSE
-    }
+    if (length(dist.inds)>0)  cis[dist.inds] <- FALSE
 
 # for ones on the same chr, we can't be sure without looking at position
 
     same.inds <- which(Chr == p.chrom)
 
-    if (length(same.inds)>0)
-    {
   # see if variant lies in the cis region
-      cis[same.inds] <- bp[same.inds] > cis.start[same.inds]  & bp[same.inds] < cis.end[same.inds]
-    }
 
+    if (length(same.inds)>0) cis[same.inds] <- bp[same.inds] > cis.start[same.inds] & bp[same.inds] < cis.end[same.inds]
     cis.trans <- rep(NA, N)
-
     cis.trans[cis==TRUE] <- "cis"
     cis.trans[cis==FALSE] <- "trans"
   })
@@ -733,7 +720,6 @@ cis.vs.trans.classification <- function(hits, proteins=inf1)
   list.by.prot <- split(hits_proteins, f=p.Gene)
 
 # get the breakdown of cis vs trans per protein
-# sapply(list.by.prot, function(x) table(x$cis.trans))
 
   cis.trans.per.prot <- with(hits_proteins,table(p.Gene, cis.trans))
 }
