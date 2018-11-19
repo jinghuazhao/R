@@ -720,6 +720,7 @@ cis.vs.trans.classification <- function(hits, proteins=inf1, radius=1e6)
   list.by.prot <- split(hits_proteins, f=with(hits_proteins,p.Gene))
 
 # get the breakdown of cis vs trans per protein
+# sapply(list.by.prot, function(x) table(with(x, cis.trans)))
 
-  cis.trans.per.prot <- with(hits_proteins,table(p.Gene, cis.trans))
+  with(hits_proteins,table(p.Gene, cis.trans))
 }
