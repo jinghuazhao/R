@@ -6,6 +6,7 @@
 \alias{geno.recode}
 \alias{a2g}
 \alias{ci}
+\alias{cis.vs.trans.classification}
 \alias{Cox.est}
 \alias{Cox.T}
 \alias{cov.invlogit}
@@ -72,6 +73,7 @@
 \title{Internal functions for gap}
 \usage{
 a2g(a1,a2)
+cis.vs.trans.classification(hits,proteins)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
@@ -101,6 +103,8 @@ with objects from gc.em() \code{\link[gap]{gc.em}} and \code{\link[gap]{hap.em}}
 included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 
 a2g gives allele-to-genotype conversion.
+
+cis.vs.trans.classification classifies hits to be cis or trans with pQTL examples
 
 g2a returns two alleles according to a genotype identifier.
 
