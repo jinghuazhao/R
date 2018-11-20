@@ -14,14 +14,20 @@ This repository contains packages **CGR** which is not available from CRAN and *
 Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
 
 You can install these packages either from CRAN, e.g., 
-```
+```r
 install.packages("pan", repos="https://cran.r-project.org")
 ```
 or GitHub, 
-```
+```r
 library(devtools)
 install_github("jinghuazhao/R/pan")
 ```
+One can force to build vignette with build_opts="--build-vignettes" option, e.g., 
+```r
+devtools::install_github("jinghuazhao/R/gap",build_opts="--build-vignettes",force=TRUE)
+vignette("gap")
+```
+
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
 My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
