@@ -1,7 +1,7 @@
-\name{hits}
+\name{jma.cojo}
 \docType{data}
-\alias{hits}
-\title{A data containing GWAS hits}
+\alias{jma.cojo}
+\title{A data containing independent GWAS hits as from GCTA}
 \description{This data is used to illustrate cis/trans classification, containg the following columns:
 \preformatted{
     prot Chr                SNP       bp refA       freq          b        se
@@ -27,7 +27,7 @@
 6    P00813
 }
 }
-\usage{data(hits)}
+\usage{data(jma.cojo)}
 \format{A data frame containing 445 rows and 16 columns}
 \source{Undisclosed}
   
