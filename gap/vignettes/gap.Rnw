@@ -126,9 +126,9 @@ cf                &      Cystic Fibrosis data\\
 crohn             &      Crohn's disease data\\
 fa                &      Friedreich ataxia data\\
 fsnps             &      A case-control data involving four SNPs with missing genotype\\
-hits              &      A data containing GWAS hits
 hla               &      HLA markers and schizophrenia\\
 inf1              &      A data containing protein panel
+jma.cojo          &      A data containing independent GWAS hits as from GCTA
 l51               &      An example pedigree data\\
 lukas             &      An example pedigree\\
 mao               &      A study of Parkinson's disease and MAO gene\\
