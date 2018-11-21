@@ -22,12 +22,6 @@ or GitHub,
 library(devtools)
 install_github("jinghuazhao/R/pan")
 ```
-One can force to build vignette with build_opts="--build-vignettes" option, e.g., 
-```r
-devtools::install_github("jinghuazhao/R/gap",build_opts="--build-vignettes",force=TRUE)
-vignette("gap")
-```
-
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
 My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
