@@ -104,13 +104,13 @@ included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 
 a2g gives allele-to-genotype conversion.
 
-cis.vs.trans.classification classifies hits to be cis or trans with pQTL examples
+cis.vs.trans.classification classifies hits to be cis or trans according to a panel which contains id, Start, End, Gene variables.
 
 g2a returns two alleles according to a genotype identifier.
 
 g2a.c is the C version of g2c.
 
-gc.control() is used by gc.em().
+gc.control is used by gc.em().
 
 gc.lambda estimates the genomic control inflation statistic (lambda)
 
@@ -124,7 +124,7 @@ h2GE is a utility function for heritability involving gene-environment interacti
 
 h2l is a utility function for converting observed heritability to its counterpart under liability threshold model
 
-hap.control() is used by hap.em().
+hap.control is used by hap.em().
 
 hap.score.glm, hap.score.podds are used by hap.score().
 
