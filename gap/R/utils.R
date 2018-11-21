@@ -664,7 +664,7 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
     }
 }
 
-cis.vs.trans.classification <- function(hits=jma.cojo, proteins=inf1, radius=1e6)
+cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="UniProtID", radius=1e6)
 {
 # "Thu Nov  8 12:13:07 2018"
 
@@ -680,18 +680,18 @@ cis.vs.trans.classification <- function(hits=jma.cojo, proteins=inf1, radius=1e6
 
 # add a prefix 'p.' so we know these cols refer to the protein being GWAS'd
 
-  colnames(proteins) <- paste0("p.", colnames(proteins))
+  colnames(panel) <- paste0("p.", colnames(panel))
 
 # map on to the hits file, using UniProtID as the common reference
 
-  hits_proteins <- merge(x=hits, y=proteins, by.x='UniProtID', by.y='p.UniProtID', all.x=TRUE)
+  hits_panel <- merge(x=hits, y=panel, by.x=id, by.y=paste0('p.',id), all.x=TRUE)
 
 # classify into cis and trans
 
 # set cis as -1MB upstream to +1MB downstream
 
-  N <- nrow(hits_proteins)
-  hits_proteins <- within(hits_proteins,
+  N <- nrow(hits_panel)
+  hits_panel <- within(hits_panel,
   { 
     cis.start <- p.Start - radius
     if (any(cis.start < 0 )) cis.start[which(cis.start<0)] <- 0
@@ -718,10 +718,10 @@ cis.vs.trans.classification <- function(hits=jma.cojo, proteins=inf1, radius=1e6
 
 # split by protein
 
-  list.by.prot <- split(hits_proteins, f=with(hits_proteins,p.Gene))
+  list.by.prot <- split(hits_panel, f=with(hits_panel,p.Gene))
 
 # get the breakdown of cis vs trans per protein
 # sapply(list.by.prot, function(x) table(with(x, cis.trans)))
 
-  with(hits_proteins,table(p.Gene, cis.trans))
+  with(hits_panel,table(p.Gene, cis.trans))
 }
