@@ -104,7 +104,7 @@ included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 
 a2g gives allele-to-genotype conversion.
 
-cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chrom, Start, End, Gene variables.
+cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chr, start, end, Gene variables.
 
 g2a returns two alleles according to a genotype identifier.
 

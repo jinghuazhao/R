@@ -664,7 +664,7 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
     }
 }
 
-cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="UniProtID", radius=1e6)
+cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot", radius=1e6)
 {
 # "Thu Nov  8 12:13:07 2018"
 
@@ -693,19 +693,19 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="UniProtID
   N <- nrow(hits_panel)
   hits_panel <- within(hits_panel,
   { 
-    cis.start <- p.Start - radius
+    cis.start <- p.start - radius
     if (any(cis.start < 0 )) cis.start[which(cis.start<0)] <- 0
-    cis.end <- p.End + radius
+    cis.end <- p.end + radius
 
 # any variant on a different chromosome to the gene encoding the target protein is not cis
 
-    dist.inds <<- which(Chr != p.chrom)
+    dist.inds <<- which(Chr != p.chr)
     cis <- rep(NA, N)
     if (length(dist.inds)>0)  cis[dist.inds] <- FALSE
 
 # for ones on the same chr, we can't be sure without looking at position
 
-    same.inds <<- which(Chr == p.chrom)
+    same.inds <<- which(Chr == p.chr)
 
 # see if variant lies in the cis region
 
@@ -718,10 +718,10 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="UniProtID
 
 # split by protein
 
-  list.by.prot <- split(hits_panel, f=with(hits_panel,p.Gene))
+  list.by.prot <- split(hits_panel, f=with(hits_panel,p.gene))
 
 # get the breakdown of cis vs trans per protein
 # sapply(list.by.prot, function(x) table(with(x, cis.trans)))
 
-  with(hits_panel,table(p.Gene, cis.trans))
+  with(hits_panel,table(p.gene, cis.trans))
 }
