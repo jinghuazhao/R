@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
+22-11-2018	Note https://ftp.hapmap.org/hapmap for asplot
 20-11-2018	Add cis.vs.trans.classification as with jma.cojo.rda and inf1.rda
 03-10-2018	Add log10p as in the SCALLOP/INF project
 01-10-2018	Add gc.lambda and miamiplot as in CEU and invnormal as in GLGC-GIANT analysis plan
