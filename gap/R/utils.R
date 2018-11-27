@@ -723,5 +723,5 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
 # get the breakdown of cis vs trans per protein
 # sapply(list.by.prot, function(x) table(with(x, cis.trans)))
 
-  with(hits_panel,table(p.gene, cis.trans))
+  invisible(list(data=hits_panel,table=with(hits_panel,table(p.gene, cis.trans))))
 }
