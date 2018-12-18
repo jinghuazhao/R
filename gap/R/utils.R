@@ -744,6 +744,6 @@ cnvplot <- function(data=cnv)
       text(ifelse(x == 1, (start+CM[x])/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, ifelse(x=="23","X",x), cex=0.6)
   })
   abline(0,0)
-  axis(2,line=1)
+  axis(2,line=2)
   title(xlab="Chromosome",ylab="Frequency",line=3)
 }
