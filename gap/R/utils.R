@@ -726,12 +726,12 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
   invisible(list(data=hits_panel,table=with(hits_panel,table(p.gene, cis.trans))))
 }
 
-cnvplot <- function(data=cnv,gap=1000)
+cnvplot <- function(data=cnv)
 {
   d <- within(data,{chr<-replace(chr,chr=="X",23)})
   pos <- vector("numeric")
   n <- 23
-  for (x in 1:n) pos[x] <- with(subset(d,chr==paste(x)),{max(end)+gap})
+  for (x in 1:n) pos[x] <- with(subset(d,chr==paste(x)),{max(end)})
   CM <- cumsum(pos)
   par(xaxt = "n", yaxt = "n")
   xy <- xy.coords(c(0,CM), seq(1,90,by=90/(1+n)))
