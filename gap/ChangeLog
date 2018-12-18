@@ -2,6 +2,7 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
 18-12-2018	Add cnv/cnvplot due to query from Zheng Ye
+		Revise contact e-mail address in gap-package.Rd
 22-11-2018	Note https://ftp.hapmap.org/hapmap for asplot
 20-11-2018	Add cis.vs.trans.classification as with jma.cojo.rda and inf1.rda
 03-10-2018	Add log10p as in the SCALLOP/INF project

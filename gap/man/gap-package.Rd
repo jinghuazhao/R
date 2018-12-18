@@ -141,7 +141,7 @@ near future.
 Author: Jing Hua Zhao in collaboration with other colleagues, and with
         help from Kurt Hornik and Brian Ripley of the R core development team
 
-Maintainer: Jing Hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 }
 \references{
 Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18
