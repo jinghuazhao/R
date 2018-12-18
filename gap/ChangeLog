@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
-18-12-2018	Add cnv/cnvplot/circos.cnvplot due to query from Zheng Ye
+18-12-2018	Add cnv/cnvplot/circos.cnvplot and therefore suggests circlize due to query from Zheng Ye
 		Revise contact e-mail address in gap-package.Rd
 		Add required(gap.datasets) to mhtplot.Rd
 22-11-2018	Note https://ftp.hapmap.org/hapmap for asplot
