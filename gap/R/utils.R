@@ -725,3 +725,24 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
 
   invisible(list(data=hits_panel,table=with(hits_panel,table(p.gene, cis.trans))))
 }
+
+cnvplot <- function(cnv)
+{
+  d <- within(cnv,{chr<-replace(chr,chr=="X",23)})
+  pos <- vector("numeric")
+  n <- 23
+  for (x in 1:n) pos[x] <- with(subset(d,chr==paste(x)),{max(end)})
+  CM <- cumsum(pos)
+  par(xaxt = "n", yaxt = "n")
+  xy <- xy.coords(c(0,CM), seq(1,90,by=90/(1+n)))
+  plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
+  colors <- rep(c("red","blue"),n)
+  par(xaxt = "s", yaxt = "s")
+  for (x in 1:n) with(subset(d,chr==paste(x)), {
+      l <- ifelse(x==1,0,CM[x-1])
+      segments(l+start,freq,l+end,freq,lwd="3",col=colors[x])
+      text(ifelse(x == 1, (start+CM[x])/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, ifelse(x=="23","X",x), cex=1.1)
+  })
+  abline(0,0)
+  axis(2,line=1)
+}

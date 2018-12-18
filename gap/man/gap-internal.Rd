@@ -7,6 +7,7 @@
 \alias{a2g}
 \alias{ci}
 \alias{cis.vs.trans.classification}
+\alias{cnvplot}
 \alias{Cox.est}
 \alias{Cox.T}
 \alias{cov.invlogit}
@@ -105,6 +106,8 @@ included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 a2g gives allele-to-genotype conversion.
 
 cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chr, start, end, gene variables.
+
+cnvplot is a cutomised function to plot CNVs genomewide
 
 g2a returns two alleles according to a genotype identifier.
 
