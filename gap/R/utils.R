@@ -768,7 +768,7 @@ circos.cnvplot <- function(data=cnv)
   circos.clear()
 }
 
-circos.cis.vs.trans.plot(hits="INF1.clumped", bed="st.bed", panel=inf1, id="uniprot", radius=1e6)
+circos.cis.vs.trans.plot <- function(hits="INF1.clumped", bed="st.bed", panel=inf1, id="uniprot", radius=1e6)
 {
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
