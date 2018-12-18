@@ -737,7 +737,7 @@ cnvplot <- function(data=cnv)
   xy <- xy.coords(c(0,CM), seq(1,90,by=90/(1+n)))
   plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
   colors <- rep(c("red","blue"),n)
-  par(xaxt = "s", yaxt = "s")
+  par(xaxt = "s", yaxt = "s", xpdf = TRUE)
   for (x in 1:n) with(subset(d,chr==paste(x)), {
       l <- ifelse(x==1,0,CM[x-1])
       segments(l+start,freq,l+end,freq,lwd="3",col=colors[x])
