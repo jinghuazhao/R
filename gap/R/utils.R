@@ -745,5 +745,5 @@ cnvplot <- function(data=cnv)
   })
   segments(0,0,CM[x],0)
   axis(2,line=0.2)
-  title(xlab="Chromosome",ylab="Frequency",line=2)
+  title(xlab="Chromosome",ylab="Frequency",line=2.5)
 }
