@@ -106,7 +106,8 @@ tscc              &      Power calculation for two-stage case-control design\\
 \\
 asplot            &      Regional association plot\\
 ESplot            &      Effect-size plot\\
-circos.cnvplot 	  &      circos plot of CNVs\\
+circos.cis.vs.trans.plot & circos plot of cis/trans classificaiton\\
+circos.cnvplot    &      circos plot of CNVs\\
 cnvplot           &      genomewide plot of CNVs\\
 mhtplot           &      Manhattan plot\\
 mhtplot2          &      Manhattan plot with annotations\\
@@ -125,7 +126,7 @@ PD                &      A study of Parkinson's disease and APOE, LRRK2, SNCA ma
 aldh2             &      ALDH2 markers and alcoholism\\
 apoeapoc          &      APOE/APOC1 markers and schizophrenia\\
 cf                &      Cystic Fibrosis data\\
-cnv    	       	  &      A toy dataset fpr cnvplot\\
+cnv               &      A toy dataset fpr cnvplot\\
 crohn             &      Crohn's disease data\\
 fa                &      Friedreich ataxia data\\
 fsnps             &      A case-control data involving four SNPs with missing genotype\\

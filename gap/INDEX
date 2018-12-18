@@ -48,6 +48,7 @@ tscc                    Power calculation for two-stage case-control design
 asplot                  Regional association plot
 ESplot                  Effect-size plot
 circos.cnvplot          circos plot of CNVs
+circos.cis.vs.trans.plot circos plot of cis/trans classification
 cnvplot                 genomewide plot of CNVs
 mhtplot                 Manhattan plot
 mhtplot2                Manhattan plot with annotations

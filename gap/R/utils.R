@@ -753,7 +753,7 @@ circos.cnvplot <- function(data=cnv)
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!require(p, quietly = TRUE, character.only=TRUE))
-        warning(paste("hap.em needs package `", p, "' to be fully functional; please install", sep=""))
+        warning(paste("circos.cnvplot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
   cnv <- within(data,{chr=paste0("chr",chr)})
@@ -765,5 +765,36 @@ circos.cnvplot <- function(data=cnv)
                       color <- as.numeric(gsub("chr","",i))
                       with(subset(cnv,chr==i),circos.segments(start,freq,end,freq,col=color,lwd=1))
   })
+  circos.clear()
+}
+
+circos.cis.vs.trans.plot(hits="INF1.clumped", bed="st.bed", panel=inf1, id="uniprot", radius=1e6)
+{
+  for(p in c("circlize")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!require(p, quietly = TRUE, character.only=TRUE))
+        warning(paste("circos.cis.vs.trans.plot needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+  }
+  require(circlize)
+  clumped <- read.table(hits,as.is=TRUE,header=TRUE)
+  hits <- merge(clumped[c("CHR","BP","SNP","prot")],p[c("prot","uniprot")],by="prot")
+  names(hits) <- c("prot","Chr","bp","SNP","uniprot")
+  cvt <- cis.vs.trans.classification(hits,panel,id,radius)
+  with(cvt,summary(data))
+  b1 <- with(cvt,data[c("Chr","bp")])
+  b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
+  names(b1) <- c("chr","end","start")
+  b2 <- with(cvt,data[c("p.chr","cis.start","cis.end","p.gene","p.prot")])
+  b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
+  names(b2) <- c("chr","start","end","gene","prot")
+  ann <- read.table(bed,as.is=TRUE,header=TRUE)
+  names(ann)[1] <- "chr"
+  ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
+  ann[with(ann,start<0),"start"] <- 0
+  circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
+  circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
+  circos.genomicLabels(ann,labels.column = 4, side="inside")
+  circos.genomicLink(b1, b2, col = 10, border = 10, lwd = 2)
   circos.clear()
 }

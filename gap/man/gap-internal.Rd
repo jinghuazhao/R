@@ -7,6 +7,7 @@
 \alias{a2g}
 \alias{ci}
 \alias{circos.cnvplot}
+\alias{circos.cis.vs.trans.plot}
 \alias{cis.vs.trans.classification}
 \alias{cnvplot}
 \alias{Cox.est}
@@ -107,6 +108,8 @@ included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 a2g gives allele-to-genotype conversion.
 
 circos.cnvplot produces circos plot of CNVs
+
+circos.cis.vs.trans.plot circos plot of cis/trans classification
 
 cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chr, start, end, gene variables.
 

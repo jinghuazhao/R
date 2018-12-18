@@ -1,7 +1,7 @@
 useDynLib(gap, .registration = TRUE)
 export(AE3, ab, allele.recode, a2g, asplot,
    BFDP, bt, b2r,
-   cis.vs.trans.classification, Cox.est, Cox.T, ccsize, chow.test, circos.cnvplot, cnvplot, comp.score, cov.invlogit,
+   cis.vs.trans.classification, Cox.est, Cox.T, ccsize, chow.test, circos.cnvplot, circos.cis.vs.trans.plot, cnvplot, comp.score, cov.invlogit,
    DevH0dominant,
    DevH0dominant.est,
    DevH0recessive,
