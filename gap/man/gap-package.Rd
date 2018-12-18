@@ -77,6 +77,7 @@ tscc              \tab      Power calculation for two-stage case-control design\
 \cr
 asplot            \tab      Regional association plot\cr
 ESplot            \tab      Effect-size plot\cr
+cnvplot           \tab      genomewide plot of CNVs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
 miamiplot         \tab      Miami plot (Experimental)\cr
@@ -111,6 +112,7 @@ FPRP              \tab      False-positive report probability\cr
 ab                \tab      Test/Power calculation for mediating effect\cr
 b2r               \tab      Obtain correlation coefficients and their variance-covariances\cr
 chow.test         \tab      Chow's test for heterogeneity in two regressions\cr
+cis.vs.trans.classification \tab a cis/trans classifier\ct
 comp.score        \tab      score statistics for testing genetic linkage of quantitative trait\cr
 h2                \tab      Heritability estimation according to twin correlations\cr
                   \tab      for case-control studies\cr
