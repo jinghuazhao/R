@@ -726,9 +726,9 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
   invisible(list(data=hits_panel,table=with(hits_panel,table(p.gene, cis.trans))))
 }
 
-cnvplot <- function(cnv)
+cnvplot <- function(data=cnv)
 {
-  d <- within(cnv,{chr<-replace(chr,chr=="X",23)})
+  d <- within(data,{chr<-replace(chr,chr=="X",23)})
   pos <- vector("numeric")
   n <- 23
   for (x in 1:n) pos[x] <- with(subset(d,chr==paste(x)),{max(end)})
