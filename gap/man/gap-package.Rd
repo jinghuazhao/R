@@ -77,6 +77,7 @@ tscc              \tab      Power calculation for two-stage case-control design\
 \cr
 asplot            \tab      Regional association plot\cr
 ESplot            \tab      Effect-size plot\cr
+circos.cnvplot 	  \tab      circos plot of CNVs\cr
 cnvplot           \tab      genomewide plot of CNVs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
