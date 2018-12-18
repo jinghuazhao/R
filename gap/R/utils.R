@@ -744,8 +744,8 @@ cnvplot <- function(data=cnv)
       text(ifelse(x == 1, (start+CM[x])/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, ifelse(x=="23","X",x), cex=0.4)
   })
   segments(0,0,CM[x],0)
-  axis(2,line=0.2)
-  title(xlab="Chromosome",ylab="Frequency",line=2.5)
+  axis(2,line=-2.5)
+  title(xlab="Chromosome",ylab="Frequency",line=2)
 }
 
 circos.cnvplot <- function(data=cnv)
