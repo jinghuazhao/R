@@ -778,7 +778,7 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", bed="st.bed", panel=in
   }
   require(circlize)
   clumped <- read.table(hits,as.is=TRUE,header=TRUE)
-  hits <- merge(clumped[c("CHR","BP","SNP","prot")],p[c("prot","uniprot")],by="prot")
+  hits <- merge(clumped[c("CHR","BP","SNP","prot")],panel[c("prot","uniprot")],by="prot")
   names(hits) <- c("prot","Chr","bp","SNP","uniprot")
   cvt <- cis.vs.trans.classification(hits,panel,id,radius)
   with(cvt,summary(data))
