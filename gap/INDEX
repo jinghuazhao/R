@@ -62,6 +62,7 @@ PD                      A study of Parkinson's disease and APOE, LRRK2, SNCA mak
 aldh2                   ALDH2 markers and alcoholism
 apoeapoc                APOE/APOC1 markers and schizophrenia
 cf                      Cystic Fibrosis data
+cnv                     A toy dataset for cnvplot
 crohn                   Crohn's disease data
 fa                      Friedreich ataxia data
 fsnps                   A case-control data involving four SNPs with missing genotype

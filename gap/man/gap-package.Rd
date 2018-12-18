@@ -93,6 +93,7 @@ PD                \tab      A study of Parkinson's disease and APOE, LRRK2, SNCA
 aldh2             \tab      ALDH2 markers and alcoholism\cr
 apoeapoc          \tab      APOE/APOC1 markers and schizophrenia\cr
 cf                \tab      Cystic Fibrosis data\cr
+cnv               \tab      A toy dataset for cnvplot\cr
 crohn             \tab      Crohn's disease data\cr
 fa                \tab      Friedreich ataxia data\cr
 fsnps             \tab      A case-control data involving four SNPs with missing genotype\cr
