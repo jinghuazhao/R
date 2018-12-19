@@ -781,18 +781,22 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   names(hits) <- c("prot","Chr","bp","SNP","uniprot")
   cvt <- cis.vs.trans.classification(hits,panel,id,radius)
   with(cvt,summary(data))
-  b1 <- with(cvt,data[c("Chr","bp")])
-  b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
-  names(b1) <- c("chr","end","start")
-  b2 <- with(cvt,data[c("p.chr","cis.start","cis.end","p.gene","p.prot")])
-  b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
-  names(b2) <- c("chr","start","end","gene","prot")
+  circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
+  circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   ann <- inf1[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
-  circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
-  circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   circos.genomicLabels(ann,labels.column = 4, side="inside")
-  circos.genomicLink(b1, b2, col = 10, border = 10, lwd = 2)
+  data <- with(cvt,data)
+  for(cistrans in c("cis","trans"))
+  {
+    b1 <- subset(data,cis.trans==cistrans)[c("Chr","bp")]
+    b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
+    names(b1) <- c("chr","end","start")
+    b2 <- subset(data,cis.trans==cistrans)[c("p.chr","cis.start","cis.end","p.gene","p.prot")]
+    b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
+    names(b2) <- c("chr","start","end","gene","prot")
+    circos.genomicLink(b1, b2, col = ifelse(cistrans=="cis", 8, 10), border = 10, lwd = 2)
+  }
   circos.clear()
 }
