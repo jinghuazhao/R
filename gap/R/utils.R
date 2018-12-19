@@ -788,7 +788,7 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   b2 <- with(cvt,data[c("p.chr","cis.start","cis.end","p.gene","p.prot")])
   b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
   names(b2) <- c("chr","start","end","gene","prot")
-  ann <- inf1[c("chr","start","end")]
+  ann <- inf1[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
   circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
