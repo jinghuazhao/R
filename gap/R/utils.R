@@ -761,9 +761,8 @@ circos.cnvplot <- function(data=cnv)
   circos.par(start.degree = 50, track.height = 0.3, cell.padding = c(0, 0, 0, 0))
   circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   circos.genomicTrackPlotRegion(cnv, ylim = c(0, 50), panel.fun = function(region,value,...) {
-                      i <- get.current.chromosome()
-                      color <- as.numeric(gsub("chr","",i))
-                      with(subset(cnv,chr==i),circos.segments(start,freq,end,freq,col=color,lwd=1))
+                      color <- as.numeric(gsub("chr","",get.current.chromosome()))
+                      with(cbind(region,value),circos.segments(start,freq,end,freq,col=color,lwd=1))
   })
   circos.clear()
 }
