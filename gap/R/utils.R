@@ -768,7 +768,7 @@ circos.cnvplot <- function(data=cnv)
   circos.clear()
 }
 
-circos.cis.vs.trans.plot <- function(hits="INF1.clumped", bed="st.bed", panel=inf1, id="uniprot", radius=1e6)
+circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="uniprot", radius=1e6)
 {
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
@@ -788,8 +788,7 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", bed="st.bed", panel=in
   b2 <- with(cvt,data[c("p.chr","cis.start","cis.end","p.gene","p.prot")])
   b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
   names(b2) <- c("chr","start","end","gene","prot")
-  ann <- read.table(bed,as.is=TRUE,header=TRUE)
-  names(ann)[1] <- "chr"
+  ann <- inf1[c("chr","start","end")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
   circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
