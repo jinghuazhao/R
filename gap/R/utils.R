@@ -794,8 +794,8 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
   names(b2) <- c("chr","start","end","gene","prot")
   colors <- rep(NA,nrow(with(cvt,data)))
-  colors[with(cvt,data)["cis.trans"]=="cis"] <- "blue"
-  colors[with(cvt,data)["cis.trans"]=="trans"] <- "red"
+  colors[with(cvt,data)["cis.trans"]=="cis"] <- 8
+  colors[with(cvt,data)["cis.trans"]=="trans"] <- 10
   circos.genomicLink(b1, b2, col = colors, border = 10, lwd = 2)
   circos.clear()
 }
