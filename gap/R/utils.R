@@ -787,21 +787,17 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
   circos.genomicLabels(ann,labels.column = 4, side="inside")
+  b1 <- cis[c("Chr","bp")]
+  b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
+  names(b1) <- c("chr","end","start")
+  b2 <- cis[c("p.chr","cis.start","cis.end","p.gene","p.prot")]
+  b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
+  names(b2) <- c("chr","start","end","gene","prot")
   cis <- subset(with(cvt,data),cis.trans=="cis")
-  cis1 <- cis[c("Chr","bp")]
-  cis1 <- within(cis1,{Chr=paste0("chr",Chr);start=bp-1})
-  names(cis1) <- c("chr","end","start")
-  cis2 <- cis[c("p.chr","cis.start","cis.end","p.gene","p.prot")]
-  cis2 <- within(cis2,{p.chr=paste0("chr",p.chr)})
-  names(cis2) <- c("chr","start","end","gene","prot")
-  circos.genomicLink(cis1, cis2, col = 80, border = 10, lwd = 2)
   trans <- subset(with(cvt,data),cis.trans=="trans")
-  trans1 <- trans[c("Chr","bp")]
-  trans1 <- within(trans1,{Chr=paste0("chr",Chr);start=bp-1})
-  names(trans1) <- c("chr","end","start")
-  trans2 <- trans[c("p.chr","cis.start","cis.end","p.gene","p.prot")]
-  trans2 <- within(trans2,{p.chr=paste0("chr",p.chr)})
-  names(trans2) <- c("chr","start","end","gene","prot")
-  circos.genomicLink(trans1, trans2, col = 10, border = 10, lwd = 2)
+  colors <- rep(NA,nrow(with(cvt,data)))
+  colors[cis] <- "blue"
+  colors[trans] <- "red"
+  circos.genomicLink(b1, b2, col = colors, border = 10, lwd = 2)
   circos.clear()
 }
