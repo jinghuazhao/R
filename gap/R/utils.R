@@ -787,10 +787,10 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
   circos.genomicLabels(ann,labels.column = 4, side="inside")
-  b1 <- cis[c("Chr","bp")]
+  b1 <- with(cvt,data)[c("Chr","bp")]
   b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
   names(b1) <- c("chr","end","start")
-  b2 <- cis[c("p.chr","cis.start","cis.end","p.gene","p.prot")]
+  b2 <- with(cvt,data)[c("p.chr","cis.start","cis.end","p.gene","p.prot")]
   b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
   names(b2) <- c("chr","start","end","gene","prot")
   cis <- subset(with(cvt,data),cis.trans=="cis")
