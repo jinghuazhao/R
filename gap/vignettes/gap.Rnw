@@ -513,12 +513,12 @@ We could also go further with a circos Manhattan plot,
 <<echo=TRUE,eval=FALSE>>=
 library(gap)
 library(gap.datasets)
-png("figures/circos.mhtplot.png")
+png("figures/circos-mhtplot.png")
 circos.mhtplot()
 dev.off()
 @
 
-\includegraphics[height=14cm,width=14cm]{figures/circos.mhtplot.png}
+\includegraphics[height=14cm,width=14cm]{figures/circos-mhtplot.png}
 
 The code below obtains a regional association plot with the {\em asplot} function,
 <<echo=TRUE,eval=FALSE>>=
