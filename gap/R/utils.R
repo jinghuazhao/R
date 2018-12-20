@@ -794,8 +794,38 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
   names(b2) <- c("chr","start","end","gene","prot")
   colors <- rep(NA,nrow(with(cvt,data)))
-  colors[with(cvt,data)["cis.trans"]=="cis"] <- 8
+  colors[with(cvt,data)["cis.trans"]=="cis"] <- 12
   colors[with(cvt,data)["cis.trans"]=="trans"] <- 10
   circos.genomicLink(b1, b2, col = colors, border = 10, lwd = 2)
   circos.clear()
 }
+
+circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3","SNED1",
+                          "HTR1A","MARCH3","WISP3","PPP1R3B", "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R"))
+{
+  d <- within(data, {
+    chr <- paste0("chr",chr)
+    start <- pos - 1
+    end <- pos
+  })[c("chr","start","end","p","gene")]
+  hd <-	subset(data, gene %in% glist)[c("chr","start","end","gene")]
+  hd <-	within(hd, {chr	<- paste0("chr",chr)})
+  ann <- data.frame()
+  for (g in glist)
+  {
+     m <- subset(hd, gene==g)
+     n <- round(nrow(m) / 2 + 0.5)
+     ann <- rbind(ann,m[n,])
+  }
+  require(circlize)
+  circos.par(start.degree = 90, track.height = 0.4, cell.padding = c(0, 0, 0, 0))
+  circos.initializeWithIdeogram(species = "hg18", track.height = 0.05, ideogram.height = 0.06)
+  circos.genomicTrackPlotRegion(d[c("chr","start","end","p")], ylim = c(0, 50), 
+         panel.fun = function(region, value, ...) {
+           color <- as.numeric(gsub("chr", "", get.current.chromosome()))
+           with(cbind(region, value), circos.genomicPoints(region, -log10(value), col = color))
+  })
+  circos.genomicLabels(ann, labels.column = 4, side = "inside")
+  circos.clear()
+}
+

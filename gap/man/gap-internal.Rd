@@ -8,6 +8,7 @@
 \alias{ci}
 \alias{circos.cnvplot}
 \alias{circos.cis.vs.trans.plot}
+\alias{circos.mhtplot}
 \alias{cis.vs.trans.classification}
 \alias{cnvplot}
 \alias{Cox.est}
@@ -109,7 +110,9 @@ a2g gives allele-to-genotype conversion.
 
 circos.cnvplot produces circos plot of CNVs
 
-circos.cis.vs.trans.plot circos plot of cis/trans classification
+circos.cis.vs.trans.plot gives circos plot of cis/trans classification
+
+circos.mhtplot generates circos Manhattan plot with gene annotation
 
 cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chr, start, end, gene variables.
 
