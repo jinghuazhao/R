@@ -826,12 +826,11 @@ circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3",
   }
   circos.par(start.degree = 90, track.height = 0.4, cell.padding = c(0, 0, 0, 0))
   circos.initializeWithIdeogram(species = "hg18", track.height = 0.05, ideogram.height = 0.06)
-  circos.genomicTrackPlotRegion(d[c("chr","start","end","p")], ylim = c(0, 50), 
+  circos.genomicTrackPlotRegion(d[c("chr","start","end","p")], ylim = c(0, 15), 
          panel.fun = function(region, value, ...) {
            color <- as.numeric(gsub("chr", "", get.current.chromosome()))
-           with(cbind(region, value), circos.genomicPoints(region, -log10(value), col = color))
+           with(cbind(region, value), circos.genomicPoints(region, -log10(value), cex=0.3, col = color))
   })
   circos.genomicLabels(ann, labels.column = 4, side = "inside")
   circos.clear()
 }
-
