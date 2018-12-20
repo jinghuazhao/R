@@ -803,6 +803,13 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
 circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3","SNED1",
                           "HTR1A","MARCH3","WISP3","PPP1R3B", "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R"))
 {
+  for(p in c("circlize")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!require(p, quietly = TRUE, character.only=TRUE))
+        warning(paste("circos.mhtplot needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+  }
+  require(circlize)
   d <- within(data, {
     chr <- paste0("chr",chr)
     start <- pos - 1
@@ -817,7 +824,6 @@ circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3",
      n <- round(nrow(m) / 2 + 0.5)
      ann <- rbind(ann,m[n,])
   }
-  require(circlize)
   circos.par(start.degree = 90, track.height = 0.4, cell.padding = c(0, 0, 0, 0))
   circos.initializeWithIdeogram(species = "hg18", track.height = 0.05, ideogram.height = 0.06)
   circos.genomicTrackPlotRegion(d[c("chr","start","end","p")], ylim = c(0, 50), 
