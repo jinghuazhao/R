@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
-20-12-2018	Add circos.mhtplot and revise cnvplot
+20-12-2018	Add circos.mhtplot, revise cnvplot and employ gc.lambda in qqunif.Rd
 19-12-2018	Refine cis.vs.trans.plot and inf1.rda
 18-12-2018	Add cnv/cnvplot/circos.cnvplot and therefore suggests circlize due to query from Zheng Ye
 		Carry on with addition of circos.cis.vs.trans.plot
