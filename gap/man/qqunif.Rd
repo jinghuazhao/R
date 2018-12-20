@@ -48,7 +48,7 @@ r <- qqunif(u_obs,pch=21,bg="blue",bty="n")
 u_exp <- r$y
 hits <- u_exp >= 2.30103
 points(r$x[hits],u_exp[hits],pch=21,bg="green")
-legend("topleft",sprintf("GC.lambda=%.4f",gc.lambda(u_obs)))
+legend("topleft",sprintf("GC.lambda=\%.4f",gc.lambda(u_obs)))
 }
 }
 \author{Jing Hua Zhao}
