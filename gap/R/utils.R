@@ -730,7 +730,7 @@ cnvplot <- function(data=cnv)
 {
   d <- within(data,{chr<-replace(chr,chr=="X",23); chr<-replace(chr,chr=="Y",24)})
   pos <- vector("numeric")
-  n <- 23
+  n <- length(chr)
   for (x in 1:n) pos[x] <- with(subset(d,chr==paste(x)),{max(end)})
   CM <- cumsum(pos)
   par(xaxt = "n", yaxt = "n")
