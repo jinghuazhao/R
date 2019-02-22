@@ -22,8 +22,8 @@
 \maketitle
 
 \begin{center}
-MRC Epidemiology Unit, University of Cambridge, Cambridge, UK \\
-\url{http://www.mrc-epid.cam.ac.uk/people/jing-hua-zhao}
+Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK \\
+\url{https://jinghuazhao.github.io/}
 \end{center}
 
 \tableofcontents
