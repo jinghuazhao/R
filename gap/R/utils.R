@@ -527,7 +527,7 @@ log10p <- function(z)
   log(2, base=10)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)/log(10)
 
 # gc.lambda and miamiplot functions hosted at CEU by Daniel R Barnes
-# A simplifited version is as follows,
+# A simplified version is as follows,
 # obs <- median(chisq)
 # exp <- qchisq(0.5, 1) # 0.4549364
 # lambda <- obs/exp
