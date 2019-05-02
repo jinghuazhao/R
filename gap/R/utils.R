@@ -802,7 +802,7 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   colors <- rep(NA,nrow(with(cvt,data)))
   colors[with(cvt,data)["cis.trans"]=="cis"] <- 12
   colors[with(cvt,data)["cis.trans"]=="trans"] <- 10
-  circos.genomicLink(b1, b2, col = colors, border = colors, lwd = 2)
+  circos.genomicLink(b1, b2, col = colors, border = colors, directional=1, lwd = 1.6)
   circos.clear()
 }
 
