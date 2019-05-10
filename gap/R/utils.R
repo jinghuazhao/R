@@ -729,11 +729,12 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
 # sapply(list.by.prot, function(x) table(with(x, cis.trans)))
 
   x <- with(hits_panel,table(p.gene, cis.trans))
+  s <- sum(x)
   total <- apply(x,2,sum)
   xx <- rbind(x,total)
   total <- apply(xx,1,sum)
   x <- cbind(xx,total)
-  invisible(list(data=hits_panel,table=x))
+  invisible(list(data=hits_panel,table=x,total=s))
 }
 
 cnvplot <- function(data=cnv)
