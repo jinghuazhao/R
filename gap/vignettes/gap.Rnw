@@ -110,6 +110,7 @@ circos.cis.vs.trans.plot & circos plot of cis/trans classificaiton\\
 circos.cnvplot    &      circos plot of CNVs\\
 circos.mhtplot 	  &      circos Manhattan plot with gene annotation\\
 cnvplot           &      genomewide plot of CNVs\\
+METAL_forest      &      forest plot as R/meta's forest for METAL outputs\\
 mhtplot           &      Manhattan plot\\
 mhtplot2          &      Manhattan plot with annotations\\
 miamiplot         &      Miami plot (experimental)\\
