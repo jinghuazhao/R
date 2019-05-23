@@ -1,4 +1,4 @@
-METAL_forest <- function(tbl,all,rsid)
+METAL_forest <- function(tbl,all,rsid,pdf)
 {
   require(dplyr)
   m <- within(nest_join(tbl,rsid),{rsid <- unlist(lapply(lapply(y,"[[",1),"[",1))})
@@ -17,6 +17,7 @@ METAL_forest <- function(tbl,all,rsid)
      A1 <- toupper(tbl[i,"Allele1"])
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
+     pdf(pdf)
      with(subset(all,prot==p & MarkerName==m), {
        e <- toupper(EFFECT_ALLELE)
        r <- toupper(REFERENCE_ALLELE)
@@ -39,4 +40,5 @@ METAL_forest <- function(tbl,all,rsid)
 #      METAL_forestplot(tbl)
      })
   }
+  dev.off()
 }

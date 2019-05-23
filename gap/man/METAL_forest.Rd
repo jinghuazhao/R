@@ -2,7 +2,7 @@
 \alias{METAL_forest}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
-METAL_forest(tbl,all,rsid)
+METAL_forest(tbl,all,rsid,pdf)
 }
 \description{
 This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
@@ -13,12 +13,11 @@ involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A
   \item{tbl}{Meta-anslysis summary statistics}
   \item{all}{statistics from all contributing studies}
   \item{rsid}{SNPID-rsid mapping file}
+  \item{pdf}{name of a PDF file}
 }
 
 \value{
-It will generate a forest plot:
-\item{x}{expected value for uniform order statistics or its -log(,base) counterpart}
-\item{y}{observed value or its -log(,base) counterpart}
+It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
 }
 
 \section{References}{
