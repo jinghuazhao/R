@@ -22,7 +22,7 @@ It will generate a forest plot specified by pdf for direction-adjusted effect si
 
 \section{References}{
 Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf, 
-https://cran.r-project.org/web/packages/meta/index.html
+https://CRAN.R-project.org/package=meta.
 
 Willer CJ, Li Y, Abecasis GR. (2010). METAL: fast and efficient meta-analysis of genomewideassociation scans. Bioinformations. 26:2190-1,
 https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
