@@ -2,7 +2,7 @@
 \alias{METAL_forest}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
-METAL_forest(tbl,all,rsid,pdf)
+METAL_forest(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 }
 \description{
 This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
@@ -14,6 +14,8 @@ involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A
   \item{all}{statistics from all contributing studies}
   \item{rsid}{SNPID-rsid mapping file}
   \item{pdf}{name of a PDF file}
+  \item{package}{style of plot as in meta or forestplot}
+  \item{...}{options to use for the pdf device}
 }
 
 \value{
@@ -32,7 +34,8 @@ https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
 }
 \examples{
 \dontrun{
-# examples will be added here.
+require(gap.datasets)
+METAL_forestplot(tbl,all,rsid,width=8.75,height=5)
 }
 }
 \author{Jing Hua Zhao}
