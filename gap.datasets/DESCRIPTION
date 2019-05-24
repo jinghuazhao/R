@@ -3,7 +3,7 @@ Version: 0.0.3
 Title: Datasets for 'gap'
 Author: Jing Hua Zhao with suggestions from R-Core
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
-Depends: R (>= 3.5.0)
+Depends: R (>= 2.1.0)
 Description: Datasets associated with the 'gap' package. Currently,
              it includes an example data for regional association
              plot (CDKN), Manhattan plots with (hr1420, mhtdata) and
