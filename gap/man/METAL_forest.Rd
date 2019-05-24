@@ -1,5 +1,5 @@
-\name{METAL_forest}
-\alias{METAL_forest}
+\name{METAL_forestplot}
+\alias{METAL_forestplot}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
 METAL_forest(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)

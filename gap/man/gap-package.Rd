@@ -81,7 +81,7 @@ circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
 circos.cnvplot    \tab      circos plot of CNVs\cr
 circos.mhtplot 	  \tab      circos Manhattan plot with gene annotation\cr
 cnvplot           \tab      genomewide plot of CNVs\cr
-METAL_forest      \tab      forest plot as R/meta's forest for METAL outputs\cr
+METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
 miamiplot         \tab      Miami plot (Experimental)\cr
