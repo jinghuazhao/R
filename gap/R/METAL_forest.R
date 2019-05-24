@@ -22,7 +22,7 @@ forestplot.forestplot <- function(tbl)
   title(title)
 }
 
-METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta"....)
+METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 {
   require(dplyr)
   m <- within(nest_join(tbl,rsid),{rsid <- unlist(lapply(lapply(y,"[[",1),"[",1))})
