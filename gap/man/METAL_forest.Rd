@@ -35,6 +35,7 @@ https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
 \examples{
 \dontrun{
 require(gap.datasets)
+data("INF1.jma")
 METAL_forestplot(tbl,all,rsid,width=8.75,height=5)
 }
 }
