@@ -1,8 +1,8 @@
 Package: gap.datasets
-Version: 0.0.2
+Version: 0.0.3
 Title: Datasets for 'gap'
 Author: Jing Hua Zhao with suggestions from R-Core
-Maintainer: Jing Hua Zhao <jinghua.zhao@mrc-epid.cam.ac.uk>
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Depends: R (>= 2.10)
 Description: Datasets associated with the 'gap' package. Currently,
              it includes an example data for regional association
