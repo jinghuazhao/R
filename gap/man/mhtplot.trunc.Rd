@@ -19,7 +19,7 @@ a random variable that is uniformly distributed.
 \item snp. SNP.
 \item col. colours.
 \item chrlabs. chromosome labels.
-\item suggestivelnine. suggestive line.
+\item suggestiveline. suggestive line.
 \item genomewideline. genomewide line.
 \item highlight. highlight.
 \item logp. log(P).
