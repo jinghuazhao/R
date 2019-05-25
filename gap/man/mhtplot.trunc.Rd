@@ -54,7 +54,7 @@ brk.upp = 270
 if (brk.upp > max(-log10(with(x,P))) ){
   stop("Upper breakpoint must be lower than maximum -log10 P-value")
 }
-png("IL.12B.png",res=300)
+png("IL.12B.png",res=300,units="in",width=9,height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              suggestiveline =F, genomewideline = -log10(5e-10), logp = TRUE,
