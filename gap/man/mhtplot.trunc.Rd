@@ -1,4 +1,4 @@
-\name{mhtplot.trunc}
+w\name{mhtplot.trunc}
 \alias{mhtplot.trunc}
 \title{Truncated Manhattan plot}
 \usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10",
@@ -48,15 +48,15 @@ The plot is shown on or saved to the appropriate device.
 \dontrun{
 }
 # region to cut from truncation
+x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz"),as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
 brk.low = 120
 brk.upp = 270
 
-if (brk.upp > max(-log10(x$P)) ){
+if (brk.upp > max(-log10(with(x,P))) ){
   stop("Upper breakpoint must be lower than maximum -log10 P-value")
 }
 
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz"),as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
 mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              suggestiveline =F, genomewideline = -log10(5e-10), logp = TRUE,
              cex.mtext=2, cex.text=0.7, 
