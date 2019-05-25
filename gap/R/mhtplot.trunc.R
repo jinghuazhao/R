@@ -1,4 +1,4 @@
-mhplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10", 
+mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10", 
                    "gray60"), chrlabs = NULL, suggestiveline = -log10(1e-05), 
                     genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE, 
                     annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
