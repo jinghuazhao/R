@@ -184,4 +184,4 @@ mhplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col =
   par(xpd = FALSE)
 }
 
-environment(mhplot.trunc) <- environment(manhattan)
+# environment(mhplot.trunc) <- environment(manhattan)
