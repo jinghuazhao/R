@@ -46,21 +46,13 @@ The plot is shown on or saved to the appropriate device.
 
 \examples{
 \dontrun{
-# region to cut from truncation
 x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz"),as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
-brk.low = 120
-brk.upp = 270
-
-if (brk.upp > max(-log10(with(x,P))) ){
-  stop("Upper breakpoint must be lower than maximum -log10 P-value")
-}
 png("IL.12B.png",res=300,units="in",width=9,height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
-             suggestiveline =F, genomewideline = -log10(5e-10), logp = TRUE,
+             suggestiveline=FALSE, genomewideline=-log10(5e-8), logp = TRUE,
              cex.mtext=2, cex.text=0.7, 
-             mtext.line=4, y.brk1= brk.low, y.brk2= brk.upp, cex.axis=2, cex.y=2, cex=2,
-             highlight= toHighlight,
+             mtext.line=4, y.brk1=120, y.brk2=270, cex.axis=2, cex.y=2, cex=2,
              y.ax.space=20,
              col = c("blue4", "skyblue")
              )
