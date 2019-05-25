@@ -84,6 +84,7 @@ cnvplot           \tab      genomewide plot of CNVs\cr
 METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
+mhtplot.trunc     \tab      truncated Manhattan plot\cr
 miamiplot         \tab      Miami plot (Experimental)\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
