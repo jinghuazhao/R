@@ -56,7 +56,7 @@ if (brk.upp > max(-log10(x$P)) ){
 }
 
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz")[c("Chromosome","Position","P.value","MarkerName")],as.is=TRUE)
+x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz"),as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
 mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              suggestiveline =F, genomewideline = -log10(5e-10), logp = TRUE,
              cex.mtext=2, cex.text=0.7, 
