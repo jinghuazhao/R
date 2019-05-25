@@ -55,13 +55,9 @@ if (brk.upp > max(-log10(x$P)) ){
   stop("Upper breakpoint must be lower than maximum -log10 P-value")
 }
 
-source("mhtplot-trunc.R")
-outFile <- "IL12B"
-png(file=paste0(outFile, ".png"), width= 1500)
-
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz")[c("Chromosome","Position","P.value","MarkerName")],as.is=TRUE)
-mhplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
+mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              suggestiveline =F, genomewideline = -log10(5e-10), logp = TRUE,
              cex.mtext=2, cex.text=0.7, 
              mtext.line=4, y.brk1= brk.low, y.brk2= brk.upp, cex.axis=2, cex.y=2, cex=2,
@@ -69,7 +65,6 @@ mhplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              y.ax.space=20,
              col = c("blue4", "skyblue")
              )
-dev.off()
 }
 \author{James Peters}
 \keyword{hplot}
