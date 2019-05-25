@@ -11,8 +11,6 @@ To generate truncated Manhattan plot, e.g., of genomewide significance (p values
 a random variable that is uniformly distributed.
 }
 \arguments{
-\item{data}{a data frame with three columns representing chromosome, position and p values}
-\item{control}{A control function named mht.control() with the following arguments,
 \item x. data.frame.
 \item chr. Chromosome.
 \item bp. position.
@@ -31,9 +29,9 @@ a random variable that is uniformly distributed.
 \item mtext.line. mtext.line.
 \item cex.y. cex.y.
 \item y.ax.space. y.ax.space.
-item y.brk1. y.brk1.
+\item y.brk1. y.brk1.
 \item y.brk2. y.brk2.
-\item ={...} others.
+\item {...} others.
 }
 
 \value{
