@@ -1,4 +1,4 @@
-w\name{mhtplot.trunc}
+\name{mhtplot.trunc}
 \alias{mhtplot.trunc}
 \title{Truncated Manhattan plot}
 \usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10",
@@ -46,7 +46,6 @@ The plot is shown on or saved to the appropriate device.
 
 \examples{
 \dontrun{
-}
 # region to cut from truncation
 x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz"),as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
 brk.low = 120
@@ -65,7 +64,8 @@ mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              y.ax.space=20,
              col = c("blue4", "skyblue")
              )
-}
 dev.off()
+}
+}
 \author{James Peters}
 \keyword{hplot}
