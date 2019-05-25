@@ -11,6 +11,7 @@ To generate truncated Manhattan plot, e.g., of genomewide significance (p values
 a random variable that is uniformly distributed.
 }
 \arguments{
+\enumerate{
 \item {x}{data.frame}
 \item {chr{}Chromosome}
 \item {bp}{position}
@@ -32,6 +33,7 @@ a random variable that is uniformly distributed.
 \item {y.brk1}{y.brk1}
 \item {y.brk2}{y.brk2}
 \item {...}{others}
+}
 }
 
 \value{
