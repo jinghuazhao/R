@@ -13,9 +13,6 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
     stop("y.brk2 must be larger than y.brk1")
   }
 
-  require(qqman)
-  require(plotrix)
-
   CHR = BP = P = index = NULL
   if (!(chr %in% names(x))) 
     stop(paste("Column", chr, "not found!"))

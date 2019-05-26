@@ -2,7 +2,7 @@
 \alias{METAL_forestplot}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
-METAL_forest(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
+METAL_forestplot(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 }
 \description{
 This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
