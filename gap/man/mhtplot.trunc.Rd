@@ -46,7 +46,7 @@ The plot is shown on or saved to the appropriate device.
 
 \examples{
 \dontrun{
-z <- gzfile("METAL/IL.12B-1.tbl.gz"
+z <- gzfile("METAL/IL.12B-1.tbl.gz")
 x <- read.delim(z, as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
 png("IL.12B.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
