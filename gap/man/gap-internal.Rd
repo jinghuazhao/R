@@ -53,7 +53,6 @@
 \alias{k}
 \alias{logit}
 \alias{m2plem}
-\alias{METAL_forestplot}
 \alias{mht.control}
 \alias{miamiplot}
 \alias{micombine}
