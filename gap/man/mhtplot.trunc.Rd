@@ -11,29 +11,27 @@ To generate truncated Manhattan plot, e.g., of genomewide significance (P values
 random variable that is uniformly distributed.
 }
 \arguments{
-\enumerate{
-\item x. A data.frame.
-\item chr. Chromosome.
-\item bp. Position.
-\item p. P value.
-\item snp. SNP.
-\item col. Colours.
-\item chrlabs. Chromosome labels.
-\item suggestiveline. Suggestive line.
-\item genomewideline. Genomewide line.
-\item highlight. Highlight.
-\item logp. log(P).
-\item annotatePval. Annotate P.
-\item annotateTop. Annotate top.
-\item cex.mtext. cex.mtext.
-\item cex.text. cex.text.
-\item mtext.line. mtext.line.
-\item cex.y. cex.y.
-\item y.ax.space. y.ax.space.
-\item y.brk1. y.brk1.
-\item y.brk2. y.brk2.
-\item ... other options.
-}
+\item{x}{A data.frame}
+\item{chr}{Chromosome}
+\item{bp}{Position}
+\item{p}{P value}
+\item{snp}{SNP}
+\item{col}{Colours}
+\item{chrlabs}{Chromosome labels}
+\item{suggestiveline}{Suggestive line}
+\item{genomewideline}{Genomewide line}
+\item{highlight}{Highlight}
+\item{logp}{log(P)}
+\item{annotatePval}{Annotate P}
+\item{annotateTop}{Annotate top}
+\item{cex.mtext}{cex.mtext}
+\item{cex.text}{cex.text}
+\item{mtext.line}{mtext.line}
+\item{cex.y}{cex.y}
+\item{y.ax.space}{y.ax.space}
+\item{y.brk1}{y.brk1}
+\item{y.brk2}{y.brk2}
+\item{...}{other options}
 }
 
 \value{
