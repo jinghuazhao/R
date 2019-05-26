@@ -7,23 +7,23 @@
                     annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8,
                     mtext.line=2, cex.y= 1, y.ax.space=5, y.brk1, y.brk2, ...)}
 \description{
-To generate truncated Manhattan plot, e.g., of genomewide significance (p values) and
-a random variable that is uniformly distributed.
+To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
+random variable that is uniformly distributed.
 }
 \arguments{
 \enumerate{
 \item x. A data.frame.
 \item chr. Chromosome.
-\item bp. position.
-\item p. p value.
+\item bp. Position.
+\item p. P value.
 \item snp. SNP.
-\item col. colours.
-\item chrlabs. chromosome labels.
-\item suggestiveline. suggestive line.
-\item genomewideline. genomewide line.
-\item highlight. highlight.
+\item col. Colours.
+\item chrlabs. Chromosome labels.
+\item suggestiveline. Suggestive line.
+\item genomewideline. Genomewide line.
+\item highlight. Highlight.
 \item logp. log(P).
-\item annotatePval. Annotate p.
+\item annotatePval. Annotate P.
 \item annotateTop. Annotate top.
 \item cex.mtext. cex.mtext.
 \item cex.text. cex.text.
@@ -32,7 +32,7 @@ a random variable that is uniformly distributed.
 \item y.ax.space. y.ax.space.
 \item y.brk1. y.brk1.
 \item y.brk2. y.brk2.
-\item ... others.
+\item ... other options.
 }
 }
 
@@ -46,8 +46,9 @@ The plot is shown on or saved to the appropriate device.
 
 \examples{
 \dontrun{
-x <- read.delim(gzfile("METAL/IL.12B-1.tbl.gz"),as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
-png("IL.12B.png",res=300,units="in",width=9,height=6)
+z <- gzfile("METAL/IL.12B-1.tbl.gz"
+x <- read.delim(z, as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
+png("IL.12B.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              suggestiveline=FALSE, genomewideline=-log10(5e-8), logp = TRUE,
@@ -55,7 +56,7 @@ mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              mtext.line=4, y.brk1=120, y.brk2=270, cex.axis=2, cex.y=2, cex=2,
              y.ax.space=20,
              col = c("blue4", "skyblue")
-             )
+)
 dev.off()
 }
 }
