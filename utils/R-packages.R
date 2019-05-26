@@ -1,6 +1,7 @@
 # gap
 install.packages(c("BradleyTerry2","MASS","MCMCglmm","R2jags","bdsmatrix","circlize",
-                   "coda","coxme","gap.datasets","genetics","haplo.stats","kinship2",
-                   "magic","mets","pedigree","pedigreemm","regress","rms"))
+                   "coda","coxme","dplyr", "gap.datasets","genetics","haplo.stats","kinship2",
+                   "magic","meta", "mets","pedigree","pedigreemm", "plotris", "qqman", "regress","rms"),
+                   repos="https://cran.r-project.org")
 # pan
 install.packages("mitools")
