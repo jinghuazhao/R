@@ -1,6 +1,9 @@
 \name{INF1.jma}
 \docType{data}
 \alias{INF1.jma}
+\alias{tbl}
+\alias{all}
+\alias{rsid}
 \title{An example data for forest plot using METAL output (METAL_forestplot)}
 \description{
 This example contains cojo outputs as with association statistics from contributing studies.
