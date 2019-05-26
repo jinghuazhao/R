@@ -5,6 +5,7 @@ forestplot.forestplot <- function(tbl)
                        c("SE",format(SE,digits=3),format(tbl[i,"StdErr"],digits=3)),
                        c("N",N,tbl[i,"N"]))
   print(tabletext)
+  requireNamespace("forestplot")
   forestplot(tabletext,
              c(NA,BETA,tbl[i,"Effect"]),
              c(NA,BETA-1.96*SE,tbl[i,"Effect"]-1.96*tbl[i,"StdErr"]),
@@ -24,7 +25,7 @@ forestplot.forestplot <- function(tbl)
 
 METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 {
-  require(dplyr)
+  requireNamespace("dplyr")
   m <- within(nest_join(tbl,rsid),{rsid <- unlist(lapply(lapply(y,"[[",1),"[",1))})
   isna <- with(m, is.na(rsid))
   t <- within(m, {rsid[isna] <- MarkerName[isna]})
@@ -58,10 +59,10 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
        title <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
        if (package=="meta")
        {
-         require(meta)
+         requireNamespace("meta")
          mg <- metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title)
          forest(mg,colgap.forest.left = "1cm")
-         require(grid)
+         requireNamespace("grid")
          grid.text(title,0.5,0.9)
        }
        else forestplot.forestplot(tbl)

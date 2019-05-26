@@ -769,7 +769,7 @@ circos.cnvplot <- function(data=cnv)
      }
   }
   cnv <- within(data,{chr=paste0("chr",chr)})
-  require(circlize)
+  requireNamespace("circlize")
   circos.par(start.degree = 50, track.height = 0.3, cell.padding = c(0, 0, 0, 0))
   circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   circos.genomicTrackPlotRegion(cnv, ylim = c(0, 50), panel.fun = function(region,value,...) {
@@ -787,7 +787,7 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
         warning(paste("circos.cis.vs.trans.plot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
-  require(circlize)
+  requireNamespace("circlize")
   clumped <- read.table(hits,as.is=TRUE,header=TRUE)
   hits <- merge(clumped[c("CHR","BP","SNP","prot")],panel[c("prot","uniprot")],by="prot")
   names(hits) <- c("prot","Chr","bp","SNP","uniprot")
@@ -821,7 +821,7 @@ circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3",
         warning(paste("circos.mhtplot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
-  require(circlize)
+  requireNamespace("circlize")
   d <- within(data, {
     chr <- paste0("chr",chr)
     start <- pos - 1
