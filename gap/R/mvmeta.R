@@ -2,7 +2,7 @@ mvmeta <- function(b,V)
 {
    for(p in c("magic","MASS")) {
       if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-         if (!require(p, quietly = TRUE, character.only=TRUE))
+         if (!requireNamespace(p, quietly = TRUE))
          warning(paste("mvmeta needs package `", p, "' to be fully functional; please install", sep=""))
       }
    }

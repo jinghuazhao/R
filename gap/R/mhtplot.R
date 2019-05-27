@@ -10,7 +10,7 @@ hmht.control <- function(data=NULL, colors=NULL, yoffset=0.25, cex=1.5, boxed=FA
 mhtplot <- function(data, control=mht.control(), hcontrol=hmht.control(), ...) {
   for(p in c("grid")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("mhtplot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }

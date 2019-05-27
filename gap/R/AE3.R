@@ -2,7 +2,7 @@ AE3 <- function(model, random, data, seed=1234, n.sim=50000, verbose=TRUE)
 {
   for(p in c("MASS", "nlme")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("AE3 needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }

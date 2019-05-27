@@ -1,6 +1,6 @@
 for(p in c("MASS")) {
    if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-      if (!require(p, quietly = TRUE, character.only=TRUE))
+      if (!requireNamespace(p, quietly = TRUE))
       warning(paste("hwe.cc needs package `", p, "' to be fully functional; please install", sep=""))
    }
 }

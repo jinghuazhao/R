@@ -2,7 +2,7 @@ MCMCgrm <- function(model,prior,data,GRM,eps=0,n.thin=10,n.burnin=3000,n.iter=13
 {
   for(p in c("Matrix", "MCMCglmm")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("MCMCgrm needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }

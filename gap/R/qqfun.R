@@ -25,7 +25,7 @@ qqfun <- function(x, distribution="norm", ylab=deparse(substitute(x)),
     if (line=="robust") {
         for(p in c("MASS")) {
            if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-              if (!require(p, quietly = TRUE, character.only=TRUE))
+              if (!requireNamespace(p, quietly = TRUE))
               warning(paste("qqfun needs package `", p, "' to be fully functional; please install", sep=""))
            }
         }

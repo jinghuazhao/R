@@ -31,7 +31,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
 {
    for(p in c("survival")) {
       if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-         if (!require(p, quietly = TRUE, character.only=TRUE))
+         if (!requireNamespace(p, quietly = TRUE))
          warning(paste("masize needs package `", p, "' to be fully functional; please install", sep=""))
       }
    }

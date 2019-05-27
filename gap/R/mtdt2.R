@@ -2,7 +2,7 @@ mtdt2 <- function(x,verbose=TRUE,n.sim=NULL,...)
 {
   for(p in c("BradleyTerry2")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("mtdt2 needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }

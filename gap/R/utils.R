@@ -489,7 +489,7 @@ WriteGRMSAS <- function(grmlist,outfile="gwas")
 {
   for(p in c("foreign")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("WriteGRMSAS needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
@@ -764,26 +764,26 @@ circos.cnvplot <- function(data=cnv)
 {
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("circos.cnvplot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
   cnv <- within(data,{chr=paste0("chr",chr)})
   requireNamespace("circlize")
-  circos.par(start.degree = 50, track.height = 0.3, cell.padding = c(0, 0, 0, 0))
-  circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
-  circos.genomicTrackPlotRegion(cnv, ylim = c(0, 50), panel.fun = function(region,value,...) {
-                      color <- as.numeric(gsub("chr","",get.current.chromosome()))
-                      with(cbind(region,value),circos.segments(start,freq,end,freq,col=color,lwd=1))
+  circlize::circos.par(start.degree = 50, track.height = 0.3, cell.padding = c(0, 0, 0, 0))
+  circlize::circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
+  circlize::circos.genomicTrackPlotRegion(cnv, ylim = c(0, 50), panel.fun = function(region,value,...) {
+                      color <- as.numeric(gsub("chr","",circilze::get.current.chromosome()))
+                      with(cbind(region,value),circlize::circos.segments(start,freq,end,freq,col=color,lwd=1))
   })
-  circos.clear()
+  circlize::circos.clear()
 }
 
 circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="uniprot", radius=1e6)
 {
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("circos.cis.vs.trans.plot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
@@ -793,12 +793,12 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   names(hits) <- c("prot","Chr","bp","SNP","uniprot")
   cvt <- cis.vs.trans.classification(hits,panel,id,radius)
   with(cvt,summary(data))
-  circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
-  circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
+  circlize::circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
+  circlize::circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   ann <- inf1[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
-  circos.genomicLabels(ann,labels.column = 4, side="inside")
+  circlize::circos.genomicLabels(ann,labels.column = 4, side="inside")
   b1 <- with(cvt,data)[c("Chr","bp")]
   b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
   names(b1) <- c("chr","end","start")
@@ -808,8 +808,8 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   colors <- rep(NA,nrow(with(cvt,data)))
   colors[with(cvt,data)["cis.trans"]=="cis"] <- 12
   colors[with(cvt,data)["cis.trans"]=="trans"] <- 10
-  circos.genomicLink(b1, b2, col = colors, border = colors, directional=1, lwd = 1.6)
-  circos.clear()
+  circlize::circos.genomicLink(b1, b2, col = colors, border = colors, directional=1, lwd = 1.6)
+  circlize::circos.clear()
 }
 
 circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3","SNED1",
@@ -817,7 +817,7 @@ circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3",
 {
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("circos.mhtplot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
@@ -836,13 +836,13 @@ circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3",
      n <- round(nrow(m) / 2 + 0.5)
      ann <- rbind(ann,m[n,])
   }
-  circos.par(start.degree = 90, track.height = 0.4, cell.padding = c(0, 0, 0, 0))
-  circos.initializeWithIdeogram(species = "hg18", track.height = 0.05, ideogram.height = 0.06)
-  circos.genomicTrackPlotRegion(d[c("chr","start","end","p")], ylim = c(0, 15), 
+  circlize::circos.par(start.degree = 90, track.height = 0.4, cell.padding = c(0, 0, 0, 0))
+  circlize::circos.initializeWithIdeogram(species = "hg18", track.height = 0.05, ideogram.height = 0.06)
+  circlize::circos.genomicTrackPlotRegion(d[c("chr","start","end","p")], ylim = c(0, 15), 
          panel.fun = function(region, value, ...) {
-           color <- as.numeric(gsub("chr", "", get.current.chromosome()))
-           with(cbind(region, value), circos.genomicPoints(region, -log10(value), cex=0.3, col = color))
+           color <- as.numeric(gsub("chr", "", circlize::get.current.chromosome()))
+           with(cbind(region, value), circlize::circos.genomicPoints(region, -log10(value), cex=0.3, col = color))
   })
-  circos.genomicLabels(ann, labels.column = 4, side = "inside")
-  circos.clear()
+  circlize::circos.genomicLabels(ann, labels.column = 4, side = "inside")
+  circlize::circos.clear()
 }

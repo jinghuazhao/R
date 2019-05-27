@@ -9,6 +9,12 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   # cex.y controls y axis numbers 
 {
   #require(MASS)
+  for(p in c("calibrate","plotrix","qqman")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!requireNamespace(p, quietly = TRUE))
+        warning(paste("mhtplot.trunc needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+  }
   if (y.brk2 <= y.brk1){
     stop("y.brk2 must be larger than y.brk1")
   }
@@ -116,7 +122,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
                 ),
        cex.axis= cex.y, las=1
         ) 
-  axis.break(axis=2, breakpos = y.brk1, style="slash")
+  plotrix::axis.break(axis=2, breakpos = y.brk1, style="slash")
   
   if (!is.null(chrlabs)) {
     if (is.character(chrlabs)) {
@@ -163,8 +169,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
     topHits = subset(d, P <= annotatePval)
     par(xpd = TRUE)
     if (annotateTop == FALSE) {
-      with(subset(d, P <= annotatePval), textxy(pos, -log10(P), 
-                                                offset = 0.625, labs = topHits$SNP, cex = 0.45), 
+      with(subset(d, P <= annotatePval), calibrate::textxy(pos, -log10(P), 
+                                         offset = 0.625, labs = topHits$SNP, cex = 0.45), 
            ...)
     }
     else {
@@ -174,11 +180,11 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
         chrSNPs <- topHits[topHits$CHR == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      textxy(topSNPs$pos, -log10(topSNPs$P), offset = 0.625, 
+      calibrate::textxy(topSNPs$pos, -log10(topSNPs$P), offset = 0.625, 
              labs = topSNPs$SNP, cex = cex.text, ...)
     }
   }
   par(xpd = FALSE)
 }
 
-# environment(mhplot.trunc) <- environment(manhattan)
+# environment(mhtplot.trunc) <- environment(manhattan)

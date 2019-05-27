@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.1-23
+27-05-2019	Suggest calibrate and rmeta, revise require()
 25-05-2019	Suggest qqman, plotrix while adding mhtplot.trunc
 23-05-2019	Suggest dplyr, forestplot, meta and add METAL_forestplot
 10-05-2019	Add return total signals from cis.vs.trans.classification

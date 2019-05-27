@@ -2,7 +2,7 @@ hap.em <- function(id,data,locus.label=NA,converge.eps=0.000001,maxiter=500,miss
 {
   for(p in c("haplo.stats")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!require(p, quietly = TRUE, character.only=TRUE))  
+        if (!requireNamespace(p, quietly = TRUE))
         warning(paste("hap.em needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }

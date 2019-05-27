@@ -99,7 +99,7 @@ hap.score<-function(y, geno, trait.type="gaussian",
       if(adjusted){
          for(p in c("rms")) {
             if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-               if (!require(p, quietly = TRUE, character.only=TRUE))
+               if (!requireNamespace(p, quietly = TRUE))
                warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
             }
          }
