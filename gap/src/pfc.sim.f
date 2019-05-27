@@ -33,7 +33,8 @@ c   table of log factorials w/ zero subscript
       fac0(1)=zero
       do 1 j=1, maxfac
       const=j
-  1   fac(j)=fac(j-1)+dlog(const)
+      fac(j)=fac(j-1)+dlog(const)
+  1   continue
 c      write(6,1002) (fac(j),dexp(fac(j)),j=0,6)
 
 c   read frequency data, build frequency matrix table -fm-
@@ -44,7 +45,7 @@ c      open (9, file='mcp.dat')
 cc    write(6,1004)
       oldsib=-1
       maxsize=1
-      do 20 j=1,10000000
+      do 200 j=1,10000000
         do 20 i=1,famsize
         sib=famdata(i,1)
         aff=famdata(i,2)
@@ -55,6 +56,7 @@ cc    write(6,1004)
         oldsib=sib
         if(i.eq.famsize)goto 25
  20   continue
+ 200  continue
  25   continue
 
 c   Find marginal totals from -fm- and constant part of the likelihood
@@ -146,11 +148,11 @@ c      data rfm/400*0/
       endif 
 
 c   refresh rfm for each call
-      do 5 j=1,20
+      do 50 j=1,20
       do 5 i=1,20
       rfm(i,j)=0.0
  5    continue
-
+ 50   continue
       ones=0
       do 10 i=1,nsibs
         p=dble(naff-ones)/dble(nsibs-i+1)
@@ -245,7 +247,7 @@ c   output a table of frequencies and check for consistency
       cfam=0
       caff=0
 *     write(6,1001)nsibs,naff,nfam
-      do 30 j=first,last
+      do 300 j=first,last
          cm(j)=0
 *        write(6,1006)m(j),(freq(i,j),i=1,j+1)
          do 30 i=1,j+1
@@ -253,6 +255,7 @@ c   output a table of frequencies and check for consistency
             cm(j)=cm(j)+freq(i,j)
             caff=caff+(i-1)*freq(i,j)
  30          continue
+ 300  continue
 c                                check!
       if(caff.ne.naff)go to 900
       if(cfam.ne.nfam)go to 900
@@ -332,7 +335,8 @@ C                                  GENERATE NEXT VECTOR IN THE SEQUENCE
 C                                                  FIND CUMMULATIVE SUM
        SUM=0
        DO 200 I=J,K
- 200        SUM=SUM+N(I)
+          SUM=SUM+N(I)
+ 200   CONTINUE
        IF(SUM.GT.M)GO TO 300
 C                                         N(1) IS WHATEVER IS LEFT OVER
        N(1)=M-SUM
@@ -347,7 +351,8 @@ C                                          DONE WHEN WE RUN OFF THE END
        RETURN
 C                               INITIALIZE FOR THE FIRST CALL TO CMULTE
  500     DO 600 I=1,K
- 600          N(I)=0
+            N(I)=0
+ 600     CONTINUE
        N(1)=M
        DONE=.FALSE.
 C<---  WRITE(6,1000)(N(J),J=1,K)
@@ -448,7 +453,8 @@ C          BE SURE THAT MDIG AT LEAST 16...
         JSEED = J0*K0
         J1 = MOD(JSEED/M2+J0*K1+J1*K0,M2/2)
         J0 = MOD(JSEED,M2)
-    2   M(I) = J0+M2*J1
+        M(I) = J0+M2*J1
+    2 CONTINUE
       I=5
       J=17
 C  BEGIN MAIN LOOP HERE
@@ -1549,7 +1555,8 @@ C           PRINT NUMBER OF OTHER ERRORS
          IF (NMESSG.LT.0) RETURN
 C        CLEAR THE ERROR TABLES
          DO 70 I=1,10
-   70       KOUNT(I) = 0
+            KOUNT(I) = 0
+   70    CONTINUE
          KOUNTX = 0
          RETURN
    80 CONTINUE

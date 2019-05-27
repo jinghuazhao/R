@@ -23,8 +23,9 @@ c     logical done
 c                  build table of log factorials w/ zero subscript
       fac(0)=zero
       do 1 j=1,maxfac
-      const=j
-   1  fac(j)=fac(j-1)+ dlog(const)
+         const=j
+         fac(j)=fac(j-1)+ dlog(const)
+   1  continue
 
 c   read frequency data, build frequency matrix table -fm-
 c     open(10,file='family.dat')
@@ -365,10 +366,11 @@ c                     test for valid parameter values
       if(m .GT. i*n) call rexit("442")
 c      Special cases where only one outcome is possible:
 c                                                    m=i*n
-      if(m .EQ. i*n)then
+      if(m .EQ. i*n) then
          done=.NOT. done
          do 2 j=1,i
-    2    x(j)=0
+            x(j)=0
+    2    continue
          x(ip1)=n
          return
       endif
@@ -376,16 +378,18 @@ c                                                    n=0 or 1
       if(n .LE. 1)then
          done=.NOT. done
          do 4 j=1,ip1
-    4    x(j)=0
+            x(j)=0
+    4    continue
          if(m .GT. i) call rexit("443")
          x(m+1)=n
          return
       endif
 c                                               m=0 or 1; or i=1
-      if(i .EQ. 1 .OR. m .LE. 1)then
+      if(i .EQ. 1 .OR. m .LE. 1) then
          done=.NOT. done
          do 6 j=1,ip1
-    6    x(j)=0
+            x(j)=0
+    6    continue
          x(1)=n-m
          x(2)=m
          return
@@ -396,7 +400,8 @@ c                                Initialize the general case
          j=j+1
          if(j .GT. i) call rexit("444")
          do 20 k=1,ip1
-   20    x(k)=0
+            x(k)=0
+   20    continue
 c                     two smallest possible frequencies
          x(j+1)=m-(j-1)*n
          x(j)=j*n-m
@@ -478,10 +483,11 @@ c  DONE signifies completion of the task or initialization on input.
          done=.not.done
          return
       endif
-      if(m .EQ. 0)then
+      if(m .EQ. 0) then
          done=.NOT. done
          do 10 j=1,k
-   10    n(j)=0
+            n(j)=0
+   10    continue
          return
       endif
 
@@ -493,7 +499,8 @@ c                        generate next vector in the sequence
 c                                             find cumulative sum
       sum=0
       do 200 i=j,k
-  200 sum=sum+n(i)
+         sum=sum+n(i)
+  200 continue
       if(sum .GT. m)go to 300
 c                     n(1) is what ever is left over
       n(1)=m-sum
@@ -507,7 +514,8 @@ C                                       done when we run off the end
       return
 c                        initialize on the first call to cmulte
   500 do 600 i=1,k
-  600 n(I)=0
+         n(I)=0
+  600 continue
       n(1)=m
       done=.FALSE.
       return
