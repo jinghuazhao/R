@@ -5,7 +5,7 @@ This repository contains packages **CGR** which is not available from CRAN and *
 **Packages** | [CRAN](http://cran.r-project.org) | [GitHub](https://github.com/cran) | Documentation
 --------|---------------------------------------------|------------------------------|--------------
 **gap** | [https://cran.r-project.org/package=gap](https://cran.r-project.org/package=gap)      | [https://github.com/cran/gap](https://github.com/cran/gap) | https://rdrr.io/cran/gap/
-**gap.datasets** | [https://cran.r-project.org/package=gap.datasets](https://cran.r-project.org/package=gap.datasets) | https://github.com/cran/gap.datasets
+**gap.datasets** | [https://cran.r-project.org/package=gap.datasets](https://cran.r-project.org/package=gap.datasets) | https://github.com/cran/gap.datasets | https://rdrr.io/cran/gap.datasets/
 **lmm** | [https://cran.r-project.org/package=lmm](https://cran.r-project.org/package=lmm)      | [https://github.com/cran/lmm](https://github.com/cran/lmm) | https://rdrr.io/cran/lmm/
 **pan** | [https://cran.r-project.org/package=pan](https://cran.r-project.org/package=pan)      | [https://github.com/cran/pan](https://github.com/cran/pan) | https://rdrr.io/cran/pan/
 **tdthap**  | [https://cran.r-project.org/package=tdthap](https://cran.r-project.org/package=tdthap) | [https://github.com/cran/tdthap](https://github.com/cran/tdthap) | https://rdrr.io/cran/tdthap/
