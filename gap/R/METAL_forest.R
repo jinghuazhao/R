@@ -61,10 +61,10 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
        if (package=="meta")
        {
          requireNamespace("meta")
-         mg <- metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title)
-         forest(mg,colgap.forest.left = "1cm")
+         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title)
+         meta::forest(mg,colgap.forest.left = "1cm")
          requireNamespace("grid")
-         grid.text(title,0.5,0.9)
+         grid::grid.text(title,0.5,0.9)
        }
        else forestplot.forestplot(tbl)
      })
