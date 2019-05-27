@@ -1,6 +1,6 @@
-\name{INF1.jma}
+\name{OPG}
 \docType{data}
-\alias{INF1.jma}
+\alias{OPG}
 \alias{tbl}
 \alias{all}
 \alias{rsid}
@@ -10,7 +10,7 @@ This example contains cojo outputs as with association statistics from contribut
 
 See \code{\link[gap]{METAL_forestplot}} for its use.
 }
-\usage{data(INF1.jma)}
+\usage{data(OPG)}
 \format{Three data frames}
 \examples{
 head(tbl)

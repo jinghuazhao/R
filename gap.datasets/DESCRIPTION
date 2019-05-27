@@ -6,11 +6,13 @@ Author: Jing Hua Zhao with suggestions from R-Core
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Description: Datasets associated with the 'gap' package. Currently,
              it includes an example data for regional association
-             plot (CDKN), Manhattan plots with (hr1420, mhtdata) and
-             without (w4) gene annotations.
+             plot (CDKN), an example data for a genomewide association
+             meta-analysis (OPG), Manhattan plots with (hr1420, mhtdata)
+             and without (w4) gene annotations.
 LazyData: Yes
 LazyLoad: Yes
 License: GPL (>= 2)
-URL: https://jinghuazhao.github.io/
+URL: https://jinghuazhao.github.io/R/
 NeedsCompilation: no
-Packaged: 2017-11-27 18:14:21 UTC; jhz22
+Packaged: 2019-05-27 19:04:29 UTC; jhz22
+Depends: R (>= 2.10)
