@@ -773,7 +773,7 @@ circos.cnvplot <- function(data=cnv)
   circlize::circos.par(start.degree = 50, track.height = 0.3, cell.padding = c(0, 0, 0, 0))
   circlize::circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   circlize::circos.genomicTrackPlotRegion(cnv, ylim = c(0, 50), panel.fun = function(region,value,...) {
-                      color <- as.numeric(gsub("chr","",circilze::get.current.chromosome()))
+                      color <- as.numeric(gsub("chr","",circlize::get.current.chromosome()))
                       with(cbind(region,value),circlize::circos.segments(start,freq,end,freq,col=color,lwd=1))
   })
   circlize::circos.clear()
