@@ -16,7 +16,7 @@ forestplot.forestplot <- function(tbl)
              boxsize=0.75,
              col=rmeta::meta.colors(box="royalblue",line="darkblue", summary="royalblue"))
   title(title)
-  metaplot(BETA,SE,N,
+  rmeta::metaplot(BETA,SE,N,
            labels=sprintf("%s (%.3f %.3f %.0f)",study,BETA,SE,N),
            xlab="Effect distribution",ylab="",xlim=c(-1.5,1.5),
            summn=tbl[i,"Effect"],sumse=tbl[i,"StdErr"],sumnn=tbl[i,"N"],

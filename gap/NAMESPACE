@@ -34,6 +34,9 @@ export(AE3, ab, allele.recode, a2g, asplot,
 S3method(plot, hap.score)
 S3method(print, hap.score)
 import(utils)
+importFrom("circlize", "circos.par", "circos.initializeWithIdeogram",
+           "circos.genomicLabels", "circos.genomicTrackPlotRegion",
+           "circos.clear")
 importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
            "legend", "lines", "mtext", "par", "plot", "points",
            "segments", "text")
