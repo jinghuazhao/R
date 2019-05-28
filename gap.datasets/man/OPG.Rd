@@ -13,9 +13,9 @@ variability -- therefore a SNPID-rsid mapping file (rsid) is also provided.
 \usage{data(OPG)}
 \format{Three data frames}
 \examples{
-head(tbl)
-head(all)
-head(rsid)
+head(OPGtbl)
+head(OPGall)
+head(OPGrsid)
 }
 \source{SCALLOP consortium}
 \references{
