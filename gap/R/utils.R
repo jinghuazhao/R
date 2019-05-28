@@ -669,8 +669,11 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
     }
 }
 
-cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot", radius=1e6)
+cis.vs.trans.classification <- function(hits, panel, id, radius=1e6)
+# cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
 {
+  p.start <- p.end <- Chr <- p.chr <- bp <- dist.inds <- same.inds <- NA
+
 # "Thu Nov  8 12:13:07 2018"
 
 # author jp549@cam.ac.uk
@@ -719,7 +722,6 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
     cis.trans[cis==TRUE] <- "cis"
     cis.trans[cis==FALSE] <- "trans"
   })
-  rm(dist.inds,same.inds,envir=.GlobalEnv)
 
 # split by protein
 
@@ -737,7 +739,8 @@ cis.vs.trans.classification <- function(hits=jma.cojo, panel=inf1, id="uniprot",
   invisible(list(data=hits_panel,table=x,total=s))
 }
 
-cnvplot <- function(data=cnv)
+cnvplot <- function(data)
+# cnvplot(cnv)
 {
   d <- within(data,{chr<-replace(chr,chr=="X",23); chr<-replace(chr,chr=="Y",24)})
   pos <- vector("numeric")
@@ -760,7 +763,8 @@ cnvplot <- function(data=cnv)
   title(xlab="Chromosome",ylab="Frequency",line=2)
 }
 
-circos.cnvplot <- function(data=cnv)
+circos.cnvplot <- function(data)
+# circos.cnvplot(cnv)
 {
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
@@ -779,8 +783,10 @@ circos.cnvplot <- function(data=cnv)
   circlize::circos.clear()
 }
 
-circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="uniprot", radius=1e6)
+circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
+# circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
 {
+  bp <- NA
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))
@@ -795,7 +801,7 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   with(cvt,summary(data))
   circlize::circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
   circlize::circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
-  ann <- inf1[c("chr","start","end","gene")]
+  ann <- panel[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
   circlize::circos.genomicLabels(ann,labels.column = 4, side="inside")
@@ -812,9 +818,11 @@ circos.cis.vs.trans.plot <- function(hits="INF1.clumped", panel=inf1, id="unipro
   circlize::circos.clear()
 }
 
-circos.mhtplot <- function(data=mhtdata, glist = c("IRS1","SPRY2","FTO","GRIK3","SNED1",
-                          "HTR1A","MARCH3","WISP3","PPP1R3B", "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R"))
+circos.mhtplot <- function(data, glist)
+# g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3","PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
+# circos.mhtplot(mhtdata,g)
 {
+  pos <- gene <- NULL
   for(p in c("circlize")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))

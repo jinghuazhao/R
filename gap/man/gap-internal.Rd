@@ -77,7 +77,7 @@
 \title{Internal functions for gap}
 \usage{
 a2g(a1,a2)
-cis.vs.trans.classification(hits=jma.cojo,panel=inf1,id='uniprot',radius=1e6)
+cis.vs.trans.classification(hits,panel,id,radius=1e6)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
@@ -203,6 +203,23 @@ z is a normal z-test of two proportions used by tscc.
   \item{K}{Prevalence of disease in the population}
   \item{loci}{A vector of number of alleles at all loci}
   \item{hapid}{Haplotype identifier}
+}
+\examples{
+\dontrun{
+#
+cnvplot(cnv)
+circos.cnvplot(cnv)
+#
+cvt <- cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
+cvt
+#
+circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
+#
+require(gap.datasets)
+g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
+       "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
+circos.mhtplot(mhtdata,g)
+}
 }
 \details{These functions are not so frequently called by users}
 \keyword{internal}

@@ -1,10 +1,16 @@
+prot <- MarkerName <- NA
+
 METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 {
   requireNamespace("dplyr")
-  m <- within(dplyr::nest_join(tbl,rsid),{rsid <- unlist(lapply(lapply(y,"[[",1),"[",1))})
+  d <- dplyr::nest_join(tbl,rsid)
+  dy <- d["y"]
+  m <- within(d,{rsid <- unlist(lapply(lapply(dy,"[[",1),"[",1))})
   isna <- with(m, is.na(rsid))
   t <- within(m, {rsid[isna] <- MarkerName[isna]})
-  m <- within(dplyr::nest_join(all,rsid),{rsid <- unlist(lapply(lapply(y,"[[",1),"[",1))})
+  d <- dplyr::nest_join(all,rsid)
+  dy <- d["y"]
+  m <- within(d,{rsid <- unlist(lapply(lapply(dy,"[[",1),"[",1))})
   isna <- with(m, is.na(rsid))
   a <- within(m, {rsid[isna] <- MarkerName[isna]})
   pdf(pdf,...)
