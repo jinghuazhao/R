@@ -13,6 +13,7 @@ variability -- therefore a SNPID-rsid mapping file (OPGrsid) is also provided.
 \usage{data(OPG)}
 \format{Three data frames}
 \examples{
+data(OPG)
 head(OPGtbl)
 head(OPGall)
 head(OPGrsid)
