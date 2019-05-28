@@ -36,7 +36,7 @@ https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
 \dontrun{
 require(gap.datasets)
 data(OPG)
-METAL_forestplot(OPtbl,OPGall,OPGrsid,width=8.75,height=5)
+METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 }
 }
 \author{Jing Hua Zhao}
