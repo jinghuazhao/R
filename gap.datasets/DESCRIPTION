@@ -1,6 +1,6 @@
 Package: gap.datasets
-Version: 0.0.3
-Date: 2019-5-27
+Version: 0.0.4
+Date: 2019-5-28
 Title: Datasets for 'gap'
 Author: Jing Hua Zhao with suggestions from R-Core
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
