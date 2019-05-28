@@ -44,6 +44,10 @@ The plot is shown on or saved to the appropriate device.
 
 \examples{
 \dontrun{
+#
+require(gap.datasets)
+mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", p = "p", snp = "rsn", y.brk1=10, y.brk2=12)
+#
 z <- gzfile("METAL/IL.12B-1.tbl.gz")
 x <- read.delim(z, as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
 png("IL.12B.png", res=300, units="in", width=9, height=6)
