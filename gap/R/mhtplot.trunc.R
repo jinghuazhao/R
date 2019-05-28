@@ -9,10 +9,10 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   # cex.y controls y axis numbers 
 {
   #require(MASS)
-  for(p in c("calibrate","plotrix","qqman")) {
-     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!requireNamespace(p, quietly = TRUE))
-        warning(paste("mhtplot.trunc needs package `", p, "' to be fully functional; please install", sep=""))
+  for(q in c("calibrate","plotrix","qqman")) {
+     if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
+        if (!requireNamespace(q, quietly = TRUE))
+        warning(paste("mhtplot.trunc needs package `", q, "' to be fully functional; please install", sep=""))
      }
   }
   if (y.brk2 <= y.brk1){
