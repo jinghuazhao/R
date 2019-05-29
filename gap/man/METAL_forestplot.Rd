@@ -14,7 +14,7 @@ involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A
   \item{all}{statistics from all contributing studies}
   \item{rsid}{SNPID-rsid mapping file}
   \item{pdf}{name of a PDF file}
-  \item{package}{style of plot as in meta or forestplot}
+  \item{package}{style of plot as in meta, rmeta or forestplot}
   \item{...}{options to use for the pdf device}
 }
 
