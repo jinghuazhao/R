@@ -1,7 +1,6 @@
-prot <- MarkerName <- NA
-
 METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 {
+  prot <- MarkerName <- NA
   requireNamespace("dplyr")
   d <- dplyr::nest_join(tbl,rsid)
   dy <- d["y"]

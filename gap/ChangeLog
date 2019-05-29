@@ -1,5 +1,11 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.1-25
+29-05-2019	Revise hap_c.c
+
+Version 1.1-24
+29-05-2019	Suggest reshape and revise C/Fortran codes (from CRAN check)
+
 Version 1.1-23
 27-05-2019	Suggest calibrate and rmeta, revise require() and pfc.f/pfc.sim.f with do/continue
 25-05-2019	Suggest qqman, plotrix while adding mhtplot.trunc

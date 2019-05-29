@@ -1106,7 +1106,7 @@ if (with_id)
       for(i=0;i<n_obs;i++)
       {
          k=0;
-         sprintf(p_t.id,"%d",i+1);
+         snprintf(p_t.id,sizeof(p_t.id),"%d",i+1);
          p_t.affection=CONTROL;
          for(j=0;j<n_loci;++j)
          {
@@ -1135,7 +1135,7 @@ if (with_id)
       for(i=0;i<n_obs;i++)
       {
          k=0;
-         sprintf(p_t.id,"%d",i+1);
+         snprintf(p_t.id,sizeof(p_t.id),"%d",i+1);
          p_t.affection=CONTROL;
          for(j=0;j<n_loci;++j)
          {
@@ -1166,7 +1166,7 @@ else
    /*noid*/
    for(i=0;i<n_obs;i++)
    {
-      sprintf(p_t.id,"%d",i+1);
+      snprintf(p_t.id,sizeof(p_t.id),"%d",i+1);
       p_t.affection=CONTROL;
       k=0;
       for(j=0;j<n_loci;++j)

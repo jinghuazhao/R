@@ -1193,10 +1193,10 @@ void file_probands(char **probandfile)
    REprintf("Proband %s in pedigree %s is in loop %d \n"
    ,person[j]->oldid_s,person[j]->oldped_s,person[j]->proband);
    error("%d",1);
-   } else person[j]->proband = 1;
-          found = TRUE;
+   } 
+   else person[j]->proband = 1;
+   found = TRUE;
         }
-
         j++;
 	if (( j>totperson) && (!found)) {
              error("\nERROR: Ped: %s Per: %s - Not found, check proband file.\n",
@@ -1526,7 +1526,6 @@ void writeped()
     fprintf(pedout,"  Ped: %s",person[i]->oldped_s);
     fprintf(pedout,"  Per: %s\n",person[i]->oldid_s);
    }
-
 }
 
 /*****************************************************************************/
@@ -1566,15 +1565,15 @@ void check_ids()
   /*  set ped_integers to FALSE if any non-digit is found.             */ 
   ped_integers = TRUE;
   i = 1;
-  while ((ped_integers) && (i<=totperson)){
-   for (j=0; person[i]->oldped_s[j] != '\0'; j++) 
+  while ((ped_integers) && (i<=totperson)) {
+    for (j=0; person[i]->oldped_s[j] != '\0'; j++) 
     if (!isdigit(person[i]->oldped_s[j])) {
-     ped_integers = FALSE;
-     break;
+       ped_integers = FALSE;
+       break;
     }
     i++;
-   }
- }
+  }
+}
 
 /*****************************************************************************/
 /*                                                                           */

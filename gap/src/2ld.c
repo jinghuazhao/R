@@ -7,16 +7,19 @@ void tbyt(double *h, double *haplotypes, double *D, double *VarD,
 {
 double p,q,u,v,t=0;
 double a,b,c,d,or,xi;
+/*
 double ED;
 double EDmax;
-
+*/
 p=h[0]+h[1];
 q=h[2]+h[3];
 u=h[0]+h[2];
 v=h[1]+h[3];
 
 *D=h[0]-p*u;
+/*
 ED=(*D)*(*haplotypes-1)/(*haplotypes);
+*/
 *VarD=(p*q*u*v+(*D)*(q-p)*(v-u)-(*D)*(*D))/(*haplotypes);
 if(*D<0) {
   if(p*u<q*v) {
@@ -35,7 +38,9 @@ if(*D<0) {
     xi=h[2];
   }
 }
+/*
 EDmax=*Dmax*(*haplotypes-1)/(*haplotypes);
+*/
 *Dprime=*D/(*Dmax);
 if(*Dprime<0) {
    a=v;

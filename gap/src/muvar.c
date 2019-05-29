@@ -48,7 +48,7 @@ void twolocus (float *y12, float *p1, float *p2)
   float yAABd,yAAdb,yAaBd,yAadb,yaaBd,yaadb,
         yAdBB,ydaBB,yAdBb,ydaBb,yAdbb,ydabb;
   float yAdBd,yAddb,ydaBd,ydadb;
-  float mu,mAA,mAD,mDD;
+  float /*mu,*/ mAA,mAD,mDD;
   float muA,mua,muAA,muAa,muaa;
   float muAB,muab,muAb,muaB;
   float muAAB,muAAb,muAaB,muAab,muaaB,muaab,muABB,muaBB,muABb,muaBb,muAbb,muabb;
@@ -159,7 +159,7 @@ void twolocus (float *y12, float *p1, float *p2)
   ydaBd=pA*pB*yAaBB+pA*pb*yAaBb+pa*pB*yaaBB+pa*pb*yaaBb;
   ydadb=pA*pB*yAaBb+pA*pb*yAabb+pa*pB*yaaBb+pa*pb*yaabb;
 
-  mu=yAddd*pA+ydadd*pa;
+/* mu=yAddd*pA+ydadd*pa;*/
   muA=yAddd;muB=yddBd;
   mua=ydadd;mub=ydddb;
 

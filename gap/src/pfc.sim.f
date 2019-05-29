@@ -13,7 +13,7 @@ c     December 15, 1997
       double precision zero,const,obsp,slf,p
 
       integer maxfac,m(20),sib,aff,freq,oldsib,i,
-     &  naff,nsibs,nfam,fm(20,20),j,maxsize,k
+     &  naff,nsibs,nfam,fm(20,20),j,maxsize
       logical trace,initial
       double precision fac(0:8000),fac0(8001)
       double precision ptail
@@ -105,16 +105,16 @@ cc    write(6,1130)c, dble(ntail)/dble(nsim)
 c       write(6,1100)ptail,ntail,nsim,dble(ntail)/dble(nsim) 
 c       write(16,1100)ptail,ntail,nsim,dble(ntail)/dble(nsim) 
 
-  905  format(' trace:',2i3,1x,10i3)
+cc  905  format(' trace:',2i3,1x,10i3)
 cc 1000  format(' cmulte test:m,n',i4,5x,10i4)
- 1001  format(5x,3i15)
+cc 1001  format(5x,3i15)
 cc 1002  format(' Test factorials..',2f12.6)
- 1003  format(' Totals',i5)
+cc 1003  format(' Totals',i5)
 cc 1004  format(17x,'Family frequency data read in:'/
 cc     &  t18,'Sibs        Affected       Frequency  ')
 cc 1005  format(12i5)
 cc 1006  format(1x,i4,5x,20i4)
- 1007  format(' Probability of the observed table:  ',e15.7/)
+cc 1007  format(' Probability of the observed table:  ',e15.7/)
 cc 1008  format(' Probability of this random table:  ',e15.7/)
 cc 1100  format(' The M-C p-value :  ',e15.7/
 cc     &  i15, '  tables out of ', i15, '  simulations are on the tail.'/
@@ -156,7 +156,7 @@ c   refresh rfm for each call
       ones=0
       do 10 i=1,nsibs
         p=dble(naff-ones)/dble(nsibs-i+1)
-        if (uni(0).lt.p)  then 
+        if (uni(0).lt.p) then
         rvector(i)=1
         ones=ones+1
         else
@@ -182,8 +182,8 @@ c   refresh rfm for each call
 20    continue
       return
       
-1005  format(' # of affected(input): ', i5/ ' # of simulated: ', i5/)
-1000  format(' Too many family members, change size of rvector'/)    
+*1005  format(' # of affected(input): ', i5/ ' # of simulated: ', i5/)
+*1000  format(' Too many family members, change size of rvector'/)    
       end
 
 
@@ -270,10 +270,10 @@ c                                check!
       call rexit("8888")
 
 
- 1000  format(' OUT: error detected:')
- 1001  format(/' OUT: ',i5,' sibs',3x,i5,' affected',3x,
-     &   i5,' families')
- 1006  format(1x,'OUT:',i4,5x,20i4)
+*1000  format(' OUT: error detected:')
+*1001  format(/' OUT: ',i5,' sibs',3x,i5,' affected',3x,
+*    &   i5,' families')
+*1006  format(1x,'OUT:',i4,5x,20i4)
       end
 
 
@@ -285,7 +285,7 @@ c  Find the sum of log-factorials (slf) for the interior of the table
       implicit logical(a-z)
       integer fm(20,20),first,last,i,j
       double precision slf,zero,const,p,dexp,lminf
-      double precision fac(8000),fac0(8001)
+      double precision fac(0:8000),fac0(8001)
       logical trace
       equivalence (fac(1),fac0(2))
       common/factab/fac0
@@ -306,8 +306,8 @@ c                                       i-1 = number affected
       if(const-slf.gt.lminf)p=dexp(const-slf)
 c      if(trace)write(6,1001)const,slf,p
       return
- 1000  format(' PROB: first,last,const: ',2i6,f15.5)
-cc 1001   format(' PROB: const,slf,p:  ',3e15.5)
+*1000 format(' PROB: first,last,const: ',2i6,f15.5)
+*1001 format(' PROB: const,slf,p:  ',3e15.5)
       end
 
 c------------------------------------------------------------------------
@@ -1385,7 +1385,7 @@ C                    XGETUA
 C***END PROLOGUE  XERRWV
       CHARACTER*(*) MESSG
       CHARACTER*20 LFIRST
-      CHARACTER*37 FORM
+*     CHARACTER*37 FORM
       DIMENSION LUN(5)
 C     GET FLAGS
 C***FIRST EXECUTABLE STATEMENT  XERRWV
@@ -1445,21 +1445,21 @@ C        MESSAGE
             IF (IUNIT.EQ.0) IUNIT = I1MACH(4)
             DO 22 I=1,MIN(NI,2)
 *              WRITE (FORM,21) I,ISIZEI
-   21          FORMAT ('(11X,21HIN ABOVE MESSAGE, I',I1,'=,I',I2,')   ')
+*  21          FORMAT ('(11X,21HIN ABOVE MESSAGE, I',I1,'=,I',I2,')   ')
 *              IF (I.EQ.1) WRITE (IUNIT,FORM) I1
 *              IF (I.EQ.2) WRITE (IUNIT,FORM) I2
    22       CONTINUE
             DO 24 I=1,MIN(NR,2)
 *              WRITE (FORM,23) I,ISIZEF+10,ISIZEF
-   23          FORMAT ('(11X,21HIN ABOVE MESSAGE, R',I1,'=,E',
-     1         I2,'.',I2,')')
+*  23          FORMAT ('(11X,21HIN ABOVE MESSAGE, R',I1,'=,E',
+*    1         I2,'.',I2,')')
 *              IF (I.EQ.1) WRITE (IUNIT,FORM) R1
 *              IF (I.EQ.2) WRITE (IUNIT,FORM) R2
    24       CONTINUE
             IF (LKNTRL.LE.0) GO TO 40
 C              ERROR NUMBER
 *              WRITE (IUNIT,30) LERR
-   30          FORMAT (15H ERROR NUMBER =,I10)
+*  30          FORMAT (15H ERROR NUMBER =,I10)
    40       CONTINUE
    50    CONTINUE
 C        TRACE-BACK
@@ -1537,20 +1537,20 @@ C        PRINT TO EACH UNIT
             IF (IUNIT.EQ.0) IUNIT = I1MACH(4)
 C           PRINT TABLE HEADER
 *           WRITE (IUNIT,10)
-   10       FORMAT (32H0          ERROR MESSAGE SUMMARY/
-     1      51H MESSAGE START             NERR     LEVEL     COUNT)
+*  10       FORMAT (32H0          ERROR MESSAGE SUMMARY/
+*    1      51H MESSAGE START             NERR     LEVEL     COUNT)
 C           PRINT BODY OF TABLE
             DO 20 I=1,10
                IF (KOUNT(I).EQ.0) GO TO 30
 *              WRITE (IUNIT,15) MESTAB(I),NERTAB(I),LEVTAB(I),KOUNT(I)
-   15          FORMAT (1X,A20,3I10)
+*  15          FORMAT (1X,A20,3I10)
    20       CONTINUE
    30       CONTINUE
 C           PRINT NUMBER OF OTHER ERRORS
 *           IF (KOUNTX.NE.0) WRITE (IUNIT,40) KOUNTX
-   40       FORMAT (41H0OTHER ERRORS NOT INDIVIDUALLY TABULATED=,I10)
+*  40       FORMAT (41H0OTHER ERRORS NOT INDIVIDUALLY TABULATED=,I10)
 *           WRITE (IUNIT,50)
-   50       FORMAT (1X)
+*  50       FORMAT (1X)
    60    CONTINUE
          IF (NMESSG.LT.0) RETURN
 C        CLEAR THE ERROR TABLES

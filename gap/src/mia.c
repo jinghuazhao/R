@@ -244,14 +244,13 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
       if(infile) {
         fgets(line,MAX_LINE_LEN,infile);
         j=0;
-        if(i==1)
-          sscanf(line, "%*s %*s %[^\n]",rol);
-          strcpy(line,rol);
-          while(sscanf(line," %s %[^\n]",namei,rol)>1) {
+        if(i==1) sscanf(line, "%*s %*s %[^\n]",rol);
+        strcpy(line,rol);
+        while(sscanf(line," %s %[^\n]",namei,rol)>1) {
             strcpy(names[j],namei);
             strcpy(line,rol);
             ++j;
-          }
+        }
         while(fgets(line, MAX_LINE_LEN, infile)&&
               sscanf(line,"%s %d %[^\n]",id,&k,rol)) {
           so_list[l].mimp=i;

@@ -237,7 +237,6 @@ double MaxAmongOneToOthers()
   int     maxindex=0;
   int     z11WM=0,z12WM=0,z21WM=0,z22WM=0;
   int     c1WM=0,c2WM=0;
-  double  E1,E2;
   maxchi = -1.0;
   Rprintf("# ----------------------------\n");
   Rprintf("# considered column   statistic values\n");
@@ -249,9 +248,10 @@ double MaxAmongOneToOthers()
     z22 = N2 - Y2[i];
     c1 = Y[i];
     c2 = N - Y[i];
+/*
     E1 = (double) c1 * N1 / N;
     E2 = (double) c1 * N2 / N;
-
+*/
     chi = (double)N *
       (double)((z11 * z22) - (z12 * z21)) * ((z11 * z22) - (z12 * z21))
       / ((double)N1 * N2 * c1 * c2);
