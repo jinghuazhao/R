@@ -1,7 +1,14 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.1-27
+30-05-2019	Fix hap_c.c and also pgc.h, pgc_c.c through Ripley's options to R CMD check --configure-args="",
+		which are more restrictive than R-devel CMD check --as-cran and also CRAN check itself.
+
+Version 1.1-26
+30-05-2019	Change size of tempname in hap_c.c
+
 Version 1.1-25
-29-05-2019	Revise hap_c.c
+29-05-2019	Replace sprintf with snprintf in hap_c.c
 
 Version 1.1-24
 29-05-2019	Suggest reshape and revise C/Fortran codes (from CRAN check)

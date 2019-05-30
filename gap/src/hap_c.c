@@ -11,8 +11,7 @@ static int n_subjects, n_loci=0, n_phase, *alleles, all_snps=0;
 long n_warn = 0;
 double **af,**pq;
 static FILE *outfile;
-char of1name[MAX_FILENAME_LEN],of2name[MAX_FILENAME_LEN],
-     tempname[DOUBLE_MAX_FILENAME_LEN];
+char of1name[FILENAME_LEN],of2name[FILENAME_LEN],tempname[MAX_FILENAME_LEN];
 
 void hap_c(
 int *nobs,
@@ -377,7 +376,7 @@ int *converged,char **hapfile, char **assignfile
       sample_prior(n_hap, ho_list, df); /* P step */
     }
     if (of1name[0]) {
-      snprintf(tempname,sizeof(tempname),"%s%d", of1name, j);
+      snprintf(tempname,sizeof(of1name)+sizeof(j),"%.14s%03d", of1name, j);
       outfile = fopen(tempname, "w");
       hap_posterior(n_hap, so_list, min_posterior, &logl, 0);
       if(!ss) {
@@ -389,7 +388,7 @@ int *converged,char **hapfile, char **assignfile
       fclose(outfile);
     }
     if (of2name[0]) {
-      snprintf(tempname,sizeof(tempname),"%s%d", of2name, j);
+      snprintf(tempname,sizeof(of2name)+sizeof(j),"%.14s%03d", of2name, j);
       outfile = fopen(tempname, "w");
       hap_write(outfile, n_loci, names, coding, order, n_hap, so_list, 1, 0.0, num, ss);
       fclose(outfile);
