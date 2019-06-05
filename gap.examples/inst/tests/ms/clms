@@ -1,0 +1,6 @@
+# under Linux
+gcc -O2 -o ms  ms.c  rand1.c streec.c -lm
+
+# under Windows
+gcc -O2 -o ms  ms.c  rand2.c streec.c -lm
+

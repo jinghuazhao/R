@@ -1,0 +1,3 @@
+load linkloci.dat
+scan linkped.pre
+dump ibd

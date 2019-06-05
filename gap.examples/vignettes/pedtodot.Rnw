@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{url}
+\addtolength{\textwidth}{1in}
+\addtolength{\oddsidemargin}{-.5in}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+\SweaveOpts{keep.source=TRUE}
+%\VignetteIndexEntry{Example pedigrees for pedtodot}
+%\VignetteDepends{gap}
+
+\title{Example pedigrees for pedtodot} 
+
+\author{Jing Hua Zhao\\University of Cambridge}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+The \texttt{pedtodot} function can be used to create sophisticated pedigree
+diagrams with \texttt{graphviz}. Here I would like to give three examples to illustrate.
+
+\section{The data}
+The data were on mouse, baboon and vulture pedigrees originally from Richard Mott 
+(\url{http://www.well.ox.ac.uk/rmott/}), 
+Jinliang Wang (\url{http://www.zsl.org/science/ioz-staff-students/wang,1086,AR.html})
+and 
+Franziska Lorcher (\url{franziska.loercher@ieu.uzh.ch}) but for convenience they
+are collectively stored in a \texttt{R} data file which can loaded as follows.
+
+<<>>=
+load("pedigrees.rda")
+head(one,5)
+head(two,5)
+head(three,5)
+@ 
+
+\section{Generation of .dot files}
+This is simply done with the following commands,
+<<eval=FALSE>>=
+pedtodot(one, dir="forward")
+pedtodot(two, dir="forward")
+pedtodot(three,dir="forward")
+@ 
+which gives three \texttt{graphviz} command files named 1.dot, 2.dot and 3.dot.
+
+\section{Generation of diagrams in portable document format}
+From these .dot files we can use the utility \texttt{gvedit} from \texttt{graphviz} to generate pedigree 
+diagrams in portable document format (PDF). Recent versions of \texttt{graphviz} do not chop the graphics
+into multiple packages so the PDFs can be generated directly from the associate dot/fdp programs.
+
+These are either in \texttt{dot} format (which are rotated to fit the page and you can zoom in to see the
+labels)
+
+\includegraphics[scale=0.5,angle=90,height=\textheight]{pedigrees/dot1.pdf}
+
+\includegraphics[scale=0.5,angle=90,height=\textheight]{pedigrees/dot2.pdf}
+
+\includegraphics[scale=0.5,angle=90,height=\textheight]{pedigrees/dot3.pdf}
+
+or in \texttt{fdp} format (as they are)
+
+\includegraphics[scale=0.5,width=\linewidth]{pedigrees/fdp1.pdf}
+
+\includegraphics[scale=0.5,width=\linewidth]{pedigrees/fdp2.pdf}
+
+\includegraphics[scale=0.5,width=\linewidth]{pedigrees/fdp3.pdf}
+
+\section{Other examples}
+I have also created examples using data from Genetic Analysis Workshops, e.g. GAW14, but
+I hope these serve as motivating examples for your own data.
+
+\section{Reference}
+Zhao J.H. Drawing pedigree digrams with R and graphviz. R News 2006, 6(2):38-41, 
+\url{http://www.r-project.org/doc/Rnews/Rnews_2006-2.pdf}.
+
+\end{document}

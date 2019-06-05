@@ -1,0 +1,19 @@
+Package: gap.examples
+Version: 0.0.1
+Date: 2019-6-4
+Title: Examples for 'gap'
+Author: Jing Hua Zhao
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
+URL: https://github.com/jinghuazhao/R
+BugReports: https://github.com/jinghuazhao/R/issues
+Depends: R (>= 2.10)
+Suggests: gap
+Description: Examples associated with the 'gap' package. Currently,
+             these include pedigree drawing and heritability estimation.
+LazyData: Yes
+LazyLoad: Yes
+License: GPL (>= 2)
+URL: https://jinghuazhao.github.io/R/
+NeedsCompilation: no
+Packaged: 2019-05-27 19:04:29 UTC; jhz22
+Depends: R (>= 2.10)
