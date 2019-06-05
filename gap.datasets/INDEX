@@ -1,0 +1,21 @@
+* DATASETS *
+
+CDKN                    An example data for regional association plot
+OPG                     An example data for forest plot using METAL output
+PD                      A study of Parkinson's disease and APOE, LRRK2, SNCA makers
+aldh2                   ALDH2 markers and alcoholism
+apoeapoc                APOE/APOC1 markers and schizophrenia
+cf                      Cystic Fibrosis data
+cnv                     A toy dataset for cnvplot
+crohn                   Crohn's disease data
+fa                      Friedreich ataxia data
+fsnps                   A case-control data involving four SNPs with missing genotype
+hla                     HLA markers and schizophrenia
+inf1                    A data containing protein panel
+jma.cojo                A data containing independent GWAS hits as from GCTA
+l51                     An example pedigree data
+lukas                   An example pedigree
+mao                     A study of Parkinson's disease and MAO gene
+meyer                   A pedigree data on 282 animals deriving from two generations
+mfblong                 Companion data for ACEnucfam
+nep499                  A study of Alzheimer's disease with eight SNPs and APOE
