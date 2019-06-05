@@ -1,4 +1,4 @@
-# 30-6-2018 JHZ
+# 4-6-2019 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -10,6 +10,8 @@ git add gap
 git commit -m "genetic analysis package"
 git add gap.datasets
 git commit -m "Datasets for 'gap'"
+git add gap.examples
+git commit -m "Examples for 'gap'"
 git add lmm
 git commit -m "linear mixed model"
 git add pan
