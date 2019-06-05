@@ -41,6 +41,7 @@ pfc.sim                 Probability of familial clustering of disease
 pgc                     Preparing weight for GENECOUNTING
 print.hap.score         Print a hap.score object
 s2k                     Statistics for 2 by K table
+sentinels               Sentinel identification from GWAS summary statistics
 tscc                    Power calculation for two-stage case-control design
 
 * GRAPHICS *
@@ -60,25 +61,6 @@ pedtodot                Converting pedigree(s) to dot file(s)
 plot.hap.score          Plot haplotype frequencies versus haplotype score statistics
 qqfun                   Quantile-comparison plots
 qqunif                  Q-Q plot for uniformly distributed random variable
-
-* DATASETS *
-
-PD                      A study of Parkinson's disease and APOE, LRRK2, SNCA makers 
-aldh2                   ALDH2 markers and alcoholism
-apoeapoc                APOE/APOC1 markers and schizophrenia
-cf                      Cystic Fibrosis data
-cnv                     A toy dataset for cnvplot
-crohn                   Crohn's disease data
-fa                      Friedreich ataxia data
-fsnps                   A case-control data involving four SNPs with missing genotype
-hla                     HLA markers and schizophrenia
-inf1                    A data containing protein panel
-jma.cojo                A data containing independent GWAS hits as from GCTA
-l51                     An example pedigree data
-lukas                   An example pedigree
-mao                     A study of Parkinson's disease and MAO gene
-meyer                   A pedigree data on 282 animals deriving from two generations
-nep499                  A study of Alzheimer's disease with eight SNPs and APOE
 
 * UTILITITES *
 

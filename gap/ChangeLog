@@ -1,7 +1,15 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.2.1
+05-06-2019	Eventual foreign language check with export definitions followed by R-devel CMD INSTALL
+		This is noted at the GitHub Computational-Statistics repository (INSTALL.md)
+
+Version 1.2
+04-06-2019	Add sentinels function, further revision over C/Fortran code
+31-05-2019	Split examples into gap.examples
+
 Version 1.1-27
-30-05-2019	Fix hap_c.c and also pgc.h, pgc_c.c through Ripley's options to R CMD check --configure-args="",
+30-05-2019	Fix hap_c.c and also pgc.h, pgc_c.c through Ripley's options to R CMD check --install-args="",
 		which are more restrictive than R-devel CMD check --as-cran and also CRAN check itself.
 
 Version 1.1-26

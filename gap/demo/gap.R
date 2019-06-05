@@ -57,7 +57,7 @@ unlink("0.ped")
 #
 # To produce a pedigree diagram as a .dot file
 #
-filespec <- file.path(path.package("gap"),"tests/kinship/ped.1.3.pre")
+filespec <- file.path(path.package("gap.datasets"),"tests/kinship/ped.1.3.pre")
 pre <- read.table(filespec,as.is=TRUE)
 pre
 pedtodot(pre,dir="forward")
@@ -89,6 +89,7 @@ title("A simulated example according to EPIC-Norfolk QCed SNPs")
 # To produce a regional association plot
 #
 
+require(gap.datasets)
 asplot(CDKNlocus, CDKNmap, CDKNgenes)
 title("CDKN2A/CDKN2B Region")
 asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))

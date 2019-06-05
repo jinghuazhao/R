@@ -70,6 +70,7 @@ disequilibrium analysis. Bioinformatics 20: 1325-1326
 
 \examples{
 \dontrun{
+require(gap.datasets)
 # 4 SNP example, to generate hap.out and assign.out alone
 data(fsnps)
 hap(id=fsnps[,1],data=fsnps[,3:10],nloci=4)

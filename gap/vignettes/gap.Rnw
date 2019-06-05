@@ -50,7 +50,17 @@ The number of functions are quite limited and experimental, but I already feel
 the enormous advantage by shifting to R and would like sooner rather than later
 to share my work with others. I will not claim this work as exclusively done by
 me, but would like to invite others to join me and enlarge the collections and
-improve them.
+improve them.\\
+
+With my recent work on genomewide association studies (GWAS) especially protein
+GWAS, I have added many functions such as \texttt{METAL\_forestplot} which handles
+data from software METAL and \texttt{sentinels} which extracts sentinels from
+GWAS summary statistics in a way that is very appealing to us compared to some
+other established software. At the meantime, the size of the package grows
+the limit as imposed by CRAN, thus the old good feature of \texttt{S} as with
+\texttt{R} that value both code and data alike has to suffer slightly in that
+\texttt{gap.datasets} and \texttt{gap.examples} are spun off as two separate
+packages; they do deserve a glimpse however for some general ideas.
 
 \section{Implementation}
 
@@ -97,50 +107,8 @@ pfc.sim           &      Probability of familial clustering of disease\\
 pgc               &      Preparing weight for GENECOUNTING\\
 print.hap.score   &      Print a hap.score object\\
 s2k               &      Statistics for 2 by K table\\
+sentinels         &      Sentinel identification from GWAS summary statistics\\
 tscc              &      Power calculation for two-stage case-control design\\
-\end{tabular}
-
-\begin{tabular}{ll}
-\\
-* GRAPHICS *\\
-\\
-asplot            &      Regional association plot\\
-ESplot            &      Effect-size plot\\
-circos.cis.vs.trans.plot & circos plot of cis/trans classificaiton\\
-circos.cnvplot    &      circos plot of CNVs\\
-circos.mhtplot 	  &      circos Manhattan plot with gene annotation\\
-cnvplot           &      genomewide plot of CNVs\\
-METAL\_forestplot  &      forest plot as R/meta's forest for METAL outputs\\
-mhtplot           &      Manhattan plot\\
-mhtplot2          &      Manhattan plot with annotations\\
-mhtplot.trunc     &      truncated Manhattan plot\\
-miamiplot         &      Miami plot (experimental)\\
-pedtodot          &      Converting pedigree(s) to dot file(s)\\
-plot.hap.score    &      Plot haplotype frequencies versus haplotype score statistics\\
-qqfun             &      Quantile-comparison plots\\
-qqunif            &      Q-Q plot for uniformly distributed random variable\\
-\end{tabular}
-
-\begin{tabular}{ll}
-\\
-* DATASETS *\\
-\\
-PD                &      A study of Parkinson's disease and APOE, LRRK2, SNCA makers \\
-aldh2             &      ALDH2 markers and alcoholism\\
-apoeapoc          &      APOE/APOC1 markers and schizophrenia\\
-cf                &      Cystic Fibrosis data\\
-cnv               &      A toy dataset fpr cnvplot\\
-crohn             &      Crohn's disease data\\
-fa                &      Friedreich ataxia data\\
-fsnps             &      A case-control data involving four SNPs with missing genotype\\
-hla               &      HLA markers and schizophrenia\\
-inf1              &      A data containing protein panel\\
-jma.cojo          &      A data containing independent GWAS hits as from GCTA\\
-l51               &      An example pedigree data\\
-lukas             &      An example pedigree\\
-mao               &      A study of Parkinson's disease and MAO gene\\
-meyer             &      A pedigree data on 282 animals deriving from two generations\\
-nep499            &      A study of Alzheimer's disease with eight SNPs and APOE\\
 \end{tabular}
 
 \begin{tabular}{ll}
@@ -182,7 +150,7 @@ Assuming proper installation, you will be able to obtain the list by typing
 of datasets, respectvely. If this looks odd to you, you might try 
 \texttt{search()} within \texttt{R} to examine what is available in your
 environment before issuing the \texttt{lsf.str} command.\\
-<<echo=TRUE>>=
+<<echo=FALSE>>=
 library(gap)
 search()
 lsf.str("package:gap")
@@ -256,8 +224,8 @@ reported in~\cite{zhao07}.\\
 
 \subsection{Pedigree drawing}
 I have included the original file for the {\em R News} as well as put examples in separate 
-vignettes. They can be accessed via \texttt{vignette("rnews",package="gap")} and 
-\texttt{vignette("pedtodot", package="gap")}, respectively.\\
+vignettes. They can be accessed via \texttt{vignette("rnews",package="gap.examples")} and 
+\texttt{vignette("pedtodot", package="gap.examples")}, respectively.\\
 
 \subsection{Kinship calculation}
 Next, I will provide an example for kinship calculation using {\em kin.morgan}.
@@ -269,7 +237,7 @@ kinship matrix.
 \subsubsection*{Pedigree diagram}
 <<echo=TRUE>>=
 # pedigree diagram
-data(lukas,package="gap")
+data(lukas,package="gap.datasets")
 library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
 pdf("figures/lukas.pdf",height=14,width=15)
@@ -560,7 +528,7 @@ Note that all these can serve as templates to customize features of your own.\\
 \section{Polygenic modeling}
 
 In line with the recent surge of interest in the polygenic models, a separate
-vignette is available through \texttt{vignette("h2",package="gap")} demonstrating
+vignette is available through \texttt{vignette("h2",package="gap.examples")} demonstrating
 aspect of the models on heritability.
 
 \section{Known bugs}
@@ -585,4 +553,4 @@ skol06, wakefield07}.
 \bibliography{gap}
 \end{document}
 
-% Date last modified: 4-6-2018
+% Date last modified: 4-6-2019

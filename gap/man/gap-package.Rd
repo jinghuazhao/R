@@ -70,6 +70,7 @@ pfc.sim           \tab      Probability of familial clustering of disease\cr
 pgc               \tab      Preparing weight for GENECOUNTING\cr
 print.hap.score   \tab      Print a hap.score object\cr
 s2k               \tab      Statistics for 2 by K table\cr
+sentinels         \tab      Sentinel identification from GWAS summary statistics\cr
 tscc              \tab      Power calculation for two-stage case-control design\cr
 
 \cr
@@ -90,24 +91,6 @@ pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 qqfun             \tab      Quantile-comparison plots\cr
 qqunif            \tab      Q-Q plot for uniformly distributed random variable\cr
-
-\cr
-* DATASETS *\cr
-\cr
-PD                \tab      A study of Parkinson's disease and APOE, LRRK2, SNCA makers \cr
-aldh2             \tab      ALDH2 markers and alcoholism\cr
-apoeapoc          \tab      APOE/APOC1 markers and schizophrenia\cr
-cf                \tab      Cystic Fibrosis data\cr
-cnv               \tab      A toy dataset for cnvplot\cr
-crohn             \tab      Crohn's disease data\cr
-fa                \tab      Friedreich ataxia data\cr
-fsnps             \tab      A case-control data involving four SNPs with missing genotype\cr
-hla               \tab      HLA markers and schizophrenia\cr
-l51               \tab      An example pedigree data\cr
-lukas             \tab      An example pedigree\cr
-mao               \tab      A study of Parkinson's disease and MAO gene\cr
-meyer             \tab      A pedigree data on 282 animals deriving from two generations\cr
-nep499            \tab      A study of Alzheimer's disease with eight SNPs and APOE\cr
 
 \cr
 * UTITLITIES *\cr

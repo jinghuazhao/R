@@ -65,6 +65,7 @@ disequilibrium analysis. Bioinformatics, 20, 1325-1326
 
 \examples{
 \dontrun{
+require(gap.datasets)
 # HLA data
 data(hla)
 hla.gc <- genecounting(hla[,3:8])

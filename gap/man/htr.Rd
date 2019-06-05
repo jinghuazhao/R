@@ -46,6 +46,7 @@ htr.test2<-htr(y,x,n.sim=10)
 htr.test2
 
 # 13-11-2003
+require(gap.datasets)
 data(apoeapoc)
 apoeapoc.gc<-gc.em(apoeapoc[,5:8])
 y<-apoeapoc$y

@@ -28,6 +28,7 @@ Zhao JH, Luan JA, Congdon P (2018). Bayesian linear mixed models with polygenic 
 
 \examples{
 \dontrun{
+require(gap.datasets)
 set.seed(1234567)
 meyer <- within(meyer,{
     y[is.na(y)] <- rnorm(length(y[is.na(y)]),mean(y,na.rm=TRUE),sd(y,na.rm=TRUE))

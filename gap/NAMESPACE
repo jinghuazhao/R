@@ -24,7 +24,7 @@ export(AE3, ab, allele.recode, a2g, asplot,
    PARn, pbsize, pbsize2, pedtodot, pfc, pfc.sim, pgc, plem2m, plot.hap.score, print.hap.score,
    qqfun, qqunif,
    read.ms.output, revhap, revhap.i, ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA,
-   s2k, se.exp, se.invlogit, snp.ES, snp.HWE, snp.PAR, solve_skol,
+   s2k, se.exp, se.invlogit, sentinels, snp.ES, snp.HWE, snp.PAR, solve_skol,
    toETDT, tscc,
    ungcode,
    VR,
@@ -44,4 +44,3 @@ importFrom("stats", "as.formula", "coefficients", "cor", "dnorm",
            "quantile", "rbinom", "rexp", "rnorm", "runif", "var")
 importFrom("grDevices", "dev.off")
 importFrom("graphics", "title")
-

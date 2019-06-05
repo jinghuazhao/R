@@ -70,11 +70,11 @@ c     stop 9999
 
 c===========================================================
 
-      subroutine test(fm,m,first,last,stat,ns,naff,nsibs,trace)
+      subroutine test(fm,m,first,last,stat,ns,naff,nsibs)
 
 c    Compute test statistics for the set of family 
 c       frequencies in -fm-. If -trace- then print them out
-
+c       trace was the last argument of test()
       double precision fac(0:8000),fac0(8001)
       equivalence (fac(1),fac0(2))
       common/factab/fac0
@@ -82,7 +82,7 @@ c       frequencies in -fm-. If -trace- then print them out
      & ia,ib,ic,nssave
       double precision stat(20),zero,one,two,dexp,dlog,be,
      & binp,sbe,he,she,fmij,dble,eps,chi1,chi2,dsqrt
-      logical trace
+*     logical trace
       data zero/0.0d0/, one/1.0d0/, two/2.0d0/, eps/1.0d-9/
       data nssave/5/
 
@@ -145,14 +145,14 @@ c                                    exact log-likelihood
 *     if(trace)write(6,1003)(stat(j),j=1,ns)
       return
  
- 1000 format(/t20,'Test Statistics for Family Clusters',
-     &  //,t31,'Obs''d',t42,'Expectations:',4x,
-     &    'Chi Residuals',/ 
-     &  t14,'# sibs   # aff    freq     Bin.        Hyp.',
-     &  '    Bin.    Hyp.')
- 1001 format(7x,3i9,2f11.5,2f8.2)
- 1002 format(t14,'Totals:',t26,i9,2f11.5)
- 1003 format(t14,'Deviance:',     t35,2f11.5,/,
+c1000 format(/t20,'Test Statistics for Family Clusters',
+c    &  //,t31,'Obs''d',t42,'Expectations:',4x,
+c    &    'Chi Residuals',/ 
+c    &  t14,'# sibs   # aff    freq     Bin.        Hyp.',
+c    &  '    Bin.    Hyp.')
+c1001 format(7x,3i9,2f11.5,2f8.2)
+c1002 format(t14,'Totals:',t26,i9,2f11.5)
+c1003 format(t14,'Deviance:',     t35,2f11.5,/,
      &       t14,'Chi-squared:',  t35,2f11.5,/,
      &       t14,'Log-likelihood',t35,f11.5)
       end
@@ -223,10 +223,10 @@ c        write(6,1002)p,psum,ptail,dcase
       go to 50
 
 cc 1001 format(/' ENUM:ncase: ',i14,' alloc: ',15i3)
- 1002 format(/' Prob of this table:',e16.8,  
-     &   4x, ' Cumulative prob: ',e16.8, /
-     &       ' Tail probability:  ',e16.8,
-     &   4x, ' Case number:     ',e16.8)
+cc 1002 format(/' Prob of this table:',e16.8,  
+c    &   4x, ' Cumulative prob: ',e16.8, /
+c    &       ' Tail probability:  ',e16.8,
+c    &   4x, ' Case number:     ',e16.8)
       end
 
 c  ========================================================

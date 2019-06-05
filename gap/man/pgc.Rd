@@ -35,7 +35,7 @@ Zhao JH, Sham PC (2003). Generic number system and haplotype analysis. Comp Prog
 
 \examples{
 \dontrun{
-
+require(gap.datasets)
 data(hla)
 x <- hla[,3:8]
 
