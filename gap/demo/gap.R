@@ -34,7 +34,7 @@ summary(ex.gc)
 #
 # This is an example extracted from HTR program by Dr D Zaykin
 #
-filespec <- file.path(path.package("gap"),"tests/ehp/htr.R")
+filespec <- file.path(path.package("gap.examples"),"tests/ehp/htr.R")
 source(filespec)
 htr.test2<-htr(y,x)
 htr.test2
