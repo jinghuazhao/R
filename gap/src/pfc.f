@@ -56,7 +56,7 @@ c  Probability of the observed table
       call prob(fm,1,maxsize,const,p)
       pobs=p
 c  Generate test statistics, expected values under null hypothesis
-      call test(fm,m,1,maxsize,stat,ns,naff,nsibs,.true.)
+      call test(fm,m,1,maxsize,stat,ns,naff,nsibs)
 c  Enumerate all possible tables for exact tail area
       if(toenum.ne.1) return
       call enum(nsibs,naff,nfam,m,maxsize,const,p)
@@ -153,8 +153,8 @@ c    &  '    Bin.    Hyp.')
 c1001 format(7x,3i9,2f11.5,2f8.2)
 c1002 format(t14,'Totals:',t26,i9,2f11.5)
 c1003 format(t14,'Deviance:',     t35,2f11.5,/,
-     &       t14,'Chi-squared:',  t35,2f11.5,/,
-     &       t14,'Log-likelihood',t35,f11.5)
+c    &       t14,'Chi-squared:',  t35,2f11.5,/,
+c    &       t14,'Log-likelihood',t35,f11.5)
       end
 
 c===========================================================
