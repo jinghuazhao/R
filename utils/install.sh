@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-R-devel CMD install --configure-args=" \
+R-devel CMD install --configure-args="
  CC=\"/usr/bin/gcc\" \
  CXX=\"/usr/g++\" \
  FC=\"/usr/bin/gfortran\" \
