@@ -27,16 +27,17 @@ The function give screen output.
 \dontrun{
 # prot is the phenotype
 # tag features data specifics, e.g., HLA
-prot <- Sys.getenv("prot")
-tag <- Sys.getenv("tag")
-p <- read.delim(paste0("work/",prot,tag,".p"),as.is=TRUE)
-chrs <- with(p,unique(Chrom))
+require(gap.datasets)
+data(OPG)
+p <- reshape::rename(OPGtbl, c(Chromosome="Chrom"))
+prot <- "OPG"
+tag <- ""
+chrs <- with(p, unique(Chrom))
 for(chr in chrs)
 {
-  ps <- subset(p,Chrom==chr)
+  ps <- subset(p, Chrom==chr)
   row.names(ps) <- 1:nrow(ps)
-  pp(ps, 1)
-}
+  sentinels(ps, 1)
 }
 }
 \keyword{utilities}
