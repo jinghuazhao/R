@@ -8,8 +8,8 @@ signal identification as defined by flanking regions.
 }
 \arguments{
 \item{p}{an object containing GWAS summary statistics}
+\item{pid}{a phenotype (e.g., protein) name in pGWAS}
 \item{st}{row number as in p}
-\item{pid}{a phenotype ID or protein name in pGWAS}
 \item{debug}{a flag to show the actual data}
 \item{flanking}{the width of flanking region}
 }
