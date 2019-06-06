@@ -1,7 +1,7 @@
 \name{sentinels}
 \alias{sentinels}
 \title{Sentinel identification from GWAS summary statistics}
-\usage{sentinels(p,st,debug=FALSE,flanking=1e+6)}
+\usage{sentinels(p,st,debug=FALSE,flanking=1e+6,prot="OPG")}
 \description{
 This function accepts an object containing GWAS summary statistics for
 signal identification as defined by flanking regions.
@@ -11,6 +11,7 @@ signal identification as defined by flanking regions.
 \item{st}{row number as in p}
 \item{debug}{a flag to show the actual data}
 \item{flanking}{the width of flanking region}
+\item{prot}{the protein name as in our case of pGWAS}
 }
 \details{
 Typically, input to the function are variants reaching certain level
@@ -30,7 +31,6 @@ The function give screen output.
 require(gap.datasets)
 data(OPG)
 p <- reshape::rename(OPGtbl, c(Chromosome="Chrom"))
-prot <- "OPG"
 tag <- ""
 chrs <- with(p, unique(Chrom))
 for(chr in chrs)
@@ -39,6 +39,8 @@ for(chr in chrs)
   row.names(ps) <- 1:nrow(ps)
   sentinels(ps, 1)
 }
+subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
+subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
 }
 }
 \keyword{utilities}

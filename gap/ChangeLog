@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.2
-06-06-2019	sentinels.Rd now uses OPGtbl
+06-06-2019	Revise sentinels.*, gap-package.Rd and both use OPGtbl
 
 Version 1.2.1
 05-06-2019	Eventual foreign language check with export definitions followed by R-devel CMD INSTALL
