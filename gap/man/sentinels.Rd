@@ -40,4 +40,5 @@ for(chr in chrs)
   sentinels(ps, 1)
 }
 }
+}
 \keyword{utilities}
