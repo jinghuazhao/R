@@ -39,10 +39,10 @@ sentinels <- function(p,st,debug=FALSE,flanking=1e+6,prot="OPG")
       r2 <- row.names(t)[nrow(t)]
       if (log10p2 < log10p1) {
         cat(prot, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
-        if (r2 < nr) sentinels(p, r2)
+        if (r2 < nr) sentinels(p, as.numeric(r2)+1)
       } else {
         r2 <- as.numeric(row.names(y)[nrow(y)])
-        if(r2 < nr) sentinels(p, r2)
+        if(r2 < nr) sentinels(p, as.numeric(r2)+1)
       }
     }
   }
