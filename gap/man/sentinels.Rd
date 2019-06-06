@@ -9,9 +9,9 @@ signal identification as defined by flanking regions.
 \arguments{
 \item{p}{an object containing GWAS summary statistics}
 \item{st}{row number as in p}
+\item{pid}{a phenotype ID or protein name in pGWAS}
 \item{debug}{a flag to show the actual data}
 \item{flanking}{the width of flanking region}
-\item{prot}{the protein name as in our case of pGWAS}
 }
 \details{
 Typically, input to the function are variants reaching certain level
@@ -38,7 +38,7 @@ for(chr in chrs)
 {
   ps <- subset(p, Chrom==chr)
   row.names(ps) <- 1:nrow(ps)
-  sentinels(ps, 1)
+  sentinels(ps, 1, "OPG")
 }
 subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
 subset(OPGrsid,MarkerName=="chr17:26694861_A_G")

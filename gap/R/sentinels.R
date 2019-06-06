@@ -1,4 +1,4 @@
-sentinels <- function(p,st,debug=FALSE,flanking=1e+6,prot="OPG")
+sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
 {
   Effect <- End <- StdErr <- NA
   nr <- nrow(p)
@@ -31,7 +31,7 @@ sentinels <- function(p,st,debug=FALSE,flanking=1e+6,prot="OPG")
       # cat(prot, n, l, u, u-l, log10p1, r1, "II\n", sep=",")
       message(paste0("No variants +1 MB downstream so move to next block (",prot,")"))
       r2 <- as.numeric(r1) + 1
-      sentinels(p, r2)
+      sentinels(p, pid, r2)
     } else {
       log10p2 <- with(t, max(log10p))
       y <- subset(t, log10p==log10p2)
@@ -39,10 +39,10 @@ sentinels <- function(p,st,debug=FALSE,flanking=1e+6,prot="OPG")
       r2 <- row.names(t)[nrow(t)]
       if (log10p2 < log10p1) {
         cat(prot, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
-        if (r2 < nr) sentinels(p, as.numeric(r2)+1)
+        if (r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
       } else {
         r2 <- as.numeric(row.names(y)[nrow(y)])
-        if(r2 < nr) sentinels(p, as.numeric(r2)+1)
+        if(r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
       }
     }
   }
