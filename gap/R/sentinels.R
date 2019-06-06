@@ -1,7 +1,7 @@
 sentinels <- function(p,st,debug=FALSE,flanking=1e+6)
 {
   Effect <- End <- StdErr <- NA
-  prot <- unique(p["prot"])
+  prot <- as.character(unique(p["prot"]))
   nr <- nrow(p)
   z <- within(p[st:nr,],{
     d <- c(0,diff(End))
