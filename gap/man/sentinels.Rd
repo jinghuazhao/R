@@ -38,7 +38,7 @@ for(chr in chrs)
 {
   ps <- subset(p, Chrom==chr)
   row.names(ps) <- 1:nrow(ps)
-  sentinels(ps, 1, "OPG")
+  sentinels(ps, "OPG", 1)
 }
 subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
 subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
