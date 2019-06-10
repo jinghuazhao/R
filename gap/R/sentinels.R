@@ -23,7 +23,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
     u <- s[nrow(s), "End"]
     log10p1 <- with(s, max(log10p))
     x <- subset(s, log10p==log10p1)
-    r1 <- row.names(x)[1]
+    r1 <- tail(row.names(x),1)
     m <- x[1, "End"]
     n <- x[1, "MarkerName"]
     t <- subset(z, End > m & End < m + flanking)
@@ -41,8 +41,8 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
         cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
         if (r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
       } else {
-        r2 <- as.numeric(row.names(y)[nrow(y)])
-        if(r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
+        r2 <- row.names(y)[nrow(y)]
+        if(r2 < nr) sentinels(p, pid, as.numeric(r2))
       }
     }
   }
