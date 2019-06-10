@@ -26,7 +26,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
     r1 <- tail(row.names(x), 1)
     m <- tail(x[,"End"], 1)
     n <- tail(x[,"MarkerName"], 1)
-    t <- subset(z, End > m & End < m + flanking)
+    t <- subset(z, End > m & End <= m + flanking)
     if (nrow(t)==0) {
       cat(pid, n, l, u, u-l, log10p1, r1, "II\n", sep=",")
       message(paste0("No variants +1 MB downstream so move to next block (",pid,")"))
@@ -39,7 +39,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
       r2 <- tail(row.names(t), 1)
       if (log10p1 > log10p2) {
         cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
-        if (r2 <nr) sentinels(p, pid, as.numeric(r2)+1)
+        if (r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
       } else {
         cat("Switching sentinel ...\n")
         r2 <- tail(row.names(y),1)
