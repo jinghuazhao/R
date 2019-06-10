@@ -18,6 +18,10 @@ Typically, input to the function are variants reaching certain level
 of significance and the functtion identifies minimum p value at the
 flanking interval; in the case of another variant in the flanking
 window has smaller p value then it will be replaced.
+
+For now key variables in p are "MarkerName", "End", "Effect", "StdErr",
+"P.value" and the function is set up such that row names are numbered
+with 1:nrow(p); see example below.
 }
 
 \value{
@@ -33,7 +37,7 @@ p <- reshape::rename(OPGtbl, c(Chromosome="Chrom"))
 chrs <- with(p, unique(Chrom))
 for(chr in chrs)
 {
-  ps <- subset(p, Chrom==chr)
+  ps <- subset(p[[c("Chrom","End","MarkerName","Effect","StdErr","P.value")]], Chrom==chr)
   row.names(ps) <- 1:nrow(ps)
   sentinels(ps, "OPG", 1)
 }
