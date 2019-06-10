@@ -35,7 +35,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
     } else {
       log10p2 <- with(t, max(log10p))
       y <- subset(t, log10p==log10p2)
-      u <- p[nrow(t), "End"]
+      u <- t[nrow(t), "End"]
       r2 <- row.names(t)[nrow(t)]
       if (log10p2 < log10p1) {
         cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
