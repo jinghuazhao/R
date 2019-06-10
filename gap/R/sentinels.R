@@ -41,6 +41,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
         cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
         if (r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
       } else {
+        cat("Switching sentinels ...")
         r2 <- row.names(y)[nrow(y)]
         if(r2 < nr) sentinels(p, pid, as.numeric(r2))
       }
