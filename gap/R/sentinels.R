@@ -8,14 +8,14 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
     log10p <- -log10p(Effect/StdErr)
   })
   if (debug) print(z[c("Chrom","End","d","s","MarkerName","P.value")])
-  if (z[nrow(z),"s"] <= flanking) {
-    l <- z[1, "End"]
-    u <- z[nrow(z), "End"]
+  if (tail(z[,"s"], 1) <= flanking) {
+    l <- head(z[,"End"], 1)
+    u <- tail(z[,"End"], 1)
     log10p1 <- with(z, max(log10p))
     x <- subset(z, log10p==log10p1)
     r1 <- row.names(x)[1]
-    m <- x[1,"End"]
-    n <- x[1, "MarkerName"]
+    m <- tail(x[,"End"], 1)
+    n <- tail(x[,"MarkerName"], 1)
     cat(pid, n, l, u, u-l, log10p1, r1, "I\n", sep=",")
   } else {
     s <- subset(z, s <= flanking)
