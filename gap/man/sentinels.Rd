@@ -27,12 +27,9 @@ The function give screen output.
 \examples{
 \dontrun{
 ## OPG as a positive control in our pGWAS
-# prot is the phenotype
-# tag features data specifics, e.g., HLA
 require(gap.datasets)
 data(OPG)
 p <- reshape::rename(OPGtbl, c(Chromosome="Chrom"))
-tag <- ""
 chrs <- with(p, unique(Chrom))
 for(chr in chrs)
 {
