@@ -17,12 +17,12 @@ signal identification as defined by flanking regions.
 Typically, input to the function are variants reaching certain level
 of significance and the functtion identifies minimum p value at the
 flanking interval; in the case of another variant in the flanking
-window has smaller p value then it will be replaced.
+window has smaller p value it will be used instead.
 
 For now key variables in p are "MarkerName", "End", "Effect", "StdErr",
 "P.value", where "End" is as in a bed file indicating marker position,
  and the function is set up such that row names are numbered as
-with 1:nrow(p); see example below.
+1:nrow(p); see example below.
 }
 
 \value{
