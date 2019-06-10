@@ -28,7 +28,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
     n <- x[1, "MarkerName"]
     t <- subset(z, End > m & End < m + flanking)
     if (nrow(t)==0) {
-      # cat(pid, n, l, u, u-l, log10p1, r1, "II\n", sep=",")
+      cat(pid, n, l, u, u-l, log10p1, r1, "II\n", sep=",")
       message(paste0("No variants +1 MB downstream so move to next block (",pid,")"))
       r2 <- as.numeric(r1) + 1
       sentinels(p, pid, r2)
