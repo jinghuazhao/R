@@ -36,14 +36,13 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6)
       log10p2 <- with(t, max(log10p))
       y <- subset(t, log10p==log10p2)
       u <- tail(t[,"End"], 1)
-      r2 <- tail(row.names(t), 1)
+      r2 <- as.numeric(tail(row.names(t), 1))
       if (log10p1 > log10p2) {
         cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
-        if (r2 < nr) sentinels(p, pid, as.numeric(r2)+1)
+        if (r2 < nr) sentinels(p, pid, r2+1)
       } else {
-        cat("Switching sentinel ...\n")
-        r2 <- tail(row.names(y),1)
-        if (r2 < nr) sentinels(p, pid, as.numeric(r2))
+        r2 <- as.numeric(tail(row.names(y),1))
+        if (r2 < nr) sentinels(p, pid, r2)
       }
     }
   }
