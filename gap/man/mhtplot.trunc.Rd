@@ -49,7 +49,8 @@ The plot is shown on or saved to the appropriate device.
 #
 require(gap.datasets)
 mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", p = "p", snp = "rsn", y.brk1=10, y.brk2=12)
-# https://portals.broadinstitute.org/collaboration/giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
+# https://portals.broadinstitute.org/collaboration/
+# giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
 gz <- gzfile("Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
 BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
 library(Rmpfr)

@@ -24,7 +24,7 @@ Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
           \tab calibrate, circlize, coda, coxme, dplyr, foreign, forestplot, \cr
           \tab gap.datasets, grid, haplo.stats, kinship2, lattice, \cr
           \tab magic, meta, mets, nlme, pedigree, pedigreemm, plotrix, \cr
-          \tab qqman, regress, reshape, rmeta, rms, survival
+          \tab qqman, regress, reshape, rmeta, rms, survival \cr
 License: \tab GPL (>=2)\cr
 URL: \tab https://jinghuazhao.github.io/R\cr
 }
