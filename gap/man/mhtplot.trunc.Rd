@@ -9,7 +9,6 @@
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
 random variable that is uniformly distributed.
-{}
 \arguments{
 \item{x}{A data.frame}
 \item{chr}{Chromosome}
