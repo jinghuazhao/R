@@ -23,7 +23,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
   d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(P)))
   d <- d[order(d$CHR, d$BP), ]
-  if (logp) d$logp <- -log10p(d$P) else d$logp <- d$P
+  if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
   d$pos <- NA
   d$index <- NA
   ind <- 0
@@ -73,7 +73,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   mtext(text = expression(-log[10](italic(p))), side=2, line=mtext.line, cex=cex.mtext)
   myoffset <- y.brk2- y.brk1
   top.notch <- max.y + myoffset +y.ax.space 
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$logp, na.rm = TRUE))+y.ax.space)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$logp, na.rm = TRUE)) + y.ax.space)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   axis(side = 2, at = y.lab.tick.pos, labels=c(pre.brk.labs,
        seq(from=y.brk2, by=y.ax.space, length.out= length(y.lab.tick.pos) - length(pre.brk.labs))),
@@ -99,8 +99,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   if (suggestiveline) abline(h = suggestiveline, col = "blue")
   if (genomewideline) abline(h = genomewideline, col = "red")
   if (!is.null(highlight)) {
-    if (any(!(highlight %in% d$SNP))) 
-      warning("You're trying to highlight SNPs that don't exist in your results.")
+    if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(d$SNP %in% highlight), ]
     with(d.highlight, points(pos, logp, col = "red", pch = 20, ...))
   }
@@ -108,7 +107,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
     topHits = subset(d, P <= annotatePval)
     par(xpd = TRUE)
     if (annotateTop == FALSE) {
-      with(subset(d, P <= annotatePval), calibrate::textxy(pos, -log10p(P), 
+      with(subset(d, P <= annotatePval), calibrate::textxy(pos, -log10(P), 
                                          offset = 0.625, labs = topHits$SNP, cex = 0.45), ...)
     }
     else {
@@ -118,8 +117,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
         chrSNPs <- topHits[topHits$CHR == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      calibrate::textxy(topSNPs$pos, -log10p(topSNPs$P), offset = 0.625, 
-             labs = topSNPs$SNP, cex = cex.text, ...)
+      calibrate::textxy(topSNPs$pos, -log10(topSNPs$P), offset = 0.625, labs = topSNPs$SNP, cex = cex.text, ...)
     }
   }
   par(xpd = FALSE)
