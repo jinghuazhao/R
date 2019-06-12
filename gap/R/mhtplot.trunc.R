@@ -1,8 +1,8 @@
-mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10", 
-                   "gray60"), chrlabs = NULL, suggestiveline = -log10(1e-05), 
-                    genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE, 
-                    annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
-                    mtext.line=2, cex.y= 1, y.ax.space=5, y.brk1, y.brk2, ...) 
+mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10", "gray60"),
+                           chrlabs = NULL, suggestiveline = -log10(1e-05), 
+                           genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE, 
+                           annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
+                           mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...) 
 {
   for (q in c("calibrate","plotrix","qqman")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
@@ -73,13 +73,12 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   mtext(text = expression(-log[10](italic(p))), side=2, line=mtext.line, cex=cex.mtext)
   myoffset <- y.brk2- y.brk1
   top.notch <- max.y + myoffset +y.ax.space 
-  y.lab.tick.pos <- seq(from=0, by=y.ax.space, to= ceiling(max(d$logp, na.rm=T))+y.ax.space)
-  # y labels before the break
-  pre.brk.labs <- seq(from=0, by=y.ax.space, to=y.brk1-y.ax.space)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$logp, na.rm = TRUE))+y.ax.space)
+  pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   axis(side = 2, at = y.lab.tick.pos, labels=c(pre.brk.labs,
        seq(from=y.brk2, by=y.ax.space, length.out= length(y.lab.tick.pos) - length(pre.brk.labs))),
        cex.axis= cex.y, las=1) 
-  plotrix::axis.break(axis=2, breakpos = y.brk1, style="slash")
+  plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
     if (is.character(chrlabs)) {
       if (length(chrlabs) == length(labs)) labs <- chrlabs
