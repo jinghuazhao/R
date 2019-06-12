@@ -1,4 +1,4 @@
-mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", Z = NULL,
+mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = NULL,
                            col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
                            genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE, 
@@ -20,14 +20,17 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", Z = 
   if (!is.numeric(x[[chr]])) stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
   if (!is.numeric(x[[bp]]))  stop(paste(bp, "column should be numeric."))
   if (!is.numeric(x[[p]]))   stop(paste(p, "column should be numeric."))
-  d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = x[[p]])
+  if (is.null(z)) {
+     d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = x[[p]])
+     d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(P)))
+     if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
+  } else {
+     d <- data.frame(CHR = x[[chr]], BP = x[[bp]], Z = x[[z]])
+     d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(Z)))
+     if (logp) d$logp <- -log10p(Z) else else d$logp <- d$Z
+  }
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
-  d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(P)))
   d <- d[order(d$CHR, d$BP), ]
-  if (logp) {
-    if (!is.null(Z)) d$logp <- -log10p(Z) else d$logp <- -log10(d$P)
-  } 
-  else d$logp <- d$P
   d$pos <- NA
   d$index <- NA
   ind <- 0
@@ -57,16 +60,16 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", Z = 
   }
   xmax <- ceiling(max(d$pos) * 1.03)
   xmin <- floor(max(d$pos) * -0.03)
-  z <- d$logp
+  zz <- d$logp
   max.y <- ceiling(max(d$logp))
   if (y.brk2 > max.y ){
     message(paste("max.y is", max.y))
     stop("User error: Upper breakpoint must be lower than maximum -log10 P-value")
   }
-  z[which(z > y.brk1 & z < y.brk2)] <- NA
+  z[which(zz > y.brk1 & zz < y.brk2)] <- NA
   offset = y.brk2 - y.brk1
-  z[which(z > y.brk2)] <- z[which(z > y.brk2)] - offset
-  d$logp <- z
+  z[which(zz > y.brk2)] <- zz[which(z > y.brk2)] - offset
+  d$logp <- zz
   def_args <- list(xaxt = "n", yaxt="n", bty = "n", xaxs = "i", # yaxs = "i", 
                    las = 1, pch = 20, xlim = c(xmin, xmax),
                    ylim = c(0, ceiling(max(d$logp, na.rm=T))),
@@ -74,7 +77,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", Z = 
   dotargs <- list(...)
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext)
-  mtext(text = expression(-log[10](italic(p))), side=2, line=mtext.line, cex=cex.mtext)
+  mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext)
   myoffset <- y.brk2- y.brk1
   top.notch <- max.y + myoffset +y.ax.space 
   y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$logp, na.rm = TRUE)) + y.ax.space)
