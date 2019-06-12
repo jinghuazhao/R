@@ -1,8 +1,8 @@
 sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName")
 {
-  Effect <- p[[b]]
-  End <- p[[pos]]
-  StdErr <- p[[se]]
+  Effect <- NA
+  End <- NA
+  StdErr <- NA
   nr <- nrow(p)
   z <- within(p[st:nr,],{
     d <- c(0,diff(End))
