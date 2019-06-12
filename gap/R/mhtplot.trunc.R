@@ -1,4 +1,5 @@
-mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col = c("gray10", "gray60"),
+mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", Z = NULL,
+                           col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
                            genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE, 
                            annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
@@ -23,7 +24,10 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
   d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(P)))
   d <- d[order(d$CHR, d$BP), ]
-  if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
+  if (logp) {
+    if (!is.null(Z)) d$logp <- -log10p(Z) else d$logp <- -log10(d$P)
+  } 
+  else d$logp <- d$P
   d$pos <- NA
   d$index <- NA
   ind <- 0
@@ -107,7 +111,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
     topHits = subset(d, P <= annotatePval)
     par(xpd = TRUE)
     if (annotateTop == FALSE) {
-      with(subset(d, P <= annotatePval), calibrate::textxy(pos, -log10(P), 
+      with(subset(d, P <= annotatePval), calibrate::textxy(pos, ifelse(is.null(Z), -log10(P), -log10p(Z)),
                                          offset = 0.625, labs = topHits$SNP, cex = 0.45), ...)
     }
     else {
@@ -117,7 +121,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", col 
         chrSNPs <- topHits[topHits$CHR == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      calibrate::textxy(topSNPs$pos, -log10(topSNPs$P), offset = 0.625, labs = topSNPs$SNP, cex = cex.text, ...)
+      calibrate::textxy(topSNPs$pos, ifelse(is.null(Z), -log10(topSNPs$P),-log10p(topSNPs$Z)),
+                        offset = 0.625, labs = topSNPs$SNP, cex = cex.text, ...)
     }
   }
   par(xpd = FALSE)
