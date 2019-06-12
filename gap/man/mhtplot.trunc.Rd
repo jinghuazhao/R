@@ -57,7 +57,7 @@ par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
              suggestiveline=FALSE, genomewideline=-log10(5e-8), logp = TRUE,
              cex.mtext=2, cex.text=0.7, 
-             mtext.line=4, y.brk1=120, y.brk2=270, cex.axis=2, cex.y=2, cex=2,
+             mtext.line=4, y.brk1=120, y.brk2=270, cex.axis=2, cex.y=2, cex=0.5,
              y.ax.space=20,
              col = c("blue4", "skyblue")
 )
