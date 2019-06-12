@@ -66,7 +66,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
     message(paste("max.y is", max.y))
     stop("User error: Upper breakpoint must be lower than maximum -log10 P-value")
   }
-  z[which(zz > y.brk1 & zz < y.brk2)] <- NA
+  zz[which(zz > y.brk1 & zz < y.brk2)] <- NA
   offset = y.brk2 - y.brk1
   z[which(zz > y.brk2)] <- zz[which(zz > y.brk2)] - offset
   d$logp <- zz
