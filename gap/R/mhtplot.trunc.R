@@ -68,7 +68,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   }
   z[which(zz > y.brk1 & zz < y.brk2)] <- NA
   offset = y.brk2 - y.brk1
-  z[which(zz > y.brk2)] <- zz[which(z > y.brk2)] - offset
+  z[which(zz > y.brk2)] <- zz[which(zz > y.brk2)] - offset
   d$logp <- zz
   def_args <- list(xaxt = "n", yaxt="n", bty = "n", xaxs = "i", # yaxs = "i", 
                    las = 1, pch = 20, xlim = c(xmin, xmax),
