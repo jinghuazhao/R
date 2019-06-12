@@ -1,10 +1,12 @@
 \name{sentinels}
 \alias{sentinels}
 \title{Sentinel identification from GWAS summary statistics}
-\usage{sentinels(p,st,debug=FALSE,flanking=1e+6,prot="OPG")}
+\usage{sentinels(p,pid,st,debug=FALSE,flanking=1e+6,
+                 chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName")}
 \description{
 This function accepts an object containing GWAS summary statistics for
-signal identification as defined by flanking regions.
+signal identification as defined by flanking regions. As the associate P value
+could be extremely small, the effect size and its standard error are used.
 }
 \arguments{
 \item{p}{an object containing GWAS summary statistics}
@@ -12,6 +14,11 @@ signal identification as defined by flanking regions.
 \item{st}{row number as in p}
 \item{debug}{a flag to show the actual data}
 \item{flanking}{the width of flanking region}
+\item{chr}{Chromosome name}
+\item{pos}{Position}
+\item{b}{Effect size}
+\item{se}{Standard error}
+\item{snp}{Marker name}
 }
 \details{
 Typically, input to the function are variants reaching certain level
@@ -34,11 +41,11 @@ The function give screen output.
 ## OPG as a positive control in our pGWAS
 require(gap.datasets)
 data(OPG)
-p <- reshape::rename(OPGtbl, c(Chromosome="Chrom"))
+p <- reshape::rename(OPGtbl, c(Chromosome="Chrom", Position="End"))
 chrs <- with(p, unique(Chrom))
 for(chr in chrs)
 {
-  ps <- subset(p[[c("Chrom","End","MarkerName","Effect","StdErr","P.value")]], Chrom==chr)
+  ps <- subset(p[c("Chrom","End","MarkerName","Effect","StdErr")], Chrom==chr)
   row.names(ps) <- 1:nrow(ps)
   sentinels(ps, "OPG", 1)
 }
