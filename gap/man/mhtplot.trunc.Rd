@@ -9,7 +9,7 @@
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
 random variable that is uniformly distributed.
-}
+{}
 \arguments{
 \item{x}{A data.frame}
 \item{chr}{Chromosome}
@@ -24,10 +24,10 @@ random variable that is uniformly distributed.
 \item{logp}{log(P)}
 \item{annotatePval}{Annotate P}
 \item{annotateTop}{Annotate top}
-\item{cex.mtext}{cex.mtext}
-\item{cex.text}{cex.text}
-\item{mtext.line}{mtext.line}
-\item{cex.y}{cex.y}
+\item{cex.mtext}{axis label size}
+\item{cex.text}{SNP label font}
+\item{mtext.line}{position of the y lab}
+\item{cex.y}{y axis numbers}
 \item{y.ax.space}{y.ax.space}
 \item{y.brk1}{y.brk1}
 \item{y.brk2}{y.brk2}
