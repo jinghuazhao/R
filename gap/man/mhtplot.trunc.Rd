@@ -59,8 +59,8 @@ png("BMI.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(BMI, chr="CHR", bp="POS", p="P", snp="SNP", z = "Z",
               suggestiveline=FALSE, genomewideline=-log10(1e-8), logp = TRUE,
-              cex.mtext=2, cex.text=0.7,
-              mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=2, cex.y=2, cex=0.5,
+              cex.mtext=0.6, cex.text=0.7,
+              mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=2, cex.y=0.6, cex=0.5,
               y.ax.space=20,
               col = c("blue4", "skyblue")
 )
