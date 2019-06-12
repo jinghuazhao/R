@@ -49,17 +49,20 @@ The plot is shown on or saved to the appropriate device.
 #
 require(gap.datasets)
 mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", p = "p", snp = "rsn", y.brk1=10, y.brk2=12)
-#
-z <- gzfile("METAL/IL.12B-1.tbl.gz")
-x <- read.delim(z, as.is=TRUE)[c("Chromosome","Position","P.value","MarkerName")]
-png("IL.12B.png", res=300, units="in", width=9, height=6)
+# https://portals.broadinstitute.org/collaboration/giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
+gz <- gzfile("Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
+BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
+library(Rmpfr)
+within(subset(BMI, P==0), {P <- format(2*pnorm(mpfr(abs(BETA/SE),100),lower.tail=FALSE))})
+library(gap)
+png("BMI.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-mhtplot.trunc(x, chr="Chromosome", bp="Position", p="P.value", snp="MarkerName",
-             suggestiveline=FALSE, genomewideline=-log10(5e-8), logp = TRUE,
-             cex.mtext=2, cex.text=0.7, 
-             mtext.line=4, y.brk1=120, y.brk2=270, cex.axis=2, cex.y=2, cex=0.5,
-             y.ax.space=20,
-             col = c("blue4", "skyblue")
+mhtplot.trunc(BMI, chr="CHR", bp="POS", p="P", snp="SNP", z = "Z",
+              suggestiveline=FALSE, genomewideline=-log10(1e-8), logp = TRUE,
+              cex.mtext=2, cex.text=0.7,
+              mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=2, cex.y=2, cex=0.5,
+              y.ax.space=20,
+              col = c("blue4", "skyblue")
 )
 dev.off()
 }
