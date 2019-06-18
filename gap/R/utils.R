@@ -523,7 +523,7 @@ invnormal <- function(x)
 
 # log(p) for a normal deviate z
 
-logp <- log(2) + pnorm(-abs(z), lower.tail = TRUE, log.p = TRUE)
+logp <- function(z) log(2) + pnorm(-abs(z), lower.tail = TRUE, log.p = TRUE)
 
 # log10(p) for a normal deviate z
 
