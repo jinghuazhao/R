@@ -521,7 +521,11 @@ ReadGRMPCA <- function(prefix)
 invnormal <- function(x)
   qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x))) 
 
-# log10(p) for a standard normal deviate z based on log()
+# log(p) for a normal deviate z
+
+logp <- log(2) + pnorm(-abs(z), lower.tail = TRUE, log.p = TRUE)
+
+# log10(p) for a normal deviate z
 
 log10p <- function(z)
   log(2, base=10)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)/log(10)

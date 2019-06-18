@@ -72,6 +72,7 @@
 \alias{invlogit}
 \alias{invnormal}
 \alias{log10p}
+\alias{logp}
 \alias{is.miss}
 \alias{KCC}
 \alias{k}
@@ -176,7 +177,9 @@ and pbsize2.
 
 k obtains 1st and 2nd order culumants for correlation coefficient.
 
-log10p is log10(p) for a standard normal deviate
+log10p is log10(p) for a normal deviate
+
+logp is log(p) for a normal deviate
 
 m2plem is an experimental function for PLEM format.
 

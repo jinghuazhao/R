@@ -18,7 +18,7 @@ analysis with or without environmental covariates.
 \details{
 \tabular{ll}{
 Package: \tab gap\cr
-Version: \tab 1.2.1\cr
+Version: \tab 1.2.2\cr
 Depends: \tab R(>= 2.1.0)\cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
           \tab calibrate, circlize, coda, coxme, dplyr, foreign, forestplot, \cr
@@ -59,6 +59,7 @@ kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr
 log10p            \tab      log10(p) for a standard normal deviate\cr
+logp              \tab      log(p) for a normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr
 MCMCgrm           \tab	    Mixed modeling with genetic relationship matrices\cr
 mia               \tab      multiple imputation analysis for hap\cr

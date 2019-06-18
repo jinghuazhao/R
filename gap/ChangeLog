@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.2
+18-06-2019	Add logp
 12-06-2019	Add z = option to mhtplot.trunc to handle P value = 0
 		Change sentinels.R for names other than "Chrom", "End", "MarkerName", "Effect", "StdErr"
 06-06-2019	Revise sentinels.R, gap-package.Rd and both use OPGtbl
