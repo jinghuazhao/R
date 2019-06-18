@@ -51,6 +51,29 @@ for(chr in chrs)
 }
 subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
 subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
+## to obtain variance explained
+tbl <- within(OPGtbl, chi2n <- (Effect/StdErr)^2/N)
+s <- with(tbl, aggregate(chi2n,list(prot),sum))
+names(s) <- c("prot", "h2")
+sd <- with(tbl, aggregate(chi2n,list(prot),sd))
+names(sd) <- c("p1","sd")
+m <- with(tbl, aggregate(chi2n,list(prot),length))
+names(m) <- c("p2","m")
+h2 <- cbind(s,sd,m)
+sink("h2.dat")
+print(h2[c("prot","h2","sd","m")], row.names=FALSE)
+sink()
+png("h2.png", res=300, units="in", width=12, height=8)
+np <- nrow(h2)
+ord <- with(h2, order(h2))
+with(h2[ord,], {
+    plot(h2, cex=0.4, xaxt="n", xlab="protein", ylab=expression(h^2))
+    xtick <- seq(0, np, by=1)
+    axis(side=1, at=xtick, labels = FALSE)
+    text(x=xtick, par("usr")[3],labels = prot, srt = 75, pos = 1, xpd = TRUE, cex=0.5)
+})
+dev.off()
+write.csv(tbl,file="INF1.csv",quote=FALSE,row.names=FALSE)
 }
 }
 \keyword{utilities}
