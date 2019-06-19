@@ -56,7 +56,7 @@ With my recent work on genomewide association studies (GWAS) especially protein
 GWAS, I have added many functions such as \texttt{METAL\_forestplot} which handles
 data from software METAL and \texttt{sentinels} which extracts sentinels from
 GWAS summary statistics in a way that is very appealing to us compared to some
-other established software. At the meantime, the size of the package grows
+other established software. At the meantime, the size of the package surpasses
 the limit as imposed by CRAN, thus the old good feature of \texttt{S} as with
 \texttt{R} that value both code and data alike has to suffer slightly in that
 \texttt{gap.datasets} and \texttt{gap.examples} are spun off as two separate
