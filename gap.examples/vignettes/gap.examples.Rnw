@@ -34,20 +34,21 @@ Department of Public Health and Primary Care, University of Cambridge, Cambridge
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This package is a spin-off of the package \texttt{gap}.
+This package is a spin-off of the package \texttt{gap}, whereas this vignette is a skeleton
+to be expanded in the near future.
 
-The following list shows the examplesa currently available.
-
-Assuming proper installation, you will be able to obtain the list by typing
-\texttt{library(help=gap.examples)} or view the list within a web browser via 
-\texttt{help.start()}. Assuming that you have already loaded the package via
-\texttt{library(gap.examples)}, you can use \texttt{lsf.str("package:gap.examples")} and 
+After installation, you will be able to issue
+\texttt{library(help=gap.examples)} or to view the list within a web browser via 
+\texttt{help.start()}. To load the package, issue
+\texttt{library(gap.examples)}, and you can use \texttt{lsf.str("package:gap.examples")} and 
 \texttt{data(package="gap.examples")} to generate a list of datasets.
 
-A PDF version of this file can be viewed with command \texttt{vignette("gap.examples",package="gap.examples")}.\\
+A PDF version of this file can be viewed with command \\
+
+\texttt{vignette("gap.examples",package="gap.examples")}.\\
 
 Several other vignettes have also been moved here.
 
 \end{document}
 
-% Date last modified: 4-6-2019
+% Date last modified: 20-6-2019
