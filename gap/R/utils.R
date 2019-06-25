@@ -861,10 +861,9 @@ circos.mhtplot <- function(data, glist)
 
 # credible set
 
-z1 <- function(z) max(z, na.rm = TRUE)
-
 cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
 {
+  z1 <- function(z) max(z, na.rm = TRUE)
   requireNamespace("matrixStats")
   u <- tbl
   tbl <- within(u, {
@@ -877,5 +876,6 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
   ord <- with(tbl, order(-PP))
   tbl <- tbl[ord,]
   tbl <- within(tbl, {PPL=cumsum(PP)})
+  cat("Scaling factor = exp(",z1,")\n")
   subset(tbl,PPL < cutoff)
 }
