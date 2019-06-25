@@ -876,6 +876,6 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
   ord <- with(tbl, order(-PP))
   tbl <- tbl[ord,]
   tbl <- within(tbl, {PPL=cumsum(PP)})
-  cat("Scaling factor = exp(",z1,")\n")
+  cat("Scaling factor = exp(",m,")\n")
   subset(tbl,PPL < cutoff)
 }
