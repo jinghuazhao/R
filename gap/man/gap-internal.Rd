@@ -249,6 +249,11 @@ require(gap.datasets)
 g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
        "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 circos.mhtplot(mhtdata,g)
+#
+# zcat METAL/4E.BP1-1.tbl.gz | awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+
+tbl <- read.delim("4E.BP1.z")
+l <- cs(tbl)
 }
 }
 \details{These functions are not so frequently called by users}
