@@ -871,7 +871,7 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
     else z <- qnorm(-log10p, log=TRUE)
     m <- z1(z)
     s <- (z+m)*(z-m)/2
-    d <- matrixStats::logSumExp((s)
+    d <- matrixStats::logSumExp(s)
     ppa <- exp(s) / exp(d)
     cat("Scaling factor = exp(",m, "^2/2)\n",sep="")
   })
