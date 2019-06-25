@@ -873,7 +873,7 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
     s <- (z+m)*(z-m)/2
     d <- matrixStats::logSumExp(s)
     ppa <- exp(s) / exp(d)
-    cat("Scaling factor = exp(",m, "^2/2)\n",sep="")
+    cat("d = ", m^2/2 + d, " without scaling factor = exp(",m, "^2/2)\n",sep="")
   })
   ord <- with(tbl, order(-ppa))
   tbl <- within(tbl[ord,], {cppa <- cumsum(ppa)})
