@@ -872,7 +872,7 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
     m <- z1(z)
     d <- matrixStats::logSumExp((z^2-m^2)/2)
     PP <- exp((z^2-m^2)/2) / exp(d)
-    cat("Scaling factor = exp(",m,")\n")
+    cat("Scaling factor = exp(",m, "^2/2),"\n",sep="")
   })
   ord <- with(tbl, order(-PP))
   tbl <- tbl[ord,]
