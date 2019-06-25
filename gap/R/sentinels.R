@@ -2,9 +2,9 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b
 {
   nr <- nrow(p)
   z <- within(p[st:nr,],{
-    d <- c(0,diff(z[pos]))
+    d <- c(0,diff(z[[pos]]))
     s <- cumsum(d)
-    log10p <- -log10p(z[b]/z[se])
+    log10p <- -log10p(z[[b]]/z[[se]])
   })
   if (debug) print(z[c(chr,pos,"d","s",snp,"log10p")])
   if (tail(z[,"s"], 1) <= flanking) {
