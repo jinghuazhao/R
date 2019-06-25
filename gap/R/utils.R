@@ -870,12 +870,12 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
     if (is.null(log10p)) z <- u[[b]]/u[[se]]
     else z <- qnorm(-log10p, log=TRUE)
     m <- z1(z)
-    d <- matrixStats::logSumExp((z^2-m^2)/2)
-    PP <- exp((z^2-m^2)/2) / exp(d)
+    s <- (z+m)*(z-m)/2
+    d <- matrixStats::logSumExp((s)
+    PP <- exp(s) / exp(d)
     cat("Scaling factor = exp(",m, "^2/2)\n",sep="")
   })
   ord <- with(tbl, order(-PP))
-  tbl <- tbl[ord,]
-  tbl <- within(tbl, {PPL=cumsum(PP)})
-  subset(tbl,PPL < cutoff)
+  tbl <- within(tbl[ord,], {PPL=cumsum(PP)})
+  subset(tbl[ord,],PPL < cutoff)
 }
