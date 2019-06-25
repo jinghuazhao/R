@@ -858,3 +858,21 @@ circos.mhtplot <- function(data, glist)
   circlize::circos.genomicLabels(ann, labels.column = 4, side = "inside")
   circlize::circos.clear()
 }
+
+# credible set
+
+cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
+{
+  requireNamespace("matrixStats")
+  u <- tbl
+  tbl <- within(u, {
+    if (is.null(log10p)) z <- u[[b]]/u[[se]]
+    else z <- qnorm(-log10p, log=TRUE)
+    d <- matrixStats::logSumExp(z^2/2)
+    PP <- exp(z^2/2) / exp(d)
+  })
+  ord <- with(tbl, order(-PP))
+  tbl <- tbl[ord,]
+  tbl <- within(tbl, {PPL=cumsum(PP)})
+  subset(tbl,PPL < cutoff)
+}

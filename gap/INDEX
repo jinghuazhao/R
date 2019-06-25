@@ -4,6 +4,7 @@
 AE3                     AE model using nuclear family trios
 bt                      Bradley-Terry model for contingency table
 ccsize                  Power and sample size for case-cohort design
+cs                      Credible set
 fbsize                  Sample size for family-based linkage and association design
 gc.em                   Gene counting for haplotype analysis
 gcontrol                genomic control

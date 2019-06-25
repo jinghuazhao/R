@@ -37,6 +37,7 @@ Index:
 AE3               \tab      AE model using nuclear family trios\cr
 bt                \tab      Bradley-Terry model for contingency table\cr
 ccsize            \tab      Power and sample size for case-cohort design\cr
+cs                \tab      Credibel set\cr
 fbsize            \tab      Sample size for family-based linkage and association design\cr
 gc.em             \tab      Gene counting for haplotype analysis\cr
 gcontrol          \tab      genomic control\cr

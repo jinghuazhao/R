@@ -10,6 +10,7 @@
 \alias{cf}
 \alias{cnv}
 \alias{crohn}
+\alias{cs}
 \alias{fa}
 \alias{fsnps}
 \alias{hla}
@@ -142,6 +143,8 @@ circos.mhtplot generates circos Manhattan plot with gene annotation
 cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chr, start, end, gene variables.
 
 cnvplot is a cutomised function to plot CNVs genomewide
+
+cs is for calculation of credible set.
 
 g2a returns two alleles according to a genotype identifier.
 
