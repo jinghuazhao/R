@@ -1,10 +1,11 @@
 sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName")
 {
   nr <- nrow(p)
-  z <- within(p[st:nr,],{
-    d <- c(0,diff(z[[pos]]))
+  u <- p[st:nr,]
+  z <- within(u,{
+    d <- c(0,diff(u[[pos]]))
     s <- cumsum(d)
-    log10p <- -log10p(z[[b]]/z[[se]])
+    log10p <- -log10p(u[[b]]/u[[se]])
   })
   if (debug) print(z[c(chr,pos,"d","s",snp,"log10p")])
   if (tail(z[,"s"], 1) <= flanking) {
