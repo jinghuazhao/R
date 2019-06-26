@@ -868,7 +868,7 @@ cs <- function(tbl, b="Effect", se="StdErr", log10p=NULL, cutoff=0.95)
   u <- tbl
   tbl <- within(u, {
     if (is.null(log10p)) z <- u[[b]]/u[[se]]
-    else z <- qnorm(-log10p, log=TRUE)
+    else z <- qnorm(-u[[log10p]], log=TRUE)
     m <- z1(z)
     s <- (z+m)*(z-m)/2
     d <- matrixStats::logSumExp(s)
