@@ -867,7 +867,7 @@ cs <- function(tbl, b="Effect", se="StdErr", log10P=NULL, cutoff=0.95)
   requireNamespace("matrixStats")
   u <- tbl
   tbl <- within(u, {
-    if (is.null(log10p)) z <- u[[b]]/u[[se]]
+    if (is.null(log10P)) z <- u[[b]]/u[[se]]
     else z <- qnorm(-u[[log10P]], log=TRUE)
     m <- z1(z)
     s <- (z+m)*(z-m)/2
