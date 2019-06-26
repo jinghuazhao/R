@@ -252,8 +252,9 @@ circos.mhtplot(mhtdata,g)
 #
 # zcat METAL/4E.BP1-1.tbl.gz | awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
 
-tbl <- read.delim("4E.BP1.z")
-l <- cs(tbl)
+tbl <- within(read.delim("4E.BP1.z"),{log10P <- -log10(P.value)})
+z <- cs(tbl)
+p <- cs(tbl, log10P="log10P")
 }
 }
 \details{These functions are not so frequently called by users}
