@@ -863,7 +863,7 @@ circos.mhtplot <- function(data, glist)
 
 cs <- function(tbl, b="Effect", se="StdErr", lp=NULL, cutoff=0.95)
 {
-  z1 <- function(z) max(z, na.rm = TRUE)
+  z1 <- function(z) max(abs(z), na.rm = TRUE)
   requireNamespace("matrixStats")
   u <- tbl
   tbl <- within(u, {
