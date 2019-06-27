@@ -861,14 +861,14 @@ circos.mhtplot <- function(data, glist)
 
 # credible set
 
-cs <- function(tbl, b="Effect", se="StdErr", lp=NULL, cutoff=0.95)
+cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
 {
   z1 <- function(z) max(abs(z), na.rm = TRUE)
   requireNamespace("matrixStats")
   u <- tbl
   tbl <- within(u, {
-    if (is.null(lp)) z <- u[[b]]/u[[se]]
-    else z <- qnorm(u[[lp]]-log(2), log=TRUE)
+    if (is.null(log_p)) z <- u[[b]]/u[[se]]
+    else z <- qnorm(u[[log_p]]-log(2), log=TRUE)
     m <- z1(z)
     s <- (z+m)*(z-m)/2
     d <- matrixStats::logSumExp(s)
