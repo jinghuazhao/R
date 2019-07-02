@@ -2,7 +2,7 @@
 \alias{sentinels}
 \title{Sentinel identification from GWAS summary statistics}
 \usage{sentinels(p,pid,st,debug=FALSE,flanking=1e+6,
-                 chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName")}
+                 chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName",sep=",")}
 \description{
 This function accepts an object containing GWAS summary statistics for
 signal identification as defined by flanking regions. As the associate P value
@@ -19,6 +19,7 @@ could be extremely small, the effect size and its standard error are used.
 \item{b}{Effect size}
 \item{se}{Standard error}
 \item{snp}{Marker name}
+\item{sep}{field delimitor}
 }
 \details{
 Typically, input to the function are variants reaching certain level

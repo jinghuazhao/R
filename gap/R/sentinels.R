@@ -1,4 +1,4 @@
-sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName")
+sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName",sep=",")
 {
   nr <- nrow(p)
   u <- p[st:nr,]
@@ -16,7 +16,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b
     r1 <- row.names(x)[1]
     m <- tail(x[[pos]], 1)
     n <- tail(x[[snp]], 1)
-    cat(pid, n, l, u, u-l, log10p1, r1, "I\n", sep=",")
+    cat(pid, n, l, u, u-l, log10p1, r1, "I\n", sep=sep)
   } else {
     s <- subset(z, s <= flanking)
     l <- head(s[[pos]], 1)
@@ -28,7 +28,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b
     n <- tail(x[[snp]], 1)
     t <- subset(z, z[[pos]] > m & z[[pos]] <= m + flanking)
     if (nrow(t)==0) {
-      cat(pid, n, l, u, u-l, log10p1, r1, "II\n", sep=",")
+      cat(pid, n, l, u, u-l, log10p1, r1, "II\n", sep=sep)
       message(paste0("No variants +1 MB downstream so move to next block (",pid,")"))
       r2 <- as.numeric(r1) + 1
       sentinels(p, pid, r2)
@@ -38,7 +38,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b
       u <- tail(t[[pos]], 1)
       r2 <- as.numeric(tail(row.names(t), 1))
       if (log10p1 > log10p2) {
-        cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=",")
+        cat(pid, n, l, u, u-l, log10p1, r1, "III\n", sep=sep)
         if (r2 < nr) sentinels(p, pid, r2+1)
       } else {
         r2 <- as.numeric(tail(row.names(y),1))
