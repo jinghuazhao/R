@@ -56,6 +56,14 @@ for(chr in chrs)
 }
 subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
 subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
+## log(P)
+p <- within(p, {logp <- log(P.value)})
+for(chr in chrs)
+{
+  ps <- subset(p[c("Chrom","End","MarkerName","Effect","StdErr")], Chrom==chr)
+  row.names(ps) <- 1:nrow(ps)
+  sentinels(ps, "OPG", 1, log_p="logp")
+}
 ## to obtain variance explained
 tbl <- within(OPGtbl, chi2n <- (Effect/StdErr)^2/N)
 s <- with(tbl, aggregate(chi2n,list(prot),sum))
