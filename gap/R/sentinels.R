@@ -1,4 +1,5 @@
-sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",log_p=NULL,snp="MarkerName",sep=",")
+sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",
+                      log_p=NULL,snp="MarkerName",sep=",")
 {
   nr <- nrow(p)
   u <- p[st:nr,]
