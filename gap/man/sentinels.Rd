@@ -60,7 +60,7 @@ subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
 p <- within(p, {logp <- log(P.value)})
 for(chr in chrs)
 {
-  ps <- subset(p[c("Chrom","End","MarkerName","Effect","StdErr")], Chrom==chr)
+  ps <- subset(p[c("Chrom","End","MarkerName","logp")], Chrom==chr)
   row.names(ps) <- 1:nrow(ps)
   sentinels(ps, "OPG", 1, log_p="logp")
 }
