@@ -2,7 +2,8 @@
 \alias{sentinels}
 \title{Sentinel identification from GWAS summary statistics}
 \usage{sentinels(p,pid,st,debug=FALSE,flanking=1e+6,
-                 chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName",sep=",")}
+                 chr="Chrom",pos="End",b="Effect",se="StdErr",log_p=NULL,
+                 snp="MarkerName",sep=",")}
 \description{
 This function accepts an object containing GWAS summary statistics for
 signal identification as defined by flanking regions. As the associate P value
@@ -18,6 +19,7 @@ could be extremely small, the effect size and its standard error are used.
 \item{pos}{Position}
 \item{b}{Effect size}
 \item{se}{Standard error}
+\item{log_p}{log(P)}
 \item{snp}{Marker name}
 \item{sep}{field delimitor}
 }
@@ -30,7 +32,9 @@ window has smaller p value it will be used instead.
 For now key variables in p are "MarkerName", "End", "Effect", "StdErr",
 "P.value", where "End" is as in a bed file indicating marker position,
  and the function is set up such that row names are numbered as
-1:nrow(p); see example below.
+1:nrow(p); see example below. When log_p is specified, log(P) is used
+instead, which is appropriate with output from METAL with LOGPVALUE ON.
+In this case, the column named log(P) in the output is actually log10(P).
 }
 
 \value{

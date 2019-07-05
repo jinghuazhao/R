@@ -1,11 +1,12 @@
-sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",snp="MarkerName",sep=",")
+sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b="Effect",se="StdErr",log_p=NULL,snp="MarkerName",sep=",")
 {
   nr <- nrow(p)
   u <- p[st:nr,]
   z <- within(u,{
     d <- c(0,diff(pos))
     s <- cumsum(d)
-    log10p <- -log10p(u[[b]]/u[[se]])
+    if (is.null(log_p)) log10p <- -log10p(u[[b]]/u[[se]])
+    else log10p <- u[[log_p]]/log(10)
   })
   if (debug) print(z[c(chr,pos,"d","s",snp,"log10p")])
   if (tail(z[,"s"], 1) <= flanking) {
