@@ -44,7 +44,7 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
          meta::forest(mg,colgap.forest.left = "1cm")
          requireNamespace("grid")
          grid::grid.text(title,0.5,0.9)
-         with(mg,cat("prot =", p, "MarkerName =", m, "Q =",Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
+         with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
        }
        else if(package=="forestplot")
        {
