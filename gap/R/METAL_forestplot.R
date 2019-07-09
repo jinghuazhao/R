@@ -5,11 +5,13 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
   d <- dplyr::nest_join(tbl,rsid)
   dy <- d["y"]
   m <- within(d,{rsid <- unlist(lapply(lapply(dy,"[[",1),"[",1))})
+  m <- within(d,{rsid <- unlist(y)})
   isna <- with(m, is.na(rsid))
   t <- within(m, {rsid[isna] <- MarkerName[isna]})
   d <- dplyr::nest_join(all,rsid)
   dy <- d["y"]
   m <- within(d,{rsid <- unlist(lapply(lapply(dy,"[[",1),"[",1))})
+  m <- within(d,{rsid <- unlist(y)})
   isna <- with(m, is.na(rsid))
   a <- within(m, {rsid[isna] <- MarkerName[isna]})
   pdf(pdf,...)
