@@ -59,6 +59,8 @@ invnormal         \tab      inverse Normal transformation\cr
 kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr
+lambda1000        \tab      A standardized estimate of the genomic inflation scaling to a study of\cr
+                  \tab      1,000 cases and 1,000 controls\cr
 log10p            \tab      log10(p) for a standard normal deviate\cr
 logp              \tab      log(p) for a normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr

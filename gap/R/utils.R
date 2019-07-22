@@ -548,6 +548,9 @@ gc.lambda <- function(p) {
   return(lambda)
 }
 
+lambda1000 <- function(lambda, ncases, ncontrols)
+  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
+
 miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP", 
     col = c("midnightblue", "chartreuse4"), col2 = c("royalblue1", 
         "seagreen1"), ymax = NULL, highlight = NULL, highlight.add = NULL, 

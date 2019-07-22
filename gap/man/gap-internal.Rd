@@ -18,6 +18,7 @@
 \alias{inf1}
 \alias{jma.cojo}
 \alias{l51}
+\alias{lambda1000}
 \alias{lukas}
 \alias{mao}
 \alias{meyer}

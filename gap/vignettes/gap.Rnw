@@ -94,6 +94,8 @@ invnormal         &      Inverse normal transformation\\
 kin.morgan        &      kinship matrix for simple pedigree\\
 LD22              &      LD statistics for two diallelic markers\\
 LDkl              &      LD statistics for two multiallelic markers\\
+lambda1000        &      A standardized estimate of the genomic inflation scaling to a study of\\
+                  &      1,000 cases and 1,000 controls\\
 log10p            &      log10(p) for a standard normal deviate\\
 logp              &      log(p) for a normal deviate\\
 masize            &      Sample size calculation for mediation analysis\\
