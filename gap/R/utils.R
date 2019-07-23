@@ -880,5 +880,5 @@ cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
   })
   ord <- with(tbl, order(-ppa))
   tbl <- within(tbl[ord,], {cppa <- cumsum(ppa)})
-  tbl[which(cppa >= cutoff),]
+  tbl[which(with(tbl,cppa) >= cutoff),]
 }
