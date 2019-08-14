@@ -4,7 +4,7 @@ sentinels <- function(p,pid,st,debug=FALSE,flanking=1e+6,chr="Chrom",pos="End",b
   nr <- nrow(p)
   u <- p[st:nr,]
   z <- within(u,{
-    d <- c(0,diff(pos))
+    d <- c(0,diff(u[pos]))
     s <- cumsum(d)
     if (is.null(log_p)) log10p <- -log10p(u[[b]]/u[[se]])
     else log10p <- -(u[[log_p]]/log(10))
