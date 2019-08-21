@@ -18,7 +18,7 @@
             aff=as.integer(pedfile[,6]), if.qt=as.integer(FALSE), qt=double(),
             m=as.integer(m), mark=as.integer(muse),
             opt1=as.integer(multiple.cases), opt2=as.integer(use.affected),
-            file ="hap-transmit-temporary-file",PACKAGE="tdthap")
+            file ="hap-transmit-temporary-file.XXXXXX",PACKAGE="tdthap")
   n <- res$n
   if (n==0) stop("No haplotypes could be created")
   nm <- n*m

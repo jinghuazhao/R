@@ -35,7 +35,7 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
 		  char **ofname) {
   Family *first, *f, *prev;
   FILE *outfile;
-  int nn, mm, hr, iqt;
+  int nn, mm, hr, iqt, fd=-1;
   char *tmp;
   nn = *n;
   mm = *m;
@@ -88,7 +88,7 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
   tmp = *ofname;
   /* If no file name supplied, generate one */
   if (!*tmp) {
-    mkstemp(tmp);
+    fd = mkstemp(tmp);
     *ofname = tmp;
   }
   outfile = fopen(tmp, "wb");
