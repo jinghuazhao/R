@@ -4,6 +4,8 @@ Date: 2019-8-21
 Title: TDT Tests for Extended Haplotypes
 Author: David Clayton
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
+URL: https://github.com/jinghuazhao/R
+BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 1.5.0)
 Description: Functions and examples are provided for Transmission/disequilibrium tests
              for extended marker haplotypes, as in
