@@ -1,3 +1,7 @@
+v1.1-19
+
+2019-08-21	Replace tempnam with mkstemp for num_fam.c:91:11 as suggested by CRAN
+
 v1.1-9
 
 2018-06-30	Minor change to DESCRIPTION
