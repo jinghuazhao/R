@@ -88,7 +88,7 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
   tmp = *ofname;
   /* If no file name supplied, generate one */
   if (!*tmp) {
-    mkstemp((tmp);
+    mkstemp(tmp);
     *ofname = tmp;
   }
   outfile = fopen(tmp, "wb");
