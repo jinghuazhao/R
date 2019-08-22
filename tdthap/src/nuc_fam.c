@@ -27,7 +27,7 @@ int fill_in(int child[2], int unknown[2], int known[2]);
    Imputation of missing parental genotypes may be done either with or 
    without use of affected offspring.
 */
-
+char *mktemp(char *);
 void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
 		  int *sex, int *aff, int *if_qt, double *qt, 
 		  int *m, int *markers, 
@@ -35,7 +35,7 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
 		  char **ofname) {
   Family *first, *f, *prev;
   FILE *outfile;
-  int nn, mm, hr, iqt, fd=-1;
+  int nn, mm, hr, iqt;
   char *tmp;
   nn = *n;
   mm = *m;
@@ -88,11 +88,11 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
   tmp = *ofname;
   /* If no file name supplied, generate one */
   if (!*tmp) {
-    fd = mktemp(tmp);
+    mktemp(tmp);
     *ofname = tmp;
   }
   outfile = fopen(tmp, "wb");
-  if (fd == -1 || outfile) {
+  if (outfile) {
     *n = hap_write(first, mm, iqt, outfile);
     fclose(outfile);
   }
