@@ -1,6 +1,6 @@
 #include <R.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "nuc_fam.h"
 
@@ -27,7 +27,7 @@ int fill_in(int child[2], int unknown[2], int known[2]);
    Imputation of missing parental genotypes may be done either with or 
    without use of affected offspring.
 */
-int mkstemp(char *);
+
 void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
 		  int *sex, int *aff, int *if_qt, double *qt, 
 		  int *m, int *markers, 
@@ -88,7 +88,7 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
   tmp = *ofname;
   /* If no file name supplied, generate one */
   if (!*tmp) {
-    fd = mkstemp(tmp);
+    fd = mktemp(tmp);
     *ofname = tmp;
   }
   outfile = fopen(tmp, "wb");
