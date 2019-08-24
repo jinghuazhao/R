@@ -10,7 +10,7 @@ pfc <- function(famdata,enum=0)
   {
      cat(famdata[i,1], "\t", famdata[i,2], "\t", famdata[i,3], "\n")
   }
-  z<-.Fortran("family",famdata=as.integer(matrix(famdata,ncol=3)),famsize=as.integer(famsize),
+  z<-.Fortran("family_",famdata=as.integer(matrix(famdata,ncol=3)),famsize=as.integer(famsize),
                pobs=as.double(pobs),p=as.double(p),stat=as.double(stat),toenum=as.integer(enum),
                tailp=as.double(tailp),sump=as.double(sump),nenum=as.double(nenum),PACKAGE="gap")
   cat("Probability of this table: ",z$pobs,"\n")
