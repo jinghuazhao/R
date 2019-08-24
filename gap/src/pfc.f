@@ -1,4 +1,4 @@
-       subroutine family(famdata,famsize,pobs,p,stat,toenum,tailp,sump,
+       subroutine family_(famdata,famsize,pobs,p,stat,toenum,tailp,sump,
      & nenum)
        integer famsize, toenum
        integer famdata(famsize,3)

@@ -27,7 +27,7 @@ extern void twolocus(void *, void *, void *);
 extern void x22k(void *, void *, void *, void *, void *, void *, void *);
 
 /* .Fortran calls */
-extern void F77_NAME(family)(void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void F77_NAME(family_)(void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(runifamily)(void *, void *, void *, void *, void *, void *, void *);
 
 static const R_CMethodDef CEntries[] = {
@@ -53,7 +53,7 @@ static const R_CMethodDef CEntries[] = {
 };
 
 static const R_FortranMethodDef FortranEntries[] = {
-    {"family",     (DL_FUNC) &F77_NAME(family),     9},
+    {"family_",    (DL_FUNC) &F77_NAME(family_),    9},
     {"runifamily", (DL_FUNC) &F77_NAME(runifamily), 7},
     {NULL, NULL, 0}
 };
