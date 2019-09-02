@@ -873,10 +873,11 @@ cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
     if (is.null(log_p)) z <- u[[b]]/u[[se]]
     else z <- qnorm(u[[log_p]], log.p=TRUE)
     m <- z1(z)
-    s <- (z+m)*(z-m)/2
-    d <- matrixStats::logSumExp(s)
-    ppa <- exp(s) / exp(d)
-    cat("d = ", m^2/2 + d, ", scaling factor = exp(",m, "^2/2)\n",sep="")
+    z2 <- z * z / 2
+    d <- matrixStats::logSumExp(z2)
+    log_ppa <- z2 - d
+    ppa <- exp(log_ppa)
+    cat("denominator = ", d, ", scaling factor = exp(",m, "^2/2)\n",sep="")
   })
   ord <- with(tbl, order(-ppa))
   tbl <- within(tbl[ord,], {cppa <- cumsum(ppa)})
