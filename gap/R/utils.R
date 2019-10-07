@@ -923,12 +923,10 @@ mhtplot2d <- function(data)
   chr1 <- d[["Chr"]]
   chr1[chr1=="X"] <- 23
   chr1[chr1=="Y"] <- 24
-  head(chr1)
   pos1 <- CM[chr1] + d[["bp"]]
   chr2 <- d[["p.chr"]]
   chr2[chr2=="X"] <- 23
   chr2[chr2=="Y"] <- 24
-  head(chr2)
   pos2 <- CM[chr2] + (d[["p.start"]] + d[["p.end"]])/2
   points(pos1,pos2,cex=0.6,col=ifelse(d[["cis"]],"red","blue"),pch=19)
   legend("bottomright",legend=c("ciscis","trans"),box.lty=0,cex=0.6,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
