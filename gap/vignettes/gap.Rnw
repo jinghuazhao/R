@@ -115,7 +115,7 @@ sentinels         &      Sentinel identification from GWAS summary statistics\\
 tscc              &      Power calculation for two-stage case-control design\\
 \end{tabular}
 
-\begin{tablular}{ll}
+\begin{tabular}{ll}
 \\
 * GRAPHICS *
 \\
