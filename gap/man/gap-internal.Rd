@@ -24,6 +24,7 @@
 \alias{meyer}
 \alias{mfblong}
 \alias{mhtdata}
+\alias{mhtplot2d}
 \alias{nep499}
 \alias{PARn}
 \alias{HapDesign}
@@ -187,6 +188,8 @@ logp is log(p) for a normal deviate
 
 m2plem is an experimental function for PLEM format.
 
+mhtplot2d is for 2D Manhattan plot
+
 miamiplot is for Miami plot.
 
 micombine is used to combine imputation results.
@@ -255,6 +258,9 @@ circos.mhtplot(mhtdata,g)
 tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
 z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
+#
+# d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
+# mhtplot2d(d)
 }
 }
 \details{These functions are not so frequently called by users}

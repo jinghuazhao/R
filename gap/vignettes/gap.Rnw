@@ -115,6 +115,29 @@ sentinels         &      Sentinel identification from GWAS summary statistics\\
 tscc              &      Power calculation for two-stage case-control design\\
 \end{tabular}
 
+\begin{tablular}{ll}
+\\
+* GRAPHICS *
+\\
+asplot            &      Regional association plot\\
+ESplot            &      Effect-size plot\\
+circos.cnvplot    &      circos plot of CNVs\\
+circos.cis.vs.trans.plot & circos plot of cis/trans classification\\
+circos.mhtplot    &      circos Manhattan plot with gene annotation\\
+cnvplot           &      genomewide plot of CNVs\\
+METAL_forestplot  &      forest plot as R/meta's forest for METAL outputs\\
+mhtplot           &      Manhattan plot\\
+mhtplot2          &      Manhattan plot with annotations\\
+mhtplot2d         &      2D Manhattan plot\\
+mhtplot.trunc     &      truncated Manhattan plot\\
+miamiplot         &      Miamiplot (Experimental)\\
+pedtodot          &      Converting pedigree(s) to dot file(s)\\
+plot.hap.score    &      Plot haplotype frequencies versus haplotype score statistics\\
+qqfun             &      Quantile-comparison plots\\
+qqunif            &      Q-Q plot for uniformly distributed random variable\\
+\\
+\end{tabular}
+
 \begin{tabular}{ll}
 \\
 * UTILITIES *\\
