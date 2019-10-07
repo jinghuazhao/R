@@ -905,8 +905,8 @@ grid2d <- function(chrlen=hg19)
       l <- ifelse(x==1,0,CM[x-1])
       segments(CM[x],0,CM[x],CM[n],col="black")
       segments(0,CM[x],CM[n],CM[x],col="black")
-      text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=0.8)
-      text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=0.8)
+      text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=0.6)
+      text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=0.6)
   }
   segments(0,0,CM[x],0)
   segments(0,0,0,CM[x])
@@ -930,6 +930,6 @@ mhtplot2d <- function(data)
   chr2[chr2=="Y"] <- 24
   head(chr2)
   pos2 <- CM[chr2] + (d[["p.start"]] + d[["p.end"]])/2
-  points(pos1,pos2,cex=0.8,col=ifelse(d[["cis"]],"red","blue"),pch=19)
-  legend("bottomright",legend=c("ciscis","trans"),box.lty=0,cex=0.8,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
+  points(pos1,pos2,cex=0.6,col=ifelse(d[["cis"]],"red","blue"),pch=19)
+  legend("bottomright",legend=c("ciscis","trans"),box.lty=0,cex=0.6,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
 }
