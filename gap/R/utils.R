@@ -929,5 +929,5 @@ mhtplot2d <- function(data)
   chr2[chr2=="Y"] <- 24
   pos2 <- CM[chr2] + (d[["p.start"]] + d[["p.end"]])/2
   points(pos1,pos2,cex=0.6,col=ifelse(d[["cis"]],"red","blue"),pch=19)
-  legend("bottomright",legend=c("ciscis","trans"),box.lty=0,cex=0.6,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
+  legend("bottomright",legend=c("cis","trans"),box.lty=0,cex=0.6,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
 }
