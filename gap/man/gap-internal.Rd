@@ -259,8 +259,8 @@ tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
 z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
 #
-# d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
-# mhtplot2d(d)
+d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
+mhtplot2d(d)
 }
 }
 \details{These functions are not so frequently called by users}
