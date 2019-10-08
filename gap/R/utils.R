@@ -895,7 +895,7 @@ hg19 <- c(249250621,243199373,198022430,191154276,180915260,171115067,159138663,
 hg18 <- c(247249719,242951149,199501827,191273063,180857866,170899992,158821424,146274826,140273252,135374737,134452384,132349534,
           114142980,106368585,100338915,88827254,78774742,76117153,63811651,62435964,46944323,49691432,154913754,57772954)
 
-grid2d <- function(chrlen=hg19)
+grid2d <- function(chrlen=hg19, cex=0.6)
 {
   CM <- cumsum(chrlen)
   n <- length(chrlen)
@@ -906,8 +906,8 @@ grid2d <- function(chrlen=hg19)
   for (x in 1:n) {
       segments(CM[x],0,CM[x],CM[n],col="black")
       segments(0,CM[x],CM[n],CM[x],col="black")
-      text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=0.6)
-      text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=0.6)
+      text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=cex)
+      text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=cex)
   }
   segments(0,0,CM[n],0)
   segments(0,0,0,CM[n])
@@ -915,7 +915,7 @@ grid2d <- function(chrlen=hg19)
   return(list(n=n, CM=c(0,CM)))
 }
 
-mhtplot2d <- function(data)
+mhtplot2d <- function(data, cex=0.6)
 # mhtplot2d(read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE))
 {
   r <- grid2d()
@@ -930,6 +930,6 @@ mhtplot2d <- function(data)
   chr2[chr2=="X"] <- 23
   chr2[chr2=="Y"] <- 24
   pos2 <- CM[chr2] + (d[["p.start"]] + d[["p.end"]])/2
-  points(pos1,pos2,cex=0.6,col=ifelse(d[["cis"]],"red","blue"),pch=19)
-  legend("bottomright",legend=c("cis","trans"),box.lty=0,cex=0.6,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
+  points(pos1,pos2,cex=cex,col=ifelse(d[["cis"]],"red","blue"),pch=19)
+  legend("bottomright",legend=c("cis","trans"),box.lty=0,cex=cex,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
 }
