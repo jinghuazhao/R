@@ -902,14 +902,13 @@ grid2d <- function(chrlen=hg19)
   plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
   par(xaxt = "s", yaxt = "s", xpd = TRUE)
   for (x in 1:n) {
-      l <- ifelse(x==1,0,CM[x-1])
       segments(CM[x],0,CM[x],CM[n],col="black")
       segments(0,CM[x],CM[n],CM[x],col="black")
       text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=0.6)
       text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=0.6)
   }
-  segments(0,0,CM[x],0)
-  segments(0,0,0,CM[x])
+  segments(0,0,CM[n],0)
+  segments(0,0,0,CM[n])
   title(xlab="pQTL position",ylab="protein position",line=2)
   return(list(n=n, CM=c(0,CM)))
 }
