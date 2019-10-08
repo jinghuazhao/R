@@ -915,6 +915,7 @@ grid2d <- function(chrlen=hg19)
 }
 
 mhtplot2d <- function(data)
+# mhtplot2d(read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE))
 {
   r <- grid2d()
   n <- with(r, n)
