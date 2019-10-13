@@ -25,9 +25,9 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
      with(subset(all,prot==p & MarkerName==m), {
+       print(subset(all,prot==p & MarkerName==m))
        e <- toupper(EFFECT_ALLELE)
        r <- toupper(REFERENCE_ALLELE)
-       a1 <- a2 <- vector('character',length(e))
        a1 <- e
        a2 <- r
        c <- rep(1,length(e))
