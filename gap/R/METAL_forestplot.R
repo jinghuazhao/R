@@ -21,9 +21,6 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
   {
      p <- tbl[i,"prot"]
      m <- tbl[i,"MarkerName"]
-     d <- gsub("[?]","",tbl[i,"Direction"])
-     s <- unlist(strsplit(d,""))
-     f <- as.numeric(paste0(s,1))
      A1 <- toupper(tbl[i,"Allele1"])
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
