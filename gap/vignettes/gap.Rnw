@@ -126,7 +126,7 @@ circos.cis.vs.trans.plot & circos plot of cis/trans classification\\
 circos.mhtplot    &      circos Manhattan plot with gene annotation\\
 cnvplot           &      genomewide plot of CNVs\\
 METAL\_forestplot &      forest plot as R/meta's forest for METAL outputs\\
-makeRLEboxplots   &      make relative log expression plot\\
+makeRLEplot       &      make relative log expression plot\\
 mhtplot           &      Manhattan plot\\
 mhtplot2          &      Manhattan plot with annotations\\
 mhtplot2d         &      2D Manhattan plot\\
