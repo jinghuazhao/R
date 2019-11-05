@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.2
+05-11-2019	Add makeRLEplots
 13-10-2019	Revise METAL_forestplot() adding dplyr_rsid() due to queries from Cismaru, Anca <anca.cismaru@extern.insel.ch>
 07-10-2019	Add mhtplot2d() for 2D Manhattan plot
 02-09-2019	Fix numerical issues and log_p= option for cs()
