@@ -21,7 +21,7 @@ install.packages("pan", repos="https://cran.r-project.org")
 or GitHub, 
 ```r
 library(devtools)
-install_github("jinghuazhao/R/pan", build_vignettes = TRUE)
+install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 ```
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
