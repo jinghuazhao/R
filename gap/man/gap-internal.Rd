@@ -81,7 +81,7 @@
 \alias{k}
 \alias{logit}
 \alias{m2plem}
-\alias{makeRLEplots}
+\alias{makeRLEboxplots}
 \alias{mht.control}
 \alias{miamiplot}
 \alias{micombine}
