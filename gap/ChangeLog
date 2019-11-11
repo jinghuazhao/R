@@ -22,7 +22,7 @@ Version 1.2
 31-05-2019	Split examples into gap.examples
 
 Version 1.1-27
-30-05-2019	Fix hap_c.c and also pgc.h, pgc_c.c through Ripley's options to R CMD check --install-args="",
+30-05-2019	Fix hap_c.c and also pgc.h, pgc_c.c through Ripley's options to R CMD check --configure-args="",
 		which are more restrictive than R-devel CMD check --as-cran and also CRAN check itself.
 
 Version 1.1-26
