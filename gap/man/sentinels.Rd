@@ -24,17 +24,32 @@ could be extremely small, the effect size and its standard error are used.
 \item{sep}{field delimitor}
 }
 \details{
-Typically, input to the function are variants reaching certain level
-of significance and the functtion identifies minimum p value at the
-flanking interval; in the case of another variant in the flanking
-window has smaller p value it will be used instead.
+A distance-based approach was consequently used and reframed as an algorithm here. It takes as input signals multiple correlated variants in 
+particular region(s) which reach genomewide significance and output three types of sentinels in a region-based manner. For a given protein and a 
+chromosome, the algorithm proceeds as follows:
 
-For now key variables in p are "MarkerName", "End", "Effect", "StdErr",
-"P.value", where "End" is as in a bed file indicating marker position,
- and the function is set up such that row names are numbered as
-1:nrow(p); see example below. When log_p is specified, log(P) is used
-instead, which is appropriate with output from METAL with LOGPVALUE ON.
-In this case, the column named log(P) in the output is actually log10(P).
+Algorithm sentinels
+
+Step 1. for a particular collection of genomewide significant variants on a chromosome, the width of the region is calculated according to the start 
+and end chromosomal positions and if it is smaller than the flanking distance, the variant with the smallest P value is taken as sentinel (I) 
+otherwise goes to step 2.
+
+Step 2. The variant at step 1 is only a candidate and a flanking region is generated. If such a region contains no variant the candidate is recorded 
+as sentinel (II) and a new iteration starts from the variant next to the flanking region.
+
+Step 3.  When the flanking is possible at step 2 but the P value is still larger than the candidate at step 2, the candidate is again recorded as 
+sentinel (III) but next iteration starts from the variant just after the variant at the end position; otherwise the variant is updated as a new 
+candidate where the next iteration starts.
+
+Note Type I signals are often seen from variants in strong LD at a cis region, type II results seen when a chromosome contains two trans signals, 
+type III results seen if there are multiple trans signals.
+
+Typically, input to the function are variants reaching certain level of significance and the functtion identifies minimum p value at the flanking 
+interval; in the case of another variant in the flanking window has smaller p value it will be used instead.
+
+For now key variables in p are "MarkerName", "End", "Effect", "StdErr", "P.value", where "End" is as in a bed file indicating marker position,
+and the function is set up such that row names are numbered as 1:nrow(p); see example below. When log_p is specified, log(P) is used instead, which 
+is appropriate with output from METAL with LOGPVALUE ON. In this case, the column named log(P) in the output is actually log10(P).
 }
 
 \value{
