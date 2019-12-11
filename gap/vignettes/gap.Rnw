@@ -160,6 +160,7 @@ metap             &      Meta-analysis of p values\\
 metareg           &      Fixed and random effects model for meta-analysis\\
 muvar             &      Means and variances under 1- and 2- locus (diallelic) QTL model\\
 read.ms.output    &      A utility function to read ms output\\
+snptest\_sample   &      A utility to generate SNPTEST sample file\\
 twinan90          &      Classic twin models\\
 whscore           &      Whittemore-Halpern scores for allele-sharing\\
 GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS\\

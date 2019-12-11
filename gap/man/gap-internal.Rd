@@ -94,6 +94,7 @@
 \alias{ReadGRMPCA}
 \alias{se.exp}
 \alias{se.invlogit}
+\alias{snptest_sample}
 \alias{solve_skol}
 \alias{toETDT}
 \alias{ungcode}
@@ -263,6 +264,9 @@ l <- cs(tbl,log_p="logp")
 d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
 mhtplot2d(d)
 }
+#
+d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
+snptest_sample(d,"test.sample",C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 }
 \details{These functions are not so frequently called by users}
 \keyword{internal}
