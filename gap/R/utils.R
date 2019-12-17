@@ -989,6 +989,6 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,seps=c(":","_","_"))
     a2 <- lapply(s3,"[",2)
   }
   s <- cbind(chr,pos,a1,a2)
-  names(s) <- c("chr","pos","a1","a2")
+  colnames(s) <- c("chr","pos","a1","a2")
   return(s)
 }
