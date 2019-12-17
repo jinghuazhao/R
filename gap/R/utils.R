@@ -945,3 +945,39 @@ snptest_sample <- function(data,sample_file,ID_1="ID_1",ID_2="ID_2",missing="mis
   cat("\n",file=sample_file,append=TRUE)
   write.table(d[c(ID_1,ID_2,missing,C,D,P)],file=sample_file,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE)
 }
+
+chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
+{
+  chr <- paste0(prefix,chr)
+  chrpos <- paste(chr,pos,sep=seps[1])
+  a1a2 <- vector("character",length(pos))
+  index <- (a1 < a2)
+  a1a2[index] <- paste(a1,a2,sep=seps[3])[index]
+  a1a2[!index] <- paste(a2,a1,sep=seps[3])[!index]
+  a1a2 <- ifelse(uppercase,toupper(a1a2),tolower(a1a2))
+  return (paste(chrpos,a1a2,sep=seps[2]))
+}
+
+inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,seps=c(":","_","_"))
+{
+  if ((seps[1]==seps[2])&(seps[2]==seps[3]))
+  {
+    s <- sapply(chr_pos_a1_a2,strsplit,seps[3])
+    chrpos <- paste(lapply(s,"[",1),lapply(s,"[",2),sep=seps[1])
+    a1a2 <- cbind(lapply(s,"[",3),lapply(s,"[",4))
+  } else if ((seps[1]!=seps[2])&(seps[2]==seps[3]))
+  {
+    s <- sapply(chr_pos_a1_a2,strsplit,seps[3])
+    chrpos <- lapply(s,"[",1)
+    a1a2 <- cbind(lapply(s,"[",2),lapply(s,"[",3))
+  } else if ((seps[1]!=seps[2])&(seps[2]!=seps[3])){
+    s <- sapply(chr_pos_a1_a2,strsplit,seps[2])
+    chrpos <- lapply(s,"[",1)
+    s2 <- lapply(s,"[",2)
+    l <- sapply(s2,strsplit,seps[3])
+    a1a2 <- cbind(lapply(l,"[",1),lapply(l,"[",2))
+  }
+  colnames(a1a2) <- c("A1","A2")
+  rownames(a1a2) <- unlist(chrpos)
+  return(a1a2)
+}

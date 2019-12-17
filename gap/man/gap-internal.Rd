@@ -32,6 +32,7 @@
 \alias{allele.recode}
 \alias{geno.recode}
 \alias{a2g}
+\alias{chr_pos_a1_a2}
 \alias{ci}
 \alias{circos.cnvplot}
 \alias{circos.cis.vs.trans.plot}
@@ -72,6 +73,7 @@
 \alias{hap.score.podds}
 \alias{hmht.control}
 \alias{hw}
+\alias{inv_chr_pos_a1_a2}
 \alias{invlogit}
 \alias{invnormal}
 \alias{log10p}
@@ -107,18 +109,21 @@
 \title{Internal functions for gap}
 \usage{
 a2g(a1,a2)
+chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 cis.vs.trans.classification(hits,panel,id,radius=1e6)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
 h2GE(V,VCOV,verbose=TRUE)
 h2l(K=0.05,P=0.5,h2,se,verbose=TRUE)
+inv_chr_pos_a1_a2(chr_pos_a1_a2,seps=c(":","_","_"))
 KCC(model,GRR,p1,K)
 ReadGRM(prefix=51)
 ReadGRMBin(prefix, AllN=FALSE, size=4)
 ReadGRMPLINK(prefix, diag=1)
 ReadGRMPCA(prefix)
 revhap(loci,hapid)
+snptest_sample(data,sample_file,ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
 VR(v1,vv1,v2,vv2,c12)
 WriteGRM(prefix=51,id,N,GRM)
 WriteGRMBin(prefix, grm, N, id, size=4)
@@ -137,6 +142,8 @@ with objects from gc.em() \code{\link[gap]{gc.em}} and \code{\link[gap]{hap.em}}
 included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 
 a2g gives allele-to-genotype conversion.
+
+chr_pos_a1_a2 produces SNPID format.
 
 circos.cnvplot produces circos plot of CNVs
 
@@ -174,6 +181,8 @@ hap.score.glm, hap.score.podds are used by hap.score().
 
 invlogit, inverse logit transformation.
 
+inv_chr_pos_a1_a2 is the inverse function of chr_pos_a1_a2.
+
 invnormal, inverse normal transformation.
 
 is.miss is undocumented.
@@ -209,6 +218,8 @@ ReadGRMBin is a function to read GCTA grm.bin files, modified from GCTA document
 revhap recovers the allele indices for a given haplotype ID in a multiallelic system.
 
 revhap.i is similar to revhap.
+
+snptest_sample generates a sample file for SNPTEST.
 
 solve.skol is a function used by tscc.
 
@@ -267,6 +278,10 @@ mhtplot2d(d)
 #
 d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
 snptest_sample(d,"test.sample",C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
+#
+s <- chr_pos_a1_a2(1,123,letters[1:2],letters[2:1])
+inv_chr_pos_a1_a2(s)
+inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 }
 \details{These functions are not so frequently called by users}
 \keyword{internal}

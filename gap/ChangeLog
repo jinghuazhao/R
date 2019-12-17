@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.2
+17-12-2019	Add chr_pos_a1_a2()/inv_chr_pos_a1_a2()
 11-12-2019	Add snptest_sample() to output in SNPTEST sample file format
 05-11-2019	Add makeRLEplot() from Caprion pilot data and function setup by Jimmy Peters
 13-10-2019	Revise METAL_forestplot() adding dplyr_rsid() due to queries from Cismaru, Anca <anca.cismaru@extern.insel.ch>

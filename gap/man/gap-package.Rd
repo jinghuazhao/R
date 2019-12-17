@@ -109,6 +109,7 @@ FPRP              \tab      False-positive report probability\cr
 ab                \tab      Test/Power calculation for mediating effect\cr
 b2r               \tab      Obtain correlation coefficients and their variance-covariances\cr
 chow.test         \tab      Chow's test for heterogeneity in two regressions\cr
+chr_pos_a1_a2     \tab      Form SNPID from chromosome, posistion and alleles\cr
 cis.vs.trans.classification \tab a cis/trans classifier\cr
 comp.score        \tab      score statistics for testing genetic linkage of quantitative trait\cr
 h2                \tab      Heritability estimation according to twin correlations\cr
