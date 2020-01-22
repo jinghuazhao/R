@@ -988,7 +988,7 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
     a1 <- lapply(s3,"[",1)
     a2 <- lapply(s3,"[",2)
   }
-  if (prefix=="") gsub("chr","",chr)
+  if (prefix=="") chr <- gsub("chr","",chr)
   s <- data.frame(chr=unlist(chr),pos=unlist(pos),a1=unlist(a1),a2=unlist(a2))
   names(s) <- c("chr","pos","a1","a2")
   return(s)
