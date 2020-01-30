@@ -921,7 +921,7 @@ mhtplot2d <- function(data, cex=0.6)
   r <- grid2d()
   n <- with(r, n)
   CM <- with(r, CM)
-  d <- data[c("Chr","bp","p.chr","p.start","p.end","cis")]
+  d <- data[c("Chr","bp","p.chr","p.start","p.end","log10p","cis")]
   chr1 <- d[["Chr"]]
   chr1[chr1=="X"] <- 23
   chr1[chr1=="Y"] <- 24
@@ -932,7 +932,7 @@ mhtplot2d <- function(data, cex=0.6)
   pos2 <- CM[chr2] + (d[["p.start"]] + d[["p.end"]])/2
   points(pos1,pos2,cex=cex,col=ifelse(d[["cis"]],"red","blue"),pch=19)
   legend("top",legend=c("cis","trans"),box.lty=0,cex=cex,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
-  return(list(pos1=pos1,pos2=pos2,col=ifelse(d[["cis"]],"red","blue")))
+  return(data.frame(x=pos1,y=pos2,z=with(d,log10p),col=ifelse(d[["cis"]],"red","blue")))
 }
 
 snptest_sample <- function(data,sample_file,ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
