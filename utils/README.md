@@ -25,8 +25,10 @@ The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
 
 * [register.R](register.R) can be used as 
 ```bash
-Rscript register.R gap
+[Rscript] register.R gap
 ```
 to produce `package_native_routine_registration_skeleton.c`.
 
 * [st.sh](st.sh) is a batch file for GitHub.
+
+* [gap-suggests.R](gap-suggests.R) is useful to install susggested packages for gap.
