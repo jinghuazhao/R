@@ -935,7 +935,7 @@ mhtplot2d <- function(data, cex=0.6)
   return(data.frame(x=pos1,y=pos2,z=with(d,log10p),col=ifelse(d[["cis"]],"red","blue")))
 }
 
-snptest_sample <- function(data,sample_file,ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
+snptest_sample <- function(data,sample_file="test.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
 {
   cat(ID_1,ID_2,missing,C,D,P,file=sample_file)
   cat("\n",file=sample_file,append=TRUE)
@@ -944,7 +944,7 @@ snptest_sample <- function(data,sample_file,ID_1="ID_1",ID_2="ID_2",missing="mis
   len_P <- length(P)
   cat("0 0 0",rep("C",len_C),rep("D",len_D),rep("P",len_P),file=sample_file,append=TRUE)
   cat("\n",file=sample_file,append=TRUE)
-  write.table(d[c(ID_1,ID_2,missing,C,D,P)],file=sample_file,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE)
+  write.table(data[c(ID_1,ID_2,missing,C,D,P)],file=sample_file,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE)
 }
 
 chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)

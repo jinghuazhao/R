@@ -8,6 +8,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include "ignore.h"
 
 #define version 2.2
 #define mxloc 60
@@ -1495,7 +1496,7 @@ if(!fi)
   perror("I cannot open the file");
   return 1;
 }
-fgets(record,300,fi);
+ignore_char(fgets(record,300,fi));
 nloci=0;
 while(sscanf(record,"%d %[^\n]",&loci[nloci++],eol)>1) strcpy(record,eol);
 nhaploid=ndiploid=0;
@@ -1504,7 +1505,7 @@ while(fgets(record,300,fi)
 if(sex==0) nhaploid++;
 else ndiploid++;
 rewind(fi);
-fgets(record,300,fi);
+ignore_char(fgets(record,300,fi));
 htable=(haploid*)malloc(nhaploid*sizeof(haploid));
 dtable=(diploid*)malloc(ndiploid*sizeof(diploid));
 if(!htable||!dtable)

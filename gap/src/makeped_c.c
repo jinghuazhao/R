@@ -49,10 +49,10 @@
 #ifdef MICROSOFT_C
 /*  #include <malloc.h> malloc/malloc.h for Mac OS X 10.3 (Panther)*/
 #endif
-
 #ifdef TURBO_C
   #include <alloc.h>
 #endif
+#include "ignore.h"
 
 #define	FALSE			0
 #define	TRUE			1
@@ -162,7 +162,7 @@ void read_pedigree(pedigree_s)
  s_byte pedigree_s[];   /* string id's  */
 {
   Rprintf("\n\tPedigree   -> ");
-  fscanf(stdin,"%s",pedigree_s);
+  ignore_int(fscanf(stdin,"%s",pedigree_s));
 }
 /****************************************************************************/
 /*                                                                          */
@@ -176,7 +176,7 @@ void read_person(person_s)
  s_byte person_s[];   /* string id's  */
 {
   Rprintf("\tPerson     -> ");
-  fscanf(stdin,"%s",person_s);
+  ignore_int(fscanf(stdin,"%s",person_s));
 }
 /****************************************************************************/
 /*                                                                          */
@@ -261,7 +261,7 @@ void getind(id,sequence,newped_s,nuped)
 
   /* Read the persons id and convert it to an initial index. */
 
-    fscanf(pedfile,"%s",temp_s);
+    ignore_int(fscanf(pedfile,"%s",temp_s));
     dupli_id = chk_dupli(temp_s);         /* yes:1 no:0 */
     if (!dupli_id) {
     strcpy(lineind[lineperson],temp_s);
@@ -340,7 +340,7 @@ void getindpa(id,sequence,newped_s,nuped)
 
   /* Read the persons id and convert it to an initial index. */
 
-    fscanf(pedfile,"%s",temp_s);
+    ignore_int(fscanf(pedfile,"%s",temp_s));
     if (temp_s[0]=='0' && temp_s[1]=='\0') *id = 0;
     else {
       found_id = ind_lookup(temp_s,sequence);
@@ -461,7 +461,7 @@ void readped()
     /* Read first pedigree number*/
 
   rewind(pedfile);
-  fscanf(pedfile,"%s",newped_s);
+  ignore_int(fscanf(pedfile,"%s",newped_s));
   strcpy(thisped_s,newped_s);
   strcpy(curped_s,newped_s);
   while (! feof(pedfile)) {
@@ -483,7 +483,7 @@ void readped()
     if ((person[thisone]->ma = person[newid]) != NULL)
       person[thisone]->maid   = person[newid]->id;
 
-    fscanf(pedfile,"%d",&sex);
+    ignore_int(fscanf(pedfile,"%d",&sex));
     person[thisone]->sex = sex;
     if (sex == 1) person[thisone]->male = TRUE;
     else person[thisone]->male = FALSE;
@@ -494,7 +494,7 @@ void readped()
     /* pedigree then update a few things and keep going.               */
 
     if (!feof(pedfile)) {
-        fscanf(pedfile,"%s",newped_s);
+        ignore_int(fscanf(pedfile,"%s",newped_s));
         if (strcmp(thisped_s,newped_s) != 0) {
         sequence += nuperson;
         nuperson = 0;
@@ -608,13 +608,13 @@ void save_loops(count)
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
-  fscanf(stdin,"%1s",&response);
+  ignore_int(fscanf(stdin,"%1s",&response));
 
   if ((response == 'y') || (response == 'Y')) {
     loop_file[0] = '\0';
     Rprintf("\nEnter filename -> ");
     while ( loop_file[0] == '\0' ) {
-      fgets(loop_file,max_filespec,stdin);
+      ignore_char(fgets(loop_file,max_filespec,stdin));
     }
     if ( (loopf = fopen(loop_file,"w")) == NULL) {
       REprintf("\nERROR: Cannot open file %s\n",loop_file);
@@ -797,7 +797,7 @@ void file_loops(char **loopfile)
   loop_file[0] = '\0';
   Rprintf("\nEnter filename -> ");
   while ( loop_file[0] == '\0' ) {
-    fgets(loop_file,max_filespec,stdin);
+    ignore_char(fgets(loop_file,max_filespec,stdin));
   }
   if ( (loopf = fopen(loop_file,"r")) == NULL) {
    error("\nERROR: Cannot open file %s\n",loop_file);
@@ -810,8 +810,8 @@ void file_loops(char **loopfile)
 
   while(!feof(loopf)) {
 
-   fscanf(loopf,"%s",pedigree_s);
-   fscanf(loopf,"%s",person_s);
+   ignore_int(fscanf(loopf,"%s",pedigree_s));
+   ignore_int(fscanf(loopf,"%s",person_s));
 
    if (!feof(loopf)) {
 
@@ -950,10 +950,10 @@ void get_loops(int *withloop, char **loopfile)
   s_byte response;
   Rprintf("\n");
   Rprintf("Does your pedigree file contain any loops?    (y/n) -> ");
-  fscanf(stdin,"%1s",&response);
+  ignore_int(fscanf(stdin,"%1s",&response));
   if ((response == 'y') || (response == 'Y')) {
     Rprintf("\nDo you have a file of loop assignments?       (y/n) -> ");
-    fscanf(stdin,"%1s",&response);
+    ignore_int(fscanf(stdin,"%1s",&response));
     if ((response == 'y') || (response == 'Y')) file_loops();
     else some_loops();
   }
@@ -1046,13 +1046,13 @@ void save_probands(count)
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
-  fscanf(stdin,"%1s",&response);
+  ignore_int(fscanf(stdin,"%1s",&response));
 
   if ((response == 'y') || (response == 'Y')) {
     proband_file[0] = '\0';
     Rprintf("\nEnter filename -> ");
     while ( proband_file[0] == '\0' ) {
-      fgets(proband_file,max_filespec,stdin);
+      ignore_char(fgets(proband_file,max_filespec,stdin));
     }
     if ( (prof = fopen(proband_file,"w")) == NULL) {
       REprintf("\nERROR: Cannot open file %s\n",proband_file);
@@ -1162,7 +1162,7 @@ void file_probands(char **probandfile)
   proband_file[0] = '\0';
   Rprintf("\nEnter filename -> ");
   while ( proband_file[0] == '\0' ) {
-       fgets(proband_file,max_filespec,stdin);
+       ignore_char(fgets(proband_file,max_filespec,stdin));
   }
   if ( (prof = fopen(proband_file,"r")) == NULL) {
       error("\nERROR: Cannot open file %s\n",proband_file);
@@ -1176,8 +1176,8 @@ void file_probands(char **probandfile)
                       /* even if the input file does not set it.       */
     while(!feof(prof)) {
 
-       fscanf(prof,"%s",pedigree_s);
-       fscanf(prof,"%s",person_s);
+       ignore_int(fscanf(prof,"%s",pedigree_s));
+       ignore_int(fscanf(prof,"%s",person_s));
 
        if (!feof(prof)) {
        found = FALSE;
@@ -1391,7 +1391,7 @@ void get_probands(int *auto_proband,char **probandfile)
 #ifdef executable
   Rprintf("\n");
   Rprintf("Do you want probands selected automatically?   (y/n) -> ");
-  fscanf(stdin,"%1s",&response);
+  ignore_int(fscanf(stdin,"%1s",&response));
 #else
   if (*auto_proband) response='y';
 #endif
@@ -1399,7 +1399,7 @@ void get_probands(int *auto_proband,char **probandfile)
   else {
 #ifdef executable
   Rprintf("\nDo you have a file of proband assignments?    (y/n) -> ");
-  fscanf(stdin,"%1s",&response);
+  ignore_int(fscanf(stdin,"%1s",&response));
   if ((response == 'y') || (response == 'Y')) file_probands();
 #else
   response='y';
@@ -1408,7 +1408,7 @@ void get_probands(int *auto_proband,char **probandfile)
   else {
  
   Rprintf("\nDo you want to select all probands?           (y/n) -> ");
-  fscanf(stdin,"%1s",&response);
+  ignore_int(fscanf(stdin,"%1s",&response));
   if ((response == 'y') || (response == 'Y')) all_probands();
   else some_probands();
 }
@@ -1721,11 +1721,11 @@ main(argc,argv)
   else{                                 /* FILES ARE NOT ON COMMAND LINE */
     while ( pifile[0] == '\0' ) {
       Rprintf("Pedigree file -> ");
-      fgets(pifile,max_filespec,stdin);
+      ignore_char(fgets(pifile,max_filespec,stdin));
     }
     while ( pofile[0] == '\0') {
       Rprintf("Output file   -> ");
-      fgets(pofile,max_filespec,stdin);
+      ignore_char(fgets(pofile,max_filespec,stdin));
     }
   }
 
@@ -1736,7 +1736,7 @@ main(argc,argv)
   else {
     while ( pofile[0] == '\0') {
       Rprintf("Output file   -> ");
-      fgets(pofile,max_filespec,stdin);
+      ignore_char(fgets(pofile,max_filespec,stdin));
     }
   }
   /* If the third argument is 'n', then ask no questions -> there  */
@@ -1817,3 +1817,4 @@ void makeped_c(char **pifile, char **pofile, int *autoselect,
 /* Adapted from makeped.c on 18-10-2003 */
 /* file_loops Change u_byte to s_byte pedigree_s on 16-8-2004 */
 /* Change gets to fgets in relation to console input on 2-12-2013 */
+/* ignore_char/int to fgets/fscanf on 1-2-2020*/

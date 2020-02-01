@@ -44,3 +44,4 @@ importFrom("stats", "as.formula", "coefficients", "cor", "dnorm",
            "quantile", "rbinom", "rexp", "rnorm", "runif", "var")
 importFrom("grDevices", "dev.off")
 importFrom("graphics", "title")
+importFrom("graphics", "boxplot")

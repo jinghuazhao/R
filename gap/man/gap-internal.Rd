@@ -123,7 +123,8 @@ ReadGRMBin(prefix, AllN=FALSE, size=4)
 ReadGRMPLINK(prefix, diag=1)
 ReadGRMPCA(prefix)
 revhap(loci,hapid)
-snptest_sample(data,sample_file,ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
+snptest_sample(data,sample_file="test.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",
+               C=NULL,D=NULL,P=NULL)
 VR(v1,vv1,v2,vv2,c12)
 WriteGRM(prefix=51,id,N,GRM)
 WriteGRMBin(prefix, grm, N, id, size=4)
@@ -267,7 +268,8 @@ g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
        "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 circos.mhtplot(mhtdata,g)
 #
-# zcat METAL/4E.BP1-1.tbl.gz | awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+# zcat METAL/4E.BP1-1.tbl.gz | \
+# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
 tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
 z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
@@ -277,7 +279,7 @@ mhtplot2d(d)
 }
 #
 d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
-snptest_sample(d,"test.sample",C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
+snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 #
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)

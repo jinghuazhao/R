@@ -1,5 +1,6 @@
 dplyr_rsid <- function(df,rsid)
 {
+  MarkerName <- NA
   d <- dplyr::nest_join(df,rsid)
   dy <- d["y"]
   m <- within(d, {

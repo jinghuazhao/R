@@ -26,7 +26,8 @@ makeRLEplot <- function(E, log2.data=TRUE, groups=NULL, col.group=NULL,
   boxplot(E.new, xaxt="n", las=2, col= mycol, ...)
   xtick <- seq(1, ncol(E.new), by=1)
   axis(side=1, at=xtick, tick=FALSE, labels=FALSE)
-  text(x=xtick, par("usr")[3], labels = colnames(d), srt=90, pos=1, xpd = TRUE, col = mycol, ...)
+  text(x=xtick, par("usr")[3], labels = colnames(data),
+       srt=90, pos=1, xpd = TRUE, col = mycol, ...)
   if (showTitle) mtext(text=title, side=3, line=0.1)
   
 }

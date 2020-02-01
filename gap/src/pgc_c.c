@@ -9,6 +9,7 @@
 #include <math.h>
 #include <time.h>
 #include "pgc.h"
+#include "ignore.h"
 
 #define version 1.0
 
@@ -192,22 +193,22 @@ if(!fp)
   error("%d",1);
 }
 for(i=0;i<MAX_LOC;i++) selidx[i]=selndx[i]=selpdx[i]=0;
-fgets(line,240,fp);
+ignore_char(fgets(line,240,fp));
 sscanf(line,"%d %d %d %d",&nloci,&cc,&permute,&npermute);
 if(nloci>=MAX_LOC)
 {
   perror("Error: maximum number of loci exceeded");
   error("%d",1);
 }
-fgets(line,240,fp);
+ignore_char(fgets(line,240,fp));
 for(i=0;i<nloci;++i,strcpy(line,rest),*rest='\0')
    if(sscanf(line,"%d %[^\n]",&alleles[i],rest)<1) return 0;
-fgets(line,240,fp);
+ignore_char(fgets(line,240,fp));
 sscanf(line,"%d %d",&isgenotype,&iogenotype);
-fgets(line,240,fp);
+ignore_char(fgets(line,240,fp));
 for(i=0;i<nloci;++i,strcpy(line,rest),*rest='\0')
    if(sscanf(line,"%d %[^\n]",&sel[i],rest)<1) return 0;
-fgets(line,240,fp);
+ignore_char(fgets(line,240,fp));
 for(i=0;i<nloci;++i,strcpy(line,rest),*rest='\0')
    if(sscanf(line,"%d %[^\n]",&selp[i],rest)<1) return 0;
 if(fgets(line,240,fp)&&sscanf(line,"%f %f %f %f",&freq,&pen0,&pen1,&pen2)==4)
@@ -432,22 +433,22 @@ if(!fp)
   REprintf("Error opening %s",locfile);
   error("%d",1);
 }
-fgets(line,500,fp);
+ignore_char(fgets(line,500,fp));
 sscanf(line,"%d %d %d %d",&nloci,&cc,&permute,&npermute);
 if(nloci>=MAX_LOC)
 {
   perror("Error: maximum number of loci exceeded");
   error("%d",1);
 }
-fgets(line,500,fp);
+ignore_char(fgets(line,500,fp));
 for(i=0;i<nloci;++i,strcpy(line,rest),*rest='\0')
    if(sscanf(line,"%d %[^\n]",&alleles[i],rest)<1) return 0;
-fgets(line,500,fp);
+ignore_char(fgets(line,500,fp));
 sscanf(line,"%d %d",&isgenotype,&iogenotype);
-fgets(line,500,fp);
+ignore_char(fgets(line,500,fp));
 for(i=0;i<nloci;++i,strcpy(line,rest),*rest='\0')
    if(sscanf(line,"%d %[^\n]",&sel[i],rest)<1) return 0;
-fgets(line,500,fp);
+ignore_char(fgets(line,500,fp));
 for(i=0;i<nloci;++i,strcpy(line,rest),*rest='\0')
    if(sscanf(line,"%d %[^\n]",&selp[i],rest)<1) return 0;
 if(fgets(line,500,fp)&&sscanf(line,"%f %f %f %f",&freq,&pen0,&pen1,&pen2)==4)

@@ -6,6 +6,7 @@
 
 #include "cline.h"
 #include "hap.h"
+#include "ignore.h"
 
 #define version 1.0
 #define MAX_NAME_LEN 30
@@ -54,7 +55,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
     infile=fopen(tpname,"r");
     if(!infile) goto read_error;
     else {
-      fgets(line, MAX_LINE_LEN, infile);
+      ignore_char(fgets(line, MAX_LINE_LEN, infile));
       fprintf(outfile,"Haplotypes\n\n   ID");
       while(sscanf(line," %s %[^\n]",namei,rol)>1) {
         strcpy(line,rol);
@@ -96,7 +97,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
       }
       if(!infile) goto read_error;
       else {
-        fgets(line, MAX_LINE_LEN, infile);
+        ignore_char(fgets(line, MAX_LINE_LEN, infile));
         j=0;
         if(i==1)
           while(sscanf(line," %s %[^\n]",namei,rol)>1) {
@@ -197,7 +198,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
       infile=fopen(tpname,"r");
       if(!infile) goto read_error;
       else {
-        fgets(line, MAX_LINE_LEN, infile);
+        ignore_char(fgets(line, MAX_LINE_LEN, infile));
         if(i==1) {
           sscanf(line, "%*s %*s %[^\n]",rol);
           strcpy(line,rol);
@@ -242,7 +243,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
       sprintf(tpname,"%s.%03d",*assfile,i);
       infile=fopen(tpname,"r");
       if(infile) {
-        fgets(line,MAX_LINE_LEN,infile);
+        ignore_char(fgets(line,MAX_LINE_LEN,infile));
         j=0;
         if(i==1) sscanf(line, "%*s %*s %[^\n]",rol);
         strcpy(line,rol);
@@ -399,7 +400,7 @@ int main (int argc, char **argv)
     infile=fopen(tpname,"r");
     if(!infile) goto read_error;
     else {
-      fgets(line, MAX_LINE_LEN, infile);
+      ignore_char(fgets(line, MAX_LINE_LEN, infile));
       fprintf(outfile,"Haplotypes\n\n   ID");
       while(sscanf(line," %s %[^\n]",namei,rol)>1) {
         strcpy(line,rol);
@@ -441,7 +442,7 @@ int main (int argc, char **argv)
       }
       if(!infile) goto read_error;
       else {
-        fgets(line, MAX_LINE_LEN, infile);
+        ignore_char(fgets(line, MAX_LINE_LEN, infile));
         j=0;
         if(i==1)
           while(sscanf(line," %s %[^\n]",namei,rol)>1) {
@@ -542,7 +543,7 @@ int main (int argc, char **argv)
       infile=fopen(tpname,"r");
       if(!infile) goto read_error;
       else {
-        fgets(line, MAX_LINE_LEN, infile);
+        ignore_char(fgets(line, MAX_LINE_LEN, infile));
         if(i==1) {
           sscanf(line, "%*s %*s %[^\n]",rol);
           strcpy(line,rol);
@@ -587,7 +588,7 @@ int main (int argc, char **argv)
       sprintf(tpname,"%s.%03d",ifname,i);
       infile=fopen(tpname,"r");
       if(infile) {
-        fgets(line,MAX_LINE_LEN,infile);
+        ignore_char(fgets(line,MAX_LINE_LEN,infile));
         j=0;
         if(i==1)
           sscanf(line, "%*s %*s %[^\n]",rol);
