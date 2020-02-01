@@ -935,7 +935,7 @@ mhtplot2d <- function(data, cex=0.6)
   return(data.frame(x=pos1,y=pos2,z=with(d,log10p),col=ifelse(d[["cis"]],"red","blue")))
 }
 
-snptest_sample <- function(data,sample_file="test.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
+snptest_sample <- function(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
 {
   cat(ID_1,ID_2,missing,C,D,P,file=sample_file)
   cat("\n",file=sample_file,append=TRUE)
