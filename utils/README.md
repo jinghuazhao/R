@@ -1,7 +1,10 @@
-# utilities
+## utilities
 
-The standard CRAN submission check is via [check.sh](check.sh).
-
+* [check.sh](check.sh) is the standard CRAN submission check, e.g.,
+```bash
+check.sh gap
+```
+* [install.sh](install.sh) is a sophistic way of installation.
 One could implement a more restrictive gcc9 specifications, as described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
 ```bash
 export CC=/usr/bin/gcc
@@ -14,6 +17,16 @@ export LDFLAGS="-L/usr/lib64 -L/usr/lib64"
 ```
 followed by `R-devel CMD INSTALL gap_1.2.2.tar.gz`, say.
 
-A more sophisticated way is as in [install.sh](install.sh).
+The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
 
-This should be possible with configure as well, i.e., [configure.sh](configure.sh), but I reckon this is hardly necessary.
+> Warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+
+* [configure.sh](configure.sh) is notable for compiling new release of R.
+
+* [register.R](register.R) can be used as 
+```bash
+Rscript register.R gap
+```
+to produce `package_native_routine_registration_skeleton.c`.
+
+* [st.sh](st.sh) is a batch file for GitHub.
