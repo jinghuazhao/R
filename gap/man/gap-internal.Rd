@@ -123,8 +123,8 @@ ReadGRMBin(prefix, AllN=FALSE, size=4)
 ReadGRMPLINK(prefix, diag=1)
 ReadGRMPCA(prefix)
 revhap(loci,hapid)
-snptest_sample(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",
-               C=NULL,D=NULL,P=NULL)
+snptest_sample(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",
+               missing="missing",C=NULL,D=NULL,P=NULL)
 VR(v1,vv1,v2,vv2,c12)
 WriteGRM(prefix=51,id,N,GRM)
 WriteGRMBin(prefix, grm, N, id, size=4)
