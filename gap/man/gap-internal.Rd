@@ -276,7 +276,6 @@ l <- cs(tbl,log_p="logp")
 #
 d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
 mhtplot2d(d)
-}
 #
 d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
 snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
@@ -284,6 +283,7 @@ snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)
 inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
+}
 }
 \details{These functions are not so frequently called by users}
 \keyword{internal}
