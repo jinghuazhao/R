@@ -1,5 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.2.3
+07-02-2020	Revise return values for mhtplot2d as chr1,pos1,chr2,pos2,log10p,col
+
 Version 1.2.2
 01-02-2020	Fix problem with inv_chr_pos_a1_a2(prefix=), return values from mhtplot2d
 		Recompile R-devel with `CPPFLAGS="-D_FORTIFY_SOURCE=2 -fPIC" ./configure --enable-R-shlib'
