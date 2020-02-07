@@ -932,7 +932,8 @@ mhtplot2d <- function(data, cex=0.6)
   pos2 <- CM[chr2] + (d[["p.start"]] + d[["p.end"]])/2
   points(pos1,pos2,cex=cex,col=ifelse(d[["cis"]],"red","blue"),pch=19)
   legend("top",legend=c("cis","trans"),box.lty=0,cex=cex,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
-  return(data.frame(chr1=chr1,pos1=pos1,chr2=chr2,pos2=pos2,log10p=with(d,log10p),col=ifelse(d[["cis"]],"red","blue")))
+  return(data.frame(chr1=chr1,pos1=d[["bp"]],chr2=chr2,pos2=(d[["p.start"]] + d[["p.end"]])/2,x=pos1,y=pos2,
+         log10p=with(d,log10p),col=ifelse(d[["cis"]],"red","blue")))
 }
 
 snptest_sample <- function(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
