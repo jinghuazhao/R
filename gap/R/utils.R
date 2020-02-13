@@ -996,3 +996,35 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
   names(s) <- c("chr","pos","a1","a2")
   return(s)
 }
+
+d3json <- function(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
+                   xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,pretty=TRUE)
+{
+  library(jsonlite)
+  src <- read_json(template)
+  d <- read.table(xyz,as.is=TRUE,header=TRUE)
+  r <-  mhtplot2d(d)
+  cuts <- with(r, abs(log10p) > log10p.max)
+  r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
+  prefix <- c("Sentinel variant","CHR","POS","Mapped gene","Target","-log10(p)")
+  postfix <- c("</br>")
+  fixes <- function(col,d) paste(paste(prefix[col],d[,col],sep=":"),postfix)
+  cols <- c("id","chr1","x","gene","target","log10p","chr2","y","col")
+  Olink <- src
+  Olink$x$layout$title <- "Scatterplot of sentinels"
+  ab <- function(i,col,name)
+  {
+    t <- subset(r[cols],col==col)
+    cuts <- with(t, abs(log10p) == log10p.max)
+    n.cuts <- with(t,length(log10p[cuts]))
+    Olink$x$data[[i]] <<- list(x=t$x, y=t$y, z=t$log10p, text=as.list(apply(sapply(1:6,fixes,t),1,paste,collapse=" ")),
+                          type="scatter3d", mode="markers", name=name)
+    s <- rep('circle',nrow(t))
+    s[cuts] <- 'diamond'
+    Olink$x$data[[i]]$marker$symbol <<- s
+    Olink$x$data[[i]]$marker$size <<- marker.size
+  }
+  ab(2,"red","cis")
+  ab(1,"blue","trans")
+  toJSON(Olink,auto_unbox=TRUE,pretty=pretty)
+}

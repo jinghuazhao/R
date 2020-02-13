@@ -11,6 +11,7 @@
 \alias{cnv}
 \alias{crohn}
 \alias{cs}
+\alias{d3json}
 \alias{fa}
 \alias{fsnps}
 \alias{hla}
@@ -111,6 +112,8 @@
 a2g(a1,a2)
 chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 cis.vs.trans.classification(hits,panel,id,radius=1e6)
+d3json(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
+       xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,pretty=TRUE)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
@@ -283,6 +286,12 @@ snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)
 inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
+#
+l <- d3plot(pretty=FALSE)
+sink("d3.json")
+l
+sink()
+# sed -i 's|<\\/br>|\\u003c/br>|g' js.json
 }
 }
 \details{These functions are not so frequently called by users}

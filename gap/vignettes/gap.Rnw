@@ -125,6 +125,7 @@ circos.cnvplot    &      circos plot of CNVs\\
 circos.cis.vs.trans.plot & circos plot of cis/trans classification\\
 circos.mhtplot    &      circos Manhattan plot with gene annotation\\
 cnvplot           &      genomewide plot of CNVs\\
+d3json            &      d3.js data preparation\\
 METAL\_forestplot &      forest plot as R/meta's forest for METAL outputs\\
 makeRLEplot       &      make relative log expression plot\\
 mhtplot           &      Manhattan plot\\

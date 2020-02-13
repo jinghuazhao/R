@@ -1,6 +1,6 @@
 Package: gap
 Version: 1.2.3
-Date: 2020-2-9
+Date: 2020-2-13
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
@@ -10,7 +10,7 @@ BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 2.10)
 Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
         calibrate, circlize, coda, coxme, dplyr, foreign, forestplot,
-        gap.datasets, grid, haplo.stats, kinship2, lattice, 
+        gap.datasets, grid, haplo.stats, jsonlite, kinship2, lattice, 
         magic, matrixStats, meta, mets, nlme, pedigree, pedigreemm, plotrix,
         qqman, regress, reshape, rmeta, rms, survival
 LazyData: Yes
