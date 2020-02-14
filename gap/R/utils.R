@@ -1022,12 +1022,12 @@ d3json <- function(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
     t <- subset(r[cols],col==col)
     cuts <- with(t, abs(log10p) == log10p.max)
     n.cuts <- with(t,length(log10p[cuts]))
-    Olink$x$data[[i]] <- list(x=t$x, y=t$y, z=t$log10p, text=as.list(apply(sapply(1:6,fixes,t),1,paste,collapse=" ")),
-                         type="scatter3d", mode="markers", name=name)
+    Olink$x$data[[i]] <<- list(x=t$x, y=t$y, z=t$log10p, text=as.list(apply(sapply(1:6,fixes,t),1,paste,collapse=" ")),
+                          type="scatter3d", mode="markers", name=name)
     s <- rep('circle',nrow(t))
     s[cuts] <- 'diamond'
-    Olink$x$data[[i]]$marker$symbol <- s
-    Olink$x$data[[i]]$marker$size <- marker.size
+    Olink$x$data[[i]]$marker$symbol <<- s
+    Olink$x$data[[i]]$marker$size <<- marker.size
   }
   ab(2,"red","cis")
   ab(1,"blue","trans")
