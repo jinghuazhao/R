@@ -112,7 +112,7 @@
 a2g(a1,a2)
 chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 cis.vs.trans.classification(hits,panel,id,radius=1e6)
-d3json(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
+d3json(xyz="INF1.merge.cis.vs.trans",
        xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,pretty=TRUE)
 g2a(g)
 g2a.c(g)

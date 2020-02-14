@@ -1002,10 +1002,11 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
   return(s)
 }
 
-d3json <- function(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
+d3json <- function(xyz="INF1.merge.cis.vs.trans",
                    xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,pretty=TRUE)
 {
   library(jsonlite)
+  template <- system.file(package = "gap", "JSON", "d3.template.gz")
   src <- read_json(template)
   d <- read.table(xyz,as.is=TRUE,header=TRUE)
   r <-  mhtplot2d(d, plot=FALSE)
