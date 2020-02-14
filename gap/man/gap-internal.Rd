@@ -161,6 +161,8 @@ cnvplot is a cutomised function to plot CNVs genomewide
 
 cs is for calculation of credible set.
 
+d3json is for d3.js data preparation.
+
 g2a returns two alleles according to a genotype identifier.
 
 g2a.c is the C version of g2c.
@@ -287,7 +289,7 @@ s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)
 inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 #
-l <- d3plot(pretty=FALSE)
+l <- d3json(pretty=FALSE)
 sink("d3.json")
 l
 sink()

@@ -895,30 +895,33 @@ hg19 <- c(249250621,243199373,198022430,191154276,180915260,171115067,159138663,
 hg18 <- c(247249719,242951149,199501827,191273063,180857866,170899992,158821424,146274826,140273252,135374737,134452384,132349534,
           114142980,106368585,100338915,88827254,78774742,76117153,63811651,62435964,46944323,49691432,154913754,57772954)
 
-grid2d <- function(chrlen=hg19, cex=0.6)
+grid2d <- function(chrlen=hg19, plot=TRUE, cex=0.6)
 {
   CM <- cumsum(chrlen)
   n <- length(chrlen)
-  par(xaxt = "n", yaxt = "n")
   xy <- xy.coords(c(0,CM), c(0,CM))
-  plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
-  par(xaxt = "s", yaxt = "s", xpd = TRUE)
-  for (x in 1:n) {
-      segments(CM[x],0,CM[x],CM[n],col="black")
-      segments(0,CM[x],CM[n],CM[x],col="black")
-      text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=cex)
-      text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=cex)
+  if (plot)
+  {
+    par(xaxt = "n", yaxt = "n")
+    plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
+    par(xaxt = "s", yaxt = "s", xpd = TRUE)
+    for (x in 1:n) {
+        segments(CM[x],0,CM[x],CM[n],col="black")
+        segments(0,CM[x],CM[n],CM[x],col="black")
+        text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=cex)
+        text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=cex)
+    }
+    segments(0,0,CM[n],0)
+    segments(0,0,0,CM[n])
+    title(xlab="pQTL position",ylab="protein position",line=2)
   }
-  segments(0,0,CM[n],0)
-  segments(0,0,0,CM[n])
-  title(xlab="pQTL position",ylab="protein position",line=2)
   return(list(n=n, CM=c(0,CM)))
 }
 
-mhtplot2d <- function(data, cex=0.6)
+mhtplot2d <- function(data, plot=TRUE, cex=0.6)
 # mhtplot2d(read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE))
 {
-  r <- grid2d()
+  r <- grid2d(plot=plot)
   n <- with(r, n)
   CM <- with(r, CM)
   d <- data[c("SNP","Chr","bp","p.chr","p.start","p.end","p.target.short","p.gene","log10p","cis")]
@@ -931,8 +934,10 @@ mhtplot2d <- function(data, cex=0.6)
   chr2[chr2=="Y"] <- 24
   mid <- (d[["p.start"]] + d[["p.end"]])/2
   pos2 <- CM[chr2] + mid
-  points(pos1,pos2,cex=cex,col=ifelse(d[["cis"]],"red","blue"),pch=19)
-  legend("top",legend=c("cis","trans"),box.lty=0,cex=cex,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
+  if (plot) {
+     points(pos1,pos2,cex=cex,col=ifelse(d[["cis"]],"red","blue"),pch=19)
+     legend("top",legend=c("cis","trans"),box.lty=0,cex=cex,col=c("red","blue"),horiz=TRUE,inset=c(0,1),xpd=TRUE,pch=19)
+  }
   return(data.frame(id=d[["SNP"]],chr1=chr1,pos1=d[["bp"]],chr2=chr2,pos2=mid,x=pos1,y=pos2,
          target=d[["p.target.short"]],gene=d[["p.gene"]],log10p=with(d,log10p),col=ifelse(d[["cis"]],"blue","red")))
 }
@@ -1003,7 +1008,7 @@ d3json <- function(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
   library(jsonlite)
   src <- read_json(template)
   d <- read.table(xyz,as.is=TRUE,header=TRUE)
-  r <-  mhtplot2d(d)
+  r <-  mhtplot2d(d, plot=FALSE)
   cuts <- with(r, abs(log10p) > log10p.max)
   r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
   prefix <- c("Sentinel variant","CHR","POS","Mapped gene","Target","-log10(p)")
@@ -1017,12 +1022,12 @@ d3json <- function(template="js.SomaLogic",xyz="INF1.merge.cis.vs.trans",
     t <- subset(r[cols],col==col)
     cuts <- with(t, abs(log10p) == log10p.max)
     n.cuts <- with(t,length(log10p[cuts]))
-    Olink$x$data[[i]] <<- list(x=t$x, y=t$y, z=t$log10p, text=as.list(apply(sapply(1:6,fixes,t),1,paste,collapse=" ")),
-                          type="scatter3d", mode="markers", name=name)
+    Olink$x$data[[i]] <- list(x=t$x, y=t$y, z=t$log10p, text=as.list(apply(sapply(1:6,fixes,t),1,paste,collapse=" ")),
+                         type="scatter3d", mode="markers", name=name)
     s <- rep('circle',nrow(t))
     s[cuts] <- 'diamond'
-    Olink$x$data[[i]]$marker$symbol <<- s
-    Olink$x$data[[i]]$marker$size <<- marker.size
+    Olink$x$data[[i]]$marker$symbol <- s
+    Olink$x$data[[i]]$marker$size <- marker.size
   }
   ab(2,"red","cis")
   ab(1,"blue","trans")
