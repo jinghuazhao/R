@@ -18,6 +18,14 @@ involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A
   \item{...}{options to use for the pdf device}
 }
 
+\details{
+The study-specific and total sample sizes (N) can be customised from METAL commands
+
+CUSTOMVARIABLE N\cr
+LABEL N as N\cr
+WEIGHTLABEL N
+}
+
 \value{
 It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
 }
