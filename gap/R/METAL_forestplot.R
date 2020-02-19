@@ -66,7 +66,7 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
                     col=rmeta::meta.colors(box="royalblue",line="darkblue", summary="royalblue"))
          title(title)
        }
-       else if(pakcage=="rmeta")
+       else if(package=="rmeta")
        {
          requireNamespace("rmeta")
          rmeta::metaplot(BETA,SE,N,

@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
-18-02-202	Add details on N to METAL_forestplot.Rd due to query from Savita Karthikeyan <sk752@medschl.cam.ac.uk>
+19-02-2020	Add details on N to METAL_forestplot.Rd due to query/flag of a typo
+		from Savita Karthikeyan <sk752@medschl.cam.ac.uk>
 14-02-2020	Add d3json and plot option to  mhtplot2d
 09-02-2020	Revise return values for mhtplot2d as id,chr1,pos1,chr2,pos2,x,y,log10p,target,gene,col
 
