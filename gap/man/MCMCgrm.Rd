@@ -60,6 +60,35 @@ save(m,file="l51.m")
 pdf("l51.pdf")
 plot(m)
 dev.off()
+
+# A real analysis on bats
+
+bianfu.GRM <- read.table("bianfu.GRM.txt", header = TRUE)
+bianfu.GRM[1:5,1:6]
+Data <- read.table(file = "PHONE.txt", header = TRUE, colClasses=c(rep("factor",3),rep("numeric",7)))
+
+library("MCMCglmm")
+GRM <- as.matrix(bianfu.GRM[,-1])
+colnames(GRM) <- rownames(GRM) <- bianfu.GRM[,1]
+library(gap)
+names(Data)[1] <- "id"
+prior1.1 <- list(G = list(G1 = list(V = 1, nu = 0.002)), R = list(V = 1, nu = 0.002))
+model1.1 <- MCMCgrm(WEIGTHT ~ 1, prior1.1, Data, GRM, n.burnin=100, n.iter=1000, verbose=FALSE)
+
+names(Data)[1] <- "animal"
+N <- nrow(Data)
+i <- rep(1:N, rep(N, N))
+j <- rep(1:N, N)
+s <- Matrix::spMatrix(N, N, i, j, as.vector(GRM))
+Ginv <- Matrix::solve(s)
+class(Ginv) <- "dgCMatrix"
+rownames(Ginv) <- Ginv@Dimnames[[1]] <- with(Data, animal)
+model1.2 <- MCMCglmm(WEIGTHT ~ 1, random= ~ animal, data = Data,
+  ginverse=list(animal=Ginv), prior = prior1.1, burnin=100, nitt=1000, verbose=FALSE)
+
+model1.3 <- MCMCglmm(Peak_Freq ~ WEIGTHT, random = ~ animal, 
+  data=subset(Data,!is.na(Peak_Freq)&!is.na(WEIGTHT)), 
+  ginverse=list(animal=Ginv), prior = prior1.1, burnin=100, nitt=1000, verbose=FALSE)
 }
 }
 \author{Jing Hua Zhao}
