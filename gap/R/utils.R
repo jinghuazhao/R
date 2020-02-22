@@ -1012,7 +1012,7 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
   for(p in c("jsonlite", "plotly")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))
-        warning(paste("MCMCgrm needs package `", p, "' to be fully functional; please install", sep=""))
+        warning(paste("mhtplot3d needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
   src <- list(
