@@ -26,6 +26,7 @@
 \alias{mfblong}
 \alias{mhtdata}
 \alias{mhtplot2d}
+\alias{mhtplot3d}
 \alias{nep499}
 \alias{PARn}
 \alias{HapDesign}
@@ -113,7 +114,10 @@ a2g(a1,a2)
 chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 cis.vs.trans.classification(hits,panel,id,radius=1e6)
 d3json(xyz="INF1.merge.cis.vs.trans",
-       xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,pretty=TRUE)
+       cols=c("id","chr1","x","gene","target","log10p","chr2","y","col"),
+       xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,
+       prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)"),
+       postfix="\u003c/br>",pretty=TRUE)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
@@ -121,6 +125,12 @@ h2GE(V,VCOV,verbose=TRUE)
 h2l(K=0.05,P=0.5,h2,se,verbose=TRUE)
 inv_chr_pos_a1_a2(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 KCC(model,GRR,p1,K)
+mhtplot3d(xyz="INF1.merge.cis.vs.trans",
+          cols=c("id","chr1","x","gene","target","log10p","chr2","y","col"),
+          xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,
+          prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)"),
+          postfix="\u003c/br>",
+          use.template=TRUE,json.file="d3.json",pretty=TRUE)
 ReadGRM(prefix=51)
 ReadGRMBin(prefix, AllN=FALSE, size=4)
 ReadGRMPLINK(prefix, diag=1)
@@ -206,6 +216,8 @@ logp is log(p) for a normal deviate
 m2plem is an experimental function for PLEM format.
 
 mhtplot2d is for 2D Manhattan plot
+
+mhtplot3d is for 3D Manhattan plot
 
 miamiplot is for Miami plot.
 
@@ -293,7 +305,7 @@ l <- d3json(pretty=FALSE)
 sink("d3.json")
 l
 sink()
-# sed -i 's|<\\/br>|\\u003c/br>|g' js.json
+# sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
 }
 }
 \details{These functions are not so frequently called by users}

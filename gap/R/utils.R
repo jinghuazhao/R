@@ -1003,7 +1003,10 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 }
 
 d3json <- function(xyz="INF1.merge.cis.vs.trans",
-                   xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,pretty=TRUE)
+                   cols=c("id","chr1","x","gene","target","log10p","chr2","y","col"),
+                   xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,
+                   prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)"),
+                   postfix="\u003c/br>",pretty=TRUE)
 {
   library(jsonlite)
   template <- system.file(package = "gap", "JSON", "d3.template.gz")
@@ -1012,10 +1015,7 @@ d3json <- function(xyz="INF1.merge.cis.vs.trans",
   r <-  mhtplot2d(d, plot=FALSE)
   cuts <- with(r, abs(log10p) > log10p.max)
   r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
-  prefix <- c("Sentinel variant","CHR","POS","Mapped gene","Target","-log10(p)")
-  postfix <- c("</br>")
   fixes <- function(col,d) paste(paste(prefix[col],d[,col],sep=":"),postfix)
-  cols <- c("id","chr1","x","gene","target","log10p","chr2","y","col")
   Olink <- src
   Olink$x$layout$title <- "Scatterplot of sentinels"
   ab <- function(i,col,name)
@@ -1034,3 +1034,109 @@ d3json <- function(xyz="INF1.merge.cis.vs.trans",
   ab(1,"blue","trans")
   toJSON(Olink,auto_unbox=TRUE,pretty=pretty)
 }
+
+mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
+                      cols=c("id","chr1","x","gene","target","log10p","chr2","y","col"),
+                      xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,
+                      prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)"),
+                      postfix="\u003c/br>",
+                      use.template=FALSE,json.file="d3.json",pretty=TRUE)
+{
+  library(jsonlite)
+  if (use.template)
+  {
+    template <- system.file(package = "gap", "JSON", "d3.template.gz")
+    src <- read_json(template)
+    src$x$layout$title <- "Scatterplot of sentinels"
+  } else {
+    src <- list(
+      x = list(
+        layout = list(
+          margin = list(b = 40, l = 60, r = 10, t = 25),
+          scene = list(
+            xaxis = list(title = "pQTL position",
+                         tickmode = "array", 
+                         autotick = FALSE, 
+                         tick0 = 1, 
+                         dtick = 1, 
+                         ticklen = 0, 
+                         tickwidth = 0, 
+                         tickfont = list(size = 10),
+                         tickvals = as.list(1:24),
+                         ticktext = as.list(c(1:22,"X","Y"))
+            ),
+            yaxis = list(title = "Protein position",
+                         tickmode = "array",
+                         autotick = FALSE,
+                         tick0 = 1,
+                         dtick = 1,
+                         ticklen = 0,
+                         tickwidth = 0,
+                         tickfont = list (size = 10),
+                         tickvals = as.list(1:24),
+                         ticktext = as.list(c(1:22,"X","Y"))
+            ),
+            zaxis = list(title = "-log10(p)", tickfont = list(size = 10)),
+            camera = list(eye=list(x = -1.3, y = -1.2, z = 1.1)),
+            aspectmode = "manual",
+            aspectratio = list(x = 0.9, y = 1, z = 0.6)
+          ),
+          legend = list(x = 10, y = 0.5),
+          xaxis = list(domain=list(0,1)),
+          yaxis = list(domain=list(0,1)),
+          title = "Scatterplot of sentinels"
+        ),
+        source = "A",
+        config = list(
+          modeBarButtonsToAdd = list(
+            name = "Collaborate",
+            icon = list(width = 1000, ascent = 500, descent = -50, path = "M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"),
+            click = "function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"
+          ),
+          modeBarButtonsToRemove = list("sendDataToCloud")
+        ),
+        data <- list(),
+        base_url = "https://plot.ly"
+      ),
+      evals = list("config.modeBarButtonsToAdd.0.click"),
+      jsHooks = list()
+    )
+  }
+  d <- read.table(xyz,as.is=TRUE,header=TRUE)
+  r <- mhtplot2d(d, plot=FALSE)
+  cuts <- with(r, abs(log10p) > log10p.max)
+  r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
+  fixes <- function(col,d) paste(paste(prefix[col],d[,col],sep=":"),postfix)
+  cistrans <- function(br,name,color)
+  {
+    t <- subset(r[cols],col==br)
+    cuts <- with(t, abs(log10p) == log10p.max)
+    n.cuts <- with(t,length(log10p[cuts]))
+    s <- rep('circle',nrow(t))
+    s[cuts] <- 'diamond'
+    list(x=t$x, y=t$y, z=t$log10p,
+         text=as.list(apply(sapply(1:6,fixes,t),1,paste,collapse=" ")),
+         type="scatter3d",
+         mode="markers", 
+         name=name,
+         marker=list(color=color,symbol=s,size=marker.size))
+  }
+  cis <- cistrans("blue","cis","rgba(230,75,53,1)")
+  trans <- cistrans("red","trans","rgba(77,187,213,1)")
+  src$x$data <- list(cis,trans)
+  if(!is.null(json.file))
+  {
+    l <- toJSON(src,auto_unbox=TRUE,pretty=pretty)
+    sink(json.file)
+    print(l)
+    sink()
+  }
+  library(plotly)
+  p <- plot_ly()
+  p <- with(src$x$data[[1]],add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
+  p <- with(src$x$data[[2]],add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
+  p <- with(src$x$layout, plotly::layout(p, scene=scene, xaxis=xaxis, yaxis=yaxis, margin=margin, title=title, showlegend=TRUE))
+}
+
+# https://plot.ly/r/reference/#scatter3d
+# sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
