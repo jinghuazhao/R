@@ -1009,7 +1009,12 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
                       postfix="\u003c/br>",
                       json.file="d3.json",pretty=TRUE)
 {
-  library(jsonlite)
+  for(p in c("jsonlite", "plotly")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!requireNamespace(p, quietly = TRUE))
+        warning(paste("MCMCgrm needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+  }
   src <- list(
     x = list(
       layout = list(
@@ -1082,15 +1087,14 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
   src$x$data <- list(cis,trans)
   if(!is.null(json.file))
   {
-    l <- toJSON(src,auto_unbox=TRUE,pretty=pretty)
+    l <- jsonlite::toJSON(src,auto_unbox=TRUE,pretty=pretty)
     sink(json.file)
     print(l)
     sink()
   }
-  library(plotly)
-  p <- plot_ly()
-  p <- with(src$x$data[[1]],add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
-  p <- with(src$x$data[[2]],add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
+  p <- plotly::plot_ly()
+  p <- with(src$x$data[[1]],plotly::add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
+  p <- with(src$x$data[[2]],plotly::add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
   p <- with(src$x$layout, plotly::layout(p, scene=scene, xaxis=xaxis, yaxis=yaxis, margin=margin, title=title, showlegend=TRUE))
 }
 

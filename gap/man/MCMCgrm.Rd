@@ -65,7 +65,8 @@ dev.off()
 ## data
 bianfu.GRM <- read.table("bianfu.GRM.txt", header = TRUE)
 bianfu.GRM[1:5,1:6]
-Data <- read.table(file = "PHONE.txt", header = TRUE, colClasses=c(rep("factor",3),rep("numeric",7)))
+Data <- read.table(file = "PHONE.txt", header = TRUE, 
+                   colClasses=c(rep("factor",3),rep("numeric",7)))
 ## MCMCgrm
 library("MCMCglmm")
 GRM <- as.matrix(bianfu.GRM[,-1])
