@@ -165,8 +165,6 @@ cnvplot is a cutomised function to plot CNVs genomewide
 
 cs is for calculation of credible set.
 
-d3json is for d3.js data preparation.
-
 g2a returns two alleles according to a genotype identifier.
 
 g2a.c is the C version of g2c.
