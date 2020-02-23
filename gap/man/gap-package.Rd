@@ -95,6 +95,7 @@ METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
 mhtplot2d         \tab      2D Manhattan plot\cr
+mhtplot3d         \tab      3D Manhattan plot\cr
 mhtplot.trunc     \tab      truncated Manhattan plot\cr
 miamiplot         \tab      Miami plot (Experimental)\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr

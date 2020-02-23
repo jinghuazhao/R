@@ -1018,7 +1018,7 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
   src <- list(
     x = list(
       layout = list(
-        margin = list(b = 40, l = 60, r = 10, t = 25),
+        margin = list(b = 40, l = 60, t = 25, r = 10),
         scene = list(
           xaxis = list(title = "pQTL position",
                        tickmode = "array", 
