@@ -1088,9 +1088,9 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
   src$x$data <- list(cis,trans)
   if(!is.null(json.file))
   {
-    l <- jsonlite::toJSON(src,auto_unbox=TRUE,pretty=pretty)
+    json <- jsonlite::toJSON(src,auto_unbox=TRUE,pretty=pretty)
     sink(json.file)
-    print(l)
+    print(json)
     sink()
   }
   p <- plotly::plot_ly()
@@ -1101,3 +1101,4 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
 
 # https://plot.ly/r/reference/#scatter3d
 # sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
+# plotly::toRGB( c('#BF382A', '#0C4B8E')) ==> "rgba(191,56,42,1)" "rgba(12,75,142,1)"
