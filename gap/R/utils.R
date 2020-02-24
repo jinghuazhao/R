@@ -1050,7 +1050,8 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
         legend = list(x = 10, y = 0.5),
         xaxis = list(domain=list(0,1)),
         yaxis = list(domain=list(0,1)),
-        title = "Scatterplot of sentinels"
+        title = "Scatterplot of sentinels",
+        showlegend = TRUE
       ),
       source = "A",
       config = list(
@@ -1095,7 +1096,7 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
   p <- plotly::plot_ly()
   p <- with(src$x$data[[1]],plotly::add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
   p <- with(src$x$data[[2]],plotly::add_trace(p, x=x, y=y, z=z, marker=marker, mode=mode, name=name, text=text, type=type))
-  p <- with(src$x$layout, plotly::layout(p, scene=scene, xaxis=xaxis, yaxis=yaxis, margin=margin, title=title, showlegend=TRUE))
+  p <- with(src$x$layout, plotly::layout(p, scene=scene, xaxis=xaxis, yaxis=yaxis, margin=margin, title=title, showlegend=showlegend))
 }
 
 # https://plot.ly/r/reference/#scatter3d
