@@ -121,7 +121,7 @@ inv_chr_pos_a1_a2(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 KCC(model,GRR,p1,K)
 mhtplot3d(xyz="INF1.merge.cis.vs.trans",
           cols=c("id","chr1","x","gene","target","log10p","chr2","y","col"),
-          xy.scale=c(1.3e8,1.3e8),marker.size=3,log10p.max=400,
+          xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
           prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)"),
           postfix="\u003c/br>",
           json.file="d3.json",pretty=TRUE)
