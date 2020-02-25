@@ -1005,7 +1005,7 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
                       cols=c("id","chr1","pos1","gene","target","log10p","chr2","pos2","x","y","col"),
                       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
-                      prefix=c("Sentinel","CHR","POS","Mapped gene","CHR","POS","Target","-log10(p)"),
+                      prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)","CHR","POS"),
                       postfix="\u003c/br>",
                       json.file="d3.json",pretty=TRUE)
 {
@@ -1077,7 +1077,7 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
     s <- rep('circle',nrow(t))
     s[cuts] <- 'diamond'
     list(x=t$x, y=t$y, z=t$log10p,
-         text=as.list(apply(sapply(1:8,fixes,t),1,paste,collapse=" ")),
+         text=as.list(apply(sapply(c(1:4,7,8,5,6),fixes,t),1,paste,collapse=" ")),
          type="scatter3d",
          mode="markers", 
          name=name,
