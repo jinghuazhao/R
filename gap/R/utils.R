@@ -1003,7 +1003,7 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 }
 
 mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
-                      cols=c("id","chr1","pos1","gene","target","log10p","chr2","pos2","col"),
+                      cols=c("id","chr1","pos1","gene","target","log10p","chr2","pos2","x","y","col"),
                       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
                       prefix=c("Sentinel","CHR","POS","Mapped gene","Target","-log10(p)"),
                       postfix="\u003c/br>",
