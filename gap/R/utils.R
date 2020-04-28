@@ -819,8 +819,8 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
   b2 <- within(b2,{p.chr=paste0("chr",p.chr)})
   names(b2) <- c("chr","start","end","gene","prot")
   colors <- rep(NA,nrow(with(cvt,data)))
-  colors[with(cvt,data)["cis.trans"]=="cis"] <- 12
-  colors[with(cvt,data)["cis.trans"]=="trans"] <- 10
+  colors[with(cvt,data)["cis.trans"]=="cis"] <- 10
+  colors[with(cvt,data)["cis.trans"]=="trans"] <- 12
   circlize::circos.genomicLink(b1, b2, col = colors, border = colors, directional=1, lwd = 1.6)
   circlize::circos.clear()
 }
