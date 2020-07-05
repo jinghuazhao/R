@@ -8,7 +8,7 @@ check.sh gap
 ```
 * [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` work properly, it is necessary to load the modules in it.
 
-* [install.sh](install.sh) has a sophistic way of installation. One could implement a more restrictive gcc9 specifications, as described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
+* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
 ```bash
 export CC=/usr/bin/gcc
 export CXX=/usr/g++
@@ -18,7 +18,7 @@ export FFLAGS="-g -O2 -mtune=native -Wall -pedantic"
 export CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-parentheses"
 export LDFLAGS="-L/usr/lib64 -L/usr/lib64"
 ```
-followed by `R-devel CMD INSTALL gap_1.2.3.tar.gz`, say.
+followed by `R-devel CMD INSTALL gap_1.2.3.tar.gz`, say. They could also be part of $HOME/.R/Makevars, omitting `export`.
 
 The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
 
@@ -32,7 +32,7 @@ It also shows how to install `gap` from GitHub via `Rscript`.
 ```
 to produce `package_native_routine_registration_skeleton.c`.
 
-It turned out to be necessary for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
+It is more apporopriate for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
 ```bash
 gfortran -c -fc-prototypes-external lmm.f
 ```
