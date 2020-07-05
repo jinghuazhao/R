@@ -1,4 +1,4 @@
-#!/bin/Rscript --vanilla
+#!/rds/user/jhz22/hpc-work/bin/Rscript --vanilla
 
 library(tools)
 pkg <- commandArgs(trailingOnly = TRUE)

@@ -6,9 +6,7 @@ This directory contains various utility scripts.
 ```bash
 check.sh gap
 ```
-* [configure.sh](configure.sh) is notable for compiling new release of R.
-
-* [gap-suggests.R](gap-suggests.R) is useful to install susggested packages for `gap`.
+* [csd3.sh](csd3.sh) contains steps to install R under CSD3.
 
 * [install.sh](install.sh) has a sophistic way of installation. One could implement a more restrictive gcc9 specifications, as described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
 ```bash
@@ -35,3 +33,5 @@ It also shows how to install `gap` from GitHub via `Rscript`.
 to produce `package_native_routine_registration_skeleton.c`.
 
 * [st.sh](st.sh) is a batch file for GitHub.
+
+* [suggests.R](suggests.R) is useful to install susggested packages.
