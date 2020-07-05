@@ -6,7 +6,7 @@ This directory contains various utility scripts.
 ```bash
 check.sh gap
 ```
-* [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note than for 'check.sh' work properly, it is necessary to load the modules in it.
+* [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` work properly, it is necessary to load the modules in it.
 
 * [install.sh](install.sh) has a sophistic way of installation. One could implement a more restrictive gcc9 specifications, as described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
 ```bash
@@ -32,7 +32,7 @@ It also shows how to install `gap` from GitHub via `Rscript`.
 ```
 to produce `package_native_routine_registration_skeleton.c`.
 
-It turned out to be necessary for ‘gfortran’ 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
+It turned out to be necessary for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
 ```bash
 gfortran -c -fc-prototypes-external lmm.f
 ```
