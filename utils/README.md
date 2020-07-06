@@ -8,7 +8,7 @@ check.sh gap
 ```
 * [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` to work properly, it is necessary to load the modules in it.
 
-* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
+* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as orignally described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
 ```bash
 export CC=/usr/bin/gcc
 export CXX=/usr/g++
