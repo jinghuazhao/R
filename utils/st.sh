@@ -1,4 +1,4 @@
-# 4-6-2019 JHZ
+# 22-7-2020 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -16,6 +16,8 @@ git add lmm
 git commit -m "linear mixed model"
 git add pan
 git commit -m "Multiple imputation for multivariate panel or clustered dat"
+git add pQTL
+git commit -m "pQTL analysis"
 git add kinship
 git commit -m "mixed-effects Cox models, sparse matrices, and modeling data from large pedigrees"
 git add tdthap
