@@ -8,7 +8,7 @@ Depends: R (>= 3.5.0)
 Suggests: gap
 LazyData: Yes
 LazyLoad: Yes
-Description: This repository collects information on a number of protain panels, 
+Description: This repository collects information on a number of protein panels, 
              linking function for cis/trans classification, 2D manhattan plots, 
              3D-plotly plots, forest plots among others availale from R/gap but 
              add functionality to check for replication across platforms and 
