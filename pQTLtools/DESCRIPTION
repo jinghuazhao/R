@@ -1,0 +1,18 @@
+Package: pQTLtools
+Version: 0.1
+Date: 2020-07-23
+Title: pQTL Tools
+Author: Jing Hua Zhao
+Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
+Depends: R (>= 3.5.0)
+Suggests: gap
+LazyData: Yes
+LazyLoad: Yes
+Description: This repository collects information on a number of protain panels, 
+             linking function for cis/trans classification, 2D manhattan plots, 
+             3D-plotly plots, forest plots among others availale from R/gap but 
+             add functionality to check for replication across platforms and 
+             some aspects of protein-related analysis.
+License: Unlimited
+URL: https://github.com/jinghuazhao/R
+NeedsCompilation: no

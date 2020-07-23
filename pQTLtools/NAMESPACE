@@ -1,0 +1,12 @@
+import(utils)
+importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
+           "legend", "lines", "mtext", "par", "plot", "points",
+           "segments", "text")
+importFrom("grDevices", "palette", "xy.coords")
+importFrom("stats", "as.formula", "coefficients", "cor", "dnorm",
+           "glm", "integrate", "median", "nlm", "pchisq", "pf",
+           "pnorm", "ppoints", "pt", "qchisq", "qnorm", "qqplot", "qt",
+           "quantile", "rbinom", "rexp", "rnorm", "runif", "var")
+importFrom("grDevices", "dev.off")
+importFrom("graphics", "title")
+importFrom("graphics", "boxplot")
