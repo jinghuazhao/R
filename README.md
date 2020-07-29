@@ -26,7 +26,7 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 ```
 I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
 
-My recent contribution is to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel).
+I have contributed to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through hackathon at MRC and recently to [cambridge-ceu](https://github.com/cambridge-ceu).
 
 ---
 
