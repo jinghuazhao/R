@@ -1,5 +1,6 @@
 \name{pQTLtools-internal}
 \title{Internal data/functions for pQTLtools}
+\alias{biomaRt}
 \alias{caprion}
 \alias{inf1}
 \alias{Olink_NGS}
@@ -24,7 +25,7 @@ head(inf1)
 \description{
 A list of protein panels: caprion, inf1, Olink_NGS, Olink_qPCR (CVD_II, ...), SomaLogic160410, swath_ms.
 
-In cases of incomplete information, a dataset called hgTables based on UCSC is provided.
+In cases of incomplete information, datasets called hgTables based on UCSC and biomaRt from Ensembl are provided.
 }
 \arguments{
   \item{chr}{chromosome}
@@ -35,7 +36,9 @@ In cases of incomplete information, a dataset called hgTables based on UCSC is p
 }
 \examples{
 \dontrun{
+head(biomaRt)
 head(caprion)
+head(hgTables)
 head(inf1)
 head(Olink_NGS)
 head(CVD_II)
