@@ -3,6 +3,7 @@ INF <- Sys.getenv("INF")
 r <- readLines(paste(INF,"doc","Olink.R",sep='/'),n=L)
 write(r,file=paste(L))
 source(paste(L))
+hgTables <- subset(hgTables,!grepl("hap",X.chrom)&!grepl("Un",X.chrom)&!grepl("random",X.chrom)&!grepl(";",geneName)&geneName!="")
 save(hgTables,
      Cardiometabolic,
      Cell_Regulation,
