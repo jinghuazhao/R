@@ -24,9 +24,9 @@ or GitHub,
 library(devtools)
 install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 ```
-I have earlier contributed to [**GGIR** package](https://cran.r-project.org/package=GGIR) via its `g.binread` function.
+I have implemented an earlier version of the `g.binread` function in [**GGIR**](https://cran.r-project.org/package=GGIR) package.
 
-I have contributed to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through hackathon at MRC and recently to [cambridge-ceu](https://github.com/cambridge-ceu).
+I have contributed to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC and recently to [cambridge-ceu](https://github.com/cambridge-ceu).
 
 ---
 
