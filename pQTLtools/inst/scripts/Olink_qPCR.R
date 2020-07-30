@@ -63,7 +63,7 @@ library(biomaRt)
 listEnsemblArchives()
 
 # hg19/GRCh37
-hg19 <- useMart(biomart= "ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl", host = "http://apr2020.archive.ensembl.org")
+hg19 <- useMart(biomart= "ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl", host = "grch37.ensembl.org")
 listAttributes(hg19)
 hg19.bm <- getBM(attributes = c('uniprotswissprot', 'hgnc_symbol','chromosome_name', 'start_position', 'end_position'),
                  filters = 'uniprotswissprot',
