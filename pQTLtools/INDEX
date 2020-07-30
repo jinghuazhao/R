@@ -1,0 +1,11 @@
+
+* Datasets *
+
+biomaRt                 Curated data from biomaRt
+caprion                 Caprion panel
+hgTables                Curated data from UCSC
+inf1                    Olink/INF panel
+SomaLogic160410         SomaLogic panel
+swath_ms                SWATH-MS panel
+Olink_NGS               Olink/NGS panels
+Olink_qPCR              Olink/qPCR panels
