@@ -1,13 +1,13 @@
-\name{ps}
+\name{snpquery}
 \alias{snpquery}
 \title{phenoscanner snpqueries in batches}
-\usage{snpquery(query,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)}
+\usage{snpquery(snps,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)}
 \description{
 R/phenoscanner only allows for certain number of items supplied. This simple function return
 a large number of calls by doing calls in batches as well as generating SNPIDs.
 }
 \arguments{
-\item{query}{a list of SNPs}
+\item{snps}{a list of SNPs}
 \item{catalogue}{"None","eQTL","mQTL","methQTL","pQTL","GWAS"}
 \item{proxies}{"None", "AFR","AMR","EAS","EUR","SAS"}
 \item{p}{p value threshold}
@@ -56,9 +56,11 @@ t5 <- openxlsx::read.xlsx(xlsx, sheet=5, colNames=TRUE, skipEmptyRows=TRUE,
 t6 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
                           cols=c(1:20), rows=c(3:167))
 # Venn diagram
-p <- list(setdiff(inf1$uniprot,"P23560"),setdiff(SomaLogic160410$UniProt[!is.na(SomaLogic160410$UniProt)],"P23560"))
+p <- list(setdiff(inf1$uniprot,"P23560"),
+          setdiff(SomaLogic160410$UniProt[!is.na(SomaLogic160410$UniProt)],"P23560"))
 cnames <- c("INF1","SomaLogic")
-VennDiagram::venn.diagram(x = p, category.names=cnames, filename='os.png', imagetype="png", output=TRUE)
+VennDiagram::venn.diagram(x = p, category.names=cnames,
+                          filename='os.png', imagetype="png", output=TRUE)
 m <- merge(inf1,SomaLogic160410,by.x="uniprot",by.y="UniProt")
 u <- setdiff(with(m,unique(uniprot)),"P23560")
 options(width=220)

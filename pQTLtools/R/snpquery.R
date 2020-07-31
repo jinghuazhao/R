@@ -1,7 +1,7 @@
-snpquery <- function(query,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
+snpquery <- function(snps,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
 {
   ref_a1 <- ref_a2 <- ref_hg19_coordinates <- NULL
-  batches <- split(query, ceiling(seq_along(query)/100))
+  batches <- split(snps, ceiling(seq_along(snps)/100))
   s <- t <- list()
   for(i in 1:length(batches))
   {
