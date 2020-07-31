@@ -55,6 +55,12 @@ t5 <- openxlsx::read.xlsx(xlsx, sheet=5, colNames=TRUE, skipEmptyRows=TRUE,
                           cols=c(1:19), rows=c(3:2746))
 t6 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
                           cols=c(1:20), rows=c(3:167))
+# Venn diagram
+p <- list(setdiff(inf1$uniprot,"P23560"),setdiff(SomaLogic160410$UniProt[!is.na(SomaLogic160410$UniProt)],"P23560"))
+cnames <- c("INF1","SomaLogic")
+VennDiagram::venn.diagram(x = p, category.names=cnames, filename='os.png', imagetype="png", output=TRUE)
+m <- merge(inf1,SomaLogic160410,by.x="uniprot",by.y="UniProt")
+u <- setdiff(with(m,unique(uniprot)),"P23560")
 }
 }
 \note{adapted from custom codings}
