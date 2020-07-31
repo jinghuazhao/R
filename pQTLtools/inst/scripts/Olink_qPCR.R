@@ -22,9 +22,12 @@ p12 <- do.call(rbind,panels)
 library(biomaRt)
 
 # hg19/GRCh37
+# listMarts()
 # listEnsemblArchives()
 hg19 <- useMart(biomart= "ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl", host = "grch37.ensembl.org")
+# listDatasets(hg19)
 # listAttributes(hg19)
+# listFilters(hg19)
 hg19.bm <- getBM(attributes = c('uniprotswissprot', 'hgnc_symbol','chromosome_name', 'start_position', 'end_position'),
                  filters = 'uniprotswissprot',
                  values = unique(with(p12,UniProt)),

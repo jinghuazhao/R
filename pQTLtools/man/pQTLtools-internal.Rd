@@ -2,10 +2,11 @@
 \title{Internal data/functions for pQTLtools}
 \alias{biomaRt}
 \alias{caprion}
+\alias{hg19}
+\alias{hgTables}
 \alias{inf1}
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
-\alias{hgTables}
 \alias{SomaLogic160410}
 \alias{swath_ms}
 \usage{
@@ -27,6 +28,7 @@ In cases of incomplete information, datasets called hgTables based on UCSC and b
 \dontrun{
 head(biomaRt)
 head(caprion)
+head(hg19)
 head(hgTables)
 head(inf1)
 head(Olink_NGS)
