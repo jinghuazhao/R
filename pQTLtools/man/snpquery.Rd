@@ -61,6 +61,16 @@ cnames <- c("INF1","SomaLogic")
 VennDiagram::venn.diagram(x = p, category.names=cnames, filename='os.png', imagetype="png", output=TRUE)
 m <- merge(inf1,SomaLogic160410,by.x="uniprot",by.y="UniProt")
 u <- setdiff(with(m,unique(uniprot)),"P23560")
+options(width=220)
+o <- subset(inf1,uniprot %in% u)
+dim(o)
+o
+vars <- c("UniProt","chr","start","end","extGene","Target","TargetFullName")
+s <- subset(SomaLogic160410[vars], UniProt %in% u)
+dim(s)
+us <- s[!duplicated(s),]
+dim(us)
+us
 }
 }
 \note{adapted from custom codings}
