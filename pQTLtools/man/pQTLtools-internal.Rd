@@ -3,7 +3,7 @@
 \alias{biomaRt}
 \alias{caprion}
 \alias{hg19}
-\alias{hgTables}
+\alias{hg19Tables}
 \alias{inf1}
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
@@ -15,7 +15,7 @@ head(inf1)
 \description{
 A list of protein panels: caprion, inf1, Olink_NGS, Olink_qPCR (CVD_II, ...), SomaLogic160410, swath_ms.
 
-In cases of incomplete information, datasets called hgTables based on UCSC and biomaRt from Ensembl are provided.
+In cases of incomplete information, datasets called hg19Tables based on UCSC and biomaRt from Ensembl are provided.
 }
 \arguments{
   \item{chr}{chromosome}
@@ -29,7 +29,7 @@ In cases of incomplete information, datasets called hgTables based on UCSC and b
 head(biomaRt)
 head(caprion)
 head(hg19)
-head(hgTables)
+head(hg19Tables)
 head(inf1)
 head(Olink_NGS)
 subset(Olink_qPCR,Panel=="Inflammation")

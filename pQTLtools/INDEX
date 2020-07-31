@@ -4,7 +4,7 @@
 biomaRt                 Curated data from biomaRt
 caprion                 Caprion panel
 hg19                    Curated data from Bioconductor
-hgTables                Curated data from UCSC genome browser
+hg19Tables              Curated data from UCSC genome browser
 inf1                    Olink/INF panel
 SomaLogic160410         SomaLogic panel
 swath_ms                SWATH-MS panel
