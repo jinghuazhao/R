@@ -1,4 +1,3 @@
-
 * Datasets *
 
 biomaRt                 Curated data from biomaRt
@@ -10,3 +9,7 @@ SomaLogic160410         SomaLogic panel
 swath_ms                SWATH-MS panel
 Olink_NGS               Olink/NGS panels
 Olink_qPCR              Olink/qPCR panels
+
+* Utilities *
+
+snpquery                phenoscanner snpqueries in batches

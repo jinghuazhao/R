@@ -10,7 +10,7 @@
 \alias{SomaLogic160410}
 \alias{swath_ms}
 \usage{
-head(inf1)
+utils::head(inf1)
 }
 \description{
 A list of protein panels: caprion, inf1, Olink_NGS, Olink_qPCR (CVD_II, ...), SomaLogic160410, swath_ms.
