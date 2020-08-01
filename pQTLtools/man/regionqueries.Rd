@@ -33,6 +33,24 @@ Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558:
 \dontrun{
 # single region
 regionqueries("chr17:26691290-26700110")
+
+# SCALLOP
+INF <- Sys.getenv("INF")
+INF1_merge <- read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE)
+
+# SomaLoic, also at GitHub
+HOME <- Sys.getenv("HOME")
+flank <- 1e+6
+INTERVAL_box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
+
+regions <- within(subset(INTERVAL_box, UniProt \%in\% with(inf1,uniprot)),
+{
+  start <- start-flank
+  end <- end+flank
+})
+reset <- with(regions,start<0)
+regions[reset,"start"] <- 0
+regionlist <- unique(with(regions, paste0("chr",chr,":",start,"-",end)))
 }
 }
 \note{adapted from custom codings}

@@ -41,44 +41,8 @@ r <- snpqueries(rsid,catalogue='pQTL',p=1e-11)
 INTERVAL_Olink <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 save(INTERVAL_Olink,file='INTERVAL_Olink.rda',compress='xz')
 
-# SomaLogic
-dir <- 'https://static-content.springer.com/esm/art\%3A10.1038\%2Fs41586-018-0175-2/MediaObjects/'
-file <- '41586_2018_175_MOESM4_ESM.xlsx'
-xlsx <- paste0(dir,file)
-t4.1 <- openxlsx::read.xlsx(xlsx, sheet=4, colNames=TRUE, skipEmptyRows=TRUE, 
-                            cols=c(1:16,26:28), rows=c(5:1986))
-t4.2 <- openxlsx::read.xlsx(xlsx, sheet=4, colNames=TRUE, skipEmptyRows=TRUE,
-                            cols=c(17:25,29:31), rows=c(6:1986))
-t4 <- cbind(t4.1,t4.2)
-r <- snpqueries(t4[,6],catalogue='pQTL',p=1e-11)
-INTERVAL_SomaLogic <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
-save(INTERVAL_SomaLogic,file='INTERVAL_SomaLogic.rda',compress='xz')
-t5 <- openxlsx::read.xlsx(xlsx, sheet=5, colNames=TRUE, skipEmptyRows=TRUE,
-                          cols=c(1:19), rows=c(3:2746))
-t6 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
-                          cols=c(1:20), rows=c(3:167))
-
-# Olink-SomaLogic overlap
-p <- list(setdiff(inf1$uniprot,"P23560"),
-          setdiff(SomaLogic160410$UniProt[!is.na(SomaLogic160410$UniProt)],"P23560"))
-cnames <- c("INF1","SomaLogic")
-VennDiagram::venn.diagram(x = p, category.names=cnames,
-                          filename='os.png', imagetype="png", output=TRUE)
-m <- merge(inf1,SomaLogic160410,by.x="uniprot",by.y="UniProt")
-u <- setdiff(with(m,unique(uniprot)),"P23560")
-options(width=220)
-o <- subset(inf1,uniprot \%in\% u)
-dim(o)
-o
-vars <- c("UniProt","chr","start","end","extGene","Target","TargetFullName")
-s <- subset(SomaLogic160410[vars], UniProt \%in\% u)
-dim(s)
-us <- s[!duplicated(s),]
-dim(us)
-us
-
 # --- query intersect proteins ---
-intersect_list <- setdiff(intersect(t4$UniProt,inf1$uniprot),"P23560")
+# Continue from codes as in help(inf1)
 
 # SomaLogic intersect
 SomaLogic_overlap_list <- subset(t4,UniProt \%in\% intersect_list)
