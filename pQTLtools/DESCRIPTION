@@ -1,6 +1,6 @@
 Package: pQTLtools
 Version: 0.1
-Date: 2020-07-31
+Date: 2020-8-1
 Title: pQTL Tools
 Author: Jing Hua Zhao
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
@@ -10,7 +10,8 @@ LazyData: Yes
 LazyLoad: Yes
 Description: This repository collects information on a number of protein panels, 
              linking function for cis/trans classification, 2D manhattan plots, 
-             3D-plotly plots, forest plots among others availale from R/gap but 
+             3D-plotly plots, forest plots among others availale from R/gap; 
+             query results on genes, regions, and SNPs via phenoscanner, and 
              add functionality to check for replication across platforms and 
              some aspects of protein-related analysis.
 License: Unlimited

@@ -32,7 +32,7 @@ Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558:
 \examples{
 \dontrun{
 # single region
-regionqueries("chr8:119935796-119964439")
+regionqueries("chr17:26691290-26700110")
 }
 }
 \note{adapted from custom codings}
