@@ -84,7 +84,7 @@ intersect_list <- setdiff(intersect(t4$UniProt,inf1$uniprot),"P23560")
 SomaLogic_overlap <- subset(t4,UniProt \%in\% intersect_list)
 r <- snpquery(SomaLogic_overlap[,6],catalogue='pQTL',p=1e-11)
 SomaLogic_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
-save(SomaLogic_overlap,file='INTERVAL_SomaLogic.rda',compress='xz')
+save(SomaLogic_overlap,file='INTERVAL_overlap.rda',compress='xz')
 
 # Olink intersect
 INF1_merge_rsid <- read.delim(paste(INF,"work","INF1.merge-rsid",sep="/"))
