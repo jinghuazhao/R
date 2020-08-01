@@ -12,4 +12,6 @@ Olink_qPCR              Olink/qPCR panels
 
 * Utilities *
 
-snpquery                phenoscanner snpqueries in batches
+genequeries             phenoscanner genequeries in batches
+regionqueries           phenoscanner regionqueries in batches
+snpqueries              phenoscanner snpqueries in batches

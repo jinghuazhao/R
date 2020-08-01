@@ -9,11 +9,8 @@
 \alias{Olink_qPCR}
 \alias{SomaLogic160410}
 \alias{swath_ms}
-\usage{
-utils::head(inf1)
-}
 \description{
-A list of protein panels: caprion, inf1, Olink_NGS, Olink_qPCR (CVD_II, ...), SomaLogic160410, swath_ms.
+A list of protein panels: caprion, hg10Tables, Olink_NGS, Olink_qPCR (inf1 is heavily edited), SomaLogic160410, swath_ms.
 
 In cases of incomplete information, datasets called hg19Tables based on UCSC and biomaRt from Ensembl are provided.
 }

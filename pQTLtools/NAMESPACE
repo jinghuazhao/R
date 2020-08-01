@@ -1,4 +1,4 @@
-export(snpquery)
+export(genequeries,regionqueries,snpqueries)
 import(utils)
 importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
            "legend", "lines", "mtext", "par", "plot", "points",
