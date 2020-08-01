@@ -5,10 +5,10 @@ caprion                 Caprion panel
 hg19                    Curated data from Bioconductor
 hg19Tables              Curated data from UCSC genome browser
 inf1                    Olink/INF panel
-SomaLogic160410         SomaLogic panel
-swath_ms                SWATH-MS panel
 Olink_NGS               Olink/NGS panels
 Olink_qPCR              Olink/qPCR panels
+SomaLogic160410         SomaLogic panel
+swath_ms                SWATH-MS panel
 
 * Utilities *
 
