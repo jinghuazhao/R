@@ -27,7 +27,16 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
 regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
 {
   ref_a1 <- ref_a2 <- ref_hg19_coordinates <- NULL
-  batches <- split(regionlist,ceiling(seq_along(regionlist)/10))
+  lrl <- strsplit(regionlist,":|-")
+  chr <- as.character(lapply(lrl,"[[",1))
+  start <- as.integer(lapply(lrl,"[[",2))
+  end <- as.integer(lapply(lrl,"[[",3))
+  gr <- GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))
+  print(GenomicRanges::width(gr))
+  tiles <- GenomicRanges::tile(gr, width=1e+6)
+  print(GenomicRanges::width(tiles))
+  regionlist_ext <- with(as.data.frame(tiles),paste0(seqnames,":",start,"-",end))
+  batches <- split(regionlist_ext,ceiling(seq_along(regionlist_ext)/10))
   s <- r <- vector('list',length(batches))
   for(i in 1:length(batches))
   {
@@ -47,7 +56,7 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
      a2[swap] <- ref_a1[swap]
      ref_snpid <- paste0(ref_hg19_coordinates,"_",a1,"_",a2)
   })
-  list(regions=regions,results=results)
+  list(tiles=tiles,regions=regions,results=results)
 }
 
 snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
