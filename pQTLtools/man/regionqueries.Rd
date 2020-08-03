@@ -53,7 +53,7 @@ regions[reset,"start"] <- 0
 regionlist <- unique(with(regions, paste0("chr",chr,":",start,"-",end)))
 
 # SomaLogic -- sentinel-based, continue from codes in help(inf1)
-regionlist <- with(subset(t4, UniProt \%in\% with(inf1,uniprot)),
+regionlist <- with(subset(st4, UniProt \%in\% with(inf1,uniprot)),
                    paste0("chr",Chr,":",Region.start,"-",Region.end))
 r <- regionqueries(regionlist)
 

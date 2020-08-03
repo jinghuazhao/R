@@ -45,7 +45,7 @@ save(INTERVAL_Olink,file='INTERVAL_Olink.rda',compress='xz')
 # Continue from codes as in help(inf1)
 
 # SomaLogic intersect
-SomaLogic_overlap_list <- subset(t4,UniProt \%in\% intersect_list)
+SomaLogic_overlap_list <- subset(st4,UniProt \%in\% intersect_list)
 r <- snpqueries(SomaLogic_overlap_list[,6],catalogue='pQTL',p=1e-11)
 SomaLogic_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 save(SomaLogic_overlap_list,SomaLogic_overlap,file='SomaLogic_overlap.rda',compress='xz')
