@@ -42,7 +42,6 @@ INTERVAL_Olink <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 save(INTERVAL_Olink,file='INTERVAL_Olink.rda',compress='xz')
 
 # --- query intersect proteins ---
-# Continue from codes as in help(inf1)
 
 # SomaLogic intersect
 SomaLogic_overlap_list <- subset(st4,UniProt \%in\% intersect_list)
