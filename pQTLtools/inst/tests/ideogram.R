@@ -1,0 +1,44 @@
+# 4-8-2020 JHZ
+
+INF <- Sys.getenv("INF")
+library(regioneR)
+INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
+singletons <- with(INF1_merge,End-Start==1)
+INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6
+INF1_merge[singletons,"End"] <- INF1_merge[singletons,"End"] + 1e6
+small <- with(INF1_merge, Start<0)
+INF1_merge[small,"Start"] <- 0
+cvt <- read.table(file.path(INF,"work","/INF1.merge.cis.vs.trans"),as.is=TRUE,header=TRUE)
+INF1_merge_cvt <- merge(INF1_merge,cvt,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
+ord <- with(INF1_merge_cvt,order(Chr,bp))
+INF1_merge_cvt <- INF1_merge_cvt[ord,]
+
+library(biomaRt)
+mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+bm <- with(INF1_merge_cvt, getBM(attributes = c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band"),
+           filters="chromosomal_region", values=paste0(Chr,":",bp,":",bp), mart=mart))
+genes <- with(bm,toGRanges(chromosome_name,start_position,end_position,labels=hgnc_symbol))
+
+library(karyoploteR)
+
+png("INF1.merge.png",width=16,height=14,units="cm",res=300)
+attach(INF1_merge_cvt)
+sentinels <- toGRanges(Chr,bp-1,bp,labels=p.gene)
+cis.regions <- toGRanges(Chr,cis.start,cis.end)
+loci <- toGRanges(Chr,Start,End)
+panel <- toGRanges(p.chr,p.start,p.end,labels=p.gene)
+colors <- c("red","blue")
+seqlevelsStyle(sentinels) <- "UCSC"
+kp <- plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
+kpAddBaseNumbers(kp)
+kpPlotRegions(kp,data=loci,r0=0.05,r1=0.15,border="black")
+kpPlotMarkers(kp, data=sentinels, labels=p.gene, text.orientation="vertical",
+              cex=0.45, y=0.3*seq_along(p.gene)/length(p.gene), srt=30, ignore.chromosome.ends=TRUE,
+              adjust.label.position=TRUE, label.color=colors[2-cis], label.dist=0.002,
+              cex.axis=3, cex.lab=3)
+legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("cis", "trans"), text.col=colors, cex=0.8, horiz=FALSE)
+kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
+detach(INF1_merge_cvt)
+dev.off()
+q('no')
+

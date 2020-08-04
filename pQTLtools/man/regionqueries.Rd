@@ -36,15 +36,15 @@ regionqueries("chr17:26691290-26700110")
 
 # SCALLOP
 INF <- Sys.getenv("INF")
-INF1_merge <- merge(read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
-                    inf1, by="prot")
-inf1_uniprot <- setdiff(with(INF1_merge,uniprot),"P23560")
+INF1_merge <- merge(inf1,
+                   read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
+                   by="prot")
+inf1_uniprot <- setdiff(with(inf1,uniprot),"P23560")
 
 # SomaLogic -- gene-based, also at GitHub
 HOME <- Sys.getenv("HOME")
 flank <- 1e+6
 INTERVAL_box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
-
 regions <- within(subset(INTERVAL_box, UniProt \%in\% inf1_uniprot),
 {
   start <- start-flank
@@ -52,12 +52,12 @@ regions <- within(subset(INTERVAL_box, UniProt \%in\% inf1_uniprot),
 })
 reset <- with(regions,start<0)
 regions[reset,"start"] <- 0
-regionlist <- unique(with(regions, paste0("chr",chr,":",start,"-",end)))
+boxlist <- unique(with(regions, paste0("chr",chr,":",start,"-",end)))
 
 # SomaLogic -- sentinel-based
-regionlist <- with(subset(st4, UniProt \%in\% inf1_uniprot),
-                   paste0("chr",Chr,":",Region.start,"-",Region.end))
-r <- regionqueries(regionlist)
+st4list <- with(subset(st4, UniProt \%in\% inf1_uniprot),
+                paste0("chr",Chr,":",Region.start,"-",Region.end))
+r <- regionqueries(st4list)
 
 }
 }

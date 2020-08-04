@@ -1,0 +1,6 @@
+INF <- Sys.getenv("INF")
+library(gap)
+d <- read.table(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE,header=TRUE)
+png("INF1.mhtplot2d.png",height=20,width=20,units="cm",res=300)
+mhtplot2d(d)
+dev.off()

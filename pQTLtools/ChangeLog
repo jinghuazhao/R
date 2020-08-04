@@ -1,6 +1,7 @@
 ## Version 0.1
 
-2020-08-02	Add st4, reduce variables in hg19Tables
+2020-08-04	Suggest knitr and add HTML vignette (biomaRt, karyoploteR, regioneR) with ideogram/mhtplot2d examples
+2020-08-03	Add st4, reduce variables in hg19Tables
 2020-08-02	Suggest openxlsx, GenomicRanges & IRanges to handle >1MB region in regionqueries
 2020-08-01	Fix R CMD check errors in pQTLtools-interval.Rd, add genequries, regionqueries
 2020-07-31	Add hg19.rda,hg19Tables.rda,snpquery() but drop hgTables
