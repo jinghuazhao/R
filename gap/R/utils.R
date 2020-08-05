@@ -958,12 +958,13 @@ chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),upperca
 {
   chr <- paste0(prefix,chr)
   chrpos <- paste(chr,pos,sep=seps[1])
-  a1a2 <- vector("character",length(pos))
-  index <- (a1 < a2)
-  a1a2[index] <- paste(a1,a2,sep=seps[3])[index]
-  a1a2[!index] <- paste(a2,a1,sep=seps[3])[!index]
-  a1a2 <- ifelse(uppercase,toupper(a1a2),tolower(a1a2))
-  return (paste(chrpos,a1a2,sep=seps[2]))
+  a1a2 <- paste(a1,a2,sep=seps[3])
+  a2a1 <- paste(a2,a1,sep=seps[3])
+  swap <- (a1 > a2)
+  a1a2[swap] <- a2a1[swap]
+  a1a2.lower <- tolower(a1a2)
+  a1a2.upper <- toupper(a1a2)
+  if(uppercase) paste(chrpos,a1a2.upper,sep=seps[2]) else paste(chrpos,a1a2.lower,sep=seps[2])
 }
 
 inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
