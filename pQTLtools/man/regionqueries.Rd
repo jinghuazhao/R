@@ -61,6 +61,27 @@ regions[singletons,"end"] <- regions[singletons,"start"] + flank
 reset <- with(regions,start<0)
 regions[reset,"start"] <- 0
 r <- regionqueries(with(regions,paste0(chr,":",start,"-",end)))
+save(r,file="INF1_merge.rda",compress='xz')
+r2 <- with(r,
+{
+  region_ext <- cbind(tiles,regions)
+  results_ext <- merge(region_ext,results,by="region")
+  ord <- with(results_ext,order(group))
+  results_ext[ord,]
+})
+results <- subset(r2,pmid=="29875488")
+grp <- names(table(with(results,group)))
+sink("INF1_merge.txt")
+options(width=250)
+for(g in as.numeric(grp))
+{
+  uniprot <- regions[g,"uniprot"]
+  SNP <- regions[g,"SNP"]
+  print(regions[g,])
+  s <- subset(results,group==g&rsid==SNP)
+  if(nrow(s)>1) print(s[c("region","group","rsid","hg19_coordinates","hgnc","beta","se","p","ref_snpid")])
+}
+sink()
 
 SomaLogic_INF1 <- subset(SomaLogic160410,UniProt \%in\% INF1_uniprot)
 SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1,UniProt)),"P23560")
