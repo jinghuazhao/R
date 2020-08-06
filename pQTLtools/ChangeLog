@@ -1,5 +1,7 @@
 ## Version 0.1
 
+2020-08-06	Add wait=TRUE argument to regionqueries and extend its example section
+2020-08-05	Refine vignette
 2020-08-04	Suggest knitr and add HTML vignette (biomaRt, karyoploteR, regioneR) with ideogram/mhtplot2d examples
 2020-08-03	Add st4, reduce variables in hg19Tables
 2020-08-02	Suggest openxlsx, GenomicRanges & IRanges to handle >1MB region in regionqueries

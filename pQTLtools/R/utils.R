@@ -24,7 +24,7 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
   list(genes=genes,results=results)
 }
 
-regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
+regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
 {
   ref_a1 <- ref_a2 <- ref_hg19_coordinates <- NULL
   lrl <- strsplit(regionlist,":|-")
@@ -36,11 +36,13 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
   tiles <- GenomicRanges::tile(gr, width=1e+6)
   print(GenomicRanges::width(tiles))
   regionlist_ext <- with(as.data.frame(tiles),paste0(seqnames,":",start,"-",end))
+  cat("Conducting queries for",length(regionlist_ext),"regions.\n")
   batches <- split(regionlist_ext,ceiling(seq_along(regionlist_ext)/10))
   s <- r <- vector('list',length(batches))
   for(i in 1:length(batches))
   {
     cat("Block",i,"\n")
+    if (wait) if (i%%6==0) Sys.sleep(60*60)
     q <- phenoscanner::phenoscanner(regionquery=batches[[i]], catalogue=catalogue,
                                     proxies=proxies, pvalue=p, r2=r2, build=build)
     s[[i]] <- with(q,regions)
