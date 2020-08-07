@@ -35,9 +35,8 @@ Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558:
 # single region
 regionqueries("chr17:26691290-26700110")
 
-flank <- 1e+6
-
 # SCALLOP
+flank <- 1e+6
 INF <- Sys.getenv("INF")
 INF1_merge <- merge(inf1,
                    read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
@@ -49,18 +48,13 @@ INF1_uniprot <- setdiff(with(inf1,uniprot),"P23560")
 SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
 SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1_merge,UniProt)),"P23560")
 setdiff(INF1_merge_uniprot,SomaLogic_uniprot)
-regions <- within(subset(INF1_merge,uniprot \%in\% SomaLogic_uniprot),
-{
-  chr <- Chrom
-  start <- Start
-  end <- End
-})
-singletons <- with(regions, start==end)
-regions[singletons,"start"] <- regions[singletons,"start"] - flank
-regions[singletons,"end"] <- regions[singletons,"start"] + flank
-reset <- with(regions,start<0)
-regions[reset,"start"] <- 0
-r <- regionqueries(with(regions,paste0(chr,":",start,"-",end)))
+regions <- subset(INF1_merge,uniprot \%in\% SomaLogic_uniprot)
+singletons <- with(regions, Start-End<=2)
+regions[singletons,"Start"] <- regions[singletons,"Start"] - flank
+regions[singletons,"End"] <- regions[singletons,"End"] + flank
+reset <- with(regions,Start<0)
+regions[reset,"Start"] <- 0
+r <- regionqueries(with(regions,paste0(Chrom,":",Start,"-",End)))
 save(r,file="INF1_merge.rda",compress='xz')
 r2 <- with(r,
 {
