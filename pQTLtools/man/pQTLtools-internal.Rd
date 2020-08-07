@@ -27,9 +27,7 @@ In cases of incomplete information, datasets called hg19Tables based on UCSC and
 # datasets
 head(biomaRt)
 
-intersect_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
-
-# Olink-SomaLogic overlap
+# Olink-SomaLogic panel overlap
 p <- list(setdiff(inf1$uniprot,"P23560"),
           setdiff(SomaLogic160410$UniProt[!is.na(SomaLogic160410$UniProt)],"P23560"))
 cnames <- c("INF1","SomaLogic")
@@ -48,26 +46,21 @@ us <- s[!duplicated(s),]
 dim(us)
 us
 
-# SomaLogic variations
-SomaLogic_INF1 <- subset(SomaLogic160410,UniProt \%in\% INF1_uniprot)
-SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1,UniProt)),"P23560")
-setdiff(INF1_merge_uniprot,SomaLogic_uniprot)
-
+# Sentinels
+intersect_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
+INF <- Sys.getenv("INF")
+INF1_merge <- merge(inf1,
+                    read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
+                    by="prot")
+dim(subset(INF1_merge,uniprot \%in\% intersect_list))
+INF1_uniprot <- unique(with(INF1_merge,uniprot))
 HOME <- Sys.getenv("HOME")
 INTERVAL_box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
-regions <- within(subset(INTERVAL_box, UniProt \%in\% INF_uniprot),
-{
-  start <- start-flank
-  end <- end+flank
-})
-reset <- with(regions,start<0)
-regions[reset,"start"] <- 0
-boxlist <- unique(with(regions, paste0("chr",chr,":",start,"-",end)))
-
-# SomaLogic -- sentinel-based, which may miss some from INF1
-st4list <- with(subset(st4, UniProt \%in\% INF1_uniprot),
-                paste0("chr",Chr,":",Region.start,"-",Region.end))
-r <- regionqueries(st4list)}
+SomaLogic_INF1 <- subset(INTERVAL_box,UniProt \%in\% INF1_uniprot)
+SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1,UniProt)),"P23560")
+setdiff(INF1_uniprot,SomaLogic_uniprot)
+st4regions <- subset(st4, UniProt \%in\% INF1_uniprot)
+}
 }
 \details{This seeds for prototype for extensions}
 \keyword{internal}

@@ -35,21 +35,16 @@ Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558:
 # single region
 regionqueries("chr17:26691290-26700110")
 
-# SCALLOP
-flank <- 1e+6
+# SCALLOP -- SomaLogic lookup from PhenoScanner
 INF <- Sys.getenv("INF")
 INF1_merge <- merge(inf1,
                    read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
                    by="prot")
 INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
-INF1_uniprot <- setdiff(with(inf1,uniprot),"P23560")
-
-# SomaLogic lookup from PhenoScanner
 SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
-SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1_merge,UniProt)),"P23560")
-setdiff(INF1_merge_uniprot,SomaLogic_uniprot)
-regions <- subset(INF1_merge,uniprot \%in\% SomaLogic_uniprot)
+regions <- subset(INF1_merge,uniprot \%in\% with(SomaLogic_INF1_merge,UniProt))
 singletons <- with(regions, Start-End<=2)
+flank <- 5e+2
 regions[singletons,"Start"] <- regions[singletons,"Start"] - flank
 regions[singletons,"End"] <- regions[singletons,"End"] + flank
 reset <- with(regions,Start < 0)
