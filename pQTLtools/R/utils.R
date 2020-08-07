@@ -14,8 +14,8 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
   genes <- do.call("rbind",g)
   results <- within(do.call("rbind",r),
   {
-     a1 <- as.character(ref_a1)
-     a2 <- as.character(ref_a2)
+     ref_a1 <- as.character(a1)
+     ref_a2 <- as.character(a2)
      swap <- ref_a1 > ref_a2
      a1[swap] <- ref_a2[swap]
      a2[swap] <- ref_a1[swap]
@@ -51,8 +51,8 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
   regions <- do.call("rbind",s)
   results <- within(do.call("rbind",r),
   {
-     a1 <- as.character(ref_a1)
-     a2 <- as.character(ref_a2)
+     ref_a1 <- as.character(a1)
+     ref_a2 <- as.character(a2)
      swap <- ref_a1 > ref_a2
      a1[swap] <- ref_a2[swap]
      a2[swap] <- ref_a1[swap]
@@ -77,8 +77,8 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,buil
   snps <- do.call("rbind",s)
   results <- within(do.call("rbind",r),
   {
-     a1 <- as.character(ref_a1)
-     a2 <- as.character(ref_a2)
+     ref_a1 <- as.character(a1)
+     ref_a2 <- as.character(a2)
      swap <- ref_a1 > ref_a2
      a1[swap] <- ref_a2[swap]
      a2[swap] <- ref_a1[swap]

@@ -79,7 +79,8 @@ for(g in as.numeric(grp))
   SNP <- regions[g,"SNP"]
   print(regions[g,])
   s <- subset(results,group==g&rsid==SNP)
-  if(nrow(s)>1) print(s[c("region","group","rsid","hg19_coordinates","hgnc","beta","se","p","ref_snpid")])
+  vars <- c("region","group","rsid","hg19_coordinates","hgnc","beta","se","p","ref_snpid") 
+  if(nrow(s)>1) print(vars])
 }
 sink()
 
