@@ -44,7 +44,7 @@ INF1_merge <- merge(inf1,
 INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
 INF1_uniprot <- setdiff(with(inf1,uniprot),"P23560")
 
-# SomaLogic -- everything but stick to those in INF1
+# SomaLogic lookup from PhenoScanner
 SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
 SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1_merge,UniProt)),"P23560")
 setdiff(INF1_merge_uniprot,SomaLogic_uniprot)
@@ -52,7 +52,7 @@ regions <- subset(INF1_merge,uniprot \%in\% SomaLogic_uniprot)
 singletons <- with(regions, Start-End<=2)
 regions[singletons,"Start"] <- regions[singletons,"Start"] - flank
 regions[singletons,"End"] <- regions[singletons,"End"] + flank
-reset <- with(regions,Start<0)
+reset <- with(regions,Start < 0)
 regions[reset,"Start"] <- 0
 r <- regionqueries(with(regions,paste0(Chrom,":",Start,"-",End)))
 save(r,file="INF1_merge.rda",compress='xz')
@@ -77,28 +77,6 @@ for(g in as.numeric(grp))
   if(nrow(s)>1) print(vars])
 }
 sink()
-
-SomaLogic_INF1 <- subset(SomaLogic160410,UniProt \%in\% INF1_uniprot)
-SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1,UniProt)),"P23560")
-setdiff(INF1_merge_uniprot,SomaLogic_uniprot)
-
-# SomaLogic -- gene-based, also at GitHub, which may miss some from INF1
-HOME <- Sys.getenv("HOME")
-INTERVAL_box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
-regions <- within(subset(INTERVAL_box, UniProt \%in\% INF_uniprot),
-{
-  start <- start-flank
-  end <- end+flank
-})
-reset <- with(regions,start<0)
-regions[reset,"start"] <- 0
-boxlist <- unique(with(regions, paste0("chr",chr,":",start,"-",end)))
-
-# SomaLogic -- sentinel-based, which may miss some from INF1
-st4list <- with(subset(st4, UniProt \%in\% INF1_uniprot),
-                paste0("chr",Chr,":",Region.start,"-",Region.end))
-r <- regionqueries(st4list)
-
 }
 }
 \note{adapted from custom codings}
