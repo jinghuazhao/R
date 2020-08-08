@@ -46,20 +46,29 @@ us <- s[!duplicated(s),]
 dim(us)
 us
 
-# Sentinels
-intersect_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
+# SCALLOP/INF1
 INF <- Sys.getenv("INF")
 INF1_merge <- merge(inf1,
                     read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
                     by="prot")
-dim(subset(INF1_merge,uniprot \%in\% intersect_list))
 INF1_uniprot <- unique(with(INF1_merge,uniprot))
+
+# INTERVAL SomaLogic at box
 HOME <- Sys.getenv("HOME")
-INTERVAL_box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
-SomaLogic_INF1 <- subset(INTERVAL_box,UniProt \%in\% INF1_uniprot)
-SomaLogic_uniprot <- setdiff(unique(with(SomaLogic_INF1,UniProt)),"P23560")
-setdiff(INF1_uniprot,SomaLogic_uniprot)
+box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
+box_INF1 <- subset(box,UniProt \%in\% INF1_uniprot)
+box_uniprot <- setdiff(unique(with(box_INF1,UniProt)),"P23560")
+setdiff(INF1_uniprot,box_uniprot)
+
+# Phenoscanner database
+ps <- merge(subset(read.delim(file.path(INF,"work","pQTL_2018.txt.gz"),as.is=TRUE),pmid==29875488),
+            box,by.x="trait",by.y="TargetFullName")
+z <- subset(ps,UniProts \%in\% INF1_uniprot & p<=1.5e-11)
+
+# ST4 at Nature
 st4regions <- subset(st4, UniProt \%in\% INF1_uniprot)
+unique_uniprot_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
+subset(INF1_merge,uniprot \%in\% unique_uniprot_list)
 }
 }
 \details{This seeds for prototype for extensions}

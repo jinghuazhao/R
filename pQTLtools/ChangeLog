@@ -1,12 +1,9 @@
 ## Version 0.1
 
-Fix a1/a2 and ref_a1/ref_a2 mixup and undate changes
-Add wait=TRUE argument to regionqueries and extend its example section
-Refine vignette
-Suggest knitr and add HTML vignette (biomaRt, karyoploteR, regioneR) with ideogram/mhtplot2d examples
-Add st4, reduce variables in hg19Tables
-Suggest openxlsx, GenomicRanges & IRanges to handle >1MB region in regionqueries
-Fix R CMD check errors in pQTLtools-interval.Rd, add genequries, regionqueries
-Add hg19.rda,hg19Tables.rda,snpquery() but drop hgTables
-Add biomaRt.rda
-Import from lmm as template, save(,compress='xz')
+* Tidy up various options of SomaLogic lookup (panel, box, ST4)
+* Suggest openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR) with ideogram/mhtplot2d examples
+* Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
+* Add genequries, regionqueries, snpqueries
+* Fix R CMD check errors in pQTLtools-interval.Rd
+* Add biomaRt.rda, hg19.rda, hg19Tables.rda, st4.rda, but drop hgTables
+* Import from lmm as template, use save(,compress='xz')
