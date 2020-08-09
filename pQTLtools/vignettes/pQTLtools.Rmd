@@ -15,16 +15,29 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-The following code is used to generate 2d-Manhattan plot
+First, we have cis/trans classification,
 ```{r}
-library(gap)
+require(gap)
+INF <- Sys.getenv("INF")
+f <- file.path(INF,"work","INF1.merge")
+clumped <- read.delim(f,as.is=TRUE)
+hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
+              inf1[c("prot","uniprot")],by="prot")
+names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
+cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
+cis.vs.trans <- with(cistrans,data)
+with(cistrans,table)
+with(cistrans,total)
+circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
+```
+This is used to generate 2d-Manhattan plot
+```{r}
 INF <- Sys.getenv("INF")
 d <- read.table(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE,header=TRUE)
 mhtplot2d(d)
 ```
 and ideogram
 ```{r}
-INF <- Sys.getenv("INF")
 INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
 singletons <- with(INF1_merge,End-Start==1)
 INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6

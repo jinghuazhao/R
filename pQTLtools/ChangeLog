@@ -1,7 +1,8 @@
 ## Version 0.1
 
 * Tidy up various options of SomaLogic lookup (panel, box, ST4)
-* Suggest openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR) with ideogram/mhtplot2d examples
+* Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
+  with cis/trans-classificaiotn/ideogram/mhtplot2d examples
 * Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
 * Add genequries, regionqueries, snpqueries
 * Fix R CMD check errors in pQTLtools-interval.Rd

@@ -1,12 +1,12 @@
 Package: pQTLtools
 Version: 0.1
-Date: 2020-8-8
+Date: 2020-8-9
 Title: pQTL Tools
 Author: Jing Hua Zhao
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Depends: R (>= 3.5.0)
-Suggests: gap, knitr, karyoploteR, openxlsx, phenoscanner, regioneR,
-          biomaRt, GenomicRanges, IRanges
+Suggests: gap, circlize, knitr, karyoploteR, openxlsx, phenoscanner,
+          regioneR, biomaRt, GenomicRanges, IRanges
 LazyData: Yes
 LazyLoad: Yes
 Description: This repository collects information on a number of protein panels, 
