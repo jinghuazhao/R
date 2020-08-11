@@ -15,8 +15,10 @@ st6.1 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
 st6.2 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
                            cols=c(14:20), rows=c(4:167))
 st6 <- cbind(st6.1,st6.2)
-replicates <- merge(st4[,c(1:10,26:28)],st6[,c(1:10,17:20)],
+replicates <- merge(st4[,c(1:12,26:28)],st6[,c(1:10,17:20)],
                     by=c("Locus.ID","UniProt","Chr","Pos","SOMAmer.ID"))
+line_to_edit <- with(replicates,Locus.ID=="5_29")
+replicates[line_to_edit,"UniProt"] <- "P29460"
 
 # However, it is unclear UniProts in ST6 were selected from which of the panels
 INF <- Sys.getenv("INF")
@@ -25,11 +27,23 @@ INF1_merge <- merge(inf1,
                     by="prot")
 INF1_uniprot <- unique(with(INF1_merge,uniprot))
 options(width=250)
-subset(replicates,UniProt %in% INF1_uniprot)
-table(subset(replicates,UniProt %in% INF1_uniprot)$Replicates)
+st6_replicates <- subset(replicates,UniProt %in% INF1_uniprot)
+table(subset(st6_replicates,UniProt %in% INF1_uniprot)$Replicates)
 
 # side information on cvd2, cvd3, inf1
 olink <- scan(file.path(INF,"doc","olink.prot.list.txt"),"")
 olink_uniprot <- unlist(lapply(strsplit(olink,"___"),'[[',2))
 dim(subset(replicates,UniProt %in% olink_uniprot))
 
+z <- with(st6_replicates,{
+  chr <- st6_replicates[["Chr"]]
+  pos <- st6_replicates[["Pos"]]
+  a1 <- st6_replicates[["Effect.Allele.(EA)"]]
+  a2 <- st6_replicates[["Other.Allele.(OA)"]]
+  cbind(UniProt,snpid=chr_pos_a1_a2(chr,pos,a1,a2))
+})
+
+doubles <- c("P29460","Q9NPF7","Q14213","Q8NEV9")
+subset(inf1,uniprot %in% doubles)
+write.table(merge(inf1,z,by.x="uniprot",by.y="UniProt")[c("snpid","prot","uniprot")],
+            file="SomaLogic.id3",col.names=FALSE,row.names=FALSE,quote=FALSE)

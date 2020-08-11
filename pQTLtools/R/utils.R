@@ -20,6 +20,7 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
      a1[swap] <- ref_a2[swap]
      a2[swap] <- ref_a1[swap]
      ref_snpid <- paste0(ref_hg19_coordinates,"_",a1,"_",a2)
+     if (build==38) ref_snpid <- paste0(ref_hg38_coordinates,"_",a1,"_",a2)
   })
   list(genes=genes,results=results)
 }
@@ -57,6 +58,7 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
      a1[swap] <- ref_a2[swap]
      a2[swap] <- ref_a1[swap]
      ref_snpid <- paste0(ref_hg19_coordinates,"_",a1,"_",a2)
+     if (build==38) ref_snpid <- paste0(ref_hg38_coordinates,"_",a1,"_",a2)
   })
   list(tiles=tiles,regions=regions,results=results)
 }
@@ -83,6 +85,7 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,buil
      a1[swap] <- ref_a2[swap]
      a2[swap] <- ref_a1[swap]
      ref_snpid <- paste0(ref_hg19_coordinates,"_",a1,"_",a2)
+     if (build==38) ref_snpid <- paste0(ref_hg38_coordinates,"_",a1,"_",a2)
   })
   list(snps=snps,results=results)
 }
