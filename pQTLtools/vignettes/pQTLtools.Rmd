@@ -33,7 +33,7 @@ circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
 This is used to generate 2d-Manhattan plot
 ```{r}
 INF <- Sys.getenv("INF")
-d <- read.table(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE,header=TRUE)
+d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 mhtplot2d(d)
 ```
 and ideogram
@@ -44,7 +44,7 @@ INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6
 INF1_merge[singletons,"End"] <- INF1_merge[singletons,"End"] + 1e6
 small <- with(INF1_merge, Start<0)
 INF1_merge[small,"Start"] <- 0
-cvt <- read.table(file.path(INF,"work","/INF1.merge.cis.vs.trans"),as.is=TRUE,header=TRUE)
+cvt <- read.csv(file.path(INF,"work","/INF1.merge.cis.vs.trans"),as.is=TRUE)
 INF1_merge_cvt <- merge(INF1_merge,cvt,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
 ord <- with(INF1_merge_cvt,order(Chr,bp))
 INF1_merge_cvt <- INF1_merge_cvt[ord,]

@@ -1,11 +1,12 @@
-genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
+genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
 {
-  ref_a1 <- ref_a2 <- hg19_coordinates <- hg38_coordinates <- NULL
+  swap_a1 <- ref_a2 <- hg19_coordinates <- hg38_coordinates <- NULL
   batches <- split(genelist,ceiling(seq_along(genelist)/10))
   g <- r <- vector('list',length(batches))
   for(i in 1:length(batches))
   {
     cat("Block",i,"\n")
+    if (wait) if (i%%6==0) Sys.sleep(60*60)
     q <- phenoscanner::phenoscanner(genequery=batches[[i]], catalogue=catalogue,
                                     proxies=proxies, pvalue=p, r2=r2, build=build)
     g[[i]] <- with(q,genes)
@@ -14,11 +15,11 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
   genes <- do.call("rbind",g)
   results <- within(do.call("rbind",r),
   {
-     ref_a1 <- as.character(a1)
-     ref_a2 <- as.character(a2)
-     swap <- ref_a1 > ref_a2
-     a1[swap] <- ref_a2[swap]
-     a2[swap] <- ref_a1[swap]
+     swap_a1 <- as.character(a1)
+     swap_a2 <- as.character(a2)
+     swap <- swap_a1 > ref_a2
+     a1[swap] <- swap_a2[swap]
+     a2[swap] <- swap_a1[swap]
      if (build==37) snpid <- paste0(hg19_coordinates,"_",a1,"_",a2)
      else if (build==38) snpid <- paste0(hg38_coordinates,"_",a1,"_",a2)
   })
@@ -27,7 +28,7 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
 
 regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
 {
-  ref_a1 <- ref_a2 <- hg19_coordinates <- hg38_coordinates <- NULL
+  swap_a1 <- ref_a2 <- hg19_coordinates <- hg38_coordinates <- NULL
   lrl <- strsplit(regionlist,":|-")
   chr <- as.character(lapply(lrl,"[[",1))
   start <- as.integer(lapply(lrl,"[[",2))
@@ -52,25 +53,26 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
   regions <- do.call("rbind",s)
   results <- within(do.call("rbind",r),
   {
-     ref_a1 <- as.character(a1)
-     ref_a2 <- as.character(a2)
-     swap <- ref_a1 > ref_a2
-     a1[swap] <- ref_a2[swap]
-     a2[swap] <- ref_a1[swap]
+     swap_a1 <- as.character(a1)
+     swap_a2 <- as.character(a2)
+     swap <- swap_a1 > ref_a2
+     a1[swap] <- swap_a2[swap]
+     a2[swap] <- swap_a1[swap]
      if (build==37) snpid <- paste0(hg19_coordinates,"_",a1,"_",a2)
      else if (build==38) snpid <- paste0(hg38_coordinates,"_",a1,"_",a2)
   })
   list(tiles=tiles,regions=regions,results=results)
 }
 
-snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37)
+snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
 {
-  ref_a1 <- ref_a2 <- hg19_coordinates <- hg38_coordinates <- NULL
+  swap_a1 <- ref_a2 <- hg19_coordinates <- hg38_coordinates <- NULL
   batches <- split(snplist,ceiling(seq_along(snplist)/100))
   s <- r <- vector('list',length(batches))
   for(i in 1:length(batches))
   {
     cat("Block",i,"\n")
+    if (wait) if (i%%6==0) Sys.sleep(60*60)
     q <- phenoscanner::phenoscanner(snpquery=batches[[i]], catalogue=catalogue,
                                     proxies=proxies, pvalue=p, r2=r2, build=build)
     s[[i]] <- with(q,snps)
@@ -79,11 +81,11 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,buil
   snps <- do.call("rbind",s)
   results <- within(do.call("rbind",r),
   {
-     ref_a1 <- as.character(a1)
-     ref_a2 <- as.character(a2)
-     swap <- ref_a1 > ref_a2
-     a1[swap] <- ref_a2[swap]
-     a2[swap] <- ref_a1[swap]
+     swap_a1 <- as.character(a1)
+     swap_a2 <- as.character(a2)
+     swap <- swap_a1 > ref_a2
+     a1[swap] <- swap_a2[swap]
+     a2[swap] <- swap_a1[swap]
      if (build==37) snpid <- paste0(hg19_coordinates,"_",a1,"_",a2)
      else if (build==38) snpid <- paste0(hg38_coordinates,"_",a1,"_",a2)
   })
