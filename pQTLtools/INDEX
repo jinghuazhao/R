@@ -11,8 +11,12 @@ SomaLogic160410         SomaLogic panel
 st4                     ST4 of the INTERVAL SomaLogic paper
 swath_ms                SWATH-MS panel
 
-* Utilities *
+* PhenoScanner Utilities *
 
 genequeries             phenoscanner genequeries in batches
 regionqueries           phenoscanner regionqueries in batches
 snpqueries              phenoscanner snpqueries in batches
+
+* MR analysis *
+
+pqtlMR                  pQTL MR analysis

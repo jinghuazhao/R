@@ -1,10 +1,11 @@
 Package: pQTLtools
 Version: 0.1
-Date: 2020-8-19
+Date: 2020-9-14
 Title: pQTL Tools
 Author: Jing Hua Zhao
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Depends: R (>= 3.5.0)
+Imports: TwoSampleMR
 Suggests: gap, circlize, knitr, karyoploteR, openxlsx, phenoscanner,
           regioneR, biomaRt, GenomicRanges, IRanges
 LazyData: Yes

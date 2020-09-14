@@ -47,3 +47,9 @@ doubles <- c("P29460","Q9NPF7","Q14213","Q8NEV9")
 subset(inf1,uniprot %in% doubles)
 write.table(merge(inf1,z,by.x="uniprot",by.y="UniProt")[c("snpid","prot","uniprot")],
             file="SomaLogic.id3",col.names=FALSE,row.names=FALSE,quote=FALSE)
+
+st20 <- openxlsx::read.xlsx(xlsx, sheet=20, colNames=TRUE, skipEmptyRows=TRUE,
+                            cols=c(1:10), rows=c(3:786))
+ov <- intersect(unique(st20$UniProt),inf1$uniprot)
+ovv <- subset(st20,UniProt%in%ov)
+dim(ovv)

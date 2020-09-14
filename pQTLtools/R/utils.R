@@ -91,3 +91,31 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,buil
   })
   list(snps=snps,results=results)
 }
+
+pqtlMR <- function(Ins,Ids,prefix="INF1")
+{
+  Ins <- data <- Ins
+  Ins <- TwoSampleMR::format_data(Ins, type = "exposure", header = TRUE,
+                     phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
+                     se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
+                     other_allele_col = "other_allele", pval_col = "pval")
+  ao <- TwoSampleMR::available_outcomes(access_token=NULL)
+  ids <- Ids
+  outcome_dat <- TwoSampleMR::extract_outcome_data(snps = with(Ins,SNP), outcomes = ids)
+  dat <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
+  mr_results <- mr_hetero <- mr_pleio <- mr_single <- NULL
+  try(mr_results <- TwoSampleMR::mr(dat, method_list=c("mr_wald_ratio", "mr_ivw"))) # main MR analysis
+  mr_hetero <- TwoSampleMR::mr_heterogeneity(dat) # heterogeneity test across instruments
+  mr_pleio <- TwoSampleMR::mr_pleiotropy_test(dat) # MR-Egger intercept test
+  try(mr_single <- TwoSampleMR::mr_singlesnp(dat)) #single SNP MR using Wald ratio
+  options(width=200)
+  mr_results <- within(mr_results,outcome <- sub(" [|]* id:ieu-a-[0-9]*", "\\1", outcome, perl = TRUE))
+  filename <- c("harmonise","mr","mr_hetero","mr_pleio","mr_single")
+  ext <- "txt"
+  result_files <- paste(prefix,filename,ext,sep=".")
+  write.table(dat,file=result_files[1],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
+  write.table(format(mr_results,digits=3),file=result_files[2],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
+  write.table(mr_hetero,file=result_files[3],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
+  write.table(mr_pleio,file=result_files[4],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
+  write.table(mr_single,file=result_files[5],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
+}
