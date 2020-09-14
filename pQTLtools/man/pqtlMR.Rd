@@ -8,7 +8,7 @@ performs MR analysis according to epigraphdb.
 }
 \arguments{
 \item{Ins}{a data.frame containing a list of pQTLs and their effect sizes}
-\item{Ids}{a vector containing a list of IEU IDs}
+\item{Ids}{a vector containing a list of MR-Base IDs}
 \item{prefix}{a prefix for output files}
 }
 \details{
