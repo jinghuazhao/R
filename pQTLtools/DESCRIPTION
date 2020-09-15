@@ -16,8 +16,8 @@ Description: This repository collects information on a number of protein panels,
              query results on genes, regions, and SNPs via PhenoScanner, adding 
              functionality to check for replication across platforms and 
              aspects of protein-related analysis such as pQTL-Mendelian
-             Randomization via TwoSampleMR, demonstrating linkage to a variety
-             of resources.
+             Randomization via TwoSampleMR, linkage through UniProt IDs to other
+             resources.
 License: Unlimited
 URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/pQTLtools/issues

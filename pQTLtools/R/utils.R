@@ -120,7 +120,7 @@ pqtlMR <- function(Ins,Ids,prefix="INF1")
   write.table(mr_single,file=result_files[5],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
 }
 
-uniprot2ids <- function(from="ACC+ID",to,query)
+uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 {
   rt <- find.package("pQTLtools")
   f <- file.path(rt ,"python","uniprot2ids.py")
