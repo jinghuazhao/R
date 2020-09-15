@@ -125,5 +125,5 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
   rt <- find.package("pQTLtools")
   f <- file.path(rt ,"python","uniprot2ids.py")
   reticulate::source_python(f)
-  invisible(uniprot2ids(from,to,query))
+  invisible(uniprot2ids(uniprotid,to,query))
 }
