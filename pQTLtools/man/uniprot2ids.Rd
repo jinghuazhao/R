@@ -24,8 +24,12 @@ See https://www.uniprot.org/help/api_idmapping
 
 \examples{
 \dontrun{
-r <- uniprot2ids("ACC+ID","CHEMBL_ID","O00300 O14625 O14788 O15169 O15444")
-cat(r)
+uniprotid <- "ACC+ID"
+to <- "CHEMBL_ID"
+query <- noquote(inf1[["uniprot"]])
+query <- paste(query,collapse=" ")
+r <- pQTLtools::uniprot2ids(uniprotid,to,query)
+cat(r,file="INF1.merge.chembl")
 }
 }
 \note{Adapted from script by UniProt}
