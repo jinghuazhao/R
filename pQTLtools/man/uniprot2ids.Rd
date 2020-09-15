@@ -1,6 +1,6 @@
 \name{uniprot2ids}
 \alias{uniprot2ids}
-\title{UniProt IDs to a variety of others}
+\title{UniProt IDs to others}
 \usage{uniprot2ids(uniprotid,to,query)}
 \description{
 A function which converts UniProt IDs to others.
@@ -15,7 +15,7 @@ This function is based on the Python3 script from UniProt.
 }
 
 \value{
-A UniProt-ID table
+A UniProt-ID mapping
 }
 
 \section{References}{
