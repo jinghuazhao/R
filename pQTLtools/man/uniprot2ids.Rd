@@ -1,0 +1,32 @@
+\name{uniprot2ids}
+\alias{uniprot2ids}
+\title{UniProt IDs to a variety of others}
+\usage{uniprot2ids(uniprotid,to,query)}
+\description{
+A function which converts UniProt IDs to others.
+}
+\arguments{
+\item{uniprotid}{Source IDs}
+\item{to}{To IDs}
+\item{query}{A query}
+}
+\details{
+This function is based on the Python3 script from UniProt.
+}
+
+\value{
+A UniProt-ID table
+}
+
+\section{References}{
+See https://www.uniprot.org/help/api_idmapping
+}
+
+\examples{
+\dontrun{
+r <- uniprot2ids("ACC+ID","CHEMBL_ID","O00300 O14625 O14788 O15169 O15444")
+cat(r)
+}
+}
+\note{Adapted from script by UniProt}
+\keyword{utilities}

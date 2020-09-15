@@ -20,3 +20,7 @@ snpqueries              phenoscanner snpqueries in batches
 * MR analysis *
 
 pqtlMR                  pQTL MR analysis
+
+* CHEMBL *
+
+uniprot2ids             UniProt ID to a variety of others

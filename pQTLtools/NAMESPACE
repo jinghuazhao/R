@@ -1,4 +1,4 @@
-export(genequeries,regionqueries,snpqueries,pqtlMR)
+export(genequeries,regionqueries,snpqueries,pqtlMR,uniprot2ids)
 import(utils)
 importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
            "legend", "lines", "mtext", "par", "plot", "points",
