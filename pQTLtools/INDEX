@@ -21,6 +21,6 @@ snpqueries              phenoscanner snpqueries in batches
 
 pqtlMR                  pQTL MR analysis
 
-* UniProt *
+* UniProt API *
 
 uniprot2ids             UniProt ID to others

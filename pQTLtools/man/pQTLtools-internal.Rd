@@ -9,6 +9,7 @@
 \alias{Olink_qPCR}
 \alias{SomaLogic160410}
 \alias{st4}
+\alias{st6}
 \alias{swath_ms}
 \description{
 A list of protein panels: caprion, hg10Tables, Olink_NGS, Olink_qPCR (inf1 is heavily edited), SomaLogic160410, swath_ms.

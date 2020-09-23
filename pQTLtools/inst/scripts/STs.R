@@ -15,9 +15,10 @@ st6.1 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
 st6.2 <- openxlsx::read.xlsx(xlsx, sheet=6, colNames=TRUE, skipEmptyRows=TRUE,
                            cols=c(14:20), rows=c(4:167))
 st6 <- cbind(st6.1,st6.2)
+save(st6,file='st6.rda',compress='xz')
 replicates <- merge(st4[,c(1:12,26:28)],st6[,c(1:10,17:20)],
                     by=c("Locus.ID","UniProt","Chr","Pos","SOMAmer.ID"))
-line_to_edit <- with(replicates,Locus.ID=="5_29")
+line_to_edit <- with(replicates,Locus.ID=="3_59"|Locus.ID=="5_29")
 replicates[line_to_edit,"UniProt"] <- "P29460"
 
 # However, it is unclear UniProts in ST6 were selected from which of the panels
