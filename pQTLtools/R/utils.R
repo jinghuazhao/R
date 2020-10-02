@@ -80,7 +80,7 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,buil
     s[[i]] <- with(q,snps)
     r[[i]] <- with(q,results)
   }
-  snps <- with(do.call("rbind",s),
+  snps <- within(do.call("rbind",s),
   {
     swap_a1 <- as.character(a1)
     swap_a2 <- as.character(a2)
@@ -91,7 +91,7 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,buil
     else if (build==38) snpid <- paste0(hg38_coordinates,"_",a1,"_",a2)
     rm(swap_a1,swap_a2,swap)
   })
-  results <- with(do.call("rbind",r),
+  results <- within(do.call("rbind",r),
   {
     swap_a1 <- as.character(a1)
     swap_a2 <- as.character(a2)
