@@ -1,6 +1,6 @@
 \name{pqtlMR}
 \alias{pqtlMR}
-\title{pQTL MR analysis}
+\title{A customized pQTL-MR analysis}
 \usage{pqtlMR(Ins,Ids,prefix="INF1")}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function
@@ -25,11 +25,16 @@ Zheng, J. et al.(2020). Phenome-wide Mendelian randomization mapping the influen
 
 \examples{
 \dontrun{
+ms <- file.path(find.package("pQTLtools"),"tests","ms.ins")
+ivs <- read.table(ms,as.is=TRUE,header=TRUE)
+ids <- "ieu-b-18"
+pqtlMR(ivs,ids,prefix="MS")
+dir()
+# prefix=INF1 for the SCALLOP/INF1
 prefix <- Sys.getenv("prefix")
 ivs <- within(read.table(paste0(prefix,".ins"),as.is=TRUE,header=TRUE),{pval=10^pval})
 ids <- scan("ieu-id.txt",what="")
 pQTLtools::pqtlMR(ivs,ids)
-pqtlMR("INF1.ins","ieu-id.txt")
 }
 }
 \note{adapted from script by Jie Zheng}

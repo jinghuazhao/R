@@ -19,7 +19,7 @@ snpqueries              phenoscanner snpqueries in batches
 
 * MR analysis *
 
-pqtlMR                  pQTL MR analysis
+pqtlMR                  A customized pQTL-MR analysis
 
 * UniProt API *
 
