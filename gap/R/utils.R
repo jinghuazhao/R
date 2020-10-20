@@ -1106,7 +1106,7 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
 
 pvalue <- function(z,decimals=2)
 {
-  lp <- gap::log10p(z)
+  lp <- log10p(z)
   exponent <- ceiling(lp)
   base <- 10^(lp - exponent)
   paste0(round(base*10,decimals),"e",-1+exponent)
