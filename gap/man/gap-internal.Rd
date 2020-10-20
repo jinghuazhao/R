@@ -28,6 +28,7 @@
 \alias{mhtplot3d}
 \alias{nep499}
 \alias{PARn}
+\alias{pvalue}
 \alias{HapDesign}
 \alias{HapFreqSE}
 \alias{allele.recode}
@@ -140,15 +141,6 @@ WriteGRMSAS(grmlist, outfile="gwas")
 \description{
 These are internal functions.
 
-PARn calculates population attributable risk (PAR) for a list of frequencies and relative risks (RRs).
-
-HapDesign and HapFreqSE both accept a \code{\link[haplo.stats]{haplo.em}} object to derieve a design/dosage
-matrix and standard error of haplotype frequency estimates. The former is appropriate for haplotype trend 
-regression (HTR), e.g., within the generalized linear model (GLM) framework to be equivllant to a formal 
-approach as implemented in the package haplo.stats and hap.score. However, they are expected to be compatible 
-with objects from gc.em() \code{\link[gap]{gc.em}} and \code{\link[gap]{hap.em}}. The two functions are 
-included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
-
 a2g gives allele-to-genotype conversion.
 
 chr_pos_a1_a2 produces SNPID format.
@@ -185,6 +177,13 @@ h2l is a utility function for converting observed heritability to its counterpar
 
 hap.control is used by hap.em().
 
+HapDesign and HapFreqSE both accept a \code{\link[haplo.stats]{haplo.em}} object to derieve a design/dosage
+matrix and standard error of haplotype frequency estimates. The former is appropriate for haplotype trend 
+regression (HTR), e.g., within the generalized linear model (GLM) framework to be equivllant to a formal 
+approach as implemented in the package haplo.stats and hap.score. However, they are expected to be compatible 
+with objects from gc.em() \code{\link[gap]{gc.em}} and \code{\link[gap]{hap.em}}. The two functions are 
+included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
+
 hap.score.glm, hap.score.podds are used by hap.score().
 
 invlogit, inverse logit transformation.
@@ -215,7 +214,11 @@ miamiplot is for Miami plot.
 
 micombine is used to combine imputation results.
 
+PARn calculates population attributable risk (PAR) for a list of frequencies and relative risks (RRs).
+
 plem2m is also experimental for PLEM format.
+
+pvalue takes a z-statistic for a p value with scientific representation
 
 ReadGRM is a function to read GCTA grm.gz and grm.id file
 
@@ -294,6 +297,8 @@ inv_chr_pos_a1_a2(s)
 inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 #
 p <- mhtplot3d(pretty=FALSE)
+#
+pvalue(-1.96)
 }
 }
 \details{These functions are not so frequently called by users}
