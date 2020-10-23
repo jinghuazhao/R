@@ -1,7 +1,7 @@
 \name{snpqueries}
 \alias{snpqueries}
 \title{phenoscanner snpqueries in batches}
-\usage{snpqueries(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)}
+\usage{snpqueries(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)}
 \description{
 R/phenoscanner only allows for certain number of items supplied. This simple function return
 a large number of calls in batches as well as generating SNPIDs.

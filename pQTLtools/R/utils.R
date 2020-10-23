@@ -1,4 +1,4 @@
-genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
+genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
   a1 <- a2 <- hg19_coordinates <- hg38_coordinates <- NULL
   batches <- split(genelist,ceiling(seq_along(genelist)/10))
@@ -27,7 +27,7 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,bu
   list(genes=genes,results=results)
 }
 
-regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
+regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
   a1 <- a2 <- hg19_coordinates <- hg38_coordinates <- NULL
   lrl <- strsplit(regionlist,":|-")
@@ -66,7 +66,7 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
   list(tiles=tiles,regions=regions,results=results)
 }
 
-snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.7,build=37,wait=TRUE)
+snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
   a1 <- a2 <- hg19_coordinates <- hg38_coordinates <- NULL
   batches <- split(snplist,ceiling(seq_along(snplist)/100))
