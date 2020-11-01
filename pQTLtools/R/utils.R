@@ -112,7 +112,7 @@ pqtlMR <- function(Ins,Ids,prefix="INF1")
                      phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
                      se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
                      other_allele_col = "other_allele", pval_col = "pval")
-  ao <- TwoSampleMR::available_outcomes(access_token=NULL)
+# ao <- TwoSampleMR::available_outcomes(access_token=NULL)
   ids <- Ids
   outcome_dat <- TwoSampleMR::extract_outcome_data(snps = with(Ins,SNP), outcomes = ids)
   dat <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
