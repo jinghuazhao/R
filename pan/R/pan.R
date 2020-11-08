@@ -251,7 +251,7 @@ pan <- function(y,subj,pred,xcol,zcol,prior,seed,iter=1,start){
 		sig=array(0,c(r*q,r*q,m)),wkrr1=matrix(0,r,r),
 		wkrr2=matrix(0,r,r),
 		iter=as.integer(iter),wkqr1=matrix(0,q,r),wkqr2=matrix(0,q,r),
-		wkqrv=numeric(q*r),nhyp,hyp,delta=matrix(0,ntot,r),
+		wkqrv=numeric(q*r),nhyp=nhyp,hyp=hyp,delta=matrix(0,ntot,r),
 		iposn=iposn,pstfin=pstfin,
 		betas=array(0,c(p,r,iter)),sigmas=array(0,c(r,r,iter)),
 		psis=array(0,c(r*q,r*q,iter)),PACKAGE="pan")

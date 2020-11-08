@@ -3,7 +3,7 @@
 \alias{YWC.data}
 \title{A data frame for multivariate imputation}
 \description{
-The data serves as an worked example for PAN as follows,.
+The data serves as an worked example for PAN as follows,
 \preformatted{
 head(YWC.data)
 Yi.Matrix <- as.matrix(YWC.data[,4:39])
