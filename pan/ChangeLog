@@ -1,7 +1,7 @@
 Version 1.7
 
 2020-11-08	Refine vignette
-		nhyp=nhyp,hyp=hyp specifrication for pan()
+		nhyp=nhyp,hyp=hyp specification for pan()
 		Apply -fc-prototypes-external for C prototypes
 
 Version 1.6
