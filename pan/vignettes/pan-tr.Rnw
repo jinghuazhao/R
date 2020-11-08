@@ -76,8 +76,8 @@ One can use {\bf help(ecme,package=``pan'')} to see the example code.
 \section{Technical Report}
 The technical report starts from next page.
 
-\includepdf[pages=-,width=8.5in]{tr9704.pdf}\label{tr9704}.
-\includepdf[pages=-,width=8.5in]{schafer01.pdf}\label{schafer01}.
-\includepdf[pages=-,width=8.5in]{schafer02.pdf}\label{schafer02}.
+\includepdf[pages=-,width=8.5in]{tr9704.pdf}\label{tr9704}
+\includepdf[pages=-,width=8.5in]{schafer01.pdf}\label{schafer01}
+\includepdf[pages=-,width=8.5in]{schafer02.pdf}\label{schafer02}
 
 \end{document}
