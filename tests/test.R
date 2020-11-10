@@ -18,6 +18,7 @@ PAN.y1 <- matrix(0, N, M)
 # The place where errors occur #
 options(echo=FALSE,width=200)
 for (m in 1:M){
+  cat("m =",m,"\n")
   result <- pan(test$Y1, test$ID, X, 1:4, 4, prior, seed=m, iter=100)
 # print(result)
   PAN.y1[,m] <- result$y
