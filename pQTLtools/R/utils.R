@@ -115,22 +115,19 @@ pqtlMR <- function(Ins,Ids,prefix="INF1")
 # ao <- TwoSampleMR::available_outcomes(access_token=NULL)
   ids <- Ids
   outcome_dat <- TwoSampleMR::extract_outcome_data(snps = with(Ins,SNP), outcomes = ids)
-  dat <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
-  mr_results <- mr_hetero <- mr_pleio <- mr_single <- NULL
-  try(mr_results <- TwoSampleMR::mr(dat, method_list=c("mr_wald_ratio", "mr_ivw"))) # main MR analysis
-  mr_hetero <- TwoSampleMR::mr_heterogeneity(dat) # heterogeneity test across instruments
-  mr_pleio <- TwoSampleMR::mr_pleiotropy_test(dat) # MR-Egger intercept test
-  try(mr_single <- TwoSampleMR::mr_singlesnp(dat)) #single SNP MR using Wald ratio
-  options(width=200)
-  mr_results <- within(mr_results,outcome <- sub(" [|]* id:ieu-a-[0-9]*| [|]* id:ukb-a-[0-9]*", "\\1", outcome, perl = TRUE))
-  filename <- c("harmonise","mr","mr_hetero","mr_pleio","mr_single")
-  ext <- "txt"
-  result_files <- paste(prefix,filename,ext,sep=".")
-  write.table(dat,file=result_files[1],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
-  write.table(format(mr_results,digits=3),file=result_files[2],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
-  write.table(mr_hetero,file=result_files[3],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
-  write.table(mr_pleio,file=result_files[4],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
-  write.table(mr_single,file=result_files[5],sep="\t",col.names=TRUE,row.names=FALSE,quote=FALSE)
+  harmonise <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
+  result <- heterogeneity <- pleiotropy <- single <- NULL
+  try(result <- TwoSampleMR::mr(harmonise, method_list=c("mr_wald_ratio", "mr_ivw"))) # main MR analysis
+  heterogeneity <- TwoSampleMR::mr_heterogeneity(harmonise) # heterogeneity test across instruments
+  pleiotropy <- TwoSampleMR::mr_pleiotropy_test(harmonise) # MR-Egger intercept test
+  try(single <- TwoSampleMR::mr_singlesnp(harmonise)) #single SNP MR using Wald ratio
+# result <- within(result,outcome <- sub(" [|]* id:ieu-a-[0-9]*| [|]* id:ukb-a-[0-9]*", "\\1", outcome, perl = TRUE))
+  ext <- ".txt"
+  invisible(lapply(c("harmonise","result","heterogeneity","pleiotropy","single"), function(x) {
+                   v <- lapply(x, function(x) tryCatch(get(x), error=function(e) NULL))[[1]]
+                   if (!is.null(v)) write.table(format(v,digits=3),file=paste0(prefix,"-",x,ext),quote=FALSE,row.names=FALSE,sep="\t")
+            })
+  )
 }
 
 uniprot2ids <- function(uniprotid="ACC+ID",to,query)
