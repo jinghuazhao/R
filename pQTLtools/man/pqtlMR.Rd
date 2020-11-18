@@ -1,7 +1,7 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{A customized pQTL-MR analysis}
-\usage{pqtlMR(Ins,Ids,prefix="INF1")}
+\usage{pqtlMR(Ins,Ids,prefix="INF1",reverse=FALSE)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function
 performs MR analysis according to epigraphdb.
@@ -10,6 +10,7 @@ performs MR analysis according to epigraphdb.
 \item{Ins}{a data.frame containing a list of pQTLs and their effect sizes}
 \item{Ids}{a vector containing a list of MR-Base IDs}
 \item{prefix}{a prefix for output files}
+\item{reverse}{if TRUE, perform reverse MR}
 }
 \details{
 This function is based on TwoSampleMR.
