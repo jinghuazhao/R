@@ -132,6 +132,7 @@ pqtlMR <- function(Ins,Ids,prefix="INF1",reverse=FALSE)
     swap(beta.exposure,beta.outcome)
     swap(se.exposure,se.outcome)
     swap(pval.exposure,pval.outcome)
+    samplesize <- NA
   })
   result <- heterogeneity <- pleiotropy <- single <- NULL
   try(result <- TwoSampleMR::mr(harmonise, method_list=c("mr_wald_ratio", "mr_ivw"))) # main MR analysis
