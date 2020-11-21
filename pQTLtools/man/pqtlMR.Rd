@@ -1,6 +1,6 @@
 \name{pqtlMR}
 \alias{pqtlMR}
-\title{A customized pQTL-MR analysis}
+\title{Bidirectional pQTL-MR analysis}
 \usage{pqtlMR(Ins,Ids,prefix="INF1",reverse=FALSE)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function
@@ -26,10 +26,14 @@ Zheng, J. et al.(2020). Phenome-wide Mendelian randomization mapping the influen
 
 \examples{
 \dontrun{
+# A bidirectional MR analysis
 ms <- file.path(find.package("pQTLtools"),"tests","ms.ins")
 ivs <- read.table(ms,as.is=TRUE,header=TRUE)
 ids <- "ieu-b-18"
+# MR
 pqtlMR(ivs,ids,prefix="MS")
+# reverse MR
+pqtlMR(ivs,ids,prefix="MS_rev",reverse=TRUE)
 dir()
 # prefix=INF1 for the SCALLOP/INF1
 prefix <- Sys.getenv("prefix")
