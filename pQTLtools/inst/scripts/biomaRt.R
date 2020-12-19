@@ -1,6 +1,9 @@
+options(width=200)
 library(biomaRt)
+listEnsemblArchives()
 ensembl <- useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
 attr <- listAttributes(ensembl)
+subset(attr,grepl("ensembl",name))
 g <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol')
 t <- c('ensembl_transcript_id', 'transcription_start_site', 'transcript_start', 'transcript_end')
 u <- "uniprotswissprot"
