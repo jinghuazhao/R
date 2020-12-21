@@ -108,10 +108,13 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,buil
 swap <- function(x,y)
    eval(parse(text = paste("swap_unique_var_a <-", substitute(x), ";",
    substitute(x), "<-", substitute(y), ";",
-   substitute(y), "<-swap_unique_var_a")), env=parent.frame())
+   substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
 pqtlMR <- function(Ins,Ids,prefix="INF1",reverse=FALSE)
 {
+  exposure <- outcome <- id.exposure <- id.outcome <- effect_allele.exposure <- effect_allele.outcome <- NULL
+  other_allele.exposure <- other_allele.outcome <- eaf.exposure <- eaf.outcome <- samplesize.exposure <- NULL
+  beta.exposure <- beta.outcome <- se.exposure <- se.outcome <- pval.exposure <- pval.outcome <- swap_unique_var_a <- NULL
   Ins <- data <- Ins
   Ins <- TwoSampleMR::format_data(Ins, type = "exposure", header = TRUE,
                      phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
@@ -154,4 +157,19 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
   f <- file.path(rt ,"python","uniprot2ids.py")
   reticulate::source_python(f)
   invisible(uniprot2ids(uniprotid,to,query))
+}
+
+import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_names, verbose = TRUE)
+{
+  if(verbose) print(ftp_path)
+  gene_id <- rsid <- chromosome <- position <- id <- n <- row_count <- NULL
+  fetch_table <- seqminer::tabix.read.table(tabixFile = ftp_path, tabixRange = region, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+  colnames(fetch_table) <- column_names
+  summary_stats <- dplyr::filter(fetch_table, gene_id == selected_gene_id) %>%
+    dplyr::select(-rsid) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
+    dplyr::group_by(id) %>%
+    dplyr::mutate(row_count = n()) %>% dplyr::ungroup() %>%
+    dplyr::filter(row_count == 1)
 }

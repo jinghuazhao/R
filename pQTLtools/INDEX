@@ -12,15 +12,19 @@ st4                     ST4 of the INTERVAL SomaLogic paper
 st6                     ST6 of the INTERVAL SomaLogic paper
 swath_ms                SWATH-MS panel
 
+* eQTLCatalogue
+
+import_eQTLCatalogue	Import eQTL Catalogue
+
+* MR analysis *
+
+pqtlMR                  Bidirectional pQTL-MR analysis
+
 * PhenoScanner Utilities *
 
 genequeries             phenoscanner genequeries in batches
 regionqueries           phenoscanner regionqueries in batches
 snpqueries              phenoscanner snpqueries in batches
-
-* MR analysis *
-
-pqtlMR                  Bidirectional pQTL-MR analysis
 
 * UniProt API *
 
