@@ -79,7 +79,7 @@ res = run_coloc(summary_stats, gwas_stats_hg38)
 
 # a. all other eQTL datasets
 microarray_df = dplyr::filter(tabix_paths, quant_method == "microarray") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
-ftp_path_list = setNames(as.list(microarray_df), microarray_df$qtl_id)
+ftp_path_list = setNames(as.list(microarray_df$ftp_path), microarray_df$qtl_id)
 column_names = colnames(readr::read_tsv("CEDAR_microarray_T-cell_CD8.all.tsv.gz", n_max = 1))
 summary_list = purrr::map("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz", ~import_eQTLCatalogue(., region,
                           selected_gene_id = "ENSG00000163947", column_names))
@@ -97,7 +97,7 @@ coloc_df_rnaseq = purrr::map_df(result_list, ~run_coloc(., gwas_stats_hg38), .id
 
 # c. GTEx_v8 imported eQTL datasets
 rnaseq_df = dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
-ftp_path_list = setNames(as.list(rnaseq_df), rnaseq_df$qtl_id)
+ftp_path_list = setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
 column_names = colnames(readr::read_tsv("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz", n_max = 1))
 safe_import = purrr::safely(import_eQTLCatalogue)
 summary_list = purrr::map("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz", ~safe_import(., region,
