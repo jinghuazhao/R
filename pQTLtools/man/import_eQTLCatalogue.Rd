@@ -46,8 +46,10 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats)
 }
 
 lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = T)
-tabix_paths = read.delim("tabix_ftp_paths.tsv", sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
-imported_tabix_paths = read.delim("tabix_ftp_paths_imported.tsv", sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+tfp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+tabix_paths = read.delim(tfp, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+tfpi <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
+imported_tabix_paths = read.delim(tfpi, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 
 # MPV association at the ARHGEF3 locus
 region = "3:56615721-57015721"
@@ -79,7 +81,8 @@ res = run_coloc(summary_stats, gwas_stats_hg38)
 microarray_df = dplyr::filter(tabix_paths, quant_method == "microarray") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
 ftp_path_list = setNames(as.list("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz"), microarray_df$qtl_id[1])
 column_names = colnames(readr::read_tsv("CEDAR_microarray_T-cell_CD8.all.tsv.gz", n_max = 1))
-summary_list = purrr::map(ftp_path_list, ~import_eQTLCatalogue(., region, selected_gene_id = "ENSG00000163947", column_names))
+summary_list = purrr::map("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz", ~import_eQTLCatalogue(., region,
+                          selected_gene_id = "ENSG00000163947", column_names))
 coloc_df_microarray = purrr::map_df(summary_list, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 
 # b. Uniformly processed RNA-seq datasets
@@ -87,7 +90,7 @@ rnaseq_df = dplyr::filter(tabix_paths, quant_method == "ge") %>% dplyr::mutate(q
 ftp_path_list = setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
 column_names = colnames(readr::read_tsv("Alasoo_2018_ge_macrophage_naive.all.tsv.gz", n_max = 1))
 safe_import = purrr::safely(import_eQTLCatalogue)
-summary_list = purrr::map(ftp_path_list, ~safe_import(., region, selected_gene_id = "ENSG00000163947", column_names))
+summary_list = purrr::map("Alasoo_2018_ge_macrophage_naive.all.tsv.gz", ~safe_import(., region, selected_gene_id = "ENSG00000163947", column_names))
 result_list = purrr::map(summary_list, ~.$result)
 result_list = result_list[!unlist(purrr::map(result_list, is.null))]
 coloc_df_rnaseq = purrr::map_df(result_list, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
@@ -97,7 +100,8 @@ rnaseq_df = dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr:
 ftp_path_list = setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
 column_names = colnames(readr::read_tsv("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz", n_max = 1))
 safe_import = purrr::safely(import_eQTLCatalogue)
-summary_list = purrr::map(ftp_path_list, ~safe_import(., region, selected_gene_id = "ENSG00000163947", column_names))
+summary_list = purrr::map("~/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz", ~safe_import(., region,
+                          selected_gene_id = "ENSG00000163947", column_names))
 result_list = purrr::map(summary_list, ~.$result)
 result_list = result_list[!unlist(purrr::map(result_list, is.null))]
 result_filtered = purrr::map(result_list, ~dplyr::filter(., !is.na(se)))
