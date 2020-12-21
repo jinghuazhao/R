@@ -54,7 +54,8 @@ imported_tabix_paths <- read.delim(tfpi, sep = "\t", header = TRUE, stringsAsFac
 # MPV association at the ARHGEF3 locus
 region <- "3:56615721-57015721"
 platelet_df <- dplyr::filter(tabix_paths, study == "CEDAR", tissue_label == "platelet")
-column_names <- colnames(readr::read_tsv("CEDAR_microarray_platelet.all.tsv.gz", n_max = 1))
+hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
+column_names <- names(read.delim(hdr))
 summary_stats <- import_eQTLCatalogue("CEDAR_microarray_platelet.all.tsv.gz", region, selected_gene_id = "ENSG00000163947", column_names)
 summary_stats
 ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
@@ -89,6 +90,7 @@ result_list <- purrr::map(summary_list, ~.$result)
 result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
 result_filtered <- purrr::map(result_list, ~dplyr::filter(., !is.na(se)))
 coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
+ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
 }
 }
 \note{Adapted function}
