@@ -76,7 +76,13 @@ legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("c
 detach(INF1_merge_cvt)
 ```
 
+Second, we can use pqtlMR for bidirectional Mendelian Randomization via pQTLs.
+
+Third, we can use eQTL Catalogue for colocalization analysis, see example associated with `import_eQTLCatalogue`.
+
 The published work on pQTLs as identified by Sun, et al (2018) and Suhre, et al. (2020) are included as EndNote libraries.
+
+The function `uniprot2ids` converts UniProt IDs to others.
 
 References
 ==========

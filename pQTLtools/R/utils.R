@@ -173,3 +173,23 @@ import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_name
     dplyr::mutate(row_count = n()) %>% dplyr::ungroup() %>%
     dplyr::filter(row_count == 1)
 }
+
+run_coloc <- function(eqtl_sumstats, gwas_sumstats)
+{
+  eQTL_dataset <- list(beta = eqtl_sumstats$beta,
+                       varbeta = eqtl_sumstats$se^2,
+                       N = (eqtl_sumstats$an)[1]/2,
+                       MAF = eqtl_sumstats$maf,
+                       type = "quant",
+                       snp = eqtl_sumstats$id)
+  gwas_dataset <- list(beta = gwas_sumstats$ES,
+                       varbeta = gwas_sumstats$SE^2,
+                       type = "quant",
+                       snp = gwas_sumstats$id,
+                       MAF = gwas_sumstats$MAF,
+                       N = gwas_sumstats$SS)
+  coloc_res <- coloc::coloc.abf(dataset1 = eQTL_dataset, dataset2 = gwas_dataset,p1 = 1e-4, p2 = 1e-4, p12 = 1e-5)
+  res_formatted <- dplyr::as_tibble(t(as.data.frame(coloc_res$summary)))
+  return(res_formatted)
+}
+

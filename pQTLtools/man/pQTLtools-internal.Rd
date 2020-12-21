@@ -7,6 +7,7 @@
 \alias{inf1}
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
+\alias{run_coloc}
 \alias{SomaLogic160410}
 \alias{st4}
 \alias{st6}
