@@ -21,13 +21,14 @@ A summary statistic object
 }
 
 \section{References}{
-See https://www.ebi.ac.uk/about/news/press-releases/eQTL-catalogue
+Kerimov, N., et al. (2020). "eQTL Catalogue: a compendium of uniformly processed human gene expression and splicing QTLs." bioRxiv: 2020.2001.2029.924266.
+	https://www.ebi.ac.uk/eqtl/.
 }
 
 \examples{
 \dontrun{
 library(pQTLtools)
-lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE)
+invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE))
 tfp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(tfp, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 tfpi <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
