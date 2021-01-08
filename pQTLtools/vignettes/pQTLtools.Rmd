@@ -78,7 +78,7 @@ detach(INF1_merge_cvt)
 
 Second, we can use pqtlMR for bidirectional Mendelian Randomization via pQTLs.
 
-Third, we can use eQTL Catalogue for colocalization analysis, see example associated with `import_eQTLCatalogue`.
+Third, we can use eQTL Catalogue for colocalization analysis, see example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
 
 The published work on pQTLs as identified by Sun, et al (2018) and Suhre, et al. (2020) are included as EndNote libraries.
 

@@ -193,3 +193,25 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats)
   return(res_formatted)
 }
 
+import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
+{
+  opengwas_root <- "https://gwas.mrcieu.ac.uk/files"
+  file_path <- paste(opengwas_root,opengwas_id,paste0(opengwas_id,".vcf.gz"),sep="/")
+  if(verbose) print(file_path)
+# pending on its exclusive/web use later
+# fetch_table = seqminer::tabix.read.table(tabixFile = file_path, tabixRange = region, stringsAsFactors = FALSE)
+# only possible locally but its GRanges conversion is helpful
+# gwas_stats <- query_gwas(basename(file_path),chrompos = region)
+# gwas_sumstats <- vcf_to_granges(gwas_stats)
+# One that does work at the moment
+  VariantAnnotation::VcfFile(file_path)
+  VariantAnnotation::vcfFields(file_path)
+  chr_start_end <- unlist(strsplit(gsub(":", "-", region),"-"))
+  seqnames <- chr_start_end[1]
+  start <- as.integer(chr_start_end[2])
+  end <- as.integer(chr_start_end[3])
+  rngs <- GenomicRanges::GRanges(seqnames, IRanges::IRanges(start,end))
+  param <- VariantAnnotation::ScanVcfParam(which=rngs)
+  vcf <- VariantAnnotation::readVcf(file_path, "hg19", param)
+  gwasvcf::vcf_to_granges(vcf)
+}

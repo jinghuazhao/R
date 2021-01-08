@@ -1,4 +1,4 @@
-export(genequeries,regionqueries,snpqueries,import_eQTLCatalogue,pqtlMR,run_coloc,uniprot2ids)
+export(genequeries,regionqueries,snpqueries,import_eQTLCatalogue,import_OpenGWAS,pqtlMR,run_coloc,uniprot2ids)
 import(dplyr,utils)
 importFrom("coloc","coloc.abf")
 importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
