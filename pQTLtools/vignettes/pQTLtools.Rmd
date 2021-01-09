@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 First, we have cis/trans classification,
 ```{r}
+options(width=200)
 require(gap)
 INF <- Sys.getenv("INF")
 f <- file.path(INF,"work","INF1.merge")
@@ -81,7 +82,6 @@ Second, we can use pqtlMR for bidirectional Mendelian Randomization via pQTLs.
 Third, we can use eQTL Catalogue for colocalization analysis, see example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
 
 ```{r}
-options(width=200)
 library(pQTLtools)
 f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
@@ -191,7 +191,5 @@ References
 ==========
 
 Suhre, K., et al. (2020). "Genetics meets proteomics: perspectives for large population-based studies." *Nat Rev Genet*.
-	Proteomic analysis of cells, tissues and body fluids has generated valuable insights into the complex processes influencing human biology. Proteins represent intermediate phenotypes for disease and provide insight into how genetic and non-genetic risk factors are mechanistically linked to clinical outcomes. Associations between protein levels and DNA sequence variants that colocalize with risk alleles for common diseases can expose disease-associated pathways, revealing novel drug targets and translational biomarkers. However, genome-wide, population-scale analyses of proteomic data are only now emerging. Here, we review current findings from studies of the plasma proteome and discuss their potential for advancing biomedical translation through the interpretation of genome-wide association analyses. We highlight the challenges faced by currently available technologies and provide perspectives relevant to their future application in large-scale biobank studies.
 
 Sun, B. B., et al. (2018). "Genomic atlas of the human plasma proteome." *Nature* 558(7708): 73-79.
-	Although plasma proteins have important roles in biological processes and are the direct targets of many drugs, the genetic factors that control inter-individual variation in plasma protein levels are not well understood. Here we characterize the genetic architecture of the human plasma proteome in healthy blood donors from the INTERVAL study. We identify 1,927 genetic associations with 1,478 proteins, a fourfold increase on existing knowledge, including trans associations for 1,104 proteins. To understand the consequences of perturbations in plasma protein levels, we apply an integrated approach that links genetic variation with biological pathway, disease, and drug databases. We show that protein quantitative trait loci overlap with gene expression quantitative trait loci, as well as with disease-associated loci, and find evidence that protein biomarkers have causal roles in disease using Mendelian randomization analysis. By linking genetic factors to diseases via specific proteins, our analyses highlight potential therapeutic targets, opportunities for matching existing drugs with new disease indications, and potential safety concerns for drugs under development.
