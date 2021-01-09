@@ -1,4 +1,4 @@
-# 10-11-2020 JHZ
+# 9-1-2021 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -28,4 +28,6 @@ git add README.md
 git commit -m "README"
 git add utils
 git commit -m "utils"
+git vignettes
+git commit -m "vignettes"
 git push
