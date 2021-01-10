@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
+10-01-2021	Revise ESplot and therefore the vignette from Wendi's problem
 20-10-2020	Add pvalue() to complement log10p()
 05-08-2020	Fix issues in chr_pos_a1_a2() with vector input and suggest R/genetics
 28-04-2020	Change colors for cis/trans signals in circos.cis.vs.trans.plot()

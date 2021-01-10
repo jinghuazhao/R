@@ -20,15 +20,13 @@ ESplot <- function(ESdat,SE=TRUE,logscale=TRUE,alpha=0.05,xlim=c(-2,8),v=1,...)
       LCL <- ESdat[,3]
       UCL <- ESdat[,4]
    }
-   x <- xlim[1]:xlim[2]
-   plot(x,x,type="n",xlab="",ylab="",axes=FALSE)
-   for(i in 1:n)
-   {
-       points(ES[i],i,pch=22,bg="black")
-       segments(LCL[i],i,UCL[i],i)
-   }
-   axis(1)
+   x <- seq(xlim[1],xlim[2],length=n)
+   y <- 1:n
+   plot(x,y,type="n",xlab="",ylab="",axes=FALSE)
+   points(ES,y,pch=22,bg="black",cex=3)
+   segments(LCL,y,UCL,y,lwd=3)
+   axis(1,cex.axis=1.5,lwd=0)
    par(las=1)
    abline(v=v)
-   axis(2,labels=models,at=1:n,lty="blank",hadj=0)
+   axis(2,labels=models,at=y,lty="blank",hadj=0.2,cex.axis=1.5)
 }
