@@ -5,7 +5,7 @@ Title: pQTL Tools
 Author: Jing Hua Zhao
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Depends: R (>= 3.5.0)
-Imports: coloc, dplyr, gwasvcf, TwoSampleMR, VariantAnnotation
+Imports: coloc, dplyr, gwasvcf, rtracklayer, TwoSampleMR, VariantAnnotation
 Suggests: biomaRt, gap, circlize, knitr, karyoploteR, openxlsx, phenoscanner,
           purrr, regioneR, reticulate, seqminer, GenomicRanges, IRanges
 LazyData: Yes
