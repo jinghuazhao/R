@@ -35,7 +35,7 @@ This is used to generate 2d-Manhattan plot
 ```{r}
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
-mhtplot2d(d)
+t2d <- mhtplot2d(d)
 ```
 and ideogram
 ```{r}
