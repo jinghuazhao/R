@@ -43,7 +43,13 @@ column_names <- names(read.delim(hdr))
 summary_stats <- import_eQTLCatalogue(platelet_df$ftp_path, region, selected_gene_id = ensGene, column_names)
 summary_stats
 ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
+# gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
 # GWAS sumstat from the same region
+# via import_OpenGWAS
+# opengwas_id <- "ebi-a-GCST004599"
+# region <- "3:56649749-57049749"
+# mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region)
+# manually download and parse with gwasvcf
 # https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz
 # https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
 gwas_stats <- gwasvcf::query_gwas("ebi-a-GCST004599.vcf.gz", chrompos = "3:56649749-57049749")

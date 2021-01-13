@@ -25,9 +25,14 @@ Lyon M, Andrews SJ, Elsworth B, Gaunt TR, Hemani G, Marcora E. The variant call 
 \examples{
 \dontrun{
 options(width=200)
+gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
+# MPV ARHGEF3 region
+opengwas_id <- "ebi-a-GCST004599"
+region <- "3:56649749-57049749"
+mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region)
+# all immune-related
 INF <- Sys.getenv("INF")
 HPC_WORK <- Sys.getenv("HPC_WORK")
-gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
 opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
 unavail <-c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
 opengwas_ids <- subset(opengwas_ids,!opengwas_ids\%in\%unavail)
