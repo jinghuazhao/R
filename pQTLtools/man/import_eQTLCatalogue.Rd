@@ -46,8 +46,8 @@ ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
 # gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
 # GWAS sumstat from the same region
 # manually download and parse with gwasvcf
-# https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz
-# https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
+# wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz
+# wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
 # gwas_stats <- gwasvcf::query_gwas("ebi-a-GCST004599.vcf.gz", chrompos = "3:56649749-57049749")
 # gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels("3") %>% renameSeqlevels("chr3")
 # via import_OpenGWAS
