@@ -879,9 +879,9 @@ cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
     ppa <- exp(log_ppa)
     cat("denominator = ", d, ", scaling factor = exp(",m, "^2/2)\n",sep="")
   })
-  ord <- with(tbl, order(-ppa))
+  ord <- with(tbl, order(ppa,decreasing = TRUE))
   tbl <- within(tbl[ord,], {cppa <- cumsum(ppa)})
-  tbl[which(with(tbl,cppa) >= cutoff)[1],]
+  tbl[ord[1:which(with(tbl,cppa) >= cutoff)[1]],]
 }
 
 xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
