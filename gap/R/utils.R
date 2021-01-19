@@ -862,26 +862,22 @@ circos.mhtplot <- function(data, glist)
   circlize::circos.clear()
 }
 
-# credible set
-
 cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
+# credible set based on METAL sumstats
 {
-  z1 <- function(z) max(abs(z), na.rm = TRUE)
   requireNamespace("matrixStats")
-  u <- tbl
-  tbl <- within(u, {
-    if (is.null(log_p)) z <- u[[b]]/u[[se]]
-    else z <- qnorm(u[[log_p]], log.p=TRUE)
-    m <- z1(z)
-    z2 <- z * z / 2
-    d <- matrixStats::logSumExp(z2)
-    log_ppa <- z2 - d
-    ppa <- exp(log_ppa)
-    cat("denominator = ", d, ", scaling factor = exp(",m, "^2/2)\n",sep="")
-  })
+  tbl <- within(tbl, {
+           if (is.null(log_p)) z <- tbl[[b]]/tbl[[se]]
+           else z <- qnorm(tbl[[log_p]], log.p=TRUE)
+           z2 <- z * z / 2
+           d <- matrixStats::logSumExp(z2)
+           log_ppa <- z2 - d
+           ppa <- exp(log_ppa)
+        })
   ord <- with(tbl, order(ppa,decreasing = TRUE))
-  tbl <- within(tbl[ord,], {cppa <- cumsum(ppa)})
-  tbl[ord[1:which(with(tbl,cppa) >= cutoff)[1]],]
+  tbl_ord <- within(tbl[ord,], {cppa <- cumsum(ppa)})
+  last <- which(with(tbl_ord,cppa) >= cutoff)[1]
+  tbl[ord[1:last],]
 }
 
 xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
