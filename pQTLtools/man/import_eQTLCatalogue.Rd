@@ -53,7 +53,7 @@ ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
 # via import_OpenGWAS
 opengwas_id <- "ebi-a-GCST004599"
 region <- "3:56649749-57049749"
-gwas_stats <- import_OpenGWAS(opengwas_id,region)
+gwas_stats <- import_OpenGWAS(opengwas_id,region) %>% keepSeqlevels("3") %>% renameSeqlevels("chr3")
 f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
 gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
