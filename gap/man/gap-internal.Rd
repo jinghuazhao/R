@@ -200,15 +200,17 @@ and pbsize2.
 
 k obtains 1st and 2nd order culumants for correlation coefficient.
 
-log10p is log10(p) for a normal deviate
+log10p is log10(p) for a normal deviate.
 
-logp is log(p) for a normal deviate
+logp is log(p) for a normal deviate.
 
 m2plem is an experimental function for PLEM format.
 
-mhtplot2d is for 2D Manhattan plot
+makeRLEplot for RLE plot.
 
-mhtplot3d is for 3D Manhattan plot
+mhtplot2d is for 2D Manhattan plot.
+
+mhtplot3d is for 3D Manhattan plot.
 
 miamiplot is for Miami plot.
 
@@ -218,15 +220,15 @@ PARn calculates population attributable risk (PAR) for a list of frequencies and
 
 plem2m is also experimental for PLEM format.
 
-pvalue takes a z-statistic for a p value with scientific representation
+pvalue takes a z-statistic for a p value with scientific representation.
 
 ReadGRM is a function to read GCTA grm.gz and grm.id file
 
-ReadGRMPLINK is a function to read PLINK PI_HAT as a genomic relationship matrix
+ReadGRMPLINK is a function to read PLINK PI_HAT as a genomic relationship matrix.
 
-ReadGRMPCA is a function to read .eigenval and .eigenvec files from gcta --pca
+ReadGRMPCA is a function to read .eigenval and .eigenvec files from gcta --pca.
 
-ReadGRMBin is a function to read GCTA grm.bin files, modified from GCTA documentation
+ReadGRMBin is a function to read GCTA grm.bin files, modified from GCTA documentation.
 
 revhap recovers the allele indices for a given haplotype ID in a multiallelic system.
 
@@ -240,13 +242,13 @@ toETDT a function used to experiment with ETDT.
 
 ungcode recovers alleles from genotype(s).
 
-VR is a utility function for calculating variance of a ratio
+VR is a utility function for calculating variance of a ratio.
 
-WriteGRM is a utility function to write GCTA grm.gz and grm.id files
+WriteGRM is a utility function to write GCTA grm.gz and grm.id files.
 
-WriteGRMBin is a utility function to write GCTA grm.bin files
+WriteGRMBin is a utility function to write GCTA grm.bin files.
 
-WriteGRMSAS is a utility function to write a GRM object to SAS PROCs MIXED/GLIMMIX ldata
+WriteGRMSAS is a utility function to write a GRM object to SAS PROCs MIXED/GLIMMIX ldata.
 
 x2 is a simple chi-squared test of two proportions.
 
