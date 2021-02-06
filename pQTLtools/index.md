@@ -17,7 +17,7 @@ swath_ms            |    SWATH-MS panel
 **eQTL/GWAS**       |
 import_eQTLCatalogue |   Import eQTL Catalogue
 import_OpenGWAS      |   Import OpenGWAS
-## MR analysis       |
+**MR analysis**      |
 pqtlMR               |   Bidirectional pQTL-MR analysis
 **PhenoScanner Utilities** |
 genequeries          |   phenoscanner genequeries in batches
