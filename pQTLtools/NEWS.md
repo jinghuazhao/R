@@ -1,5 +1,8 @@
-## Version 0.1
+# pQTLtools 1.0
 
+## Enhanced functionalities
+
+* ...
 * Add import_OpenGWAS and therefore suggests gwasvcf, rtracklayer, VariantAnnotation
 * Adopt import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer
 * Listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)
@@ -14,3 +17,7 @@
 * Fix R CMD check errors in pQTLtools-interval.Rd
 * Add biomaRt.rda, hg19.rda, hg19Tables.rda, st4.rda, st6.rda, but drop hgTables
 * Import from lmm as template, use save(,compress='xz')
+
+# pQTLtoos 0.1
+
+* First release

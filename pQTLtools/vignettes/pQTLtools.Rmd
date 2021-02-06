@@ -1,10 +1,22 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{pQTLtools}
--->
+---
+title: "An overview of pQTLtools"
+author: "Jing Hua Zhao"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{Overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-An Introduction to **pQTLtools** Package
-========================================
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 
 ```{r setup, include=FALSE}
 set.seed(0)
@@ -186,10 +198,3 @@ single_run(1)
 The published work on pQTLs as identified by Sun, et al (2018) and Suhre, et al. (2020) are included as EndNote libraries.
 
 The function `uniprot2ids` converts UniProt IDs to others.
-
-References
-==========
-
-Suhre, K., et al. (2020). "Genetics meets proteomics: perspectives for large population-based studies." *Nat Rev Genet*.
-
-Sun, B. B., et al. (2018). "Genomic atlas of the human plasma proteome." *Nature* 558(7708): 73-79.

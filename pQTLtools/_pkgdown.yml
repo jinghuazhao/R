@@ -1,0 +1,41 @@
+home:
+  title: Protein Quantitative Trait Locus Tools
+  description: This package contains various Protein Quantitative Trait Locus (pQTL) handling functinos.
+
+template:
+  params:
+    bootswatch: united
+
+navbar:
+  left:
+    - text: "Vignettes"
+      href: articles/index.html
+    - text: "Functions"
+      href: reference/index.html
+    - text: "Changelog"
+      href: "news/index.html"
+  right:
+    - text: "Source"
+      href: https://github.com/jinghuazhao/R/pQTLtools
+
+articles:
+  - title: "Vignettes"
+    desc: >
+      Various aspects of the package are as follows.
+    contents:
+    - pQTLtools
+
+reference:
+  - title: "Functions"
+    desc: >
+      Various aspects of the package are as follows.
+    contents:
+    - genequeries
+    - import_OpenGWAS
+    - pQTLtools-internal
+    - import_eQTLCatalogue
+    - pqtlMR
+    - regionqueries
+    - snpqueries
+    - uniprot2ids
+
