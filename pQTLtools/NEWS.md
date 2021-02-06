@@ -3,6 +3,7 @@
 ## Enhanced functionalities
 
 * ...
+* Replace ChangeLog with NEWS.md and document with pkgdown
 * Add import_OpenGWAS and therefore suggests gwasvcf, rtracklayer, VariantAnnotation
 * Adopt import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer
 * Listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)
