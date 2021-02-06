@@ -1,5 +1,5 @@
 ---
-title: "An overview of pQTLtools"
+title: "Overview"
 author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
@@ -198,3 +198,9 @@ single_run(1)
 The published work on pQTLs as identified by Sun, et al (2018) and Suhre, et al. (2020) are included as EndNote libraries.
 
 The function `uniprot2ids` converts UniProt IDs to others.
+
+## References
+
+@suhre20
+
+@sun18
