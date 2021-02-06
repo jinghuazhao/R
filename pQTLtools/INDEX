@@ -12,7 +12,7 @@ st4                     ST4 of the INTERVAL SomaLogic paper
 st6                     ST6 of the INTERVAL SomaLogic paper
 swath_ms                SWATH-MS panel
 
-* eQTL/GWAS
+* eQTL/GWAS *
 
 import_eQTLCatalogue    Import eQTL Catalogue
 import_OpenGWAS         Import OpenGWAS
