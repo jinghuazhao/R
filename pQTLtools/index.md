@@ -24,5 +24,5 @@ pqtlMR               |   Bidirectional pQTL-MR analysis
 genequeries          |   phenoscanner genequeries in batches
 regionqueries        |   phenoscanner regionqueries in batches
 snpqueries           |   phenoscanner snpqueries in batches
-## UniProt API       |
+**UniProt API**      |
 uniprot2ids          |   UniProt ID to others
