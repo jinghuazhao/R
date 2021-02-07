@@ -88,7 +88,7 @@ detach(INF1_merge_cvt)
 
 ## Bidirectional Mendelian Randomization
 
-This is via `pqtlMR`.
+The function `pqtlMR` is derived from @zheng20.
 
 ## eQTL Catalogue for colocalization analysis
 
