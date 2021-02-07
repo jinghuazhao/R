@@ -1,10 +1,11 @@
 ---
-title: "Overview"
+title: "An Overview of pQTLtools"
 author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 2
+    check_title: false
 bibliography: refs.bib
 vignette: >
   %\VignetteIndexEntry{Overview}
@@ -12,22 +13,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-
 ```{r setup, include=FALSE}
 set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
   fig.path = "figures/",
+  collapse = TRUE,
+  comment = "#>",
   dev = "png")
 ```
 
-First, we have cis/trans classification,
+## cis/trans classification
 ```{r}
 options(width=200)
 require(gap)
@@ -89,9 +86,13 @@ legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("c
 detach(INF1_merge_cvt)
 ```
 
-Second, we can use pqtlMR for bidirectional Mendelian Randomization via pQTLs.
+## Bidirectional Mendelian Randomization
 
-Third, we can use eQTL Catalogue for colocalization analysis, see example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
+This is via `pqtlMR`.
+
+## eQTL Catalogue for colocalization analysis
+
+See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
 
 ```{r}
 library(pQTLtools)
@@ -195,7 +196,11 @@ single_run <- function(r)
 single_run(1)
 ```
 
-The published work on pQTLs as identified by @sun18 and @suhre20 are included as EndNote libraries.
+## Literature on pQTLs
+
+Those as identified by @sun18 and @suhre20 are included as EndNote libraries.
+
+## UniProt IDs
 
 The function `uniprot2ids` converts UniProt IDs to others.
 
