@@ -28,7 +28,7 @@ articles:
     - pQTLtools
 
 reference:
-  - title: Reference
+  - title: Functions
     contents:
     - genequeries
     - import_OpenGWAS
