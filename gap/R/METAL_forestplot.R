@@ -1,4 +1,4 @@
-METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
+METAL_forestplot <- function(tbl,all,rsid,package="meta",...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
@@ -16,7 +16,6 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
   }
   t <- dplyr_rsid(tbl,rsid)
   a <- dplyr_rsid(all,rsid)
-  pdf(pdf,...)
   for(i in 1:nrow(tbl))
   {
      p <- tbl[i,"prot"]
@@ -77,5 +76,4 @@ METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
        }
      })
   }
-  dev.off()
 }
