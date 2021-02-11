@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
+11-02-2021	Revise METAL_forestplot()
 19-01-2021	Revise cs() to give the correct list of variants
 10-01-2021	Revise ESplot() and therefore the vignette from Wendi's problem
 20-10-2020	Add pvalue() to complement log10p()

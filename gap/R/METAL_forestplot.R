@@ -1,20 +1,19 @@
-dplyr_rsid <- function(df,rsid)
-{
-  MarkerName <- NA
-  d <- dplyr::nest_join(df,rsid)
-  dy <- d["y"]
-  m <- within(d, {
-#   rsid <- ifelse(length(lapply(dy,"[[",1)) == 1, unlist(d[["y"]]), unlist(lapply(lapply(dy,"[[",1),"[",1)))
-    rsid <- unlist(d[["y"]])
-    isna <- is.na(rsid)
-    rsid[isna] <- MarkerName[isna]
-  })
-}
-
 METAL_forestplot <- function(tbl,all,rsid,pdf="INF1.fp.pdf",package="meta",...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
+  dplyr_rsid <- function(df,rsid)
+  {
+  # d <- dplyr::nest_join(df,rsid)
+    d <- dplyr::left_join(df,rsid)
+  # dy <- d["y"]
+    m <- within(d, {
+  #   rsid <- ifelse(length(lapply(dy,"[[",1)) == 1, unlist(d[["y"]]), unlist(lapply(lapply(dy,"[[",1),"[",1)))
+  #   rsid <- unlist(d[["y"]])
+      isna <- is.na(rsid)
+      rsid[isna] <- MarkerName[isna]
+    })
+  }
   t <- dplyr_rsid(tbl,rsid)
   a <- dplyr_rsid(all,rsid)
   pdf(pdf,...)
