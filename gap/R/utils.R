@@ -779,7 +779,7 @@ circos.cnvplot <- function(data)
         warning(paste("circos.cnvplot needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
-  cnv <- within(data,{chr=paste0("chr",chr)})
+  cnv <- within(subset(data,start<=end),{chr=paste0("chr",chr)})
   requireNamespace("circlize")
   circlize::circos.par(start.degree = 50, track.height = 0.3, cell.padding = c(0, 0, 0, 0))
   circlize::circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
