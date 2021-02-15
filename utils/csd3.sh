@@ -3,9 +3,10 @@
 module load gcc/6
 module load pcre/8.38
 module load texlive
-wget https://cran.r-project.org/src/base/R-4/R-4.0.4.tar.gz
-tar xvfz R-4.0.4.tar.gz
-cd R-4.0.4
+export version=4.0.4
+wget https://cran.r-project.org/src/base/R-4/R-${version}.tar.gz
+tar xvfz R-${version}.tar.gz
+cd ${version}
 export prefix=/rds-d4/user/$USER/hpc-work
 ./configure --prefix=${prefix} \
             --with-pcre1 \
@@ -13,4 +14,4 @@ export prefix=/rds-d4/user/$USER/hpc-work
 make
 make install
 cd $HOME/bin
-ln -sf  /rds-d4/$HOME/hpc-work/R-4.0.4/bin/R
+ln -sf  /rds-d4/user/$USER/hpc-work/R-${version}/bin/R
