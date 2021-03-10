@@ -3,12 +3,11 @@
 module load gcc/6
 module load pcre/8.38
 module load texlive
-export version=4.0.4
 
-IFS=\. read -a fields <<<${version}
-export major=${fields[0]}
-export minor1=${fields[1]}
-export minor2=${fields[2]}
+export version=4.0.4
+export major=$(cut -d. -f1 <(echo ${version}))
+export minor1=$(cut -d. -f2 <(echo ${version}))
+export minor2=$(cut -d. -f3 <(echo ${version}))
 echo ${major}.${minor1}.${minor2}
 
 export prefix=/rds-d4/user/$USER/hpc-work
@@ -23,3 +22,14 @@ make
 make install
 cd $HOME/bin
 ln -sf  ${prefix}/R-${version}/bin/R
+
+# ---
+
+function read_parse_version()
+{
+  IFS=\. read -a fields <<<${version}
+  export major=${fields[0]}
+  export minor1=${fields[1]}
+  export minor2=${fields[2]}
+}
+
