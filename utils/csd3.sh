@@ -5,9 +5,9 @@ module load pcre/8.38
 module load texlive
 
 export version=4.0.4
-export major=$(cut -d. -f1 <(echo ${version}))
-export minor1=$(cut -d. -f2 <(echo ${version}))
-export minor2=$(cut -d. -f3 <(echo ${version}))
+export major=$(cut -d. -f1 <<<${version})
+export minor1=$(cut -d. -f2 <<<${version})
+export minor2=$(cut -d. -f3 <<<${version})
 echo ${major}.${minor1}.${minor2}
 
 export prefix=/rds-d4/user/$USER/hpc-work
