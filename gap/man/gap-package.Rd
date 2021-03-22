@@ -96,7 +96,7 @@ mhtplot2          \tab      Manhattan plot with annotations\cr
 mhtplot2d         \tab      2D Manhattan plot\cr
 mhtplot3d         \tab      3D Manhattan plot\cr
 mhtplot.trunc     \tab      truncated Manhattan plot\cr
-miamiplot         \tab      Miami plot (Experimental)\cr
+miamiplot         \tab      Miami plot\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 qqfun             \tab      Quantile-comparison plots\cr
