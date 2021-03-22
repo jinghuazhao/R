@@ -531,6 +531,8 @@ miamiplot(mhtdata,chr="chr",bp="pos",p="p",pr="pr",snp="rsn")
 dev.off()
 @
 
+\includegraphics[height=14cm,width=14cm]{figures/miamiplot.png}
+
 The code below obtains a regional association plot with the {\em asplot} function,
 <<echo=TRUE,eval=FALSE>>=
 library(gap)
