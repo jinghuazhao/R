@@ -522,7 +522,7 @@ dev.off()
 
 \includegraphics[height=14cm,width=14cm]{figures/circos-mhtplot.pdf}
 
-We now experiment with Miamiplot,
+We now experiment with Miami plot,
 <<echo=TRUE,eval=FALSE>>=
 library(gap.datasets)
 mhtdata <- within(mhtdata,{pr=p})
