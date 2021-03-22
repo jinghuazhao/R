@@ -132,7 +132,7 @@ mhtplot2          &      Manhattan plot with annotations\\
 mhtplot2d         &      2D Manhattan plot\\
 mhtplot3d         &      3D Manhattan plot\\
 mhtplot.trunc     &      truncated Manhattan plot\\
-miamiplot         &      Miamiplot\\
+miamiplot         &      Miami plot\\
 pedtodot          &      Converting pedigree(s) to dot file(s)\\
 plot.hap.score    &      Plot haplotype frequencies versus haplotype score statistics\\
 qqfun             &      Quantile-comparison plots\\
