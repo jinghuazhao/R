@@ -8,9 +8,9 @@ ESplot <- function(ESdat,SE=TRUE,logscale=TRUE,alpha=0.05,xlim=c(-2,8),v=1,...)
       z <- abs(qnorm(alpha/2))
       if (logscale)
       {
-         SElogES <- ESdat[,3]
-         LCL <- exp(log(ES)-z*SElogES)
-         UCL <- exp(log(ES)+z*SElogES)
+         SE <- ESdat[,3]
+         LCL <- exp(ES-z*SE)
+         UCL <- exp(ES+z*SE)
       } else {
          SEplain <- ESdat[,3]
          LCL <- ES-z*SEplain
