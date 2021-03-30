@@ -5,18 +5,19 @@ ESplot <- function(ESdat,SE=TRUE,logscale=TRUE,alpha=0.05,xlim=c(-2,8),v=1,...)
    ES <- ESdat[,2]
    if (SE)
    {
-      z <- abs(qnorm(alpha/2))
+      z <- abs(qnorm(alpha / 2))
+   # effect size
+      SE <- ESdat[,3]
+      LCL <- ES - z * SE
+      UCL <- ES + z * SE
       if (logscale)
       {
-         SE <- ESdat[,3]
-         LCL <- exp(ES-z*SE)
-         UCL <- exp(ES+z*SE)
-      } else {
-         SEplain <- ESdat[,3]
-         LCL <- ES-z*SEplain
-         UCL <- ES+z*SEplain
+      # log-scale, i.e., OR
+         LCL <- exp(LCL)
+         UCL <- exp(UCL)
       }
    } else {
+   # draw directly
       LCL <- ESdat[,3]
       UCL <- ESdat[,4]
    }
