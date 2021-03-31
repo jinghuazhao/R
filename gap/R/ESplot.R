@@ -23,9 +23,9 @@ ESplot <- function(ESdat,SE=TRUE,logscale=TRUE,alpha=0.05,xlim=c(-2,8),v=1,...)
    }
    x <- seq(xlim[1],xlim[2],length=n)
    y <- 1:n
-   plot(x,y,type="n",xlab="",ylab="",axes=FALSE,lty=1,...)
+   plot(x,y,type="n",xlab="",ylab="",axes=FALSE,lty="solid",...)
    points((LCL+UCL)/2,y,pch=22,bg="black",cex=3,...)
-   segments(LCL,y,UCL,y,lwd=3,lty=1,...)
+   segments(LCL,y,UCL,y,lwd=3,lty="solid",...)
    axis(1,cex.axis=1.5,lwd=0)
    par(las=1)
    abline(v=v,...)
