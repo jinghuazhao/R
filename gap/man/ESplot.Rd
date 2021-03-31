@@ -20,6 +20,7 @@ errors for a range of models.
 
 \examples{
 \dontrun{
+# 7-4-2008 MRC-Epid JHZ
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted","Moderately adjusted","Heavily adjusted","Other"),
                         logOR=log(c(4.5,3.5,2.5,1.5,1)),
@@ -27,7 +28,12 @@ testdata <- data.frame(models=c("Basic model","Adjusted","Moderately adjusted","
             )
 ESplot(testdata,v=1)
 title("A fictitious plot")
-# 7-4-2008 MRC-Epid JHZ
+# Three outcomes A2, B2, C2 in three columns
+# par(mfrow=c(1,3))
+# ESplot(snp_effects[c("snpid","A2_b2","A2_se2")], lty=2, xlim=c(-0.4,1))
+# snp_effects["snpid"] <- ""
+# ESplot(snp_effects[c("snpid","B2_b2","B2_se2")], lty=2, xlim=c(-0.3,1))
+# ESplot(snp_effects[c("snpid","C2_b2","C2_se2")], lty=2, xlim=c(-0.3,1))
 #
 # Quantitative trait, as appropriate for linear regression
 # testdata <- data.frame(modelid, beta, se(beta))
