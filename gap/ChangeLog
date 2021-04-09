@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
+09-04-2021	Add weighted.median(), mr.boot(), gsmr() which suggests metafor & ggplot2
 31-03-2021	Revise ESplot to use log(OR) as effect size, activate (...) option
 22-03-2021	Add example for miamiplot in gap.Rnw
 12-02-2021	Revise circos.cnvplot() excluding records with start>end

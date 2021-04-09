@@ -67,6 +67,7 @@
 \alias{getb1star}
 \alias{getPTE}
 \alias{grec2g}
+\alias{gsmr}
 \alias{h2G}
 \alias{h2GE}
 \alias{h2l}
@@ -89,6 +90,7 @@
 \alias{mht.control}
 \alias{miamiplot}
 \alias{micombine}
+\alias{mr.boot}
 \alias{plem2m}
 \alias{revhap}
 \alias{revhap.i}
@@ -103,6 +105,7 @@
 \alias{toETDT}
 \alias{ungcode}
 \alias{VR}
+\alias{weighted.median}
 \alias{WriteGRM}
 \alias{WriteGRMBin}
 \alias{WriteGRMSAS}
@@ -168,6 +171,8 @@ gc.lambda estimates the genomic control inflation statistic (lambda)
 gcode is as a2g.
 
 grec2g is undocumented.
+
+gsmr is a function for Mendelian randomization analysis.
 
 h2G is a utility function for heritability
 
@@ -243,6 +248,8 @@ toETDT a function used to experiment with ETDT.
 ungcode recovers alleles from genotype(s).
 
 VR is a utility function for calculating variance of a ratio.
+
+weighted.median is a function for obtaining weighted median with interpolation.
 
 WriteGRM is a utility function to write GCTA grm.gz and grm.id files.
 
