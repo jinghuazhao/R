@@ -546,7 +546,6 @@ the option open for generating such plots on the fly and locally.
 The code below obtains an effect size plot via the {ESplot} function.
 <<echo=TRUE>>=
 library(gap)
-pdf("figures/ESplot.pdf",height=10,width=10)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
                        "Moderately adjusted",
