@@ -165,11 +165,12 @@ read.ms.output    &      A utility function to read ms output\\
 snptest\_sample   &      A utility to generate SNPTEST sample file\\
 twinan90          &      Classic twin models\\
 whscore           &      Whittemore-Halpern scores for allele-sharing\\
-GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS\\
+GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,
+                  &      WriteGRMBin, WriteGRMSAS\\
                   &      handle genomic relationship matrix involving other software\\
 heritability functions & h2G, VR, h2GC, h2l give point estimates as with their variances\\
-                       & for continuous traits and binary traits under liability threshold model and\\
-                       & case-control sampling\\
+                       & for continuous traits and binary traits under liability threshold
+                       & model and case-control sampling\\
 \\
 \end{tabular}
 
@@ -400,7 +401,8 @@ for(i in 1:3)
   q <- s_nb[i]/n
   power <- ccsize(n,q,pD,p1,alpha,log(theta[i]))
   ssize <- ccsize(n,q,pD,p1,alpha,log(theta[i]),beta1)
-  cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",signif(power,3),"\t",ssize,"\n",
+  cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",
+      signif(power,3),"\t",ssize,"\n",
       file=outfile,append=TRUE)
 }
 read.table(outfile,header=TRUE,sep="\t")
@@ -422,7 +424,8 @@ for(pD in s_pD)
       for(hr in s_hr)
       {
          ssize <- ccsize(n,q,pD,p1,alpha,log(hr),power)
-         if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",ssize,"\n",
+         if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
+                          ssize,"\n",
                           file=outfile,append=TRUE)
       }
    }
@@ -544,7 +547,8 @@ The code below obtains an effect size plot via the {ESplot} function.
 library(gap)
 pdf("figures/ESplot.pdf",height=10,width=10)
 options(stringsAsFactors=FALSE)
-testdata <- data.frame(models=c("Basic model","Adjusted","Moderately adjusted",
+testdata <- data.frame(models=c("Basic model","Adjusted",
+                       "Moderately adjusted",
                        "Heavily adjusted","Other"),
 OR = c(4.5,3.5,2.5,1.5,1),
 SElogOR = c(0.2,0.1,0.5,0.5,0.2))
@@ -563,6 +567,19 @@ In line with the recent surge of interest in the polygenic models, a separate
 vignette is available through \texttt{vignette("h2",package="gap.examples")} demonstrating
 aspect of the models on heritability.
 
+\section{Mendelian randomization}
+
+The function gsmr() implements several methods and gives effect size plots.
+
+<<echo=TRUE>>=
+library(cowplot)
+library(ggplot2)
+library(gap)
+mr <- gsmr(dat, "LIF.R", c("CAD","FEV1"))
+@
+
+\includegraphics[height=10cm,width=10cm]{figures/INF1_CAD-FEV1.pdf}
+
 \section{Known bugs}
 
 Unaware of any bug. However, better memory management is expected.
@@ -573,17 +590,6 @@ I believe by now the package should have given you a flavour of initiatives
 I have made so far in relation to how the project was envisaged. More importantly,
 it is clear that availability of the package will serve as a platform on which 
 future work can be accumulated and collaboration can be built.
-
-\section{Bibliographic note}
-
-The main references are ~\cite{chow60, guo92, wcn92, gholamic94,
-hartung08, risch96, spielman96, risch97, miller97, sham97, elston75,
-sham98, devlin99, zhao99, guo00, hirotsu01, 
-zhao02, zaykin02, zhao04, wacholder04, wang05,
-skol06, wakefield07}.
-
-\bibliography{gap}
-\end{document}
 
 \section*{Appendix}
 
@@ -599,4 +605,16 @@ search()
 lsf.str("package:gap")
 data(package="gap")$results
 @
+
+\section{Bibliographic note}
+
+The main references are ~\cite{chow60, guo92, wcn92, gholamic94,
+hartung08, risch96, spielman96, risch97, miller97, sham97, elston75,
+sham98, devlin99, zhao99, guo00, hirotsu01, 
+zhao02, zaykin02, zhao04, wacholder04, wang05,
+skol06, wakefield07}.
+
+\bibliography{gap}
+\end{document}
+
 % Date last modified: 4-6-2019
