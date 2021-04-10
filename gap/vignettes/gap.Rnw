@@ -575,7 +575,7 @@ The function gsmr() implements several methods and gives effect size plots.
 library(cowplot)
 library(ggplot2)
 library(gap)
-mr <- gsmr(dat, "LIF.R", c("CAD","FEV1"))
+mr <- gsmr(gsmr, "LIF.R", c("CAD","FEV1"))
 @
 
 \includegraphics[height=10cm,width=10cm]{figures/INF1_CAD-FEV1.pdf}
