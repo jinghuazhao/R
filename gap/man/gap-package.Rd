@@ -13,18 +13,20 @@ and family-based designs, classic twin models,
 probability of familial disease aggregation, kinship calculation, 
 some statistics in linkage analysis, and association analysis 
 involving one or more genetic markers including haplotype 
-analysis with or without environmental covariates.
+analysis with or without environmental covariates. Over years,
+the package has been developed in-between many projects hence
+also the name (gap).
 }
 \details{
 \tabular{ll}{
 Package: \tab gap\cr
-Version: \tab 1.2.2\cr
+Version: \tab 1.2.3\cr
 Depends: \tab R(>= 2.1.0)\cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
-          \tab calibrate, circlize, coda, coxme, dplyr, foreign, forestplot, \cr
-          \tab gap.datasets, grid, haplo.stats, kinship2, lattice, \cr
-          \tab magic, matrixStats, meta, mets, nlme, pedigree, pedigreemm, plotrix, \cr
-          \tab qqman, regress, reshape, rmeta, rms, survival \cr
+          \tab calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot, \cr
+          \tab gap.datasets, ggplot2, grid, haplo.stats, kinship2, lattice, \cr
+          \tab magic, matrixStats, meta, metafor, mets, nlme, pedigree, pedigreemm,\cr
+          \tab plotrix, qqman, regress, reshape, rmeta, rms, survival \cr
 License: \tab GPL (>=2)\cr
 URL: \tab https://jinghuazhao.github.io/R\cr
 }
@@ -46,6 +48,7 @@ gcp               \tab      Permutation tests using GENECOUNTING\cr
 gc.lambda         \tab      Estimation of the genomic control inflation statistic (lambda)\cr
 genecounting      \tab      Gene counting for haplotype analysis\cr
 gif               \tab      Kinship coefficient and genetic index of familiality\cr
+gsmr              \tab      Mendelian randomization analysis\cr
 hap               \tab      Haplotype reconstruction\cr
 hap.em            \tab      Gene counting for haplotype analysis\cr
 hap.score         \tab      Score statistics for association of traits with haplotypes\cr
@@ -59,8 +62,8 @@ invnormal         \tab      inverse Normal transformation\cr
 kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr
-lambda1000        \tab      A standardized estimate of the genomic inflation scaling to a study of\cr
-                  \tab      1,000 cases and 1,000 controls\cr
+lambda1000        \tab      A standardized estimate of the genomic inflation scaling to\cr
+                  \tab      a study of 1,000 cases and 1,000 controls\cr
 log10p            \tab      log10(p) for a standard normal deviate\cr
 logp              \tab      log(p) for a normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr
@@ -114,6 +117,12 @@ chow.test         \tab      Chow's test for heterogeneity in two regressions\cr
 chr_pos_a1_a2     \tab      Form SNPID from chromosome, posistion and alleles\cr
 cis.vs.trans.classification \tab a cis/trans classifier\cr
 comp.score        \tab      score statistics for testing genetic linkage of quantitative trait\cr
+GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\cr
+                  \tab      WriteGRMBin, WriteGRMSAS\cr
+                  \tab      handle genomic relationship matrix involving other software\cr
+heritability functions \tab h2G, VR, h2GC, h2l give point estimates as with their variances\cr
+                       \tab for continuous traits and binary traits under liability threshold\cr
+                       \tab model and case-control sampling\cr
 h2                \tab      Heritability estimation according to twin correlations\cr
                   \tab      for case-control studies\cr
 klem              \tab      Haplotype frequency estimation based on a genotype table\cr
@@ -125,11 +134,7 @@ muvar             \tab      Means and variances under 1- and 2- locus (diallelic
 read.ms.output    \tab      A utility function to read ms output\cr
 snptest_sample    \tab      A utility to generate SNPTEST sample file\cr
 whscore           \tab      Whittemore-Halpern scores for allele-sharing\cr
-GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS\cr
-                  \tab      handle genomic relationship matrix involving other software\cr
-heritability functions \tab h2G, VR, h2GC, h2l give point estimates as with their variances\cr
-                       \tab for continuous traits and binary traits under liability threshold model and\cr
-                       \tab case-control sampling\cr
+weighted.median   \tab      Weighted median with interpolation\cr
 \cr
 }
 

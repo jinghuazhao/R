@@ -83,6 +83,7 @@ gc.lambda         &      Estionmation of the genomic control inflation statistic
 genecounting      &      Gene counting for haplotype analysis\\
 gif               &      Kinship coefficient and genetic index of familiality\\
 grmMCMC           &      Mixed modeling with genetic relationship matrices\\
+gsmr              &      Mendelian randomization analysis\\
 hap               &      Haplotype reconstruction\\
 hap.em            &      Gene counting for haplotype analysis\\
 hap.score         &      Score statistics for association of traits with haplotypes\\
@@ -153,6 +154,13 @@ chow.test         &      Chow's test for heterogeneity in two regressions\\
 chr\_pos\_a1\_a2  &      Form SNPID from chromosome, posistion and alleles\\
 cis.vs.trans.classification & a cis/trans classifier \\
 comp.score        &      score statistics for testing genetic linkage of quantitative trait\\
+GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, \\
+                  &      ReadGRMPCA, WriteGRM,\\
+                  &      WriteGRMBin, WriteGRMSAS\\
+                  &      handle genomic relationship matrix involving other software\\
+heritability functions & h2G, VR, h2GC, h2l give point estimates as with their variances\\
+                       & for continuous traits and binary traits under liability threshold\\
+                       & model and case-control sampling\\
 h2                &      Heritability estimation according to twin correlations\\
                   &      for case-control studies\\
 klem              &      Haplotype frequency estimation based on a genotype table\\
@@ -165,13 +173,7 @@ read.ms.output    &      A utility function to read ms output\\
 snptest\_sample   &      A utility to generate SNPTEST sample file\\
 twinan90          &      Classic twin models\\
 whscore           &      Whittemore-Halpern scores for allele-sharing\\
-GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, \\
-                  &      ReadGRMPCA, WriteGRM,\\
-                  &      WriteGRMBin, WriteGRMSAS\\
-                  &      handle genomic relationship matrix involving other software\\
-heritability functions & h2G, VR, h2GC, h2l give point estimates as with their variances\\
-                       & for continuous traits and binary traits under liability threshold\\
-                       & model and case-control sampling\\
+weighted.median   &      Weighted median with interpolation\\
 \\
 \end{tabular}
 

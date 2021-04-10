@@ -13,6 +13,7 @@ gcp                     Permutation tests using GENECOUNTING
 gc.lambda               Estionmation of the genomic control inflation statistic (lambda)
 genecounting            Gene counting for haplotype analysis
 gif                     Kinship coefficient and genetic index of familiality
+gsmr                    Mendelian randomization analysis
 hap                     Haplotype reconstruction
 hap.em                  Gene counting for haplotype analysis
 hap.score               Score statistics for association of traits with haplotypes
@@ -80,7 +81,12 @@ chow.test               Chow's test for heterogeneity in two regressions
 chr_pos_a1_a2           Form SNPID from chromosome, posistion and alleles
 cis.vs.trans.classification a cis/trans classifier
 comp.score              score statistics for testing genetic linkage of quantitative trait
+GRM functions           ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS
+                        handle genomic relationship matrix involving other software
 h2                      Heritability estimation according to twin correlations
+heritability functions  h2G, VR, h2GC, h2l give point estimates as with their variances
+                        for continuous traits and binary traits under liability threshold model and
+                        case-control sampling
 klem                    Haplotype frequency estimation based on a genotype table
                         of two multiallelic markers
 makeped                 A function to prepare pedigrees in post-MAKEPED format
@@ -89,9 +95,5 @@ metareg                 Fixed and random effects model for meta-analysis
 muvar                   Means and variances under 1- and 2- locus (diallelic) QTL model
 read.ms.output          A utility function to read ms output
 snptest_sample          A utility to generate SNPTEST sample file
+weighted.median         Weighted median with interpolation
 whscore                 Whittemore-Halpern scores for allele-sharing
-GRM functions           ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS
-                        handle genomic relationship matrix involving other software
-heritability functions  h2G, VR, h2GC, h2l give point estimates as with their variances
-                        for continuous traits and binary traits under liability threshold model and
-                        case-control sampling
