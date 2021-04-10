@@ -175,18 +175,7 @@ heritability functions & h2G, VR, h2GC, h2l give point estimates as with their v
 
 Assuming proper installation, you will be able to obtain the list by typing
 \texttt{library(help=gap)} or view the list within a web browser via 
-\texttt{help.start()}. Assuming that you have already loaded the package via
-\texttt{library(gap)}, you can use \texttt{lsf.str("package:gap")} and 
-\texttt{data(package="gap")} to generate a list of functions and a list
-of datasets, respectvely. If this looks odd to you, you might try 
-\texttt{search()} within \texttt{R} to examine what is available in your
-environment before issuing the \texttt{lsf.str} command.\\
-<<echo=FALSE>>=
-library(gap)
-search()
-lsf.str("package:gap")
-data(package="gap")$results
-@
+\texttt{help.start()}. See Appendix on how to obtain a full list of functions.
 
 A PDF version of this file can be viewed with command \texttt{vignette("gap",package="gap")}.\\
 
@@ -267,8 +256,9 @@ kinship matrix.
 
 \subsubsection*{Pedigree diagram}
 <<echo=TRUE>>=
+library(gap)
 # pedigree diagram
-data(lukas,package="gap.datasets")
+data(lukas)
 library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
 pdf("figures/lukas.pdf",height=14,width=15)
@@ -595,4 +585,18 @@ skol06, wakefield07}.
 \bibliography{gap}
 \end{document}
 
+\section*{Appendix}
+
+Assuming that you have already loaded the package via
+\texttt{library(gap)}, you can use \texttt{lsf.str("package:gap")} and 
+\texttt{data(package="gap")} to generate a list of functions and a list
+of datasets, respectvely. If this looks odd to you, you might try 
+\texttt{search()} within \texttt{R} to examine what is available in your
+environment before issuing the \texttt{lsf.str} command.\\
+<<echo=FALSE>>=
+library(gap)
+search()
+lsf.str("package:gap")
+data(package="gap")$results
+@
 % Date last modified: 4-6-2019
