@@ -11,4 +11,4 @@ R-devel CMD INSTALL --configure-args="
  LDFLAGS=\"-L/usr/lib64 -L/usr/lib64" $1
 
 # GitHub installation example
-Rscript -e "devtools::install_github('jinghuazhao/R/gap',build_opts='--build-vignette',force=TRUE)"
+Rscript -e "devtools::install_github('jinghuazhao/R/gap',build_vignettes=TRUE,force=TRUE)"
