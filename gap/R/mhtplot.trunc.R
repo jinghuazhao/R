@@ -23,7 +23,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   if (!is.null(p)) {P <- x[[p]]; Z <- ifelse(is.null(z), qnorm(P/2), x[[z]])}
   if (!is.null(z)) {Z <- x[[z]]; P <- ifelse(is.null(p), 2*pnorm(-abs(Z)), x[[p]])}
   d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = P, Z = Z)
-  d <- subset(d, is.numeric(CHR) & is.numeric(BP) & is.numeric(P) & is.numeric(Z))
+  d <- subset(d, is.numeric(CHR) & is.numeric(BP) & is.numeric(P))
   if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
   d <- d[order(d$CHR, d$BP), ]
