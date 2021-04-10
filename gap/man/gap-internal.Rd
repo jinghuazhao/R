@@ -13,7 +13,7 @@
 \alias{cs}
 \alias{fa}
 \alias{fsnps}
-\alias{gsmr}
+\alias{mr}
 \alias{hla}
 \alias{hr1420}
 \alias{inf1}
