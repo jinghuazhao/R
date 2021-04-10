@@ -20,15 +20,11 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   if (!is.numeric(x[[chr]])) stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
   if (!is.numeric(x[[bp]]))  stop(paste(bp, "column should be numeric."))
   if (!is.numeric(x[[p]]))   stop(paste(p, "column should be numeric."))
-  if (is.null(z)) {
-     d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = x[[p]])
-     d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(P)))
-     if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
-  } else {
-     d <- data.frame(CHR = x[[chr]], BP = x[[bp]], Z = x[[z]])
-     d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(Z)))
-     if (logp) d$logp <- -log10p(d$Z) else d$logp <- d$Z
-  }
+  if (!is.null(p)) {P <- x[[p]]; Z <- ifelse(is.null(z), qnorm(P/2), x[[z]])}
+  if (!is.null(z)) {Z <- x[[z]]; P <- ifelse(is.null(p), 2*pnorm(-abs(Z)), x[[p]])}
+  d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = P, Z = Z)
+  d <- subset(d, is.numeric(CHR) & is.numeric(BP) & is.numeric(P) & is.numeric(Z))
+  if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
   d <- d[order(d$CHR, d$BP), ]
   d$pos <- NA
