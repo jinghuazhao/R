@@ -165,7 +165,8 @@ read.ms.output    &      A utility function to read ms output\\
 snptest\_sample   &      A utility to generate SNPTEST sample file\\
 twinan90          &      Classic twin models\\
 whscore           &      Whittemore-Halpern scores for allele-sharing\\
-GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\\
+GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, \\
+                  &      ReadGRMPCA, WriteGRM,\\
                   &      WriteGRMBin, WriteGRMSAS\\
                   &      handle genomic relationship matrix involving other software\\
 heritability functions & h2G, VR, h2GC, h2l give point estimates as with their variances\\
