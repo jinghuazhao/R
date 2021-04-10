@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
-10-04-2021	Move description on lsf.str() to the bottom of gap.Rnw
+10-04-2021	Relocate description on lsf.str() to the bottom and add library(gap) in gap.Rnw
 09-04-2021	Add weighted.median(), mr.boot(), gsmr() which suggests metafor, ggplot2 & cowplot
 31-03-2021	Revise ESplot to use log(OR) as effect size, activate (...) option
 22-03-2021	Add example for miamiplot in gap.Rnw
