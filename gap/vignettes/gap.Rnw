@@ -169,7 +169,7 @@ GRM functions     &      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM
                   &      WriteGRMBin, WriteGRMSAS\\
                   &      handle genomic relationship matrix involving other software\\
 heritability functions & h2G, VR, h2GC, h2l give point estimates as with their variances\\
-                       & for continuous traits and binary traits under liability threshold
+                       & for continuous traits and binary traits under liability threshold\\
                        & model and case-control sampling\\
 \\
 \end{tabular}
