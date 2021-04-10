@@ -15,7 +15,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   CHR <- BP <- P <- index <- Z <- NULL
   if (!(chr %in% names(x))) stop(paste("Column", chr, "not found!"))
   if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
-  if (!(p %in% names(x)))   stop(paste("Column", p, "not found!"))
+  if (is.null(p) & is.null(z)) stop(paste("either p or z should be specified."))
   if (!(snp %in% names(x))) warning(paste("No SNP column found. OK unless you're trying to highlight."))
   if (!is.numeric(x[[chr]])) stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
   if (!is.numeric(x[[bp]]))  stop(paste(bp, "column should be numeric."))
@@ -35,7 +35,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   d$index <- NA
   ind <- 0
   for (i in unique(d$CHR)) {
-    ind = ind + 1
+    ind <- ind + 1
     d[d$CHR == i, ]$index = ind
   }
   nchr <- length(unique(d$CHR))
@@ -53,9 +53,9 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
         lastbase = lastbase + tail(subset(d, index == i - 1)$BP, 1)
         d[d$index == i, ]$pos = d[d$index == i, ]$BP + lastbase
       }
-      ticks = c(ticks, (min(d[d$index == i, ]$pos) + max(d[d$index == i, ]$pos))/2 + 1)
+      ticks <- c(ticks, (min(d[d$index == i, ]$pos) + max(d[d$index == i, ]$pos))/2 + 1)
     }
-    xlabel = "Chromosome"
+    xlabel <- "Chromosome"
     labs <- unique(d$CHR)
   }
   xmax <- ceiling(max(d$pos) * 1.03)
