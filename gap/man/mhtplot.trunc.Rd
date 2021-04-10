@@ -4,8 +4,8 @@
 \usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = NULL,
                     col = c("gray10", "gray60"),
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
-                    genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE,
-                    annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8,
+                    genomewideline = -log10(5e-08), highlight = FALSE, logp = TRUE,
+                    annotatePval = FALSE, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8,
                     mtext.line=2, cex.y= 1, y.ax.space=5, y.brk1, y.brk2, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a

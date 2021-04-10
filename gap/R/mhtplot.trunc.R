@@ -1,8 +1,8 @@
 mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = NULL,
                            col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
-                           genomewideline = -log10(5e-08), highlight = NULL, logp = TRUE, 
-                           annotatePval = NULL, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
+                           genomewideline = -log10(5e-08), highlight = FALSE, logp = TRUE, 
+                           annotatePval = FALSE, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
                            mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...) 
 {
   for (q in c("calibrate","plotrix","qqman")) {
@@ -105,15 +105,15 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   }
   if (suggestiveline) abline(h = suggestiveline, col = "blue")
   if (genomewideline) abline(h = genomewideline, col = "red")
-  if (!is.null(highlight)) {
+  if (highlight) {
     if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(d$SNP %in% highlight), ]
     with(d.highlight, points(pos, logp, col = "red", pch = 20, ...))
   }
-  if (!is.null(annotatePval)) {
+  if (annotatePval) {
     topHits = subset(d, P <= annotatePval)
     par(xpd = TRUE)
-    if (annotateTop == FALSE) {
+    if (!annotateTop) {
       with(subset(d, P <= annotatePval), calibrate::textxy(pos, ifelse(is.null(Z), -log10(P), -log10p(Z)),
                                          offset = 0.625, labs = topHits$SNP, cex = 0.45), ...)
     }
