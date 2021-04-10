@@ -10,5 +10,5 @@ R-devel CMD INSTALL --configure-args="
  CXXFLAGS=\"-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-parentheses\" \
  LDFLAGS=\"-L/usr/lib64 -L/usr/lib64" $1
 
-# GitHub installation example
+# GitHub installation example for R/gap
 Rscript -e "devtools::install_github('jinghuazhao/R/gap',build_vignettes=TRUE,force=TRUE)"
