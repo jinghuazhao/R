@@ -1,12 +1,13 @@
 \name{mhtplot.trunc}
 \alias{mhtplot.trunc}
 \title{Truncated Manhattan plot}
-\usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = NULL,
+
+\usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
                     col = c("gray10", "gray60"),
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
-                    genomewideline = -log10(5e-08), highlight = FALSE, logp = TRUE,
-                    annotatePval = FALSE, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8,
-                    mtext.line=2, cex.y= 1, y.ax.space=5, y.brk1, y.brk2, ...)}
+                    genomewideline = -log10(5e-08), highlight = NULL,
+                    annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=0.4, cex.text=0.4,
+                    mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
 random variable that is uniformly distributed.
@@ -15,16 +16,15 @@ random variable that is uniformly distributed.
 \item{x}{A data.frame}
 \item{chr}{Chromosome}
 \item{bp}{Position}
-\item{p}{P value}
+\item{z}{Z statistic}
 \item{snp}{SNP}
 \item{z}{Z-score, i.e., BETA/SE with extremely small P}
 \item{col}{Colours}
-\item{chrlabs}{Chromosome labels}
+\item{chrlabs}{Chromosome labels, 1,2,...22,23,24,25}
 \item{suggestiveline}{Suggestive line}
 \item{genomewideline}{Genomewide line}
-\item{highlight}{Highlight}
-\item{logp}{log(P)}
-\item{annotatePval}{Annotate P}
+\item{highlight}{A list of SNPs to be highlighted}
+\item{annotatelogP}{Threshold of -log10(P) to annotate}
 \item{annotateTop}{Annotate top}
 \item{cex.mtext}{axis label size}
 \item{cex.text}{SNP label font}
@@ -51,15 +51,25 @@ require(gap.datasets)
 mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", p = "p", snp = "rsn", y.brk1=10, y.brk2=12)
 # https://portals.broadinstitute.org/collaboration/
 # giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
-gz <- gzfile("Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
+options(width=120)
+library(gap)
+source("mhtplot.trunc.R")
+require(gap.datasets)
+mhtdata <- within(mhtdata,{z=qnorm(p/2,lower.tail=FALSE)})
+mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", z = "z", snp = "rsn", y.brk1=10, y.brk2=12)
+
+gz <- gzfile("work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
 BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
+print(subset(BMI[c("CHR","POS","SNP","P")],CHR!=16 & P<=1e-150))
 library(Rmpfr)
-within(subset(BMI, P==0), {P <- format(2*pnorm(mpfr(abs(BETA/SE),100),lower.tail=FALSE))})
+print(within(subset(BMI, P==0, select=c(CHR,POS,SNP,Z)), 
+             {P <- format(2*pnorm(mpfr(abs(Z),100),lower.tail=FALSE)); Pvalue <- pvalue(Z); log10P <- -log10p(Z)}))
 png("BMI.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-mhtplot.trunc(BMI, chr="CHR", bp="POS", p="P", snp="SNP", z = "Z",
+mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
               suggestiveline=FALSE, genomewideline=-log10(1e-8), logp = TRUE,
               cex.mtext=0.6, cex.text=0.7,
+              annotatelog10P=156, annotateTop = FALSE, highlight=c("rs13021737","rs17817449","rs6567160"),
               mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=0.6, cex.y=0.6, cex=0.5,
               y.ax.space=20,
               col = c("blue4", "skyblue")

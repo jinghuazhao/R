@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
+11-04-2021	Rework on mhtplot.trunc() to use Z so as to handle extremely small p values
 10-04-2021	Relocate description on lsf.str() as Appendix and add library(gap) in gap.Rnw
 09-04-2021	Add weighted.median(), mr.boot(), gsmr() which suggests metafor, ggplot2 & cowplot
 31-03-2021	Revise ESplot to use log(OR) as effect size, activate (...) option

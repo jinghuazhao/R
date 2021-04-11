@@ -1,9 +1,9 @@
-mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = NULL,
+mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
                            col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
-                           genomewideline = -log10(5e-08), highlight = FALSE, logp = TRUE, 
-                           annotatePval = FALSE, annotateTop = TRUE, cex.mtext=0.6, cex.text=0.8, 
-                           mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...) 
+                           genomewideline = -log10(5e-08), highlight = NULL,
+                           annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=0.4, cex.text=0.4,
+                           mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)
 {
   for (q in c("calibrate","plotrix","qqman")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
@@ -12,28 +12,16 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
      }
   }
   if (y.brk2 <= y.brk1) stop("y.brk2 must be larger than y.brk1")
-  CHR <- BP <- P <- index <- Z <- NULL
+  CHR <- BP <- Z <- index <- NULL
   if (!(chr %in% names(x))) stop(paste("Column", chr, "not found!"))
   if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
-  if (is.null(p) & is.null(z)) stop(paste("either p or z should be specified."))
+  if (!(z %in% names(x)))  stop(paste("Column", z, "not found!"))
   if (!(snp %in% names(x))) warning(paste("No SNP column found. OK unless you're trying to highlight."))
   if (!is.numeric(x[[chr]])) stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
   if (!is.numeric(x[[bp]]))  stop(paste(bp, "column should be numeric."))
-  if (!is.numeric(x[[p]]))   stop(paste(p, "column should be numeric."))
-  if (!is.null(p)) {P <- x[[p]]; Z <- ifelse(is.null(z), qnorm(P/2), x[[z]])}
-  if (!is.null(z)) {Z <- x[[z]]; P <- ifelse(is.null(p), 2*pnorm(-abs(Z)), x[[p]])}
-  d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = P, Z = Z)
-  d <- subset(d, is.numeric(CHR) & is.numeric(BP) & is.numeric(P))
-  if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
-  if (is.null(z)) {
-     d <- data.frame(CHR = x[[chr]], BP = x[[bp]], P = x[[p]])
-     d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(P)))
-     if (logp) d$logp <- -log10(d$P) else d$logp <- d$P
-  } else {
-     d <- data.frame(CHR = x[[chr]], BP = x[[bp]], Z = x[[z]])
-     d <- subset(d, (is.numeric(CHR) & is.numeric(BP) & is.numeric(Z)))
-     if (logp) d$logp <- -log10p(d$Z) else d$logp <- d$Z
-  }
+  if (!is.numeric(x[[z]]))   stop(paste(z, "column should be numeric."))
+  d <- data.frame(CHR = x[[chr]], BP = x[[bp]], Z = x[[z]], log10P = -log10p(x[[z]]))
+  d <- subset(d, !is.na(CHR) & !is.na(BP) & !is.na(Z))
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
   d <- d[order(d$CHR, d$BP), ]
   d$pos <- NA
@@ -65,8 +53,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   }
   xmax <- ceiling(max(d$pos) * 1.03)
   xmin <- floor(max(d$pos) * -0.03)
-  zz <- d$logp
-  max.y <- ceiling(max(d$logp))
+  zz <- d$log10P
+  max.y <- ceiling(max(d$log10P))
   if (y.brk2 > max.y ){
     message(paste("max.y is", max.y))
     stop("User error: Upper breakpoint must be lower than maximum -log10 P-value")
@@ -74,10 +62,10 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   zz[which(zz > y.brk1 & zz < y.brk2)] <- NA
   offset = y.brk2 - y.brk1
   z[which(zz > y.brk2)] <- zz[which(zz > y.brk2)] - offset
-  d$logp <- zz
+  d$log10P <- zz
   def_args <- list(xaxt = "n", yaxt="n", bty = "n", xaxs = "i", # yaxs = "i", 
                    las = 1, pch = 20, xlim = c(xmin, xmax),
-                   ylim = c(0, ceiling(max(d$logp, na.rm=T))),
+                   ylim = c(0, ceiling(max(d$log10P, na.rm=TRUE))),
                    xlab = "", ylab = "")
   dotargs <- list(...)
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
@@ -85,7 +73,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext)
   myoffset <- y.brk2- y.brk1
   top.notch <- max.y + myoffset +y.ax.space 
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$logp, na.rm = TRUE)) + y.ax.space)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$log10P, na.rm = TRUE)) + y.ax.space)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   axis(side = 2, at = y.lab.tick.pos, labels=c(pre.brk.labs,
        seq(from=y.brk2, by=y.ax.space, length.out= length(y.lab.tick.pos) - length(pre.brk.labs))),
@@ -100,40 +88,34 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = "P", snp = "SNP", z = 
   }
   if (nchr == 1) axis(1, ...) else axis(1, at = ticks, labels = labs, ...)
   col <- rep(col, max(d$CHR))
-  if (nchr == 1) with(d, points(pos, logp, pch = 20, col = col[1], ...))
+  if (nchr == 1) with(d, points(pos, log10P, pch = 20, col = col[1], ...))
   else {
     icol = 1
     for (i in unique(d$index)) {
-      with(d[d$index == unique(d$index)[i], ], points(pos, logp, col = col[icol], pch = 20, ...))
+      with(d[d$index == unique(d$index)[i], ], points(pos, log10P, col = col[icol], pch = 20, ...))
       icol = icol + 1
     }
   }
   if (suggestiveline) abline(h = suggestiveline, col = "blue")
   if (genomewideline) abline(h = genomewideline, col = "red")
-  if (highlight) {
+  if (!is.null(highlight)) {
     if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(d$SNP %in% highlight), ]
-    with(d.highlight, points(pos, logp, col = "red", pch = 20, ...))
+    with(d.highlight, points(pos, log10P, col = "red", pch = 20, ...))
   }
-  if (annotatePval) {
-    topHits = subset(d, P <= annotatePval)
-    par(xpd = TRUE)
+  if (!is.null(annotatelog10P)) {
+    topHits = subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
-      with(subset(d, P <= annotatePval), calibrate::textxy(pos, ifelse(is.null(Z), -log10(P), -log10p(Z)),
-                                         offset = 0.625, labs = topHits$SNP, cex = 0.45), ...)
+      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, labs = SNP, cex = 0.45), ...)
     }
     else {
-      topHits <- topHits[order(topHits$P), ]
+      topHits <- topHits[order(topHits$log10P), ]
       topSNPs <- NULL
       for (i in unique(topHits$CHR)) {
         chrSNPs <- topHits[topHits$CHR == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      calibrate::textxy(topSNPs$pos, ifelse(is.null(Z), -log10(topSNPs$P),-log10p(topSNPs$Z)),
-                        offset = 0.625, labs = topSNPs$SNP, cex = cex.text, ...)
+      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, labs = SNP, cex = cex.text),...)
     }
   }
-  par(xpd = FALSE)
 }
-
-# environment(mhtplot.trunc) <- environment(manhattan)
