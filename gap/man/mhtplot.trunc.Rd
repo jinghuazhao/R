@@ -16,9 +16,8 @@ random variable that is uniformly distributed.
 \item{x}{A data.frame}
 \item{chr}{Chromosome}
 \item{bp}{Position}
-\item{z}{Z statistic}
-\item{snp}{SNP}
 \item{z}{Z-score, i.e., BETA/SE with extremely small P}
+\item{snp}{SNP}
 \item{col}{Colours}
 \item{chrlabs}{Chromosome labels, 1,2,...22,23,24,25}
 \item{suggestiveline}{Suggestive line}
