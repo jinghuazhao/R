@@ -12,7 +12,7 @@ Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
         calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot,
         gap.datasets, genetics, ggplot2, grid, haplo.stats, jsonlite, kinship2,
         lattice, magic, matrixStats, meta, metafor, mets, nlme, pedigree,
-        pedigreemm, plotly, plotrix, qqman, reshape, rmeta, rms, survival
+        pedigreemm, plotly, plotrix, reshape, rmeta, rms, survival
 LazyData: Yes
 LazyLoad: Yes
 Description: It is designed as an integrated package for genetic data

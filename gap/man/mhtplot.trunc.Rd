@@ -29,9 +29,9 @@ random variable that is uniformly distributed.
 \item{cex.text}{SNP label font}
 \item{mtext.line}{position of the y lab}
 \item{cex.y}{y axis numbers}
-\item{y.ax.space}{y.ax.space}
-\item{y.brk1}{y.brk1}
-\item{y.brk2}{y.brk2}
+\item{y.ax.space}{interval of ticks of the y axis}
+\item{y.brk1}{lower -log10(P) break point}
+\item{y.brk2}{upper -log10(P) break point}
 \item{...}{other options}
 }
 

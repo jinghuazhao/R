@@ -5,7 +5,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
                            annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=0.4, cex.text=0.4,
                            mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)
 {
-  for (q in c("calibrate","plotrix","qqman")) {
+  for (q in c("calibrate","plotrix")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
         if (!requireNamespace(q, quietly = TRUE))
         warning(paste("mhtplot.trunc needs package `", q, "' to be fully functional; please install", sep=""))
@@ -60,7 +60,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
     stop("User error: Upper breakpoint must be lower than maximum -log10 P-value")
   }
   zz[which(zz > y.brk1 & zz < y.brk2)] <- NA
-  offset = y.brk2 - y.brk1
+  offset = y.brk2-y.brk1
   z[which(zz > y.brk2)] <- zz[which(zz > y.brk2)] - offset
   d$log10P <- zz
   def_args <- list(xaxt = "n", yaxt="n", bty = "n", xaxs = "i", # yaxs = "i", 
@@ -71,18 +71,17 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext)
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext)
-  myoffset <- y.brk2- y.brk1
-  top.notch <- max.y + myoffset +y.ax.space 
   y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$log10P, na.rm = TRUE)) + y.ax.space)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
-  axis(side = 2, at = y.lab.tick.pos, labels=c(pre.brk.labs,
-       seq(from=y.brk2, by=y.ax.space, length.out= length(y.lab.tick.pos) - length(pre.brk.labs))),
-       cex.axis= cex.y, las=1) 
+  post.brk.labs <- seq(from = y.brk2, by=y.ax.space, to = max(y.lab.tick.pos))
+  axis(side=2, at=c(pre.brk.labs, post.brk.labs-offset), labels=c(pre.brk.labs, post.brk.labs), cex.axis=cex.y, las=1)
+# axis(side=2, at=y.lab.tick.pos, labels=c(pre.brk.labs,
+#      seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs))), cex.axis=cex.y, las=1)
   plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
     if (is.character(chrlabs)) {
-      if (length(chrlabs) == length(labs)) labs <- chrlabs
-      else warning("You're trying to specify chromosome labels but the number of labels != number of chromosomes.")
+       if (length(chrlabs) == length(labs)) labs <- chrlabs
+       else warning("You're trying to specify chromosome labels but the number of labels != number of chromosomes.")
     }
     else warning("If you're trying to specify chromosome labels, chrlabs must be a character vector")
   }
