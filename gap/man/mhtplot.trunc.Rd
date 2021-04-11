@@ -24,7 +24,7 @@ random variable that is uniformly distributed.
 \item{suggestiveline}{Suggestive line}
 \item{genomewideline}{Genomewide line}
 \item{highlight}{A list of SNPs to be highlighted}
-\item{annotatelogP}{Threshold of -log10(P) to annotate}
+\item{annotatelog10P}{Threshold of -log10(P) to annotate}
 \item{annotateTop}{Annotate top}
 \item{cex.mtext}{axis label size}
 \item{cex.text}{SNP label font}
