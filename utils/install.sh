@@ -12,3 +12,5 @@ R-devel CMD INSTALL --configure-args="
 
 # GitHub installation example for R/gap
 Rscript -e "devtools::install_github('jinghuazhao/R/gap',build_vignettes=TRUE,force=TRUE)"
+cp ~/hpc-work/R/gap/doc/gap.pdf gap/vignettes/
+
