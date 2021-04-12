@@ -6,7 +6,7 @@
                     col = c("gray10", "gray60"),
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
                     genomewideline = -log10(5e-08), highlight = NULL,
-                    annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=0.4, cex.text=0.4,
+                    annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=1.5, cex.text=1.5,
                     mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
@@ -62,9 +62,9 @@ png("BMI.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
               suggestiveline=FALSE, genomewideline=-log10(1e-8),
-              cex.mtext=0.6, cex.text=0.7,
+              cex.mtext=1.2, cex.text=1.2,
               annotatelog10P=156, annotateTop = FALSE, highlight=c("rs13021737","rs17817449","rs6567160"),
-              mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=0.6, cex.y=0.6, cex=0.5,
+              mtext.line=3, y.brk1=200, y.brk2=280, cex.axis=1.2, cex.y=1.2, cex=0.5,
               y.ax.space=20,
               col = c("blue4", "skyblue")
 )

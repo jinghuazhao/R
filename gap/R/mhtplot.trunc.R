@@ -2,7 +2,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
                            col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
                            genomewideline = -log10(5e-08), highlight = NULL,
-                           annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=0.4, cex.text=0.4,
+                           annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=1.5, cex.text=1.5,
                            mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)
 {
   for (q in c("calibrate","plotrix")) {
@@ -72,11 +72,11 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext)
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext)
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(with(d,log10P), na.rm = TRUE)) + y.ax.space)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) + y.ax.space)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   post.brk.labs <- seq(from = y.brk2, by=y.ax.space, to = max(y.lab.tick.pos))
   y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
-  axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1)
+  axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1, ...)
   plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
     if (is.character(chrlabs)) {
@@ -101,14 +101,14 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
     if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(d$SNP %in% highlight), ]
     with(d.highlight, points(pos, log10P, col = "red", pch = 20, ...))
-    d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>0.9*BP.y & BP.x<1.1*BP.y)
+    d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>0.96*BP.y & BP.x<1.06*BP.y)
     print(nrow(d.column))
     with(d.column,points(pos, log10P, col = "red", pch = 20, ...))
   }
   if (!is.null(annotatelog10P)) {
     topHits = subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
-      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, labs = SNP, cex = 0.45), ...)
+      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, labs = SNP, cex = 0.8), ...)
     }
     else {
       topHits <- topHits[order(topHits$log10P), ]
