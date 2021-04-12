@@ -12,7 +12,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
      }
   }
   if (y.brk2 <= y.brk1) stop("y.brk2 must be larger than y.brk1")
-  CHR <- BP <- Z <- SNP <- log10P <- index <- NULL
+  CHR <- BP <- BP.x <- BP.y <- Z <- SNP <- log10P <- index <- NULL
   if (!(chr %in% names(x))) stop(paste("Column", chr, "not found!"))
   if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
   if (!(z %in% names(x)))  stop(paste("Column", z, "not found!"))
