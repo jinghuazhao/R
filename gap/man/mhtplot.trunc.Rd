@@ -66,7 +66,7 @@ print(within(subset(BMI, P==0, select=c(CHR,POS,SNP,Z)),
 png("BMI.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
-              suggestiveline=FALSE, genomewideline=-log10(1e-8), logp = TRUE,
+              suggestiveline=FALSE, genomewideline=-log10(1e-8),
               cex.mtext=0.6, cex.text=0.7,
               annotatelog10P=156, annotateTop = FALSE, highlight=c("rs13021737","rs17817449","rs6567160"),
               mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=0.6, cex.y=0.6, cex=0.5,

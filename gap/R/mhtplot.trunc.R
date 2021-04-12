@@ -23,9 +23,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   d <- data.frame(CHR = x[[chr]], BP = x[[bp]], Z = x[[z]], log10P = -log10p(x[[z]]))
   d <- subset(d, !is.na(CHR) & !is.na(BP) & !is.na(Z))
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
-  d <- d[order(d$CHR, d$BP), ]
-  d$pos <- NA
-  d$index <- NA
+  d.order <- with(d,order(CHR, BP))
+  d <- within(d[d.order,], {pos <- NA; index <- NA})
   ind <- 0
   for (i in unique(d$CHR)) {
     ind <- ind + 1
@@ -53,30 +52,31 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   }
   xmax <- ceiling(max(d$pos) * 1.03)
   xmin <- floor(max(d$pos) * -0.03)
-  zz <- d$log10P
-  max.y <- ceiling(max(d$log10P))
+  max.y <- ceiling(max(with(d,log10P), na.rm=TRUE))
   if (y.brk2 > max.y ){
-    message(paste("max.y is", max.y))
-    stop("User error: Upper breakpoint must be lower than maximum -log10 P-value")
+      message(paste("max.y is", max.y))
+      stop("User error: Upper breakpoint must be lower than maximum -log10(P-value)")
   }
-  zz[which(zz > y.brk1 & zz < y.brk2)] <- NA
-  offset = y.brk2-y.brk1
-  z[which(zz > y.brk2)] <- zz[which(zz > y.brk2)] - offset
-  d$log10P <- zz
-  def_args <- list(xaxt = "n", yaxt="n", bty = "n", xaxs = "i", # yaxs = "i", 
+  offset <- y.brk2-y.brk1
+  d <- within(d, {
+    gapped <- log10P > y.brk1 & log10P < y.brk2
+    above <- log10P > y.brk2
+    log10P[gapped] <- NA
+    log10P[above] <- log10P[above] - offset
+  })
+  def_args <- list(xaxt = "n", yaxt="n", bty = "n", xaxs = "i",
                    las = 1, pch = 20, xlim = c(xmin, xmax),
-                   ylim = c(0, ceiling(max(d$log10P, na.rm=TRUE))),
+                   ylim = c(0, ceiling(max(with(d,log10P), na.rm=TRUE))),
                    xlab = "", ylab = "")
   dotargs <- list(...)
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext)
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext)
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(d$log10P, na.rm = TRUE)) + y.ax.space)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max(with(d,log10P), na.rm = TRUE)) + y.ax.space)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   post.brk.labs <- seq(from = y.brk2, by=y.ax.space, to = max(y.lab.tick.pos))
-  axis(side=2, at=c(pre.brk.labs, post.brk.labs-offset), labels=c(pre.brk.labs, post.brk.labs), cex.axis=cex.y, las=1)
-# axis(side=2, at=y.lab.tick.pos, labels=c(pre.brk.labs,
-#      seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs))), cex.axis=cex.y, las=1)
+  y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
+  axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1)
   plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
     if (is.character(chrlabs)) {
@@ -86,7 +86,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
     else warning("If you're trying to specify chromosome labels, chrlabs must be a character vector")
   }
   if (nchr == 1) axis(1, ...) else axis(1, at = ticks, labels = labs, ...)
-  col <- rep(col, max(d$CHR))
+  col <- rep(col, max(with(d,CHR)))
   if (nchr == 1) with(d, points(pos, log10P, pch = 20, col = col[1], ...))
   else {
     icol = 1
@@ -101,6 +101,9 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
     if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(d$SNP %in% highlight), ]
     with(d.highlight, points(pos, log10P, col = "red", pch = 20, ...))
+    d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>0.9*BP.y & BP.x<1.1*BP.y)
+    print(nrow(d.column))
+    with(d.column,points(pos, log10P, col = "red", pch = 20, ...))
   }
   if (!is.null(annotatelog10P)) {
     topHits = subset(d, log10P >= annotatelog10P)
