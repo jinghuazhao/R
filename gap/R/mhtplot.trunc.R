@@ -108,7 +108,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   if (!is.null(annotatelog10P)) {
     topHits = subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
-      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, labs = SNP, cex = 0.8, font=4), ...)
+      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.8, font=4), ...)
     }
     else {
       topHits <- topHits[order(topHits$log10P), ]
