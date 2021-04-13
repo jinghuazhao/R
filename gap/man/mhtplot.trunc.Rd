@@ -48,7 +48,7 @@ The plot is shown on or saved to the appropriate device.
 options(width=120)
 require(gap.datasets)
 mhtdata <- within(mhtdata, {z=qnorm(p/2, lower.tail=FALSE)})
-mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn", y.brk1=10, y.brk2=12)
+mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn", y.brk1=10, y.brk2=12, mtext.line=2.5)
 
 # https://portals.broadinstitute.org/collaboration/
 # giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz

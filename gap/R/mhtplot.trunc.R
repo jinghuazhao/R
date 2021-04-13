@@ -72,7 +72,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext, font=2)
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext, font=2)
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) + y.ax.space / 3)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) - offset + y.ax.space / 5)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   post.brk.labs <- seq(from = y.brk2, by=y.ax.space, to = max(y.lab.tick.pos))
   y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
