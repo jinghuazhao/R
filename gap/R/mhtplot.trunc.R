@@ -70,13 +70,13 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
                    xlab = "", ylab = "")
   dotargs <- list(...)
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
-  mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext)
-  mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext)
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) + y.ax.space)
+  mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext, font=2)
+  mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext, font=2)
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) + y.ax.space / 3)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
   post.brk.labs <- seq(from = y.brk2, by=y.ax.space, to = max(y.lab.tick.pos))
   y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
-  axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1, ...)
+  axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1)
   plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
     if (is.character(chrlabs)) {
@@ -85,7 +85,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
     }
     else warning("If you're trying to specify chromosome labels, chrlabs must be a character vector")
   }
-  if (nchr == 1) axis(1, ...) else axis(1, at = ticks, labels = labs, ...)
+  if (nchr == 1) axis(1, ...) else axis(1, at = ticks, labels = labs)
   col <- rep(col, max(with(d,CHR)))
   if (nchr == 1) with(d, points(pos, log10P, pch = 20, col = col[1], ...))
   else {
