@@ -1109,6 +1109,12 @@ pvalue <- function(z,decimals=2)
   paste0(round(base*10,decimals),"e",-1+exponent)
 }
 
+log10pvalue <- function(p)
+{
+  p2 <- as.numeric(unlist(strsplit(p,"e")))
+  -p2[2]+log10(p2[1])
+}
+
 # Adapted from code by Felix Day 16/9/2015
 # with reference from Bowden J, et al. (2015). 44(2):512-525.
 weighted.median <- function(x, w)

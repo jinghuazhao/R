@@ -81,6 +81,7 @@
 \alias{invlogit}
 \alias{invnormal}
 \alias{log10p}
+\alias{log10pvalue}
 \alias{logp}
 \alias{is.miss}
 \alias{KCC}
@@ -207,6 +208,8 @@ and pbsize2.
 k obtains 1st and 2nd order culumants for correlation coefficient.
 
 log10p is log10(p) for a normal deviate.
+
+log10pvalue gives log10(p) for any p, e.g., "1.234e-1000".
 
 logp is log(p) for a normal deviate.
 
