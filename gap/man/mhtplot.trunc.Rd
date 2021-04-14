@@ -10,7 +10,9 @@
                     mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
-random variable that is uniformly distributed.
+random variable that is uniformly distributed. The rationale of this function compared to
+extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for
+R will break down when p <= 1e-324.
 }
 \arguments{
 \item{x}{A data.frame}
