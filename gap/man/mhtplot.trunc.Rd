@@ -10,7 +10,7 @@
                     mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, delta=0.05, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
-random variable that is uniformly distributed. The rationale of this function compared to
+random variable that is uniformly distributed. The rationale of this function is to
 extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for
 R will break down when p <= 1e-324.
 }
@@ -21,7 +21,7 @@ R will break down when p <= 1e-324.
 \item{p}{p values, e.g., "1.23e-600"}
 \item{log10p}{log10(p)}
 \item{z}{z statistic, i.e., BETA/SE}
-\item{snp}{SNP}
+\item{snp}{SNP. Pending on the setup it could either of variant or gene ID(s)}
 \item{col}{Colours}
 \item{chrlabs}{Chromosome labels, 1,2,...22,23,24,25}
 \item{suggestiveline}{Suggestive line}
