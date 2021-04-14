@@ -6,7 +6,7 @@
                     col = c("gray10", "gray60"),
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
                     genomewideline = -log10(5e-08), highlight = NULL,
-                    annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=1.5, cex.text=1.5,
+                    annotatelog10P = NULL, annotateTop = FALSE, cex.mtext=1.5, cex.text=0.7,
                     mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, delta=0.05, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
@@ -29,8 +29,8 @@ R will break down when p <= 1e-324.
 \item{highlight}{A list of SNPs to be highlighted}
 \item{annotatelog10P}{Threshold of -log10(P) to annotate}
 \item{annotateTop}{Annotate top}
-\item{cex.mtext}{axis label size}
-\item{cex.text}{SNP label font}
+\item{cex.mtext}{axis label extension factor}
+\item{cex.text}{SNP label extension factor}
 \item{mtext.line}{position of the y lab}
 \item{cex.y}{y axis numbers}
 \item{y.ax.space}{interval of ticks of the y axis}

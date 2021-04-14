@@ -1,8 +1,8 @@
 mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z = NULL, snp = "SNP",
                            col = c("gray10", "gray60"),
-                           chrlabs = NULL, suggestiveline = -log10(1e-05), 
+                           chrlabs = NULL, suggestiveline = -log10(1e-05),
                            genomewideline = -log10(5e-08), highlight = NULL,
-                           annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=1.5, cex.text=1.5,
+                           annotatelog10P = NULL, annotateTop = FALSE, cex.mtext=1.5, cex.text=0.7,
                            mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, delta=0.05, ...)
 {
   for (q in c("calibrate","plotrix")) {
@@ -13,7 +13,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   }
   CHR <- BP <- BP.x <- BP.y <- SNP <- log10P <- index <- NULL
   if (!(chr %in% names(x))) stop(paste("Column", chr, "not found!"))
-  if (!is.numeric(x[[chr]])) stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
+  if (!is.numeric(x[[chr]])) 
+     stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
   if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
   if (!is.null(p)) log10P <- -log10pvalue(as.character(x[[p]]))
   if (is.null(p) & !is.null(log10p)) log10P <- -as.numeric(x[[log10p]])
@@ -109,7 +110,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (!is.null(annotatelog10P)) {
     topHits = subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
-      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.7, font = 4), ...)
+      with(subset(topHits,SNP %in% highlight),
+           calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4), ...)
     }
     else {
       topHits <- topHits[order(with(topHits,log10P)), ]
@@ -118,7 +120,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
         chrSNPs <- topHits[with(topHits,CHR) == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.7, font = 4),...)
+      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4),...)
     }
   }
 }
