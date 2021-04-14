@@ -27,32 +27,32 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   d.order <- with(d,order(CHR, BP))
   d <- within(d[d.order,], {pos <- NA; index <- NA})
   ind <- 0
-  for (i in unique(d$CHR)) {
+  for (i in unique(with(d,CHR))) {
     ind <- ind + 1
-    d[d$CHR == i, ]$index = ind
+    d[with(d,CHR) == i, "index"] <- ind
   }
-  nchr <- length(unique(d$CHR))
+  nchr <- length(unique(with(d,CHR)))
   if (nchr == 1) {
-    d$pos <- d$BP
-    ticks <- floor(length(d$pos))/2 + 1
-    xlabel <- paste("Chromosome", unique(d$CHR), "position")
+    d["pos"] <- d["BP"]
+    ticks <- floor(length(d["pos"]))/2 + 1
+    xlabel <- paste("Chromosome", unique(with(d,CHR)), "position")
     labs <- ticks
   } else {
     lastbase <- 0
     ticks <- NULL
-    for (i in unique(d$index)) {
-      if (i == 1) d[d$index == i, ]$pos = d[d$index == i, ]$BP
+    for (i in unique(with(d,index))) {
+      if (i == 1) d[with(d,index) == i, "pos"] <- d[with(d,index) == i, "BP"]
       else {
-        lastbase = lastbase + tail(subset(d, index == i - 1)$BP, 1)
-        d[d$index == i, ]$pos = d[d$index == i, ]$BP + lastbase
+        lastbase = lastbase + tail(with(subset(d, index == i - 1),BP), 1)
+        d[with(d,index) == i, "pos"] = d[with(d,index) == i, "BP"] + lastbase
       }
-      ticks <- c(ticks, (min(d[d$index == i, ]$pos) + max(d[d$index == i, ]$pos))/2 + 1)
+      ticks <- c(ticks, (min(d[with(d,index) == i, "pos"]) + max(d[with(d,index) == i, "pos"]))/2 + 1)
     }
     xlabel <- "Chromosome"
-    labs <- unique(d$CHR)
+    labs <- unique(with(d,CHR))
   }
-  xmax <- ceiling(max(d$pos) * 1.03)
-  xmin <- floor(max(d$pos) * -0.03)
+  xmax <- ceiling(max(with(d,pos)) * 1.03)
+  xmin <- floor(max(with(d,pos)) * -0.03)
   max.y <- ceiling(max(with(d,log10P), na.rm=TRUE))
   if (y.brk2 > max.y ){
       message(paste("max.y is", max.y))
@@ -91,8 +91,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (nchr == 1) with(d, points(pos, log10P, pch = 20, col = col[1], ...))
   else {
     icol = 1
-    for (i in unique(d$index)) {
-      with(d[d$index == unique(d$index)[i], ], points(pos, log10P, col = col[icol], pch = 20, ...))
+    for (i in unique(with(d,index))) {
+      with(d[with(d,index) == unique(with(d,index))[i], ], points(pos, log10P, col = col[icol], pch = 20, ...))
       icol = icol + 1
     }
   }
@@ -100,8 +100,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (genomewideline) abline(h = genomewideline, col = "red")
   delta <- 0.05
   if (!is.null(highlight)) {
-    if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
-    d.highlight = d[which(d$SNP %in% highlight), ]
+    if (any(!(highlight %in% with(d,SNP)))) warning("You're trying to highlight SNPs that don't exist in your results.")
+    d.highlight = d[which(with(d,SNP) %in% highlight), ]
     with(d.highlight, points(pos, log10P, col = "red", pch = 20, ...))
     d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>(1-delta)*BP.y & BP.x<(1+delta)*BP.y)
     print(nrow(d.column))
@@ -113,13 +113,13 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
       with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.7, font=4), ...)
     }
     else {
-      topHits <- topHits[order(topHits$log10P), ]
+      topHits <- topHits[order(with(topHits,log10P)), ]
       topSNPs <- NULL
-      for (i in unique(topHits$CHR)) {
-        chrSNPs <- topHits[topHits$CHR == i, ]
+      for (i in unique(with(topHits,CHR))) {
+        chrSNPs <- topHits[with(topHits,CHR) == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, labs = SNP, cex = cex.text),...)
+      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text),...)
     }
   }
 }

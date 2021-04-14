@@ -75,5 +75,5 @@ mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
 dev.off()
 }
 }
-\author{James Peters}
+\author{James Peters, Jing Hua Zhao}
 \keyword{hplot}
