@@ -2,7 +2,7 @@
 \alias{mhtplot.trunc}
 \title{Truncated Manhattan plot}
 
-\usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
+\usage{mhtplot.trunc(x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z = NULL, snp = "SNP",
                     col = c("gray10", "gray60"),
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
                     genomewideline = -log10(5e-08), highlight = NULL,
@@ -16,7 +16,9 @@ random variable that is uniformly distributed.
 \item{x}{A data.frame}
 \item{chr}{Chromosome}
 \item{bp}{Position}
-\item{z}{Z-score, i.e., BETA/SE with extremely small P}
+\item{p}{p values, e.g., "1.23e-600"}
+\item{log10p}{log10(p)}
+\item{z}{z statistic, i.e., BETA/SE}
 \item{snp}{SNP}
 \item{col}{Colours}
 \item{chrlabs}{Chromosome labels, 1,2,...22,23,24,25}

@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
-14-04-2021	Add log10pvalue
+14-04-2021	Add log10pvalue so as to enable mhtplot.trunc() to handle p, log10p, z
 11-04-2021	Rework on mhtplot.trunc() to use Z so as to handle extremely small p values
 		Drop qqman from suggests
 10-04-2021	Relocate description on lsf.str() as Appendix and add library(gap) in gap.Rnw

@@ -1,4 +1,4 @@
-mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
+mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z = NULL, snp = "SNP",
                            col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
                            genomewideline = -log10(5e-08), highlight = NULL,
@@ -11,17 +11,18 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
         warning(paste("mhtplot.trunc needs package `", q, "' to be fully functional; please install", sep=""))
      }
   }
-  if (y.brk2 <= y.brk1) stop("y.brk2 must be larger than y.brk1")
-  CHR <- BP <- BP.x <- BP.y <- Z <- SNP <- log10P <- index <- NULL
+  CHR <- BP <- BP.x <- BP.y <- SNP <- log10P <- index <- NULL
   if (!(chr %in% names(x))) stop(paste("Column", chr, "not found!"))
-  if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
-  if (!(z %in% names(x)))  stop(paste("Column", z, "not found!"))
-  if (!(snp %in% names(x))) warning(paste("No SNP column found. OK unless you're trying to highlight."))
   if (!is.numeric(x[[chr]])) stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
-  if (!is.numeric(x[[bp]]))  stop(paste(bp, "column should be numeric."))
-  if (!is.numeric(x[[z]]))   stop(paste(z, "column should be numeric."))
-  d <- data.frame(CHR = x[[chr]], BP = x[[bp]], Z = x[[z]], log10P = -log10p(x[[z]]))
-  d <- subset(d, !is.na(CHR) & !is.na(BP) & !is.na(Z))
+  if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
+  if (!is.null(p)) log10P <- -log10pvalue(as.character(x[[p]]))
+  if (is.null(p) & !is.null(log10p)) log10P <- -as.numeric(log10p)
+  if (is.null(p) & is.null(log10p) & !is.null(z)) log10P <- -log10p(as.numeric(x[[z]]))
+  if(is.null(p) & is.null(log10p) & is.null(z)) stop("At least one of p, log10P, or z (priority given in that order) is needed")
+  if (y.brk2 <= y.brk1) stop("y.brk2 must be larger than y.brk1")
+  if (!(snp %in% names(x))) warning(paste("No SNP column found. OK unless you're trying to highlight."))
+  d <- data.frame(CHR = x[[chr]], BP = as.integer(x[[bp]]), log10P = log10P)
+  d <- subset(d, !is.na(CHR) & !is.na(BP) & !is.na(log10P))
   if (!is.null(x[[snp]])) d <- transform(d, SNP = x[[snp]])
   d.order <- with(d,order(CHR, BP))
   d <- within(d[d.order,], {pos <- NA; index <- NA})
@@ -97,11 +98,12 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", z = "Z", snp = "SNP",
   }
   if (suggestiveline) abline(h = suggestiveline, col = "blue")
   if (genomewideline) abline(h = genomewideline, col = "red")
+  delta <- 0.05
   if (!is.null(highlight)) {
     if (any(!(highlight %in% d$SNP))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(d$SNP %in% highlight), ]
     with(d.highlight, points(pos, log10P, col = "red", pch = 20, ...))
-    d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>0.96*BP.y & BP.x<1.06*BP.y)
+    d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>(1-delta)*BP.y & BP.x<(1+delta)*BP.y)
     print(nrow(d.column))
     with(d.column,points(pos, log10P, col = "red", pch = 20, ...))
   }

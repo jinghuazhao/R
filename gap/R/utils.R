@@ -1111,6 +1111,7 @@ pvalue <- function(z,decimals=2)
 
 log10pvalue <- function(p)
 {
+  p <- format(p,scientific=TRUE)
   p2 <- as.numeric(unlist(strsplit(p,"e")))
   -p2[2]+log10(p2[1])
 }
