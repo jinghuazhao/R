@@ -3,7 +3,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
                            chrlabs = NULL, suggestiveline = -log10(1e-05), 
                            genomewideline = -log10(5e-08), highlight = NULL,
                            annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=1.5, cex.text=1.5,
-                           mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)
+                           mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, delta=0.05, ...)
 {
   for (q in c("calibrate","plotrix")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
@@ -98,7 +98,6 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   }
   if (suggestiveline) abline(h = suggestiveline, col = "blue")
   if (genomewideline) abline(h = genomewideline, col = "red")
-  delta <- 0.05
   if (!is.null(highlight)) {
     if (any(!(highlight %in% with(d,SNP)))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight = d[which(with(d,SNP) %in% highlight), ]
@@ -110,7 +109,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (!is.null(annotatelog10P)) {
     topHits = subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
-      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.7, font=4), ...)
+      with(subset(topHits,SNP %in% highlight), calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.7, font = 4), ...)
     }
     else {
       topHits <- topHits[order(with(topHits,log10P)), ]
@@ -119,7 +118,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
         chrSNPs <- topHits[with(topHits,CHR) == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text),...)
+      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = 0.7, font = 4),...)
     }
   }
 }

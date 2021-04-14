@@ -7,7 +7,7 @@
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
                     genomewideline = -log10(5e-08), highlight = NULL,
                     annotatelog10P = NULL, annotateTop = TRUE, cex.mtext=1.5, cex.text=1.5,
-                    mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, ...)}
+                    mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, delta=0.05, ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
 random variable that is uniformly distributed. The rationale of this function compared to
@@ -36,6 +36,7 @@ R will break down when p <= 1e-324.
 \item{y.ax.space}{interval of ticks of the y axis}
 \item{y.brk1}{lower -log10(P) break point}
 \item{y.brk2}{upper -log10(P) break point}
+\item{delta}{a value to enable column(s) of red points}
 \item{...}{other options}
 }
 
