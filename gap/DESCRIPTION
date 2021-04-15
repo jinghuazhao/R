@@ -1,6 +1,6 @@
 Package: gap
 Version: 1.2.3
-Date: 2021-4-14
+Date: 2021-4-15
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
@@ -23,7 +23,7 @@ Description: It is designed as an integrated package for genetic data
         in linkage analysis, and association analysis involving genetic
         markers including haplotype analysis with or without environmental
         covariates. Over years, the package has been developed in-between
-        many projects hence also the name (gap).
+        many projects hence also in line with the name (gap).
 License: GPL (>= 2)
 NeedsCompilation: yes
 Repository: CRAN

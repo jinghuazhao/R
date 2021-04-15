@@ -1113,7 +1113,7 @@ log10pvalue <- function(p)
 {
   p <- format(p,scientific=TRUE)
   p2 <- as.numeric(unlist(strsplit(p,"e")))
-  -p2[2]+log10(p2[1])
+  log10(p2[1])-p2[2]
 }
 
 # Adapted from code by Felix Day 16/9/2015
