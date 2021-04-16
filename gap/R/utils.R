@@ -1150,7 +1150,7 @@ mr.boot = function(bXG, sebXG, bYG, sebYG, w, n.boot=1000, method="median")
 
 gsmr <- function(data, X, Y, alpha=0.05, other_plots=FALSE)
 {
-   c <- abs(qnorm(alpha/2))
+   c <- qnorm(alpha/2,lower.tail=FALSE)
    nxy <- vector("list", length(X)*length(Y))
    k <- 1
    ES_plot <- vector('list')
@@ -1193,7 +1193,7 @@ gsmr <- function(data, X, Y, alpha=0.05, other_plots=FALSE)
          abline(v=0, lty="dashed", col="red")
          metafor::forest(res, main=paste(graph_title), addfit=FALSE, slab=SNP, xlab=y_title)
        }
-       bzxLCL <- bzx+c*SEzx; bzxUCL <- bzx-c*SEzx
+       bzxLCL <- bzx-c*SEzx; bzxUCL <- bzx+c*SEzx
        bzyLCL <- bzy-c*SEzy; bzyUCL <- bzy+c*SEzy
        ES_plot[[i]] <- ggplot2::ggplot(data.frame(bzx, SEzx, bzy, SEzy, bzxLCL, bzxUCL, bzyLCL, bzyUCL),
                                 ggplot2::aes(x=bzx, y=bzy)) +
