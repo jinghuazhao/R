@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
-16-04-2021	Fix a swapped UCL/LCL bug in gsmr()
+16-04-2021	Change arguments for qnorm() and a swapped UCL/LCL bug in gsmr()
 14-04-2021	Add log10pvalue so as to enable mhtplot.trunc() to handle p, log10p, z
 11-04-2021	Rework on mhtplot.trunc() to use Z so as to handle extremely small p values
 		Drop qqman from suggests
