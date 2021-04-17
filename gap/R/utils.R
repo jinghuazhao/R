@@ -1101,12 +1101,12 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
 # sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
 # plotly::toRGB( c('#BF382A', '#0C4B8E')) ==> "rgba(191,56,42,1)" "rgba(12,75,142,1)"
 
-pvalue <- function(z,decimals=2)
+pvalue <- function (z, decimals = 2)
 {
-  lp <- log10p(z)
-  exponent <- ceiling(lp)
-  base <- 10^(lp - exponent)
-  paste0(round(base*10,decimals),"e",-1+exponent)
+    lp <- -log10p(z)
+    exponent <- ceiling(lp)
+    base <- 10^-(lp - exponent)
+    paste0(round(base, decimals), "e", -exponent)
 }
 
 log10pvalue <- function(p)
