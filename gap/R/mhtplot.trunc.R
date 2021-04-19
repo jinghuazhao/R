@@ -16,7 +16,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (!is.numeric(x[[chr]])) 
      stop(paste(chr, "column should be numeric. Do you have 'X', 'Y', 'MT', etc? If so change to numbers and try again."))
   if (!(bp %in% names(x)))  stop(paste("Column", bp, "not found!"))
-  if (!is.null(p)) log10P <- -log10pvalue(as.character(x[[p]]))
+  if (!is.null(p)) log10P <- -log10pvalue(x[[p]])
   if (is.null(p) & !is.null(log10p)) log10P <- -as.numeric(x[[log10p]])
   if (is.null(p) & is.null(log10p) & !is.null(z)) log10P <- -log10p(as.numeric(x[[z]]))
   if(is.null(p) & is.null(log10p) & is.null(z)) stop("At least one of p, log10p, or z (priority given in that order) is needed")

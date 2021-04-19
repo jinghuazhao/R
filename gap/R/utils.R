@@ -1109,11 +1109,16 @@ pvalue <- function (z, decimals = 2)
     paste0(round(base, decimals), "e", -exponent)
 }
 
-log10pvalue <- function(p)
+log10pvalue <- function(p=NULL,base=NULL,exponent=NULL)
 {
-  p <- format(p,scientific=TRUE)
-  p2 <- as.numeric(unlist(strsplit(p,"e")))
-  log10(p2[1])-p2[2]
+  if(!is.null(p))
+  {
+    p <- format(p,scientific=TRUE)
+    p2 <- strsplit(p,"e")
+    base <- as.numeric(lapply(p2,"[",1))
+    exponent <- as.numeric(lapply(p2,"[",2))
+  } else if(is.null(base) | is.null(exponent)) stop("base and exponent should both be specified")
+  log10(base)+exponent
 }
 
 # Adapted from code by Felix Day 16/9/2015
