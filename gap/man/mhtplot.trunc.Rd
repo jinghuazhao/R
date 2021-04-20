@@ -6,8 +6,11 @@
                     col = c("gray10", "gray60"),
                     chrlabs = NULL, suggestiveline = -log10(1e-05),
                     genomewideline = -log10(5e-08), highlight = NULL,
-                    annotatelog10P = NULL, annotateTop = FALSE, cex.mtext=1.5, cex.text=0.7,
-                    mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, delta=0.05, ...)}
+                    annotatelog10P = NULL, annotateTop = FALSE,
+                    cex.mtext=1.5, cex.text=0.7,
+                    mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2,
+                    delta=0.05,
+                    ...)}
 \description{
 To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a
 random variable that is uniformly distributed. The rationale of this function is to
@@ -53,7 +56,8 @@ The plot is shown on or saved to the appropriate device.
 options(width=120)
 require(gap.datasets)
 mhtdata <- within(mhtdata, {z=qnorm(p/2, lower.tail=FALSE)})
-mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn", y.brk1=10, y.brk2=12, mtext.line=2.5)
+mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn", 
+              y.brk1=10, y.brk2=12, mtext.line=2.5)
 
 # https://portals.broadinstitute.org/collaboration/
 # giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
@@ -62,13 +66,15 @@ BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
 print(subset(BMI[c("CHR","POS","SNP","P")],CHR!=16 & P<=1e-150))
 library(Rmpfr)
 print(within(subset(BMI, P==0, select=c(CHR,POS,SNP,Z)), 
-             {P <- format(2*pnorm(mpfr(abs(Z),100),lower.tail=FALSE)); Pvalue <- pvalue(Z); log10P <- -log10p(Z)}))
+             {P <- format(2*pnorm(mpfr(abs(Z),100),lower.tail=FALSE));
+              Pvalue <- pvalue(Z); log10P <- -log10p(Z)}))
 png("BMI.png", res=300, units="in", width=9, height=6)
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
 mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
               suggestiveline=FALSE, genomewideline=-log10(1e-8),
               cex.mtext=1.2, cex.text=1.2,
-              annotatelog10P=156, annotateTop = FALSE, highlight=c("rs13021737","rs17817449","rs6567160"),
+              annotatelog10P=156, annotateTop = FALSE,
+              highlight=c("rs13021737","rs17817449","rs6567160"),
               mtext.line=3, y.brk1=200, y.brk2=280, cex.axis=1.2, cex.y=1.2, cex=0.5,
               y.ax.space=20,
               col = c("blue4", "skyblue")
