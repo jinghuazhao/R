@@ -1,6 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3
+20-04-2021	Remove (unused) # ftp:// from asplot after suggestion
 19-04-2021	Revise log10pvalue() and mhtplot.trunc() on p values
 17-04-2021	Simplify pvalue()
 16-04-2021	Change arguments for qnorm() and fix a swapped UCL/LCL bug in gsmr()
