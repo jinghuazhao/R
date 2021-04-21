@@ -65,5 +65,5 @@ initial2 <- c(logit(1-0.34),log(2.45))
 hwe.cc("dominant",case,ctrl,k0,initial1,initial2)
 }
 }
-\author{Chang Yu, \url{http://biostat.mc.vanderbilt.edu/wiki/Main/ChangYu}, Li Wang, Jing Hua Zhao}
+\author{Chang Yu, Li Wang, Jing Hua Zhao}
 \keyword{htest}

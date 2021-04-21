@@ -1,5 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.2.3-1
+21-04-2021	Remove URL from hwe.cc.Rd
+
 Version 1.2.3
 20-04-2021	Remove (unused) # ftp:// from asplot after suggestion
 19-04-2021	Revise log10pvalue() and mhtplot.trunc() on p values
