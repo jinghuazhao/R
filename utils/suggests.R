@@ -1,7 +1,9 @@
 # gap
-install.packages(c("BradleyTerry2","MASS","MCMCglmm","R2jags","bdsmatrix","circlize", "coda", "coxme",
-                   "dplyr", "forestplot", "gap.datasets","genetics","haplo.stats","kinship2",
-                   "magic","meta", "mets","pedigree","pedigreemm", "plotrix", "qqman", "regress", "rmeta", "rms"),
+install.packages(c("BradleyTerry2","MASS","MCMCglmm","R2jags","bdsmatrix",
+                   "calibrate", "circlize", "coda", "coxme", "cowplot", "coxme", "dplyr", "foreign", "forestplot",
+                   "gap.datasets", "genetics", "ggplot2", "grid", "haplo.stats", "jsonlite", "kinship2",
+                   "lattice", "magic", "matrixStats", "meta", "metafor", "mets", "nlme", "pedigree",
+                   "pedigreemm", "plotly", "plotrix", "regress", "reshape", "rmeta", "rms", "survival"),
                    repos="https://cran.r-project.org")
 # pan
 install.packages("mitools")
