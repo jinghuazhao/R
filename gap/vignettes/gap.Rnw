@@ -544,6 +544,19 @@ dev.off()
 The function predates the currently popular {\bf locuszoom} software but leaves
 the option open for generating such plots on the fly and locally.
 
+\subsubsection*{Copy number variation}
+
+A plot of copy number variation (CNV) is shown here,
+<<echo=TRUE,eval=FALSE>>==
+pdf("figures/cnvplot.pdf")
+cnvplot(cnv)
+dev.off()
+@
+
+Note that all these can serve as templates to customize features of your own.\\
+
+\includegraphics[height=14cm,width=14cm]{figures/cnvplot.pdf}
+
 \subsubsection*{Effect size plot}
 The code below obtains an effect size plot via the {ESplot} function.
 <<echo=TRUE>>=
@@ -561,7 +574,19 @@ dev.off()
 
 \includegraphics[height=10cm,width=10cm]{figures/ESplot.pdf}
 
-Note that all these can serve as templates to customize features of your own.\\
+\subsubsection*{Forest plot}
+
+It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
+
+<<echo=TRUE>>==
+require(gap.datasets)
+data(OPG)
+pdf("figures/OPG.pdf")
+METAL_forestplot(OPGtbl[1,],OPGall,OPGrsid,width=8.75,height=5)
+dev.off()
+@
+
+\includegraphics[height=10cm,width=10cm]{figures/OPG.pdf}
 
 \section{Polygenic modeling}
 

@@ -2,6 +2,7 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
 23-04-2021	Revise gsmr() adding legend and Egger intercept
+		Add cnvplot() and METAL_forestplot examples to gap.Rnw
 
 Version 1.2.3-1
 21-04-2021	Remove URL from hwe.cc.Rd and http --> https in CITATION
