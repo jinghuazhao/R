@@ -1200,23 +1200,27 @@ gsmr <- function(data, X, Y, alpha=0.05, other_plots=FALSE)
        }
        bzxLCL <- bzx-c*SEzx; bzxUCL <- bzx+c*SEzx
        bzyLCL <- bzy-c*SEzy; bzyUCL <- bzy+c*SEzy
+       intercept <- slope <- colour <- method <- NA
+       lines4 <- data.frame(intercept=c(0,intEGGER,0,0),
+                            slope=c(bIVW,bEGGER,bWM,bPWM),
+                            colour=c("red","blue","green","orange"),
+                            method=c("IVW","Egger","WM","PWM"))
        ES_plot[[i]] <- ggplot2::ggplot(data.frame(bzx, SEzx, bzy, SEzy, bzxLCL, bzxUCL, bzyLCL, bzyUCL),
-                                ggplot2::aes(x=bzx, y=bzy)) +
-                                ggplot2::geom_point() +
-                                ggplot2::theme_bw() +
-                                ggplot2::geom_errorbar(ggplot2::aes(ymin=bzyLCL, ymax=bzyUCL)) +
-                                ggplot2::geom_errorbarh(ggplot2::aes(xmin=bzxLCL, xmax=bzxUCL)) +
-                                ggplot2::geom_abline(intercept=0, slope=0, size=1) +
-                                ggplot2::geom_abline(intercept=0, slope=bIVW, size=1, colour="red", show.legend=TRUE) +
-                                ggplot2::geom_abline(intercept=0, slope=bEGGER, size=1, colour="blue", show.legend=TRUE) +
-                                ggplot2::geom_abline(intercept=0, slope=bWM, size=1, colour="green", show.legend=TRUE) +
-                                ggplot2::geom_abline(intercept=0, slope=bPWM, size=1, colour="orange", show.legend=TRUE) +
-                                ggplot2::geom_vline(xintercept=0, size=1) +
-                                cowplot::theme_half_open(12) +
-                                ggplot2::theme(plot.margin = ggplot2::margin(6, 4, 6, 4)) +
-                                ggplot2::ggtitle(graph_title) +
-                                ggplot2::xlab(x_title) +
-                                ggplot2::ylab(y_title)
+                       ggplot2::aes(x=bzx, y=bzy)) +
+                       ggplot2::geom_point() +
+                       ggplot2::theme_bw() +
+                       cowplot::theme_cowplot(12) +
+                       ggplot2::geom_errorbar(ggplot2::aes(ymin=bzyLCL, ymax=bzyUCL)) +
+                       ggplot2::geom_errorbarh(ggplot2::aes(xmin=bzxLCL, xmax=bzxUCL)) +
+                       ggplot2::geom_abline(data=lines4, ggplot2::aes(intercept=intercept, slope=slope, colour=method), size=1, show.legend=TRUE) +
+                       ggplot2::scale_colour_manual(values = with(lines4,colour)) +
+                       ggplot2::theme(legend.position="bottom", legend.direction="vertical") +
+                       ggplot2::guides(colour=ggplot2::guide_legend(ncol=4)) +
+                       ggplot2::geom_abline(intercept=0, slope=0, size=1) +
+                       ggplot2::geom_vline(xintercept=0, size=1) +
+                       ggplot2::ggtitle(graph_title) +
+                       ggplot2::xlab(x_title) +
+                       ggplot2::ylab(y_title)
        plot(ES_plot[[i]])
        ColOut <- parse(text = paste0(X, ".", i))
        assign(paste(ColOut),c(paste(ColOut),bIVW,sebIVW,CochQ,CochQp,bEGGER,sebEGGER,intEGGER,seintEGGER,bWM,sebWM,bPWM,sebPWM))
