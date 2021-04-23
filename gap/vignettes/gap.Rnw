@@ -529,6 +529,23 @@ dev.off()
 
 \includegraphics[height=14cm,width=14cm]{figures/miamiplot.png}
 
+We now illustrate with a truncated Manhattan plot,
+
+<<echo=TRUE,eval=FALSE>>==
+par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
+mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z", snp="MarkerName",
+              suggestiveline=FALSE, genomewideline=-log10(5e-10),
+              cex.mtext=1.2, cex.text=0.7,
+              annotatelog10P=-log10(5e-10), annotateTop = FALSE, highlight=with(genes,gene),
+              mtext.line=3, y.brk1=115, y.brk2=200, delta=0.01,
+              cex.axis=1.2, cex.y=1.2, cex=0.5, font=2, font.axis=1,
+              y.ax.space=20,
+              col = c("blue4", "skyblue")
+)
+@
+
+\includegraphics[height=14cm,width=14cm]{figures/IL12B.png}
+
 The code below obtains a regional association plot with the {\em asplot} function,
 <<echo=TRUE,eval=FALSE>>=
 library(gap)
@@ -578,7 +595,7 @@ dev.off()
 
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
-<<echo=TRUE>>==
+<<echo=FALSE>>==
 require(gap.datasets)
 data(OPG)
 pdf("figures/OPG.pdf")
