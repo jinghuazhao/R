@@ -544,7 +544,7 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z", snp="MarkerName",
 )
 @
 
-\includegraphics[height=12cm,width=14cm]{figures/IL12B.png}
+\includegraphics[height=10cm,width=14cm]{figures/IL12B.png}
 
 The code below obtains a regional association plot with the {\em asplot} function,
 <<echo=TRUE,eval=FALSE>>=
