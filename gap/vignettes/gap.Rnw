@@ -543,7 +543,7 @@ cnvplot(cnv)
 
 \subsubsection*{Effect size plot}
 The code below obtains an effect size plot via the {ESplot} function.
-<<echo=TRUE,fig=TRUE,height=6,width=8>>=
+<<echo=TRUE>>=
 library(gap)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
@@ -554,6 +554,8 @@ SElogOR = c(0.2,0.1,0.5,0.5,0.2))
 ESplot(testdata,v=1)
 title("This is a fictitious plot")
 @
+
+\includegraphics[height=10cm,width=14cm]{figures/ESplot.pdf}
 
 \subsubsection*{Forest plot}
 
