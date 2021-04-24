@@ -15,7 +15,9 @@
 \parindent 0in
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 \SweaveOpts{engine=R,echo=FALSE,pdf=TRUE}
+\setkeys{Gin}{width=0.99\textwidth}
 \title{A Genetic Analysis Package with R}
 \author{Jing Hua Zhao}
 \date{}
@@ -259,20 +261,17 @@ used, and package {\bf kinship2} can be used to produce pedigree diagram as with
 kinship matrix.
 
 \subsubsection*{Pedigree diagram}
-<<echo=TRUE>>=
+
+The pedigree diagram is as follows,
+
+<<echo=TRUE,fig=TRUE>>=
 library(gap)
 # pedigree diagram
 data(lukas)
 library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
-pdf("figures/lukas.pdf",height=14,width=15)
-plot(ped)
-dev.off()
+plot(ped,cex=0.4)
 @
-
-The pedigree diagram is as follows,
-
-\includegraphics[height=14cm,width=15cm]{figures/lukas.pdf}
 
 \subsubsection*{Kinship calculation}
 We then turn to the kinship calculation.
@@ -442,28 +441,23 @@ I now include some figures from the documentation that may be of interest.\\
 
 \subsubsection*{Genome-wide association}
 The following code is used to obtain a Q-Q plot via {\em qqunif} function,
-<<echo=TRUE>>=
+<<echo=TRUE,fig=TRUE>>=
 library(gap)
-pdf("figures/qqunif.pdf",height=10,width=10)
 u_obs <- runif(1000)
 r <- qqunif(u_obs,pch=21,bg="blue",bty="n")
 u_exp <- r$y
 hits <- u_exp >= 2.30103
 points(r$x[hits],u_exp[hits],pch=21,bg="green")
 legend("topleft",sprintf("GC.lambda=%.4f",gc.lambda(u_obs)))
-dev.off()
 @
-
-\includegraphics[height=10cm,width=10cm]{figures/qqunif.pdf}
 
 Based on a chicken genome scan data, the code below generates a Manhattan plot, demonstrating
 the use of gaps to separate chromosomes.
 
-<<echo=TRUE,eval=FALSE>>=
-library(gap)
+<<echo=TRUE,fig=TRUE>>=
+library(gap.datasets)
 ord <- with(w4,order(chr,pos))
 w4 <- w4[ord,]
-pdf("figures/w4.pdf",height=9,width=10)
 oldpar <- par()
 par(cex=0.6)
 colors <- c(rep(c("blue","red"),15),"red")
@@ -474,18 +468,13 @@ genomewideline <- -log10(1.8E-06)
 abline(h=suggestiveline, col="blue")
 abline(h=genomewideline, col="green")
 abline(h=0)
-dev.off()
 @
 
-\includegraphics[scale=0.25,width=\linewidth]{figures/w4.pdf}
-
 The code below obtains a Manhattan plot with gene annotation,
-<<echo=TRUE, eval=FALSE>>=
-library(gap)
-png("figures/mhtplot.png",height=10,width=16,units="cm",res=300)
+<<echo=TRUE,fig=TRUE>>=
 data <- with(mhtdata,cbind(chr,pos,p))
-glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3","PPP1R3B",
-           "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
+glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
+           "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 hdata <- subset(mhtdata,gene%in%glist)[c("chr","pos","p","gene")]
 color <- rep(c("lightgray","gray"),11)
 glen <- length(glist)
@@ -496,10 +485,7 @@ hops <- hmht.control(data=hdata,colors=hcolor)
 mhtplot(data,ops,hops,pch=19)
 axis(2,pos=2,at=1:16,cex.axis=0.5)
 title("Manhattan plot with genes highlighted",cex.main=1)
-dev.off()
 @
-
-\includegraphics[height=10cm,width=16cm]{figures/mhtplot.png}
 
 All these look familiar, so revised form of the function called {\bf mhtplot2} was
 created for additional features such as centering the chromosome ticks, allowing for 
@@ -508,75 +494,56 @@ the function's documentation example.
 
 We could also go further with a circos Manhattan plot,
 
-<<echo=TRUE,eval=FALSE>>=
-library(gap)
-library(gap.datasets)
-pdf("figures/circos-mhtplot.pdf")
-circos.mhtplot()
-dev.off()
+<<echo=TRUE,fig=TRUE>>=
+circos.mhtplot(mhtdata, glist)
 @
-
-\includegraphics[height=14cm,width=14cm]{figures/circos-mhtplot.pdf}
 
 We now experiment with Miami plot,
-<<echo=TRUE,eval=FALSE>>=
-library(gap.datasets)
+<<echo=TRUE,fig=TRUE>>=
 mhtdata <- within(mhtdata,{pr=p})
-png("figures/miamiplot.png")
 miamiplot(mhtdata,chr="chr",bp="pos",p="p",pr="pr",snp="rsn")
-dev.off()
 @
-
-\includegraphics[height=14cm,width=14cm]{figures/miamiplot.png}
 
 We now illustrate with a truncated Manhattan plot,
 
 <<echo=TRUE,eval=FALSE>>==
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z", snp="MarkerName",
-              suggestiveline=FALSE, genomewideline=-log10(5e-10),
-              cex.mtext=1.2, cex.text=0.7,
-              annotatelog10P=-log10(5e-10), annotateTop = FALSE, highlight=with(genes,gene),
-              mtext.line=3, y.brk1=115, y.brk2=200, delta=0.01,
-              cex.axis=1.2, cex.y=1.2, cex=0.5, font=2, font.axis=1,
-              y.ax.space=20,
-              col = c("blue4", "skyblue")
+mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
+   snp="MarkerName",
+   suggestiveline=FALSE, genomewideline=-log10(5e-10),
+   cex.mtext=1.2, cex.text=0.7,
+   annotatelog10P=-log10(5e-10), annotateTop = FALSE,
+   highlight=with(genes,gene),
+   mtext.line=3, y.brk1=115, y.brk2=200, delta=0.01,
+   cex.axis=1.2, cex.y=1.2, cex=0.5, font=2, font.axis=1,
+   y.ax.space=20,
+   col = c("blue4", "skyblue")
 )
 @
 
 \includegraphics[height=10cm,width=14cm]{figures/IL12B.png}
 
 The code below obtains a regional association plot with the {\em asplot} function,
-<<echo=TRUE,eval=FALSE>>=
-library(gap)
-library(gap.datasets)
-pdf("figures/asplot.pdf",height=14,width=14)
+<<echo=TRUE,fig=TRUE>>=
 asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))
 title("CDKN2A/CDKN2B Region")
-dev.off()
 @
-
-\includegraphics[height=14cm,width=14cm]{figures/asplot.pdf}
 
 The function predates the currently popular {\bf locuszoom} software but leaves
 the option open for generating such plots on the fly and locally.
 
+Note that all these can serve as templates to customize features of your own.\\
+
 \subsubsection*{Copy number variation}
 
 A plot of copy number variation (CNV) is shown here,
-<<echo=TRUE,eval=FALSE>>==
-pdf("figures/cnvplot.pdf")
+<<echo=TRUE, fig=TRUE>>==
 cnvplot(cnv)
-dev.off()
 @
-
-Note that all these can serve as templates to customize features of your own.\\
-
-\includegraphics[height=14cm,width=14cm]{figures/cnvplot.pdf}
 
 \subsubsection*{Effect size plot}
 The code below obtains an effect size plot via the {ESplot} function.
-<<echo=TRUE>>=
+<<echo=TRUE, fig=TRUE>>=
 library(gap)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
@@ -586,24 +553,16 @@ OR = c(4.5,3.5,2.5,1.5,1),
 SElogOR = c(0.2,0.1,0.5,0.5,0.2))
 ESplot(testdata,v=1)
 title("This is a fictitious plot")
-dev.off()
 @
-
-\includegraphics[height=10cm,width=10cm]{figures/ESplot.pdf}
 
 \subsubsection*{Forest plot}
 
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
-<<echo=FALSE>>==
-require(gap.datasets)
+<<echo=TRUE,fig=TRUE>>==
 data(OPG)
-pdf("figures/OPG.pdf")
 METAL_forestplot(OPGtbl[1,],OPGall,OPGrsid,width=8.75,height=5)
-dev.off()
 @
-
-\includegraphics[height=10cm,width=10cm]{figures/OPG.pdf}
 
 \section{Polygenic modeling}
 
@@ -615,14 +574,12 @@ aspect of the models on heritability.
 
 The function gsmr() implements several methods and gives effect size plots.
 
-<<echo=TRUE>>=
+<<echo=TRUE, fig=TRUE>>=
 library(cowplot)
 library(ggplot2)
 library(gap)
 r <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
 @
-
-\includegraphics[height=10cm,width=10cm]{figures/INF1_CAD-FEV1.pdf}
 
 \section{Known bugs}
 
