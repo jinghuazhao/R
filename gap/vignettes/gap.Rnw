@@ -543,7 +543,7 @@ cnvplot(cnv)
 
 \subsubsection*{Effect size plot}
 The code below obtains an effect size plot via the {ESplot} function.
-<<echo=TRUE,fig=TRUE,height=12,width=14>>=
+<<echo=TRUE,fig=TRUE,height=6,width=8>>=
 library(gap)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
