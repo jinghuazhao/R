@@ -543,7 +543,7 @@ cnvplot(cnv)
 
 \subsubsection*{Effect size plot}
 The code below obtains an effect size plot via the {ESplot} function.
-<<echo=TRUE, fig=TRUE>>=
+<<echo=TRUE,fig=TRUE,height=12,width=14>>=
 library(gap)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
@@ -559,7 +559,7 @@ title("This is a fictitious plot")
 
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
-<<echo=TRUE,fig=TRUE>>==
+<<echo=TRUE,fig=TRUE,results=hide>>==
 data(OPG)
 METAL_forestplot(OPGtbl[1,],OPGall,OPGrsid,width=8.75,height=5)
 @
