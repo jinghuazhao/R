@@ -326,14 +326,14 @@ models <- matrix(c(
          1.5, 0.50,
          1.5, 0.80), ncol=2, byrow=TRUE)
 outfile <- "fbsize.txt"
-cat("gamma","p","Y","N_asp","P_A","H1","N_tdt","H2","N_asp/tdt","L_o","L_s\n",
-    file=outfile,sep="\t")
+cat("gamma","p","Y","N_asp","P_A","H1","N_tdt","H2","N_asp/tdt",
+    "L_o","L_s\n",file=outfile,sep="\t")
 for(i in 1:12) {
     g <- models[i,1]
     p <- models[i,2]
     z <- fbsize(g,p)
-    cat(z$gamma,z$p,z$y,z$n1,z$pA,z$h1,z$n2,z$h2,z$n3,z$lambdao,z$lambdas,
-        file=outfile,append=TRUE,sep="\t")
+    cat(z$gamma,z$p,z$y,z$n1,z$pA,z$h1,z$n2,z$h2,z$n3,
+        z$lambdao,z$lambdas,file=outfile,append=TRUE,sep="\t")
     cat("\n",file=outfile,append=TRUE)
 }
 table1 <- read.table(outfile,header=TRUE,sep="\t")
