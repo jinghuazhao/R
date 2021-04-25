@@ -555,7 +555,7 @@ ESplot(testdata,v=1)
 title("This is a fictitious plot")
 @
 
-\includegraphics[height=10cm,width=12cm]{figures/ESplot.pdf}
+\includegraphics[height=10cm,width=11cm]{figures/ESplot.pdf}
 
 \subsubsection*{Forest plot}
 
