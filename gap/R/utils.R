@@ -1153,6 +1153,24 @@ mr.boot = function(bXG, sebXG, bYG, sebYG, w, n.boot=1000, method="median")
    sd(boot)
 }
 
+#' Mendelian randomization analysis
+#' 
+#' The function initially intends to rework on GSMR outputs, but it would be appropriate for general use.
+#' 
+#' @md
+#' @param data data to be used.
+#' @param X Exposure.
+#' @param Y Outcome.
+#' @param alpha type I error rate for confidence intervals.
+#' @param other_plots To add funnel and forest plots.
+#' @export
+#' @return The result and plots.
+#' @examples
+#' library(cowplot)
+#' library(ggplot2)
+#' library(gap)
+#' r <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
+
 gsmr <- function(data, X, Y, alpha=0.05, other_plots=FALSE)
 {
    c <- qnorm(alpha/2,lower.tail=FALSE)

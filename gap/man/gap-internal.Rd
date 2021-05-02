@@ -68,7 +68,6 @@
 \alias{getb1star}
 \alias{getPTE}
 \alias{grec2g}
-\alias{gsmr}
 \alias{h2G}
 \alias{h2GE}
 \alias{h2l}

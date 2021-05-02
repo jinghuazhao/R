@@ -1,6 +1,6 @@
 Package: gap
 Version: 1.2.3-2
-Date: 2021-4-25
+Date: 2021-5-2
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
@@ -29,3 +29,4 @@ NeedsCompilation: yes
 Repository: CRAN
 Packaged: 2017-11-24 23:42:52 UTC; jhz22
 Date/Publication: 2017-04-19 11:10:23 UTC
+RoxygenNote: 7.1.1
