@@ -100,7 +100,6 @@
 \alias{ReadGRMPCA}
 \alias{se.exp}
 \alias{se.invlogit}
-\alias{snptest_sample}
 \alias{solve_skol}
 \alias{toETDT}
 \alias{ungcode}
@@ -134,8 +133,6 @@ ReadGRMBin(prefix, AllN=FALSE, size=4)
 ReadGRMPLINK(prefix, diag=1)
 ReadGRMPCA(prefix)
 revhap(loci,hapid)
-snptest_sample(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",
-               missing="missing",C=NULL,D=NULL,P=NULL)
 VR(v1,vv1,v2,vv2,c12)
 WriteGRM(prefix=51,id,N,GRM)
 WriteGRMBin(prefix, grm, N, id, size=4)
@@ -236,8 +233,6 @@ ReadGRMBin is a function to read GCTA grm.bin files, modified from GCTA document
 revhap recovers the allele indices for a given haplotype ID in a multiallelic system.
 
 revhap.i is similar to revhap.
-
-snptest_sample generates a sample file for SNPTEST.
 
 solve.skol is a function used by tscc.
 

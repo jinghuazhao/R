@@ -868,7 +868,6 @@ circos.mhtplot <- function(data, glist)
 #' The function implements credible set as in fine-mapping.
 #'
 #' @md
-#' @param data Data to be used.
 #' @param tbl Input data.
 #' @param b Effect size.
 #' @param se Standard error.

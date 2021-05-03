@@ -16,8 +16,6 @@ cs(tbl, b = "Effect", se = "StdErr", log_p = NULL, cutoff = 0.95)
 \item{log_p}{if not NULL it will be used to derive z-statistic}
 
 \item{cutoff}{Threshold for inclusion.}
-
-\item{data}{Data to be used.}
 }
 \value{
 Credible set.
