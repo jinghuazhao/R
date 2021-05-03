@@ -61,7 +61,6 @@
 \alias{g2a}
 \alias{g2a.c}
 \alias{gc.control}
-\alias{gc.lambda}
 \alias{gcode}
 \alias{geno.p}
 \alias{getb1star}
@@ -77,7 +76,6 @@
 \alias{hw}
 \alias{inv_chr_pos_a1_a2}
 \alias{invlogit}
-\alias{invnormal}
 \alias{log10p}
 \alias{log10pvalue}
 \alias{logp}
@@ -161,8 +159,6 @@ g2a.c is the C version of g2c.
 
 gc.control is used by gc.em().
 
-gc.lambda estimates the genomic control inflation statistic (lambda)
-
 gcode is as a2g.
 
 grec2g is undocumented.
@@ -187,8 +183,6 @@ hap.score.glm, hap.score.podds are used by hap.score().
 invlogit, inverse logit transformation.
 
 inv_chr_pos_a1_a2 is the inverse function of chr_pos_a1_a2.
-
-invnormal, inverse normal transformation.
 
 is.miss is undocumented.
 

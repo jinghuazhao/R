@@ -516,7 +516,16 @@ ReadGRMPCA <- function(prefix)
   invisible(list(N=N,posGRM=posGRM,negGRM=negGRM,id=id))
 }
 
-# GLGC-GIANT code for inverse normal transformation on x with missing data 
+#' Inverse normal transformation
+#'
+#' @md
+#' @param x Data with missing values.
+#' @export
+#' @return Transformed value.
+#' @examples
+#' x <- 1:10
+#' z <- invnormal(x)
+#' plot(z,x,type="b")
 
 invnormal <- function(x)
   qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x))) 
@@ -529,6 +538,17 @@ logp <- function(z) log(2) + pnorm(-abs(z), lower.tail = TRUE, log.p = TRUE)
 
 log10p <- function(z)
   log(2, base=10)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)/log(10)
+
+#' Estionmation of the genomic control inflation statistic (lambda)
+#'
+#' @md
+#' @param p A vector of p values.
+#' @export
+#' @return Estimate of inflation factor.
+#' @examples
+#' set.seed(12345)
+#' p <- runif(100)
+#' lambda <- gc.lambda(p)
 
 # gc.lambda and miamiplot functions hosted at CEU by Daniel R Barnes
 # A simplified version is as follows,
