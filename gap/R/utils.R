@@ -863,13 +863,37 @@ circos.mhtplot <- function(data, glist)
   circlize::circos.clear()
 }
 
+#' Credible set
+#'
+#' The function implements credible set as in fine-mapping.
+#'
+#' @md
+#' @param data Data to be used.
+#' @param tbl Input data.
+#' @param b Effect size.
+#' @param se Standard error.
+#' @param log_p if not NULL it will be used to derive z-statistic
+#' @param cutoff Threshold for inclusion.
+#' @export
+#' @return Credible set.
+#' @examples
+#' \dontrun{
+#' \preformatted{
+#'   zcat METAL/4E.BP1-1.tbl.gz | \
+#'   awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' > 4E.BP1.z
+#' }
+#'   tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
+#'   z <- cs(tbl)
+#'   l <- cs(tbl,log_p="logp")
+#' }
+
 cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
 # credible set based on METAL sumstats
 {
   requireNamespace("matrixStats")
   tbl <- within(tbl, {
            if (is.null(log_p)) z <- tbl[[b]]/tbl[[se]]
-           else z <- qnorm(tbl[[log_p]], log.p=TRUE)
+           else z <- qnorm(tbl[[log_p]], lower.tail=FALSE, log.p=TRUE)
            z2 <- z * z / 2
            d <- matrixStats::logSumExp(z2)
            log_ppa <- z2 - d
@@ -938,6 +962,23 @@ mhtplot2d <- function(data, plot=TRUE, cex=0.6)
   return(data.frame(id=d[["SNP"]],chr1=chr1,pos1=d[["bp"]],chr2=chr2,pos2=mid,x=pos1,y=pos2,
          target=d[["p.target.short"]],gene=d[["p.gene"]],log10p=with(d,log10p),col=ifelse(d[["cis"]],"blue","red")))
 }
+
+#' A utility to generate SNPTEST sample file
+#'
+#' @md
+#' @param data Data to be used.
+#' @param sample_file Output filename.
+#' @param ID_1 ID_1 as in the sample file.
+#' @param ID_2 ID_2 as in the sample file.
+#' @param missing Missing data column.
+#' @param C Continuous variables.
+#' @param D Discrete variables.
+#' @param P Phenotypic variables.
+#' @export
+#' @return Output file in SNPTEST's sample format.
+#' @examples
+#' d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
+#' snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 
 snptest_sample <- function(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
 {

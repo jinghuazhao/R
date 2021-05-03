@@ -10,7 +10,6 @@
 \alias{cf}
 \alias{cnv}
 \alias{crohn}
-\alias{cs}
 \alias{fa}
 \alias{fsnps}
 \alias{mr}
@@ -159,8 +158,6 @@ cis.vs.trans.classification classifies hits, usually SNPs with associate id and 
 
 cnvplot is a cutomised function to plot CNVs genomewide
 
-cs is for calculation of credible set.
-
 g2a returns two alleles according to a genotype identifier.
 
 g2a.c is the C version of g2c.
@@ -172,8 +169,6 @@ gc.lambda estimates the genomic control inflation statistic (lambda)
 gcode is as a2g.
 
 grec2g is undocumented.
-
-gsmr is a function for Mendelian randomization analysis.
 
 h2G is a utility function for heritability
 
@@ -292,17 +287,8 @@ g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
        "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 circos.mhtplot(mhtdata,g)
 #
-# zcat METAL/4E.BP1-1.tbl.gz | \
-# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
-tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
-z <- cs(tbl)
-l <- cs(tbl,log_p="logp")
-#
 d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
 mhtplot2d(d)
-#
-d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
-snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 #
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)
