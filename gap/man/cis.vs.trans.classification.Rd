@@ -7,7 +7,7 @@
 cis.vs.trans.classification(hits, panel, id, radius = 1e+06)
 }
 \arguments{
-\item{hits}{Data to be used.}
+\item{hits}{Data to be used, which contains prot, Chr, bp, id and/or other information such as SNPid.}
 
 \item{panel}{Panel data.}
 

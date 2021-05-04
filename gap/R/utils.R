@@ -700,7 +700,7 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
 #'
 #' The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
 #' @md
-#' @param hits Data to be used.
+#' @param hits Data to be used, which contains prot, Chr, bp, id and/or other information such as SNPid.
 #' @param panel Panel data.
 #' @param id Identifier.
 #' @param radius The flanking distance for variants.
