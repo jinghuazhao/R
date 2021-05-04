@@ -708,7 +708,7 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
 #' @return The cis/trans classification.
 #' @examples
 #' cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
-#  \dontrun{
+#' \dontrun{
 #' INF <- Sys.getenv("INF")
 #' f <- file.path(INF,"work","INF1.merge")
 #' clumped <- read.delim(f,as.is=TRUE)

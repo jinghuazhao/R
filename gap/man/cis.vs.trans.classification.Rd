@@ -21,3 +21,18 @@ The cis/trans classification.
 \description{
 The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
 }
+\examples{
+cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
+\dontrun{
+INF <- Sys.getenv("INF")
+f <- file.path(INF,"work","INF1.merge")
+clumped <- read.delim(f,as.is=TRUE)
+hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
+              inf1[c("prot","uniprot")],by="prot")
+names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
+cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
+cis.vs.trans <- with(cistrans,data)
+knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
+with(cistrans,total)
+}
+}
