@@ -696,6 +696,31 @@ miamiplot <- function (x, chr = "CHR", bp = "BP", p = "P", pr = "PR", snp = "SNP
     }
 }
 
+#' A cis/trans classifier
+#'
+#' The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
+#' @md
+#' @param hits Data to be used.
+#' @param panel Panel data.
+#' @param id Identifier.
+#' @param radius The flanking distance for variants.
+#' @export
+#' @return The cis/trans classification.
+#' @examples
+#' cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
+#  \dontrun{
+#' INF <- Sys.getenv("INF")
+#' f <- file.path(INF,"work","INF1.merge")
+#' clumped <- read.delim(f,as.is=TRUE)
+#' hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
+#'               inf1[c("prot","uniprot")],by="prot")
+#' names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
+#' cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
+#' cis.vs.trans <- with(cistrans,data)
+#' knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
+#' with(cistrans,total)
+#' }
+
 cis.vs.trans.classification <- function(hits, panel, id, radius=1e6)
 # cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
 {
@@ -765,6 +790,18 @@ cis.vs.trans.classification <- function(hits, panel, id, radius=1e6)
   x <- cbind(xx,total)
   invisible(list(data=hits_panel,table=x,total=s))
 }
+
+#' genomewide plot of CNVs
+#'
+#' The function generates a plot containing genomewide copy number variants (CNV) chr, start, end, freq(uencies).
+#' @md
+#' @param data Data to be used.
+#' @export
+#' @return The cis/trans classification.
+#' @examples
+#' knitr::kable(cnv,caption="A CNV dataset")
+#' cnvplot(cnv)
+#' circos.cnvplot(cnv)
 
 cnvplot <- function(data)
 # cnvplot(cnv)
@@ -846,8 +883,22 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
   circlize::circos.clear()
 }
 
+#' circos Manhattan plot with gene annotation
+#'
+#' The function generates circos Manhattan plot with gene annotation.
+#'
+#' @md
+#' @param data Data to be used.
+#' @param glist A gene list.
+#' @export
+#' @return None.
+#' @examples
+#' require(gap.datasets)
+#' glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
+#'            "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
+#' circos.mhtplot(mhtdata,glist)
+
 circos.mhtplot <- function(data, glist)
-# g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3","PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 # circos.mhtplot(mhtdata,g)
 {
   pos <- gene <- NULL
@@ -1218,7 +1269,7 @@ mr.boot = function(bXG, sebXG, bYG, sebYG, w, n.boot=1000, method="median")
 #' The function initially intends to rework on GSMR outputs, but it would be appropriate for general use.
 #' 
 #' @md
-#' @param data data to be used.
+#' @param data Data to be used.
 #' @param X Exposure.
 #' @param Y Outcome.
 #' @param alpha type I error rate for confidence intervals.

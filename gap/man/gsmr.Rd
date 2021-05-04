@@ -7,7 +7,7 @@
 gsmr(data, X, Y, alpha = 0.05, other_plots = FALSE)
 }
 \arguments{
-\item{data}{data to be used.}
+\item{data}{Data to be used.}
 
 \item{X}{Exposure.}
 

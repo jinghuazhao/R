@@ -38,9 +38,6 @@
 \alias{ci}
 \alias{circos.cnvplot}
 \alias{circos.cis.vs.trans.plot}
-\alias{circos.mhtplot}
-\alias{cis.vs.trans.classification}
-\alias{cnvplot}
 \alias{Cox.est}
 \alias{Cox.T}
 \alias{cov.invlogit}
@@ -112,7 +109,6 @@
 \usage{
 a2g(a1,a2)
 chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
-cis.vs.trans.classification(hits,panel,id,radius=1e6)
 g2a(g)
 g2a.c(g)
 h2G(V,VCOV,verbose=TRUE)
@@ -146,12 +142,6 @@ chr_pos_a1_a2 produces SNPID format.
 circos.cnvplot produces circos plot of CNVs
 
 circos.cis.vs.trans.plot gives circos plot of cis/trans classification
-
-circos.mhtplot generates circos Manhattan plot with gene annotation
-
-cis.vs.trans.classification classifies hits, usually SNPs with associate id and (b)ase-(p)air position, to be cis or trans according to a panel which contains id, chr, start, end, gene variables.
-
-cnvplot is a cutomised function to plot CNVs genomewide
 
 g2a returns two alleles according to a genotype identifier.
 
@@ -263,18 +253,7 @@ z is a normal z-test of two proportions used by tscc.
 \examples{
 \dontrun{
 #
-cnvplot(cnv)
-circos.cnvplot(cnv)
-#
-cvt <- cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
-cvt
-#
 circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
-#
-require(gap.datasets)
-g <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
-       "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
-circos.mhtplot(mhtdata,g)
 #
 d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
 mhtplot2d(d)
