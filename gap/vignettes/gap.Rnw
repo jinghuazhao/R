@@ -574,7 +574,7 @@ aspect of the models on heritability.
 
 \section{Mendelian randomization}
 
-The function gsmr() implements several methods and gives effect size plots.
+The function gsmr(), as decribed in \cite{ligthart18},  implements several methods and gives effect size plots.
 
 <<echo=TRUE, fig=TRUE>>=
 library(cowplot)
@@ -620,4 +620,4 @@ skol06, wakefield07}.
 \bibliography{gap}
 \end{document}
 
-% Date last modified: 25/4/2021
+% Date last modified: 8/5/2021
