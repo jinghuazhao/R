@@ -1330,7 +1330,7 @@ gsmr <- function(data, X, Y, alpha=0.05, other_plots=FALSE)
        bzxLCL <- bzx-c*SEzx; bzxUCL <- bzx+c*SEzx
        bzyLCL <- bzy-c*SEzy; bzyUCL <- bzy+c*SEzy
        intercept <- slope <- colour <- method <- NA
-       lines4 <- data.frame(intercept=c(0,intEGGER,0,0),
+       group4 <- data.frame(intercept=c(0,intEGGER,0,0),
                             slope=c(bIVW,bEGGER,bWM,bPWM),
                             colour=c("red","blue","green","orange"),
                             method=c("IVW","Egger","WM","PWM"))
@@ -1341,8 +1341,8 @@ gsmr <- function(data, X, Y, alpha=0.05, other_plots=FALSE)
                        cowplot::theme_cowplot(12) +
                        ggplot2::geom_errorbar(ggplot2::aes(ymin=bzyLCL, ymax=bzyUCL)) +
                        ggplot2::geom_errorbarh(ggplot2::aes(xmin=bzxLCL, xmax=bzxUCL)) +
-                       ggplot2::geom_abline(data=lines4, ggplot2::aes(intercept=intercept, slope=slope, colour=method), size=1, show.legend=TRUE) +
-                       ggplot2::scale_colour_manual(values = with(lines4,colour)) +
+                       ggplot2::geom_abline(data=group4, ggplot2::aes(intercept=intercept, slope=slope, colour=method), size=1, show.legend=TRUE) +
+                       ggplot2::scale_colour_manual(values = with(group4,colour)) +
                        ggplot2::theme(legend.position="bottom", legend.direction="vertical") +
                        ggplot2::guides(colour=ggplot2::guide_legend(ncol=4)) +
                        ggplot2::geom_abline(intercept=0, slope=0, size=1) +
