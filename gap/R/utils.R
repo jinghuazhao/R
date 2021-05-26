@@ -1173,7 +1173,7 @@ mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
     evals = list(),
     jsHooks = list()
   )
-  d <- read.table(xyz,as.is=TRUE,header=TRUE,sep=",")
+  d <- read.csv(xyz,as.is=TRUE)
   r <- mhtplot2d(d, plot=FALSE)
   cuts <- with(r, abs(log10p) > log10p.max)
   r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
