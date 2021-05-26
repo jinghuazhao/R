@@ -4,7 +4,7 @@ module load gcc/6
 module load pcre/8.38
 module load texlive
 
-export version=4.0.5
+export version=4.1.0
 export major=$(cut -d. -f1 <<<${version})
 export minor1=$(cut -d. -f2 <<<${version})
 export minor2=$(cut -d. -f3 <<<${version})
