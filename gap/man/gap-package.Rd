@@ -20,7 +20,7 @@ also the name (gap).
 \details{
 \tabular{ll}{
 Package: \tab gap\cr
-Version: \tab 1.2.3\cr
+Version: \tab 1.2.3-2\cr
 Depends: \tab R(>= 2.1.0)\cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
           \tab calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot, \cr
@@ -65,6 +65,7 @@ LDkl              \tab      LD statistics for two multiallelic markers\cr
 lambda1000        \tab      A standardized estimate of the genomic inflation scaling to\cr
                   \tab      a study of 1,000 cases and 1,000 controls\cr
 log10p            \tab      log10(p) for a standard normal deviate\cr
+log10pvalue       \tab      log10(p) for a P value including its scientific format\cr
 logp              \tab      log(p) for a normal deviate\cr
 masize            \tab      Sample size calculation for mediation analysis\cr
 MCMCgrm           \tab	    Mixed modeling with genetic relationship matrices\cr

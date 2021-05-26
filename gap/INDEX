@@ -31,6 +31,7 @@ LDkl                    LD statistics for two multiallelic markers
 lambda1000              A standardized estimate of the genomic inflation scaling to a study of
                         1,000 cases and 1,000 controls
 log10p                  log10(p) for a normal deviate
+log10pvalue             log10(p) for a P value including its scientific format
 logp                    log(p) for a normal deviate
 masize                  Sample size calculation for mediation analysis
 MCMCgrm                 Mixed modeling with genetic relationship matrices
@@ -93,6 +94,7 @@ makeped                 A function to prepare pedigrees in post-MAKEPED format
 metap                   Meta-analysis of p values
 metareg                 Fixed and random effects model for meta-analysis
 muvar                   Means and variances under 1- and 2- locus (diallelic) QTL model
+pvalue                  P value for a normal deviate
 read.ms.output          A utility function to read ms output
 snptest_sample          A utility to generate SNPTEST sample file
 weighted.median         Weighted median with interpolation

@@ -2,7 +2,7 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
 26-05-2021	Update mhtplot3d to use .csv rather than .tsv
-		Add mhtplot2d documentation
+		Document logp, log10p, log10pvalue, mhtplot2d, pvalue through devtools::document()
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package
 23-04-2021	Revise gsmr() adding legend and Egger intercept
