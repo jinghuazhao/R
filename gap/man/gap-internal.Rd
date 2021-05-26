@@ -24,7 +24,6 @@
 \alias{meyer}
 \alias{mfblong}
 \alias{mhtdata}
-\alias{mhtplot2d}
 \alias{mhtplot3d}
 \alias{nep499}
 \alias{PARn}
@@ -192,8 +191,6 @@ m2plem is an experimental function for PLEM format.
 
 makeRLEplot for RLE plot.
 
-mhtplot2d is for 2D Manhattan plot.
-
 mhtplot3d is for 3D Manhattan plot.
 
 miamiplot is for Miami plot.
@@ -254,9 +251,6 @@ z is a normal z-test of two proportions used by tscc.
 \dontrun{
 #
 circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
-#
-d <- read.table("INF1.merge.cis.vs.trans",as.is=TRUE,header=TRUE)
-mhtplot2d(d)
 #
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)
