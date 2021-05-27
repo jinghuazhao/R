@@ -4,10 +4,14 @@
 \alias{mhtplot3d}
 \title{3D Manhattan plot}
 \usage{
-mhtplot3d(d)
+mhtplot3d(d, chrlen = gap::hg19, cex = 0.6)
 }
 \arguments{
 \item{d}{Data in mhtplot2d() format.}
+
+\item{chrlen}{lengths of chromosomes for specific build: hg18, hg19, hg38.}
+
+\item{cex}{extension factor for the data points.}
 }
 \value{
 A plotly figure.

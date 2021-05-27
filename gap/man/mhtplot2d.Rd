@@ -6,6 +6,7 @@
 \usage{
 mhtplot2d(
   d,
+  chrlen = gap::hg19,
   snp_name = "SNP",
   snp_chr = "Chr",
   snp_pos = "bp",
@@ -22,6 +23,8 @@ mhtplot2d(
 }
 \arguments{
 \item{d}{Data to be used.}
+
+\item{chrlen}{lengths of chromosomes for specific build: hg18, hg19, hg38.}
 
 \item{snp_name}{variant name.}
 

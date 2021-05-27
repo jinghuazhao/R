@@ -13,10 +13,8 @@ Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
         calibrate, circlize, coda, cowplot, coxme, foreign, forestplot,
         gap.datasets, genetics, grid, haplo.stats, htmlwidgets,
         jsonlite, kinship2, knitr, lattice, magic, matrixStats,
-        meta, metafor, mets, nlme, pedigree,
-        pedigreemm, plotrix, reshape, rmeta, rms, survival
-LazyData: Yes
-LazyLoad: Yes
+        meta, metafor, mets, nlme, pedigree, pedigreemm, plotrix,
+        reshape, rmarkdown, rmeta, rms, survival
 Description: It is designed as an integrated package for genetic data
         analysis of both population and family data. Currently, it
         contains functions for sample size calculations of both
@@ -27,6 +25,9 @@ Description: It is designed as an integrated package for genetic data
         covariates. Over years, the package has been developed in-between
         many projects hence also in line with the name (gap).
 License: GPL (>= 2)
+LazyData: Yes
+LazyLoad: Yes
+VignetteBuilder: knitr
 NeedsCompilation: yes
 Repository: CRAN
 Packaged: 2017-11-24 23:42:52 UTC; jhz22

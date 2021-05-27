@@ -1,30 +1,8 @@
-grid2d <- function(chrlen=hg19, plot=TRUE, cex=0.6)
-{
-  CM <- cumsum(chrlen)
-  n <- length(chrlen)
-  xy <- xy.coords(c(0,CM), c(0,CM))
-  if (plot)
-  {
-    par(xaxt = "n", yaxt = "n")
-    plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
-    par(xaxt = "s", yaxt = "s", xpd = TRUE)
-    for (x in 1:n) {
-        segments(CM[x],0,CM[x],CM[n],col="black")
-        segments(0,CM[x],CM[n],CM[x],col="black")
-        text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=cex)
-        text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=cex)
-    }
-    segments(0,0,CM[n],0)
-    segments(0,0,0,CM[n])
-    title(xlab="pQTL position",ylab="protein position",line=2)
-  }
-  invisible(list(n=n, CM=c(0,CM)))
-}
-
 #' 2D Manhattan plot
 #'
 #' @md
 #' @param d Data to be used.
+#' @param chrlen lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param snp_name variant name.
 #' @param snp_pos variant position.
 #' @param snp_chr variant chromosome.
@@ -46,13 +24,13 @@ grid2d <- function(chrlen=hg19, plot=TRUE, cex=0.6)
 #' r <- mhtplot2d(d)
 #' }
 
-mhtplot2d <- function(d, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
+mhtplot2d <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
                       gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
                       protein="p.target.short", gene="p.gene", lp="log10p",
                       cis="cis",
                       plot=TRUE, cex=0.6)
 {
-  r <- grid2d(plot=plot)
+  r <- grid2d(chrlen, plot=plot)
   n <- with(r, n)
   CM <- with(r, CM)
   chr1 <- d[[snp_chr]]

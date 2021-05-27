@@ -2,6 +2,8 @@
 #'
 #' @md
 #' @param d Data in mhtplot2d() format.
+#' @param chrlen lengths of chromosomes for specific build: hg18, hg19, hg38.
+#' @param cex extension factor for the data points.
 #' @export
 #' @return A plotly figure.
 #' @examples
@@ -14,10 +16,10 @@
 #' htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.latest.html"))
 #' }
 
-mhtplot3d <- function(d)
+mhtplot3d <- function(d, chrlen=gap::hg19, cex=0.6)
 {
   n <- CM <- snpid <- pos_pqtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- NA
-  t2d <- mhtplot2d(d, plot=FALSE)
+  t2d <- mhtplot2d(d, chrlen, plot=FALSE)
   n <- with(t2d, n)
   CM <- with(t2d, CM)
   tkvals <- tktxts <- vector()
@@ -31,7 +33,7 @@ mhtplot3d <- function(d)
                                        prot_gene=paste0("target (gene):", target, "(", gene, ")"),
                                        lp=paste("-log10(P):", -log10p))
   fig <- with(t2d_pos,
-         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~-log10p, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
+         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~-log10p, cex=cex, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
          plotly::add_markers(type="scatter3d", text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
          plotly::layout(scene = list(xaxis = list(title = "pQTL position",
                                                   tickmode = "array",

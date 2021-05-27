@@ -6,7 +6,6 @@ output:
     toc: true
     toc_depth: 2
     check_title: false
-bibliography: refs.bib
 vignette: >
   %\VignetteIndexEntry{plogp}
   %\VignetteEngine{knitr::rmarkdown}

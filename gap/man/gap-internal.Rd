@@ -12,6 +12,7 @@
 \alias{crohn}
 \alias{fa}
 \alias{fsnps}
+\alias{grid2d}
 \alias{mr}
 \alias{hg18}
 \alias{hg19}
@@ -150,6 +151,8 @@ g2a.c is the C version of g2c.
 gc.control is used by gc.em().
 
 gcode is as a2g.
+
+grid2d is used to optional draw a 2-d grid according to chromosomal lengths.
 
 grec2g is undocumented.
 

@@ -1,10 +1,10 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-27-05-2021	Update mhtplot3d to use .csv rather than .tsv
+27-05-2021	Update mhtplot3d and rename oldversion as run3d to use .csv rather than .tsv
 		Document logp, log10p, log10pvalue, mhtplot2d, pvalue through devtools::document()
 		Imports: dplyr, ggplot2, plotly
-		Suggests: htmlwidgets
+		Suggests: htmlwidgets, rmarkdown
                 Depends: R (>= 3.5.0)
 		Move plogp.Rmd and functions.Rmd here from pQTLtools
 04-05-2021	Documentation through roxygen and suggests knitr
