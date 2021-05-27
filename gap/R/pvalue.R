@@ -6,7 +6,7 @@
 #' @export
 #' @return P value as a string variable.
 #' @examples
-#' pvalue(100)
+#' pvalue(-1.96)
 
 pvalue <- function (z, decimals = 2)
 {

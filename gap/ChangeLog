@@ -1,8 +1,10 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-26-05-2021	Update mhtplot3d to use .csv rather than .tsv
+27-05-2021	Update mhtplot3d to use .csv rather than .tsv
 		Document logp, log10p, log10pvalue, mhtplot2d, pvalue through devtools::document()
+		Imports: dplyr, ggplot2, plotly
+		Suggests: htmlwidgets
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package
 23-04-2021	Revise gsmr() adding legend and Egger intercept
@@ -20,7 +22,7 @@ Version 1.2.3
 11-04-2021	Rework on mhtplot.trunc() to use Z so as to handle extremely small p values
 		Drop qqman from suggests
 10-04-2021	Relocate description on lsf.str() as Appendix and add library(gap) in gap.Rnw
-09-04-2021	Add weighted.median(), mr.boot(), gsmr() which suggests metafor, ggplot2 & cowplot
+09-04-2021	Add weighted.median(), mr.boot(), gsmr() which suggests metafor, cowplot
 31-03-2021	Revise ESplot to use log(OR) as effect size, activate (...) option
 22-03-2021	Add example for miamiplot in gap.Rnw
 12-02-2021	Revise circos.cnvplot() excluding records with start>end

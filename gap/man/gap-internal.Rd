@@ -24,10 +24,9 @@
 \alias{meyer}
 \alias{mfblong}
 \alias{mhtdata}
-\alias{mhtplot3d}
+\alias{sun3d}
 \alias{nep499}
 \alias{PARn}
-\alias{pvalue}
 \alias{HapDesign}
 \alias{HapFreqSE}
 \alias{allele.recode}
@@ -72,9 +71,6 @@
 \alias{hw}
 \alias{inv_chr_pos_a1_a2}
 \alias{invlogit}
-\alias{log10p}
-\alias{log10pvalue}
-\alias{logp}
 \alias{is.miss}
 \alias{KCC}
 \alias{k}
@@ -115,12 +111,12 @@ h2GE(V,VCOV,verbose=TRUE)
 h2l(K=0.05,P=0.5,h2,se,verbose=TRUE)
 inv_chr_pos_a1_a2(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 KCC(model,GRR,p1,K)
-mhtplot3d(xyz="INF1.merge.cis.vs.trans",
-          cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
-          xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
-          prefix=c("Sentinel","CHR","POS","CHR","POS","Gene","Target","-log10(p)"),
-          postfix="\u003c/br>",
-          json.file="d3.json",pretty=TRUE)
+sun3d(xyz="INF1.merge.cis.vs.trans",
+      cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
+      xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
+      prefix=c("Sentinel","CHR","POS","CHR","POS","Gene","Target","-log10(p)"),
+      postfix="\u003c/br>",
+      json.file="d3.json",pretty=TRUE)
 ReadGRM(prefix=51)
 ReadGRMBin(prefix, AllN=FALSE, size=4)
 ReadGRMPLINK(prefix, diag=1)
@@ -181,17 +177,11 @@ and pbsize2.
 
 k obtains 1st and 2nd order culumants for correlation coefficient.
 
-log10p is log10(p) for a normal deviate.
-
-log10pvalue gives log10(p) for any p, e.g., "1.234e-1000".
-
-logp is log(p) for a normal deviate.
-
 m2plem is an experimental function for PLEM format.
 
 makeRLEplot for RLE plot.
 
-mhtplot3d is for 3D Manhattan plot.
+sun3d is for 3D Manhattan plot according to Sun, et al. (2018).
 
 miamiplot is for Miami plot.
 
@@ -200,8 +190,6 @@ micombine is used to combine imputation results.
 PARn calculates population attributable risk (PAR) for a list of frequencies and relative risks (RRs).
 
 plem2m is also experimental for PLEM format.
-
-pvalue takes a z-statistic for a p value with scientific representation.
 
 ReadGRM is a function to read GCTA grm.gz and grm.id file
 
@@ -256,9 +244,7 @@ s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)
 inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 #
-p <- mhtplot3d(pretty=FALSE)
-#
-pvalue(-1.96)
+p <- sun3d(pretty=FALSE)
 }
 }
 \details{These functions are not so frequently called by users}

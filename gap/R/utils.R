@@ -749,7 +749,7 @@ inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
   return(s)
 }
 
-mhtplot3d <- function(xyz="INF1.merge.cis.vs.trans",
+sun3d <- function(xyz="INF1.merge.cis.vs.trans",
                       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
                       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
                       prefix=c("Sentinel","CHR","POS","CHR","POS","Gene","Target","-log10(p)"),

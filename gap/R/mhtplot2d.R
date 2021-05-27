@@ -29,7 +29,7 @@ grid2d <- function(chrlen=hg19, plot=TRUE, cex=0.6)
     segments(0,0,0,CM[n])
     title(xlab="pQTL position",ylab="protein position",line=2)
   }
-  return(list(n=n, CM=c(0,CM)))
+  invisible(list(n=n, CM=c(0,CM)))
 }
 
 #' 2D Manhattan plot
