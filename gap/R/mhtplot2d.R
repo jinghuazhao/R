@@ -79,8 +79,10 @@ mhtplot2d <- function(d, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
      legend("top", legend=c("cis","trans"), box.lty=0, cex=cex, col=c("red","blue"),
             horiz=TRUE, inset=c(0,1), xpd=TRUE, pch=19)
   }
-  return(data.frame(id=d[[snp_name]], chr1=chr1, pos1=d[[snp_pos]],
-                    chr2=chr2, pos2=mid, x=pos1, y=pos2,
-                    target=d[[protein]], gene=d[[gene]], log10p=d[[lp]],
-                    col=ifelse(d[[cis]],"blue","red")))
+  return(list(n=n, CM=CM, data=data.frame(id=d[[snp_name]],
+                                          chr1=chr1, pos1=d[[snp_pos]],
+                                          chr2=chr2, pos2=mid, x=pos1, y=pos2,
+                                          target=d[[protein]], gene=d[[gene]], log10p=d[[lp]],
+                                          col=ifelse(d[[cis]],"blue","red")
+  )))
 }
