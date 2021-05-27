@@ -6,11 +6,13 @@
 #' @return A plotly figure.
 #' @examples
 #'
+#' \dontrun{
 #' INF <- Sys.getenv("INF")
 #' d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 #' r <- mhtplot3d(d)
 #' r
 #' htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.latest.html"))
+#' }
 
 mhtplot3d <- function(d)
 {

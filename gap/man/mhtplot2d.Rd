@@ -54,8 +54,9 @@ positional information.
 2D Manhattan plot
 }
 \examples{
-
+\dontrun{
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 r <- mhtplot2d(d)
+}
 }

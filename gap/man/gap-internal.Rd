@@ -13,6 +13,9 @@
 \alias{fa}
 \alias{fsnps}
 \alias{mr}
+\alias{hg18}
+\alias{hg19}
+\alias{hg38}
 \alias{hla}
 \alias{hr1420}
 \alias{inf1}
@@ -72,6 +75,7 @@
 \alias{inv_chr_pos_a1_a2}
 \alias{invlogit}
 \alias{is.miss}
+\alias{ixy}
 \alias{KCC}
 \alias{k}
 \alias{logit}
@@ -99,6 +103,7 @@
 \alias{WriteGRMBin}
 \alias{WriteGRMSAS}
 \alias{x2}
+\alias{xy}
 \alias{z}
 \title{Internal functions for gap}
 \usage{

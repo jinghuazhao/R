@@ -5,6 +5,7 @@ Version 1.2.3-2
 		Document logp, log10p, log10pvalue, mhtplot2d, pvalue through devtools::document()
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets
+                Depends: R (>= 3.5.0)
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package
 23-04-2021	Revise gsmr() adding legend and Egger intercept

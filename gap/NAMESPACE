@@ -16,7 +16,7 @@ export(AE3, ab, allele.recode, a2g, asplot,
         getPTE, getb1star, gif, grec2g, gsmr, MCMCgrm,
    h2, h2G, h2GE, h2l, hap, hap.control, hap.em, hap.score, hmht.control, htr,
         h2.jags, hwe, hwe.cc, hwe.hardy, hwe.jags, HapDesign, HapFreqSE,
-   inv_chr_pos_a1_a2, invlogit, invnormal,
+   inv_chr_pos_a1_a2, invlogit, invnormal, ixy,
    KCC, k, klem, kin.morgan,
    LD22, LDkl, lambda1000, logit, log10p, log10pvalue, logp,
    METAL_forestplot, m2plem, makeRLEplot, makeped, masize, metap, metareg, mhtplot, mhtplot2, mhtplot2d, mhtplot3d, mhtplot.trunc, mht.control,
@@ -29,7 +29,7 @@ export(AE3, ab, allele.recode, a2g, asplot,
    ungcode,
    VR,
    weighted.median,whscore, WriteGRM, WriteGRMBin, WriteGRMSAS,
-   x2,
+   x2, xy,
    z)
 S3method(plot, hap.score)
 S3method(print, hap.score)

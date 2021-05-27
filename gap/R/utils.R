@@ -849,3 +849,6 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
 # https://plot.ly/r/reference/#scatter3d
 # sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
 # plotly::toRGB( c('#BF382A', '#0C4B8E')) ==> "rgba(191,56,42,1)" "rgba(12,75,142,1)"
+
+xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
+ixy <- function(x) if (x=="X") 23 else if (x=="Y") 24 else x
