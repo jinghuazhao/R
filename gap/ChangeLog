@@ -6,6 +6,7 @@ Version 1.2.3-2
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets
                 Depends: R (>= 3.5.0)
+		Move plogp.Rmd and functions.Rmd here from pQTLtools
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package
 23-04-2021	Revise gsmr() adding legend and Egger intercept
