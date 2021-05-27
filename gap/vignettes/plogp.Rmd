@@ -2,7 +2,7 @@
 title: "log(p), log10(p) and p value for a very large z from Normal(0,1)"
 author: "Jing Hua Zhao"
 output:
-  rmarkdown::html_vignette:
+  rmarkdown::pdf_vignette:
     toc: true
     toc_depth: 2
     check_title: false

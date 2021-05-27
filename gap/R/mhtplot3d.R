@@ -30,7 +30,8 @@ mhtplot3d <- function(d)
                                        pos_prot=paste0("Protein: ",chr2,":",pos2),
                                        prot_gene=paste0("target (gene):", target, "(", gene, ")"),
                                        lp=paste("-log10(P):", -log10p))
-  fig <- plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~-log10p, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
+  fig <- with(t2d_pos,
+         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~-log10p, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
          plotly::add_markers(type="scatter3d", text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
          plotly::layout(scene = list(xaxis = list(title = "pQTL position",
                                                   tickmode = "array",
@@ -57,10 +58,10 @@ mhtplot3d <- function(d)
                                      zaxis = list(title = "-log10(p)", tickfont = list(size = 10)),
                                      aspectratio = list(x = 0.9, y = 1, z = 0.6)
                                 ),
-                        legend = list(x = 10, y = 0.5),
                         xaxis = list(domain=list(0,1)),
                         yaxis = list(domain=list(0,1)),
                         title = "Scatterplot of sentinels",
                         showlegend = TRUE
          )
+  )
 }
