@@ -561,7 +561,7 @@ It is possible to draw many forest plots given a list of variants; an example is
 
 ```{r forest, fig.height=7, fig.width=7}
 data(OPG)
-METAL_forestplot(OPGtbl[1,],OPGall,OPGrsid,width=8.75,height=5)
+METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
 
 # Polygenic modeling
