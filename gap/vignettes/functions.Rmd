@@ -1,16 +1,15 @@
 ---
 title: "gap related functions"
 author: "Jing Hua Zhao"
-output:
-  rmarkdown::html_vignette:
-    toc: true
-    toc_depth: 2
-    check_title: false
+date: '`r Sys.Date()`'
 bibliography: functions.bib
 vignette: >
-  %\VignetteIndexEntry{gap related functions}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{gap related functions}
   %\VignetteEncoding{UTF-8}
+output:
+  knitr:::html_vignette:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}

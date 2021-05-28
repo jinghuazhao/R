@@ -1,16 +1,15 @@
 ---
 title: "Genetic Analysis Package"
 author: "Jing Hua Zhao"
-output:
-  rmarkdown::html_vignette:
-    toc: true
-    toc_depth: 2
-    check_title: false
+date: '`r Sys.Date()`'
 bibliography: gap.bib
 vignette: >
-  %\VignetteIndexEntry{gap}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
+output:
+  knitr:::html_vignette:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -28,7 +27,7 @@ knitr::opts_chunk$set(
 Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK 
 https://jinghuazhao.github.io/
 
-## Introduction
+# Introduction
 
 This package was initiated to integrate some C/Fortran/SAS programs I have written 
 or used over the years. As such, it would rather be a long-term project, but an
@@ -60,8 +59,9 @@ packages; they do deserve a glimpse however for some general ideas.
 
 The following list shows the data and functions currently available.
 
-**ANALYSIS** | &nbsp;
+Name              |      Description
 ------------------|------------------------------------------------------------------
+**ANALYSIS** | &nbsp;
 AE3               |      AE model using nuclear family trios
 bt                |      Bradley-Terry model for contingency table
 ccsize            |      Power and sample size for case-cohort design
@@ -192,7 +192,7 @@ easily and avoid repetitive work such as preparing own routines for matrix algeb
 linear models. Further advantage can be taken from packages in **Bioconductor**, which
 are designed and written to deal with large number of genes.
 
-## Independent programs
+# Independent programs
 
 To facilitate comparisons and individual preferences, The source codes for 2LD, EHPLUS, 
 GENECOUNTING, HAP, now hosted at GitHub, have enjoyed great popularity ahead of the
@@ -212,7 +212,7 @@ A final category is `twinan90`, which is now dropped from the package function l
 due to difficulty to keep up with the requirements by the `R` environment but 
 nevertheless you will still be able to compile and use otherwise.
 
-## Demos
+# Demos
 
 You can also try several simple examples via `demo`:
 
@@ -221,19 +221,19 @@ library(gap)
 demo(gap)
 ```
 
-## Examples
+# Examples
 
 I would like to highlight `pedtodot`, `pbsize`, `fbsize` and `ccsize` functions
 used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as
 reported in @zhao07.
 
-### Pedigree drawing
+## Pedigree drawing
 
 I have included the original file for the *R News* as well as put examples in separate 
 vignettes. They can be accessed via `vignette("rnews",package="gap.examples")` and 
 `vignette("pedtodot", package="gap.examples")`, respectively.
 
-### Kinship calculation
+## Kinship calculation
 
 Next, I will provide an example for kinship calculation using `kin.morgan`.
 It is recommended that individuals in a pedigree are ordered so that parents
@@ -241,7 +241,7 @@ always precede their children. In this regard, package **pedigree** can be
 used, and package **kinship2** can be used to produce pedigree diagram as with
 kinship matrix.
 
-#### Pedigree diagram
+### Pedigree diagram
 
 The pedigree diagram is as follows,
 
@@ -254,7 +254,7 @@ ped <- with(lukas,pedigree(id,father,mother,sex))
 plot(ped,cex=0.4)
 ```
 
-#### Kinship calculation
+### Kinship calculation
 
 We then turn to the kinship calculation.
 
@@ -289,9 +289,9 @@ sum(abs(z))
 
 We see that in the second case, the result agrees with **kinship2**.
 
-### Study design
+## Study design
 
-#### Family-based design
+### Family-based design
 
 The example involving family-based design is as follows,
 
@@ -336,7 +336,7 @@ fbsize(g,p)
 table1
 ```
 
-#### Population-based design
+### Population-based design
 
 The example involving population-based design is as follows,
 
@@ -371,7 +371,7 @@ table5 <- read.table(outfile,header=TRUE,sep="\t")
 table5
 ```
 
-#### Case-cohort design
+### Case-cohort design
 
 For case-cohort design, we obtain results for ARIC and EPIC studies.
 
@@ -425,11 +425,11 @@ read.table(outfile,header=TRUE,sep="\t")
 unlink(outfile)
 ```
 
-### Graphics examples
+## Graphics examples
 
 I now include some figures from the documentation that may be of interest.
 
-#### Genome-wide association
+### Genome-wide association
 
 The following code is used to obtain a Q-Q plot via `qqunif` function,
 
@@ -529,7 +529,7 @@ the option open for generating such plots on the fly and locally.
 
 Note that all these can serve as templates to customize features of your own.
 
-#### Copy number variation
+### Copy number variation
 
 A plot of copy number variation (CNV) is shown here,
 
@@ -537,7 +537,7 @@ A plot of copy number variation (CNV) is shown here,
 cnvplot(cnv)
 ```
 
-#### Effect size plot
+### Effect size plot
 
 The code below obtains an effect size plot via the `ESplot` function.
 
@@ -553,7 +553,7 @@ ESplot(testdata,v=1)
 title("This is a fictitious plot")
 ```
 
-![]((figures/ESplot.pdf)
+![](figures/ESplot.png)
 
 \subsubsection*{Forest plot}
 
@@ -564,13 +564,13 @@ data(OPG)
 METAL_forestplot(OPGtbl[1,],OPGall,OPGrsid,width=8.75,height=5)
 ```
 
-## Polygenic modeling
+# Polygenic modeling
 
 In line with the recent surge of interest in the polygenic models, a separate
 vignette is available through `vignette("h2",package="gap.examples")` demonstrating
 aspect of the models on heritability.
 
-## Mendelian randomization
+# Mendelian randomization
 
 The function gsmr(), as decribed in @ligthart18,  implements several methods and gives effect size plots.
 
@@ -581,18 +581,18 @@ library(gap)
 r <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
 ```
 
-## Known bugs
+# Known bugs
 
 Unaware of any bug. However, better memory management is expected.
 
-## Summary
+# Summary
 
 I believe by now the package should have given you a flavour of initiatives
 I have made so far in relation to how the project was envisaged. More importantly,
 it is clear that availability of the package will serve as a platform on which 
 future work can be accumulated and collaboration can be built.
 
-## Appendix
+# Appendix
 
 Assuming that you have already loaded the package via
 `library(gap)`, you can use `lsf.str("package:gap")` and 
@@ -608,10 +608,4 @@ lsf.str("package:gap")
 data(package="gap")$results
 ```
 
-## Bibliographic note
-
-The main references are @chow60, @guo92, @wcn92, @gholamic94,
-@hartung08, @risch96, @spielman96, @risch97, @miller97, @sham97, @elston75,
-@sham98, @devlin99, @zhao99, @guo00, @hirotsu01, 
-@zhao02, @zaykin02, @zhao04, @wacholder04, @wang05,
-@skol06, @wakefield07.
+# Bibliography
