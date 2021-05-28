@@ -78,7 +78,7 @@ lambda1000 <- function(lambda, ncases, ncontrols)
 
 The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
-```{r}
+```{r gsmr, fig.height=7, fig.width=7}
 knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
 res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
 f <- "INF1_CAD-FEV1.csv"
@@ -156,7 +156,7 @@ The plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-
 
 These are a functions to plot distribution of CNVs,
 
-```{r}
+```{r cnvplot, fig.height=7, fig.width=7}
 library(gap)
 cnvplot(cnv)
 circos.cnvplot(cnv)
