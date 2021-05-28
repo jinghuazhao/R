@@ -1,6 +1,6 @@
 Package: gap
 Version: 1.2.3-2
-Date: 2021-5-27
+Date: 2021-5-28
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
@@ -27,9 +27,9 @@ Description: It is designed as an integrated package for genetic data
 License: GPL (>= 2)
 LazyData: Yes
 LazyLoad: Yes
-VignetteBuilder: knitr
 NeedsCompilation: yes
 Repository: CRAN
+vignetteBuilder: knitr
 Packaged: 2017-11-24 23:42:52 UTC; jhz22
 Date/Publication: 2017-04-19 11:10:23 UTC
 RoxygenNote: 7.1.1

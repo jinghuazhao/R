@@ -2,8 +2,9 @@
 #'
 #' @md
 #' @param d Data in mhtplot2d() format.
-#' @param chrlen lengths of chromosomes for specific build: hg18, hg19, hg38.
-#' @param cex extension factor for the data points.
+#' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
+#' @param zmax Maximum -log10p to truncate, above which they would be set to this value.
+#' @param size Size of the points, e.g., I(80).
 #' @export
 #' @return A plotly figure.
 #' @examples
@@ -11,12 +12,12 @@
 #' \dontrun{
 #' INF <- Sys.getenv("INF")
 #' d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
-#' r <- mhtplot3d(d)
-#' r
+#' r <- mhtplot3d(d,zmax=300)
 #' htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.latest.html"))
+#' r
 #' }
 
-mhtplot3d <- function(d, chrlen=gap::hg19, cex=0.6)
+mhtplot3d <- function(d, chrlen=gap::hg19, zmax=300, size=I(100))
 {
   n <- CM <- snpid <- pos_pqtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- NA
   t2d <- mhtplot2d(d, chrlen, plot=FALSE)
@@ -31,9 +32,10 @@ mhtplot3d <- function(d, chrlen=gap::hg19, cex=0.6)
   t2d_pos <- t2d_pos %>% dplyr::mutate(snpid=paste("SNPid:",id),pos_pqtl=paste0("pQTL: ",chr1,":",pos1),
                                        pos_prot=paste0("Protein: ",chr2,":",pos2),
                                        prot_gene=paste0("target (gene):", target, "(", gene, ")"),
-                                       lp=paste("-log10(P):", -log10p))
+                                       lp=paste("-log10(P):", -log10p)) %>%
+                         dplyr::mutate(z=if_else(-log10p<=zmax,-log10p,zmax))
   fig <- with(t2d_pos,
-         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~-log10p, cex=cex, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
+         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~z, color = ~col, colors = c('#BF382A', '#0C4B8E'), size=size) %>%
          plotly::add_markers(type="scatter3d", text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
          plotly::layout(scene = list(xaxis = list(title = "pQTL position",
                                                   tickmode = "array",

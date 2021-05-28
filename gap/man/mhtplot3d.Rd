@@ -4,14 +4,16 @@
 \alias{mhtplot3d}
 \title{3D Manhattan plot}
 \usage{
-mhtplot3d(d, chrlen = gap::hg19, cex = 0.6)
+mhtplot3d(d, chrlen = gap::hg19, zmax = 300, size = I(100))
 }
 \arguments{
 \item{d}{Data in mhtplot2d() format.}
 
-\item{chrlen}{lengths of chromosomes for specific build: hg18, hg19, hg38.}
+\item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
 
-\item{cex}{extension factor for the data points.}
+\item{zmax}{Maximum -log10p to truncate, above which they would be set to this value.}
+
+\item{size}{size of the points, e.g., I(80).}
 }
 \value{
 A plotly figure.
@@ -24,8 +26,8 @@ A plotly figure.
 \dontrun{
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
-r <- mhtplot3d(d)
-r
+r <- mhtplot3d(d,zmax=300)
 htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.latest.html"))
+r
 }
 }

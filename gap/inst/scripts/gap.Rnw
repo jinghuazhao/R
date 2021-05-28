@@ -25,7 +25,7 @@
 <<setup, include=FALSE, cache=FALSE, echo=FALSE>>=
 library(knitr)
 # set global chunk options
-opts_chunk$set(fig.path='figures/', fig.align='center', fig.keep="high", fig.show='hold')
+opts_chunk$set(fig.path='figures/', fig.align='center', fig.show='hold')
 options(formatR.arrow=TRUE,width=90)
 @
 \begin{center}
