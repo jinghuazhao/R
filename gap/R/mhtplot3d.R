@@ -4,7 +4,6 @@
 #' @param d Data in mhtplot2d() format.
 #' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param zmax Maximum -log10p to truncate, above which they would be set to this value.
-#' @param size Size of the points, e.g., I(80).
 #' @export
 #' @return A plotly figure.
 #' @examples
@@ -17,7 +16,7 @@
 #' r
 #' }
 
-mhtplot3d <- function(d, chrlen=gap::hg19, zmax=300, size=I(100))
+mhtplot3d <- function(d, chrlen=gap::hg19, zmax=300)
 {
   n <- CM <- snpid <- pos_pqtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- NA
   t2d <- mhtplot2d(d, chrlen, plot=FALSE)
@@ -35,7 +34,7 @@ mhtplot3d <- function(d, chrlen=gap::hg19, zmax=300, size=I(100))
                                        lp=paste("-log10(P):", -log10p)) %>%
                          dplyr::mutate(z=if_else(-log10p<=zmax,-log10p,zmax))
   fig <- with(t2d_pos,
-         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~z, color = ~col, colors = c('#BF382A', '#0C4B8E'), size=size) %>%
+         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~z, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
          plotly::add_markers(type="scatter3d", text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
          plotly::layout(scene = list(xaxis = list(title = "pQTL position",
                                                   tickmode = "array",

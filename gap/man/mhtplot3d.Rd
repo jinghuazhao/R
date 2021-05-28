@@ -4,7 +4,7 @@
 \alias{mhtplot3d}
 \title{3D Manhattan plot}
 \usage{
-mhtplot3d(d, chrlen = gap::hg19, zmax = 300, size = I(100))
+mhtplot3d(d, chrlen = gap::hg19, zmax = 300)
 }
 \arguments{
 \item{d}{Data in mhtplot2d() format.}
@@ -12,8 +12,6 @@ mhtplot3d(d, chrlen = gap::hg19, zmax = 300, size = I(100))
 \item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
 
 \item{zmax}{Maximum -log10p to truncate, above which they would be set to this value.}
-
-\item{size}{size of the points, e.g., I(80).}
 }
 \value{
 A plotly figure.

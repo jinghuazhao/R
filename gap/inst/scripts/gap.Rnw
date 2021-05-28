@@ -3,7 +3,6 @@
 %% \VignettePackage{gap}
 
 \documentclass[11pt,a4paper]{article}
-\usepackage{Sweave}
 \usepackage{url}
 \usepackage{amsmath,epsfig}
 \usepackage{graphicx}
@@ -15,8 +14,6 @@
 \parindent 0in
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
-\SweaveOpts{engine=R,echo=FALSE,pdf=TRUE}
 \setkeys{Gin}{width=0.99\textwidth}
 \title{A Genetic Analysis Package with R}
 \author{Jing Hua Zhao}
