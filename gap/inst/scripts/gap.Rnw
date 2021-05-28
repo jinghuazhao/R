@@ -3,7 +3,7 @@
 %% \VignettePackage{gap}
 
 \documentclass[11pt,a4paper]{article}
-
+\usepackage{Sweave}
 \usepackage{url}
 \usepackage{amsmath,epsfig}
 \usepackage{graphicx}
@@ -15,22 +15,8 @@
 \parindent 0in
 
 \begin{document}
-
-<<echo=FALSE,include=FALSE>>=
-library(knitr)
-opts_chunk$set(
-concordance=TRUE
-)
-@
-
-
-<<echo=FALSE,include=FALSE>>=
-library(knitr)
-opts_chunk$set(
-engine='R',echo=FALSE,dev='pdf'
-)
-@
-
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{engine=R,echo=FALSE,pdf=TRUE}
 \setkeys{Gin}{width=0.99\textwidth}
 \title{A Genetic Analysis Package with R}
 \author{Jing Hua Zhao}
