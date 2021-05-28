@@ -1,11 +1,11 @@
 ---
-title: "gap related functions"
+title: "Functions"
 author: "Jing Hua Zhao"
 date: '`r Sys.Date()`'
 bibliography: functions.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{gap related functions}
+  %\VignetteIndexEntry{Functions}
   %\VignetteEncoding{UTF-8}
 output:
   knitr:::html_vignette:
