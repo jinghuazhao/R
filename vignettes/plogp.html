@@ -155,8 +155,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 <p>When a Normally distributed association statistic z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.</p>
-<div id="logp-and-log10p" class="section level2">
-<h2>log(p) and log10(p)</h2>
+<div id="logp-and-log10p" class="section level1">
+<h1>log(p) and log10(p)</h1>
 <p>First thing first, here are the answers for log(p) and log10(p) given z,</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># log(p) for a standard normal deviate z based on log()</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>logp <span class="ot">&lt;-</span> <span class="cf">function</span>(z) <span class="fu">log</span>(<span class="dv">2</span>)<span class="sc">+</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z), <span class="at">lower.tail=</span><span class="cn">TRUE</span>, <span class="at">log.p=</span><span class="cn">TRUE</span>)</span>
@@ -165,23 +165,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>log10p <span class="ot">&lt;-</span> <span class="cf">function</span>(z) <span class="fu">log</span>(<span class="dv">2</span>, <span class="at">base=</span><span class="dv">10</span>)<span class="sc">+</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z), <span class="at">lower.tail=</span><span class="cn">TRUE</span>, <span class="at">log.p=</span><span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">10</span>)</span></code></pre></div>
 <p>Note <code>logp()</code> will be used for functions such as <code>qnorm()</code> as in R/gap function <code>cs()</code> whereas <code>log10p()</code> is more appropriate for Manhattan plot and used in R/gap <code>sentinels()</code>.</p>
 </div>
-<div id="rationale" class="section level2">
-<h2>Rationale</h2>
+<div id="rationale" class="section level1">
+<h1>Rationale</h1>
 <p>We start with z=1.96 whose corresponding p value is approximately 0.05.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.96</span>,<span class="at">lower.tail=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p>giving an acceptable value 0.04999579, so we proceed to get log10(p)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">2</span>)<span class="sc">+</span><span class="fu">log10</span>(<span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z),<span class="at">lower.tail=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <p>leading to the expression above from the fact that log10(X)=log(X)/log(10) since log(), being the natural log function, ln() – so log(exp(1)) = 1, in R, works far better on the numerator of the second term. The use of -abs() just makes sure we are working on the lower tail of the standard Normal distribution from which our p value is calculated.</p>
 </div>
-<div id="benchmark" class="section level2">
-<h2>Benchmark</h2>
+<div id="benchmark" class="section level1">
+<h1>Benchmark</h1>
 <p>Now we have a stress test,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">log10p</span>(z)</span></code></pre></div>
 <p>giving -log10(p) = 86858901.</p>
 </div>
-<div id="p-logp-log10p-and-the-multiple-precision-arithmetic" class="section level2">
-<h2>p, log(p), log10(p) and the multiple precision arithmetic</h2>
+<div id="p-logp-log10p-and-the-multiple-precision-arithmetic" class="section level1">
+<h1>p, log(p), log10(p) and the multiple precision arithmetic</h1>
 <p>We would be curious about the p value itself as well, which is furnished with the Rmpfr package</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(Rmpfr)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="sc">-</span><span class="fu">abs</span>(z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">TRUE</span>,<span class="at">log.p=</span><span class="cn">FALSE</span>)</span>
@@ -298,8 +298,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="application" class="section level2">
-<h2>Application</h2>
+<div id="application" class="section level1">
+<h1>Application</h1>
 <p>The <code>mhtplot.trunc()</code> function in R/gap accepts three types of arguments:</p>
 <ol style="list-style-type: decimal">
 <li><ol start="16" style="list-style-type: lower-alpha">
