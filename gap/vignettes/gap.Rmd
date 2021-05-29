@@ -55,7 +55,7 @@ the limit as imposed by CRAN, thus the old good feature of `S` as with
 `gap.datasets` and `gap.examples` are spun off as two separate
 packages; they do deserve a glimpse however for some general ideas.
 
-\section{Implementation}
+# Implementation
 
 The following list shows the data and functions currently available.
 
@@ -541,7 +541,7 @@ cnvplot(cnv)
 
 The code below obtains an effect size plot via the `ESplot` function.
 
-```{r esplot, fig.height=12, fig.width=38}
+```r
 library(gap)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
@@ -555,7 +555,7 @@ title("This is a fictitious plot")
 
 ![](figures/ESplot.png)
 
-\subsubsection*{Forest plot}
+### Forest plot
 
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 

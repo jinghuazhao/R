@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 We describe some functions from R/gap.
 
-## chr_pos_a1_a2 and inv_chr_pos_a1_a2
+# chr_pos_a1_a2 and inv_chr_pos_a1_a2
 
 They are functions to handle SNPid.
 ```{r}
@@ -35,7 +35,7 @@ inv_chr_pos_a1_a2(s)
 inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 ```
 
-## cs
+# cs
 
 This is a function for credible set.
 ```r
@@ -46,7 +46,7 @@ z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
 ```
 
-## gc.lambda
+# gc.lambda
 
 The definition is as follows,
 ```{r}
@@ -73,7 +73,7 @@ lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 ```
 
-## gsmr
+# gsmr
 
 The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
@@ -92,7 +92,7 @@ unlink(f)
 
 The nearest reference for the implemented approaches is @ligthart18.
 
-## invnormal
+# invnormal
 
 The function is widely used in various consortium analyses and defined as follows,
 ```{r}
@@ -111,7 +111,7 @@ mean(y)
 sd(y)
 ```
 
-## METAL_forestplot
+# METAL_forestplot
 
 The following is the documentation example,
 ```{r, message = FALSE, fig.height=6, fig.width=12, results='hide'}
@@ -120,7 +120,7 @@ data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
 
-## mhtplot.trunc
+# mhtplot.trunc
 
 Again this is the documentation example,
 ```r
@@ -151,7 +151,7 @@ dev.off()
 ```
 The plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-analysis/BMI/](https://jinghuazhao.github.io/Omics-analysis/BMI/).
 
-## cnvplot and circos.cnvplot
+# cnvplot and circos.cnvplot
 
 These are a functions to plot distribution of CNVs,
 
@@ -161,7 +161,7 @@ cnvplot(cnv)
 circos.cnvplot(cnv)
 ```
 
-## snptest_sample
+# snptest_sample
 
 This is a function to output sample file for SNPTEST.
 ```r
