@@ -18,7 +18,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
-  fig.path = "figures/",
+  fig.path = "./",
   collapse = TRUE,
   comment = "#>",
   dev = "png")
@@ -262,11 +262,11 @@ We then turn to the kinship calculation.
 # unordered individuals
 library(gap)
 gk1 <- kin.morgan(lukas)
-write.table(gk1$kin.matrix,"results/gap_1.txt",quote=FALSE)
+write.table(gk1$kin.matrix,"gap_1.txt",quote=FALSE)
 
 library(kinship2)
 kk1 <- kinship(lukas[,1],lukas[,2],lukas[,3])
-write.table(kk1,"results/kinship_1.txt",quote=FALSE)
+write.table(kk1,"kinship_1.txt",quote=FALSE)
 
 d <- gk1$kin.matrix-kk1
 sum(abs(d))
@@ -278,10 +278,10 @@ olukas <- lukas[order(op),]
 gk2 <- kin.morgan(olukas)
 
 write.table(olukas,"olukas.csv",quote=FALSE)
-write.table(gk2$kin.matrix,"results/gap_2.txt",quote=FALSE)
+write.table(gk2$kin.matrix,"gap_2.txt",quote=FALSE)
 
 kk2 <- kinship(olukas[,1],olukas[,2],olukas[,3])
-write.table(kk2,"results/kinship_2.txt",quote=FALSE)
+write.table(kk2,"kinship_2.txt",quote=FALSE)
 
 z <- gk2$kin.matrix-kk2
 sum(abs(z))
@@ -516,7 +516,7 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 ```
 
 ```{r il12b, crop=NULL, echo=FALSE, fig.height=7, fig.width=8}
-knitr::include_graphics("figures/IL12B.png")
+knitr::include_graphics("IL12B.png")
 ```
 
 The code below obtains a regional association plot with the `asplot` function,
@@ -553,10 +553,6 @@ OR = c(4.5,3.5,2.5,1.5,1),
 SElogOR = c(0.2,0.1,0.5,0.5,0.2))
 ESplot(testdata,v=1)
 title("This is a fictitious plot")
-```
-
-```{r esplot, echo=FALSE, fig.height=12, fig.width=15}
-knitr::include_graphics("figures/ESplot.png")
 ```
 
 ### Forest plot
