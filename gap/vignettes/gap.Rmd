@@ -515,7 +515,7 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 )
 ```
 
-```{r il12b}
+```{r il12b, crop=NULL, echo=FALSE, fig.height=7, fig.width=8}
 knitr::include_graphics("figures/IL12B.png")
 ```
 
@@ -555,7 +555,7 @@ ESplot(testdata,v=1)
 title("This is a fictitious plot")
 ```
 
-```{r esplot}
+```{r esplot, echo=FALSE, fig.height=7, fig.width=9}
 knitr::include_graphics("figures/ESplot.png")
 ```
 
