@@ -425,7 +425,7 @@ read.table(outfile,header=TRUE,sep="\t")
 unlink(outfile)
 ```
 
-## Graphics examples
+## Graphics
 
 I now include some figures from the documentation that may be of interest.
 
