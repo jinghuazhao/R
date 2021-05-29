@@ -515,7 +515,9 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 )
 ```
 
-![](figures/IL12B.png)
+```{r il12b}
+knitr::include_graphics("figures/IL12B.png")
+```
 
 The code below obtains a regional association plot with the `asplot` function,
 
@@ -553,7 +555,9 @@ ESplot(testdata,v=1)
 title("This is a fictitious plot")
 ```
 
-![](figures/ESplot.png)
+```{r esplot}
+knitr::include_graphics("figures/ESplot.png")
+```
 
 ### Forest plot
 
