@@ -564,6 +564,17 @@ data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
 
+# Fine-mapping
+
+The function `cs` obtains credible set.
+```r
+# zcat METAL/4E.BP1-1.tbl.gz | \
+# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
+z <- cs(tbl)
+l <- cs(tbl,log_p="logp")
+```
+
 # Polygenic modeling
 
 In line with the recent surge of interest in the polygenic models, a separate
@@ -588,6 +599,106 @@ unlink(f)
 ```
 
 The nearest reference for the implemented approaches is @ligthart18.
+
+# Miscellaneous functions
+
+## chr_pos_a1_a2 and inv_chr_pos_a1_a2
+
+They are functions to handle SNPid.
+```{r}
+require(gap)
+s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
+inv_chr_pos_a1_a2(s)
+inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
+```
+
+## gc.lambda
+
+The definition is as follows,
+```{r}
+gc.lambda <- function(p) {
+  p <- p[!is.na(p)]
+  n <- length(p)
+
+  obs <- qchisq(p,1,lower.tail=FALSE)
+  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
+
+  lambda <- median(obs)/median(exp)
+  return(lambda)
+}
+
+# A simplified version is as follows,
+# obs <- median(chisq)
+# exp <- qchisq(0.5, 1) # 0.4549364
+# lambda <- obs/exp
+# see also estlambda from GenABEL and qq.chisq from snpStats
+
+# A related function
+
+lambda1000 <- function(lambda, ncases, ncontrols)
+  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
+```
+
+## invnormal
+
+The function is widely used in various consortium analyses and defined as follows,
+```{r}
+invnormal <- function(x) qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x)))
+```
+An example use on data from Poisson distribution is as follows,
+```{r}
+set.seed(12345)
+Ni <- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
+y <- invnormal(Ni)
+sd(y)
+mean(y)
+Ni <- 1:50
+y <- invnormal(Ni)
+mean(y)
+sd(y)
+```
+
+## mhtplot.trunc
+
+We have seen the IL12B example above and this is the documentation example,
+
+```r
+options(width=120)
+require(gap.datasets)
+mhtdata <- within(mhtdata, {z=qnorm(p/2, lower.tail=FALSE)})
+mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn", y.brk1=10, y.brk2=12, mtext.line=2.5)
+
+# https://portals.broadinstitute.org/collaboration/
+# giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
+gz <- gzfile("work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
+BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
+print(subset(BMI[c("CHR","POS","SNP","P")],CHR!=16 & P<=1e-150))
+library(Rmpfr)
+print(within(subset(BMI, P==0, select=c(CHR,POS,SNP,Z)),
+             {P <- format(2*pnorm(mpfr(abs(Z),100),lower.tail=FALSE)); Pvalue <- pvalue(Z); log10P <- -log10p(Z)}))
+png("BMI.png", res=300, units="in", width=9, height=6)
+par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
+mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
+              suggestiveline=FALSE, genomewideline=-log10(1e-8),
+              cex.mtext=1.2, cex.text=1.2,
+              annotatelog10P=156, annotateTop = FALSE, highlight=c("rs13021737","rs17817449","rs6567160"),
+              mtext.line=3, y.brk1=200, y.brk2=280, cex.axis=1.2, cex.y=1.2, cex=0.5,
+              y.ax.space=20,
+              col = c("blue4", "skyblue")
+)
+dev.off()
+```
+
+The plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-analysis/BMI/](https://jinghuazhao.github.io/Omics-analysis/BMI/).
+
+## snptest_sample
+
+This is a function to output sample file for SNPTEST.
+```r
+d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
+snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
+```
+The commands above generates a file named ``snptest.sample.
 
 # Known bugs
 
