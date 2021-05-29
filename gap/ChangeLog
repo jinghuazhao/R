@@ -1,11 +1,13 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-28-05-2021	Update mhtplot3d and rename old version as run3d to use .csv rather than .tsv
-		Document logp, log10p, log10pvalue, mhtplot2d, pvalue
+28-05-2021	Start experiment with shinygap
+		Update mhtplot3d and rename old version as run3d to use .csv rather than .tsv
+		Replace gap.Rnw with gap.Rmd and merge functions.Rmd
 		Move plogp.Rmd and functions.Rmd here from pQTLtools
-		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
 		Drop fig=TRUE from gap.Rnw since it causes troubles
+		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
+		Document logp, log10p, log10pvalue, mhtplot2d, pvalue
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets, rmarkdown
 04-05-2021	Documentation through roxygen and suggests knitr
