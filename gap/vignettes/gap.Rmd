@@ -24,8 +24,8 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK 
-https://jinghuazhao.github.io/
+Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK,
+https://jinghuazhao.github.io/.
 
 # Introduction
 

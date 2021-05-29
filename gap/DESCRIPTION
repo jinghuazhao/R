@@ -7,7 +7,7 @@ Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
-Depends: R (>= 3.50)
+Depends: R (>= 2.10)
 Imports: dplyr, ggplot2, plotly
 Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
         calibrate, circlize, coda, cowplot, coxme, foreign, forestplot,
