@@ -541,7 +541,7 @@ cnvplot(cnv)
 
 The code below obtains an effect size plot via the `ESplot` function.
 
-```{r esplot, fig.height=7, fig.width=18}
+```{r esplot, fig.height=12, fig.width=38}
 library(gap)
 options(stringsAsFactors=FALSE)
 testdata <- data.frame(models=c("Basic model","Adjusted",
