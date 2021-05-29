@@ -572,14 +572,22 @@ aspect of the models on heritability.
 
 # Mendelian randomization
 
-The function gsmr(), as decribed in @ligthart18,  implements several methods and gives effect size plots.
+The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
-```{r mr, fig.height=7, fig.width=7}
-library(cowplot)
-library(ggplot2)
-library(gap)
-r <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
+```{r gsmr, fig.height=7, fig.width=7}
+knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
+res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
+f <- "INF1_CAD-FEV1.csv"
+write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
+top <- function(r)
+       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
+r <- read.csv(f,as.is=TRUE)
+p <- top(r)
+knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV1",digits=3)
+unlink(f)
 ```
+
+The nearest reference for the implemented approaches is @ligthart18.
 
 # Known bugs
 

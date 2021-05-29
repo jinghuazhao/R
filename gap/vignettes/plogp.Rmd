@@ -2,7 +2,6 @@
 title: "log(p), log10(p) and p value for a very large z from Normal(0,1)"
 author: "Jing Hua Zhao"
 date: '`r Sys.Date()`'
-bibliography: functions.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{plogp}
