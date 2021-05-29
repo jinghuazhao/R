@@ -555,7 +555,7 @@ ESplot(testdata,v=1)
 title("This is a fictitious plot")
 ```
 
-```{r esplot, echo=FALSE, fig.height=7, fig.width=9}
+```{r esplot, echo=FALSE, fig.height=12, fig.width=15}
 knitr::include_graphics("figures/ESplot.png")
 ```
 
