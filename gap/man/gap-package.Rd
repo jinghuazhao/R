@@ -26,7 +26,7 @@ Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
           \tab calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot, \cr
           \tab gap.datasets, ggplot2, grid, haplo.stats, kinship2, lattice, \cr
           \tab magic, matrixStats, meta, metafor, mets, nlme, pedigree, pedigreemm,\cr
-          \tab plotrix, qqman, regress, reshape, rmeta, rms, survival \cr
+          \tab plotrix, qqman, regress, reshape, rmarkdown, rmeta, rms, survival \cr
 License: \tab GPL (>=2)\cr
 URL: \tab https://jinghuazhao.github.io/R\cr
 }
@@ -124,7 +124,7 @@ GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, Write
 heritability functions \tab h2G, VR, h2GC, h2l give point estimates as with their variances\cr
                        \tab for continuous traits and binary traits under liability threshold\cr
                        \tab model and case-control sampling\cr
-h2                \tab      Heritability estimation according to twin correlations\cr
+h2_mzdz           \tab      Heritability estimation according to twin correlations\cr
                   \tab      for case-control studies\cr
 klem              \tab      Haplotype frequency estimation based on a genotype table\cr
                   \tab      of two multiallelic markers\cr

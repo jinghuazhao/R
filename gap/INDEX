@@ -84,7 +84,7 @@ cis.vs.trans.classification A cis/trans classifier
 comp.score              score statistics for testing genetic linkage of quantitative trait
 GRM functions           ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS
                         handle genomic relationship matrix involving other software
-h2                      Heritability estimation according to twin correlations
+h2_mzdz                 Heritability estimation according to twin correlations
 heritability functions  h2G, VR, h2GC, h2l give point estimates as with their variances
                         for continuous traits and binary traits under liability threshold model and
                         case-control sampling

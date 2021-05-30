@@ -2,6 +2,7 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
 30-05-2021	Add shinygap
+		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
 		Update mhtplot3d and rename old version as run3d to use .csv rather than .tsv
 		Replace gap.Rnw with gap.Rmd and merge functions.Rmd
 		Move plogp.Rmd and functions.Rmd here from pQTLtools

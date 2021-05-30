@@ -7,7 +7,7 @@ k <- function(r,N,adjust=TRUE)
   invisible(c(k1,k2))
 }
 
-h2 <- function(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,selV=NULL)
+h2_mzdz <- function(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,selV=NULL)
 {
   if(!is.null(mzDat))
   {

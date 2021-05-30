@@ -1,7 +1,7 @@
-\name{h2}
-\alias{h2}
+\name{h2_mzdz}
+\alias{h2_mzdz}
 \title{Heritability estimation according to twin correlations}
-\usage{h2(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,selV=NULL)}
+\usage{h2_mzdz(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,selV=NULL)}
 
 \description{
 Heritability and variance estimation according to twin pair correlations.

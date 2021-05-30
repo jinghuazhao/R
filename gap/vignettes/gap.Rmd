@@ -145,7 +145,7 @@ GRM functions     |      ReadGRM, ReadGRMBin, ReadGRMPLINK,
 heritability functions | h2G, VR, h2GC, h2l give point estimates as with their variances
 &nbsp;                 | for continuous traits and binary traits under liability threshold
 &nbsp;                 | model and case-control sampling
-h2                |      Heritability estimation according to twin correlations
+h2_mzdz           |      Heritability estimation according to twin correlations
 &nbsp;            |      for case-control studies
 klem              |      Haplotype frequency estimation based on a genotype table
 &nbsp;            |      of two multiallelic markers
