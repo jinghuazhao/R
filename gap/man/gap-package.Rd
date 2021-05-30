@@ -22,9 +22,10 @@ also the name (gap).
 Package: \tab gap\cr
 Version: \tab 1.2.3-2\cr
 Depends: \tab R(>= 2.1.0)\cr
+Imports: \tab dplyr, ggplot2, plotly \cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
           \tab calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot, \cr
-          \tab gap.datasets, ggplot2, grid, haplo.stats, kinship2, lattice, \cr
+          \tab gap.datasets, ggplot2, grid, haplo.stats, htmlwidgets, kinship2, lattice, \cr
           \tab magic, matrixStats, meta, metafor, mets, nlme, pedigree, pedigreemm,\cr
           \tab plotrix, qqman, regress, reshape, rmarkdown, rmeta, rms, survival \cr
 License: \tab GPL (>=2)\cr
