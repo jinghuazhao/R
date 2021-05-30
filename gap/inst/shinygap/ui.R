@@ -22,7 +22,7 @@ ui <- dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "landing",
-         div(class = "jumbotron", HTML("<center><h1>Shiny for gap designs</h1></center>")),
+         div(class = "jumbotron", HTML("<center><h1>Shiny for genetic analysis package (gap) designs</h1></center>")),
          fluidRow(div(class = "col-sm-12",
                       div(class = "box box-primary", style = "padding-right: 5%; padding-left: 5%; font-size:100%", NULL,
                           div(class = "box-body", shiny::includeMarkdown("README.md"))
