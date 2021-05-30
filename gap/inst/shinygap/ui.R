@@ -16,8 +16,7 @@ ui <- dashboardPage(
       menuItem("Home", tabName = "landing", icon = icon("home")),
       menuItem("fbDesign", tabName = "fbDesign", icon = icon("upload")),
       menuItem("pbDesign", tabName = "pbDesign", icon = icon("download")),
-      menuItem("ccDesign", tabName = "ccDesign", icon = icon("th")),
-      menuItem("Report", tabName = "Report", icon = icon("book-open"))
+      menuItem("ccDesign", tabName = "ccDesign", icon = icon("th"))
     )
   ),
   dashboardBody(
@@ -36,52 +35,64 @@ ui <- dashboardPage(
         h2("Family-based study design"),
         fluidRow(
           h3("Parameters"),
-          sliderInput("gamma", "Gamma:", min = 1, max = 50, value = 30),
-          sliderInput("p", "p:", min = 0, max = 1, value = 30),
-          sliderInput("alpha", "Alpha:", min = 0, max = 1, value = 1e-4),
-          sliderInput("beta", "Beta:", min = 0, max = 1, value = 0.2),
-          checkboxInput("fb", "Select fb model", FALSE)
+          sidebarLayout(
+               sidebarPanel(
+                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 100, value = 30),
+                   sliderInput("fb_p", "p:", min = 0, max = 1, value = 0.5),
+                   sliderInput("fb_alpha", "Alpha:", min = 0, max = 1, value = 1e-4),
+                   sliderInput("fb_beta", "Beta:", min = 0, max = 1, value = 0.2)
+               ),
+               mainPanel(
+                   h3(verbatimTextOutput("fb_caption")),
+                   plotOutput("fb"),
+                   radioButtons('fb_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
+                   downloadButton("fb_report", "Download report")
+               )
+          )
         )
       ),
       tabItem(tabName = "pbDesign",
         fluidRow(
           h2("Population-based study design"),
-          sliderInput("kp", "Kp:", min = 0, max = 1, value = 0.1),
-          sliderInput("gamma", "Gamma:", min = 0, max = 1, value = 4.5),
-          sliderInput("p", "p:", min = 0, max = 1, value = 0.15),
-          sliderInput("alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
-          sliderInput("beta", "Beta:", min = 0, max = 1, value = 0.2),
-          checkboxInput("pb", "Select pb model", FALSE)
+          sidebarLayout(
+               sidebarPanel(
+                   sliderInput("pb_kp", "Kp:", min = 0, max = 1, value = 0.1),
+                   sliderInput("pb_gamma", "Gamma:", min = 1, max = 100, value = 4.5),
+                   sliderInput("pb_p", "p:", min = 0, max = 1, value = 0.15),
+                   sliderInput("pb_alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
+                   sliderInput("pb_beta", "Beta:", min = 0, max = 1, value = 0.2)
+               ),
+               mainPanel(
+                   h3(verbatimTextOutput("pb_caption")),
+                   plotOutput("pb"),
+                   radioButtons('pb_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
+                   downloadButton("pb_report", "Download report")
+               )
+          )
         )
       ),
       tabItem(tabName = "ccDesign",
         fluidRow(
           h2("Case-cohort study design"),
-          sliderInput("n", "n:", min = 0, max = 1, value = 1),
-          sliderInput("q", "q:", min = 0, max = 1, value = 0.5),
-          sliderInput("pD", "pD:", min = 0, max = 1, value = 0.15),
-          sliderInput("p1", "p1:", min = 0, max = 1, value = 0.15),
-          sliderInput("alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
-          sliderInput("theta", "theta:", min = 0, max = 1, value = 0.2),
-          sliderInput("power", "power:", min = 0, max = 1, value = 0.2),
-          checkboxInput("cc", "Select cc model", FALSE)
-        )
-      ),
-      tabItem(tabName = "Report",
-        helpText("Results of the model."),
-        h3(textOutput("fb_caption")),
-        plotOutput("fb"),
-        h3(textOutput("pb_caption")),
-        plotOutput("pb"),
-        h3(textOutput("cc_caption")),
-        plotOutput("cc"),
-        h3("Model summary"),
-        verbatimTextOutput("summary"),
-        h3("Model fit summary"),
-        verbatimTextOutput("fit"),
-        radioButtons('reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
-        downloadButton("report", "Download report")
-      )
-    )
-  )
+          sidebarLayout(
+               sidebarPanel(
+                 sliderInput("cc_n", "n:", min = 0, max = 1, value = 1),
+                 sliderInput("cc_q", "q:", min = 0, max = 1, value = 0.5),
+                 sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.15),
+                 sliderInput("cc_p1", "p1:", min = 0, max = 1, value = 0.15),
+                 sliderInput("cc_alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
+                 sliderInput("cc_theta", "theta:", min = 0, max = 1, value = 0.2),
+                 sliderInput("cc_power", "power:", min = 0, max = 1, value = 0.2)
+               ),
+               mainPanel(
+                   h3(verbatimTextOutput("cc_caption")),
+                   plotOutput("cc"),
+                   radioButtons('cc_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
+                   downloadButton("cc_report", "Download report")
+               )
+          ) # siderbarLayout
+        ) # fluidRow
+      ) # tabitem
+    ) # tabItems
+  ) # dashbarBody
 )

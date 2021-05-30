@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-28-05-2021	Start experiment with shinygap
+30-05-2021	Add shinygap
 		Update mhtplot3d and rename old version as run3d to use .csv rather than .tsv
 		Replace gap.Rnw with gap.Rmd and merge functions.Rmd
 		Move plogp.Rmd and functions.Rmd here from pQTLtools

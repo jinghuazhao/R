@@ -1,23 +1,16 @@
 server <- function(input, output) {
-# fbDesign
-  output$fb <- renderTable({data.frame(a=1,b=2)})
-# pbDesign
-  output$pb <- renderTable({data.frame(a=1,b=2)})
-# ccDesign
-  status <- reactive({paste(input$status)})
-  time <- reactive({paste(input$time)})
-  covariates <- reactive({paste(input$covariates, collapse=" + ")})
-  strata <- reactive({paste(input$strata)})
-# Report
-  # fb curve
-  output$fb_caption <- renderText({"fb"})
-  # pb curve
-  output$pb_caption <- renderText({"pb"})
-  # cc curve
-  output$cox_caption <- renderText({"cc"})
+# fb curve
+  output$fb_caption <- reactive({print("fb design")})
+  output$fb <- renderPlot({plot(1:10)})
+# pb curve
+  output$pb_caption <- reactive({print("pb design")})
+  output$pb <- renderPlot({plot(1:10)})
+# cc curve
+  output$cc_caption <- reactive({print("cc design")})
+  output$cc <- renderPlot({plot(1:10)})
   output$report <- downloadHandler(
     filename = function() {
-      paste(ifelse(input$example,"lung",tools::file_path_sans_ext(input$file)), sep = ".", 
+      paste(ifelse(input$design,"lung",tools::file_path_sans_ext(input$file)), sep = ".", 
             switch(input$reportFormat, PDF = 'pdf', HTML = 'html', Word = 'docx')
       )
     },
