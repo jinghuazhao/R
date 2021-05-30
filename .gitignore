@@ -1,6 +1,7 @@
 gap.datasets_*
 gap.examples_*
 gap_*
+gap/inst/shinygap/.Rhistory
 lmm_*
 pan_*
 pQTLtools_*
