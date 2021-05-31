@@ -1,7 +1,8 @@
 source("R/init.R")
 
 ui <- dashboardPage(
-  title = "shinygap",
+  title="shinygap",
+  skin="purple",
   dashboardHeader(
      title = tags$a(href='https://github.com/jinghuazhao/', target = '_blank',
                     tags$img(src=paste0("bees.svg"), height = "70%", width = "auto", align = "middle")

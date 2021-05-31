@@ -1,5 +1,5 @@
 server <- function(input, output) {
-# fb curve
+# fb design
   output$fb_var <- renderUI({
      selectInput("fb_var", "Variable (x axis of the plot):",
                  c("Sample size"="fb_n","Genotype relative risk"="gamma","fb_p","type I error"="fb_alpha","type II error"="fb_beta"),
@@ -27,7 +27,7 @@ server <- function(input, output) {
     filename = function() {paste("fb", sep=".", switch(input$fb_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom::vroom_write(fb_data(), file)}
   )
-# pb curve
+# pb design
   output$pb_var <- renderUI({
      selectInput("pb_var", "Variable (x axis of the plot):",
                  c("Sample size"="pb_n","Prevalence of disease"="pb_kp",
@@ -60,7 +60,7 @@ server <- function(input, output) {
     filename = function() {paste("pb", sep=".", switch(input$pb_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom::vroom_write(pb_data(), file)}
   )
-# cc curve
+# cc design
   output$cc_var <- renderUI({
      selectInput("cc_var", "Variable (x axis of the plot):",
                  c("Cohort size"="cc_n","Fraction for subcohort"="cc_q","Proportion of failure in full cohort"="cc_pD",

@@ -293,6 +293,8 @@ We see that in the second case, the result agrees with **kinship2**.
 
 ### Family-based design
 
+It now has an experimental work via Shiny from `inst/shinygap`.
+
 The example involving family-based design is as follows,
 
 ```{r}
