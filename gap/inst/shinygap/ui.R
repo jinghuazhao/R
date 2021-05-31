@@ -37,6 +37,7 @@ ui <- dashboardPage(
           h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
+                   uiOutput("fb_choice"),
                    sliderInput("fb_gamma", "Gamma:", min = 1, max = 100, value = 30),
                    sliderInput("fb_p", "p:", min = 0, max = 1, value = 0.5),
                    sliderInput("fb_alpha", "Alpha:", min = 0, max = 1, value = 1e-4),
@@ -56,6 +57,7 @@ ui <- dashboardPage(
           h2("Population-based study design"),
           sidebarLayout(
                sidebarPanel(
+                   uiOutput("pb_choice"),
                    sliderInput("pb_kp", "Kp:", min = 0, max = 1, value = 0.1),
                    sliderInput("pb_gamma", "Gamma:", min = 1, max = 100, value = 4.5),
                    sliderInput("pb_p", "p:", min = 0, max = 1, value = 0.15),
@@ -76,6 +78,7 @@ ui <- dashboardPage(
           h2("Case-cohort study design"),
           sidebarLayout(
                sidebarPanel(
+                 uiOutput("cc_choice"),
                  sliderInput("cc_n", "n:", min = 0, max = 1, value = 1),
                  sliderInput("cc_q", "q:", min = 0, max = 1, value = 0.5),
                  sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.15),

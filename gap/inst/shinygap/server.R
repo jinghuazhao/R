@@ -1,5 +1,8 @@
 server <- function(input, output) {
 # fb curve
+  output$fb_choice <- renderUI({
+     selectInput("fb_choice", "Choice:", c("N","gamma","p","alpha","beta"), selected="N")
+  })
   output$fb_caption <- reactive({print("fb design")})
   output$fb <- renderPlot({plot(1:10)})
   output$fb_report <- downloadHandler(
@@ -16,6 +19,9 @@ server <- function(input, output) {
     }
   )
 # pb curve
+  output$fb_choice <- renderUI({
+     selectInput("pb_choice", "Choice:", c("N","Kp","gamma","p","alpha","beta"), selected="N")
+  })
   output$pb_caption <- reactive({print("pb design")})
   output$pb <- renderPlot({
      k <- input$pb_kp
@@ -23,7 +29,7 @@ server <- function(input, output) {
      p <- input$pb_p
      alpha <- input$pb_alpha
      beta <- input$pb_beta
-     z <- ceiling(pbsize(k,g,p))
+     z <- ceiling(gap::pbsize(k,g,p))
      plot(z, type="b")
   })
   output$pb_report <- downloadHandler(
@@ -40,6 +46,9 @@ server <- function(input, output) {
     }
   )
 # cc curve
+  output$cc_choice <- renderUI({
+     selectInput("pb_choice", "Choice:", c("n","q","pD","p1","alpha","beta","power"), selected="n")
+  })
   output$cc_caption <- reactive({print("cc design")})
   output$cc <- renderPlot({plot(1:10)})
   output$cc_report <- downloadHandler(

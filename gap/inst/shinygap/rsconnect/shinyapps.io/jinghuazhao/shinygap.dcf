@@ -5,7 +5,9 @@ account: jinghuazhao
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4204174
-bundleId: 4656551
+bundleId: 4659197
 url: https://jinghuazhao.shinyapps.io/shinygap/
-when: 1622367239.17181
-lastSyncTime: 1622367239.17183
+when: 1622444090.11804
+lastSyncTime: 1622444090.11807
+asMultiple: FALSE
+asStatic: FALSE
