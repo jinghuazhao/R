@@ -2,7 +2,8 @@ server <- function(input, output) {
 # fb curve
   output$fb_var <- renderUI({
      selectInput("fb_var", "Variable (x axis of the plot):",
-                 c("Sample size"="N","Genotype relative risk"="gamma","p","type I error"="alpha","type II error"="beta"), selected="N")
+                 c("Sample size"="fb_n","Genotype relative risk"="gamma","fb_p","type I error"="fb_alpha","type II error"="fb_beta"),
+                 selected="fb_n")
   })
   output$fb_caption <- reactive({paste("Figure: family-based design as a function of",input$fb_var)})
   output$fb <- renderPlot({
@@ -29,18 +30,28 @@ server <- function(input, output) {
 # pb curve
   output$pb_var <- renderUI({
      selectInput("pb_var", "Variable (x axis of the plot):",
-                 c("Sample size"="N","Prevalence of disease"="Kp","Genotype relative risk"="gamma","p","type I error"="alpha","type II error"="beta"),
-                 selected="N")
+                 c("Sample size"="pb_n","Prevalence of disease"="pb_kp",
+                   "Genotype relative risk"="pb_gamma","pb_p","type I error"="pb_alpha","type II error"="pb_beta"),
+                 selected="pb_gamma")
   })
   output$pb_caption <- reactive({paste("Figure: population-based design as a function of", input$pb_var)})
   output$pb <- renderPlot({
-     k <- input$pb_kp
-     g <- input$pb_gamma
-     p <- input$pb_p
-     alpha <- input$pb_alpha
-     beta <- input$pb_beta
-     z <- ceiling(gap::pbsize(k,g,p))
-     plot(z, type="b")
+     pb_kp <- input$pb_kp
+     pb_gamma <- input$pb_gamma
+     pb_p <- input$pb_p
+     pb_alpha <- input$pb_alpha
+     pb_beta <- input$pb_beta
+     data <- data.frame(pb_kp,pb_gamma,pb_p,pb_alpha,pb_beta)
+#    if (input$pb_var=="pb_gamma")
+     {
+       pb_gamma <- seq(1,15,by=1.5)
+       x <- pb_gamma
+       y <- vector()
+       for(z in x) y <- c(y,ceiling(gap::pbsize(pb_kp,z,pb_p)))
+       data <- data.frame(x,y)
+     }
+     plot_ly(data,x=~x) %>%
+     add_lines(y=~y,color=I("red"))
   })
   output$pb_report <- downloadHandler(
     filename = function() {
@@ -58,9 +69,10 @@ server <- function(input, output) {
 # cc curve
   output$cc_var <- renderUI({
      selectInput("cc_var", "Variable (x axis of the plot):",
-                 c("Cohort size"="n","Fraction for subcohort"="q","Proportion of failure in full cohort"="pD",
-                   "proportions of the two groups (p2=1-p1)"="p1","type I error"="alpha","hazard ratio for two groups"="hr",
-                   "the power for which sample size is calculated"="power"), selected="n")
+                 c("Cohort size"="cc_n","Fraction for subcohort"="cc_q","Proportion of failure in full cohort"="cc_pD",
+                   "proportions of the two groups (p2=1-p1)"="cc_p1","type I error"="alpha","hazard ratio for two groups"="cc_hr",
+                   "the power for which sample size is calculated"="cc_power"),
+                 selected="cc_n")
   })
   output$cc_caption <- reactive({paste("Figure: case-cohort design as a function of",input$cc_var)})
   output$cc <- renderPlot({
