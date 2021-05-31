@@ -86,8 +86,8 @@ ui <- dashboardPage(
                  sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_p1", "p1:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
-                 sliderInput("cc_theta", "theta:", min = 0, max = 1, value = 0.2),
-                 sliderInput("cc_power", "power:", min = 0, max = 1, value = 0.2)
+                 sliderInput("cc_hr", "hr:", min = 1, max = 100, value = 1.2),
+                 checkboxInput("cc_power", "power:", FALSE)
                ),
                mainPanel(
                    h3(verbatimTextOutput("cc_caption")),
