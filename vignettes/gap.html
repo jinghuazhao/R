@@ -727,6 +727,7 @@ div.csl-indent {
 <h2>Study design</h2>
 <div id="family-based-design" class="section level3">
 <h3>Family-based design</h3>
+<p>It now has an experimental work via Shiny from <code>inst/shinygap</code>.</p>
 <p>The example involving family-based design is as follows,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gap)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
@@ -1731,30 +1732,30 @@ div.csl-indent {
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
 #&gt;       Package LibPath                              Item           
-#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;OPGall (OPG)&quot; 
-#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;OPGrsid (OPG)&quot;
-#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;OPGtbl (OPG)&quot; 
-#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;PD&quot;           
-#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;aldh2&quot;        
-#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;apoeapoc&quot;     
-#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;cf&quot;           
-#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;cnv&quot;          
-#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;crohn&quot;        
-#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;fa&quot;           
-#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;fsnps&quot;        
-#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hg18&quot;         
-#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hg19&quot;         
-#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hg38&quot;         
-#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hla&quot;          
-#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;inf1&quot;         
-#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;jma.cojo&quot;     
-#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;l51&quot;          
-#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;lukas&quot;        
-#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;mao&quot;          
-#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;meyer&quot;        
-#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;mfblong&quot;      
-#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;mr&quot;           
-#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;nep499&quot;       
+#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;OPGall (OPG)&quot; 
+#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;OPGrsid (OPG)&quot;
+#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;OPGtbl (OPG)&quot; 
+#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;PD&quot;           
+#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;aldh2&quot;        
+#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;apoeapoc&quot;     
+#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;cf&quot;           
+#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;cnv&quot;          
+#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;crohn&quot;        
+#&gt; [10,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;fa&quot;           
+#&gt; [11,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;fsnps&quot;        
+#&gt; [12,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;hg18&quot;         
+#&gt; [13,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;hg19&quot;         
+#&gt; [14,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;hg38&quot;         
+#&gt; [15,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;hla&quot;          
+#&gt; [16,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;inf1&quot;         
+#&gt; [17,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;jma.cojo&quot;     
+#&gt; [18,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;l51&quot;          
+#&gt; [19,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;lukas&quot;        
+#&gt; [20,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;mao&quot;          
+#&gt; [21,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;meyer&quot;        
+#&gt; [22,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;mfblong&quot;      
+#&gt; [23,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;mr&quot;           
+#&gt; [24,] &quot;gap&quot;   &quot;/tmp/Rtmp3UWwzR/Rinst40f98249fe271&quot; &quot;nep499&quot;       
 #&gt;       Title                       
 #&gt;  [1,] &quot;Internal functions for gap&quot;
 #&gt;  [2,] &quot;Internal functions for gap&quot;
