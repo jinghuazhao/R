@@ -4,7 +4,7 @@ server <- function(input, output) {
      selectInput("fb_var", "Variable (x axis of the plot):",
                  c("Sample size"="N","Genotype relative risk"="gamma","p","type I error"="alpha","type II error"="beta"), selected="N")
   })
-  output$fb_caption <- reactive({paste("Figure: fb design as a function of",input$fb_var)})
+  output$fb_caption <- reactive({paste("Figure: family-based design as a function of",input$fb_var)})
   output$fb <- renderPlot({plot(1:10)})
   output$fb_report <- downloadHandler(
     filename = function() {
@@ -25,7 +25,7 @@ server <- function(input, output) {
                  c("Sample size"="N","Prevalence of disease"="Kp","Genotype relative risk"="gamma","p","type I error"="alpha","type II error"="beta"),
                  selected="N")
   })
-  output$pb_caption <- reactive({paste("Figure: pb design as a function of", input$pb_var)})
+  output$pb_caption <- reactive({paste("Figure: population-based design as a function of", input$pb_var)})
   output$pb <- renderPlot({
      k <- input$pb_kp
      g <- input$pb_gamma
@@ -53,7 +53,7 @@ server <- function(input, output) {
      selectInput("cc_var", "Variable (x axis of the plot):",
                  c("Sample size"="n","q","pD","p1","type I error"="alpha","type II error"="beta","power"), selected="n")
   })
-  output$cc_caption <- reactive({paste("Figure: cc design as a function of",input$cc_var)})
+  output$cc_caption <- reactive({paste("Figure: case-cohort design as a function of",input$cc_var)})
   output$cc <- renderPlot({plot(1:10)})
   output$cc_report <- downloadHandler(
     filename = function() {
