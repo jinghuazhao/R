@@ -69,7 +69,7 @@ ui <- dashboardPage(
                ),
                mainPanel(
                    h3(verbatimTextOutput("pb_caption")),
-                   plotOutput("pb"),
+                   plotlyOutput("pb"),
                    radioButtons('pb_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
                    downloadButton("pb_report", "Download report")
                )

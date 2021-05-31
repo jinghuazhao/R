@@ -50,8 +50,8 @@ server <- function(input, output) {
        for(z in x) y <- c(y,ceiling(gap::pbsize(pb_kp,z,pb_p)))
        data <- data.frame(x,y)
      }
-     plot_ly(data,x=~x) %>%
-     add_lines(y=~y,color=I("red"))
+     myplot <- plot_ly(data,x=~x) %>%
+               add_lines(y=~y,color=I("red"))
   })
   output$pb_report <- downloadHandler(
     filename = function() {
