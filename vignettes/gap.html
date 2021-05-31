@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao" />
 
-<meta name="date" content="2021-05-29" />
+<meta name="date" content="2021-05-31" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao</h4>
-<h4 class="date">2021-05-29</h4>
+<h4 class="date">2021-05-31</h4>
 
 
 <div id="TOC">
@@ -197,6 +197,14 @@ div.csl-indent {
 <li><a href="#fine-mapping">Fine-mapping</a></li>
 <li><a href="#polygenic-modeling">Polygenic modeling</a></li>
 <li><a href="#mendelian-randomization">Mendelian randomization</a></li>
+<li><a href="#logp-log10p-and-p-value-for-a-very-large-z-from-normal01">log(p), log10(p) and p value for a very large z from Normal(0,1)</a>
+<ul>
+<li><a href="#logp-and-log10p">log(p) and log10(p)</a></li>
+<li><a href="#rationale">Rationale</a></li>
+<li><a href="#benchmark">Benchmark</a></li>
+<li><a href="#p-logp-log10p-and-the-multiple-precision-arithmetic">p, log(p), log10(p) and the multiple precision arithmetic</a></li>
+<li><a href="#application">Application</a></li>
+</ul></li>
 <li><a href="#miscellaneous-functions">Miscellaneous functions</a>
 <ul>
 <li><a href="#chr_pos_a1_a2-and-inv_chr_pos_a1_a2">chr_pos_a1_a2 and inv_chr_pos_a1_a2</a></li>
@@ -571,7 +579,7 @@ div.csl-indent {
 <td>model and case-control sampling</td>
 </tr>
 <tr class="odd">
-<td>h2</td>
+<td>h2_mzdz</td>
 <td>Heritability estimation according to twin correlations</td>
 </tr>
 <tr class="even">
@@ -1256,102 +1264,264 @@ div.csl-indent {
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(f)</span></code></pre></div>
 <p>The nearest reference for the implemented approaches is <span class="citation">Ligthart et al. (2018)</span>.</p>
 </div>
+<div id="logp-log10p-and-p-value-for-a-very-large-z-from-normal01" class="section level1">
+<h1>log(p), log10(p) and p value for a very large z from Normal(0,1)</h1>
+<p>When a Normally distributed association statistic z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.</p>
+<div id="logp-and-log10p" class="section level2">
+<h2>log(p) and log10(p)</h2>
+<p>First thing first, here are the answers for log(p) and log10(p) given z,</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># log(p) for a standard normal deviate z based on log()</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>logp <span class="ot">&lt;-</span> <span class="cf">function</span>(z) <span class="fu">log</span>(<span class="dv">2</span>)<span class="sc">+</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z), <span class="at">lower.tail=</span><span class="cn">TRUE</span>, <span class="at">log.p=</span><span class="cn">TRUE</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># log10(p) for a standard normal deviate z based on log()</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>log10p <span class="ot">&lt;-</span> <span class="cf">function</span>(z) <span class="fu">log</span>(<span class="dv">2</span>, <span class="at">base=</span><span class="dv">10</span>)<span class="sc">+</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z), <span class="at">lower.tail=</span><span class="cn">TRUE</span>, <span class="at">log.p=</span><span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">10</span>)</span></code></pre></div>
+<p>Note <code>logp()</code> will be used for functions such as <code>qnorm()</code> as in R/gap function <code>cs()</code> whereas <code>log10p()</code> is more appropriate for Manhattan plot and used in R/gap <code>sentinels()</code>.</p>
+</div>
+<div id="rationale" class="section level2">
+<h2>Rationale</h2>
+<p>We start with z=1.96 whose corresponding p value is approximately 0.05.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">1.96</span>,<span class="at">lower.tail=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>giving an acceptable value 0.04999579, so we proceed to get log10(p)</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">2</span>)<span class="sc">+</span><span class="fu">log10</span>(<span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z),<span class="at">lower.tail=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<p>leading to the expression above from the fact that log10(X)=log(X)/log(10) since log(), being the natural log function, ln() – so log(exp(1)) = 1, in R, works far better on the numerator of the second term. The use of -abs() just makes sure we are working on the lower tail of the standard Normal distribution from which our p value is calculated.</p>
+</div>
+<div id="benchmark" class="section level2">
+<h2>Benchmark</h2>
+<p>Now we have a stress test,</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">log10p</span>(z)</span></code></pre></div>
+<p>giving -log10(p) = 86858901.</p>
+</div>
+<div id="p-logp-log10p-and-the-multiple-precision-arithmetic" class="section level2">
+<h2>p, log(p), log10(p) and the multiple precision arithmetic</h2>
+<p>We would be curious about the p value itself as well, which is furnished with the Rmpfr package</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(Rmpfr)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="sc">-</span><span class="fu">abs</span>(z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">TRUE</span>,<span class="at">log.p=</span><span class="cn">FALSE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mpfr</span>(<span class="fu">log</span>(<span class="dv">2</span>),<span class="dv">100</span>) <span class="sc">+</span> <span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="sc">-</span><span class="fu">abs</span>(z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">TRUE</span>,<span class="at">log.p=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>giving p = 1.660579603192917090365313727164e-86858901 and -log(p) = -200000010.1292789076808554854177, respectively. To carry on we have -log10(p) = -log(p)/log(10)=86858901.</p>
+<p>To make -log10(p) usable in R we obtain it directly through</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="sc">-</span><span class="fu">log10</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="sc">-</span><span class="fu">abs</span>(z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">TRUE</span>)))</span></code></pre></div>
+<p>which actually yields exactly the same 86858901.</p>
+<p>If we go very far to have z=50000. then -log10(p)=542868107 but we have less luck with Rmpfr.</p>
+<p>One may wonder the P value in this case, which is 6.6666145952e-542868108 or simply 6.67e-542868108.</p>
+<p>The magic function for doing this is defined as follows,</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="cf">function</span> (z, <span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    lp <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10p</span>(z)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    exponent <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(lp)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    base <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^-</span>(lp <span class="sc">-</span> exponent)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(base, decimals), <span class="st">&quot;e&quot;</span>, <span class="sc">-</span>exponent)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>and it is more appropriate to express p values in scientific format so they can be handled as follows,</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>log10pvalue <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">p=</span><span class="cn">NULL</span>,<span class="at">base=</span><span class="cn">NULL</span>,<span class="at">exponent=</span><span class="cn">NULL</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(p))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">format</span>(p,<span class="at">scientific=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    p2 <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(p,<span class="st">&quot;e&quot;</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    base <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">lapply</span>(p2,<span class="st">&quot;[&quot;</span>,<span class="dv">1</span>))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    exponent <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">lapply</span>(p2,<span class="st">&quot;[&quot;</span>,<span class="dv">2</span>))</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is.null</span>(base) <span class="sc">|</span> <span class="fu">is.null</span>(exponent)) <span class="fu">stop</span>(<span class="st">&quot;base and exponent should both be specified&quot;</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log10</span>(base)<span class="sc">+</span>exponent</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>used as <code>log10pvalue(p)</code> when p&lt;=1e-323, or log10pvalue(base=1,exponent=-323) otherwise.</p>
+<p>One can also derive logpvalue for natural base (e) similarly.</p>
+<p>We end with a quick look-up table</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (z <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">30</span>,<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>,<span class="dv">3000</span>,<span class="dv">5000</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  vi <span class="ot">&lt;-</span> <span class="fu">c</span>(z,<span class="fu">pvalue</span>(z),<span class="fu">logp</span>(z),<span class="fu">log10p</span>(z))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fu">rbind</span>(v,vi)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(v) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;z&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="st">&quot;log(P)&quot;</span>,<span class="st">&quot;log10(P)&quot;</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(v,<span class="at">caption=</span><span class="st">&quot;Table 1. z,P,log(P) and log10(P)&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Table 1. z,P,log(P) and log10(P)</caption>
+<thead>
+<tr class="header">
+<th align="left">z</th>
+<th align="left">P</th>
+<th align="left">log(P)</th>
+<th align="left">log10(P)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">5.73e-7</td>
+<td align="left">-14.3718512134288</td>
+<td align="left">-6.24161567672667</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">1.52e-23</td>
+<td align="left">-52.5381379699525</td>
+<td align="left">-22.8170234098221</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">9.81e-198</td>
+<td align="left">-453.628096775783</td>
+<td align="left">-197.008179265997</td>
+</tr>
+<tr class="even">
+<td align="left">50</td>
+<td align="left">2.16e-545</td>
+<td align="left">-1254.13821395886</td>
+<td align="left">-544.665305866333</td>
+</tr>
+<tr class="odd">
+<td align="left">100</td>
+<td align="left">2.69e-2174</td>
+<td align="left">-5004.83106151365</td>
+<td align="left">-2173.57051287337</td>
+</tr>
+<tr class="even">
+<td align="left">500</td>
+<td align="left">2.47e-54290</td>
+<td align="left">-125006.440403451</td>
+<td align="left">-54289.6072695865</td>
+</tr>
+<tr class="odd">
+<td align="left">1000</td>
+<td align="left">4.58e-217151</td>
+<td align="left">-500007.133547632</td>
+<td align="left">-217150.339011999</td>
+</tr>
+<tr class="even">
+<td align="left">2000</td>
+<td align="left">4.34e-868593</td>
+<td align="left">-2000007.82669406</td>
+<td align="left">-868592.362896546</td>
+</tr>
+<tr class="odd">
+<td align="left">3000</td>
+<td align="left">1.8e-1954329</td>
+<td align="left">-4500008.23215903</td>
+<td align="left">-1954328.74374587</td>
+</tr>
+<tr class="even">
+<td align="left">5000</td>
+<td align="left">1.51e-5428685</td>
+<td align="left">-12500008.7429846</td>
+<td align="left">-5428684.82082061</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="application" class="section level2">
+<h2>Application</h2>
+<p>The <code>mhtplot.trunc()</code> function in R/gap accepts three types of arguments:</p>
+<ol style="list-style-type: decimal">
+<li><ol start="16" style="list-style-type: lower-alpha">
+<li>P values of association statistics, which could be very small.</li>
+</ol></li>
+<li>log10p. log10(P).</li>
+<li><ol start="26" style="list-style-type: lower-alpha">
+<li>normal statistics that could be very large.</li>
+</ol></li>
+</ol>
+<p>In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme value, the y-axis allows for truncation leaving out a given range to highlight the largest.</p>
+<p>A plot for the GIANT data is shown here, <a href="https://jinghuazhao.github.io/Omics-analysis/BMI/">https://jinghuazhao.github.io/Omics-analysis/BMI/</a>.</p>
+</div>
+</div>
 <div id="miscellaneous-functions" class="section level1">
 <h1>Miscellaneous functions</h1>
 <div id="chr_pos_a1_a2-and-inv_chr_pos_a1_a2" class="section level2">
 <h2>chr_pos_a1_a2 and inv_chr_pos_a1_a2</h2>
 <p>They are functions to handle SNPid.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">chr_pos_a1_a2</span>(<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">123</span>,<span class="dv">321</span>),letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],letters[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>])</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(s)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123_A_B chr1 123  A  B</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:321_A_B chr1 321  A  B</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(<span class="st">&quot;chr1:123-A_B&quot;</span>,<span class="at">seps=</span><span class="fu">c</span>(<span class="st">&quot;:&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;_&quot;</span>))</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123-A_B chr1 123  A  B</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">chr_pos_a1_a2</span>(<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">123</span>,<span class="dv">321</span>),letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],letters[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(s)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123_A_B chr1 123  A  B</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:321_A_B chr1 321  A  B</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(<span class="st">&quot;chr1:123-A_B&quot;</span>,<span class="at">seps=</span><span class="fu">c</span>(<span class="st">&quot;:&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;_&quot;</span>))</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123-A_B chr1 123  A  B</span></span></code></pre></div>
 </div>
 <div id="gc.lambda" class="section level2">
 <h2>gc.lambda</h2>
 <p>The definition is as follows,</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gc.lambda <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p[<span class="sc">!</span><span class="fu">is.na</span>(p)]</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(p)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(p,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  exp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span><span class="sc">:</span>n<span class="sc">/</span>n,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> <span class="fu">median</span>(obs)<span class="sc">/</span><span class="fu">median</span>(exp)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lambda)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A simplified version is as follows,</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># obs &lt;- median(chisq)</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># exp &lt;- qchisq(0.5, 1) # 0.4549364</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda &lt;- obs/exp</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># see also estlambda from GenABEL and qq.chisq from snpStats</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co"># A related function</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, ncases, ncontrols)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">+</span> (lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> ncases <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> ncontrols)<span class="sc">/</span>( <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gc.lambda <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p[<span class="sc">!</span><span class="fu">is.na</span>(p)]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(p)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(p,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  exp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span><span class="sc">:</span>n<span class="sc">/</span>n,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> <span class="fu">median</span>(obs)<span class="sc">/</span><span class="fu">median</span>(exp)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lambda)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A simplified version is as follows,</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co"># obs &lt;- median(chisq)</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co"># exp &lt;- qchisq(0.5, 1) # 0.4549364</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda &lt;- obs/exp</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co"># see also estlambda from GenABEL and qq.chisq from snpStats</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="co"># A related function</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, ncases, ncontrols)</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">+</span> (lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> ncases <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> ncontrols)<span class="sc">/</span>( <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>)</span></code></pre></div>
 </div>
 <div id="invnormal" class="section level2">
 <h2>invnormal</h2>
 <p>The function is widely used in various consortium analyses and defined as follows,</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>invnormal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">qnorm</span>((<span class="fu">rank</span>(x,<span class="at">na.last=</span><span class="st">&quot;keep&quot;</span>)<span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">/</span><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>invnormal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">qnorm</span>((<span class="fu">rank</span>(x,<span class="at">na.last=</span><span class="st">&quot;keep&quot;</span>)<span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">/</span><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
 <p>An example use on data from Poisson distribution is as follows,</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">50</span>, <span class="at">lambda =</span> <span class="dv">4</span>); <span class="fu">table</span>(<span class="fu">factor</span>(Ni, <span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(Ni)))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0  1  2  3  4  5  6  7  8  9 </span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2  4  6 11  8 10  4  2  2  1</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9755074</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.002650512</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1.810184e-17</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9973999</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">50</span>, <span class="at">lambda =</span> <span class="dv">4</span>); <span class="fu">table</span>(<span class="fu">factor</span>(Ni, <span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(Ni)))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0  1  2  3  4  5  6  7  8  9 </span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2  4  6 11  8 10  4  2  2  1</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9755074</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.002650512</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1.810184e-17</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9973999</span></span></code></pre></div>
 </div>
 <div id="mhtplot.trunc" class="section level2">
 <h2>mhtplot.trunc</h2>
 <p>We have seen the IL12B example above and this is the documentation example,</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">120</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap.datasets)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>mhtdata <span class="ot">&lt;-</span> <span class="fu">within</span>(mhtdata, {z<span class="ot">=</span><span class="fu">qnorm</span>(p<span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)})</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mhtplot.trunc</span>(mhtdata, <span class="at">chr =</span> <span class="st">&quot;chr&quot;</span>, <span class="at">bp =</span> <span class="st">&quot;pos&quot;</span>, <span class="at">z =</span> <span class="st">&quot;z&quot;</span>, <span class="at">snp =</span> <span class="st">&quot;rsn&quot;</span>, <span class="at">y.brk1=</span><span class="dv">10</span>, <span class="at">y.brk2=</span><span class="dv">12</span>, <span class="at">mtext.line=</span><span class="fl">2.5</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># https://portals.broadinstitute.org/collaboration/</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>gz <span class="ot">&lt;-</span> <span class="fu">gzfile</span>(<span class="st">&quot;work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz&quot;</span>)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>BMI <span class="ot">&lt;-</span> <span class="fu">within</span>(<span class="fu">read.delim</span>(gz,<span class="at">as.is=</span><span class="cn">TRUE</span>), {Z <span class="ot">&lt;-</span> BETA<span class="sc">/</span>SE})</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">subset</span>(BMI[<span class="fu">c</span>(<span class="st">&quot;CHR&quot;</span>,<span class="st">&quot;POS&quot;</span>,<span class="st">&quot;SNP&quot;</span>,<span class="st">&quot;P&quot;</span>)],CHR<span class="sc">!=</span><span class="dv">16</span> <span class="sc">&amp;</span> P<span class="sc">&lt;=</span><span class="fl">1e-150</span>))</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rmpfr)</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">within</span>(<span class="fu">subset</span>(BMI, P<span class="sc">==</span><span class="dv">0</span>, <span class="at">select=</span><span class="fu">c</span>(CHR,POS,SNP,Z)),</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>             {P <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="fu">abs</span>(Z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">FALSE</span>)); Pvalue <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(Z); log10P <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10p</span>(Z)}))</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;BMI.png&quot;</span>, <span class="at">res=</span><span class="dv">300</span>, <span class="at">units=</span><span class="st">&quot;in&quot;</span>, <span class="at">width=</span><span class="dv">9</span>, <span class="at">height=</span><span class="dv">6</span>)</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">oma=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">6.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mhtplot.trunc</span>(BMI, <span class="at">chr=</span><span class="st">&quot;CHR&quot;</span>, <span class="at">bp=</span><span class="st">&quot;POS&quot;</span>, <span class="at">z=</span><span class="st">&quot;Z&quot;</span>, <span class="at">snp=</span><span class="st">&quot;SNP&quot;</span>,</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, <span class="at">genomewideline=</span><span class="sc">-</span><span class="fu">log10</span>(<span class="fl">1e-8</span>),</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">cex.mtext=</span><span class="fl">1.2</span>, <span class="at">cex.text=</span><span class="fl">1.2</span>,</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">annotatelog10P=</span><span class="dv">156</span>, <span class="at">annotateTop =</span> <span class="cn">FALSE</span>, <span class="at">highlight=</span><span class="fu">c</span>(<span class="st">&quot;rs13021737&quot;</span>,<span class="st">&quot;rs17817449&quot;</span>,<span class="st">&quot;rs6567160&quot;</span>),</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">mtext.line=</span><span class="dv">3</span>, <span class="at">y.brk1=</span><span class="dv">200</span>, <span class="at">y.brk2=</span><span class="dv">280</span>, <span class="at">cex.axis=</span><span class="fl">1.2</span>, <span class="at">cex.y=</span><span class="fl">1.2</span>, <span class="at">cex=</span><span class="fl">0.5</span>,</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">y.ax.space=</span><span class="dv">20</span>,</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue4&quot;</span>, <span class="st">&quot;skyblue&quot;</span>)</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">120</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap.datasets)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>mhtdata <span class="ot">&lt;-</span> <span class="fu">within</span>(mhtdata, {z<span class="ot">=</span><span class="fu">qnorm</span>(p<span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)})</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mhtplot.trunc</span>(mhtdata, <span class="at">chr =</span> <span class="st">&quot;chr&quot;</span>, <span class="at">bp =</span> <span class="st">&quot;pos&quot;</span>, <span class="at">z =</span> <span class="st">&quot;z&quot;</span>, <span class="at">snp =</span> <span class="st">&quot;rsn&quot;</span>, <span class="at">y.brk1=</span><span class="dv">10</span>, <span class="at">y.brk2=</span><span class="dv">12</span>, <span class="at">mtext.line=</span><span class="fl">2.5</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># https://portals.broadinstitute.org/collaboration/</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>gz <span class="ot">&lt;-</span> <span class="fu">gzfile</span>(<span class="st">&quot;work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz&quot;</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>BMI <span class="ot">&lt;-</span> <span class="fu">within</span>(<span class="fu">read.delim</span>(gz,<span class="at">as.is=</span><span class="cn">TRUE</span>), {Z <span class="ot">&lt;-</span> BETA<span class="sc">/</span>SE})</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">subset</span>(BMI[<span class="fu">c</span>(<span class="st">&quot;CHR&quot;</span>,<span class="st">&quot;POS&quot;</span>,<span class="st">&quot;SNP&quot;</span>,<span class="st">&quot;P&quot;</span>)],CHR<span class="sc">!=</span><span class="dv">16</span> <span class="sc">&amp;</span> P<span class="sc">&lt;=</span><span class="fl">1e-150</span>))</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rmpfr)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">within</span>(<span class="fu">subset</span>(BMI, P<span class="sc">==</span><span class="dv">0</span>, <span class="at">select=</span><span class="fu">c</span>(CHR,POS,SNP,Z)),</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>             {P <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="fu">abs</span>(Z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">FALSE</span>)); Pvalue <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(Z); log10P <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10p</span>(Z)}))</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;BMI.png&quot;</span>, <span class="at">res=</span><span class="dv">300</span>, <span class="at">units=</span><span class="st">&quot;in&quot;</span>, <span class="at">width=</span><span class="dv">9</span>, <span class="at">height=</span><span class="dv">6</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">oma=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">6.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mhtplot.trunc</span>(BMI, <span class="at">chr=</span><span class="st">&quot;CHR&quot;</span>, <span class="at">bp=</span><span class="st">&quot;POS&quot;</span>, <span class="at">z=</span><span class="st">&quot;Z&quot;</span>, <span class="at">snp=</span><span class="st">&quot;SNP&quot;</span>,</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, <span class="at">genomewideline=</span><span class="sc">-</span><span class="fu">log10</span>(<span class="fl">1e-8</span>),</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">cex.mtext=</span><span class="fl">1.2</span>, <span class="at">cex.text=</span><span class="fl">1.2</span>,</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">annotatelog10P=</span><span class="dv">156</span>, <span class="at">annotateTop =</span> <span class="cn">FALSE</span>, <span class="at">highlight=</span><span class="fu">c</span>(<span class="st">&quot;rs13021737&quot;</span>,<span class="st">&quot;rs17817449&quot;</span>,<span class="st">&quot;rs6567160&quot;</span>),</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">mtext.line=</span><span class="dv">3</span>, <span class="at">y.brk1=</span><span class="dv">200</span>, <span class="at">y.brk2=</span><span class="dv">280</span>, <span class="at">cex.axis=</span><span class="fl">1.2</span>, <span class="at">cex.y=</span><span class="fl">1.2</span>, <span class="at">cex=</span><span class="fl">0.5</span>,</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">y.ax.space=</span><span class="dv">20</span>,</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue4&quot;</span>, <span class="st">&quot;skyblue&quot;</span>)</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p>The plot for the GIANT data is shown here, <a href="https://jinghuazhao.github.io/Omics-analysis/BMI/">https://jinghuazhao.github.io/Omics-analysis/BMI/</a>.</p>
 </div>
 <div id="snptest_sample" class="section level2">
 <h2>snptest_sample</h2>
 <p>This is a function to output sample file for SNPTEST.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID_1=</span><span class="dv">1</span>,<span class="at">ID_2=</span><span class="dv">1</span>,<span class="at">missing=</span><span class="dv">0</span>,<span class="at">PC1=</span><span class="dv">1</span>,<span class="at">PC2=</span><span class="dv">2</span>,<span class="at">D1=</span><span class="dv">1</span>,<span class="at">P1=</span><span class="dv">10</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snptest_sample</span>(d,<span class="at">C=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),<span class="at">D=</span><span class="fu">paste0</span>(<span class="st">&quot;D&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),<span class="at">P=</span><span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID_1=</span><span class="dv">1</span>,<span class="at">ID_2=</span><span class="dv">1</span>,<span class="at">missing=</span><span class="dv">0</span>,<span class="at">PC1=</span><span class="dv">1</span>,<span class="at">PC2=</span><span class="dv">2</span>,<span class="at">D1=</span><span class="dv">1</span>,<span class="at">P1=</span><span class="dv">10</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snptest_sample</span>(d,<span class="at">C=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),<span class="at">D=</span><span class="fu">paste0</span>(<span class="st">&quot;D&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),<span class="at">P=</span><span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
 <p>The commands above generates a file named ``snptest.sample.</p>
 </div>
 </div>
@@ -1446,12 +1616,12 @@ div.csl-indent {
 #&gt; gif : function (data, gifset)  
 #&gt; grec2g : function (h, n, t)  
 #&gt; gsmr : function (data, X, Y, alpha = 0.05, other_plots = FALSE)  
-#&gt; h2 : function (mzDat = NULL, dzDat = NULL, rmz = NULL, rdz = NULL, nmz = NULL, 
-#&gt;     ndz = NULL, selV = NULL)  
 #&gt; h2.jags : function (y, x, G, eps = 1e-04, sigma.p = 0, sigma.r = 1, parms = c(&quot;b&quot;, 
 #&gt;     &quot;p&quot;, &quot;r&quot;, &quot;h2&quot;), ...)  
 #&gt; h2G : function (V, VCOV, verbose = TRUE)  
 #&gt; h2GE : function (V, VCOV, verbose = TRUE)  
+#&gt; h2_mzdz : function (mzDat = NULL, dzDat = NULL, rmz = NULL, rdz = NULL, nmz = NULL, 
+#&gt;     ndz = NULL, selV = NULL)  
 #&gt; h2l : function (K = 0.05, P = 0.5, h2, se, verbose = TRUE)  
 #&gt; hap : function (id, data, nloci, loci = rep(2, nloci), names = paste(&quot;loci&quot;, 
 #&gt;     1:nloci, sep = &quot;&quot;), control = hap.control())  
@@ -1560,31 +1730,31 @@ div.csl-indent {
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;       Package LibPath                             Item           
-#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;OPGall (OPG)&quot; 
-#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;OPGrsid (OPG)&quot;
-#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;OPGtbl (OPG)&quot; 
-#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;PD&quot;           
-#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;aldh2&quot;        
-#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;apoeapoc&quot;     
-#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;cf&quot;           
-#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;cnv&quot;          
-#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;crohn&quot;        
-#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;fa&quot;           
-#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;fsnps&quot;        
-#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;hg18&quot;         
-#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;hg19&quot;         
-#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;hg38&quot;         
-#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;hla&quot;          
-#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;inf1&quot;         
-#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;jma.cojo&quot;     
-#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;l51&quot;          
-#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;lukas&quot;        
-#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;mao&quot;          
-#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;meyer&quot;        
-#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;mfblong&quot;      
-#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;mr&quot;           
-#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpahfiYQ/Rinstfad77354d4b3&quot; &quot;nep499&quot;       
+#&gt;       Package LibPath                              Item           
+#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;OPGall (OPG)&quot; 
+#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;OPGrsid (OPG)&quot;
+#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;OPGtbl (OPG)&quot; 
+#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;PD&quot;           
+#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;aldh2&quot;        
+#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;apoeapoc&quot;     
+#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;cf&quot;           
+#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;cnv&quot;          
+#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;crohn&quot;        
+#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;fa&quot;           
+#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;fsnps&quot;        
+#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hg18&quot;         
+#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hg19&quot;         
+#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hg38&quot;         
+#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;hla&quot;          
+#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;inf1&quot;         
+#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;jma.cojo&quot;     
+#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;l51&quot;          
+#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;lukas&quot;        
+#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;mao&quot;          
+#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;meyer&quot;        
+#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;mfblong&quot;      
+#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;mr&quot;           
+#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpHhsSf2/Rinst12cb9267399bb&quot; &quot;nep499&quot;       
 #&gt;       Title                       
 #&gt;  [1,] &quot;Internal functions for gap&quot;
 #&gt;  [2,] &quot;Internal functions for gap&quot;
