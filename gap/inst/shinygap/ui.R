@@ -39,16 +39,18 @@ ui <- dashboardPage(
                sidebarPanel(
                    uiOutput("fb_var"),
                    sliderInput("fb_n", "n:", min = 1, max = 1000000, value = 500),
-                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 100, value = 30),
-                   sliderInput("fb_p", "p:", min = 0, max = 1, value = 0.5),
+                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 100, value = 1.5),
+                   sliderInput("fb_p", "p:", min = 0, max = 1, value = 0.1),
                    sliderInput("fb_alpha", "Alpha:", min = 0, max = 1, value = 1e-4),
                    sliderInput("fb_beta", "Beta:", min = 0, max = 1, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("fb_caption")),
-                   plotOutput("fb"),
-                   radioButtons('fb_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
-                   downloadButton("fb_report", "Download report")
+                   plotlyOutput("fb"),
+                   h3("Header of data:"),
+                   tableOutput("fb_preview"),
+                   radioButtons('fb_downloadFormat', 'Download file format:', c('bz2', 'gz', 'tsv', 'xz'), inline = TRUE),
+                   downloadButton("fb_download", "Download data")
                )
           )
         )
@@ -70,8 +72,10 @@ ui <- dashboardPage(
                mainPanel(
                    h3(verbatimTextOutput("pb_caption")),
                    plotlyOutput("pb"),
-                   radioButtons('pb_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
-                   downloadButton("pb_report", "Download report")
+                   h3("Header of data:"),
+                   tableOutput("pb_preview"),
+                   radioButtons('pb_downloadFormat', 'Download file format:', c('bz2', 'bz', 'tsv', 'xz'), inline = TRUE),
+                   downloadButton("pb_download", "Download data")
                )
           )
         )
@@ -93,9 +97,11 @@ ui <- dashboardPage(
                ),
                mainPanel(
                    h3(verbatimTextOutput("cc_caption")),
-                   plotOutput("cc"),
-                   radioButtons('cc_reportFormat', 'Report document format:', c('PDF', 'HTML', 'Word'), inline = TRUE),
-                   downloadButton("cc_report", "Download report")
+                   plotlyOutput("cc"),
+                   h3("Header of data:"),
+                   tableOutput("cc_preview"),
+                   radioButtons('cc_downloadFormat', 'Download file format:', c('bz2', 'gz', 'tsv', 'xz'), inline = TRUE),
+                   downloadButton("cc_download", "Download data")
                )
           ) # siderbarLayout
         ) # fluidRow
