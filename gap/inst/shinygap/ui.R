@@ -39,7 +39,6 @@ ui <- dashboardPage(
           sidebarLayout(
                sidebarPanel(
                    uiOutput("fb_var"),
-                   sliderInput("fb_n", "n:", min = 1, max = 1000000, value = 500),
                    sliderInput("fb_gamma", "Gamma:", min = 1, max = 100, value = 1.5),
                    sliderInput("fb_p", "p:", min = 0, max = 1, value = 0.2),
                    sliderInput("fb_alpha", "Alpha:", min = 0, max = 1, value = 1e-4),
@@ -87,14 +86,14 @@ ui <- dashboardPage(
           h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
-                 checkboxInput("cc_power", "sample size/power:", TRUE),
+                 checkboxInput("cc_power", "Power/Sample size:", TRUE),
                  uiOutput("cc_var"),
-                 sliderInput("cc_n", "n:", min = 0, max = 1, value = 1),
+                 sliderInput("cc_n", "n:", min = 100, max = 100000, value = 5000),
                  sliderInput("cc_q", "q:", min = 0, max = 1, value = 0.5),
                  sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_p1", "p1:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
-                 sliderInput("cc_hr", "hr:", min = 1, max = 100, value = 1.2)
+                 sliderInput("cc_theta", "hr:", min = 1, max = 10, value = 1.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("cc_caption")),
