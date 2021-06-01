@@ -2,10 +2,10 @@ server <- function(input, output) {
 # fb design
   output$fb_var <- renderUI({
      radioButtons("fb_var", "Variable (x axis of the plot):",
-                  c("Genotype relative risk"="fb_gamma",
-                    "frequency of disease allele"="fb_p",
-                    "type I error"="fb_alpha",
-                    "type II error"="fb_beta"
+                  c("Genotype relative risk (gmma)"="fb_gamma",
+                    "frequency of disease allele (p)"="fb_p",
+                    "type I error (alpha)"="fb_alpha",
+                    "type II error (beta)"="fb_beta"
                    )
                  )
   })
@@ -22,12 +22,12 @@ server <- function(input, output) {
      }
      else if(input$fb_var=="fb_p")
      {
-       x <- fb_p <- seq(0.05,0.1,by=0.05)
+       x <- fb_p <- seq(0.05,0.4,by=0.05)
        xlab <- "Frequency of disease allele"
      }
      else if(input$fb_var=="fb_alpha")
      {
-       x <- fb_alpha <- seq(0.0001,0.01,by=0.001)
+       x <- fb_alpha <- seq(0.0001,1e-4,by=5e-8)
        xlab <- "type I error"
      }
      else if(input$fb_var=="fb_beta")
@@ -55,11 +55,11 @@ server <- function(input, output) {
 # pb design
   output$pb_var <- renderUI({
      radioButtons("pb_var", "Variable (x axis of the plot):",
-                   c("Prevalence of disease"="pb_kp",
-                     "Genotype relative risk"="pb_gamma",
-                     "Frequency of disease allele"="pb_p",
-                     "type I error"="pb_alpha",
-                     "type II error"="pb_beta"
+                   c("Prevalence of disease (K)"="pb_kp",
+                     "Genotype relative risk (gamma)"="pb_gamma",
+                     "Frequency of disease allele (p)"="pb_p",
+                     "type I error (alpha)"="pb_alpha",
+                     "type II error (beta)"="pb_beta"
                     )
                  )
   })
@@ -84,7 +84,6 @@ server <- function(input, output) {
      {
         x <- pb_p <- seq(0.05,0.1,by=0.05)
         xlab <- "frequency of disease allele"
-        ylab <- "Sample size"
      }
      else if (input$pb_var=="pb_alpha")
      {
@@ -116,12 +115,12 @@ server <- function(input, output) {
 # cc design
   output$cc_var <- renderUI({
      radioButtons("cc_var", "Variable (x axis of the plot):",
-                   c("Cohort size"="cc_n",
-                     "Fraction for subcohort"="cc_q",
-                     "Proportion of failure in full cohort"="cc_pD",
-                     "Proportion of group 1"="cc_p1",
-                     "type I error"="cc_alpha",
-                     "Hazard ratio for two groups"="cc_theta"
+                   c("Cohort size (n)"="cc_n",
+                     "Fraction for subcohort (q)"="cc_q",
+                     "Proportion of failure (pD)"="cc_pD",
+                     "Proportion of group 1 (p1)"="cc_p1",
+                     "type I error (alpha)"="cc_alpha",
+                     "log-hazard ratio for two groups (theta)"="cc_theta"
                     )
                  )
   })
@@ -156,12 +155,12 @@ server <- function(input, output) {
      }
      else if(input$cc_var=="cc_theta")
      {
-        x <- cc_theta <- seq(0.0001,0.01,by=0.001)
+        x <- cc_theta <- seq(1,10,by=1.2)
         xlab <- "log-harzard ratio for two groups"
      }
      else if(input$cc_var=="cc_alpha")
      {
-        x <- cc_alpha <- seq(0.0001,0.01,by=0.001)
+        x <- cc_alpha <- seq(0.0001,1e-4,by=5e-8)
         xlab <- "type I error"
      }
      ylab <- switch(input$cc_power,"Power","Sample size")

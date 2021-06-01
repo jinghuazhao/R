@@ -39,10 +39,10 @@ ui <- dashboardPage(
           sidebarLayout(
                sidebarPanel(
                    uiOutput("fb_var"),
-                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 100, value = 1.5),
-                   sliderInput("fb_p", "p:", min = 0, max = 1, value = 0.2),
-                   sliderInput("fb_alpha", "Alpha:", min = 0, max = 1, value = 1e-4),
-                   sliderInput("fb_beta", "Beta:", min = 0, max = 1, value = 0.2)
+                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 15, value = 1.2),
+                   sliderInput("fb_p", "p:", min = 0, max = 0.4, value = 0.2),
+                   sliderInput("fb_alpha", "Alpha:", min = 0, max = 0.05, value = 1e-4),
+                   sliderInput("fb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("fb_caption")),
@@ -63,11 +63,11 @@ ui <- dashboardPage(
                sidebarPanel(
                    uiOutput("pb_var"),
                    sliderInput("pb_n", "n:", min = 1, max = 1000000, value = 500),
-                   sliderInput("pb_kp", "Kp:", min = 0, max = 1, value = 0.1),
+                   sliderInput("pb_kp", "Kp:", min = 0, max = 0.4, value = 0.1),
                    sliderInput("pb_gamma", "Gamma:", min = 1, max = 100, value = 4.5),
                    sliderInput("pb_p", "p:", min = 0, max = 1, value = 0.15),
-                   sliderInput("pb_alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
-                   sliderInput("pb_beta", "Beta:", min = 0, max = 1, value = 0.2)
+                   sliderInput("pb_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),
+                   sliderInput("pb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("pb_caption")),
@@ -89,10 +89,10 @@ ui <- dashboardPage(
                  checkboxInput("cc_power", "Power/Sample size:", TRUE),
                  uiOutput("cc_var"),
                  sliderInput("cc_n", "n:", min = 100, max = 100000, value = 5000),
-                 sliderInput("cc_q", "q:", min = 0, max = 1, value = 0.5),
+                 sliderInput("cc_q", "q:", min = 0, max = 0.4, value = 0.5),
                  sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_p1", "p1:", min = 0, max = 1, value = 0.15),
-                 sliderInput("cc_alpha", "Alpha:", min = 0, max = 1, value = 5e-8),
+                 sliderInput("cc_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),
                  sliderInput("cc_theta", "hr:", min = 1, max = 10, value = 1.2)
                ),
                mainPanel(
