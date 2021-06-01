@@ -33,7 +33,7 @@ ui <- dashboardPage(
          )
       ),
       tabItem(tabName = "fbDesign",
-        h2("Family-based study design"),
+        h2("Family-based design"),
         fluidRow(
           h3("Parameters"),
           sidebarLayout(
@@ -56,7 +56,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "pbDesign",
-        h2("Population-based study design"),
+        h2("Population-based design"),
         fluidRow(
           h3("Parameters"),
           sidebarLayout(
@@ -81,7 +81,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "ccDesign",
-        h2("Case-cohort study design"),
+        h2("Case-cohort design"),
         fluidRow(
           h3("Parameters"),
           sidebarLayout(
@@ -89,7 +89,7 @@ ui <- dashboardPage(
                  checkboxInput("cc_power", "Power/Sample size:", TRUE),
                  uiOutput("cc_var"),
                  sliderInput("cc_n", "n:", min = 100, max = 100000, value = 5000),
-                 sliderInput("cc_q", "q:", min = 0, max = 0.4, value = 0.5),
+                 sliderInput("cc_q", "q:", min = 0, max = 0.4, value = 0.15),
                  sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_p1", "p1:", min = 0, max = 1, value = 0.15),
                  sliderInput("cc_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),

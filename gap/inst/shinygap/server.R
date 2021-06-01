@@ -27,7 +27,7 @@ server <- function(input, output) {
      }
      else if(input$fb_var=="fb_alpha")
      {
-       x <- fb_alpha <- seq(0.0001,1e-4,by=5e-8)
+       x <- fb_alpha <- seq(1e-8,1e-4,by=5e-8)
        xlab <- "type I error"
      }
      else if(input$fb_var=="fb_beta")
@@ -73,28 +73,28 @@ server <- function(input, output) {
      pb_beta <- input$pb_beta
      if (input$pb_var=="pb_kp")
      {
-        x <- pb_kp <- seq(0.05,0.4,by=0.05)
         xlab <- "Prevalance of disease"
+        x <- pb_kp <- seq(0.05,0.4,by=0.05)
      }
      else if (input$pb_var=="pb_gamma")
      {
-        x <- pb_gamma <- seq(1,2,by=0.15)
         xlab <- "Genotype relative risk"
+        x <- pb_gamma <- seq(1,2,by=0.15)
      }
      else if (input$pb_var=="pb_p")
      {
-        x <- pb_p <- seq(0.05,0.1,by=0.05)
         xlab <- "frequency of disease allele"
+        x <- pb_p <- seq(0.05,0.1,by=0.05)
      }
      else if (input$pb_var=="pb_alpha")
      {
-        x <- pb_alpha <- seq(0.0001,0.01,by=0.001)
         xlab <- "type I error"
+        x <- pb_alpha <- seq(0.0001,0.01,by=0.001)
      }
      else if (input$pb_var=="pb_beta")
      {
-        x <- pb_beta <- seq(0.01,0.4,by=0.05)
         xlab <- "type II error"
+        x <- pb_beta <- seq(0.01,0.4,by=0.05)
      }
      y <- ceiling(gap::pbsize(pb_kp,pb_gamma,pb_p,pb_alpha,pb_beta))
      ylab <- "Sample size"
