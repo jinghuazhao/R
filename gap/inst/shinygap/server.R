@@ -137,17 +137,17 @@ server <- function(input, output) {
      cc_power <- input$cc_power
      if (input$cc_var=="cc_n")
      {
-       x <- cc_n <- seq(1,100000,by=100)
+       x <- cc_n <- seq(1,500000,by=100)
        xlab <- "Cohort size"
      }
      else if(input$cc_var=="cc_q")
      {
-       x <- cc_q <- seq(0.01,0.4,by=0.05)
+       x <- cc_q <- seq(0.01,0.1,by=0.02)
        xlab <- "Sampling fraction"
      }
      else if(input$cc_var=="cc_pD")
      {
-       x <- cc_pD <- seq(0.01,0.4,by=0.05)
+       x <- cc_pD <- seq(0.01,0.4,by=0.02)
        xlab <- "Proportion of failure"
      }
      else if(input$cc_var=="cc_p1")
@@ -157,7 +157,7 @@ server <- function(input, output) {
      }
      else if(input$cc_var=="cc_theta")
      {
-        x <- cc_theta <- seq(1,10,by=1.2)
+        x <- cc_theta <- seq(0.02,2.3,by=0.3)
         xlab <- "log-harzard ratio for two groups"
      }
      else if(input$cc_var=="cc_alpha")
