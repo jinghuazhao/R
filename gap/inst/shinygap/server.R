@@ -2,7 +2,7 @@ server <- function(input, output) {
 # fb design
   output$fb_var <- renderUI({
      radioButtons("fb_var", "Variable (x axis of the plot):",
-                  c("Genotype relative risk (gmma)"="fb_gamma",
+                  c("Genotype relative risk (gamma)"="fb_gamma",
                     "frequency of disease allele (p)"="fb_p",
                     "type I error (alpha)"="fb_alpha",
                     "type II error (beta)"="fb_beta"
@@ -17,7 +17,7 @@ server <- function(input, output) {
      fb_beta <- input$fb_beta
      if (input$fb_var=="fb_gamma")
      {
-       x <- fb_gamma <- seq(1,2,by=0.15)
+       x <- fb_gamma <- seq(1,5,by=0.15)
        xlab <- "Genotype relative risk"
      }
      else if(input$fb_var=="fb_p")
@@ -42,12 +42,13 @@ server <- function(input, output) {
   })
   output$fb_preview <- renderTable({head(fb_data())%>%select(-point.label,-xlab,-ylab)})
   output$fb <- renderPlotly({with(fb_data(), {
-                                  plot_ly(x=x,y=y,type="scatter",mode="markers") %>%
-                                  add_lines(x=x,y=y) %>%
-                                  add_markers(text=point.label) %>%
-                                  layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
-                             })
-               })
+                                               plot_ly(x=x,y=y,type="scatter",mode="markers") %>%
+                                               add_lines(x=x,y=y) %>%
+                                               add_markers(text=point.label) %>%
+                                               layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
+                                             }
+                                 )
+                            })
   output$fb_download <- downloadHandler(
     filename = function() {paste("fb", sep=".", switch(input$fb_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom_write(fb_data(), file)}
@@ -106,8 +107,9 @@ server <- function(input, output) {
                                                add_lines(x=x, y=y) %>%
                                                add_markers(text=point.label) %>%
                                                layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
-                             })
-               })
+                                             }
+                                 )
+                            })
   output$pb_download <- downloadHandler(
     filename = function() {paste("pb", sep=".", switch(input$pb_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom_write(pb_data(), file)}
@@ -120,7 +122,7 @@ server <- function(input, output) {
                      "Proportion of failure (pD)"="cc_pD",
                      "Proportion of group 1 (p1)"="cc_p1",
                      "type I error (alpha)"="cc_alpha",
-                     "log-hazard ratio for two groups (theta)"="cc_theta"
+                     "log(HR) for two groups (theta)"="cc_theta"
                     )
                  )
   })
@@ -174,8 +176,9 @@ server <- function(input, output) {
                                                add_lines(x=n, y=z) %>%
                                                add_markers(text=point.label) %>%
                                                layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
-                             })
-               })
+                                             }
+                                 )
+                            })
   output$cc_download <- downloadHandler(
     filename = function() {paste("cc", sep=".", switch(input$cc_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom_write(cc_data(), file)}

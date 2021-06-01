@@ -41,7 +41,7 @@ ui <- dashboardPage(
                    uiOutput("fb_var"),
                    sliderInput("fb_gamma", "Gamma:", min = 1, max = 15, value = 1.2),
                    sliderInput("fb_p", "p:", min = 0, max = 0.4, value = 0.2),
-                   sliderInput("fb_alpha", "Alpha:", min = 0, max = 0.05, value = 1e-4),
+                   sliderInput("fb_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),
                    sliderInput("fb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
                ),
                mainPanel(
