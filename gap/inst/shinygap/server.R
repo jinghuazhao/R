@@ -121,8 +121,9 @@ server <- function(input, output) {
                      "Fraction for subcohort (q)"="cc_q",
                      "Proportion of failure (pD)"="cc_pD",
                      "Proportion of group 1 (p1)"="cc_p1",
+                     "log(HR) for two groups (theta)"="cc_theta",
                      "type I error (alpha)"="cc_alpha",
-                     "log(HR) for two groups (theta)"="cc_theta"
+                     "type II error (beta)"="cc_beta"
                     )
                  )
   })
@@ -132,8 +133,9 @@ server <- function(input, output) {
      cc_q <- input$cc_q
      cc_pD <- input$cc_pD
      cc_p1 <- input$cc_p1
-     cc_alpha <- input$cc_alpha
      cc_theta <- input$cc_theta
+     cc_alpha <- input$cc_alpha
+     cc_beta <- input$cc_beta
      cc_power <- input$cc_power
      if (input$cc_var=="cc_n")
      {
@@ -162,11 +164,17 @@ server <- function(input, output) {
      }
      else if(input$cc_var=="cc_alpha")
      {
-        x <- cc_alpha <- seq(0.0001,1e-4,by=5e-8)
+        x <- cc_alpha <- seq(0.0001,0.4,by=0.05)
         xlab <- "type I error"
      }
-     ylab <- switch(input$cc_power,"Power","Sample size")
-     z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_alpha,cc_theta,cc_power)
+     else if(input$cc_var=="cc_beta")
+     {
+        x <- cc_alpha <- seq(0,0.4,by=0.1)
+        xlab <- "type II error"
+     }
+     power <- switch(input$cc_power,TRUE,FALSE)
+     ylab <- ifelse(power, "Power", "Sample size")
+     z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,power)
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",z),sep="\n")
      data.frame(n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,alpha=cc_alpha,theta=cc_theta,z,point.label,xlab,ylab)
   })

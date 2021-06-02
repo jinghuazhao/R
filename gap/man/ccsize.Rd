@@ -1,7 +1,7 @@
 \name{ccsize}
 \alias{ccsize}
 \title{Power and sample size for case-cohort design}
-\usage{ccsize(n,q,pD,p1,alpha,theta,power=NULL,verbose=FALSE)}
+\usage{ccsize(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)}
 \description{
 The power of the test is according to 
 \deqn{\Phi\left(Z_\alpha+m^{1/2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)}{Phi(Z_alpha+m^0.5*theta*sqrt(p_1p_2p_D/q+(1-q)p_D))}
@@ -20,15 +20,15 @@ When infeaisble configurations are specified, a sample size of -999 is returned.
   \item{q}{the sampling fraction of the subcohort}
   \item{pD}{the proportion of the failures in the full cohort}
   \item{p1}{proportions of the two groups (p2=1-p1)}
-  \item{alpha}{significant level}
   \item{theta}{log-hazard ratio for two groups}
+  \item{alpha}{type I error -- significant level}
+  \item{beta}{type II error}
   \item{power}{if specified, the power for which sample size is calculated}
   \item{verbose}{error messages are explicitly printed out}
 }
 
 \value{
 The returned value is a value indicating the power or required sample size.
-
 }
 
 \section{References}{
