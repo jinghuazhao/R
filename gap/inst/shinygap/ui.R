@@ -63,7 +63,7 @@ ui <- dashboardPage(
                sidebarPanel(
                    uiOutput("pb_var"),
                    sliderInput("pb_kp", "Kp:", min = 0, max = 0.4, value = 0.1),
-                   sliderInput("pb_gamma", "Gamma:", min = 1, max = 100, value = 4.5),
+                   sliderInput("pb_gamma", "Gamma:", min = 1, max = 30, value = 4.5),
                    sliderInput("pb_p", "p:", min = 0.01, max = 0.8, value = 0.1),
                    sliderInput("pb_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),
                    sliderInput("pb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
