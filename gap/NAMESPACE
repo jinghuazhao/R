@@ -46,4 +46,3 @@ importFrom("grDevices", "dev.off")
 importFrom("graphics", "title")
 importFrom("graphics", "boxplot")
 importFrom("stats", "coef", "lm", "sd")
-
