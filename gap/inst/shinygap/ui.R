@@ -39,7 +39,7 @@ ui <- dashboardPage(
           sidebarLayout(
                sidebarPanel(
                    uiOutput("fb_var"),
-                   sliderInput("fb_gamma", "Gamma:", min = 1.5, max = 4, value = 0.5),
+                   sliderInput("fb_gamma", "Gamma:", min = 1.2, max = 4, value = 1.5),
                    sliderInput("fb_p", "p:", min = 0.01, max = 0.8, value = 0.1),
                    sliderInput("fb_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),
                    sliderInput("fb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
@@ -62,7 +62,6 @@ ui <- dashboardPage(
           sidebarLayout(
                sidebarPanel(
                    uiOutput("pb_var"),
-                   sliderInput("pb_n", "n:", min = 1, max = 1000000, value = 500),
                    sliderInput("pb_kp", "Kp:", min = 0, max = 0.4, value = 0.1),
                    sliderInput("pb_gamma", "Gamma:", min = 1, max = 100, value = 4.5),
                    sliderInput("pb_p", "p:", min = 0.01, max = 0.8, value = 0.1),
