@@ -1,7 +1,7 @@
-#' 3D Manhattan plot
+#' 3D pQTL plot
 #'
 #' @md
-#' @param d Data in mhtplot2d() format.
+#' @param d Data in pqtl2d() format.
 #' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param zmax Maximum -log10p to truncate, above which they would be set to this value.
 #' @export
@@ -11,15 +11,15 @@
 #' \dontrun{
 #' INF <- Sys.getenv("INF")
 #' d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
-#' r <- mhtplot3d(d,zmax=300)
+#' r <- pqtl3d(d,zmax=300)
 #' htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.latest.html"))
 #' r
 #' }
 
-mhtplot3d <- function(d, chrlen=gap::hg19, zmax=300)
+pqtl3d <- function(d, chrlen=gap::hg19, zmax=300)
 {
   n <- CM <- snpid <- pos_pqtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- NA
-  t2d <- mhtplot2d(d, chrlen, plot=FALSE)
+  t2d <- pqtl2d(d, chrlen, plot=FALSE)
   n <- with(t2d, n)
   CM <- with(t2d, CM)
   tkvals <- tktxts <- vector()

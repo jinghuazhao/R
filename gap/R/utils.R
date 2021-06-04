@@ -759,7 +759,7 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
   for(p in c("jsonlite", "plotly")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))
-        warning(paste("mhtplot3d needs package `", p, "' to be fully functional; please install", sep=""))
+        warning(paste("sun3d needs package `", p, "' to be fully functional; please install", sep=""))
      }
   }
   src <- list(
@@ -812,7 +812,7 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
     jsHooks = list()
   )
   d <- read.csv(xyz,as.is=TRUE)
-  r <- mhtplot2d(d, plot=FALSE)
+  r <- pqtl2d(d, plot=FALSE)
   cuts <- with(r, abs(log10p) > log10p.max)
   r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
   fixes <- function(col,d) paste(paste(prefix[col],d[,col],sep=":"),postfix)
