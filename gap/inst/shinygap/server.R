@@ -15,22 +15,22 @@ server <- function(input, output) {
      fb_p <- input$fb_p
      fb_alpha <- input$fb_alpha
      fb_beta <- input$fb_beta
-     if (input$fb_var=="fb_gamma")
+     if (req(input$fb_var)=="fb_gamma")
      {
        x <- fb_gamma <- seq(1,5,by=0.15)
        xlab <- "Genotype relative risk"
      }
-     else if(input$fb_var=="fb_p")
+     else if(req(input$fb_var)=="fb_p")
      {
        x <- fb_p <- seq(0.05,0.4,by=0.05)
        xlab <- "Frequency of disease allele"
      }
-     else if(input$fb_var=="fb_alpha")
+     else if(req(input$fb_var)=="fb_alpha")
      {
        x <- fb_alpha <- seq(1e-8,1e-4,by=5e-8)
        xlab <- "type I error"
      }
-     else if(input$fb_var=="fb_beta")
+     else if(req(input$fb_var)=="fb_beta")
      {
        x <- fb_beta <- seq(0.01,0.4,by=0.05)
        xlab <- "type II error"
@@ -71,27 +71,27 @@ server <- function(input, output) {
      pb_p <- input$pb_p
      pb_alpha <- input$pb_alpha
      pb_beta <- input$pb_beta
-     if (input$pb_var=="pb_kp")
+     if (req(input$pb_var)=="pb_kp")
      {
         xlab <- "Prevalance of disease"
         x <- pb_kp <- seq(0.05,0.4,by=0.05)
      }
-     else if (input$pb_var=="pb_gamma")
+     else if (req(input$pb_var)=="pb_gamma")
      {
         xlab <- "Genotype relative risk"
         x <- pb_gamma <- seq(1,2,by=0.15)
      }
-     else if (input$pb_var=="pb_p")
+     else if (req(input$pb_var)=="pb_p")
      {
         xlab <- "frequency of disease allele"
         x <- pb_p <- seq(0.05,0.1,by=0.05)
      }
-     else if (input$pb_var=="pb_alpha")
+     else if (req(input$pb_var)=="pb_alpha")
      {
         xlab <- "type I error"
         x <- pb_alpha <- seq(0.0001,0.01,by=0.001)
      }
-     else if (input$pb_var=="pb_beta")
+     else if (req(input$pb_var)=="pb_beta")
      {
         xlab <- "type II error"
         x <- pb_beta <- seq(0.01,0.4,by=0.05)
@@ -137,46 +137,46 @@ server <- function(input, output) {
      cc_alpha <- input$cc_alpha
      cc_beta <- input$cc_beta
      cc_power <- input$cc_power
-     if (input$cc_var=="cc_n")
+     if (req(input$cc_var)=="cc_n")
      {
        x <- cc_n <- seq(1,500000,by=100)
        xlab <- "Cohort size"
      }
-     else if(input$cc_var=="cc_q")
+     else if(req(input$cc_var)=="cc_q")
      {
        x <- cc_q <- seq(0.01,0.1,by=0.02)
        xlab <- "Sampling fraction"
      }
-     else if(input$cc_var=="cc_pD")
+     else if(req(input$cc_var)=="cc_pD")
      {
        x <- cc_pD <- seq(0.01,0.4,by=0.02)
        xlab <- "Proportion of failure"
      }
-     else if(input$cc_var=="cc_p1")
+     else if(req(input$cc_var)=="cc_p1")
      {
        x <- cc_p1 <- seq(0.01,0.4,by=0.05)
        xlab <- "Proportion of group 1"
      }
-     else if(input$cc_var=="cc_theta")
+     else if(req(input$cc_var)=="cc_theta")
      {
         x <- cc_theta <- seq(0.02,2.3,by=0.3)
         xlab <- "log-harzard ratio for two groups"
      }
-     else if(input$cc_var=="cc_alpha")
+     else if(req(input$cc_var)=="cc_alpha")
      {
         x <- cc_alpha <- seq(0.0001,0.4,by=0.05)
         xlab <- "type I error"
      }
-     else if(input$cc_var=="cc_beta")
+     else if(req(input$cc_var)=="cc_beta")
      {
         x <- cc_alpha <- seq(0,0.4,by=0.1)
         xlab <- "type II error"
      }
-     power <- switch(input$cc_power,TRUE,FALSE)
+     power <- switch(req(input$cc_power),TRUE,FALSE)
      ylab <- ifelse(power, "Power", "Sample size")
      z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,power)
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",z),sep="\n")
-     data.frame(n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,alpha=cc_alpha,theta=cc_theta,z,point.label,xlab,ylab)
+     data.frame(n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,z,point.label,xlab,ylab)
   })
   output$cc_preview <- renderTable({head(cc_data())%>%select(-point.label,-xlab,-ylab)})
   output$cc <- renderPlotly({with(cc_data(), {

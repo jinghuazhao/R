@@ -1,7 +1,7 @@
 ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)
 {
    p2 <- 1 - p1
-   if(!power)
+   if(power)
 # equation (5)
    {
      z_alpha <- qnorm(alpha)
