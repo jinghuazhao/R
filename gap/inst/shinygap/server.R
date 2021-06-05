@@ -172,7 +172,7 @@ server <- function(input, output) {
         x <- cc_alpha <- seq(0,0.4,by=0.1)
         xlab <- "type II error"
      }
-     power <- switch(req(input$cc_power),TRUE,FALSE)
+     power <- req(input$cc_power)
      ylab <- ifelse(power, "Power", "Sample size")
      z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,power)
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",z),sep="\n")
