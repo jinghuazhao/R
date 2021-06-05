@@ -13,16 +13,13 @@ ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)
    {
      nb <- -999
      z_alpha <- qnorm(alpha, lower.tail=FALSE)
-     z_beta <- qnorm(1-beta)
+     z_beta <- qnorm(1-beta, lower.tail=FALSE)
      theta_lon <- (z_alpha + z_beta) / sqrt(p1 * p2 * pD)
      d <- (theta / theta_lon)^2 - (1 - pD) / n
+     nb <- ceiling(pD / d)
+     nb [nb > n] <- -999
      if (any(d <= 0) & verbose) cat("bad hazard ratio =", exp(theta), "\n")
-     else 
-     {
-       nb <- ceiling(pD / d)
-       nb [nb > n] <- -999
-       if (any(nb > n) & verbose) cat("bad subcohort size", nb, "\n")
-     }
+     else if (any(nb > n) & verbose) cat("bad subcohort size", nb, "\n")
      invisible(nb)
    }
 }
