@@ -87,10 +87,10 @@ ui <- dashboardPage(
                sidebarPanel(
                  checkboxInput("cc_power", "Power/Sample size:", TRUE),
                  uiOutput("cc_var"),
-                 sliderInput("cc_n", "n:", min = 100, max = 100000, value = 15792),
-                 sliderInput("cc_q", "q:", min = 0.02, max = 0.1, value = 0.02),
-                 sliderInput("cc_pD", "pD:", min = 0, max = 1, value = 0.03),
-                 sliderInput("cc_p1", "p1:", min = 0, max = 1, value = 0.25),
+                 sliderInput("cc_n", "n:", min = 100, max = 100000, value = 5000),
+                 sliderInput("cc_q", "q:", min = 0.01, max = 0.4, value = 0.05),
+                 sliderInput("cc_pD", "pD:", min = 0, max = 0.8, value = 0.05),
+                 sliderInput("cc_p1", "p1:", min = 0, max = 0.8, value = 0.05),
                  sliderInput("cc_theta", "log(HR):", min = 0.02, max = 2.3, value = 0.3),
                  sliderInput("cc_alpha", "Alpha:", min = 0, max = 0.4, value = 0.05),
                  sliderInput("cc_beta", "Beta:", min = 0, max = 0.4, value = 0.2)

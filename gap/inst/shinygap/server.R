@@ -159,7 +159,7 @@ server <- function(input, output) {
      }
      else if(req(input$cc_var)=="cc_theta")
      {
-        x <- cc_theta <- seq(0.02,2.3,by=0.3)
+        x <- cc_theta <- seq(0.02,2.3,by=0.1)
         xlab <- "log-harzard ratio for two groups"
      }
      else if(req(input$cc_var)=="cc_alpha")
