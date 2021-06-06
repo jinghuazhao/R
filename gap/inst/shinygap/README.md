@@ -1,5 +1,7 @@
 This is an initial attempt to enable easy calculation/visualization of three study designs.
 
+*The Shiny app only works on gap 1.2.3-2* from GitHub.
+
 ## Family-based study
 
 This is a call to `gap::fbsize()`. Note in particular that `alpha` parameter actually contains three elements and the 3rd of which is for ASP+TDT.
