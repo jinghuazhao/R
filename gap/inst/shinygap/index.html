@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Shiny for Genetic Analysis Package (gap) Designs</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Shiny for Genetic Analysis Package (gap) Designs</h1>
+</header>
+<p>This is an initial attempt to enable easy calculation/visualization of three study designs.</p>
+<p><em>The Shiny app only works on gap 1.2.3-2</em> from GitHub.</p>
+<h2 id="family-based-study">Family-based study</h2>
+<p>This is a call to <code>gap::fbsize()</code>. Note in particular that <code>alpha</code> parameter actually contains three elements and the 3rd of which is for ASP+TDT.</p>
+<h2 id="population-based-study">Population-based study</h2>
+<p>This is a call to <code>gap::pbsize()</code>.</p>
+<h2 id="case-cohort-study">Case-cohort study</h2>
+<p>This is a call to <code>gap::ccsize()</code>. Note that its <code>poper</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
+<p>To set the default parameters, some compromises need to be made, e.g., Kp=1e-5~0.4, MAF=1e-3~0.8, alpha=5e-8~0.05, beta=0.01~0.4. The slider input provides upper bounds of a particular parameter.</p>
+<p>It is somewhat surprising that although the gap vignette gap.Rmd gives good reasults, <code>fbsize()</code> does not handle <code>gamma</code> well, nor does `<code>ccsize()</code> with sample size calculation.</p>
+<hr />
+<h1 id="appendix-theory">Appendix: Theory</h1>
+<h2 id="family-based-and-population-based-designs">Family-based and population-based designs</h2>
+<p>See the R/gap package vignette jss or <span class="citation" data-cites="zhao07">@zhao07</span>.</p>
+<h2 id="case-cohort-design">Case-cohort design</h2>
+<h3 id="power">Power</h3>
+<p>Following <span class="citation" data-cites="cai04">@cai04</span>, we have <span class="math display">\[\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is the significance level, <span class="math inline">\(\theta\)</span> is the log-hazard ratio for two groups, <span class="math inline">\(p_j, j = 1, 2\)</span>, are the proportion of the two groups in the population (<span class="math inline">\(p_1 + p_2 = 1\)</span>), <span class="math inline">\(\tilde{n}\)</span> is the total number of subjects in the subcohort, <span class="math inline">\(p_D\)</span> is the proportion of the failures in the full cohort, and <span class="math inline">\(q\)</span> is the sampling fraction of the subcohort.</p>
+<h3 id="sample-size">Sample size</h3>
+<p><span class="math display">\[\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}\]</span> where <span class="math display">\[B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}\]</span> and <span class="math inline">\(n\)</span> is the whole cohort size.</p>
+<h1 id="references">References</h1>
+</body>
+</html>
