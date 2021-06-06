@@ -47,8 +47,8 @@ ui <- dashboardPage(
                    ),
                    sliderInput("fb_gamma", "Gamma:", min = 1.2, max = 30, value = 4),
                    sliderInput("fb_p", "p:", min = 0.01, max = 0.8, value = 0.01),
-                   sliderInput("fb_alpha", "Alpha:", min = 0, max = 1e-4, value = 1e-6),
-                   sliderInput("fb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
+                   sliderInput("fb_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 1e-6),
+                   sliderInput("fb_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("fb_caption")),
@@ -75,11 +75,11 @@ ui <- dashboardPage(
                                   "type II error (beta)"="pb_beta"
                                  )
                    ),
-                   sliderInput("pb_kp", "Kp:", min = 0, max = 0.4, value = 0.1),
+                   sliderInput("pb_kp", "Kp:", min = 1e-5, max = 0.4, value = 0.1),
                    sliderInput("pb_gamma", "Gamma:", min = 1, max = 30, value = 4.5),
-                   sliderInput("pb_p", "p:", min = 0.01, max = 0.8, value = 0.1),
-                   sliderInput("pb_alpha", "Alpha:", min = 0, max = 1e-4, value = 5e-8),
-                   sliderInput("pb_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
+                   sliderInput("pb_p", "p:", min = 1e-3, max = 0.8, value = 0.1),
+                   sliderInput("pb_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 5e-8),
+                   sliderInput("pb_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("pb_caption")),
@@ -109,13 +109,13 @@ ui <- dashboardPage(
                                 "type II error (beta)"="cc_beta"
                                )
                  ),
-                 sliderInput("cc_n", "n:", min = 100, max = 100000, value = 25000),
+                 sliderInput("cc_n", "n:", min = 100, max = 500000, value = 25000),
                  sliderInput("cc_q", "q:", min = 0.01, max = 0.5, value = 0.01),
-                 sliderInput("cc_pD", "pD:", min = 0, max = 0.8, value = 0.05),
-                 sliderInput("cc_p1", "p1:", min = 0, max = 0.8, value = 0.05),
-                 sliderInput("cc_theta", "log(HR):", min = 0.02, max = 2.3, value = 0.3),
-                 sliderInput("cc_alpha", "Alpha:", min = 5e-8, max = 0.4, value = 0.05),
-                 sliderInput("cc_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
+                 sliderInput("cc_pD", "pD:", min = 1e-5, max = 0.8, value = 0.05),
+                 sliderInput("cc_p1", "p1:", min = 1e-5, max = 0.8, value = 0.05),
+                 sliderInput("cc_theta", "log(HR):", min = 0.01, max = 2.3, value = 0.3),
+                 sliderInput("cc_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 0.05),
+                 sliderInput("cc_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("cc_caption")),

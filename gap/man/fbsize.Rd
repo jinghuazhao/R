@@ -1,7 +1,7 @@
 \name{fbsize}
 \alias{fbsize}
 \title{Sample size for family-based linkage and association design}
-\usage{fbsize(gamma,p,alpha=c(1e-4,1e-6,1e-8),beta=0.2,debug=0,error=0)}
+\usage{fbsize(gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)}
 \description{
 This function implements Risch and Merikangas (1996) statistics 
 evaluating power for family-based linkage (affected sib pairs, ASP) and
