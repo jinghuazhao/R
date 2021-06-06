@@ -84,9 +84,10 @@ cis.vs.trans.classification A cis/trans classifier
 comp.score              score statistics for testing genetic linkage of quantitative trait
 GRM functions           ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS
                         handle genomic relationship matrix involving other software
-h2G                     Heritability and its variance
-h2GE                    Heritability and its variance when there is an environment component
-h2l                     Heritability under the liability threshold model
+h2G                     A utility function for heritability
+h2GE                    A utility function for heritability involving gene-environment interaction
+h2l                     A utility function for converting observed heritability to its counterpart
+                        under liability threshold model
 h2_mzdz                 Heritability estimation according to twin correlations
 klem                    Haplotype frequency estimation based on a genotype table
                         of two multiallelic markers

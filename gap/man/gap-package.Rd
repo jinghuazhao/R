@@ -122,11 +122,11 @@ comp.score        \tab      score statistics for testing genetic linkage of quan
 GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\cr
                   \tab      WriteGRMBin, WriteGRMSAS\cr
                   \tab      handle genomic relationship matrix involving other software\cr
-h2G               \tab      Heritability and its variance\cr
-h2GE              \tab      Heritability and its variance when there is an environment component\cr
-h2l               \tab      Heritability under the liability threshold model\cr
+h2G               \tab      A utility function for heritability\cr
+h2GE              \tab      A utility function for heritability involving gene-environment interaction\cr
+h2l               \tab      A utility function for converting observed heritability to its counterpart\cr
+                  \tab      under liability threshold model\cr
 h2_mzdz           \tab      Heritability estimation according to twin correlations\cr
-                  \tab      for case-control studies\cr
 klem              \tab      Haplotype frequency estimation based on a genotype table\cr
                   \tab      of two multiallelic markers\cr
 makeped           \tab      A function to prepare pedigrees in post-MAKEPED format\cr

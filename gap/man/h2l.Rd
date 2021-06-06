@@ -15,7 +15,7 @@ h2l(K = 0.05, P = 0.5, h2, se, verbose = TRUE)
 
 \item{se}{Standard error.}
 
-\item{verbase}{Detailed output.}
+\item{verbose}{Detailed output.}
 }
 \value{
 A list of the input heritability estimate/standard error and their counterpart under liability threshold model, the normal deviate..

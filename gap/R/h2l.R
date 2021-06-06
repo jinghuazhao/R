@@ -5,7 +5,7 @@
 #' @param P Phenotypeic variance.
 #' @param h2 Heritability estimate.
 #' @param se Standard error.
-#' @param verbase Detailed output.
+#' @param verbose Detailed output.
 #' @export
 #' @return A list of the input heritability estimate/standard error and their counterpart under liability threshold model, the normal deviate..
 

@@ -65,9 +65,6 @@
 \alias{getb1star}
 \alias{getPTE}
 \alias{grec2g}
-\alias{h2G}
-\alias{h2GE}
-\alias{h2l}
 \alias{hap.control}
 \alias{hap.score.glm}
 \alias{hap.score.podds}
@@ -112,9 +109,6 @@ a2g(a1,a2)
 chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 g2a(g)
 g2a.c(g)
-h2G(V,VCOV,verbose=TRUE)
-h2GE(V,VCOV,verbose=TRUE)
-h2l(K=0.05,P=0.5,h2,se,verbose=TRUE)
 inv_chr_pos_a1_a2(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 KCC(model,GRR,p1,K)
 sun3d(xyz="INF1.merge.cis.vs.trans",
@@ -155,12 +149,6 @@ gcode is as a2g.
 grid2d is used to optional draw a 2-d grid according to chromosomal lengths.
 
 grec2g is undocumented.
-
-h2G is a utility function for heritability
-
-h2GE is a utility function for heritability involving gene-environment interaction
-
-h2l is a utility function for converting observed heritability to its counterpart under liability threshold model
 
 hap.control is used by hap.em().
 
