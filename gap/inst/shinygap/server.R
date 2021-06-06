@@ -1,14 +1,5 @@
 server <- function(input, output) {
 # fb design
-  output$fb_var <- renderUI({
-     radioButtons("fb_var", "Variable (x axis of the plot):",
-                  c("Genotype relative risk (gamma)"="fb_gamma",
-                    "frequency of disease allele (p)"="fb_p",
-                    "type I error (alpha)"="fb_alpha",
-                    "type II error (beta)"="fb_beta"
-                   )
-                 )
-  })
   output$fb_caption <- reactive({paste("Figure: family-based design as a function of",input$fb_var)})
   fb_data <- reactive({
      fb_gamma <- input$fb_gamma
@@ -54,16 +45,6 @@ server <- function(input, output) {
     content = function(file) {vroom_write(fb_data(), file)}
   )
 # pb design
-  output$pb_var <- renderUI({
-     radioButtons("pb_var", "Variable (x axis of the plot):",
-                   c("Prevalence of disease (K)"="pb_kp",
-                     "Genotype relative risk (gamma)"="pb_gamma",
-                     "Frequency of disease allele (p)"="pb_p",
-                     "type I error (alpha)"="pb_alpha",
-                     "type II error (beta)"="pb_beta"
-                    )
-                 )
-  })
   output$pb_caption <- reactive({paste("Figure: population-based design as a function of", input$pb_var)})
   pb_data <- reactive({
      pb_kp <- input$pb_kp
@@ -115,18 +96,6 @@ server <- function(input, output) {
     content = function(file) {vroom_write(pb_data(), file)}
   )
 # cc design
-  output$cc_var <- renderUI({
-     radioButtons("cc_var", "Variable (x axis of the plot):",
-                   c("Cohort size (n)"="cc_n",
-                     "Fraction for subcohort (q)"="cc_q",
-                     "Proportion of failure (pD)"="cc_pD",
-                     "Proportion of group 1 (p1)"="cc_p1",
-                     "log(HR) for two groups (theta)"="cc_theta",
-                     "type I error (alpha)"="cc_alpha",
-                     "type II error (beta)"="cc_beta"
-                    )
-                 )
-  })
   output$cc_caption <- reactive({paste("Figure: case-cohort design as a function of",input$cc_var)})
   cc_data <- reactive({
      cc_n <- input$cc_n
@@ -139,12 +108,12 @@ server <- function(input, output) {
      cc_power <- input$cc_power
      if (req(input$cc_var)=="cc_n")
      {
-       x <- cc_n <- seq(1,500000,by=100)
+       x <- cc_n <- seq(1000,500000,by=10000)
        xlab <- "Cohort size"
      }
      else if(req(input$cc_var)=="cc_q")
      {
-       x <- cc_q <- seq(0.01,0.1,by=0.02)
+       x <- cc_q <- seq(0.01,0.5,by=0.01)
        xlab <- "Sampling fraction"
      }
      else if(req(input$cc_var)=="cc_pD")
@@ -164,19 +133,18 @@ server <- function(input, output) {
      }
      else if(req(input$cc_var)=="cc_alpha")
      {
-        x <- cc_alpha <- seq(0.0001,0.4,by=0.05)
+        x <- cc_alpha <- seq(5e-8,0.4,by=0.05)
         xlab <- "type I error"
      }
      else if(req(input$cc_var)=="cc_beta")
      {
-        x <- cc_alpha <- seq(0,0.4,by=0.1)
+        x <- cc_beta <- seq(0,0.4,by=0.05)
         xlab <- "type II error"
      }
-     power <- req(input$cc_power)
-     ylab <- ifelse(power, "Power", "Sample size")
-     z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,power)
+     z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,req(input$cc_power))
+     ylab <- ifelse(req(input$cc_power), "Power", "Sample size")
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",z),sep="\n")
-     data.frame(n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,z,point.label,xlab,ylab)
+     data.frame(n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,z,power=req(input$cc_power),point.label,xlab,ylab)
   })
   output$cc_preview <- renderTable({head(cc_data())%>%select(-point.label,-xlab,-ylab)})
   output$cc <- renderPlotly({with(cc_data(), {

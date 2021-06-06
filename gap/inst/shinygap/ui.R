@@ -38,7 +38,13 @@ ui <- dashboardPage(
           h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
-                   uiOutput("fb_var"),
+                   radioButtons("fb_var", "Variable (x axis of the plot):",
+                                c("Genotype relative risk (gamma)"="fb_gamma",
+                                  "frequency of disease allele (p)"="fb_p",
+                                  "type I error (alpha)"="fb_alpha",
+                                  "type II error (beta)"="fb_beta"
+                                )
+                   ),
                    sliderInput("fb_gamma", "Gamma:", min = 1.2, max = 30, value = 4),
                    sliderInput("fb_p", "p:", min = 0.01, max = 0.8, value = 0.01),
                    sliderInput("fb_alpha", "Alpha:", min = 0, max = 1e-4, value = 1e-6),
@@ -61,7 +67,14 @@ ui <- dashboardPage(
           h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
-                   uiOutput("pb_var"),
+                   radioButtons("pb_var", "Variable (x axis of the plot):",
+                                c("Prevalence of disease (K)"="pb_kp",
+                                  "Genotype relative risk (gamma)"="pb_gamma",
+                                  "Frequency of disease allele (p)"="pb_p",
+                                  "type I error (alpha)"="pb_alpha",
+                                  "type II error (beta)"="pb_beta"
+                                 )
+                   ),
                    sliderInput("pb_kp", "Kp:", min = 0, max = 0.4, value = 0.1),
                    sliderInput("pb_gamma", "Gamma:", min = 1, max = 30, value = 4.5),
                    sliderInput("pb_p", "p:", min = 0.01, max = 0.8, value = 0.1),
@@ -86,13 +99,22 @@ ui <- dashboardPage(
           sidebarLayout(
                sidebarPanel(
                  checkboxInput("cc_power", "Power/Sample size:", TRUE),
-                 uiOutput("cc_var"),
-                 sliderInput("cc_n", "n:", min = 100, max = 100000, value = 5000),
-                 sliderInput("cc_q", "q:", min = 0.01, max = 0.4, value = 0.05),
+                 radioButtons("cc_var", "Variable (x axis of the plot):",
+                              c("Cohort size (n)"="cc_n",
+                                "Fraction for subcohort (q)"="cc_q",
+                                "Proportion of failure (pD)"="cc_pD",
+                                "Proportion of group 1 (p1)"="cc_p1",
+                                "log(HR) for two groups (theta)"="cc_theta",
+                                "type I error (alpha)"="cc_alpha",
+                                "type II error (beta)"="cc_beta"
+                               )
+                 ),
+                 sliderInput("cc_n", "n:", min = 100, max = 100000, value = 25000),
+                 sliderInput("cc_q", "q:", min = 0.01, max = 0.5, value = 0.01),
                  sliderInput("cc_pD", "pD:", min = 0, max = 0.8, value = 0.05),
                  sliderInput("cc_p1", "p1:", min = 0, max = 0.8, value = 0.05),
                  sliderInput("cc_theta", "log(HR):", min = 0.02, max = 2.3, value = 0.3),
-                 sliderInput("cc_alpha", "Alpha:", min = 0, max = 0.4, value = 0.05),
+                 sliderInput("cc_alpha", "Alpha:", min = 5e-8, max = 0.4, value = 0.05),
                  sliderInput("cc_beta", "Beta:", min = 0, max = 0.4, value = 0.2)
                ),
                mainPanel(
