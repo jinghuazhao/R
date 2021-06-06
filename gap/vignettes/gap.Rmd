@@ -142,11 +142,10 @@ GRM functions     |      ReadGRM, ReadGRMBin, ReadGRMPLINK,
 &nbsp;            |      ReadGRMPCA, WriteGRM,
 &nbsp;            |      WriteGRMBin, WriteGRMSAS
 &nbsp;            |      handle genomic relationship matrix involving other software
-heritability functions | h2G, VR, h2GC, h2l give point estimates as with their variances
-&nbsp;                 | for continuous traits and binary traits under liability threshold
-&nbsp;                 | model and case-control sampling
+h2G               |      Heritability and its variance
+h2GE              |      Heritability and its variance when there is an environment component
+h2l               |      Heritability under the liability threshold model
 h2_mzdz           |      Heritability estimation according to twin correlations
-&nbsp;            |      for case-control studies
 klem              |      Haplotype frequency estimation based on a genotype table
 &nbsp;            |      of two multiallelic markers
 makeped           |      A function to prepare pedigrees in post-MAKEPED format
@@ -386,14 +385,14 @@ pD <- 0.03
 p1 <- 0.25
 alpha <- 0.05
 theta <- c(1.35,1.40,1.45)
-beta1 <- 0.8
+beta <- 0.2
 s_nb <- c(1463,722,468)
 cat("n","pD","p1","hr","q","power","ssize\n",file=outfile,sep="\t")
 for(i in 1:3)
 {
   q <- s_nb[i]/n
-  power <- ccsize(n,q,pD,p1,alpha,log(theta[i]))
-  ssize <- ccsize(n,q,pD,p1,alpha,log(theta[i]),beta1)
+  power <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta,TRUE)
+  ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta)
   cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",
       signif(power,3),"\t",ssize,"\n",
       file=outfile,append=TRUE)
@@ -404,7 +403,7 @@ unlink(outfile)
 outfile <- "epic.txt"
 n <- 25000
 alpha <- 0.00000005
-power <- 0.8
+beta <- 0.2
 s_pD <- c(0.3,0.2,0.1,0.05)
 s_p1 <- seq(0.1,0.5,by=0.1)
 s_hr <- seq(1.1,1.4,by=0.1)
@@ -416,7 +415,7 @@ for(pD in s_pD)
    {
       for(hr in s_hr)
       {
-         ssize <- ccsize(n,q,pD,p1,alpha,log(hr),power)
+         ssize <- ccsize(n,q,pD,p1,log(hr),alpha,beta)
          if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
                           ssize,"\n",
                           file=outfile,append=TRUE)
@@ -582,6 +581,8 @@ l <- cs(tbl,log_p="logp")
 In line with the recent surge of interest in the polygenic models, a separate
 vignette is available through `vignette("h2",package="gap.examples")` demonstrating
 aspect of the models on heritability.
+
+Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
 
 # Mendelian randomization
 

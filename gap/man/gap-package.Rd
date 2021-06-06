@@ -122,9 +122,9 @@ comp.score        \tab      score statistics for testing genetic linkage of quan
 GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\cr
                   \tab      WriteGRMBin, WriteGRMSAS\cr
                   \tab      handle genomic relationship matrix involving other software\cr
-heritability functions \tab h2G, VR, h2GC, h2l give point estimates as with their variances\cr
-                       \tab for continuous traits and binary traits under liability threshold\cr
-                       \tab model and case-control sampling\cr
+h2G               \tab      Heritability and its variance\cr
+h2GE              \tab      Heritability and its variance when there is an environment component\cr
+h2l               \tab      Heritability under the liability threshold model\cr
 h2_mzdz           \tab      Heritability estimation according to twin correlations\cr
                   \tab      for case-control studies\cr
 klem              \tab      Haplotype frequency estimation based on a genotype table\cr
