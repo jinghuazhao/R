@@ -15,7 +15,7 @@ server <- function(input, output) {
      }
      else if(req(input$fb_var)=="fb_p")
      {
-       x <- fb_p <- seq(0.05,fb_p,by=0.005)
+       x <- fb_p <- seq(0.001,fb_p,by=0.01)
        xlab <- "Frequency of disease allele"
      }
      else if(req(input$fb_var)=="fb_alpha")
