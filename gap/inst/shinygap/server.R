@@ -2,10 +2,10 @@ server <- function(input, output) {
 # fb design
   output$fb_caption <- reactive({paste("Figure: family-based design as a function of",input$fb_var)})
   fb_data <- reactive({
-     fb_gamma <- input$fb_gamma
-     fb_p <- input$fb_p
-     fb_alpha <- input$fb_alpha
-     fb_beta <- input$fb_beta
+     fb_gamma <- req(input$fb_gamma)
+     fb_p <- req(input$fb_p)
+     fb_alpha <- req(input$fb_alpha)
+     fb_beta <- req(input$fb_beta)
      if (req(input$fb_var)=="fb_gamma")
      {
        x <- fb_gamma <- seq(1,5,by=0.15)
@@ -47,11 +47,11 @@ server <- function(input, output) {
 # pb design
   output$pb_caption <- reactive({paste("Figure: population-based design as a function of", input$pb_var)})
   pb_data <- reactive({
-     pb_kp <- input$pb_kp
-     pb_gamma <- input$pb_gamma
-     pb_p <- input$pb_p
-     pb_alpha <- input$pb_alpha
-     pb_beta <- input$pb_beta
+     pb_kp <- req(input$pb_kp)
+     pb_gamma <- req(input$pb_gamma)
+     pb_p <- req(input$pb_p)
+     pb_alpha <- req(input$pb_alpha)
+     pb_beta <- req(input$pb_beta)
      if (req(input$pb_var)=="pb_kp")
      {
         xlab <- "Prevalance of disease"
@@ -80,7 +80,7 @@ server <- function(input, output) {
      y <- ceiling(gap::pbsize(pb_kp,pb_gamma,pb_p,pb_alpha,pb_beta))
      ylab <- "Sample size"
      point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",y),sep="\n")
-     data.frame(x,y, kp=pb_kp, gamma=pb_gamma, p=pb_p, alpha=pb_alpha, beta=pb_beta, point.label,xlab,ylab)
+     data.frame(x, y, kp=pb_kp, gamma=pb_gamma, p=pb_p, alpha=pb_alpha, beta=pb_beta, point.label,xlab,ylab)
   })
   output$pb_preview <- renderTable(head(pb_data()%>%select(-point.label,-xlab,-ylab)))
   output$pb <- renderPlotly({with(pb_data(), {
@@ -98,14 +98,14 @@ server <- function(input, output) {
 # cc design
   output$cc_caption <- reactive({paste("Figure: case-cohort design as a function of",input$cc_var)})
   cc_data <- reactive({
-     cc_n <- input$cc_n
-     cc_q <- input$cc_q
-     cc_pD <- input$cc_pD
-     cc_p1 <- input$cc_p1
-     cc_theta <- input$cc_theta
-     cc_alpha <- input$cc_alpha
-     cc_beta <- input$cc_beta
-     cc_power <- input$cc_power
+     cc_n <- req(input$cc_n)
+     cc_q <- req(input$cc_q)
+     cc_pD <- req(input$cc_pD)
+     cc_p1 <- req(input$cc_p1)
+     cc_theta <- req(input$cc_theta)
+     cc_alpha <- req(input$cc_alpha)
+     cc_beta <- req(input$cc_beta)
+     cc_power <- req(input$cc_power)
      if (req(input$cc_var)=="cc_n")
      {
        x <- cc_n <- seq(1000,500000,by=10000)
@@ -141,15 +141,15 @@ server <- function(input, output) {
         x <- cc_beta <- seq(0,0.4,by=0.05)
         xlab <- "type II error"
      }
-     z <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,req(input$cc_power))
-     ylab <- ifelse(req(input$cc_power), "Power", "Sample size")
-     point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",z),sep="\n")
-     data.frame(n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,z,power=req(input$cc_power),point.label,xlab,ylab)
+     y <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,cc_power)
+     ylab <- ifelse(cc_power, "Power", "Sample size")
+     point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",y),sep="\n")
+     data.frame(x,y,n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,power=cc_power,point.label,xlab,ylab)
   })
   output$cc_preview <- renderTable({head(cc_data())%>%select(-point.label,-xlab,-ylab)})
   output$cc <- renderPlotly({with(cc_data(), {
-                                               plot_ly(x=n, y=z, type="scatter",mode="markers") %>%
-                                               add_lines(x=n, y=z) %>%
+                                               plot_ly(x=x, y=y, type="scatter",mode="markers") %>%
+                                               add_lines(x=x, y=y) %>%
                                                add_markers(text=point.label) %>%
                                                layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
                                              }
