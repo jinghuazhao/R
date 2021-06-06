@@ -1,4 +1,4 @@
-source("R/init.R")
+source("R/global.R")
 
 ui <- dashboardPage(
   title="shinygap",
