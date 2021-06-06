@@ -297,6 +297,7 @@ It now has an experimental work via Shiny from `inst/shinygap`.
 The example involving family-based design is as follows,
 
 ```{r}
+options(width=150)
 library(gap)
 models <- matrix(c(
          4.0, 0.01,
@@ -333,7 +334,7 @@ unlink(outfile)
 g <- 4.5
 p <- 0.15
 cat("\nAlzheimer's:\n\n")
-fbsize(g,p)
+data.frame(fbsize(g,p))
 table1
 ```
 
