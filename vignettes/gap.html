@@ -568,65 +568,69 @@ div.csl-indent {
 </tr>
 <tr class="even">
 <td>h2G</td>
-<td>Heritability and its variance</td>
+<td>A utility function for heritability</td>
 </tr>
 <tr class="odd">
 <td>h2GE</td>
-<td>Heritability and its variance when there is an environment component</td>
+<td>A utility function for heritability involving gene-environment interaction</td>
 </tr>
 <tr class="even">
 <td>h2l</td>
-<td>Heritability under the liability threshold model</td>
-</tr>
-<tr class="odd">
-<td>h2_mzdz</td>
-<td>Heritability estimation according to twin correlations</td>
-</tr>
-<tr class="even">
-<td>klem</td>
-<td>Haplotype frequency estimation based on a genotype table</td>
+<td>A utility function for converting observed heritability to its counterpart</td>
 </tr>
 <tr class="odd">
 <td> </td>
-<td>of two multiallelic markers</td>
+<td>under liability threshold model</td>
 </tr>
 <tr class="even">
+<td>h2_mzdz</td>
+<td>Heritability estimation according to twin correlations</td>
+</tr>
+<tr class="odd">
+<td>klem</td>
+<td>Haplotype frequency estimation based on a genotype table</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>of two multiallelic markers</td>
+</tr>
+<tr class="odd">
 <td>makeped</td>
 <td>A function to prepare pedigrees in post-MAKEPED format</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>metap</td>
 <td>Meta-analysis of p values</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>metareg</td>
 <td>Fixed and random effects model for meta-analysis</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>muvar</td>
 <td>Means and variances under 1- and 2- locus (diallelic) QTL model</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>pvalue</td>
 <td>P value for a normal deviate</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>read.ms.output</td>
 <td>A utility function to read ms output</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>snptest_sample</td>
 <td>A utility to generate SNPTEST sample file</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>twinan90</td>
 <td>Classic twin models</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>whscore</td>
 <td>Whittemore-Halpern scores for allele-sharing</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>weighted.median</td>
 <td>Weighted median with interpolation</td>
 </tr>
@@ -765,22 +769,22 @@ div.csl-indent {
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Alzheimer&#39;s:</span></span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">fbsize</span>(g,p))</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   gamma    p         y       n1        pA        h1       n2        h2       n3  lambdao  lambdas</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   4.5 0.15 0.6256916 162.6246 0.8181818 0.4598361 81.59759 0.6207625 39.97688 1.671594 1.784353</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   gamma    p         y       n1        pA        h1      n2        h2       n3  lambdao  lambdas</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   4.5 0.15 0.6256916 162.6246 0.8181818 0.4598361 108.994 0.6207625 39.97688 1.671594 1.784353</span></span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>table1</span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    gamma    p    Y   N_asp  P_A   H1 N_tdt   H2 N_asp.tdt  L_o  L_s</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    4.0 0.01 0.52    6402 0.80 0.05   903 0.11       257 1.08 1.09</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    4.0 0.10 0.60     277 0.80 0.35   124 0.54        53 1.48 1.54</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    4.0 0.50 0.58     446 0.80 0.50    85 0.42        67 1.36 1.39</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    4.0 0.80 0.53    3024 0.80 0.24   183 0.16       177 1.12 1.13</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    2.0 0.01 0.50  445964 0.67 0.03  4789 0.04      2155 1.01 1.01</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    2.0 0.10 0.52    8087 0.67 0.25   572 0.32       290 1.07 1.08</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    2.0 0.50 0.53    3753 0.67 0.50   280 0.47       197 1.11 1.11</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    2.0 0.80 0.51   17909 0.67 0.27   526 0.22       431 1.05 1.05</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    1.5 0.01 0.50 6944779 0.60 0.02 15888 0.03      8508 1.00 1.00</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   1.5 0.10 0.51  101926 0.60 0.21  1824 0.25      1030 1.02 1.02</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11   1.5 0.50 0.51   27048 0.60 0.50   781 0.49       530 1.04 1.04</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12   1.5 0.80 0.51  101926 0.60 0.29  1368 0.25      1030 1.02 1.02</span></span></code></pre></div>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    4.0 0.01 0.52    6402 0.80 0.05  1201 0.11       257 1.08 1.09</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    4.0 0.10 0.60     277 0.80 0.35   165 0.54        53 1.48 1.54</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    4.0 0.50 0.58     446 0.80 0.50   113 0.42        67 1.36 1.39</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    4.0 0.80 0.53    3024 0.80 0.24   244 0.16       177 1.12 1.13</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    2.0 0.01 0.50  445964 0.67 0.03  6371 0.04      2155 1.01 1.01</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    2.0 0.10 0.52    8087 0.67 0.25   761 0.32       290 1.07 1.08</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    2.0 0.50 0.53    3753 0.67 0.50   373 0.47       197 1.11 1.11</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    2.0 0.80 0.51   17909 0.67 0.27   701 0.22       431 1.05 1.05</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    1.5 0.01 0.50 6944779 0.60 0.02 21138 0.03      8508 1.00 1.00</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   1.5 0.10 0.51  101926 0.60 0.21  2427 0.25      1030 1.02 1.02</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11   1.5 0.50 0.51   27048 0.60 0.50  1039 0.49       530 1.04 1.04</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12   1.5 0.80 0.51  101926 0.60 0.29  1820 0.25      1030 1.02 1.02</span></span></code></pre></div>
 </div>
 <div id="population-based-design" class="section level3">
 <h3>Population-based design</h3>
@@ -1554,7 +1558,7 @@ div.csl-indent {
 #&gt; comp.score : function (ibddata = &quot;ibd_dist.out&quot;, phenotype = &quot;pheno.dat&quot;, mean = 0, var = 1, h2 = 0.3)  
 #&gt; cov.invlogit : function (logit.p1, logit.p2, cov.logit)  
 #&gt; cs : function (tbl, b = &quot;Effect&quot;, se = &quot;StdErr&quot;, log_p = NULL, cutoff = 0.95)  
-#&gt; fbsize : function (gamma, p, alpha = c(1e-04, 1e-06, 1e-08), beta = 0.2, debug = 0, error = 0)  
+#&gt; fbsize : function (gamma, p, alpha = c(1e-04, 1e-08, 1e-08), beta = 0.2, debug = 0, error = 0)  
 #&gt; g2a : function (g)  
 #&gt; g2a.c : function (g)  
 #&gt; gc.control : function (xdata = FALSE, convll = 1, handle.miss = 0, eps = 1e-06, tol = 1e-08, maxit = 50, pl = 0.001, assignment = &quot;assign.dat&quot;, verbose = T)  
@@ -1662,31 +1666,31 @@ div.csl-indent {
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;       Package LibPath                            Item            Title                       
-#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;OPGall (OPG)&quot;  &quot;Internal functions for gap&quot;
-#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;OPGrsid (OPG)&quot; &quot;Internal functions for gap&quot;
-#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;OPGtbl (OPG)&quot;  &quot;Internal functions for gap&quot;
-#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;PD&quot;            &quot;Internal functions for gap&quot;
-#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;aldh2&quot;         &quot;Internal functions for gap&quot;
-#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;apoeapoc&quot;      &quot;Internal functions for gap&quot;
-#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;cf&quot;            &quot;Internal functions for gap&quot;
-#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;cnv&quot;           &quot;Internal functions for gap&quot;
-#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;crohn&quot;         &quot;Internal functions for gap&quot;
-#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;fa&quot;            &quot;Internal functions for gap&quot;
-#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;fsnps&quot;         &quot;Internal functions for gap&quot;
-#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;hg18&quot;          &quot;Internal functions for gap&quot;
-#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;hg19&quot;          &quot;Internal functions for gap&quot;
-#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;hg38&quot;          &quot;Internal functions for gap&quot;
-#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;hla&quot;           &quot;Internal functions for gap&quot;
-#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;inf1&quot;          &quot;Internal functions for gap&quot;
-#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;jma.cojo&quot;      &quot;Internal functions for gap&quot;
-#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;l51&quot;           &quot;Internal functions for gap&quot;
-#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;lukas&quot;         &quot;Internal functions for gap&quot;
-#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;mao&quot;           &quot;Internal functions for gap&quot;
-#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;meyer&quot;         &quot;Internal functions for gap&quot;
-#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;mfblong&quot;       &quot;Internal functions for gap&quot;
-#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;mr&quot;            &quot;Internal functions for gap&quot;
-#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpgqiRTH/Rinstd027dc1af32&quot; &quot;nep499&quot;        &quot;Internal functions for gap&quot;</code></pre>
+#&gt;       Package LibPath                              Item            Title                       
+#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;OPGall (OPG)&quot;  &quot;Internal functions for gap&quot;
+#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;OPGrsid (OPG)&quot; &quot;Internal functions for gap&quot;
+#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;OPGtbl (OPG)&quot;  &quot;Internal functions for gap&quot;
+#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;PD&quot;            &quot;Internal functions for gap&quot;
+#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;aldh2&quot;         &quot;Internal functions for gap&quot;
+#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;apoeapoc&quot;      &quot;Internal functions for gap&quot;
+#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;cf&quot;            &quot;Internal functions for gap&quot;
+#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;cnv&quot;           &quot;Internal functions for gap&quot;
+#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;crohn&quot;         &quot;Internal functions for gap&quot;
+#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;fa&quot;            &quot;Internal functions for gap&quot;
+#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;fsnps&quot;         &quot;Internal functions for gap&quot;
+#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;hg18&quot;          &quot;Internal functions for gap&quot;
+#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;hg19&quot;          &quot;Internal functions for gap&quot;
+#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;hg38&quot;          &quot;Internal functions for gap&quot;
+#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;hla&quot;           &quot;Internal functions for gap&quot;
+#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;inf1&quot;          &quot;Internal functions for gap&quot;
+#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;jma.cojo&quot;      &quot;Internal functions for gap&quot;
+#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;l51&quot;           &quot;Internal functions for gap&quot;
+#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;lukas&quot;         &quot;Internal functions for gap&quot;
+#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;mao&quot;           &quot;Internal functions for gap&quot;
+#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;meyer&quot;         &quot;Internal functions for gap&quot;
+#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;mfblong&quot;       &quot;Internal functions for gap&quot;
+#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;mr&quot;            &quot;Internal functions for gap&quot;
+#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpFhBujl/Rinst12b9a71df15dd&quot; &quot;nep499&quot;        &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
