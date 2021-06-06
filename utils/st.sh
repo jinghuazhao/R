@@ -1,4 +1,4 @@
-# 29-2-2021 JHZ
+# 6-6-2021 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -33,6 +33,6 @@ git push
 function cp_vignette()
 {
   cd ~/hpc-work/R/gap/doc
-  cp gap.html jss.pdf plogp.html ~/R/vignettes/
+  cp gap.html jss.pdf ~/R/vignettes/
   cd ~/R
 }
