@@ -221,6 +221,8 @@ library(gap)
 demo(gap)
 ```
 
+See examples of haplotype analysis there -- additional examples are given below.
+
 # Examples
 
 I would like to highlight `pedtodot`, `pbsize`, `fbsize` and `ccsize` functions
