@@ -36,7 +36,7 @@ function cp_vignettes()
   export to=~/R/vignettes
   for f in gap.html jss.pdf shinygap.html
   do
-    cp ${from}/${f}
+    cp ${from}/${f} ${to}
   done
   cp ${from}/shinygap.html ~/R/gap/inst/shinygap/index.html
 }
