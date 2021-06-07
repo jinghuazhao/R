@@ -469,8 +469,7 @@ abline(h=0)
 
 The code below obtains a Manhattan plot with gene annotation,
 
-```{r mhtplot, fig.cap="A Manhattan plot with gene annotation",
-               fig.height=7, fig.width=7, messages=FALSE, results="hide"}
+```{r mhtplot, fig.cap="A Manhattan plot with gene annotation", fig.height=7, fig.width=7, messages=FALSE, results="hide"}
 data <- with(mhtdata,cbind(chr,pos,p))
 glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
            "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")

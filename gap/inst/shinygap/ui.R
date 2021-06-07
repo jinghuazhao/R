@@ -35,7 +35,6 @@ ui <- dashboardPage(
       tabItem(tabName = "fbDesign",
         h2("Family-based design"),
         fluidRow(
-          h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
                    radioButtons("fb_var", "Variable (x axis of the plot):",
@@ -64,7 +63,6 @@ ui <- dashboardPage(
       tabItem(tabName = "pbDesign",
         h2("Population-based design"),
         fluidRow(
-          h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
                    radioButtons("pb_var", "Variable (x axis of the plot):",
@@ -95,7 +93,6 @@ ui <- dashboardPage(
       tabItem(tabName = "ccDesign",
         h2("Case-cohort design"),
         fluidRow(
-          h3("Parameters"),
           sidebarLayout(
                sidebarPanel(
                  checkboxInput("cc_power", "Power/Sample size:", TRUE),

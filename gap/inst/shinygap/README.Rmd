@@ -15,7 +15,15 @@ vignette: >
 
 This is an initial attempt to enable easy calculation/visualization of three study designs.
 
-*The Shiny app only works on gap 1.2.3-2* from GitHub.
+**The Shiny app only works on gap 1.2.3-2 from GitHub**. After installation from Github, one can run as follows,
+
+```r
+setwd(file.path(find.package("gap"),"shinygap"))
+library(shiny)
+runApp()
+```
+
+One can also run the app from source using `gap/inst/shinygap`.
 
 ## Family-based study
 

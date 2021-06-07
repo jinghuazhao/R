@@ -208,7 +208,11 @@ pre code {
 </div>
 
 <p>This is an initial attempt to enable easy calculation/visualization of three study designs.</p>
-<p><em>The Shiny app only works on gap 1.2.3-2</em> from GitHub.</p>
+<p><strong>The Shiny app only works on gap 1.2.3-2 from GitHub</strong>. After installation from Github, one can run as follows,</p>
+<pre class="r"><code>setwd(file.path(find.package(&quot;gap&quot;),&quot;shinygap&quot;))
+library(shiny)
+runApp()</code></pre>
+<p>One can also run the app from source using <code>gap/inst/shinygap</code>.</p>
 <div id="family-based-study" class="section level2">
 <h2>Family-based study</h2>
 <p>This is a call to <code>gap::fbsize()</code>. Note in particular that <code>alpha</code> parameter actually contains three elements and the 3rd of which is for ASP+TDT.</p>

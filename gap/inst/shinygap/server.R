@@ -2,7 +2,7 @@ server <- function(input, output) {
   options(warn=-1)
   storewarn <- getOption("warn")
 # fb design
-  output$fb_caption <- reactive({paste("Figure: family-based design as a function of",input$fb_var)})
+  output$fb_caption=reactive({paste("Sample size as a function of",gsub("fb_","",input$fb_var))})
   fb_data <- reactive({
      fb_gamma <- req(input$fb_gamma)
      fb_p <- req(input$fb_p)
@@ -38,7 +38,7 @@ server <- function(input, output) {
                                                plot_ly(x=x,y=y,type="scatter",mode="markers") %>%
                                                add_lines(x=x,y=y) %>%
                                                add_markers(text=point.label) %>%
-                                               layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
+                                               layout(xaxis=list(title=xlab[1]), yaxis=list(title=ylab[1]))
                                              }
                                  )
                             })
@@ -47,7 +47,7 @@ server <- function(input, output) {
     content = function(file) {vroom_write(fb_data(), file)}
   )
 # pb design
-  output$pb_caption <- reactive({paste("Figure: population-based design as a function of", input$pb_var)})
+  output$pb_caption <- reactive({paste("Sample size as a function of", gsub("pb_","",input$pb_var))})
   pb_data <- reactive({
      pb_kp <- req(input$pb_kp)
      pb_gamma <- req(input$pb_gamma)
@@ -98,7 +98,8 @@ server <- function(input, output) {
     content = function(file) {vroom_write(pb_data(), file)}
   )
 # cc design
-  output$cc_caption <- reactive({paste("Figure: case-cohort design as a function of",input$cc_var)})
+  selection <- reactive({input$cc_power})
+  output$cc_caption <- reactive({paste(ifelse(selection(),"Power","Sample size"),"as a function of",gsub("cc_","",input$cc_var))})
   cc_data <- reactive({
      cc_n <- req(input$cc_n)
      cc_q <- req(input$cc_q)
@@ -107,7 +108,6 @@ server <- function(input, output) {
      cc_theta <- req(input$cc_theta)
      cc_alpha <- req(input$cc_alpha)
      cc_beta <- req(input$cc_beta)
-     cc_power <- req(input$cc_power)
      if (req(input$cc_var)=="cc_n")
      {
        x <- cc_n <- seq(100,cc_n,by=1000)
@@ -143,12 +143,12 @@ server <- function(input, output) {
         x <- cc_beta <- seq(0.01,cc_beta,by=0.05)
         xlab <- "type II error"
      }
-     y <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,cc_power)
-     ylab <- ifelse(cc_power, "Power", "Sample size")
+     y <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,selection())
+     ylab <- ifelse(selection(), "Power", "Sample size")
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",y),sep="\n")
-     data.frame(x,y,n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,power=cc_power,point.label,xlab,ylab)
+     data.frame(x,y,n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,power=selection(),point.label,xlab,ylab)
   })
-  output$cc_preview <- renderTable({head(cc_data())%>%select(-point.label,-xlab,-ylab)})
+  output$cc_preview <- renderTable({filter(cc_data(),y>0)%>%select(-point.label,-xlab,-ylab)})
   output$cc <- renderPlotly({with(cc_data(), {
                                                plot_ly(x=x, y=y, type="scatter",mode="markers") %>%
                                                add_lines(x=x, y=y) %>%
