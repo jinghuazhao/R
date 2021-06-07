@@ -247,7 +247,7 @@ kinship matrix.
 
 The pedigree diagram is as follows,
 
-```{r lukas, fig.height=8, fig.width=7}
+```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
 library(gap)
 # pedigree diagram
 data(lukas)
@@ -438,7 +438,7 @@ I now include some figures from the documentation that may be of interest.
 
 The following code is used to obtain a Q-Q plot via `qqunif` function,
 
-```{r qq, fig.height=7, fig.width=7}
+```{r qq, fig.cap="A Q-Q plot", fig.height=7, fig.width=7}
 library(gap)
 u_obs <- runif(1000)
 r <- qqunif(u_obs,pch=21,bg="blue",bty="n")
@@ -451,7 +451,7 @@ legend("topleft",sprintf("GC.lambda=%.4f",gc.lambda(u_obs)))
 Based on a chicken genome scan data, the code below generates a Manhattan plot, demonstrating
 the use of gaps to separate chromosomes.
 
-```{r chicken, fig.with=7, fig.width=7, results="hide"}
+```{r chicken, fig.cap="A genome-wide association study on chickens", fig.with=7, fig.width=7, results="hide"}
 library(gap.datasets)
 ord <- with(w4,order(chr,pos))
 w4 <- w4[ord,]
@@ -469,7 +469,8 @@ abline(h=0)
 
 The code below obtains a Manhattan plot with gene annotation,
 
-```{r mhtplot, fig.height=7, fig.width=7, messages=FALSE, results="hide"}
+```{r mhtplot, fig.cap="A Manhattan plot with gene annotation",
+               fig.height=7, fig.width=7, messages=FALSE, results="hide"}
 data <- with(mhtdata,cbind(chr,pos,p))
 glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
            "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
@@ -492,13 +493,13 @@ the function's documentation example.
 
 We could also go further with a circos Manhattan plot,
 
-```{r circos, fig.height=7, fig.width=8}
+```{r circos, fig.cap="A circos Manhattan plot", fig.height=7, fig.width=8}
 circos.mhtplot(mhtdata, glist)
 ```
 
 We now experiment with Miami plot,
 
-```{r miami, fig.height=7, fig.width=7}
+```{r miami, fig.cap="A Miami plot", fig.height=7, fig.width=7}
 mhtdata <- within(mhtdata,{pr=p})
 miamiplot(mhtdata,chr="chr",bp="pos",p="p",pr="pr",snp="rsn")
 ```
@@ -520,13 +521,13 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 )
 ```
 
-```{r il12b, crop=NULL, echo=FALSE, fig.height=7, fig.width=8}
+```{r il12b, crop=NULL, echo=FALSE, fig.cap="Association of IL-12B", fig.height=7, fig.width=8}
 knitr::include_graphics("IL12B.png")
 ```
 
 The code below obtains a regional association plot with the `asplot` function,
 
-```{r asplot, fig.height=7, fig.width=7}
+```{r asplot, fig.cap="A regional association plot", fig.height=7, fig.width=7}
 asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))
 title("CDKN2A/CDKN2B Region")
 ```
@@ -540,7 +541,7 @@ Note that all these can serve as templates to customize features of your own.
 
 A plot of copy number variation (CNV) is shown here,
 
-```{r cnv, fig.height=7, fig.width=7}
+```{r cnv, fig.cap="A CNV plot", fig.height=7, fig.width=7}
 cnvplot(cnv)
 ```
 
@@ -564,7 +565,7 @@ title("This is a fictitious plot")
 
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
-```{r forest, fig.height=6, fig.width=12, results="hide"}
+```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=12, results="hide"}
 data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
@@ -735,7 +736,7 @@ Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
 
 The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
-```{r gsmr, fig.height=7, fig.width=7}
+```{r gsmr, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
 knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
 res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
 f <- "INF1_CAD-FEV1.csv"
