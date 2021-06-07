@@ -2,15 +2,13 @@ ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)
 {
    p2 <- 1 - p1
    if(power)
-# equation (5)
    {
+   # equation (5)
      z_alpha <- qnorm(alpha)
      z <- z_alpha + sqrt(n) * theta * sqrt(p1 * p2 / (1 / pD + (1 / q - 1)))
      invisible(pnorm(z))
-   }
-   else
-# equation (6)
-   {
+   } else {
+   # equation (6)
      z_alpha <- qnorm(alpha, lower.tail=FALSE)
      z_beta <- qnorm(beta, lower.tail=FALSE)
      theta_lon <- (z_alpha + z_beta) / sqrt(p1 * p2 * pD)
