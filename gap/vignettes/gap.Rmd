@@ -569,49 +569,13 @@ data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
 
-# Fine-mapping
-
-The function `cs` obtains credible set.
-```r
-# zcat METAL/4E.BP1-1.tbl.gz | \
-# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
-tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
-z <- cs(tbl)
-l <- cs(tbl,log_p="logp")
-```
-
-# Polygenic modeling
-
-In line with the recent surge of interest in the polygenic models, a separate
-vignette is available through `vignette("h2",package="gap.examples")` demonstrating
-aspect of the models on heritability.
-
-Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
-
-# Mendelian randomization
-
-The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
-
-```{r gsmr, fig.height=7, fig.width=7}
-knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
-res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
-f <- "INF1_CAD-FEV1.csv"
-write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
-top <- function(r)
-       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
-r <- read.csv(f,as.is=TRUE)
-p <- top(r)
-knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV1",digits=3)
-unlink(f)
-```
-
-The nearest reference for the implemented approaches is @ligthart18.
-
 # log(p), log10(p) and p value for a very large z from Normal(0,1)
 
 When a Normally distributed association statistic z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.
 
 ## log(p) and log10(p)
+
+First thing first, we therefore have the R function `z <- function(p) qnorm(p/2,lower.tail=FALSE)`.
 
 First thing first, here are the answers for log(p) and log10(p) given z,
 ```r
@@ -622,6 +586,30 @@ logp <- function(z) log(2)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)
 log10p <- function(z) log(2, base=10)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)/log(10)
 ```
 Note `logp()` will be used for functions such as `qnorm()` as in R/gap function `cs()` whereas `log10p()` is more appropriate for Manhattan plot and used in R/gap `sentinels()`.
+
+The schematic diagram is shown below.
+
+```{r normal, echo=FALSE, eval=FALSE, fig.cap="Normal(0,1) distribution", fig.width=6, fig.height=4}
+z0 <- 1.96
+z <- 5
+a <- seq(-z, z, length = 10000)
+b <- dnorm(a, 0, 1)
+        xyplot(b ~ a,
+               type = "l",
+               panel = function(x,y, ...)
+               {
+                   panel.xyplot(x,y, ...)
+                   panel.abline(v = 0, lty = 2)
+                   xx <- c(-z, x[x>=-z & x<=-z0], -z0)
+                   yy <- c(0, y[x>=-z & x<=-z0], 0)
+                   panel.polygon(xx,yy, ..., col='red')
+                   xx <- c(z0, x[x>=z0 & x<=z], z)
+                   yy <- c(0, y[x>=z0 & x<=z], 0)
+                   panel.polygon(xx,yy, ..., col='red')
+               },
+               xlab="z",
+               ylab=expression(1/sqrt(2*pi) * exp(-z^2/2)))
+```
 
 ## Rationale
 
@@ -722,6 +710,44 @@ In all three cases, a log10(P) counterpart is obtained internally and to accommo
 the y-axis allows for truncation leaving out a given range to highlight the largest.
 
 A plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-analysis/BMI/](https://jinghuazhao.github.io/Omics-analysis/BMI/).
+
+# Fine-mapping
+
+The function `cs` obtains credible set.
+```r
+# zcat METAL/4E.BP1-1.tbl.gz | \
+# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
+z <- cs(tbl)
+l <- cs(tbl,log_p="logp")
+```
+
+# Polygenic modeling
+
+In line with the recent surge of interest in the polygenic models, a separate
+vignette is available through `vignette("h2",package="gap.examples")` demonstrating
+aspect of the models on heritability.
+
+Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
+
+# Mendelian randomization
+
+The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
+
+```{r gsmr, fig.height=7, fig.width=7}
+knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
+res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
+f <- "INF1_CAD-FEV1.csv"
+write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
+top <- function(r)
+       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
+r <- read.csv(f,as.is=TRUE)
+p <- top(r)
+knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV1",digits=3)
+unlink(f)
+```
+
+The nearest reference for the implemented approaches is @ligthart18.
 
 # Miscellaneous functions
 
