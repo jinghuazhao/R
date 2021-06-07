@@ -596,9 +596,9 @@ z0 <- 1.96
 z <- 5
 a <- seq(-z, z, length = 10000)
 b <- dnorm(a, 0, 1)
-        xyplot(b ~ a,
-               type = "l",
-               panel = function(x,y, ...)
+xyplot(b ~ a,
+       type = "l",
+       panel = function(x,y, ...)
                {
                    panel.xyplot(x,y, ...)
                    panel.abline(v = 0, lty = 2)
@@ -609,8 +609,9 @@ b <- dnorm(a, 0, 1)
                    yy <- c(0, y[x>=z0 & x<=z], 0)
                    panel.polygon(xx,yy, ..., col='red')
                },
-               xlab="z",
-               ylab=expression(1/sqrt(2*pi) * exp(-z^2/2)))
+       xlab="z",
+       ylab=expression(1/sqrt(2*pi) * exp(-z^2/2))
+)
 ```
 
 ## Rationale
