@@ -30,9 +30,13 @@ git add vignettes
 git commit -m "vignettes"
 git push
 
-function cp_vignette()
+function cp_vignettes()
 {
-  cd ~/hpc-work/R/gap/doc
-  cp gap.html jss.pdf ~/R/vignettes/
-  cd ~/R
+  export from=~/hpc-work/R/gap/doc
+  export to=~/R/vignettes
+  for f in gap.html jss.pdf shinygap.html
+  do
+    cp ${from}/${f}
+  done
+  cp ${from}/shinygap.html ~/R/gap/inst/shinygap/index.html
 }
