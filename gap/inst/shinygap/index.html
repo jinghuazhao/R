@@ -208,11 +208,11 @@ pre code {
 </div>
 
 <p>This is an initial attempt to enable easy calculation/visualization of three study designs.</p>
-<p><strong>The Shiny app only works on gap 1.2.3-2 from GitHub</strong>. After installation from Github, one can run as follows,</p>
+<p>One can run the app with R/gap installation as follows,</p>
 <pre class="r"><code>setwd(file.path(find.package(&quot;gap&quot;),&quot;shinygap&quot;))
 library(shiny)
 runApp()</code></pre>
-<p>One can also run the app from source using <code>gap/inst/shinygap</code>.</p>
+<p>Alternatively, one can run the app from source using <code>gap/inst/shinygap</code>.</p>
 <div id="family-based-study" class="section level2">
 <h2>Family-based study</h2>
 <p>This is a call to <code>gap::fbsize()</code>. Note in particular that <code>alpha</code> parameter actually contains three elements and the 3rd of which is for ASP+TDT.</p>
@@ -225,7 +225,7 @@ runApp()</code></pre>
 <h2>Case-cohort study</h2>
 <p>This is a call to <code>gap::ccsize()</code>. Note that its <code>poper</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
 <p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.</p>
-<p>It is somewhat surprising that although the gap vignette gap.Rmd gives good reasults, <code>fbsize()</code> does not handle <code>gamma</code> well, nor does `<code>ccsize()</code> with sample size calculation.</p>
+<p>It appears that <code>fbsize()</code> does not handle <code>gamma</code> well.</p>
 <hr />
 </div>
 <div id="appendix-theory" class="section level1">

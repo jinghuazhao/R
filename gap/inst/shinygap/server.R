@@ -143,7 +143,9 @@ server <- function(input, output) {
         x <- cc_beta <- seq(0.01,cc_beta,by=0.05)
         xlab <- "type II error"
      }
-     y <- gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,selection())
+     y <- ifelse(packageVersion("gap")=="1.2.3.1"), gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_alpha,cc_theta,cc_beta,selection())
+                                                    gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,selection())
+          )
      ylab <- ifelse(selection(), "Power", "Sample size")
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",y),sep="\n")
      data.frame(x,y,n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,power=selection(),point.label,xlab,ylab)
