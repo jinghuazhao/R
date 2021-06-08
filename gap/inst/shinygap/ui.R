@@ -66,7 +66,7 @@ ui <- dashboardPage(
           sidebarLayout(
                sidebarPanel(
                    radioButtons("pb_var", "Variable (x axis of the plot):",
-                                c("Prevalence of disease (K)"="pb_kp",
+                                c("Prevalence of disease (Kp)"="pb_kp",
                                   "Genotype relative risk (gamma)"="pb_gamma",
                                   "Frequency of disease allele (p)"="pb_p",
                                   "type I error (alpha)"="pb_alpha",
