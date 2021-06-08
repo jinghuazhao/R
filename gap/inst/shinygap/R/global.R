@@ -1,5 +1,7 @@
 library(dplyr)
+library(gap)
 library(ggplot2)
+library(htmltools)
 library(rmarkdown)
 library(plotly)
 library(vroom)

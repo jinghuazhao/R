@@ -33,7 +33,7 @@ ui <- dashboardPage(
          )
       ),
       tabItem(tabName = "fbDesign",
-        h2("Family-based design"),
+        htmltools::h2("Family-based design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
@@ -44,7 +44,7 @@ ui <- dashboardPage(
                                   "type II error (beta)"="fb_beta"
                                 )
                    ),
-                   sliderInput("fb_gamma", "Gamma:", min = 1.2, max = 30, value = 4),
+                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 30, value = 4),
                    sliderInput("fb_p", "p:", min = 0.001, max = 0.8, value = 0.01),
                    sliderInput("fb_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 1e-6),
                    sliderInput("fb_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
@@ -61,7 +61,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "pbDesign",
-        h2("Population-based design"),
+        htmltools::h2("Population-based design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
@@ -91,7 +91,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "ccDesign",
-        h2("Case-cohort design"),
+        htmltools::h2("Case-cohort design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
