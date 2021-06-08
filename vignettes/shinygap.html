@@ -223,9 +223,9 @@ runApp()</code></pre>
 </div>
 <div id="case-cohort-study" class="section level2">
 <h2>Case-cohort study</h2>
-<p>This is a call to <code>gap::ccsize()</code>. Note that its <code>poper</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
+<p>This is a call to <code>gap::ccsize()</code>. Note that its <code>power</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
 <p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.</p>
-<p>It appears that <code>fbsize()</code> does not handle <code>gamma</code> well.</p>
+<p>It appears that <code>fbsize()</code> does not handle <code>gamma</code> well. Moreover, the <code>power</code> argument of <code>ccsize()</code> in gap 1.2.3-1 only accepts either NULL (default) or a fixed value <code>(1-beta)</code>..</p>
 <hr />
 </div>
 <div id="appendix-theory" class="section level1">
@@ -243,7 +243,7 @@ runApp()</code></pre>
 </div>
 <div id="sample-size" class="section level3">
 <h3>Sample size</h3>
-<p><span class="math display">\[\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}\]</span> where <span class="math display">\[B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}\]</span> and <span class="math inline">\(n\)</span> is the whole cohort size.</p>
+<p><span class="math display">\[\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}\]</span> where <span class="math inline">\(B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}\)</span> and <span class="math inline">\(n\)</span> is the whole cohort size.</p>
 </div>
 </div>
 </div>
