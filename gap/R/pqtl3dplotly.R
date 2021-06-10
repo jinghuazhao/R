@@ -32,11 +32,12 @@ pqtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
                            pos_prot=paste0("Protein: ",chr2,":",pos2),
                            prot_gene=paste0("target (gene):", target, "(", gene, ")"),
                            lp=paste("-log10(P):", -log10p),
+                           cistrans=if_else(col=="blue","cis","trans"),
                            text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
              dplyr::mutate(z=if_else(-log10p<=zmax,-log10p,zmax)) %>%
-             dplyr::select(x,y,z,col,text)
+             dplyr::select(x,y,z,cistrans,text)
   fig <- with(t2d_pos,
-         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~z, color = ~col, colors = c('#BF382A', '#0C4B8E')) %>%
+         plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~z, color = ~cistrans, colors = c('#BF382A', '#0C4B8E')) %>%
          plotly::add_markers(type="scatter3d", text=text) %>%
          plotly::layout(scene = list(xaxis = list(title = "pQTL position",
                                                   tickmode = "array",
