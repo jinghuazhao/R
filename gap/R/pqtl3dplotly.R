@@ -18,7 +18,7 @@
 
 pqtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
 {
-  n <- CM <- snpid <- pos_pqtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- y <- NA
+  n <- CM <- snpid <- pos_pqtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- cistrans <- y <- NA
   t2d <- pqtl2dplot(d, chrlen, plot=FALSE)
   n <- with(t2d, n)
   CM <- with(t2d, CM)
