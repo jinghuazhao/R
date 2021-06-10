@@ -98,8 +98,9 @@ makeRLEplot       \tab      make relative log expression plot\cr
 METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
-pqtl2d            \tab      2D pQTL plot\cr
-pqtl3d            \tab      3D pQTL plot\cr
+pqtl2dplot        \tab      2D pQTL plot\cr
+pqtl2dplotly      \tab      2D pQTL plotly\cr
+pqtl3dplotly      \tab      3D pQTL plotly\cr
 mhtplot.trunc     \tab      truncated Manhattan plot\cr
 miamiplot         \tab      Miami plot\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr

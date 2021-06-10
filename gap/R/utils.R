@@ -690,7 +690,7 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
     jsHooks = list()
   )
   d <- read.csv(xyz,as.is=TRUE)
-  r <- pqtl2d(d, plot=FALSE)
+  r <- pqtl2dplot(d, plot=FALSE)
   cuts <- with(r, abs(log10p) > log10p.max)
   r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
   fixes <- function(col,d) paste(paste(prefix[col],d[,col],sep=":"),postfix)

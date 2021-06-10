@@ -21,14 +21,14 @@
 #' \dontrun{
 #' INF <- Sys.getenv("INF")
 #' d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
-#' r <- pqtl2d(d)
+#' r <- pqtl2dplot(d)
 #' }
 
-pqtl2d <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
-                   gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
-                   protein="p.target.short", gene="p.gene", lp="log10p",
-                   cis="cis",
-                   plot=TRUE, cex=0.6)
+pqtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
+                       gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
+                       protein="p.target.short", gene="p.gene", lp="log10p",
+                       cis="cis",
+                       plot=TRUE, cex=0.6)
 {
   r <- grid2d(chrlen, plot=plot)
   n <- with(r, n)
