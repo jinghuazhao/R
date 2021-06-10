@@ -1,2 +1,2 @@
-pandoc README.md --citeproc --mathjax -s -o index.html
+pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 
