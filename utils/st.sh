@@ -1,4 +1,4 @@
-# 6-6-2021 JHZ
+# 11-6-2021 JHZ
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -30,13 +30,4 @@ git add vignettes
 git commit -m "vignettes"
 git push
 
-function cp_vignettes()
-{
-  export from=~/hpc-work/R/gap/doc
-  export to=~/R/vignettes
-  for f in gap.html jss.pdf shinygap.html
-  do
-    cp ${from}/${f} ${to}
-  done
-  cp ${from}/shinygap.html ~/R/gap/inst/shinygap/index.html
-}
+for f in gap.html jss.pdf shinygap.html; do cp ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
