@@ -751,6 +751,26 @@ unlink(f)
 
 The nearest reference for the implemented approaches is @ligthart18.
 
+We would be of interest to contrast their effect sizes as well,
+
+```{r gsmr2, fig.cap="Combined forest plots for LIF.R, FEV1 and CAD", fig.height=7, fig.width=7}
+mr_names <- names(mr)
+LIF.R <- cbind(mr[grepl("SNP|LIF.R",mr_names)],trait="LIF.R"); names(LIF.R) <- c("SNP","b","se","trait")
+FEV1 <- cbind(mr[grepl("SNP|FEV1",mr_names)],trait="FEV1"); names(FEV1) <- c("SNP","b","se","trait")
+CAD <- cbind(mr[grepl("SNP|CAD",mr_names)],trait="CAD"); names(CAD) <- c("SNP","b","se","trait")
+mr2 <- within(rbind(LIF.R,FEV1,CAD),{y=b})
+library(ggplot2)
+p <- ggplot(mr2,aes(y = SNP, x = y))+
+theme_bw()+
+geom_point()+
+facet_wrap(~trait,ncol=3)+
+geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = SNP))+
+geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
+xlab("Effect size")+
+ylab("")
+p
+```
+
 # Miscellaneous functions
 
 ## chr_pos_a1_a2 and inv_chr_pos_a1_a2
