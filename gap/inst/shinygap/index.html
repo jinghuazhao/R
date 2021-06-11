@@ -248,6 +248,8 @@
 <p>This is a call to <code>gap::ccsize()</code>. Note that its <code>power</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
 <p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.</p>
 <p>It appears that <code>fbsize()</code> does not handle <code>gamma</code> well. Moreover, the <code>power</code> argument of <code>ccsize()</code> in gap 1.2.3-1 only accepts either NULL (default) or a fixed value <code>(1-beta)</code>..</p>
+<h2 id="two-stage-case-control-design">Two-stage case-control design</h2>
+<p>This is a call to gap::tscc().</p>
 <hr />
 <h1 id="appendix-theory">Appendix: Theory</h1>
 <h2 id="family-based-and-population-based-designs">Family-based and population-based designs</h2>
@@ -258,10 +260,21 @@
 <p>where <span class="math inline">\(\alpha\)</span> is the significance level, <span class="math inline">\(\theta\)</span> is the log-hazard ratio for two groups, <span class="math inline">\(p_j, j = 1, 2\)</span>, are the proportion of the two groups in the population (<span class="math inline">\(p_1 + p_2 = 1\)</span>), <span class="math inline">\(\tilde{n}\)</span> is the total number of subjects in the subcohort, <span class="math inline">\(p_D\)</span> is the proportion of the failures in the full cohort, and <span class="math inline">\(q\)</span> is the sampling fraction of the subcohort.</p>
 <h3 id="sample-size">Sample size</h3>
 <p><span class="math display">\[\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}\]</span> where <span class="math inline">\(B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}\)</span> and <span class="math inline">\(n\)</span> is the whole cohort size.</p>
+<h2 id="two-stage-case-control-design-1">Two-stage case-control design</h2>
+<p>In the notation of <span class="citation" data-cites="skol06">Skol et al. (2006)</span>,</p>
+<p><span class="math display">\[P(|z_1|&gt;C_1)P(|z_2|&gt;C_2,sign(z_1)=sign(z_2))\]</span> and <span class="math display">\[P(|z_1|&gt;C_1)P(|z_j|&gt;C_j\,|\,|z_1|&gt;C_1)\]</span> for replication-based and joint analyses, respectively; where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(C_j\)</span> are threshoulds at stages 1, 2 replication and joint analysis,</p>
+<p><span class="math display">\[\begin{eqnarray*}
+z_1 &amp;=&amp; z(p_1,p_2,n_1,n_2,\pi_{samples}) \cr
+z_2 &amp;=&amp; z(p_1,p_2,n_1,n_2,1-\pi_{samples}) \cr
+z_j &amp;=&amp; sqrt(\pi_{samples})*z_1+sqrt(1-\pi_{samples})*z_2
+\end{eqnarray*}\]</span></p>
 <h1 class="unnumbered" id="references">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-cai04" class="csl-entry" role="doc-biblioentry">
 Cai, J., and D. Zeng. 2004. <span>“Sample Size/Power Calculation for Case–Cohort Studies.”</span> Journal Article. <em>Biometrics</em> 60 (4): 1015–24. <a href="https://doi.org/10.1111/j.0006-341X.2004.00257.x">https://doi.org/10.1111/j.0006-341X.2004.00257.x</a>.
+</div>
+<div id="ref-skol06" class="csl-entry" role="doc-biblioentry">
+Skol, A. D., L. J. Scott, G. R. Abecasis, and M. Boehnke. 2006. <span>“Joint Analysis Is More Efficient Than Replication-Based Analysis for Two-Stage Genome-Wide Association Studies.”</span> <em>Nat Genet</em> 38 (2): 209–13.
 </div>
 <div id="ref-zhao07" class="csl-entry" role="doc-biblioentry">
 Zhao, J. H. 2007. <span>“Gap: Genetic Analysis Package.”</span> <em>Journal of Statistical Software</em> 23 (8): 1–18.

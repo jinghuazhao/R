@@ -98,8 +98,8 @@ server <- function(input, output) {
     content = function(file) {vroom_write(pb_data(), file)}
   )
 # cc design
-  selection <- reactive({input$cc_power})
-  output$cc_caption <- reactive({paste(ifelse(selection(),"Power","Sample size"),"as a function of",gsub("cc_","",input$cc_var))})
+  cc_selection <- reactive({input$cc_power})
+  output$cc_caption <- reactive({paste(ifelse(cc_selection(),"Power","Sample size"),"as a function of",gsub("cc_","",input$cc_var))})
   cc_data <- reactive({
      cc_n <- req(input$cc_n)
      cc_q <- req(input$cc_q)
@@ -143,7 +143,7 @@ server <- function(input, output) {
         x <- cc_beta <- seq(0.01,cc_beta,by=0.05)
         xlab <- "type II error"
      }
-     y <- ifelse(packageVersion("gap")=="1.2.3.1", ifelse(selection(),
+     y <- ifelse(packageVersion("gap")=="1.2.3.1", ifelse(cc_selection(),
                                                           gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_alpha,cc_theta,NULL),
                                                           gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_alpha,cc_theta,1-cc_beta)
                                                    ),
@@ -165,6 +165,79 @@ server <- function(input, output) {
   output$cc_download <- downloadHandler(
     filename = function() {paste("cc", sep=".", switch(input$cc_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom_write(cc_data(), file)}
+  )
+  # tscc design
+  tscc_selection <- reactive({input$tscc_model})
+  output$tscc_caption <- reactive({paste("Power as a function of",gsub("tscc_","",input$tscc_var))})
+  tscc_data <- reactive({
+     tscc_GRR <- req(input$tscc_GRR)
+     tscc_p1 <- req(input$tscc_p1)
+     tscc_n1 <- req(input$tscc_n1)
+     tscc_n2 <- req(input$tscc_n2)
+     tscc_M <- req(input$tscc_M)
+     tscc_alpha_genome <- req(input$tscc_alpha_genome)
+     tscc_pi_samples <- req(input$tscc_pi_samples)
+     tscc_pi_markers <- req(input$tscc_pi_markers)
+     tscc_K <- req(input$tscc_K)
+     if (req(input$tscc_var)=="tscc_GRR")
+     {
+       x <- tscc_GRR <- seq(1,tscc_GRR,by=0.1)
+       xlab <- "Genotype relative risk"
+     }
+     else if(req(input$tscc_var)=="tscc_p1")
+     {
+       x <- tscc_p1 <- seq(0.01,tscc_p1,by=0.01)
+       xlab <- "Estimated risk allele frequency in cases"
+     }
+     else if(req(input$tscc_var)=="tscc_n1")
+     {
+       x <- tscc_n1 <- seq(10,tscc_n1,by=100)
+       xlab <- "Total number of cases"
+     }
+     else if(req(input$tscc_var)=="tscc_n2")
+     {
+       x <- tscc_n2 <- seq(10,tscc_n2,by=100)
+       xlab <- "Total number of controls"
+     }
+     else if(req(input$tscc_var)=="tscc_alpha_genome")
+     {
+       x <- tscc_alpha_genome <- seq(0.01,tscc_alpha_genome,by=0.01)
+       xlab <- "False positive rate at genome level"
+     }
+     else if(req(input$tscc_var)=="tscc_pi_samples")
+     {
+       x <- tscc_pi_samples <- seq(1e-5,tscc_pi_samples,by=0.02)
+       xlab <- "Sample percentage genotyped at stage 1}"
+     }
+     else if(req(input$tscc_var)=="tscc_pi_markers")
+     {
+       x <- tscc_pi_markers <- seq(1e-5,tscc_pi_markers,by=0.02)
+       xlab <- "Markers percentage to be selected (also used as the false positive rate at stage 1"
+     }
+     else if(req(input$tscc_var)=="tscc_K")
+     {
+       x <- tscc_K <- seq(1e-5,tscc_K,by=0.02)
+       xlab <- "The population prevalence"
+     }
+     y <- gap::tscc(tscc_selection(),tscc_GRR,tscc_p1,tscc_n1,tscc_n2,tscc_M,tscc_alpha_genome,tscc_pi_samples,tscc_pi_markers,tscc_K)
+     ylab <- "Power"
+     point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",y),sep="\n")
+     data.frame(x, y, GRR=tscc_GRR, p1=tscc_p1, n1=tscc_n1, n2=tscc_n2, M=tscc_M,
+                alpha.genome=tscc_alpha_genome, pi_samples=tscc_pi_samples, pi_markers=tscc_pi_markers,K=tscc_K,
+                point.label,xlab,ylab)
+  })
+  output$tscc_preview <- renderTable(head(tscc_data()%>%select(-point.label,-xlab,-ylab)))
+  output$tscc <- renderPlotly({with(tscc_data(), {
+                                                   plot_ly(x=x, y=y, type="scatter",mode="markers") %>%
+                                                   add_lines(x=x, y=y) %>%
+                                                   add_markers(text=point.label) %>%
+                                                   layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
+                                                 }
+                                   )
+                            })
+  output$tscc_download <- downloadHandler(
+    filename = function() {paste("tscc", sep=".", switch(input$pb_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
+    content = function(file) {vroom_write(tscc_data(), file)}
   )
   options(warn=storewarn)
 }

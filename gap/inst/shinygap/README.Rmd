@@ -41,6 +41,10 @@ To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5,
 
 It appears that `fbsize()` does not handle `gamma` well. Moreover, the `power` argument of `ccsize()` in gap 1.2.3-1 only accepts either NULL (default) or a fixed value `(1-beta)`..
 
+## Two-stage case-control design
+
+This is a call to gap::tscc().
+
 ---
 
 # Appendix: Theory
@@ -64,5 +68,19 @@ the full cohort, and $q$ is the sampling fraction of the subcohort.
 ### Sample size
 
 $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}$ and $n$ is the whole cohort size.
+
+## Two-stage case-control design
+
+In the notation of @skol06,
+
+$$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$$ and $$P(|z_1|>C_1)P(|z_j|>C_j\,|\,|z_1|>C_1)$$
+for replication-based and joint analyses, respectively; where $C_1$, $C_2$, and $C_j$
+are threshoulds at stages 1, 2 replication and joint analysis,
+
+\begin{eqnarray*}
+z_1 &=& z(p_1,p_2,n_1,n_2,\pi_{samples}) \cr
+z_2 &=& z(p_1,p_2,n_1,n_2,1-\pi_{samples}) \cr
+z_j &=& sqrt(\pi_{samples})*z_1+sqrt(1-\pi_{samples})*z_2
+\end{eqnarray*}
 
 # References

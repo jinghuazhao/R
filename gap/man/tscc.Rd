@@ -11,7 +11,7 @@ The false positive rates are calculated as follows,
 for replication-based and joint analyses, respectively; where C1, C2, and Cj
 are threshoulds at stages 1, 2 replication and joint analysis, 
 
-\deqn{ z1 = z(p1,p2,n1,n2,pi.samples)}
+\deqn{z1 = z(p1,p2,n1,n2,pi.samples)}
 \deqn{z2 = z(p1,p2,n1,n2,1-pi.samples)}
 \deqn{zj = sqrt(pi.samples)*z1+sqrt(1-pi.samples)*z2}
 }

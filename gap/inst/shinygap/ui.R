@@ -17,7 +17,8 @@ ui <- dashboardPage(
       menuItem("Home", tabName = "landing", icon = icon("home")),
       menuItem("fbDesign", tabName = "fbDesign", icon = icon("upload")),
       menuItem("pbDesign", tabName = "pbDesign", icon = icon("download")),
-      menuItem("ccDesign", tabName = "ccDesign", icon = icon("th"))
+      menuItem("ccDesign", tabName = "ccDesign", icon = icon("th")),
+      menuItem("tsccDesign", tabName = "tsccDesign", icon = icon("th"))
     )
   ),
   dashboardBody(
@@ -121,6 +122,45 @@ ui <- dashboardPage(
                    tableOutput("cc_preview"),
                    radioButtons('cc_downloadFormat', 'Download file format:', c('bz2', 'gz', 'tsv', 'xz'), inline = TRUE),
                    downloadButton("cc_download", "Download data")
+               )
+          )
+        )
+      ),
+      tabItem(tabName = "tsccDesign",
+        htmltools::h2("Two-stage case-control design"),
+        fluidRow(
+          sidebarLayout(
+               sidebarPanel(
+                   radioButtons("tscc_model", "Model:", c("multiplicative","additive","dominant","recessive")),
+                   radioButtons("tscc_var", "Variable (x axis of the plot):",
+                                c("Genotype relative risk (GRR)"="tscc_GRR",
+                                  "The estimated risk allele frequency in cases (p1)"="tscc_p1",
+                                  "Total number of cases (n1)"="tscc_n1",
+                                  "Total number of controls (n2)"="tscc_n2",
+                                  "Total number of markers (M)"="tscc_M",
+                                  "False positive rate at genome level (alpha.genome)"="tscc_alpha_genome",
+                                  "Sample percentage genotyped at stage 1 (pi.samples)"="tscc_pi_samples",
+                                  "Marker percentage to be selected (pi.markers)"="tscc_pi_markers",
+                                  "The population prevalence (K)"="tscc_K"
+                                 )
+                   ),
+                   sliderInput("tscc_GRR", "GRR:", min = 1, max = 30, value = 1.4),
+                   sliderInput("tscc_p1", "p1:", min = 1e-3, max = 0.8, value = 0.4),
+                   sliderInput("tscc_n1", "n1:", min = 400, max = 500000, value = 1000),
+                   sliderInput("tscc_n2", "n2:", min = 400, max = 500000, value = 1000),
+                   sliderInput("tscc_M", "M:", min = 400, max = 10000000, value = 300000),
+                   sliderInput("tscc_alpha_genome", "Alpha:", min = 5e-8, max = 0.05, value = 0.05),
+                   sliderInput("tscc_pi_samples", "Pi samples:", min = 0.01, max = 1, value = 0.2),
+                   sliderInput("tscc_pi_markers", "Pi markers:", min = 0.01, max = 1, value = 0.1),
+                   sliderInput("tscc_K", "K:", min = 1e-5, max = 0.4, value = 0.1)
+               ),
+               mainPanel(
+                   h3(verbatimTextOutput("tscc_caption")),
+                   plotlyOutput("tscc"),
+                   h3("Header of data:"),
+                   tableOutput("tscc_preview"),
+                   radioButtons('tscc_downloadFormat', 'Download file format:', c('bz2', 'bz', 'tsv', 'xz'), inline = TRUE),
+                   downloadButton("tscc_download", "Download data")
                )
           ) # siderbarLayout
         ) # fluidRow
