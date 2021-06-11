@@ -110,7 +110,7 @@ server <- function(input, output) {
      cc_beta <- req(input$cc_beta)
      if (req(input$cc_var)=="cc_n")
      {
-       x <- cc_n <- seq(100,cc_n,by=1000)
+       x <- cc_n <- seq(100,cc_n,by=100)
        xlab <- "Cohort size"
      }
      else if(req(input$cc_var)=="cc_q")
@@ -219,22 +219,27 @@ server <- function(input, output) {
        x <- tscc_K <- seq(1e-5,tscc_K,by=0.02)
        xlab <- "The population prevalence"
      }
-     y <- gap::tscc(tscc_selection(),tscc_GRR,tscc_p1,tscc_n1,tscc_n2,tscc_M,tscc_alpha_genome,tscc_pi_samples,tscc_pi_markers,tscc_K)
+     z <- gap::tscc(tscc_selection(),tscc_GRR,tscc_p1,tscc_n1,tscc_n2,tscc_M,tscc_alpha_genome,tscc_pi_samples,tscc_pi_markers,tscc_K)
+     power1 <- with(z,power[1])
+     power2 <- with(z,power[2])
+     power3 <- with(z,power[3])
+     power4 <- with(z,power[4])
      ylab <- "Power"
-     point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",y),sep="\n")
-     data.frame(x, y, GRR=tscc_GRR, p1=tscc_p1, n1=tscc_n1, n2=tscc_n2, M=tscc_M,
+     point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",power4),sep="\n")
+     data.frame(x, power1=power1, power2=power2, power3=power3, power4=power4,
+                GRR=tscc_GRR, p1=tscc_p1, n1=tscc_n1, n2=tscc_n2, M=tscc_M,
                 alpha.genome=tscc_alpha_genome, pi_samples=tscc_pi_samples, pi_markers=tscc_pi_markers,K=tscc_K,
                 point.label,xlab,ylab)
   })
   output$tscc_preview <- renderTable(head(tscc_data()%>%select(-point.label,-xlab,-ylab)))
   output$tscc <- renderPlotly({with(tscc_data(), {
-                                                   plot_ly(x=x, y=y, type="scatter",mode="markers") %>%
-                                                   add_lines(x=x, y=y) %>%
-                                                   add_markers(text=point.label) %>%
-                                                   layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
-                                                 }
-                                   )
-                            })
+                               plot_ly(type="scatter", x=~x, y=~power1, name="no stage", mode="markers") %>%
+                               add_trace(y=~power2, name="stage 1", mode="markers") %>%
+                               add_trace(y=~power3, name="stage 2", mode="markers") %>%
+                               add_trace(y=~power4, name="joint", mode="markers", text=point.label) %>%
+                               layout(xaxis=list(title=xlab[1]),yaxis=list(title=ylab[1]))
+                               })
+                 })
   output$tscc_download <- downloadHandler(
     filename = function() {paste("tscc", sep=".", switch(input$pb_downloadFormat, bz2="bz2", gz="gz", tsv="tsv", xz="xz"))},
     content = function(file) {vroom_write(tscc_data(), file)}
