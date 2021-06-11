@@ -80,7 +80,7 @@ are threshoulds at stages 1, 2 replication and joint analysis,
 \begin{eqnarray*}
 z_1 &=& z(p_1,p_2,n_1,n_2,\pi_{samples}) \cr
 z_2 &=& z(p_1,p_2,n_1,n_2,1-\pi_{samples}) \cr
-z_j &=& \sqrt(\pi_{samples})*z_1+\sqrt(1-\pi_{samples})*z_2
+z_j &=& \sqrt{\pi_{samples}}*z_1+\sqrt{1-\pi_{samples}}*z_2
 \end{eqnarray*}
 
 # References
