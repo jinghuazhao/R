@@ -31,7 +31,6 @@ pqtl2dplotly <- function(d, chrlen=gap::hg19)
                            pos_prot=paste0("Protein: ",chr2,":",pos2),
                            prot_gene=paste0("target (gene):", target, "(", gene, ")"),
                            lp=paste("-log10(P):", -log10p),
-                           cistrans=if_else(col=="blue","cis","trans"),
                            text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
              dplyr::select(x,y,cistrans,text)
   axes <- list(tickmode = "array",

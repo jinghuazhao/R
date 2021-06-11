@@ -32,7 +32,6 @@ pqtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
                            pos_prot=paste0("Protein: ",chr2,":",pos2),
                            prot_gene=paste0("target (gene):", target, "(", gene, ")"),
                            lp=paste("-log10(P):", -log10p),
-                           cistrans=if_else(col=="blue","cis","trans"),
                            text=paste(snpid, pos_pqtl, pos_prot, prot_gene, lp, sep="\n")) %>%
              dplyr::mutate(z=if_else(-log10p<=zmax,-log10p,zmax)) %>%
              dplyr::select(x,y,z,cistrans,text)

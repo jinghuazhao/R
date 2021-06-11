@@ -51,6 +51,6 @@ pqtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_p
                                           chr1=chr1, pos1=d[[snp_pos]],
                                           chr2=chr2, pos2=mid, x=pos1, y=pos2,
                                           target=d[[protein]], gene=d[[gene]], log10p=d[[lp]],
-                                          col=ifelse(d[[cis]],"blue","red")
+                                          cistrans=ifelse(d[[cis]],"cis","trans")
   )))
 }
