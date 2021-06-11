@@ -1,13 +1,15 @@
 #!/usr/bin/bash
 
-function rd()
-{
-  cd gap
-  Rscript -e "devtools::document()"
-  cd -
-  utils/st.sh
-  Rscript -e "devtools::install_github(\"jinghuazhao/R/gap\",build_vignettes=TRUE,force=TRUE)"
-}
+export wd=~/R
+cd ${wd}/gap
+Rscript -e "devtools::document()"
+cd ${wd}/gap/inst/shinygap/
+Rscript -e "knitr::knit('README.Rmd')"
+pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+cp index.html ${wd}/vignettes/shinygap.html
+cp README.Rmd ${wd}/gap/vignettes/shinygap.Rmd
+cp shinygap.bib ${wd}/gap/vignettes/shinygap.bib
+cd ${wd}
 
 export version=1.2.3-2
 

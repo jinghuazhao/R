@@ -1,4 +1,6 @@
-# 11-6-2021 JHZ
+# 6-6-2021 JHZ
+
+for f in gap.html jss.pdf; do cp ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
 
 git add .gitignore
 git commit -m "These are ignored"
@@ -29,5 +31,3 @@ git commit -m "utils"
 git add vignettes
 git commit -m "vignettes"
 git push
-
-for f in gap.html jss.pdf shinygap.html; do cp ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
