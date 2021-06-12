@@ -168,7 +168,7 @@ server <- function(input, output) {
   )
   # tscc design
   tscc_selection <- reactive({input$tscc_model})
-  output$tscc_caption <- reactive({paste("Power as a function of",gsub("tscc_","",input$tscc_var))})
+  output$tscc_caption <- reactive({paste("Power as a function of",gsub("tscc_","",gsub("_",".",input$tscc_var)))})
   tscc_data <- reactive({
      tscc_GRR <- req(input$tscc_GRR)
      tscc_p1 <- req(input$tscc_p1)
@@ -228,7 +228,7 @@ server <- function(input, output) {
      point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",power4),sep="\n")
      data.frame(x, power1=power1, power2=power2, power3=power3, power4=power4,
                 GRR=tscc_GRR, p1=tscc_p1, n1=tscc_n1, n2=tscc_n2, M=tscc_M,
-                alpha.genome=tscc_alpha_genome, pi_samples=tscc_pi_samples, pi_markers=tscc_pi_markers,K=tscc_K,
+                alpha.genome=tscc_alpha_genome, pi.samples=tscc_pi_samples, pi.markers=tscc_pi_markers,K=tscc_K,
                 point.label,xlab,ylab)
   })
   output$tscc_preview <- renderTable(head(tscc_data()%>%select(-point.label,-xlab,-ylab)))
