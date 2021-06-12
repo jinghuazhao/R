@@ -1,5 +1,9 @@
 fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
 # Family-based sample sizes
+# Jing Hua Zhao 30-12-98, 19-8-2009
+# Risch & Merikangas 1996
+# Science 273: 1516-17 13SEP1996
+# Science 275: 1327-30 28FEB1997
 {
   strlen <- function(x) length(unlist(strsplit(as.character(x),split="")))
   sn <- function (all,alpha,beta,op)
@@ -93,9 +97,3 @@ fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
 #  z <- c(z2,z1,z0)
 #  z
 #}
-
-# program to obtain power for family-based and population-based association study
-# Jing Hua Zhao 30-12-98, 19-8-2009
-# Risch & Merikangas 1996
-# Science 273: 1516-17 13SEP1996
-# Science 275: 1327-30 28FEB1997

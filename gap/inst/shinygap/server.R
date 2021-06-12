@@ -1,6 +1,6 @@
 server <- function(input, output) {
-  options(warn=-1)
   storewarn <- getOption("warn")
+  options(warn=-1)
 # fb design
   output$fb_caption=reactive({paste("Sample size as a function of",gsub("fb_","",input$fb_var))})
   fb_data <- reactive({
@@ -28,16 +28,16 @@ server <- function(input, output) {
        x <- fb_beta <- seq(0.01,fb_beta,by=0.05)
        xlab <- "type II error"
      }
-     n1 <- with(gap::fbsize(fb_gamma,fb_p,rep(fb_alpha,1),fb_beta),n1)
-     n2 <- with(gap::fbsize(fb_gamma,fb_p,rep(fb_alpha,2),fb_beta),n2)
-     n3 <- with(gap::fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n3)
+     n1 <- with(fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n1)
+     n2 <- with(fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n2)
+     n3 <- with(fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n3)
      ylab <- "ASP+TDT"
-     point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",y),sep="\n")
+     point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",n3),sep="\n")
      data.frame(x,n1,n2,n3,gamma=fb_gamma,p=fb_p,alpha=fb_alpha,beta=fb_beta,point.label,xlab,ylab)
   })
   output$fb_preview <- renderTable({head(fb_data())%>%select(-point.label,-xlab,-ylab)})
   output$fb <- renderPlotly({with(fb_data(), {
-                                               plot_ly(x=~x,y=~n1,type="scatter",name="ASP",mode="markers") %>%
+                                               plot_ly(type="scatter",x=~x,y=~n1,name="ASP",mode="markers") %>%
                                                add_trace(y=~n2,name="TDT",mode="marker") %>%
                                                add_trace(y=~n3,name="ASP+TDT",mode="marker",text=point.label) %>%
                                                layout(xaxis=list(title=xlab[1]), yaxis=list(title=ylab[1]))
@@ -74,14 +74,14 @@ server <- function(input, output) {
      else if (req(input$pb_var)=="pb_alpha")
      {
         xlab <- "type I error"
-        x <- pb_alpha <- seq(5e-8,pb_alpha,by=1e-4)
+        x <- pb_alpha <- seq(1e-8,pb_alpha,by=1e-4)
      }
      else if (req(input$pb_var)=="pb_beta")
      {
         xlab <- "type II error"
         x <- pb_beta <- seq(0.01,pb_beta,by=0.05)
      }
-     y <- ceiling(gap::pbsize(pb_kp,pb_gamma,pb_p,pb_alpha,pb_beta))
+     y <- ceiling(pbsize(pb_kp,pb_gamma,pb_p,pb_alpha,pb_beta))
      ylab <- "Sample size"
      point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",y),sep="\n")
      data.frame(x, y, kp=pb_kp, gamma=pb_gamma, p=pb_p, alpha=pb_alpha, beta=pb_beta, point.label,xlab,ylab)
@@ -145,15 +145,10 @@ server <- function(input, output) {
         x <- cc_beta <- seq(0.01,cc_beta,by=0.05)
         xlab <- "type II error"
      }
-     y <- ifelse(packageVersion("gap")=="1.2.3.1", ifelse(cc_selection(),
-                                                          gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_alpha,cc_theta,NULL),
-                                                          gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_alpha,cc_theta,1-cc_beta)
-                                                   ),
-                                                   gap::ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,selection())
-          )
-     ylab <- ifelse(selection(), "Power", "Sample size")
+     y <- ccsize(cc_n,cc_q,cc_pD,cc_p1,cc_theta,cc_alpha,cc_beta,cc_selection())
+     ylab <- ifelse(cc_selection(), "Power", "Sample size")
      point.label <- paste(paste(xlab, sep=":", x),paste(ylab,sep=":",y),sep="\n")
-     data.frame(x,y,n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,power=selection(),point.label,xlab,ylab)
+     data.frame(x,y,n=cc_n,q=cc_q,pD=cc_pD,p1=cc_p1,theta=cc_theta,alpha=cc_alpha,beta=cc_beta,power=cc_selection(),point.label,xlab,ylab)
   })
   output$cc_preview <- renderTable({head(filter(cc_data(),y>0))%>%select(-point.label,-xlab,-ylab)})
   output$cc <- renderPlotly({with(cc_data(), {
@@ -170,7 +165,7 @@ server <- function(input, output) {
   )
   # tscc design
   tscc_selection <- reactive({input$tscc_model})
-  output$tscc_caption <- reactive({paste("Power as a function of",gsub("tscc","",gsub("_",".",input$tscc_var)))})
+  output$tscc_caption <- reactive({paste("Power as a function of",gsub("_",".",gsub("tscc_","",input$tscc_var)))})
   tscc_data <- reactive({
      tscc_GRR <- req(input$tscc_GRR)
      tscc_p1 <- req(input$tscc_p1)
@@ -221,7 +216,7 @@ server <- function(input, output) {
        x <- tscc_K <- seq(1e-5,tscc_K,by=0.02)
        xlab <- "The population prevalence"
      }
-     z <- gap::tscc(tscc_selection(),tscc_GRR,tscc_p1,tscc_n1,tscc_n2,tscc_M,tscc_alpha_genome,tscc_pi_samples,tscc_pi_markers,tscc_K)
+     z <- tscc(tscc_selection(),tscc_GRR,tscc_p1,tscc_n1,tscc_n2,tscc_M,tscc_alpha_genome,tscc_pi_samples,tscc_pi_markers,tscc_K)
      power1 <- with(z,power[1])
      power2 <- with(z,power[2])
      power3 <- with(z,power[3])

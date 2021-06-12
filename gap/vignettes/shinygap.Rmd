@@ -39,7 +39,7 @@ This is a call to `gap::ccsize()`. Note that its `power` argument indcates power
 
 To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
 
-It appears that `fbsize()` does not handle `gamma` well. Moreover, the `power` argument of `ccsize()` in gap 1.2.3-1 only accepts either NULL (default) or a fixed value `(1-beta)`..
+It appears that `fbsize()` does not handle `gamma` well.
 
 ## Two-stage case-control design
 

@@ -34,7 +34,7 @@ ui <- dashboardPage(
          )
       ),
       tabItem(tabName = "fbDesign",
-        htmltools::h2("Family-based design"),
+        h2("Family-based design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
@@ -45,10 +45,10 @@ ui <- dashboardPage(
                                   "type II error (beta)"="fb_beta"
                                 )
                    ),
-                   sliderInput("fb_gamma", "Gamma:", min = 1, max = 30, value = 4),
+                   sliderInput("fb_gamma", "gamma:", min = 1, max = 30, value = 4),
                    sliderInput("fb_p", "p:", min = 0.001, max = 0.8, value = 0.01),
-                   sliderInput("fb_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 1e-6),
-                   sliderInput("fb_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
+                   sliderInput("fb_alpha", "alpha:", min = 1e-8, max = 0.05, value = 1e-6),
+                   sliderInput("fb_beta", "beta:", min = 0.01, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("fb_caption")),
@@ -62,7 +62,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "pbDesign",
-        htmltools::h2("Population-based design"),
+        h2("Population-based design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
@@ -74,11 +74,11 @@ ui <- dashboardPage(
                                   "type II error (beta)"="pb_beta"
                                  )
                    ),
-                   sliderInput("pb_kp", "Kp:", min = 1e-5, max = 0.4, value = 0.1),
-                   sliderInput("pb_gamma", "Gamma:", min = 1, max = 30, value = 4.5),
+                   sliderInput("pb_kp", "kp:", min = 1e-5, max = 0.4, value = 0.1),
+                   sliderInput("pb_gamma", "gamma:", min = 1, max = 30, value = 4.5),
                    sliderInput("pb_p", "p:", min = 1e-3, max = 0.8, value = 0.1),
-                   sliderInput("pb_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 5e-8),
-                   sliderInput("pb_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
+                   sliderInput("pb_alpha", "alpha:", min = 5e-8, max = 0.05, value = 5e-8),
+                   sliderInput("pb_beta", "beta:", min = 0.01, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("pb_caption")),
@@ -92,7 +92,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "ccDesign",
-        htmltools::h2("Case-cohort design"),
+        h2("Case-cohort design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
@@ -112,8 +112,8 @@ ui <- dashboardPage(
                  sliderInput("cc_pD", "pD:", min = 1e-5, max = 0.8, value = 0.05),
                  sliderInput("cc_p1", "p1:", min = 1e-5, max = 0.8, value = 0.05),
                  sliderInput("cc_theta", "log(HR):", min = 0.01, max = 2.3, value = 0.3),
-                 sliderInput("cc_alpha", "Alpha:", min = 5e-8, max = 0.05, value = 0.05),
-                 sliderInput("cc_beta", "Beta:", min = 0.01, max = 0.4, value = 0.2)
+                 sliderInput("cc_alpha", "alpha:", min = 5e-8, max = 0.05, value = 0.05),
+                 sliderInput("cc_beta", "beta:", min = 0.01, max = 0.4, value = 0.2)
                ),
                mainPanel(
                    h3(verbatimTextOutput("cc_caption")),
@@ -127,7 +127,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(tabName = "tsccDesign",
-        htmltools::h2("Two-stage case-control design"),
+        h2("Two-stage case-control design"),
         fluidRow(
           sidebarLayout(
                sidebarPanel(
@@ -149,9 +149,9 @@ ui <- dashboardPage(
                    sliderInput("tscc_n1", "n1:", min = 400, max = 500000, value = 1000),
                    sliderInput("tscc_n2", "n2:", min = 400, max = 500000, value = 1000),
                    sliderInput("tscc_M", "M:", min = 400, max = 10000000, value = 300000),
-                   sliderInput("tscc_alpha_genome", "Alpha:", min = 5e-8, max = 0.05, value = 0.05),
-                   sliderInput("tscc_pi_samples", "Pi samples:", min = 0.01, max = 1, value = 0.2),
-                   sliderInput("tscc_pi_markers", "Pi markers:", min = 0.01, max = 1, value = 0.1),
+                   sliderInput("tscc_alpha_genome", "alpha:", min = 5e-8, max = 0.05, value = 0.05),
+                   sliderInput("tscc_pi_samples", "pi.samples:", min = 0.01, max = 1, value = 0.2),
+                   sliderInput("tscc_pi_markers", "pi.markers:", min = 0.01, max = 1, value = 0.1),
                    sliderInput("tscc_K", "K:", min = 1e-5, max = 0.4, value = 0.1)
                ),
                mainPanel(
