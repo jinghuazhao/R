@@ -170,7 +170,7 @@ server <- function(input, output) {
   )
   # tscc design
   tscc_selection <- reactive({input$tscc_model})
-  output$tscc_caption <- reactive({paste("Power as a function of",gsub("tscc_","",gsub("_",".",input$tscc_var)))})
+  output$tscc_caption <- reactive({paste("Power as a function of",gsub("tscc","",gsub("_",".",input$tscc_var)))})
   tscc_data <- reactive({
      tscc_GRR <- req(input$tscc_GRR)
      tscc_p1 <- req(input$tscc_p1)
