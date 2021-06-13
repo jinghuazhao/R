@@ -76,11 +76,8 @@ In the notation of @skol06,
 $$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$$ and $$P(|z_1|>C_1)P(|z_j|>C_j\,|\,|z_1|>C_1)$$
 for replication-based and joint analyses, respectively; where $C_1$, $C_2$, and $C_j$
 are threshoulds at stages 1, 2 replication and joint analysis,
-
-\begin{eqnarray*}
-z_1 &=& z(p_1,p_2,n_1,n_2,\pi_{samples}) \cr
-z_2 &=& z(p_1,p_2,n_1,n_2,1-\pi_{samples}) \cr
-z_j &=& z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}
-\end{eqnarray*}
+$z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})$, $\,$
+$z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})$, $\,$
+$z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
 
 # References
