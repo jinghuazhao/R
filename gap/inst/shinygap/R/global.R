@@ -7,9 +7,9 @@ library(vroom)
 library(shiny)
 library(shinydashboard)
 
-fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
+fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=0,error=0)
 # Family-based sample sizes
-# Jing Hua Zhao 30-12-98, 19-8-2009
+# Jing Hua Zhao 30-12-98, 19-8-2009, 13-6-2021
 # Risch & Merikangas 1996
 # Science 273: 1516-17 13SEP1996
 # Science 275: 1327-30 28FEB1997
@@ -48,14 +48,14 @@ fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
   else aa.v <- 4*y*(1-y)
   aa <- c(aa.m,aa.v)
 
-  n1 <- sn(aa,alpha[1],beta,1)
+  n1 <- sn(aa,alpha,beta,1)
 
 # TDT
   aa.m <- sqrt(h)*(gamma-1)/(gamma+1)
   aa.v <- 1-h*((gamma-1)/(gamma+1))^2
   aa <- c(aa.m,aa.v)
 
-  n2 <- sn(aa,alpha[2],beta,2)
+  n2 <- sn(aa,alpha,beta,2)
 
 # ASP-TDT
   h <- h2 <- p*q*(gamma+1)^2/(2*(p*gamma+q)^2+p*q*(gamma-1)^2)
@@ -63,7 +63,7 @@ fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
   aa.v <- 1-h*((gamma-1)/(gamma+1))^2
   aa <- c(aa.m,aa.v)
 
-  n3 <- sn(aa,alpha[3],beta,3)
+  n3 <- sn(aa,alpha,beta,3)
 
   if (debug==1)
   {

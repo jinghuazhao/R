@@ -20,7 +20,7 @@ server <- function(input, output) {
      }
      else if(req(input$fb_var)=="fb_alpha")
      {
-       x <- fb_alpha
+       x <- fb_alpha <- seq(1e-8,0.05,0.005)
        xlab <- "type I error"
      }
      else if(req(input$fb_var)=="fb_beta")
@@ -28,9 +28,9 @@ server <- function(input, output) {
        x <- fb_beta <- seq(0.01,fb_beta,by=0.05)
        xlab <- "type II error"
      }
-     n1 <- with(fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n1)
-     n2 <- with(fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n2)
-     n3 <- with(fbsize(fb_gamma,fb_p,rep(fb_alpha,3),fb_beta),n3)
+     n1 <- with(fbsize(fb_gamma,fb_p,fb_alpha,fb_beta),n1)
+     n2 <- with(fbsize(fb_gamma,fb_p,fb_alpha,fb_beta),n2)
+     n3 <- with(fbsize(fb_gamma,fb_p,fb_alpha,fb_beta),n3)
      ylab <- "ASP+TDT"
      point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",n3),sep="\n")
      data.frame(x,n1,n2,n3,gamma=fb_gamma,p=fb_p,alpha=fb_alpha,beta=fb_beta,point.label,xlab,ylab)

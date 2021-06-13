@@ -25,9 +25,13 @@ runApp()
 
 Alternatively, one can run the app from source using `gap/inst/shinygap`.
 
+To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
+
 ## Family-based study
 
 This is a call to `gap::fbsize()`. Note in particular that `alpha` parameter actually contains three elements and the 3rd of which is for ASP+TDT.
+
+It appears that it does not handle `gamma` well.
 
 ## Population-based study
 
@@ -36,10 +40,6 @@ This is a call to `gap::pbsize()`.
 ## Case-cohort study
 
 This is a call to `gap::ccsize()`. Note that its `power` argument indcates power (TRUE) or sample size (FALSE) calculation.
-
-To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
-
-It appears that `fbsize()` does not handle `gamma` well.
 
 ## Two-stage case-control design
 
@@ -80,7 +80,7 @@ are threshoulds at stages 1, 2 replication and joint analysis,
 \begin{eqnarray*}
 z_1 &=& z(p_1,p_2,n_1,n_2,\pi_{samples}) \cr
 z_2 &=& z(p_1,p_2,n_1,n_2,1-\pi_{samples}) \cr
-z_j &=& \sqrt{\pi_{samples}}*z_1+\sqrt{1-\pi_{samples}}*z_2
+z_j &=& z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}
 \end{eqnarray*}
 
 # References
