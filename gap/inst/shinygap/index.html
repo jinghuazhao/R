@@ -240,16 +240,16 @@
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">runApp</span>()</span></code></pre></div>
 <p>Alternatively, one can run the app from source using <code>gap/inst/shinygap</code>.</p>
-<p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.</p>
+<p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.</p>
 <h2 id="family-based-study">Family-based study</h2>
-<p>This is a call to <code>gap::fbsize()</code>. Note in particular that <code>alpha</code> parameter actually contains three elements and the 3rd of which is for ASP+TDT.</p>
-<p>It appears that it does not handle <code>gamma</code> well.</p>
+<p>This is a call to <code>fbsize()</code>.</p>
+<p>It appears that <code>gamma</code> is not handled well.</p>
 <h2 id="population-based-study">Population-based study</h2>
-<p>This is a call to <code>gap::pbsize()</code>.</p>
+<p>This is a call to <code>pbsize()</code>.</p>
 <h2 id="case-cohort-study">Case-cohort study</h2>
-<p>This is a call to <code>gap::ccsize()</code>. Note that its <code>power</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
+<p>This is a call to <code>ccsize()</code> whose <code>power</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
 <h2 id="two-stage-case-control-design">Two-stage case-control design</h2>
-<p>This is a call to gap::tscc().</p>
+<p>This is a call to tscc().</p>
 <hr />
 <h1 id="appendix-theory">Appendix: Theory</h1>
 <h2 id="family-based-and-population-based-designs">Family-based and population-based designs</h2>

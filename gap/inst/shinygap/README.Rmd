@@ -25,25 +25,25 @@ runApp()
 
 Alternatively, one can run the app from source using `gap/inst/shinygap`.
 
-To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[5e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
+To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
 
 ## Family-based study
 
-This is a call to `gap::fbsize()`. Note in particular that `alpha` parameter actually contains three elements and the 3rd of which is for ASP+TDT.
+This is a call to `fbsize()`.
 
-It appears that it does not handle `gamma` well.
+It appears that `gamma` is not handled well.
 
 ## Population-based study
 
-This is a call to `gap::pbsize()`.
+This is a call to `pbsize()`.
 
 ## Case-cohort study
 
-This is a call to `gap::ccsize()`. Note that its `power` argument indcates power (TRUE) or sample size (FALSE) calculation.
+This is a call to `ccsize()` whose `power` argument indcates power (TRUE) or sample size (FALSE) calculation.
 
 ## Two-stage case-control design
 
-This is a call to gap::tscc().
+This is a call to tscc().
 
 ---
 

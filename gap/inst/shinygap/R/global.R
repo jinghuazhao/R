@@ -27,7 +27,7 @@ KCC <- function(model,GRR,p1,K)
    invisible(list(pprime=pprime,p=p))
 }
 
-fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=0,error=0)
+fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=FALSE,error=0)
 # Family-based sample sizes
 # Jing Hua Zhao 30-12-98, 19-8-2009, 13-6-2021
 # Risch & Merikangas 1996
@@ -85,7 +85,7 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=0,error=0)
 
   n3 <- sn(aa,alpha,beta,3)
 
-  if (debug==1)
+  if (debug)
   {
      cat("K=",k, "VA=",va, "VD=",vd,"\n")
      cat(format(gamma,width=4,nsmall=2),
@@ -100,7 +100,7 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=0,error=0)
          format(round(lambdao,digits=2),nsmall=2),
          format(round(lambdas,digits=2),nsmall=2),"\n")
   }
-  list(gamma=gamma,p=p,y=y,n1=n1,pA=pA,h1=h1,n2=n2,h2=h2,n3=n3,
+  list(gamma=gamma,p=p,y=y,n1=ceiling(n1),pA=pA,h1=h1,n2=ceiling(n2),h2=h2,n3=ceiling(n3),
       lambdao=lambdao,lambdas=lambdas)
 
 }
