@@ -191,19 +191,19 @@ pre code {
 
 <div id="TOC">
 <ul>
-<li><a href="#family-based-study">Family-based study</a></li>
-<li><a href="#population-based-study">Population-based study</a></li>
-<li><a href="#case-cohort-study">Case-cohort study</a></li>
-<li><a href="#two-stage-case-control-design">Two-stage case-control design</a></li>
+<li><a href="#family-based-study">1. Family-based study</a></li>
+<li><a href="#population-based-study">2. Population-based study</a></li>
+<li><a href="#case-cohort-study">3. Case-cohort study</a></li>
+<li><a href="#two-stage-case-control-design">4. Two-stage case-control design</a></li>
 <li><a href="#appendix-theory">Appendix: Theory</a>
 <ul>
-<li><a href="#family-based-and-population-based-designs">Family-based and population-based designs</a></li>
-<li><a href="#case-cohort-design">Case-cohort design</a>
+<li><a href="#a.-family-based-and-population-based-designs">A. Family-based and population-based designs</a></li>
+<li><a href="#b.-case-cohort-design">B. Case-cohort design</a>
 <ul>
-<li><a href="#power">Power</a></li>
-<li><a href="#sample-size">Sample size</a></li>
+<li><a href="#b.1-power">B.1 Power</a></li>
+<li><a href="#b.2-sample-size">B.2 Sample size</a></li>
 </ul></li>
-<li><a href="#two-stage-case-control-design-1">Two-stage case-control design</a></li>
+<li><a href="#c.-two-stage-case-control-design">C. Two-stage case-control design</a></li>
 </ul></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -217,43 +217,43 @@ runApp()</code></pre>
 <p>Alternatively, one can run the app from source using <code>gap/inst/shinygap</code>.</p>
 <p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.</p>
 <div id="family-based-study" class="section level2">
-<h2>Family-based study</h2>
+<h2>1. Family-based study</h2>
 <p>This is a call to <code>fbsize()</code>.</p>
 <p>It appears that <code>gamma</code> is not handled well.</p>
 </div>
 <div id="population-based-study" class="section level2">
-<h2>Population-based study</h2>
+<h2>2. Population-based study</h2>
 <p>This is a call to <code>pbsize()</code>.</p>
 </div>
 <div id="case-cohort-study" class="section level2">
-<h2>Case-cohort study</h2>
+<h2>3. Case-cohort study</h2>
 <p>This is a call to <code>ccsize()</code> whose <code>power</code> argument indcates power (TRUE) or sample size (FALSE) calculation.</p>
 </div>
 <div id="two-stage-case-control-design" class="section level2">
-<h2>Two-stage case-control design</h2>
+<h2>4. Two-stage case-control design</h2>
 <p>This is a call to tscc().</p>
 <hr />
 </div>
 <div id="appendix-theory" class="section level1">
 <h1>Appendix: Theory</h1>
-<div id="family-based-and-population-based-designs" class="section level2">
-<h2>Family-based and population-based designs</h2>
+<div id="a.-family-based-and-population-based-designs" class="section level2">
+<h2>A. Family-based and population-based designs</h2>
 <p>See the R/gap package vignette jss or <span class="citation">Zhao (2007)</span>.</p>
 </div>
-<div id="case-cohort-design" class="section level2">
-<h2>Case-cohort design</h2>
-<div id="power" class="section level3">
-<h3>Power</h3>
+<div id="b.-case-cohort-design" class="section level2">
+<h2>B. Case-cohort design</h2>
+<div id="b.1-power" class="section level3">
+<h3>B.1 Power</h3>
 <p>Following <span class="citation">Cai and Zeng (2004)</span>, we have <span class="math display">\[\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)\]</span></p>
 <p>where <span class="math inline">\(\alpha\)</span> is the significance level, <span class="math inline">\(\theta\)</span> is the log-hazard ratio for two groups, <span class="math inline">\(p_j, j = 1, 2\)</span>, are the proportion of the two groups in the population (<span class="math inline">\(p_1 + p_2 = 1\)</span>), <span class="math inline">\(\tilde{n}\)</span> is the total number of subjects in the subcohort, <span class="math inline">\(p_D\)</span> is the proportion of the failures in the full cohort, and <span class="math inline">\(q\)</span> is the sampling fraction of the subcohort.</p>
 </div>
-<div id="sample-size" class="section level3">
-<h3>Sample size</h3>
+<div id="b.2-sample-size" class="section level3">
+<h3>B.2 Sample size</h3>
 <p><span class="math display">\[\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}\]</span> where <span class="math inline">\(B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}\)</span> and <span class="math inline">\(n\)</span> is the whole cohort size.</p>
 </div>
 </div>
-<div id="two-stage-case-control-design-1" class="section level2">
-<h2>Two-stage case-control design</h2>
+<div id="c.-two-stage-case-control-design" class="section level2">
+<h2>C. Two-stage case-control design</h2>
 <p>In the notation of <span class="citation">Skol et al. (2006)</span>,</p>
 <p><span class="math display">\[P(|z_1|&gt;C_1)P(|z_2|&gt;C_2,sign(z_1)=sign(z_2))\]</span> and <span class="math display">\[P(|z_1|&gt;C_1)P(|z_j|&gt;C_j\,|\,|z_1|&gt;C_1)\]</span> for replication-based and joint analyses, respectively; where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(C_j\)</span> are threshoulds at stages 1, 2 replication and joint analysis, <span class="math inline">\(z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})\)</span>, <span class="math inline">\(\,\)</span> <span class="math inline">\(z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})\)</span>, <span class="math inline">\(\,\)</span> <span class="math inline">\(z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}\)</span>.</p>
 </div>
