@@ -27,7 +27,7 @@ KCC <- function(model,GRR,p1,K)
    invisible(list(pprime=pprime,p=p))
 }
 
-fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=FALSE,error=0)
+fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,error=FALSE)
 # Family-based sample sizes
 # Jing Hua Zhao 30-12-98, 19-8-2009, 13-6-2021
 # Risch & Merikangas 1996
@@ -64,7 +64,7 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=FALSE,error=0)
   nl.m <- 0
   nl.v <- 1
   aa.m <- 2*y-1
-  if (error==1) aa.v <- 0
+  if (error) aa.v <- 0
   else aa.v <- 4*y*(1-y)
   aa <- c(aa.m,aa.v)
 
@@ -85,21 +85,6 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,debug=FALSE,error=0)
 
   n3 <- sn(aa,alpha,beta,3)
 
-  if (debug)
-  {
-     cat("K=",k, "VA=",va, "VD=",vd,"\n")
-     cat(format(gamma,width=4,nsmall=2),
-         format(p,width=5,nsmall=2),
-         format(round(y,digits=3),nsmall=3),
-         rep("",10-strlen(ceiling(n1))),ceiling(n1),
-         format(round(pA,digits=3),nsmall=3),
-         format(round(h1,digits=3),nsmall=3),
-         rep("",8-strlen(ceiling(n2))),ceiling(n2),
-         format(round(h2,digits=3),nsmall=3),
-         rep("",8-strlen(ceiling(n3))),ceiling(n3),
-         format(round(lambdao,digits=2),nsmall=2),
-         format(round(lambdas,digits=2),nsmall=2),"\n")
-  }
   list(gamma=gamma,p=p,y=y,n1=ceiling(n1),pA=pA,h1=h1,n2=ceiling(n2),h2=h2,n3=ceiling(n3),
       lambdao=lambdao,lambdas=lambdas)
 

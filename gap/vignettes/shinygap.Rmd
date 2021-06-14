@@ -27,21 +27,21 @@ Alternatively, one can run the app from source using `gap/inst/shinygap`.
 
 To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
 
-## Family-based study
+## 1. Family-based study
 
 This is a call to `fbsize()`.
 
 It appears that `gamma` is not handled well.
 
-## Population-based study
+## 2. Population-based study
 
 This is a call to `pbsize()`.
 
-## Case-cohort study
+## 3. Case-cohort study
 
 This is a call to `ccsize()` whose `power` argument indcates power (TRUE) or sample size (FALSE) calculation.
 
-## Two-stage case-control design
+## 4. Two-stage case-control design
 
 This is a call to tscc().
 
@@ -49,13 +49,13 @@ This is a call to tscc().
 
 # Appendix: Theory
 
-## Family-based and population-based designs
+## A. Family-based and population-based designs
 
 See the R/gap package vignette jss or @zhao07.
 
-## Case-cohort design
+## B. Case-cohort design
 
-### Power
+### B.1 Power
 
 Following @cai04, we have
 $$\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)$$
@@ -65,11 +65,11 @@ two groups, $p_j, j = 1, 2$, are the proportion of the two groups
 in the population ($p_1 + p_2 = 1$), $\tilde{n}$ is the total number of subjects in the subcohort, $p_D$ is the proportion of the failures in
 the full cohort, and $q$ is the sampling fraction of the subcohort.
 
-### Sample size
+### B.2 Sample size
 
 $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}$ and $n$ is the whole cohort size.
 
-## Two-stage case-control design
+## C. Two-stage case-control design
 
 In the notation of @skol06,
 
