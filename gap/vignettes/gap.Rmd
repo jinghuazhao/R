@@ -763,7 +763,7 @@ library(ggplot2)
 p <- ggplot(mr2,aes(y = SNP, x = y))+
 theme_bw()+
 geom_point()+
-facet_wrap(~trait,ncol=3)+
+facet_wrap(~trait,ncol=3,scales="free_x")+
 geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = SNP))+
 geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
 xlab("Effect size")+
