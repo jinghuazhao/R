@@ -13,7 +13,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This is an initial attempt to enable easy calculation/visualization of three study designs.
+This is an initial attempt to enable easy calculation/visualization of study designs from R/gap which benchmarked relevant publications and eventually the app can produce more generic results.
 
 One can run the app with R/gap installation as follows,
 
