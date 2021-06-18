@@ -25,13 +25,11 @@ runApp()
 
 Alternatively, one can run the app from source using `gap/inst/shinygap`.
 
-To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input provides upper bounds of a particular parameter.
+To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input(s) provide upper bounds of parameters.
 
 ## 1. Family-based study
 
-This is a call to `fbsize()`.
-
-It appears that `gamma` is not handled well.
+This is a call to `fbsize()`. It appears that `gamma` is not handled well.
 
 ## 2. Population-based study
 
