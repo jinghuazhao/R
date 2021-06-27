@@ -29,7 +29,7 @@ To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5,
 
 ## 1. Family-based study
 
-This is a call to `fbsize()`. It appears that `gamma` is not handled well.
+This is a call to `fbsize()`.
 
 ## 2. Population-based study
 

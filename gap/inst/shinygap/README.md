@@ -25,11 +25,11 @@ runApp()
 
 Alternatively, one can run the app from source using `gap/inst/shinygap`.
 
-To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider input(s) provide upper bounds of parameters.
+To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider inputs provide upper bounds of parameters.
 
 ## 1. Family-based study
 
-This is a call to `fbsize()`. It appears that `gamma` is not handled well.
+This is a call to `fbsize()`.
 
 ## 2. Population-based study
 
@@ -49,13 +49,13 @@ This is a call to tscc().
 
 ## A. Family-based and population-based designs
 
-See the R/gap package vignette jss or @zhao07.
+See the R/gap package vignette jss or Zhao (2007).
 
 ## B. Case-cohort design
 
 ### B.1 Power
 
-Following @cai04, we have
+Following Cai and Zeng (2004), we have
 $$\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)$$
 
 where $\alpha$ is the significance level, $\theta$ is the log-hazard ratio for
@@ -69,7 +69,7 @@ $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\the
 
 ## C. Two-stage case-control design
 
-In the notation of @skol06,
+In the notation of Skol et al. (2006),
 
 $$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$$ and $$P(|z_1|>C_1)P(|z_j|>C_j\,|\,|z_1|>C_1)$$
 for replication-based and joint analyses, respectively; where $C_1$, $C_2$, and $C_j$
@@ -79,3 +79,9 @@ $z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})$, $\,$
 $z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
 
 # References
+
+Cai, J., and D. Zeng. 2004. <span>“Sample Size/Power Calculation for Case–Cohort Studies.”</span> Journal Article. <em>Biometrics</em> 60 (4): 1015–24. <a href="https://doi.org/10.1111/j.0006-341X.2004.00257.x">https://doi.org/10.1111/j.0006-341X.2004.00257.x</a>.
+
+Skol, A. D., L. J. Scott, G. R. Abecasis, and M. Boehnke. 2006. <span>“Joint Analysis Is More Efficient Than Replication-Based Analysis for Two-Stage Genome-Wide Association Studies.”</span> <em>Nat Genet</em> 38 (2): 209–13.
+
+Zhao, J. H. 2007. <span>“Gap: Genetic Analysis Package.”</span> <em>Journal of Statistical Software</em> 23 (8): 1–18.
