@@ -5,7 +5,6 @@ fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
 # Science 273: 1516-17 13SEP1996
 # Science 275: 1327-30 28FEB1997
 {
-  strlen <- function(x) length(unlist(strsplit(as.character(x),split="")))
   sn <- function (all,alpha,beta,op)
   # m=0,v=1 under the null hypotheses
   # to be used by fbsize()
@@ -62,12 +61,12 @@ fbsize <- function (gamma,p,alpha=c(1e-4,1e-8,1e-8),beta=0.2,debug=0,error=0)
      cat(format(gamma,width=4,nsmall=2),
          format(p,width=5,nsmall=2),
          format(round(y,digits=3),nsmall=3),
-         rep("",10-strlen(ceiling(n1))),ceiling(n1),
+         rep("",10-nchar(ceiling(n1))),ceiling(n1),
          format(round(pA,digits=3),nsmall=3),
          format(round(h1,digits=3),nsmall=3),
-         rep("",8-strlen(ceiling(n2))),ceiling(n2),
+         rep("",8-nchar(ceiling(n2))),ceiling(n2),
          format(round(h2,digits=3),nsmall=3),
-         rep("",8-strlen(ceiling(n3))),ceiling(n3),
+         rep("",8-nchar(ceiling(n3))),ceiling(n3),
          format(round(lambdao,digits=2),nsmall=2),
          format(round(lambdas,digits=2),nsmall=2),"\n")
   }

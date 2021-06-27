@@ -28,9 +28,10 @@ server <- function(input, output) {
        x <- fb_beta <- seq(0.01,fb_beta,by=0.05)
        xlab <- "type II error"
      }
-     n1 <- with(fbsize(fb_gamma,fb_p,fb_alpha,fb_beta),n1)
-     n2 <- with(fbsize(fb_gamma,fb_p,fb_alpha,fb_beta),n2)
-     n3 <- with(fbsize(fb_gamma,fb_p,fb_alpha,fb_beta),n3)
+     n <- fbsize(fb_gamma,fb_p,fb_alpha,fb_beta)
+     n1 <- with(n,n1)
+     n2 <- with(n,n2)
+     n3 <- with(n,n3)
      ylab <- "ASP+TDT"
      point.label <- paste(paste(xlab,sep=":",x),paste(ylab,sep=":",n3),sep="\n")
      data.frame(x,n1,n2,n3,gamma=fb_gamma,p=fb_p,alpha=fb_alpha,beta=fb_beta,point.label,xlab,ylab)

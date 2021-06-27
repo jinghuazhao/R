@@ -7,26 +7,6 @@ library(vroom)
 library(shiny)
 library(shinydashboard)
 
-KCC <- function(model,GRR,p1,K)
-# 6-6-2018
-{
-   model.idx <- charmatch(model,c("multiplicative","additive","recessive","dominant","overdominant"))
-   if(is.na(model.idx)) stop("Invalid model type")
-   if(model.idx == 0) stop("Ambiguous model type")
-   multiplicative <- c(1,GRR,GRR*GRR)
-   additive <- c(1,GRR,2*GRR-1)
-   recessive <- c(1,1,GRR)
-   dominant <- c(1,GRR,GRR)
-   overdominant <- c(GRR,1,GRR)
-   f <- switch(model.idx,multiplicative,additive,recessive,dominant,overdominant)
-   scale <- K/(f[1]*(1-p1)^2+f[2]*2*p1*(1-p1)+f[3]*p1^2)
-   f <- f*scale
-#  if(f[3]>1) stop("misspecified model")
-   pprime <- (f[3]*p1^2+f[2]*p1*(1-p1))/K
-   p <- ((1-f[3])*p1^2+(1-f[2])*p1*(1-p1))/(1-K)
-   invisible(list(pprime=pprime,p=p))
-}
-
 fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,error=FALSE)
 # Family-based sample sizes
 # Jing Hua Zhao 30-12-98, 19-8-2009, 13-6-2021
@@ -34,13 +14,11 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,error=FALSE)
 # Science 273: 1516-17 13SEP1996
 # Science 275: 1327-30 28FEB1997
 {
-  strlen <- function(x) length(unlist(strsplit(as.character(x),split="")))
   sn <- function (all,alpha,beta,op)
   # m=0,v=1 under the null hypotheses
-  # to be used by fbsize()
   {
-    m <- all[1]
-    v <- all[2]
+    m <- all[[1]]
+    v <- all[[2]]
     z1beta <- qnorm(beta)                # -0.84, 1-beta=0.8 (-.84162123)
     zalpha <- -qnorm(alpha)              #  3.72, alpha=1E-4 (3.7190165); 5.33, alpha=5E-8 (5.3267239)
     s <- ((zalpha-sqrt(v)*z1beta)/m)^2/2 # shared/transmitted for each parent
@@ -66,14 +44,14 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,error=FALSE)
   aa.m <- 2*y-1
   if (error) aa.v <- 0
   else aa.v <- 4*y*(1-y)
-  aa <- c(aa.m,aa.v)
+  aa <- list(aa.m,aa.v)
 
   n1 <- sn(aa,alpha,beta,1)
 
 # TDT
   aa.m <- sqrt(h)*(gamma-1)/(gamma+1)
   aa.v <- 1-h*((gamma-1)/(gamma+1))^2
-  aa <- c(aa.m,aa.v)
+  aa <- list(aa.m,aa.v)
 
   n2 <- sn(aa,alpha,beta,2)
 
@@ -81,7 +59,7 @@ fbsize <- function (gamma,p,alpha=1e-4,beta=0.2,error=FALSE)
   h <- h2 <- p*q*(gamma+1)^2/(2*(p*gamma+q)^2+p*q*(gamma-1)^2)
   aa.m <- sqrt(h)*(gamma-1)/(gamma+1)
   aa.v <- 1-h*((gamma-1)/(gamma+1))^2
-  aa <- c(aa.m,aa.v)
+  aa <- list(aa.m,aa.v)
 
   n3 <- sn(aa,alpha,beta,3)
 
@@ -153,6 +131,26 @@ ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)
 }
 
 # 1-3-2008, MRC-Epid, JHZ
+
+KCC <- function(model,GRR,p1,K)
+# 6-6-2018
+{
+   model.idx <- charmatch(model,c("multiplicative","additive","recessive","dominant","overdominant"))
+   if(is.na(model.idx)) stop("Invalid model type")
+   if(model.idx == 0) stop("Ambiguous model type")
+   multiplicative <- c(1,GRR,GRR*GRR)
+   additive <- c(1,GRR,2*GRR-1)
+   recessive <- c(1,1,GRR)
+   dominant <- c(1,GRR,GRR)
+   overdominant <- c(GRR,1,GRR)
+   f <- switch(model.idx,multiplicative,additive,recessive,dominant,overdominant)
+   scale <- K/(f[1]*(1-p1)^2+f[2]*2*p1*(1-p1)+f[3]*p1^2)
+   f <- f*scale
+#  if(f[3]>1) stop("misspecified model")
+   pprime <- (f[3]*p1^2+f[2]*p1*(1-p1))/K
+   p <- ((1-f[3])*p1^2+(1-f[2])*p1*(1-p1))/(1-K)
+   invisible(list(pprime=pprime,p=p))
+}
 
 z <- function(p1,p2,n1,n2,r)
 {
