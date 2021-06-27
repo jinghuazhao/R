@@ -4,8 +4,13 @@ export wd=~/R
 cd ${wd}/gap
 Rscript -e "devtools::document()"
 cd ${wd}/gap/inst/shinygap/
-Rscript -e "knitr::knit('README.Rmd')"
-# pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+
+function rmd()
+{
+  Rscript -e "knitr::knit('README.Rmd')"
+  pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+}
+
 cp README.Rmd ${wd}/gap/vignettes/shinygap.Rmd
 cp shinygap.bib ${wd}/gap/vignettes/shinygap.bib
 cd ${wd}
