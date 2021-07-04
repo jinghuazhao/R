@@ -1,4 +1,5 @@
 \name{gap-internal}
+\alias{allDuplicated}
 \alias{CDKN}
 \alias{PD}
 \alias{OPG}
