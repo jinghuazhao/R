@@ -753,3 +753,12 @@ grid2d <- function(chrlen, plot=TRUE, cex=0.6)
   }
   invisible(list(n=n, CM=c(0,CM)))
 }
+
+allDuplicated <- function(x)
+{
+  front <- duplicated(x)
+  back <- duplicated(x, fromLast = TRUE)
+  all_dup <- front | back
+  return(all_dup)
+}
+

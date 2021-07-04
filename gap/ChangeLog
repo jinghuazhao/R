@@ -1,12 +1,11 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-27-06-2021
+03-06-2021
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
 		Merge plogp.Rmd and functions.Rmd from pQTLtools
 		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
 shiygap		Add inst/shinygap
-		Reformat ccsize()
 		Create R/global.R containing revised functions so it does not rely on R/gap
 		Make the first argument of sn() inside fbsize() as list() so as to handle vector input
 R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
@@ -15,6 +14,7 @@ R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets, rmarkdown
 		Drop strlen() since nchar() is ready to use
+		Add allDuplicated and export grid2d()
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package
 23-04-2021	Revise gsmr() adding legend and Egger intercept
