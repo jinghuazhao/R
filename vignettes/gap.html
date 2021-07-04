@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao" />
 
-<meta name="date" content="2021-06-27" />
+<meta name="date" content="2021-07-04" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao</h4>
-<h4 class="date">2021-06-27</h4>
+<h4 class="date">2021-07-04</h4>
 
 
 <div id="TOC">
@@ -1701,6 +1701,7 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; WriteGRMSAS : function (grmlist, outfile = &quot;gwas&quot;)  
 #&gt; a2g : function (a1, a2)  
 #&gt; ab : function (type = &quot;power&quot;, n = 25000, a = 0.15, sa = 0.01, b = log(1.19), sb = 0.01, alpha = 0.05, fold = 1)  
+#&gt; allDuplicated : function (x)  
 #&gt; allele.recode : function (a1, a2, miss.val = NA)  
 #&gt; asplot : function (locus, map, genes, flanking = 1000, best.pval = NULL, sf = c(4, 4), logpmax = 10, pch = 21)  
 #&gt; b2r : function (b, s, rho, n)  
@@ -1732,6 +1733,7 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; getb1star : function (b1, b2, rho, sdx1 = 1, sdx2 = 1)  
 #&gt; gif : function (data, gifset)  
 #&gt; grec2g : function (h, n, t)  
+#&gt; grid2d : function (chrlen, plot = TRUE, cex = 0.6)  
 #&gt; gsmr : function (data, X, Y, alpha = 0.05, other_plots = FALSE)  
 #&gt; h2.jags : function (y, x, G, eps = 1e-04, sigma.p = 0, sigma.r = 1, parms = c(&quot;b&quot;, &quot;p&quot;, &quot;r&quot;, &quot;h2&quot;), ...)  
 #&gt; h2G : function (V, VCOV, verbose = TRUE)  
@@ -1825,31 +1827,31 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;       Package LibPath                                                      Item            Title                       
-#&gt;  [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;OPGall (OPG)&quot;  &quot;Internal functions for gap&quot;
-#&gt;  [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;OPGrsid (OPG)&quot; &quot;Internal functions for gap&quot;
-#&gt;  [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;OPGtbl (OPG)&quot;  &quot;Internal functions for gap&quot;
-#&gt;  [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;PD&quot;            &quot;Internal functions for gap&quot;
-#&gt;  [5,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;aldh2&quot;         &quot;Internal functions for gap&quot;
-#&gt;  [6,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;apoeapoc&quot;      &quot;Internal functions for gap&quot;
-#&gt;  [7,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;cf&quot;            &quot;Internal functions for gap&quot;
-#&gt;  [8,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;cnv&quot;           &quot;Internal functions for gap&quot;
-#&gt;  [9,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;crohn&quot;         &quot;Internal functions for gap&quot;
-#&gt; [10,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;fa&quot;            &quot;Internal functions for gap&quot;
-#&gt; [11,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;fsnps&quot;         &quot;Internal functions for gap&quot;
-#&gt; [12,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;hg18&quot;          &quot;Internal functions for gap&quot;
-#&gt; [13,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;hg19&quot;          &quot;Internal functions for gap&quot;
-#&gt; [14,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;hg38&quot;          &quot;Internal functions for gap&quot;
-#&gt; [15,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;hla&quot;           &quot;Internal functions for gap&quot;
-#&gt; [16,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;inf1&quot;          &quot;Internal functions for gap&quot;
-#&gt; [17,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;jma.cojo&quot;      &quot;Internal functions for gap&quot;
-#&gt; [18,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;l51&quot;           &quot;Internal functions for gap&quot;
-#&gt; [19,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;lukas&quot;         &quot;Internal functions for gap&quot;
-#&gt; [20,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;mao&quot;           &quot;Internal functions for gap&quot;
-#&gt; [21,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;meyer&quot;         &quot;Internal functions for gap&quot;
-#&gt; [22,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;mfblong&quot;       &quot;Internal functions for gap&quot;
-#&gt; [23,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;mr&quot;            &quot;Internal functions for gap&quot;
-#&gt; [24,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpCoFqG0/Rinsta82347fb2023&quot; &quot;nep499&quot;        &quot;Internal functions for gap&quot;</code></pre>
+#&gt;       Package LibPath                             Item            Title                       
+#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;OPGall (OPG)&quot;  &quot;Internal functions for gap&quot;
+#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;OPGrsid (OPG)&quot; &quot;Internal functions for gap&quot;
+#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;OPGtbl (OPG)&quot;  &quot;Internal functions for gap&quot;
+#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;PD&quot;            &quot;Internal functions for gap&quot;
+#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;aldh2&quot;         &quot;Internal functions for gap&quot;
+#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;apoeapoc&quot;      &quot;Internal functions for gap&quot;
+#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;cf&quot;            &quot;Internal functions for gap&quot;
+#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;cnv&quot;           &quot;Internal functions for gap&quot;
+#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;crohn&quot;         &quot;Internal functions for gap&quot;
+#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;fa&quot;            &quot;Internal functions for gap&quot;
+#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;fsnps&quot;         &quot;Internal functions for gap&quot;
+#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;hg18&quot;          &quot;Internal functions for gap&quot;
+#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;hg19&quot;          &quot;Internal functions for gap&quot;
+#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;hg38&quot;          &quot;Internal functions for gap&quot;
+#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;hla&quot;           &quot;Internal functions for gap&quot;
+#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;inf1&quot;          &quot;Internal functions for gap&quot;
+#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;jma.cojo&quot;      &quot;Internal functions for gap&quot;
+#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;l51&quot;           &quot;Internal functions for gap&quot;
+#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;lukas&quot;         &quot;Internal functions for gap&quot;
+#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;mao&quot;           &quot;Internal functions for gap&quot;
+#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;meyer&quot;         &quot;Internal functions for gap&quot;
+#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;mfblong&quot;       &quot;Internal functions for gap&quot;
+#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;mr&quot;            &quot;Internal functions for gap&quot;
+#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpubdPR3/Rinstc7f72c5910dd&quot; &quot;nep499&quot;        &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
