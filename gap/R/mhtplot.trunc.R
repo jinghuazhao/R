@@ -1,3 +1,67 @@
+#' Truncated Manhattan plot
+#'
+#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
+#'
+#' The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for R will break down when p <= 1e-324.
+#'
+#' @param x A data.frame.
+#' @param chr Chromosome.
+#' @param bp Position.
+#' @param p p values, e.g., "1.23e-600".
+#' @param log10p log10(p).
+#' @param z z statistic, i.e., BETA/SE.
+#' @param snp SNP. Pending on the setup it could either of variant or gene ID(s).
+#' @param col Colours.
+#' @param chrlabs Chromosome labels, 1,2,...22,23,24,25.
+#' @param suggestiveline Suggestive line.
+#' @param genomewideline Genomewide line.
+#' @param highlight A list of SNPs to be highlighted.
+#' @param annotatelog10P Threshold of -log10(P) to annotate.
+#' @param annotateTop Annotate top.
+#' @param cex.mtext axis label extension factor.
+#' @param cex.text SNP label extension factor.
+#' @param mtext.line position of the y lab.
+#' @param cex.y y axis numbers.
+#' @param y.ax.space interval of ticks of the y axis.
+#' @param y.brk1 lower -log10(P) break point.
+#' @param y.brk2 upper -log10(P) break point.
+#' @param delta a value to enable column(s) of red points.
+#' @param ... other options.
+#' @return The plot is shown on or saved to the appropriate device.
+#' @examples
+#' \dontrun{
+#' options(width=120)
+#' require(gap.datasets)
+#' mhtdata <- within(mhtdata, {z=qnorm(p/2, lower.tail=FALSE)})
+#' mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn",
+#'               y.brk1=6, y.brk2=10, y.ax.space=1, mtext.line=2.5)
+#' # https://portals.broadinstitute.org/collaboration/
+#' # giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
+#' gz <- gzfile("work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
+#' BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
+#' print(subset(BMI[c("CHR","POS","SNP","P")],CHR!=16 & P<=1e-150))
+#' library(Rmpfr)
+#' print(within(subset(BMI, P==0, select=c(CHR,POS,SNP,Z)),
+#'              {P <- format(2*pnorm(mpfr(abs(Z),100),lower.tail=FALSE));
+#'               Pvalue <- pvalue(Z); log10P <- -log10p(Z)}))
+#' png("BMI.png", res=300, units="in", width=9, height=6)
+#' par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
+#' mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
+#'               suggestiveline=FALSE, genomewideline=-log10(1e-8),
+#'               cex.mtext=1.2, cex.text=1.2,
+#'               annotatelog10P=156, annotateTop = FALSE,
+#'               highlight=c("rs13021737","rs17817449","rs6567160"),
+#'               mtext.line=3, y.brk1=200, y.brk2=280, cex.axis=1.2, cex.y=1.2, cex=0.5,
+#'               y.ax.space=20,
+#'               col = c("blue4", "skyblue")
+#' )
+#' dev.off()
+#' }
+#' @author James Peters, Jing Hua Zhao.
+#' @keywords hplot.
+#' @seealso \code{\link[gap]{mhtplot}}.
+#' @export
+
 mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z = NULL, snp = "SNP",
                            col = c("gray10", "gray60"),
                            chrlabs = NULL, suggestiveline = -log10(1e-05),
@@ -74,10 +138,10 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext, font=2)
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext, font=2)
-  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) - offset + y.ax.space / 5)
-  pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1-y.ax.space)
-  post.brk.labs <- seq(from = y.brk2, by=y.ax.space, to = max(y.lab.tick.pos))
-  y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
+  y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) - offset + y.ax.space/3)
+  pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1)
+  post.brk.labs <- seq(from = y.brk2+y.ax.space, by=y.ax.space, to = max(y.lab.tick.pos))
+  y.labels <- c(pre.brk.labs, seq(from=y.brk2+y.ax.space, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
   axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1)
   plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
@@ -111,7 +175,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
     topHits = subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
       with(subset(topHits,SNP %in% highlight),
-           calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4), ...)
+           calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4))
     }
     else {
       topHits <- topHits[order(with(topHits,log10P)), ]
@@ -120,7 +184,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
         chrSNPs <- topHits[with(topHits,CHR) == i, ]
         topSNPs <- rbind(topSNPs, chrSNPs[1, ])
       }
-      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4),...)
+      with(topSNPs,calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4))
     }
   }
 }
