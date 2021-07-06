@@ -140,8 +140,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext, font=2)
   y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) - offset + y.ax.space/3)
   pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1)
-  post.brk.labs <- seq(from = y.brk2+y.ax.space, by=y.ax.space, to = max(y.lab.tick.pos))
-  y.labels <- c(pre.brk.labs, seq(from=y.brk2+y.ax.space, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
+  y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
   axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1)
   plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   if (!is.null(chrlabs)) {
