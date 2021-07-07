@@ -27,7 +27,7 @@ cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
   requireNamespace("matrixStats")
   tbl <- within(tbl, {
            if (is.null(log_p)) z <- tbl[[b]]/tbl[[se]]
-           else z <- qnorm(tbl[[log_p]], lower.tail=FALSE, log.p=TRUE)
+           else z <- qnorm(tbl[[log_p]]-log(2), lower.tail=FALSE, log.p=TRUE)
            z2 <- z * z / 2
            d <- matrixStats::logSumExp(z2)
            log_ppa <- z2 - d
