@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao" />
 
-<meta name="date" content="2021-07-07" />
+<meta name="date" content="2021-07-20" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao</h4>
-<h4 class="date">2021-07-07</h4>
+<h4 class="date">2021-07-20</h4>
 
 
 <div id="TOC">
@@ -623,18 +623,22 @@ div.csl-indent {
 <td>A utility function to read ms output</td>
 </tr>
 <tr class="even">
+<td>runshinygap</td>
+<td>Start shinygap</td>
+</tr>
+<tr class="odd">
 <td>snptest_sample</td>
 <td>A utility to generate SNPTEST sample file</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>twinan90</td>
 <td>Classic twin models</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>whscore</td>
 <td>Whittemore-Halpern scores for allele-sharing</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>weighted.median</td>
 <td>Weighted median with interpolation</td>
 </tr>
@@ -1809,6 +1813,7 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; read.ms.output : function (msout, is.file = TRUE, xpose = TRUE, verbose = TRUE, outfile = NULL, outfileonly = FALSE)  
 #&gt; revhap : function (loci, hapid)  
 #&gt; revhap.i : function (loci, hapid)  
+#&gt; runshinygap : function (...)  
 #&gt; s2k : function (y1, y2)  
 #&gt; se.exp : function (p, se.p)  
 #&gt; se.invlogit : function (logit.p, se.logit)  
@@ -1827,31 +1832,31 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;       Package LibPath                            Item            Title                       
-#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;OPGall (OPG)&quot;  &quot;Internal functions for gap&quot;
-#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;OPGrsid (OPG)&quot; &quot;Internal functions for gap&quot;
-#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;OPGtbl (OPG)&quot;  &quot;Internal functions for gap&quot;
-#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;PD&quot;            &quot;Internal functions for gap&quot;
-#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;aldh2&quot;         &quot;Internal functions for gap&quot;
-#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;apoeapoc&quot;      &quot;Internal functions for gap&quot;
-#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;cf&quot;            &quot;Internal functions for gap&quot;
-#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;cnv&quot;           &quot;Internal functions for gap&quot;
-#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;crohn&quot;         &quot;Internal functions for gap&quot;
-#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;fa&quot;            &quot;Internal functions for gap&quot;
-#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;fsnps&quot;         &quot;Internal functions for gap&quot;
-#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;hg18&quot;          &quot;Internal functions for gap&quot;
-#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;hg19&quot;          &quot;Internal functions for gap&quot;
-#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;hg38&quot;          &quot;Internal functions for gap&quot;
-#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;hla&quot;           &quot;Internal functions for gap&quot;
-#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;inf1&quot;          &quot;Internal functions for gap&quot;
-#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;jma.cojo&quot;      &quot;Internal functions for gap&quot;
-#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;l51&quot;           &quot;Internal functions for gap&quot;
-#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;lukas&quot;         &quot;Internal functions for gap&quot;
-#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;mao&quot;           &quot;Internal functions for gap&quot;
-#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;meyer&quot;         &quot;Internal functions for gap&quot;
-#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;mfblong&quot;       &quot;Internal functions for gap&quot;
-#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;mr&quot;            &quot;Internal functions for gap&quot;
-#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmpJQD00D/Rinstc06464d5c1f&quot; &quot;nep499&quot;        &quot;Internal functions for gap&quot;</code></pre>
+#&gt;       Package LibPath                             Item            Title                       
+#&gt;  [1,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;OPGall (OPG)&quot;  &quot;Internal functions for gap&quot;
+#&gt;  [2,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;OPGrsid (OPG)&quot; &quot;Internal functions for gap&quot;
+#&gt;  [3,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;OPGtbl (OPG)&quot;  &quot;Internal functions for gap&quot;
+#&gt;  [4,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;PD&quot;            &quot;Internal functions for gap&quot;
+#&gt;  [5,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;aldh2&quot;         &quot;Internal functions for gap&quot;
+#&gt;  [6,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;apoeapoc&quot;      &quot;Internal functions for gap&quot;
+#&gt;  [7,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;cf&quot;            &quot;Internal functions for gap&quot;
+#&gt;  [8,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;cnv&quot;           &quot;Internal functions for gap&quot;
+#&gt;  [9,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;crohn&quot;         &quot;Internal functions for gap&quot;
+#&gt; [10,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;fa&quot;            &quot;Internal functions for gap&quot;
+#&gt; [11,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;fsnps&quot;         &quot;Internal functions for gap&quot;
+#&gt; [12,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;hg18&quot;          &quot;Internal functions for gap&quot;
+#&gt; [13,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;hg19&quot;          &quot;Internal functions for gap&quot;
+#&gt; [14,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;hg38&quot;          &quot;Internal functions for gap&quot;
+#&gt; [15,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;hla&quot;           &quot;Internal functions for gap&quot;
+#&gt; [16,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;inf1&quot;          &quot;Internal functions for gap&quot;
+#&gt; [17,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;jma.cojo&quot;      &quot;Internal functions for gap&quot;
+#&gt; [18,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;l51&quot;           &quot;Internal functions for gap&quot;
+#&gt; [19,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;lukas&quot;         &quot;Internal functions for gap&quot;
+#&gt; [20,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;mao&quot;           &quot;Internal functions for gap&quot;
+#&gt; [21,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;meyer&quot;         &quot;Internal functions for gap&quot;
+#&gt; [22,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;mfblong&quot;       &quot;Internal functions for gap&quot;
+#&gt; [23,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;mr&quot;            &quot;Internal functions for gap&quot;
+#&gt; [24,] &quot;gap&quot;   &quot;/tmp/RtmptWxhxo/Rinst676e25e90388&quot; &quot;nep499&quot;        &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
