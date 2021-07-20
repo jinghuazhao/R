@@ -98,6 +98,7 @@ metareg                 Fixed and random effects model for meta-analysis
 muvar                   Means and variances under 1- and 2- locus (diallelic) QTL model
 pvalue                  P value for a normal deviate
 read.ms.output          A utility function to read ms output
+runshinygap             Start shinygap
 snptest_sample          A utility to generate SNPTEST sample file
 weighted.median         Weighted median with interpolation
 whscore                 Whittemore-Halpern scores for allele-sharing

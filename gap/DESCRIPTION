@@ -1,6 +1,6 @@
 Package: gap
 Version: 1.2.3-2
-Date: 2021-7-7
+Date: 2021-7-20
 Title: Genetic Analysis Package
 Author: Jing Hua Zhao and colleagues with inputs from Kurt Hornik and
         Brian Ripley
@@ -15,6 +15,8 @@ Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
         jsonlite, kinship2, knitr, lattice, magic, matrixStats,
         meta, metafor, mets, nlme, pedigree, pedigreemm, plotrix,
         reshape, rmarkdown, rmeta, rms, survival
+VignetteBuilder: knitr
+Enhances: shiny
 Description: It is designed as an integrated package for genetic data
         analysis of both population and family data. Currently, it
         contains functions for sample size calculations of both
@@ -30,7 +32,6 @@ LazyLoad: Yes
 NeedsCompilation: yes
 Repository: CRAN
 Encoding: UTF-8
-VignetteBuilder: knitr
 Packaged: 2017-11-24 23:42:52 UTC; jhz22
 Date/Publication: 2017-04-19 11:10:23 UTC
 RoxygenNote: 7.1.1

@@ -5,7 +5,7 @@ Version 1.2.3-2
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
 		Merge plogp.Rmd and functions.Rmd from pQTLtools
 		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
-shiygap		Add inst/shinygap
+shiygap		Add inst/shinygap and therefore runshinygap
 		Create R/global.R containing revised functions so it does not rely on R/gap
 		Make the first argument of sn() inside fbsize() as list() so as to handle vector input
 R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
