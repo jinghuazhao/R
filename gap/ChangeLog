@@ -9,6 +9,7 @@ shiygap		Add inst/shinygap and therefore runshinygap
 		Create R/global.R containing revised functions so it does not rely on R/gap
 		Make the first argument of sn() inside fbsize() as list() so as to handle vector input
 R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
+		Document circos.cis.vs.trans.plot()
 		Document logp(), log10p(), log10pvalue(), pqtl2dplot(), pvalue(), h2G(), h2GE(), h2l()
 		Rename mhtplot2d/3d as pqtl2dplot/3dplotly, 3d version as run3d() and use .csv
 		Imports: dplyr, ggplot2, plotly
