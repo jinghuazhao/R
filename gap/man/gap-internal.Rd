@@ -40,7 +40,6 @@
 \alias{chr_pos_a1_a2}
 \alias{ci}
 \alias{circos.cnvplot}
-\alias{circos.cis.vs.trans.plot}
 \alias{Cox.est}
 \alias{Cox.T}
 \alias{cov.invlogit}
