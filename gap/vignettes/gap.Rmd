@@ -252,8 +252,7 @@ The pedigree diagram is as follows,
 ```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
 library(gap)
 # pedigree diagram
-library(gap.datasets)
-data(lukas)
+data(lukas, package="gap.datasets")
 library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
 plot(ped,cex=0.4)
@@ -566,8 +565,7 @@ title("This is a fictitious plot")
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=12, results="hide"}
-library(gap.datasets)
-data(OPG)
+data(OPG,package="gap.datasets")
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
 

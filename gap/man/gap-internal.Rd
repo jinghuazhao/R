@@ -1,11 +1,11 @@
 \name{gap-internal}
 \alias{allDuplicated}
 \alias{grid2d}
-\alias{mr}
 \alias{hg18}
 \alias{hg19}
 \alias{hg38}
 \alias{lambda1000}
+\alias{mr}
 \alias{sun3d}
 \alias{PARn}
 \alias{HapDesign}
@@ -101,6 +101,17 @@ WriteGRM(prefix=51,id,N,GRM)
 WriteGRMBin(prefix, grm, N, id, size=4)
 WriteGRMSAS(grmlist, outfile="gwas")
 }
+\arguments{
+  \item{a1}{Allele 1}
+  \item{a2}{Allele 2}
+  \item{g}{A genotype identifier}
+  \item{model}{One of "multiplicative", "additive", "recessive", "dominant", "overdominant"}
+  \item{GRR}{Genotype relative risk}
+  \item{p1}{Frequency of the risk allele}
+  \item{K}{Prevalence of disease in the population}
+  \item{loci}{A vector of number of alleles at all loci}
+  \item{hapid}{Haplotype identifier}
+}
 \description{
 These are internal functions.
 
@@ -187,17 +198,6 @@ x2 is a simple chi-squared test of two proportions.
 
 z is a normal z-test of two proportions used by tscc.
 
-}
-\arguments{
-  \item{a1}{Allele 1}
-  \item{a2}{Allele 2}
-  \item{g}{A genotype identifier}
-  \item{model}{One of "multiplicative", "additive", "recessive", "dominant", "overdominant"}
-  \item{GRR}{Genotype relative risk}
-  \item{p1}{Frequency of the risk allele}
-  \item{K}{Prevalence of disease in the population}
-  \item{loci}{A vector of number of alleles at all loci}
-  \item{hapid}{Haplotype identifier}
 }
 \examples{
 \dontrun{

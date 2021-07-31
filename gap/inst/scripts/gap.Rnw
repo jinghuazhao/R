@@ -564,7 +564,7 @@ title("This is a fictitious plot")
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
 <<forest, fig.height=7, fig.width=7>>==
-data(OPG)
+data(OPG, package="gap.datasets")
 METAL_forestplot(OPGtbl[1,],OPGall,OPGrsid,width=8.75,height=5)
 @
 
