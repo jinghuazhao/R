@@ -12,7 +12,7 @@ This repository contains packages **CGR** which is not available from CRAN and *
 **tdthap**  | [https://cran.r-project.org/package=tdthap](https://cran.r-project.org/package=tdthap) | [https://github.com/cran/tdthap](https://github.com/cran/tdthap) | [https://rdrr.io/cran/tdthap/](https://rdrr.io/cran/tdthap/)
 **kinship**<sup>[1](#footnote1)</sup> | [https://cran.r-project.org/src/contrib/Archive/kinship/](https://cran.r-project.org/src/contrib/Archive/kinship/) | [https://github.com/cran/kinship](https://github.com/cran/kinship)
 
-The [**vignettes**](vignettes) directory contains [gap](https://jinghuazhao.github.io/R/vignettes/gap.html), [h2](https://jinghuazhao.github.io/R/vignettes/h2.pdf), [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf), [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html), [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf) and see also [pQTLtools](https://jinghuazhao.github.io/pQTLtools/).
+The [**vignettes**](vignettes) directory contains [gap](https://jinghuazhao.github.io/R/vignettes/gap.html), [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf), [h2](https://jinghuazhao.github.io/R/vignettes/h2.pdf), [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf), [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html), [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf) and see also [pQTLtools](https://jinghuazhao.github.io/pQTLtools/).
 
 Packages **gap** and **tdthap** are featured in [task view for genetics](https://cran.r-project.org/web/views/Genetics.html), while packages **lmm** and **pan** are featured in [task view for social sciences](https://cran.r-project.org/web/views/SocialSciences.html).
 
