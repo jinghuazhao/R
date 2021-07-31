@@ -39,7 +39,6 @@
 \alias{a2g}
 \alias{chr_pos_a1_a2}
 \alias{ci}
-\alias{circos.cnvplot}
 \alias{Cox.est}
 \alias{Cox.T}
 \alias{cov.invlogit}
@@ -80,7 +79,6 @@
 \alias{m2plem}
 \alias{makeRLEplot}
 \alias{mht.control}
-\alias{miamiplot}
 \alias{micombine}
 \alias{mr.boot}
 \alias{plem2m}
@@ -134,10 +132,6 @@ a2g gives allele-to-genotype conversion.
 
 chr_pos_a1_a2 produces SNPID format.
 
-circos.cnvplot produces circos plot of CNVs
-
-circos.cis.vs.trans.plot gives circos plot of cis/trans classification
-
 g2a returns two alleles according to a genotype identifier.
 
 g2a.c is the C version of g2c.
@@ -178,8 +172,6 @@ m2plem is an experimental function for PLEM format.
 makeRLEplot for RLE plot.
 
 sun3d is for 3D Manhattan plot according to Sun, et al. (2018).
-
-miamiplot is for Miami plot.
 
 micombine is used to combine imputation results.
 
@@ -233,8 +225,6 @@ z is a normal z-test of two proportions used by tscc.
 }
 \examples{
 \dontrun{
-#
-circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
 #
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 inv_chr_pos_a1_a2(s)

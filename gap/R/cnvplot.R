@@ -4,11 +4,10 @@
 #' @md
 #' @param data Data to be used.
 #' @export
-#' @return The cis/trans classification.
+#' @return None.
 #' @examples
 #' knitr::kable(cnv,caption="A CNV dataset")
 #' cnvplot(cnv)
-#' circos.cnvplot(cnv)
 
 cnvplot <- function(data)
 # cnvplot(cnv)

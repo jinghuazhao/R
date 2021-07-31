@@ -10,7 +10,7 @@ cnvplot(data)
 \item{data}{Data to be used.}
 }
 \value{
-The cis/trans classification.
+None.
 }
 \description{
 The function generates a plot containing genomewide copy number variants (CNV) chr, start, end, freq(uencies).
@@ -18,5 +18,4 @@ The function generates a plot containing genomewide copy number variants (CNV) c
 \examples{
 knitr::kable(cnv,caption="A CNV dataset")
 cnvplot(cnv)
-circos.cnvplot(cnv)
 }
