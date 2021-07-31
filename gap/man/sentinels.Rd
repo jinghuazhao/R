@@ -58,50 +58,50 @@ The function give screen output.
 
 \examples{
 \dontrun{
-## OPG as a positive control in our pGWAS
-require(gap.datasets)
-data(OPG)
-p <- reshape::rename(OPGtbl, c(Chromosome="Chrom", Position="End"))
-chrs <- with(p, unique(Chrom))
-for(chr in chrs)
-{
-  ps <- subset(p[c("Chrom","End","MarkerName","Effect","StdErr")], Chrom==chr)
-  row.names(ps) <- 1:nrow(ps)
-  sentinels(ps, "OPG", 1)
-}
-subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
-subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
-## log(P)
-p <- within(p, {logp <- log(P.value)})
-for(chr in chrs)
-{
-  ps <- subset(p[c("Chrom","End","MarkerName","logp")], Chrom==chr)
-  row.names(ps) <- 1:nrow(ps)
-  sentinels(ps, "OPG", 1, log_p="logp")
-}
-## to obtain variance explained
-tbl <- within(OPGtbl, chi2n <- (Effect/StdErr)^2/N)
-s <- with(tbl, aggregate(chi2n,list(prot),sum))
-names(s) <- c("prot", "h2")
-sd <- with(tbl, aggregate(chi2n,list(prot),sd))
-names(sd) <- c("p1","sd")
-m <- with(tbl, aggregate(chi2n,list(prot),length))
-names(m) <- c("p2","m")
-h2 <- cbind(s,sd,m)
-ord <- with(h2, order(h2))
-sink("h2.dat")
-print(h2[ord, c("prot","h2","sd","m")], row.names=FALSE)
-sink()
-png("h2.png", res=300, units="in", width=12, height=8)
-np <- nrow(h2)
-with(h2[ord,], {
-    plot(h2, cex=0.4, pch=16, xaxt="n", xlab="protein", ylab=expression(h^2))
-    xtick <- seq(1, np, by=1)
-    axis(side=1, at=xtick, labels = FALSE)
-    text(x=xtick, par("usr")[3],labels = prot, srt = 75, pos = 1, xpd = TRUE, cex=0.5)
-})
-dev.off()
-write.csv(tbl,file="INF1.csv",quote=FALSE,row.names=FALSE)
+  ## OPG as a positive control in our pGWAS
+  require(gap.datasets)
+  data(OPG)
+  p <- reshape::rename(OPGtbl, c(Chromosome="Chrom", Position="End"))
+  chrs <- with(p, unique(Chrom))
+  for(chr in chrs)
+  {
+    ps <- subset(p[c("Chrom","End","MarkerName","Effect","StdErr")], Chrom==chr)
+    row.names(ps) <- 1:nrow(ps)
+    sentinels(ps, "OPG", 1)
+  }
+  subset(OPGrsid,MarkerName=="chr8:120081031_C_T")
+  subset(OPGrsid,MarkerName=="chr17:26694861_A_G")
+  ## log(P)
+  p <- within(p, {logp <- log(P.value)})
+  for(chr in chrs)
+  {
+    ps <- subset(p[c("Chrom","End","MarkerName","logp")], Chrom==chr)
+    row.names(ps) <- 1:nrow(ps)
+    sentinels(ps, "OPG", 1, log_p="logp")
+  }
+  ## to obtain variance explained
+  tbl <- within(OPGtbl, chi2n <- (Effect/StdErr)^2/N)
+  s <- with(tbl, aggregate(chi2n,list(prot),sum))
+  names(s) <- c("prot", "h2")
+  sd <- with(tbl, aggregate(chi2n,list(prot),sd))
+  names(sd) <- c("p1","sd")
+  m <- with(tbl, aggregate(chi2n,list(prot),length))
+  names(m) <- c("p2","m")
+  h2 <- cbind(s,sd,m)
+  ord <- with(h2, order(h2))
+  sink("h2.dat")
+  print(h2[ord, c("prot","h2","sd","m")], row.names=FALSE)
+  sink()
+  png("h2.png", res=300, units="in", width=12, height=8)
+  np <- nrow(h2)
+  with(h2[ord,], {
+      plot(h2, cex=0.4, pch=16, xaxt="n", xlab="protein", ylab=expression(h^2))
+      xtick <- seq(1, np, by=1)
+      axis(side=1, at=xtick, labels = FALSE)
+      text(x=xtick, par("usr")[3],labels = prot, srt = 75, pos = 1, xpd = TRUE, cex=0.5)
+  })
+  dev.off()
+  write.csv(tbl,file="INF1.csv",quote=FALSE,row.names=FALSE)
 }
 }
 \keyword{utilities}

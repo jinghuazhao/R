@@ -12,6 +12,7 @@ R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
 		Document circos.cis.vs.trans.plot(), circos.cnvplot(), miamiplot()
 		Document logp(), log10p(), log10pvalue(), pqtl2dplot(), pvalue(), h2G(), h2GE(), h2l()
 		Rename mhtplot2d/3d as pqtl2dplot/3dplotly, 3d version as run3d() and use .csv
+		Depend: gap.datasets
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets, rmarkdown
 		Drop strlen() since nchar() is ready to use

@@ -252,6 +252,7 @@ The pedigree diagram is as follows,
 ```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
 library(gap)
 # pedigree diagram
+library(gap.datasets)
 data(lukas)
 library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
@@ -454,7 +455,6 @@ Based on a chicken genome scan data, the code below generates a Manhattan plot, 
 the use of gaps to separate chromosomes.
 
 ```{r chicken, fig.cap="A genome-wide association study on chickens", fig.with=7, fig.width=7, results="hide"}
-library(gap.datasets)
 ord <- with(w4,order(chr,pos))
 w4 <- w4[ord,]
 oldpar <- par()
@@ -566,6 +566,7 @@ title("This is a fictitious plot")
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=12, results="hide"}
+library(gap.datasets)
 data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
 ```
