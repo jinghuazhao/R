@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao" />
 
-<meta name="date" content="2021-07-31" />
+<meta name="date" content="2021-08-02" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao</h4>
-<h4 class="date">2021-07-31</h4>
+<h4 class="date">2021-08-02</h4>
 
 
 <div id="TOC">
@@ -210,7 +210,6 @@ div.csl-indent {
 <li><a href="#chr_pos_a1_a2-and-inv_chr_pos_a1_a2">chr_pos_a1_a2 and inv_chr_pos_a1_a2</a></li>
 <li><a href="#gc.lambda">gc.lambda</a></li>
 <li><a href="#invnormal">invnormal</a></li>
-<li><a href="#mhtplot.trunc">mhtplot.trunc</a></li>
 <li><a href="#snptest_sample">snptest_sample</a></li>
 </ul></li>
 <li><a href="#known-bugs">Known bugs</a></li>
@@ -223,7 +222,7 @@ div.csl-indent {
 <p>Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, <a href="https://jinghuazhao.github.io/" class="uri">https://jinghuazhao.github.io/</a>.</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>This package was initiated to integrate some C/Fortran/SAS programs I have written or used over the years. As such, it would rather be a long-term project, but an immediate benefit would be something complementary to other packages currently available from CRAN, e.g. <strong>genetics</strong>, <strong>hwde</strong>, etc. I hope eventually this will be part of a bigger effort to fulfill most of the requirements foreseen by many, e.g. <span class="citation">Guo and Lange (2000)</span>, within the portable environment of R for data management, analysis, graphics and object-oriented programming. My view has been outlined more formally in <span class="citation">Zhao and Tan (2006b)</span> and <span class="citation">Zhao and Tan (2006a)</span> in relation to other package systems. Also reported are <span class="citation">Zhao (2005)</span> and <span class="citation">Zhao (2006)</span> on package <strong>kinship</strong>.</p>
+<p>This package was initiated to integrate some C/Fortran/SAS programs I have written or used over the years. As such, it would rather be a long-term project, but an immediate benefit would be something complementary to other packages currently available from CRAN, e.g. <strong>genetics</strong>, <strong>hwde</strong>, etc. I hope eventually this will be part of a bigger effort to fulfill most of the requirements foreseen by many, e.g.,<span class="citation"><sup>1</sup></span> within the portable environment of R for data management, analysis, graphics and object-oriented programming. My view has been outlined more formally in<span class="citation"><sup>2</sup></span> and<span class="citation"><sup>3</sup></span> in relation to other package systems. Also reported are<span class="citation"><sup>4</sup></span> and<span class="citation"><sup>5</sup></span> on package <strong>kinship</strong>.</p>
 <p>The number of functions are quite limited and experimental, but I already feel the enormous advantage by shifting to R and would like sooner rather than later to share my work with others. I will not claim this work as exclusively done by me, but would like to invite others to join me and enlarge the collections and improve them.</p>
 <p>With my recent work on genomewide association studies (GWAS) especially protein GWAS, I have added many functions such as <code>METAL_forestplot</code> which handles data from software METAL and <code>sentinels</code> which extracts sentinels from GWAS summary statistics in a way that is very appealing to us compared to some other established software. At the meantime, the size of the package surpasses the limit as imposed by CRAN, thus the old good feature of <code>S</code> as with <code>R</code> that value both code and data alike has to suffer slightly in that <code>gap.datasets</code> and <code>gap.examples</code> are spun off as two separate packages; they do deserve a glimpse however for some general ideas.</p>
 </div>
@@ -649,7 +648,7 @@ div.csl-indent {
 <p>You can cut and paste examples at end of each function’s documentation.</p>
 <p>Both <code>genecounting</code> and <code>hap</code> are able to handle SNPs and multiallelic markers, with the former be flexible enough to include features such as X-linked data and the later being able to handle large number of SNPs. But they are unable to recode allele labels automatically, so functions <code>gc.em</code> and <code>hap.em</code> are in <code>haplo.em</code> format and used by a modified function <code>hap.score</code> in association testing.</p>
 <p>It is notable that multilocus data are handled differently from that in <strong>hwde</strong> and elegant definitions of basic genetic data can be found in the <strong>genetics</strong> package.</p>
-<p>Incidentally, I found my C mixed-radixed sorting routine as in <span class="citation">Zhao and Sham (2003)</span> is much faster than R’s internal function.</p>
+<p>Incidentally, I found my C mixed-radixed sorting routine as in<span class="citation"><sup>6</sup></span> is much faster than R’s internal function.</p>
 <p>With exceptions such as function <code>pfc</code> which is very computer-intensive, most functions in the package can easily be adapted for analysis of large datasets involving either SNPs or multiallelic markers. Some are utility functions, e.g. <code>muvar</code> and <code>whscore</code>, which will be part of the other analysis routines in the future.</p>
 <p>The benefit with R compared to standalone programs is that for users, all functions have unified format. For developers, it is able to incorporate their C/C++ programs more easily and avoid repetitive work such as preparing own routines for matrix algebra and linear models. Further advantage can be taken from packages in <strong>Bioconductor</strong>, which are designed and written to deal with large number of genes.</p>
 </div>
@@ -669,7 +668,7 @@ div.csl-indent {
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
-<p>I would like to highlight <code>pedtodot</code>, <code>pbsize</code>, <code>fbsize</code> and <code>ccsize</code> functions used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as reported in <span class="citation">Zhao (2007)</span>.</p>
+<p>I would like to highlight <code>pedtodot</code>, <code>pbsize</code>, <code>fbsize</code> and <code>ccsize</code> functions used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as reported in.<span class="citation"><sup>7</sup></span></p>
 <div id="pedigree-drawing" class="section level2">
 <h2>Pedigree drawing</h2>
 <p>I have included the original file for the <em>R News</em> as well as put examples in separate vignettes. They can be accessed via <code>vignette(&quot;rnews&quot;,package=&quot;gap.examples&quot;)</code> and <code>vignette(&quot;pedtodot&quot;, package=&quot;gap.examples&quot;)</code>, respectively.</p>
@@ -1533,7 +1532,7 @@ Mendelian randomization
 </tbody>
 </table>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(f)</span></code></pre></div>
-<p>The nearest reference for the implemented approaches is <span class="citation">Ligthart et al. (2018)</span>.</p>
+<p>The nearest reference for the implemented approaches is.<span class="citation"><sup>8</sup></span></p>
 <p>We would be of interest to contrast their effect sizes as well,</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mr_names <span class="ot">&lt;-</span> <span class="fu">names</span>(mr)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>LIF.R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mr[<span class="fu">grepl</span>(<span class="st">&quot;SNP|LIF.R&quot;</span>,mr_names)],<span class="at">trait=</span><span class="st">&quot;LIF.R&quot;</span>); <span class="fu">names</span>(LIF.R) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;trait&quot;</span>)</span>
@@ -1621,40 +1620,11 @@ Combined forest plots for LIF.R, FEV1 and CAD
 <span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
 <span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9973999</span></span></code></pre></div>
 </div>
-<div id="mhtplot.trunc" class="section level2">
-<h2>mhtplot.trunc</h2>
-<p>We have seen the IL12B example above and this is the documentation example,</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">120</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap.datasets)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>mhtdata <span class="ot">&lt;-</span> <span class="fu">within</span>(mhtdata, {z<span class="ot">=</span><span class="fu">qnorm</span>(p<span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)})</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mhtplot.trunc</span>(mhtdata, <span class="at">chr =</span> <span class="st">&quot;chr&quot;</span>, <span class="at">bp =</span> <span class="st">&quot;pos&quot;</span>, <span class="at">z =</span> <span class="st">&quot;z&quot;</span>, <span class="at">snp =</span> <span class="st">&quot;rsn&quot;</span>, <span class="at">y.brk1=</span><span class="dv">10</span>, <span class="at">y.brk2=</span><span class="dv">12</span>, <span class="at">mtext.line=</span><span class="fl">2.5</span>)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># https://portals.broadinstitute.org/collaboration/</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>gz <span class="ot">&lt;-</span> <span class="fu">gzfile</span>(<span class="st">&quot;work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz&quot;</span>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>BMI <span class="ot">&lt;-</span> <span class="fu">within</span>(<span class="fu">read.delim</span>(gz,<span class="at">as.is=</span><span class="cn">TRUE</span>), {Z <span class="ot">&lt;-</span> BETA<span class="sc">/</span>SE})</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">subset</span>(BMI[<span class="fu">c</span>(<span class="st">&quot;CHR&quot;</span>,<span class="st">&quot;POS&quot;</span>,<span class="st">&quot;SNP&quot;</span>,<span class="st">&quot;P&quot;</span>)],CHR<span class="sc">!=</span><span class="dv">16</span> <span class="sc">&amp;</span> P<span class="sc">&lt;=</span><span class="fl">1e-150</span>))</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rmpfr)</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">within</span>(<span class="fu">subset</span>(BMI, P<span class="sc">==</span><span class="dv">0</span>, <span class="at">select=</span><span class="fu">c</span>(CHR,POS,SNP,Z)),</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>             {P <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fu">mpfr</span>(<span class="fu">abs</span>(Z),<span class="dv">100</span>),<span class="at">lower.tail=</span><span class="cn">FALSE</span>)); Pvalue <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(Z); log10P <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10p</span>(Z)}))</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;BMI.png&quot;</span>, <span class="at">res=</span><span class="dv">300</span>, <span class="at">units=</span><span class="st">&quot;in&quot;</span>, <span class="at">width=</span><span class="dv">9</span>, <span class="at">height=</span><span class="dv">6</span>)</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">oma=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">6.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mhtplot.trunc</span>(BMI, <span class="at">chr=</span><span class="st">&quot;CHR&quot;</span>, <span class="at">bp=</span><span class="st">&quot;POS&quot;</span>, <span class="at">z=</span><span class="st">&quot;Z&quot;</span>, <span class="at">snp=</span><span class="st">&quot;SNP&quot;</span>,</span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, <span class="at">genomewideline=</span><span class="sc">-</span><span class="fu">log10</span>(<span class="fl">1e-8</span>),</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">cex.mtext=</span><span class="fl">1.2</span>, <span class="at">cex.text=</span><span class="fl">1.2</span>,</span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">annotatelog10P=</span><span class="dv">156</span>, <span class="at">annotateTop =</span> <span class="cn">FALSE</span>, <span class="at">highlight=</span><span class="fu">c</span>(<span class="st">&quot;rs13021737&quot;</span>,<span class="st">&quot;rs17817449&quot;</span>,<span class="st">&quot;rs6567160&quot;</span>),</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">mtext.line=</span><span class="dv">3</span>, <span class="at">y.brk1=</span><span class="dv">200</span>, <span class="at">y.brk2=</span><span class="dv">280</span>, <span class="at">cex.axis=</span><span class="fl">1.2</span>, <span class="at">cex.y=</span><span class="fl">1.2</span>, <span class="at">cex=</span><span class="fl">0.5</span>,</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">y.ax.space=</span><span class="dv">20</span>,</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue4&quot;</span>, <span class="st">&quot;skyblue&quot;</span>)</span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
-<p>The plot for the GIANT data is shown here, <a href="https://jinghuazhao.github.io/Omics-analysis/BMI/">https://jinghuazhao.github.io/Omics-analysis/BMI/</a>.</p>
-</div>
 <div id="snptest_sample" class="section level2">
 <h2>snptest_sample</h2>
 <p>This is a function to output sample file for SNPTEST.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID_1=</span><span class="dv">1</span>,<span class="at">ID_2=</span><span class="dv">1</span>,<span class="at">missing=</span><span class="dv">0</span>,<span class="at">PC1=</span><span class="dv">1</span>,<span class="at">PC2=</span><span class="dv">2</span>,<span class="at">D1=</span><span class="dv">1</span>,<span class="at">P1=</span><span class="dv">10</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snptest_sample</span>(d,<span class="at">C=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),<span class="at">D=</span><span class="fu">paste0</span>(<span class="st">&quot;D&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),<span class="at">P=</span><span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID_1=</span><span class="dv">1</span>,<span class="at">ID_2=</span><span class="dv">1</span>,<span class="at">missing=</span><span class="dv">0</span>,<span class="at">PC1=</span><span class="dv">1</span>,<span class="at">PC2=</span><span class="dv">2</span>,<span class="at">D1=</span><span class="dv">1</span>,<span class="at">P1=</span><span class="dv">10</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snptest_sample</span>(d,<span class="at">C=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),<span class="at">D=</span><span class="fu">paste0</span>(<span class="st">&quot;D&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),<span class="at">P=</span><span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
 <p>The commands above generates a file named ``snptest.sample.</p>
 </div>
 </div>
@@ -1832,38 +1802,101 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;      Package LibPath                              Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/tmp/Rtmpkzgfy2/Rinst2e1895c9f0390&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/tmp/Rtmpkzgfy2/Rinst2e1895c9f0390&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/tmp/Rtmpkzgfy2/Rinst2e1895c9f0390&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/tmp/Rtmpkzgfy2/Rinst2e1895c9f0390&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                             Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/tmp/RtmpqNeB3x/Rinste9f6595525da&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/tmp/RtmpqNeB3x/Rinste9f6595525da&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/tmp/RtmpqNeB3x/Rinste9f6595525da&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/tmp/RtmpqNeB3x/Rinste9f6595525da&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body" line-spacing="2">
 <div id="ref-guo00" class="csl-entry">
-Guo, S. W., and K. Lange. 2000. <span>“Genetic Mapping of Complex Traits: Promises, Problems, and Prospects.”</span> <em>Theor Popul Biol</em> 57: 1–11.
-</div>
-<div id="ref-ligthart18" class="csl-entry">
-Ligthart, S., A. Vaez, U. Võsa, M. G. Stathopoulou, P. S. de Vries, B. P. Prins, P. J. Van der Most, et al. 2018. <span>“Genome Analyses of &gt;200,000 Individuals Identify 58 Loci for Chronic Inflammation and Highlight Pathways That Link Inflammation and Complex Disorders.”</span> Journal Article. <em>Am J Hum Genet</em> 103 (5): 691–706. <a href="https://doi.org/10.1016/j.ajhg.2018.09.009">https://doi.org/10.1016/j.ajhg.2018.09.009</a>.
-</div>
-<div id="ref-zhao05" class="csl-entry">
-Zhao, J. H. 2005. <span>“Mixed-Effects <span>C</span>ox Models of Alcohol Dependence in Extended Families.”</span> <em>BMC Genet</em> 6 (Suppl): S127.
-</div>
-<div id="ref-zhao06" class="csl-entry">
-———. 2006. <span>“Pedigree-Drawing with <span>R</span> and Graphviz.”</span> <em>Bioinformatics</em> 22 (8): 1013–14.
-</div>
-<div id="ref-zhao07" class="csl-entry">
-———. 2007. <span>“Gap: Genetic Analysis Package.”</span> <em>Journal of Statistical Software</em> 23 (8): 1–18.
-</div>
-<div id="ref-zhao03" class="csl-entry">
-Zhao, J. H., and P. C. Sham. 2003. <span>“Generic Number Systems and Haplotype Analysis.”</span> <em>Comp Meth Prog Biomed</em> 70: 1–9.
-</div>
-<div id="ref-zt06b" class="csl-entry">
-Zhao, J. H., and Q. Tan. 2006a. <span>“Genetic Dissection of Complex Traits in Silico: Approaches, Problems and Soluations.”</span> <em>Current Bioinformatics</em> 1 (3): 359–69.
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Guo, S. W. &amp; Lange, K. Genetic mapping of complex traits: Promises, problems, and prospects. <em>Theor Popul Biol</em> <strong>57</strong>, 1–11 (2000).</div>
 </div>
 <div id="ref-zt06a" class="csl-entry">
-———. 2006b. <span>“Integrated Analysis of Genetic Data with <span>R</span>.”</span> <em>Hum Genomics</em> 2 (4): 258–65.
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Zhao, J. H. &amp; Tan, Q. Integrated analysis of genetic data with <span>R</span>. <em>Hum Genomics</em> <strong>2</strong>, 258–65 (2006).</div>
+</div>
+<div id="ref-zt06b" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Zhao, J. H. &amp; Tan, Q. Genetic dissection of complex traits in silico: Approaches, problems and soluations. <em>Current Bioinformatics</em> <strong>1</strong>, 359–369 (2006).</div>
+</div>
+<div id="ref-zhao05" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Zhao, J. H. Mixed-effects <span>C</span>ox models of alcohol dependence in extended families. <em>BMC Genet</em> <strong>6</strong>, S127 (2005).</div>
+</div>
+<div id="ref-zhao06" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Zhao, J. H. Pedigree-drawing with <span>R</span> and graphviz. <em>Bioinformatics</em> <strong>22</strong>, 1013–4 (2006).</div>
+</div>
+<div id="ref-zhao03" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Zhao, J. H. &amp; Sham, P. C. Generic number systems and haplotype analysis. <em>Comp Meth Prog Biomed</em> <strong>70</strong>, 1–9 (2003).</div>
+</div>
+<div id="ref-zhao07" class="csl-entry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Zhao, J. H. Gap: Genetic analysis package. <em>Journal of Statistical Software</em> <strong>23</strong>, 1–18 (2007).</div>
+</div>
+<div id="ref-ligthart18" class="csl-entry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Ligthart, S. <em>et al.</em> Genome analyses of &gt;200,000 individuals identify 58 loci for chronic inflammation and highlight pathways that link inflammation and complex disorders. <em>Am J Hum Genet</em> <strong>103</strong>, 691–706 (2018).</div>
+</div>
+<div id="ref-chow60" class="csl-entry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Chow, G. C. Tests of equality between sets of coefficients in two linear regression. <em>Econometrica</em> <strong>28</strong>, 591–605 (1960).</div>
+</div>
+<div id="ref-devlin99" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Devlin, B. &amp; Roeder, K. Genomic control for association studies. <em>Biometrics</em> <strong>55</strong>, 997–1004 (1999).</div>
+</div>
+<div id="ref-elston75" class="csl-entry">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Elston, R. C. On the correlation between correlations. <em>Biometrika</em> <strong>62</strong>, 133–140 (1975).</div>
+</div>
+<div id="ref-gholamic94" class="csl-entry">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Gholamic, K. &amp; Thomas, A. A linear time algorithm for calculation of multiple pairwise kinship coefficients and genetic index of familiality. <em>Comp Biomed Res</em> <strong>27</strong>, 342–350 (1994).</div>
+</div>
+<div id="ref-hartung08" class="csl-entry">
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">Hartung, J., Knapp, G. &amp; Sinha, B. K. <em>Statistical meta-analysis with applications</em>. (Wiley, 2008).</div>
+</div>
+<div id="ref-hirotsu01" class="csl-entry">
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">Hirotsu, C., Aoki, S., Inada, T. &amp; Kitao, Y. An exact test for the association between the disease and alleles at highly polymorphic loci with particular interest in the haplotype analysis. <em>Biometrics</em> <strong>57</strong>, 769–778 (2001).</div>
+</div>
+<div id="ref-miller97" class="csl-entry">
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">Miller, M. B. Genomic scanning and the transmission/disequilibrium test: Analysis of error rates. <em>Genet Epidemiol</em> <strong>14</strong>, 851–856 (1997).</div>
+</div>
+<div id="ref-risch96" class="csl-entry">
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Risch, N. &amp; Merikangas, K. The future of genetic studies of complex human diseases. <em>Science</em> <strong>273</strong>, 1516–1517 (1996).</div>
+</div>
+<div id="ref-risch97" class="csl-entry">
+<div class="csl-left-margin">17. </div><div class="csl-right-inline">Risch, N. &amp; Merikangas, K. Reply to <span>S</span>cott el al. <em>Science</em> <strong>275</strong>, 1329–1330. (1997).</div>
+</div>
+<div id="ref-sham97" class="csl-entry">
+<div class="csl-left-margin">18. </div><div class="csl-right-inline">Sham, P. C. Transmission/disequilibrium tests for multiallelic loci. <em>Am J Hum Genet</em> <strong>61</strong>, 774–778 (1997).</div>
+</div>
+<div id="ref-sham98" class="csl-entry">
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">Sham, P. C. <em>Statistics in human genetics</em>. (Edward Arnold, 1998).</div>
+</div>
+<div id="ref-skol06" class="csl-entry">
+<div class="csl-left-margin">20. </div><div class="csl-right-inline">Skol, A. D., Scott, L. J., Abecasis, G. R. &amp; Boehnke, M. Joint analysis is more efficient than replication-based analysis for two-stage genome-wide association studies. <em>Nat Genet</em> <strong>38</strong>, 209–13 (2006).</div>
+</div>
+<div id="ref-spielman96" class="csl-entry">
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">Spielman, R. S. &amp; Ewens, W. J. The <span>TDT</span> and other family-based tests for linkage disequilibrium and association. <em>Am J Hum Genet</em> <strong>59</strong>, 983–9 (1996).</div>
+</div>
+<div id="ref-wacholder04" class="csl-entry">
+<div class="csl-left-margin">22. </div><div class="csl-right-inline">Wacholder, S., Chanock, S., Garcia-Closas, M., El Ghormli, L. &amp; Rothman, N. Assessing the probability that a positive report is false: An approach for molecular epidemiology studies. <em>J Natl Cancer Inst</em> <strong>96</strong>, 434–42 (2004).</div>
+</div>
+<div id="ref-wakefield07" class="csl-entry">
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">Wakefield, J. A bayesian measure of the probability of false discovery in genetic epidemiology studies. <em>Am J Hum Genet</em> <strong>81</strong>, 208–226 (2007).</div>
+</div>
+<div id="ref-wang05" class="csl-entry">
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Wang, K. A likelihood approach for quantitative-trait-locus mapping with selected pedigrees. <em>Biometrics</em> <strong>61</strong>, 465–473 (2005).</div>
+</div>
+<div id="ref-wcn92" class="csl-entry">
+<div class="csl-left-margin">25. </div><div class="csl-right-inline">Williams, C. J., Christian, J. C. &amp; Norton, J. A. Jr. TWINAN90: A FORTRAN programfor conducting ANOVA-based and likelihood-based analyses of twin data. <em>Comp Meth Prog Biomed</em> <strong>38</strong>, 167–76 (1992).</div>
+</div>
+<div id="ref-zaykin02" class="csl-entry">
+<div class="csl-left-margin">26. </div><div class="csl-right-inline">Zaykin, D. V. <em>et al.</em> Testing association of statistically inferred haplotypes with discrete and continuous traits in samples of unrelated individuals. <em>Hum Hered</em> <strong>53</strong>, 79–91 (2002).</div>
+</div>
+<div id="ref-zhao99" class="csl-entry">
+<div class="csl-left-margin">27. </div><div class="csl-right-inline">Zhao, J. H., Sham, P. C. &amp; Curtis, D. A program for the <span>M</span>onte <span>C</span>arlo evaluation of significance of the extended transmission/disequilibrium test. <em>Am J Hum Genet</em> <strong>64</strong>, 1484–1485 (1999).</div>
+</div>
+<div id="ref-zhao02" class="csl-entry">
+<div class="csl-left-margin">28. </div><div class="csl-right-inline">Zhao, J. H., Lissarrague, S., Essioux, L. &amp; Sham, P. C. <span>GENECOUNTING</span>: Haplotype analysis with missing genotypes. <em>Bioinformatics</em> <strong>18</strong>, 1694–5 (2002).</div>
+</div>
+<div id="ref-zhao04" class="csl-entry">
+<div class="csl-left-margin">29. </div><div class="csl-right-inline">Zhao, J. H. <span>2LD</span>. <span>GENECOUNTING</span> and <span>HAP</span>: Computer programs for linkage disequilibrium analysis. <em>Bioinformatics</em> <strong>20</strong>, 1325–6 (2004).</div>
 </div>
 </div>
 </div>
