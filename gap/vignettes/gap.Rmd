@@ -55,7 +55,7 @@ GWAS summary statistics in a way that is very appealing to us compared to some
 other established software. At the meantime, the size of the package surpasses
 the limit as imposed by CRAN, thus the old good feature of `S` as with
 `R` that value both code and data alike has to suffer slightly in that
-`gap.datasets` and `gap.examples` are spun off as two separate
+**gap.datasets** and **gap.examples** are spun off as two separate
 packages; they do deserve a glimpse however for some general ideas.
 
 Several other updates are worth mentioning: 
@@ -63,8 +63,8 @@ Several other updates are worth mentioning:
 allows for Citation Style Language (CSL) (https://citationstyles.org/) to format
 the bibliography.
 2. multiple figures generated from a code section to be embedded.
-3. Experimental implementation of a shiny App (runshinygap()).
-4. roxygen2 style documentation in companion with R code to allow for easier
+3. Experimental implementation of a shiny App (`runshinygap`()).
+4. **roxygen2** style documentation in companion with R code to allow for easier
 generation of .Rd files through devtools::document().
 
 It is likely these experiences will be shared with/useful for other colleagues
