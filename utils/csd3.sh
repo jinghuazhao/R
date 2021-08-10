@@ -12,8 +12,8 @@ echo ${major}.${minor1}.${minor2}
 
 export prefix=/rds-d4/user/$USER/hpc-work
 cd ${prefix}
-wget https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz
-tar xvfz R-${version}.tar.gz
+wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
+tar xvfz -
 cd R-${version}
 ./configure --prefix=${prefix} \
             --with-pcre1 \
