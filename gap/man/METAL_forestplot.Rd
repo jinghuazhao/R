@@ -2,7 +2,7 @@
 \alias{METAL_forestplot}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
-METAL_forestplot(tbl,all,rsid,package="meta",...)
+METAL_forestplot(tbl,all,rsid,package="meta",split=FALSE,...)
 }
 \description{
 This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
@@ -14,7 +14,8 @@ involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A
   \item{all}{statistics from all contributing studies}
   \item{rsid}{SNPID-rsid mapping file}
   \item{package}{style of plot as in meta, rmeta or forestplot}
-  \item{...}{options to use for the pdf device}
+  \item{split}{when TRUE, individual prot-MarkerName.pdf will be generated}
+  \item{...}{options to use for the individual pdf device}
 }
 
 \details{

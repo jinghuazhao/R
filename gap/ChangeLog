@@ -1,13 +1,14 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-31-07-2021
+27-08-2021
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
 		Merge plogp.Rmd and functions.Rmd from pQTLtools
 		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
 		Add nature-genetics.csl from https://www.zotero.org/styles/nature-genetics with nocite
 shiygap		Add inst/shinygap and therefore runshinygap
 		Create R/global.R containing revised functions so it does not rely on R/gap
+		Add split=FALSE to METAL_forestplot to accommodate individual plot(s).
 		Make the first argument of sn() inside fbsize() as list() so as to handle vector input
 R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
 		Document circos.cis.vs.trans.plot(), circos.cnvplot(), miamiplot()

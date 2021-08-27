@@ -1,4 +1,4 @@
-METAL_forestplot <- function(tbl,all,rsid,package="meta",...)
+METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
@@ -37,6 +37,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",...)
        print(cbind(A1,A2,EFFECT_ALLELE,REFERENCE_ALLELE,a1,a2,format(BETA,digits=3),format(BETA*c,digits=3)))
        BETA <- BETA * c
        title <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
+       if (split) pdf(paste0(p,"-",m,".pdf"),...)
        if (package=="meta")
        {
          requireNamespace("meta")
@@ -74,6 +75,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",...)
                   colors=rmeta::meta.colors(box="red",lines="blue", zero="green", summary="red", text="black"))
          title(title)
        }
+       if (split) dev.off()
      })
   }
 }
