@@ -10,8 +10,8 @@ shiygap		Add inst/shinygap and therefore runshinygap
 		Create R/global.R containing revised functions so it does not rely on R/gap
 		Add split=FALSE to METAL_forestplot to accommodate individual plot(s).
 		Make the first argument of sn() inside fbsize() as list() so as to handle vector input
-R		DESCRIPTION/Description + inst/CITATION amended with doi courtesy of instructions from
-                Achim Zeileis <Achim.Zeileis@uibk.ac.at> Wed 06/10/2021 01:11.
+R		DESCRIPTION/Description + inst/CITATION + bibnntry amended with doi
+                courtesy of instructions from Achim Zeileis <Achim.Zeileis@uibk.ac.at> Wed 06/10/2021 01:11.
 		Depend: gap.datasets
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets, rmarkdown, -gap.datasets

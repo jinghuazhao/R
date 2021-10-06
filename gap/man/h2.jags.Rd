@@ -23,7 +23,7 @@ The returned value is a fitted model from jags().
 }
 
 \section{References}{
-Zhao JH, Luan JA, Congdon P (2018). Bayesian linear mixed models with polygenic effects. J Stat Soft 85(6):1-27
+Zhao JH, Luan JA, Congdon P (2018). Bayesian linear mixed models with polygenic effects. J Stat Soft 85(6):1-27, \doi{10.18637/jss.v085.i06}.
 }
 
 \examples{

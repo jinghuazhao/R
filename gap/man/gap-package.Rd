@@ -6,16 +6,14 @@
 Genetic analysis package
 }
 \description{
-It is designed as an integrated package for genetic data analysis
-of both population and family data. Currently, it contains
-functions for sample size calculations of both population-based
-and family-based designs, classic twin models, 
-probability of familial disease aggregation, kinship calculation, 
-some statistics in linkage analysis, and association analysis 
-involving one or more genetic markers including haplotype 
-analysis with or without environmental covariates. Over years,
-the package has been developed in-between many projects hence
-also the name (gap).
+As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18.
+\doi{10.18637/jss.v023.i08}], it is designed as an integrated package for genetic data
+analysis of both population and family data. Currently, it contains functions for
+sample size calculations of both population-based and family-based designs, probability
+of familial disease aggregation, kinship calculation, statistics in linkage analysis,
+and association analysis involving genetic markers including haplotype analysis with or
+without environmental covariates. Over years, the package has been developed in-between
+many projects hence also in line with the name (gap).
 }
 \details{
 \tabular{ll}{
@@ -154,6 +152,6 @@ Author: Jing Hua Zhao in collaboration with other colleagues, and with
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 }
 \references{
-Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18
+Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.
 }
 \keyword{package}
