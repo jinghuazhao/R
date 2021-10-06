@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-27-08-2021
+06-10-2021
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
 		Merge plogp.Rmd and functions.Rmd from pQTLtools
 		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
@@ -10,13 +10,15 @@ shiygap		Add inst/shinygap and therefore runshinygap
 		Create R/global.R containing revised functions so it does not rely on R/gap
 		Add split=FALSE to METAL_forestplot to accommodate individual plot(s).
 		Make the first argument of sn() inside fbsize() as list() so as to handle vector input
-R		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
-		Document circos.cis.vs.trans.plot(), circos.cnvplot(), miamiplot()
-		Document logp(), log10p(), log10pvalue(), pqtl2dplot(), pvalue(), h2G(), h2GE(), h2l()
-		Rename mhtplot2d/3d as pqtl2dplot/3dplotly, 3d version as run3d() and use .csv
+R		DESCRIPTION/Description + inst/CITATION amended with doi courtesy of instructions from
+                Achim Zeileis <Achim.Zeileis@uibk.ac.at> Wed 06/10/2021 01:11.
 		Depend: gap.datasets
 		Imports: dplyr, ggplot2, plotly
 		Suggests: htmlwidgets, rmarkdown, -gap.datasets
+		Rename h2 to h2_mzdz to resolve conflict with shiny/htmltools
+		Document circos.cis.vs.trans.plot(), circos.cnvplot(), miamiplot()
+		Document logp(), log10p(), log10pvalue(), pqtl2dplot(), pvalue(), h2G(), h2GE(), h2l()
+		Rename mhtplot2d/3d as pqtl2dplot/3dplotly, 3d version as run3d() and use .csv
 		Drop strlen() since nchar() is ready to use
 		Add allDuplicated and export grid2d()
 		Use of qnorm(log_p-log(2),lower.tail=FALSE,log.p=TRUE) for cs() when log_p is non-NULL
