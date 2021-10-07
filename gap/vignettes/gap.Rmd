@@ -3,7 +3,6 @@ title: "Genetic Analysis Package"
 author: "Jing Hua Zhao"
 date: '`r Sys.Date()`'
 bibliography: gap.bib
-csl: nature-genetics.csl
 nocite: |
   @chow60, @guo92, @wcn92, @gholamic94, @hartung08, @risch96, @spielman96, @risch97, @miller97, @sham97, @elston75, @sham98, @devlin99, @zhao99, @guo00, @hirotsu01, @zhao02, @zaykin02, @zhao04, @wacholder04, @wang05, @skol06, @wakefield07
 vignette: >
