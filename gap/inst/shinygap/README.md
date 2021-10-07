@@ -49,13 +49,13 @@ This is a call to tscc().
 
 ## A. Family-based and population-based designs
 
-See the R/gap package vignette jss or Zhao (2007).
+See the R/gap package vignette jss or @zhao07.
 
 ## B. Case-cohort design
 
 ### B.1 Power
 
-Following Cai and Zeng (2004), we have
+Following @cai04, we have
 $$\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)$$
 
 where $\alpha$ is the significance level, $\theta$ is the log-hazard ratio for
@@ -69,7 +69,7 @@ $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\the
 
 ## C. Two-stage case-control design
 
-In the notation of Skol et al. (2006),
+In the notation of @skol06,
 
 $$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$$ and $$P(|z_1|>C_1)P(|z_j|>C_j\,|\,|z_1|>C_1)$$
 for replication-based and joint analyses, respectively; where $C_1$, $C_2$, and $C_j$
@@ -84,4 +84,4 @@ Cai, J., and D. Zeng. 2004. <span>“Sample Size/Power Calculation for Case–Co
 
 Skol, A. D., L. J. Scott, G. R. Abecasis, and M. Boehnke. 2006. <span>“Joint Analysis Is More Efficient Than Replication-Based Analysis for Two-Stage Genome-Wide Association Studies.”</span> <em>Nat Genet</em> 38 (2): 209–13.
 
-Zhao, J. H. 2007. <span>“Gap: Genetic Analysis Package.”</span> <em>Journal of Statistical Software</em> 23 (8): 1–18.
+Zhao, J. H. 2007. <span>“Gap: Genetic Analysis Package.”</span> <em>Journal of Statistical Software</em> 23 (8): 1–18. <a href="https://doi.org/10.18637/jss.v023.i08">https://doi.org/10.18637/jss.v023.i08</a>.
