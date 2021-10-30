@@ -85,6 +85,7 @@ cis.vs.trans.classification A cis/trans classifier
 comp.score              score statistics for testing genetic linkage of quantitative trait
 GRM functions           ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS
                         handle genomic relationship matrix involving other software
+get_b_se                Get b and se from AF, n, and z
 h2G                     A utility function for heritability
 h2GE                    A utility function for heritability involving gene-environment interaction
 h2l                     A utility function for converting observed heritability to its counterpart

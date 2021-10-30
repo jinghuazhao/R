@@ -121,6 +121,7 @@ comp.score        \tab      score statistics for testing genetic linkage of quan
 GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\cr
                   \tab      WriteGRMBin, WriteGRMSAS\cr
                   \tab      handle genomic relationship matrix involving other software\cr
+get_b_se          \tab      Get b and se from AF, n, and z\cr
 h2G               \tab      A utility function for heritability\cr
 h2GE              \tab      A utility function for heritability involving gene-environment interaction\cr
 h2l               \tab      A utility function for converting observed heritability to its counterpart\cr

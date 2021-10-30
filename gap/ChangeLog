@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-06-10-2021
+30-10-2021
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
 		Merge plogp.Rmd and functions.Rmd from pQTLtools
 		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd
@@ -21,6 +21,7 @@ R		DESCRIPTION/Description + inst/CITATION + bibentry amended with doi (issue wi
 		Rename mhtplot2d/3d as pqtl2dplot/3dplotly, 3d version as run3d() and use .csv
 		Drop strlen() since nchar() is ready to use
 		Add allDuplicated and export grid2d()
+		Add get_b_se()
 		Use of qnorm(log_p-log(2),lower.tail=FALSE,log.p=TRUE) for cs() when log_p is non-NULL
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package

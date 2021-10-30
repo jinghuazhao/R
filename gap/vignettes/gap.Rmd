@@ -3,6 +3,7 @@ title: "Genetic Analysis Package"
 author: "Jing Hua Zhao"
 date: '`r Sys.Date()`'
 bibliography: gap.bib
+csl: nature-genetics.csl
 nocite: |
   @chow60, @guo92, @wcn92, @gholamic94, @hartung08, @risch96, @spielman96, @risch97, @miller97, @sham97, @elston75, @sham98, @devlin99, @zhao99, @guo00, @hirotsu01, @zhao02, @zaykin02, @zhao04, @wacholder04, @wang05, @skol06, @wakefield07
 vignette: >
@@ -157,6 +158,7 @@ GRM functions     |      ReadGRM, ReadGRMBin, ReadGRMPLINK,
 &nbsp;            |      ReadGRMPCA, WriteGRM,
 &nbsp;            |      WriteGRMBin, WriteGRMSAS
 &nbsp;            |      handle genomic relationship matrix involving other software
+get_b_se          |      Get b and se from AF, n, and z
 h2G               |      A utility function for heritability
 h2GE              |      A utility function for heritability involving gene-environment interaction
 h2l               |      A utility function for converting observed heritability to its counterpart
@@ -580,7 +582,7 @@ It is possible to draw many forest plots given a list of variants; an example is
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=12, results="hide"}
 data(OPG,package="gap.datasets")
-METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
+METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=8.75,height=5)
 ```
 
 # log(p), log10(p) and p value for a very large z from Normal(0,1)
