@@ -86,6 +86,7 @@ comp.score              score statistics for testing genetic linkage of quantita
 GRM functions           ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM, WriteGRMBin, WriteGRMSAS
                         handle genomic relationship matrix involving other software
 get_b_se                Get b and se from AF, n, and z
+get_pve_se              Get pve and its standard error from n, z
 get_sdy                 Get sd(y) from AF, n, b, se
 h2G                     A utility function for heritability
 h2GE                    A utility function for heritability involving gene-environment interaction

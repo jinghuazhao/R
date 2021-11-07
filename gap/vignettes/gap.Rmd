@@ -159,6 +159,7 @@ GRM functions     |      ReadGRM, ReadGRMBin, ReadGRMPLINK,
 &nbsp;            |      WriteGRMBin, WriteGRMSAS
 &nbsp;            |      handle genomic relationship matrix involving other software
 get_b_se          |      Get b and se from AF, n, and z
+get_pve_se        |      Get pve and its standard error from n, z
 get_sdy           |      Get sd(y) from AF, n, b, se
 h2G               |      A utility function for heritability
 h2GE              |      A utility function for heritability involving gene-environment interaction
@@ -846,6 +847,11 @@ from which we obtain the effect size and its standard error as follows,
 ```{r}
 get_b_se(0.6396966,23991,4.7245)
 ```
+
+## get_pve_se
+
+This function obtains proportion of explained variation (PVE) from n, z; its
+standard error is based on $r^2$ instead of variance of the ratio.
 
 ## get_sdy
 

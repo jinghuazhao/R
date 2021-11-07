@@ -21,7 +21,7 @@ R		DESCRIPTION/Description + inst/CITATION + bibentry amended with doi
 		Rename mhtplot2d/3d as pqtl2dplot/3dplotly, 3d version as run3d() and use .csv
 		Drop strlen() since nchar() is ready to use
 		Add allDuplicated and export grid2d()
-		Add get_b_se(), get_sdy()
+		Add get_b_se(), get_pve_se(), get_sdy()
 		Use of qnorm(log_p-log(2),lower.tail=FALSE,log.p=TRUE) for cs() when log_p is non-NULL
 04-05-2021	Documentation through roxygen and suggests knitr
 24-04-2021	Enable fig=TRUE in gap.Rnw to generate figures/reduce size of the package
