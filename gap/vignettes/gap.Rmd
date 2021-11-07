@@ -159,6 +159,7 @@ GRM functions     |      ReadGRM, ReadGRMBin, ReadGRMPLINK,
 &nbsp;            |      WriteGRMBin, WriteGRMSAS
 &nbsp;            |      handle genomic relationship matrix involving other software
 get_b_se          |      Get b and se from AF, n, and z
+get_sdy           |      Get sd(y) from AF, n, b, se
 h2G               |      A utility function for heritability
 h2GE              |      A utility function for heritability involving gene-environment interaction
 h2l               |      A utility function for converting observed heritability to its counterpart
@@ -824,6 +825,34 @@ gc.lambda <- function(p) {
 
 lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
+```
+
+## get_b_se
+
+A record of the eQTLGen data is shown below
+
+```
+        SNP    Pvalue SNPChr  SNPPos AssessedAllele OtherAllele Zscore
+ rs1003563 2.308e-06     12 6424577              A           G 4.7245
+            Gene GeneSymbol GeneChr GenePos NrCohorts NrSamples         FDR
+ ENSG00000111321       LTBR      12 6492472        34     23991 0.006278872
+ BonferroniP hg19_chr hg19_pos AlleleA AlleleB allA_total allAB_total
+           1       12  6424577       A       G       2574        8483
+ allB_total AlleleB_all
+       7859   0.6396966
+```
+
+from which we obtain the effect size and its standard as follows,
+```{r}
+get_b_se(0.6396966,23991,4.7245)
+```
+
+## get_sdy
+
+We continue with the eQTLGen example above,
+
+```{r}
+get_sdy(0.6396966,23991,0.04490488,0.009504684)
 ```
 
 ## invnormal
