@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao" />
 
-<meta name="date" content="2021-10-30" />
+<meta name="date" content="2021-11-07" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao</h4>
-<h4 class="date">2021-10-30</h4>
+<h4 class="date">2021-11-07</h4>
 
 
 <div id="TOC">
@@ -209,6 +209,8 @@ div.csl-indent {
 <ul>
 <li><a href="#chr_pos_a1_a2-and-inv_chr_pos_a1_a2">chr_pos_a1_a2 and inv_chr_pos_a1_a2</a></li>
 <li><a href="#gc.lambda">gc.lambda</a></li>
+<li><a href="#get_b_se">get_b_se</a></li>
+<li><a href="#get_sdy">get_sdy</a></li>
 <li><a href="#invnormal">invnormal</a></li>
 <li><a href="#snptest_sample">snptest_sample</a></li>
 </ul></li>
@@ -576,74 +578,78 @@ div.csl-indent {
 <td>Get b and se from AF, n, and z</td>
 </tr>
 <tr class="even">
+<td>get_sdy</td>
+<td>Get sd(y) from AF, n, b, se</td>
+</tr>
+<tr class="odd">
 <td>h2G</td>
 <td>A utility function for heritability</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>h2GE</td>
 <td>A utility function for heritability involving gene-environment interaction</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>h2l</td>
 <td>A utility function for converting observed heritability to its counterpart</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td> </td>
 <td>under liability threshold model</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>h2_mzdz</td>
 <td>Heritability estimation according to twin correlations</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>klem</td>
 <td>Haplotype frequency estimation based on a genotype table</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td> </td>
 <td>of two multiallelic markers</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>makeped</td>
 <td>A function to prepare pedigrees in post-MAKEPED format</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>metap</td>
 <td>Meta-analysis of p values</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>metareg</td>
 <td>Fixed and random effects model for meta-analysis</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>muvar</td>
 <td>Means and variances under 1- and 2- locus (diallelic) QTL model</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>pvalue</td>
 <td>P value for a normal deviate</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>read.ms.output</td>
 <td>A utility function to read ms output</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>runshinygap</td>
 <td>Start shinygap</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>snptest_sample</td>
 <td>A utility to generate SNPTEST sample file</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>twinan90</td>
 <td>Classic twin models</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>whscore</td>
 <td>Whittemore-Halpern scores for allele-sharing</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>weighted.median</td>
 <td>Weighted median with interpolation</td>
 </tr>
@@ -1598,33 +1604,55 @@ Combined forest plots for LIF.R, FEV1 and CAD
 <span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, ncases, ncontrols)</span>
 <span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">+</span> (lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> ncases <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> ncontrols)<span class="sc">/</span>( <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>)</span></code></pre></div>
 </div>
+<div id="get_b_se" class="section level2">
+<h2>get_b_se</h2>
+<p>A record of the eQTLGen data is shown below</p>
+<pre><code>        SNP    Pvalue SNPChr  SNPPos AssessedAllele OtherAllele Zscore
+ rs1003563 2.308e-06     12 6424577              A           G 4.7245
+            Gene GeneSymbol GeneChr GenePos NrCohorts NrSamples         FDR
+ ENSG00000111321       LTBR      12 6492472        34     23991 0.006278872
+ BonferroniP hg19_chr hg19_pos AlleleA AlleleB allA_total allAB_total
+           1       12  6424577       A       G       2574        8483
+ allB_total AlleleB_all
+       7859   0.6396966</code></pre>
+<p>from which we obtain the effect size and its standard as follows,</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_b_se</span>(<span class="fl">0.6396966</span>,<span class="dv">23991</span>,<span class="fl">4.7245</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               b          se</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.04490488 0.009504684</span></span></code></pre></div>
+</div>
+<div id="get_sdy" class="section level2">
+<h2>get_sdy</h2>
+<p>We continue with the eQTLGen example above,</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_sdy</span>(<span class="fl">0.6396966</span>,<span class="dv">23991</span>,<span class="fl">0.04490488</span>,<span class="fl">0.009504684</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+</div>
 <div id="invnormal" class="section level2">
 <h2>invnormal</h2>
 <p>The function is widely used in various consortium analyses and defined as follows,</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>invnormal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">qnorm</span>((<span class="fu">rank</span>(x,<span class="at">na.last=</span><span class="st">&quot;keep&quot;</span>)<span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">/</span><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>invnormal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">qnorm</span>((<span class="fu">rank</span>(x,<span class="at">na.last=</span><span class="st">&quot;keep&quot;</span>)<span class="sc">-</span><span class="fl">0.5</span>)<span class="sc">/</span><span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)))</span></code></pre></div>
 <p>An example use on data from Poisson distribution is as follows,</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">50</span>, <span class="at">lambda =</span> <span class="dv">4</span>); <span class="fu">table</span>(<span class="fu">factor</span>(Ni, <span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(Ni)))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0  1  2  3  4  5  6  7  8  9 </span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2  4  6 11  8 10  4  2  2  1</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9755074</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.002650512</span></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1.810184e-17</span></span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9973999</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">50</span>, <span class="at">lambda =</span> <span class="dv">4</span>); <span class="fu">table</span>(<span class="fu">factor</span>(Ni, <span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(Ni)))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0  1  2  3  4  5  6  7  8  9 </span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2  4  6 11  8 10  4  2  2  1</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9755074</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.002650512</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>Ni <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">invnormal</span>(Ni)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1.810184e-17</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.9973999</span></span></code></pre></div>
 </div>
 <div id="snptest_sample" class="section level2">
 <h2>snptest_sample</h2>
 <p>This is a function to output sample file for SNPTEST.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID_1=</span><span class="dv">1</span>,<span class="at">ID_2=</span><span class="dv">1</span>,<span class="at">missing=</span><span class="dv">0</span>,<span class="at">PC1=</span><span class="dv">1</span>,<span class="at">PC2=</span><span class="dv">2</span>,<span class="at">D1=</span><span class="dv">1</span>,<span class="at">P1=</span><span class="dv">10</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snptest_sample</span>(d,<span class="at">C=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),<span class="at">D=</span><span class="fu">paste0</span>(<span class="st">&quot;D&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),<span class="at">P=</span><span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID_1=</span><span class="dv">1</span>,<span class="at">ID_2=</span><span class="dv">1</span>,<span class="at">missing=</span><span class="dv">0</span>,<span class="at">PC1=</span><span class="dv">1</span>,<span class="at">PC2=</span><span class="dv">2</span>,<span class="at">D1=</span><span class="dv">1</span>,<span class="at">P1=</span><span class="dv">10</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snptest_sample</span>(d,<span class="at">C=</span><span class="fu">paste0</span>(<span class="st">&quot;PC&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>),<span class="at">D=</span><span class="fu">paste0</span>(<span class="st">&quot;D&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),<span class="at">P=</span><span class="fu">paste0</span>(<span class="st">&quot;P&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
 <p>The commands above generates a file named ``snptest.sample.</p>
 </div>
 </div>
@@ -1705,6 +1733,7 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; geno.recode : function (geno, miss.val = 0)  
 #&gt; getPTE : function (b1, b2, rho, sdx1 = 1, sdx2 = 1)  
 #&gt; get_b_se : function (f, n, z)  
+#&gt; get_sdy : function (f, n, b, se)  
 #&gt; getb1star : function (b1, b2, rho, sdx1 = 1, sdx2 = 1)  
 #&gt; gif : function (data, gifset)  
 #&gt; grec2g : function (h, n, t)  
@@ -1803,11 +1832,11 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;      Package LibPath                                                 Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmppkmjFM/Rinst24506b02673e&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmppkmjFM/Rinst24506b02673e&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmppkmjFM/Rinst24506b02673e&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmppkmjFM/Rinst24506b02673e&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                                                  Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9Rwro8/Rinst208c21b2ebd0b&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9Rwro8/Rinst208c21b2ebd0b&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9Rwro8/Rinst208c21b2ebd0b&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9Rwro8/Rinst208c21b2ebd0b&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
