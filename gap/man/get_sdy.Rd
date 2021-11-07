@@ -4,7 +4,7 @@
 \alias{get_sdy}
 \title{Get sd(y) from AF, n, b, se}
 \usage{
-get_sdy(f, n, b, se)
+get_sdy(f, n, b, se, method = "mean", ...)
 }
 \arguments{
 \item{f}{Allele frequency.}
@@ -14,6 +14,10 @@ get_sdy(f, n, b, se)
 \item{b}{effect size.}
 
 \item{se}{standard error.}
+
+\item{method}{method of averaging: "mean" or "median".}
+
+\item{...}{argument(s) passed to method}
 }
 \value{
 sd(y).

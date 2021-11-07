@@ -7,6 +7,8 @@
 #' @param n Sample size.
 #' @param b effect size.
 #' @param se standard error.
+#' @param method method of averaging: "mean" or "median".
+#' @param ... argument(s) passed to method
 #' @export
 #' @return sd(y).
 #' @examples
@@ -44,4 +46,8 @@
 #' get_sdy(0.6396966,23991,0.04490488,0.009504684)
 #' }
 
-get_sdy <- function(f,n,b,se) mean(sqrt(2*f*(1-f)*(b^2+n*se^2)))
+get_sdy <- function(f,n,b,se,method="mean",...)
+{
+  z <- sqrt(2*f*(1-f)*(b^2+n*se^2))
+  ifelse(method=="mean",mean(z,...),median(z,...))
+}
