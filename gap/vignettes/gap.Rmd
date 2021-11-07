@@ -842,7 +842,7 @@ A record of the eQTLGen data is shown below
        7859   0.6396966
 ```
 
-from which we obtain the effect size and its standard as follows,
+from which we obtain the effect size and its standard error as follows,
 ```{r}
 get_b_se(0.6396966,23991,4.7245)
 ```
@@ -854,6 +854,7 @@ We continue with the eQTLGen example above,
 ```{r}
 get_sdy(0.6396966,23991,0.04490488,0.009504684)
 ```
+and indeed the eQTLGen data were standardized.
 
 ## invnormal
 
