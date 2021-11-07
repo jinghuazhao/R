@@ -13,7 +13,7 @@
 
 get_pve_se <- function(n,z,correction=TRUE)
 {
-  pve <- ifelse(correction,z^2/(z^2+n-2),z^2/(z^2_+n))
+  pve <- ifelse(correction,z^2/(z^2+n-2),z^2/(z^2+n))
   se <- 1/sqrt(n-1)
   cbind(pve,se)
 }
