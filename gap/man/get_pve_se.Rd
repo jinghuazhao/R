@@ -14,10 +14,10 @@ get_pve_se(n, z, correction = TRUE)
 \item{correction}{if TRUE an correction based on t-statistic is applied.}
 }
 \value{
-pve.
+pve and its se.
 }
 \description{
 This function obtains proportion of explained variance of a continuous outcome.
-The standard error is based on \eqn{r^2} and appears \eqn{\sqrt{2}} less than that
-from variance of the ratio.
+The standard error is based on \eqn{r^2} and appears \eqn{\sqrt{2}}-fold less
+than that from variance of the ratio.
 }
