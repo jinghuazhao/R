@@ -18,6 +18,4 @@ pve and its se.
 }
 \description{
 This function obtains proportion of explained variance of a continuous outcome.
-The standard error is based on \eqn{r^2} and appears \eqn{\sqrt{2}}-fold less
-than that from variance of the ratio.
 }

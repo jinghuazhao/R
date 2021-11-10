@@ -1,8 +1,6 @@
 #' Get pve and its standard error from n, z
 #'
 #' This function obtains proportion of explained variance of a continuous outcome.
-#' The standard error is based on \eqn{r^2} and appears \eqn{\sqrt{2}}-fold less
-#' than that from variance of the ratio.
 #'
 #' @md
 #' @param n Sample size.
@@ -14,6 +12,6 @@
 get_pve_se <- function(n,z,correction=TRUE)
 {
   pve <- ifelse(correction,z^2/(z^2+n-2),z^2/(z^2+n))
-  se <- 1/sqrt(n-1)
+  se <- ifelse(correction,sqrt(2)/(n-1),sqrt(2)/(n+1))
   cbind(pve,se)
 }
