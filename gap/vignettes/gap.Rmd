@@ -767,7 +767,7 @@ knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV
 unlink(f)
 ```
 
-The nearest reference for the implemented approaches is @ligthart18.
+The nearest reference for the implemented approaches is Ligthart et al. (2018)@ligthart18.
 
 We would be of interest to contrast their effect sizes as well,
 
