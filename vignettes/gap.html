@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao" />
 
-<meta name="date" content="2021-11-10" />
+<meta name="date" content="2021-11-20" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao</h4>
-<h4 class="date">2021-11-10</h4>
+<h4 class="date">2021-11-20</h4>
 
 
 <div id="TOC">
@@ -1543,7 +1543,7 @@ Mendelian randomization
 </tbody>
 </table>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(f)</span></code></pre></div>
-<p>The nearest reference for the implemented approaches is.<span class="citation"><sup>8</sup></span></p>
+<p>The nearest reference for the implemented approaches is Ligthart et al. (2018)<span class="citation"><sup>8</sup></span>.</p>
 <p>We would be of interest to contrast their effect sizes as well,</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mr_names <span class="ot">&lt;-</span> <span class="fu">names</span>(mr)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>LIF.R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mr[<span class="fu">grepl</span>(<span class="st">&quot;SNP|LIF.R&quot;</span>,mr_names)],<span class="at">trait=</span><span class="st">&quot;LIF.R&quot;</span>); <span class="fu">names</span>(LIF.R) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;trait&quot;</span>)</span>
@@ -1843,11 +1843,11 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;      Package LibPath                                                 Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp428bhO/Rinst17cb629053de&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp428bhO/Rinst17cb629053de&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp428bhO/Rinst17cb629053de&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp428bhO/Rinst17cb629053de&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                                                  Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpuMWPIM/Rinst20d1d7fb3164e&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpuMWPIM/Rinst20d1d7fb3164e&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpuMWPIM/Rinst20d1d7fb3164e&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpuMWPIM/Rinst20d1d7fb3164e&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
