@@ -220,7 +220,7 @@ genomewide association studies (GWAS) therefore are likely to be more familiar t
 R couunterparts in `gap`. However, you need to follow their instructions to compile
 for a particular computer system.
 
-I have included {ms} code (which is required by `read.ms.output` and .xls files
+I have included `ms` code (which is required by `read.ms.output` and .xls files
 to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a 
 classic twin example for ACE model in **OpenMx**. The package is now available from
 CRAN.
