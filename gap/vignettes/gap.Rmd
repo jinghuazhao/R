@@ -37,10 +37,10 @@ or used over the years. As such, it would rather be a long-term project, but an
 immediate benefit would be something complementary to other packages currently
 available from CRAN, e.g. **genetics**, **hwde**, etc. I hope eventually this will
 be part of a bigger effort to fulfill most of the requirements foreseen by many, 
-e.g. @guo00, within the portable environment of R for data management, 
+e.g. Guo ang Lange (2000)@guo00, within the portable environment of R for data management,
 analysis, graphics and object-oriented programming. My view has been outlined
-more formally in @zt06a and @zt06b in relation to other package
-systems. Also reported are @zhao05 and @zhao06 on package **kinship**.
+more formally[@zt06a; @zt06b] in relation to other package systems. Also reported
+are Zhao (2005) @zhao05 and Zhao (2006)@zhao06 on package **kinship**.
 
 The number of functions are quite limited and experimental, but I already feel
 the enormous advantage by shifting to R and would like sooner rather than later
@@ -202,8 +202,8 @@ association testing.
 It is notable that multilocus data are handled differently from that in **hwde** and
 elegant definitions of basic genetic data can be found in the **genetics** package.
 
-Incidentally, I found my C mixed-radixed sorting routine as in @zhao03 is much
-faster than R's internal function.
+Incidentally, I found my C mixed-radixed sorting routine@zhao03 is much faster
+than R's internal function.
 
 With exceptions such as function `pfc` which is very computer-intensive, most
 functions in the package can easily be adapted for analysis of large datasets involving
@@ -251,7 +251,7 @@ See examples of haplotype analysis there -- additional examples are given below.
 
 I would like to highlight `pedtodot`, `pbsize`, `fbsize` and `ccsize` functions
 used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as
-reported in @zhao07.
+reported in Zhao (2007)@zhao07.
 
 ## Pedigree drawing
 
