@@ -1571,6 +1571,43 @@ Combined forest plots for LIF.R, FEV1 and CAD
 </div>
 <div id="miscellaneous-functions" class="section level1">
 <h1>Miscellaneous functions</h1>
+<div id="chr_pos_a1_a2-and-inv_chr_pos_a1_a2" class="section level2">
+<h2>chr_pos_a1_a2 and inv_chr_pos_a1_a2</h2>
+<p>They are functions to handle SNPid.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">chr_pos_a1_a2</span>(<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">123</span>,<span class="dv">321</span>),letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],letters[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>])</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(s)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123_A_B chr1 123  A  B</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:321_A_B chr1 321  A  B</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(<span class="st">&quot;chr1:123-A_B&quot;</span>,<span class="at">seps=</span><span class="fu">c</span>(<span class="st">&quot;:&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;_&quot;</span>))</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123-A_B chr1 123  A  B</span></span></code></pre></div>
+</div>
+<div id="gc.lambda" class="section level2">
+<h2>gc.lambda</h2>
+<p>The definition is as follows,</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gc.lambda <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p[<span class="sc">!</span><span class="fu">is.na</span>(p)]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(p)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(p,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  exp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span><span class="sc">:</span>n<span class="sc">/</span>n,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> <span class="fu">median</span>(obs)<span class="sc">/</span><span class="fu">median</span>(exp)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lambda)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A simplified version is as follows,</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># obs &lt;- median(chisq)</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># exp &lt;- qchisq(0.5, 1) # 0.4549364</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda &lt;- obs/exp</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co"># see also estlambda from GenABEL and qq.chisq from snpStats</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="co"># A related function</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, ncases, ncontrols)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">+</span> (lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> ncases <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> ncontrols)<span class="sc">/</span>( <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>)</span></code></pre></div>
 <p>Several functions related to linear regression are detailed here.</p>
 <p>We first make some preparations.</p>
 <p>Let <span class="math inline">\(\mbox{x} = SNP\ dosage\)</span>. Note that <span class="math inline">\(\mbox{Var}(\mbox{x})=2f(1-f)\)</span>, <span class="math inline">\(f=MAF\)</span> or <span class="math inline">\(1-MAF\)</span> by symmetry.</p>
@@ -1580,8 +1617,8 @@ Combined forest plots for LIF.R, FEV1 and CAD
                      &amp;=&amp; \mbox{Var}(\mbox{x})\mbox{Var}(\mbox{b})(z^2+N) \cr
                      &amp;=&amp; 2f(1-f)(z^2+N)\mbox{Var}(b)
 \end{eqnarray*}\]</span></p>
-<p>Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination (<span class="math inline">\(R^2\)</span>) are known[^1] to be <span class="math inline">\({1}/{(N-1)}\)</span> and <span class="math inline">\({2(N-2)}/{\left[(N-1)^2(N+1)\right]}\)</span>, respectively.</p>
-<p>We also need some established results of a ratio (R/S)[^2], i.e., the mean</p>
+<p>Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination (<span class="math inline">\(R^2\)</span>) are <a href="mailto:known@kotz06" class="email">known@kotz06</a> to be <span class="math inline">\({1}/{(N-1)}\)</span> and <span class="math inline">\({2(N-2)}/{\left[(N-1)^2(N+1)\right]}\)</span>, respectively.</p>
+<p>We also need some established results of a ratio (R/S)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, i.e., the mean</p>
 <p><span class="math display">\[
 \begin{align}
 E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_S^2\mu_R}{\mu_S^3} \hspace{100cm} 
@@ -1714,43 +1751,6 @@ se &amp; = 1/d
 \]</span></p>
 <p>where <span class="math inline">\(d = \sqrt{2f(1-f)(z^2+N)}\)</span>.</p></li>
 </ol>
-<div id="chr_pos_a1_a2-and-inv_chr_pos_a1_a2" class="section level2">
-<h2>chr_pos_a1_a2 and inv_chr_pos_a1_a2</h2>
-<p>They are functions to handle SNPid.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gap)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">chr_pos_a1_a2</span>(<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">123</span>,<span class="dv">321</span>),letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],letters[<span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>])</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(s)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123_A_B chr1 123  A  B</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:321_A_B chr1 321  A  B</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">inv_chr_pos_a1_a2</span>(<span class="st">&quot;chr1:123-A_B&quot;</span>,<span class="at">seps=</span><span class="fu">c</span>(<span class="st">&quot;:&quot;</span>,<span class="st">&quot;-&quot;</span>,<span class="st">&quot;_&quot;</span>))</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               chr pos a1 a2</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1:123-A_B chr1 123  A  B</span></span></code></pre></div>
-</div>
-<div id="gc.lambda" class="section level2">
-<h2>gc.lambda</h2>
-<p>The definition is as follows,</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gc.lambda <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p[<span class="sc">!</span><span class="fu">is.na</span>(p)]</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(p)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(p,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  exp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span><span class="sc">:</span>n<span class="sc">/</span>n,<span class="dv">1</span>,<span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> <span class="fu">median</span>(obs)<span class="sc">/</span><span class="fu">median</span>(exp)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(lambda)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A simplified version is as follows,</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># obs &lt;- median(chisq)</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># exp &lt;- qchisq(0.5, 1) # 0.4549364</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda &lt;- obs/exp</span></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co"># see also estlambda from GenABEL and qq.chisq from snpStats</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="co"># A related function</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, ncases, ncontrols)</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">+</span> (lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> ncases <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> ncontrols)<span class="sc">/</span>( <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>)</span></code></pre></div>
 </div>
 <div id="get_b_se" class="section level2">
 <h2>get_b_se</h2>
@@ -1987,10 +1987,10 @@ se &amp; = 1/d
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
 #&gt;      Package LibPath                                                  Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpSdBONb/Rinst15e5a4902e8b2&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpSdBONb/Rinst15e5a4902e8b2&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpSdBONb/Rinst15e5a4902e8b2&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpSdBONb/Rinst15e5a4902e8b2&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9geXwW/Rinst1c2e1525ea5b9&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9geXwW/Rinst1c2e1525ea5b9&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9geXwW/Rinst1c2e1525ea5b9&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmp9geXwW/Rinst1c2e1525ea5b9&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
@@ -2083,6 +2083,12 @@ se &amp; = 1/d
 <div class="csl-left-margin">29. </div><div class="csl-right-inline">Zhao, J. H. <span>2LD</span>. <span>GENECOUNTING</span> and <span>HAP</span>: Computer programs for linkage disequilibrium analysis. <em>Bioinformatics</em> <strong>20</strong>, 1325–6 (2004).</div>
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.stat.cmu.edu/~hseltman/files/ratio.pdf">https://www.stat.cmu.edu/~hseltman/files/ratio.pdf</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 <script type="text/javascript">
