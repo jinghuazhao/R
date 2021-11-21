@@ -48,8 +48,8 @@ to share my work with others. I will not claim this work as exclusively done by
 me, but would like to invite others to join me and enlarge the collections and
 improve them.
 
-With my recent work on genomewide association studies (GWAS) especially protein
-GWAS, I have added many functions such as `METAL_forestplot` which handles
+With my recent work on genomewide association studies (GWASs) especially protein
+GWASs, I have added many functions such as `METAL_forestplot` which handles
 data from software METAL and `sentinels` which extracts sentinels from
 GWAS summary statistics in a way that is very appealing to us compared to some
 other established software. At the meantime, the size of the package surpasses
@@ -59,13 +59,13 @@ the limit as imposed by CRAN, thus the old good feature of `S` as with
 packages; they do deserve a glimpse however for some general ideas.
 
 Several other updates are worth mentioning: 
-1. use of markdown from the noweb/Sweave format which
-allows for Citation Style Language (CSL) (https://citationstyles.org/) to format
-the bibliography.
-2. multiple figures generated from a code section to be embedded.
-3. Experimental implementation of a shiny App (`runshinygap`()).
-4. **roxygen2** style documentation in companion with R code to allow for easier
-generation of .Rd files through devtools::document().
+    1. use of markdown from the noweb/Sweave format which
+       allows for Citation Style Language (CSL) (https://citationstyles.org/)
+       to format the bibliography.
+    2. multiple figures generated from a code section to be embedded.
+    3. Experimental implementation of a shiny App (`runshinygap`()).
+    4. **roxygen2** style documentation in companion with R code to allow for
+       easier generation of .Rd files through devtools::document().
 
 It is likely these experiences will be shared with/useful for other colleagues
 in converting their work into R.
@@ -184,7 +184,7 @@ Assuming proper installation, you will be able to obtain the list by typing
 `library(help=gap)` or view the list within a web browser via 
 `help.start()`. See Appendix on how to obtain a full list of functions.
 
-A PDF version of this file can be viewed with command `vignette("gap", package="gap")`.
+This file can be viewed with command `vignette("gap", package="gap")`.
 
 You can cut and paste examples at end of each function's documentation.
 
@@ -225,8 +225,8 @@ to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a
 classic twin example for ACE model in **OpenMx**. The package is now available from
 CRAN.
 
-For these models it is actually simpler to use facilities as in package **mets**, which I
-now suggest.
+For these models it is actually simpler to use facilities as in package **mets**, which
+is now in suggests.
 
 A final category is `twinan90`, which is now dropped from the package function list
 due to difficulty to keep up with the requirements by the `R` environment but 
@@ -234,7 +234,7 @@ nevertheless you will still be able to compile and use otherwise.
 
 # Demos
 
-You can also try several simple examples via `demo`:
+This has been a template for self-contained examples:
 
 ```r
 library(gap)
@@ -989,7 +989,7 @@ The commands above generates a file named ``snptest.sample.
 
 Unaware of any bug. However, better memory management is expected. There are
 apparent issues with the Shiny interfaces for power/sample size calculation
-which do not produce outputs for certain configurations.
+which produce less outputs for certain configurations than expected.
 
 # Summary
 
