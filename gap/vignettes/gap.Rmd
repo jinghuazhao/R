@@ -791,6 +791,43 @@ p
 
 # Miscellaneous functions
 
+## chr_pos_a1_a2 and inv_chr_pos_a1_a2
+
+They are functions to handle SNPid.
+```{r}
+require(gap)
+s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
+inv_chr_pos_a1_a2(s)
+inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
+```
+
+## gc.lambda
+
+The definition is as follows,
+```{r}
+gc.lambda <- function(p) {
+  p <- p[!is.na(p)]
+  n <- length(p)
+
+  obs <- qchisq(p,1,lower.tail=FALSE)
+  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
+
+  lambda <- median(obs)/median(exp)
+  return(lambda)
+}
+
+# A simplified version is as follows,
+# obs <- median(chisq)
+# exp <- qchisq(0.5, 1) # 0.4549364
+# lambda <- obs/exp
+# see also estlambda from GenABEL and qq.chisq from snpStats
+
+# A related function
+
+lambda1000 <- function(lambda, ncases, ncontrols)
+  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
+```
+
 Several functions related to linear regression are detailed here.
 
 We first make some preparations.
@@ -805,9 +842,9 @@ Our linear regression model is $\mbox{y}=a + b\mbox{x} + e$. We have $\mbox{Var}
                      &=& 2f(1-f)(z^2+N)\mbox{Var}(b)
 \end{eqnarray*} 
 
-Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known[^1] to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
+Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known@kotz06 to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
 
-We also need some established results of a ratio (R/S)[^2], i.e., the mean
+We also need some established results of a ratio (R/S)[^1], i.e., the mean
 
 $$
 \begin{align}
@@ -885,43 +922,6 @@ We now have results 1 and 2 below.
     $$
 
     where $d = \sqrt{2f(1-f)(z^2+N)}$.
-
-## chr_pos_a1_a2 and inv_chr_pos_a1_a2
-
-They are functions to handle SNPid.
-```{r}
-require(gap)
-s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
-inv_chr_pos_a1_a2(s)
-inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
-```
-
-## gc.lambda
-
-The definition is as follows,
-```{r}
-gc.lambda <- function(p) {
-  p <- p[!is.na(p)]
-  n <- length(p)
-
-  obs <- qchisq(p,1,lower.tail=FALSE)
-  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
-
-  lambda <- median(obs)/median(exp)
-  return(lambda)
-}
-
-# A simplified version is as follows,
-# obs <- median(chisq)
-# exp <- qchisq(0.5, 1) # 0.4549364
-# lambda <- obs/exp
-# see also estlambda from GenABEL and qq.chisq from snpStats
-
-# A related function
-
-lambda1000 <- function(lambda, ncases, ncontrols)
-  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
-```
 
 ## get_b_se
 
@@ -1013,5 +1013,7 @@ search()
 lsf.str("package:gap")
 data(package="gap")$results
 ```
+
+[^1]: [https://www.stat.cmu.edu/~hseltman/files/ratio.pdf](https://www.stat.cmu.edu/~hseltman/files/ratio.pdf)
 
 # Bibliography
