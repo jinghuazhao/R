@@ -1,6 +1,7 @@
 ---
 title: "Genetic Analysis Package"
-author: "Jing Hua Zhao. Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/."
+author:
+  - Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/.
 date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
