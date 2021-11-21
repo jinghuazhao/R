@@ -1,6 +1,6 @@
 ---
 title: "Genetic Analysis Package"
-author: "Jing Hua Zhao"
+author: "Jing Hua Zhao\\Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/."
 date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
@@ -27,9 +27,6 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK,
-https://jinghuazhao.github.io/.
-
 # Introduction
 
 This package was initiated to integrate some C/Fortran/SAS programs I have written 
@@ -40,7 +37,7 @@ be part of a bigger effort to fulfill most of the requirements foreseen by many,
 e.g. Guo ang Lange (2000)@guo00, within the portable environment of R for data management,
 analysis, graphics and object-oriented programming. My view has been outlined
 more formally[@zt06a; @zt06b] in relation to other package systems. Also reported
-are Zhao (2005) @zhao05 and Zhao (2006)@zhao06 on package **kinship**.
+are Zhao (2005)@zhao05 and Zhao (2006)@zhao06 on package **kinship**.
 
 The number of functions are quite limited and experimental, but I already feel
 the enormous advantage by shifting to R and would like sooner rather than later
@@ -1002,6 +999,10 @@ I have made so far in relation to how the project was envisaged. More importantl
 it is clear that availability of the package will serve as a platform on which 
 future work can be accumulated and collaboration can be built.
 
+# Bibliography
+
+<div id="refs"></div>
+
 # Appendix
 
 Assuming that you have already loaded the package via
@@ -1019,5 +1020,3 @@ data(package="gap")$results
 ```
 
 [^1]: [https://www.stat.cmu.edu/~hseltman/files/ratio.pdf](https://www.stat.cmu.edu/~hseltman/files/ratio.pdf)
-
-# Bibliography
