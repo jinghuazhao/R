@@ -670,7 +670,7 @@ div.csl-indent {
 <p>You can cut and paste examples at end of each function’s documentation.</p>
 <p>Both <code>genecounting</code> and <code>hap</code> are able to handle SNPs and multiallelic markers, with the former be flexible enough to include features such as X-linked data and the later being able to handle large number of SNPs. But they are unable to recode allele labels automatically, so functions <code>gc.em</code> and <code>hap.em</code> are in <code>haplo.em</code> format and used by a modified function <code>hap.score</code> in association testing.</p>
 <p>It is notable that multilocus data are handled differently from that in <strong>hwde</strong> and elegant definitions of basic genetic data can be found in the <strong>genetics</strong> package.</p>
-<p>Incidentally, I found my C mixed-radixed sorting <a href="mailto:routine@zhao03" class="email">routine@zhao03</a> is much faster than R’s internal function.</p>
+<p>Incidentally, I found my C mixed-radixed sorting routine<span class="citation"><sup>6</sup></span> is much faster than R’s internal function.</p>
 <p>With exceptions such as function <code>pfc</code> which is very computer-intensive, most functions in the package can easily be adapted for analysis of large datasets involving either SNPs or multiallelic markers. Some are utility functions, e.g. <code>muvar</code> and <code>whscore</code>, which will be part of the other analysis routines in the future.</p>
 <p>The benefit with R compared to standalone programs is that for users, all functions have unified format. For developers, it is able to incorporate their C/C++ programs more easily and avoid repetitive work such as preparing own routines for matrix algebra and linear models. Further advantage can be taken from packages in <strong>Bioconductor</strong>, which are designed and written to deal with large number of genes.</p>
 </div>
@@ -690,7 +690,7 @@ div.csl-indent {
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
-<p>I would like to highlight <code>pedtodot</code>, <code>pbsize</code>, <code>fbsize</code> and <code>ccsize</code> functions used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as reported in Zhao (2007)<span class="citation"><sup>6</sup></span>.</p>
+<p>I would like to highlight <code>pedtodot</code>, <code>pbsize</code>, <code>fbsize</code> and <code>ccsize</code> functions used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as reported in Zhao (2007)<span class="citation"><sup>7</sup></span>.</p>
 <div id="pedigree-drawing" class="section level2">
 <h2>Pedigree drawing</h2>
 <p>I have included the original file for the <em>R News</em> as well as put examples in separate vignettes. They can be accessed via <code>vignette(&quot;rnews&quot;,package=&quot;gap.examples&quot;)</code> and <code>vignette(&quot;pedtodot&quot;, package=&quot;gap.examples&quot;)</code>, respectively.</p>
@@ -1548,7 +1548,7 @@ Mendelian randomization
 </tbody>
 </table>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(f)</span></code></pre></div>
-<p>The nearest reference for the implemented approaches is Ligthart et al. (2018)<span class="citation"><sup>7</sup></span>.</p>
+<p>The nearest reference for the implemented approaches is Ligthart et al. (2018)<span class="citation"><sup>8</sup></span>.</p>
 <p>We would be of interest to contrast their effect sizes as well,</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mr_names <span class="ot">&lt;-</span> <span class="fu">names</span>(mr)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>LIF.R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mr[<span class="fu">grepl</span>(<span class="st">&quot;SNP|LIF.R&quot;</span>,mr_names)],<span class="at">trait=</span><span class="st">&quot;LIF.R&quot;</span>); <span class="fu">names</span>(LIF.R) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;trait&quot;</span>)</span>
@@ -1622,7 +1622,7 @@ Combined forest plots for LIF.R, FEV1 and CAD
                      &amp;=&amp; \mbox{Var}(\mbox{x})\mbox{Var}(\mbox{b})(z^2+N) \cr
                      &amp;=&amp; 2f(1-f)(z^2+N)\mbox{Var}(b)
 \end{eqnarray*}\]</span></p>
-<p>Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination (<span class="math inline">\(R^2\)</span>) are <a href="mailto:known@kotz06" class="email">known@kotz06</a> to be <span class="math inline">\({1}/{(N-1)}\)</span> and <span class="math inline">\({2(N-2)}/{\left[(N-1)^2(N+1)\right]}\)</span>, respectively.</p>
+<p>Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination (<span class="math inline">\(R^2\)</span>) are known<span class="citation"><sup>9</sup></span> to be <span class="math inline">\({1}/{(N-1)}\)</span> and <span class="math inline">\({2(N-2)}/{\left[(N-1)^2(N+1)\right]}\)</span>, respectively.</p>
 <p>We also need some established results of a ratio (R/S)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, i.e., the mean</p>
 <p><span class="math display">\[
 \begin{align}
@@ -1840,74 +1840,77 @@ se &amp; = 1/d
 <div id="ref-zhao06" class="csl-entry">
 <div class="csl-left-margin">5. </div><div class="csl-right-inline">Zhao, J. H. Pedigree-drawing with <span>R</span> and graphviz. <em>Bioinformatics</em> <strong>22</strong>, 1013–4 (2006).</div>
 </div>
+<div id="ref-zhao03" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Zhao, J. H. &amp; Sham, P. C. Generic number systems and haplotype analysis. <em>Comp Meth Prog Biomed</em> <strong>70</strong>, 1–9 (2003).</div>
+</div>
 <div id="ref-zhao07" class="csl-entry">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Zhao, J. H. <span class="nocase">gap</span>: Genetic analysis package. <em>Journal of Statistical Software</em> <strong>23</strong>, 1–18 (2007).</div>
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Zhao, J. H. <span class="nocase">gap</span>: Genetic analysis package. <em>Journal of Statistical Software</em> <strong>23</strong>, 1–18 (2007).</div>
 </div>
 <div id="ref-ligthart18" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Ligthart, S. <em>et al.</em> Genome analyses of &gt;200,000 individuals identify 58 loci for chronic inflammation and highlight pathways that link inflammation and complex disorders. <em>Am J Hum Genet</em> <strong>103</strong>, 691–706 (2018).</div>
-</div>
-<div id="ref-chow60" class="csl-entry">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">Chow, G. C. Tests of equality between sets of coefficients in two linear regression. <em>Econometrica</em> <strong>28</strong>, 591–605 (1960).</div>
-</div>
-<div id="ref-devlin99" class="csl-entry">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">Devlin, B. &amp; Roeder, K. Genomic control for association studies. <em>Biometrics</em> <strong>55</strong>, 997–1004 (1999).</div>
-</div>
-<div id="ref-elston75" class="csl-entry">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">Elston, R. C. On the correlation between correlations. <em>Biometrika</em> <strong>62</strong>, 133–140 (1975).</div>
-</div>
-<div id="ref-gholamic94" class="csl-entry">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">Gholamic, K. &amp; Thomas, A. A linear time algorithm for calculation of multiple pairwise kinship coefficients and genetic index of familiality. <em>Comp Biomed Res</em> <strong>27</strong>, 342–350 (1994).</div>
-</div>
-<div id="ref-hartung08" class="csl-entry">
-<div class="csl-left-margin">12. </div><div class="csl-right-inline">Hartung, J., Knapp, G. &amp; Sinha, B. K. <em>Statistical meta-analysis with applications</em>. (Wiley, 2008).</div>
-</div>
-<div id="ref-hirotsu01" class="csl-entry">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline">Hirotsu, C., Aoki, S., Inada, T. &amp; Kitao, Y. An exact test for the association between the disease and alleles at highly polymorphic loci with particular interest in the haplotype analysis. <em>Biometrics</em> <strong>57</strong>, 769–778 (2001).</div>
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Ligthart, S. <em>et al.</em> Genome analyses of &gt;200,000 individuals identify 58 loci for chronic inflammation and highlight pathways that link inflammation and complex disorders. <em>Am J Hum Genet</em> <strong>103</strong>, 691–706 (2018).</div>
 </div>
 <div id="ref-kotz06" class="csl-entry">
-<div class="csl-left-margin">14. </div><div class="csl-right-inline">Kotz, S., Read, C. B., Balakrishnan, N., Vidakovic, B. &amp; Johnson, N. L. <em>Encyclopedia of statistical sciences</em>. (John Wiley &amp; Sons, Inc., 2006).</div>
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Kotz, S., Read, C. B., Balakrishnan, N., Vidakovic, B. &amp; Johnson, N. L. <em>Encyclopedia of statistical sciences</em>. (John Wiley &amp; Sons, Inc., 2006).</div>
+</div>
+<div id="ref-chow60" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Chow, G. C. Tests of equality between sets of coefficients in two linear regression. <em>Econometrica</em> <strong>28</strong>, 591–605 (1960).</div>
+</div>
+<div id="ref-devlin99" class="csl-entry">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Devlin, B. &amp; Roeder, K. Genomic control for association studies. <em>Biometrics</em> <strong>55</strong>, 997–1004 (1999).</div>
+</div>
+<div id="ref-elston75" class="csl-entry">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Elston, R. C. On the correlation between correlations. <em>Biometrika</em> <strong>62</strong>, 133–140 (1975).</div>
+</div>
+<div id="ref-gholamic94" class="csl-entry">
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">Gholamic, K. &amp; Thomas, A. A linear time algorithm for calculation of multiple pairwise kinship coefficients and genetic index of familiality. <em>Comp Biomed Res</em> <strong>27</strong>, 342–350 (1994).</div>
+</div>
+<div id="ref-hartung08" class="csl-entry">
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">Hartung, J., Knapp, G. &amp; Sinha, B. K. <em>Statistical meta-analysis with applications</em>. (Wiley, 2008).</div>
+</div>
+<div id="ref-hirotsu01" class="csl-entry">
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">Hirotsu, C., Aoki, S., Inada, T. &amp; Kitao, Y. An exact test for the association between the disease and alleles at highly polymorphic loci with particular interest in the haplotype analysis. <em>Biometrics</em> <strong>57</strong>, 769–778 (2001).</div>
 </div>
 <div id="ref-miller97" class="csl-entry">
-<div class="csl-left-margin">15. </div><div class="csl-right-inline">Miller, M. B. Genomic scanning and the transmission/disequilibrium test: Analysis of error rates. <em>Genet Epidemiol</em> <strong>14</strong>, 851–856 (1997).</div>
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Miller, M. B. Genomic scanning and the transmission/disequilibrium test: Analysis of error rates. <em>Genet Epidemiol</em> <strong>14</strong>, 851–856 (1997).</div>
 </div>
 <div id="ref-risch97" class="csl-entry">
-<div class="csl-left-margin">16. </div><div class="csl-right-inline">Risch, N. &amp; Merikangas, K. Reply to <span>S</span>cott el al. <em>Science</em> <strong>275</strong>, 1329–1330. (1997).</div>
+<div class="csl-left-margin">17. </div><div class="csl-right-inline">Risch, N. &amp; Merikangas, K. Reply to <span>S</span>cott el al. <em>Science</em> <strong>275</strong>, 1329–1330. (1997).</div>
 </div>
 <div id="ref-sham97" class="csl-entry">
-<div class="csl-left-margin">17. </div><div class="csl-right-inline">Sham, P. C. Transmission/disequilibrium tests for multiallelic loci. <em>Am J Hum Genet</em> <strong>61</strong>, 774–778 (1997).</div>
+<div class="csl-left-margin">18. </div><div class="csl-right-inline">Sham, P. C. Transmission/disequilibrium tests for multiallelic loci. <em>Am J Hum Genet</em> <strong>61</strong>, 774–778 (1997).</div>
 </div>
 <div id="ref-sham98" class="csl-entry">
-<div class="csl-left-margin">18. </div><div class="csl-right-inline">Sham, P. C. <em>Statistics in human genetics</em>. (Edward Arnold, 1998).</div>
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">Sham, P. C. <em>Statistics in human genetics</em>. (Edward Arnold, 1998).</div>
 </div>
 <div id="ref-skol06" class="csl-entry">
-<div class="csl-left-margin">19. </div><div class="csl-right-inline">Skol, A. D., Scott, L. J., Abecasis, G. R. &amp; Boehnke, M. Joint analysis is more efficient than replication-based analysis for two-stage genome-wide association studies. <em>Nat Genet</em> <strong>38</strong>, 209–13 (2006).</div>
+<div class="csl-left-margin">20. </div><div class="csl-right-inline">Skol, A. D., Scott, L. J., Abecasis, G. R. &amp; Boehnke, M. Joint analysis is more efficient than replication-based analysis for two-stage genome-wide association studies. <em>Nat Genet</em> <strong>38</strong>, 209–13 (2006).</div>
 </div>
 <div id="ref-spielman96" class="csl-entry">
-<div class="csl-left-margin">20. </div><div class="csl-right-inline">Spielman, R. S. &amp; Ewens, W. J. The <span>TDT</span> and other family-based tests for linkage disequilibrium and association. <em>Am J Hum Genet</em> <strong>59</strong>, 983–9 (1996).</div>
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">Spielman, R. S. &amp; Ewens, W. J. The <span>TDT</span> and other family-based tests for linkage disequilibrium and association. <em>Am J Hum Genet</em> <strong>59</strong>, 983–9 (1996).</div>
 </div>
 <div id="ref-wacholder04" class="csl-entry">
-<div class="csl-left-margin">21. </div><div class="csl-right-inline">Wacholder, S., Chanock, S., Garcia-Closas, M., El Ghormli, L. &amp; Rothman, N. Assessing the probability that a positive report is false: An approach for molecular epidemiology studies. <em>J Natl Cancer Inst</em> <strong>96</strong>, 434–42 (2004).</div>
+<div class="csl-left-margin">22. </div><div class="csl-right-inline">Wacholder, S., Chanock, S., Garcia-Closas, M., El Ghormli, L. &amp; Rothman, N. Assessing the probability that a positive report is false: An approach for molecular epidemiology studies. <em>J Natl Cancer Inst</em> <strong>96</strong>, 434–42 (2004).</div>
 </div>
 <div id="ref-wakefield07" class="csl-entry">
-<div class="csl-left-margin">22. </div><div class="csl-right-inline">Wakefield, J. A bayesian measure of the probability of false discovery in genetic epidemiology studies. <em>Am J Hum Genet</em> <strong>81</strong>, 208–226 (2007).</div>
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">Wakefield, J. A bayesian measure of the probability of false discovery in genetic epidemiology studies. <em>Am J Hum Genet</em> <strong>81</strong>, 208–226 (2007).</div>
 </div>
 <div id="ref-wang05" class="csl-entry">
-<div class="csl-left-margin">23. </div><div class="csl-right-inline">Wang, K. A likelihood approach for quantitative-trait-locus mapping with selected pedigrees. <em>Biometrics</em> <strong>61</strong>, 465–473 (2005).</div>
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Wang, K. A likelihood approach for quantitative-trait-locus mapping with selected pedigrees. <em>Biometrics</em> <strong>61</strong>, 465–473 (2005).</div>
 </div>
 <div id="ref-wcn92" class="csl-entry">
-<div class="csl-left-margin">24. </div><div class="csl-right-inline">Williams, C. J., Christian, J. C. &amp; Norton, J. A. Jr. TWINAN90: A FORTRAN programfor conducting ANOVA-based and likelihood-based analyses of twin data. <em>Comp Meth Prog Biomed</em> <strong>38</strong>, 167–76 (1992).</div>
+<div class="csl-left-margin">25. </div><div class="csl-right-inline">Williams, C. J., Christian, J. C. &amp; Norton, J. A. Jr. TWINAN90: A FORTRAN programfor conducting ANOVA-based and likelihood-based analyses of twin data. <em>Comp Meth Prog Biomed</em> <strong>38</strong>, 167–76 (1992).</div>
 </div>
 <div id="ref-zaykin02" class="csl-entry">
-<div class="csl-left-margin">25. </div><div class="csl-right-inline">Zaykin, D. V. <em>et al.</em> Testing association of statistically inferred haplotypes with discrete and continuous traits in samples of unrelated individuals. <em>Hum Hered</em> <strong>53</strong>, 79–91 (2002).</div>
+<div class="csl-left-margin">26. </div><div class="csl-right-inline">Zaykin, D. V. <em>et al.</em> Testing association of statistically inferred haplotypes with discrete and continuous traits in samples of unrelated individuals. <em>Hum Hered</em> <strong>53</strong>, 79–91 (2002).</div>
 </div>
 <div id="ref-zhao99" class="csl-entry">
-<div class="csl-left-margin">26. </div><div class="csl-right-inline">Zhao, J. H., Sham, P. C. &amp; Curtis, D. A program for the <span>M</span>onte <span>C</span>arlo evaluation of significance of the extended transmission/disequilibrium test. <em>Am J Hum Genet</em> <strong>64</strong>, 1484–1485 (1999).</div>
+<div class="csl-left-margin">27. </div><div class="csl-right-inline">Zhao, J. H., Sham, P. C. &amp; Curtis, D. A program for the <span>M</span>onte <span>C</span>arlo evaluation of significance of the extended transmission/disequilibrium test. <em>Am J Hum Genet</em> <strong>64</strong>, 1484–1485 (1999).</div>
 </div>
 <div id="ref-zhao02" class="csl-entry">
-<div class="csl-left-margin">27. </div><div class="csl-right-inline">Zhao, J. H., Lissarrague, S., Essioux, L. &amp; Sham, P. C. <span>GENECOUNTING</span>: Haplotype analysis with missing genotypes. <em>Bioinformatics</em> <strong>18</strong>, 1694–5 (2002).</div>
+<div class="csl-left-margin">28. </div><div class="csl-right-inline">Zhao, J. H., Lissarrague, S., Essioux, L. &amp; Sham, P. C. <span>GENECOUNTING</span>: Haplotype analysis with missing genotypes. <em>Bioinformatics</em> <strong>18</strong>, 1694–5 (2002).</div>
 </div>
 <div id="ref-zhao04" class="csl-entry">
-<div class="csl-left-margin">28. </div><div class="csl-right-inline">Zhao, J. H. <span>2LD</span>. <span>GENECOUNTING</span> and <span>HAP</span>: Computer programs for linkage disequilibrium analysis. <em>Bioinformatics</em> <strong>20</strong>, 1325–6 (2004).</div>
+<div class="csl-left-margin">29. </div><div class="csl-right-inline">Zhao, J. H. <span>2LD</span>. <span>GENECOUNTING</span> and <span>HAP</span>: Computer programs for linkage disequilibrium analysis. <em>Bioinformatics</em> <strong>20</strong>, 1325–6 (2004).</div>
 </div>
 </div>
 </div>
@@ -2081,10 +2084,10 @@ se &amp; = 1/d
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
 #&gt;      Package LibPath                                                  Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpY3OufI/Rinst3883455a370b9&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpY3OufI/Rinst3883455a370b9&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpY3OufI/Rinst3883455a370b9&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpY3OufI/Rinst3883455a370b9&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJixTSs/Rinst1c0a4790e9b46&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJixTSs/Rinst1c0a4790e9b46&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJixTSs/Rinst1c0a4790e9b46&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJixTSs/Rinst1c0a4790e9b46&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes">
 <hr />
