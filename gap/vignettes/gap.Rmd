@@ -59,13 +59,17 @@ the limit as imposed by CRAN, thus the old good feature of `S` as with
 packages; they do deserve a glimpse however for some general ideas.
 
 Several other updates are worth mentioning: 
-    1. use of markdown from the noweb/Sweave format which
-       allows for Citation Style Language (CSL) (https://citationstyles.org/)
-       to format the bibliography.
-    2. multiple figures generated from a code section to be embedded.
-    3. Experimental implementation of a shiny App (`runshinygap`()).
-    4. **roxygen2** style documentation in companion with R code to allow for
-       easier generation of .Rd files through devtools::document().
+
+1.  use of markdown from the noweb/Sweave format which
+    allows for Citation Style Language (CSL) (https://citationstyles.org/)
+    to format the bibliography.
+
+2.  multiple figures generated from a code section to be embedded.
+
+3.  Experimental implementation of a shiny App (`runshinygap`()).
+
+4.  **roxygen2** style documentation in companion with R code to allow for
+    easier generation of .Rd files through devtools::document().
 
 It is likely these experiences will be shared with/useful for other colleagues
 in converting their work into R.
