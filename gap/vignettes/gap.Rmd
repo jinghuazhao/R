@@ -5,7 +5,7 @@ date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
 nocite: |
-  @chow60, @devlin99, @elston75, @guo00, @guo92, @gholamic94, @hartung08, @hirotsu01, @kotz06, @miller97, risch96, @risch97, @sham97, @sham98, @skol06, @@spielman96, @wacholder04, @wakefield07, @wcn92, @wang05, @zaykin02, @zhao99, @zhao02, @zhao04
+  @chow60, @devlin99, @elston75, @guo00, @guo92, @gholamic94, @hartung08, @hirotsu01, @miller97, risch96, @risch97, @sham97, @sham98, @skol06, @@spielman96, @wacholder04, @wakefield07, @wcn92, @wang05, @zaykin02, @zhao99, @zhao02, @zhao04
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
@@ -199,7 +199,7 @@ association testing.
 It is notable that multilocus data are handled differently from that in **hwde** and
 elegant definitions of basic genetic data can be found in the **genetics** package.
 
-Incidentally, I found my C mixed-radixed sorting routine@zhao03 is much faster
+Incidentally, I found my C mixed-radixed sorting routine @zhao03 is much faster
 than R's internal function.
 
 With exceptions such as function `pfc` which is very computer-intensive, most
@@ -843,7 +843,7 @@ Our linear regression model is $\mbox{y}=a + b\mbox{x} + e$. We have $\mbox{Var}
                      &=& 2f(1-f)(z^2+N)\mbox{Var}(b)
 \end{eqnarray*} 
 
-Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known@kotz06 to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
+Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known @kotz06 to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
 
 We also need some established results of a ratio (R/S)[^1], i.e., the mean
 
