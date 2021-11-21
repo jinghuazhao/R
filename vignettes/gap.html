@@ -227,7 +227,7 @@ div.csl-indent {
 <h1>Introduction</h1>
 <p>This package was initiated to integrate some C/Fortran/SAS programs I have written or used over the years. As such, it would rather be a long-term project, but an immediate benefit would be something complementary to other packages currently available from CRAN, e.g. <strong>genetics</strong>, <strong>hwde</strong>, etc. I hope eventually this will be part of a bigger effort to fulfill most of the requirements foreseen by many, e.g.,<span class="citation"><sup>1</sup></span> within the portable environment of R for data management, analysis, graphics and object-oriented programming. My view has been outlined more formally in<span class="citation"><sup>2</sup></span> and<span class="citation"><sup>3</sup></span> in relation to other package systems. Also reported are<span class="citation"><sup>4</sup></span> and<span class="citation"><sup>5</sup></span> on package <strong>kinship</strong>.</p>
 <p>The number of functions are quite limited and experimental, but I already feel the enormous advantage by shifting to R and would like sooner rather than later to share my work with others. I will not claim this work as exclusively done by me, but would like to invite others to join me and enlarge the collections and improve them.</p>
-<p>With my recent work on genomewide association studies (GWAS) especially protein GWAS, I have added many functions such as <code>METAL_forestplot</code> which handles data from software METAL and <code>sentinels</code> which extracts sentinels from GWAS summary statistics in a way that is very appealing to us compared to some other established software. At the meantime, the size of the package surpasses the limit as imposed by CRAN, thus the old good feature of <code>S</code> as with <code>R</code> that value both code and data alike has to suffer slightly in that <strong>gap.datasets</strong> and <strong>gap.examples</strong> are spun off as two separate packages; they do deserve a glimpse however for some general ideas.</p>
+<p>With my recent work on genomewide association studies (GWASs) especially protein GWASs, I have added many functions such as <code>METAL_forestplot</code> which handles data from software METAL and <code>sentinels</code> which extracts sentinels from GWAS summary statistics in a way that is very appealing to us compared to some other established software. At the meantime, the size of the package surpasses the limit as imposed by CRAN, thus the old good feature of <code>S</code> as with <code>R</code> that value both code and data alike has to suffer slightly in that <strong>gap.datasets</strong> and <strong>gap.examples</strong> are spun off as two separate packages; they do deserve a glimpse however for some general ideas.</p>
 <p>Several other updates are worth mentioning: 1. use of markdown from the noweb/Sweave format which allows for Citation Style Language (CSL) (<a href="https://citationstyles.org/" class="uri">https://citationstyles.org/</a>) to format the bibliography. 2. multiple figures generated from a code section to be embedded. 3. Experimental implementation of a shiny App (<code>runshinygap</code>()). 4. <strong>roxygen2</strong> style documentation in companion with R code to allow for easier generation of .Rd files through devtools::document().</p>
 <p>It is likely these experiences will be shared with/useful for other colleagues in converting their work into R.</p>
 </div>
@@ -661,7 +661,7 @@ div.csl-indent {
 </tbody>
 </table>
 <p>Assuming proper installation, you will be able to obtain the list by typing <code>library(help=gap)</code> or view the list within a web browser via <code>help.start()</code>. See Appendix on how to obtain a full list of functions.</p>
-<p>A PDF version of this file can be viewed with command <code>vignette(&quot;gap&quot;, package=&quot;gap&quot;)</code>.</p>
+<p>This file can be viewed with command <code>vignette(&quot;gap&quot;, package=&quot;gap&quot;)</code>.</p>
 <p>You can cut and paste examples at end of each function’s documentation.</p>
 <p>Both <code>genecounting</code> and <code>hap</code> are able to handle SNPs and multiallelic markers, with the former be flexible enough to include features such as X-linked data and the later being able to handle large number of SNPs. But they are unable to recode allele labels automatically, so functions <code>gc.em</code> and <code>hap.em</code> are in <code>haplo.em</code> format and used by a modified function <code>hap.score</code> in association testing.</p>
 <p>It is notable that multilocus data are handled differently from that in <strong>hwde</strong> and elegant definitions of basic genetic data can be found in the <strong>genetics</strong> package.</p>
@@ -672,13 +672,13 @@ div.csl-indent {
 <div id="independent-programs" class="section level1">
 <h1>Independent programs</h1>
 <p>To facilitate comparisons and individual preferences, The source codes for 2LD, EHPLUS, GENECOUNTING, HAP, now hosted at GitHub, have enjoyed great popularity ahead of the genomewide association studies (GWAS) therefore are likely to be more familiar than their R couunterparts in <code>gap</code>. However, you need to follow their instructions to compile for a particular computer system.</p>
-<p>I have included {ms} code (which is required by <code>read.ms.output</code> and .xls files to accompany <code>read.ms.output</code> and <code>FPRP</code> and <code>BFDP</code> functions as with a classic twin example for ACE model in <strong>OpenMx</strong>. The package is now available from CRAN.</p>
-<p>For these models it is actually simpler to use facilities as in package <strong>mets</strong>, which I now suggest.</p>
+<p>I have included <code>ms</code> code (which is required by <code>read.ms.output</code> and .xls files to accompany <code>read.ms.output</code> and <code>FPRP</code> and <code>BFDP</code> functions as with a classic twin example for ACE model in <strong>OpenMx</strong>. The package is now available from CRAN.</p>
+<p>For these models it is actually simpler to use facilities as in package <strong>mets</strong>, which is now in suggests.</p>
 <p>A final category is <code>twinan90</code>, which is now dropped from the package function list due to difficulty to keep up with the requirements by the <code>R</code> environment but nevertheless you will still be able to compile and use otherwise.</p>
 </div>
 <div id="demos" class="section level1">
 <h1>Demos</h1>
-<p>You can also try several simple examples via <code>demo</code>:</p>
+<p>This has been a template for self-contained examples:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gap)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(gap)</span></code></pre></div>
 <p>See examples of haplotype analysis there – additional examples are given below.</p>
@@ -1811,7 +1811,7 @@ se &amp; = 1/d
 </div>
 <div id="known-bugs" class="section level1">
 <h1>Known bugs</h1>
-<p>Unaware of any bug. However, better memory management is expected. There are apparent issues with the Shiny interfaces for power/sample size calculation which do not produce outputs for certain configurations.</p>
+<p>Unaware of any bug. However, better memory management is expected. There are apparent issues with the Shiny interfaces for power/sample size calculation which produce less outputs for certain configurations than expected.</p>
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
@@ -1986,11 +1986,11 @@ se &amp; = 1/d
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;      Package LibPath                                                 Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpL02t9k/Rinst3480b70cdf1f&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpL02t9k/Rinst3480b70cdf1f&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpL02t9k/Rinst3480b70cdf1f&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpL02t9k/Rinst3480b70cdf1f&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                                                  Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpnuAO6P/Rinst239c2100c92c1&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpnuAO6P/Rinst239c2100c92c1&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpnuAO6P/Rinst239c2100c92c1&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpnuAO6P/Rinst239c2100c92c1&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div id="bibliography" class="section level1 unnumbered">
 <h1 class="unnumbered">Bibliography</h1>
