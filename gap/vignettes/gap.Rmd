@@ -5,7 +5,7 @@ date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
 nocite: |
-  @chow60, @guo92, @wcn92, @gholamic94, @hartung08, @risch96, @spielman96, @risch97, @miller97, @sham97, @elston75, @sham98, @devlin99, @zhao99, @guo00, @hirotsu01, @zhao02, @zaykin02, @zhao04, @wacholder04, @wang05, @skol06, @wakefield07
+  @chow60, @devlin99, @elston75, @guo00, @guo92, @gholamic94, @hartung08, @hirotsu01, @kotz06, @miller97, risch96, @risch97, @sham97, @sham98, @skol06, @@spielman96, @wacholder04, @wakefield07, @wcn92, @wang05, @zaykin02, @zhao99, @zhao02, @zhao04
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
