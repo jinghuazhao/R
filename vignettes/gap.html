@@ -1345,9 +1345,10 @@ E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_
 \]</span></p>
 <p>where <span class="math inline">\(\mu_R\)</span>, <span class="math inline">\(\mu_S\)</span>, <span class="math inline">\(\sigma_R^2\)</span>, <span class="math inline">\(\sigma_S^2\)</span> are the means and the variances for R and S, respectively.</p>
 <p>Finally, we need some facts about <span class="math inline">\(\chi_1^2\)</span>, <span class="math inline">\(\chi^2\)</span> distribution of one degree of freedom. For <span class="math inline">\(z \sim N(0,1)\)</span>, <span class="math inline">\(z^2\sim \chi_1^2\)</span>, whose mean and variance are 1 and 2, respectively.</p>
-<p>We now have results 1 and 2 below.</p>
+<p>We now have the following results.</p>
 <ol style="list-style-type: decimal">
-<li><p>The proportion of variants explained (PVE).</p>
+<li>The proportion of variants explained (PVE).</li>
+</ol>
 <p>From above we have</p>
 <p><span class="math display">\[
 \begin{align}
@@ -1452,16 +1453,17 @@ E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_
 <td><span class="math inline">\(\sum_{i=1}^T\frac{2}{(N_i-1)^2}\)</span></td>
 </tr>
 </tbody>
-</table></li>
-<li><p>When <span class="math inline">\(\mbox{Var}(\mbox{y})=1\)</span>, as in cis eQTLGen data, we have <span class="math inline">\(b\)</span> and its standard error (se) as follows,</p>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>When <span class="math inline">\(\mbox{Var}(\mbox{y})=1\)</span>, as in cis eQTLGen data, we have <span class="math inline">\(b\)</span> and its standard error (se) as follows,</li>
+</ol>
 <p><span class="math display">\[
 \begin{align}
 b &amp; = z/d \hspace{100cm} \\ 
 se &amp; = 1/d
 \end{align}
 \]</span></p>
-<p>where <span class="math inline">\(d = \sqrt{2f(1-f)(z^2+N)}\)</span>.</p></li>
-</ol>
+<p>where <span class="math inline">\(d = \sqrt{2f(1-f)(z^2+N)}\)</span>.</p>
 <div id="get_b_se" class="section level2">
 <h2>get_b_se</h2>
 <p>A record of the eQTLGen data is shown below</p>
@@ -2090,10 +2092,10 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
 #&gt;      Package LibPath                                                  Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpMhcldi/Rinst4605d1fba8833&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpMhcldi/Rinst4605d1fba8833&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpMhcldi/Rinst4605d1fba8833&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpMhcldi/Rinst4605d1fba8833&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes">
 <hr />
