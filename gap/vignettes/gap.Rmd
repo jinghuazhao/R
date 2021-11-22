@@ -845,7 +845,7 @@ where $d = \sqrt{2f(1-f)(z^2+N)}$.
 
 Now three functions are in place.
 
-    ## get_b_se
+## get_b_se
 
     A record of the eQTLGen data is shown below
 
@@ -866,12 +866,12 @@ Now three functions are in place.
     get_b_se(0.6396966,23991,4.7245)
     ```
 
-    ## get_pve_se
+## get_pve_se
 
     This function obtains proportion of explained variation (PVE) from n, z; its
     standard error is based on $r^2$ instead of variance of the ratio.
 
-    ## get_sdy
+## get_sdy
 
     We continue with the eQTLGen example above,
 
