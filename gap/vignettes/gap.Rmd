@@ -744,7 +744,7 @@ z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
 ```
 
-## Linear regression
+# Linear regression
 
 Several functions related to linear regression are detailed here.
 
