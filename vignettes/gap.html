@@ -202,9 +202,9 @@ div.csl-indent {
 <li><a href="#p-logp-log10p-and-the-multiple-precision-arithmetic">p, log(p), log10(p) and the multiple precision arithmetic</a></li>
 <li><a href="#application">Application</a></li>
 </ul></li>
-<li><a href="#fine-mapping">Fine-mapping</a>
+<li><a href="#fine-mapping">Fine-mapping</a></li>
+<li><a href="#linear-regression">Linear regression</a>
 <ul>
-<li><a href="#linear-regression">Linear regression</a></li>
 <li><a href="#get_b_se">get_b_se</a></li>
 <li><a href="#get_pve_se">get_pve_se</a></li>
 <li><a href="#get_sdy">get_sdy</a></li>
@@ -1316,8 +1316,9 @@ Normal(0,1) distribution
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">within</span>(<span class="fu">read.delim</span>(<span class="st">&quot;4E.BP1.z&quot;</span>),{logp <span class="ot">&lt;-</span> <span class="fu">logp</span>(Effect<span class="sc">/</span>StdErr)})</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">cs</span>(tbl)</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">cs</span>(tbl,<span class="at">log_p=</span><span class="st">&quot;logp&quot;</span>)</span></code></pre></div>
-<div id="linear-regression" class="section level2">
-<h2>Linear regression</h2>
+</div>
+<div id="linear-regression" class="section level1">
+<h1>Linear regression</h1>
 <p>Several functions related to linear regression are detailed here.</p>
 <p>We first make some preparations.</p>
 <p>Let <span class="math inline">\(\mbox{x} = SNP\ dosage\)</span>. Note that <span class="math inline">\(\mbox{Var}(\mbox{x})=2f(1-f)\)</span>, <span class="math inline">\(f=MAF\)</span> or <span class="math inline">\(1-MAF\)</span> by symmetry.</p>
@@ -1461,7 +1462,6 @@ se &amp; = 1/d
 \]</span></p>
 <p>where <span class="math inline">\(d = \sqrt{2f(1-f)(z^2+N)}\)</span>.</p></li>
 </ol>
-</div>
 <div id="get_b_se" class="section level2">
 <h2>get_b_se</h2>
 <p>A record of the eQTLGen data is shown below</p>
@@ -2089,11 +2089,11 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;      Package LibPath                                                 Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpaMvE33/Rinst3e44225d5b3f&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpaMvE33/Rinst3e44225d5b3f&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpaMvE33/Rinst3e44225d5b3f&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpaMvE33/Rinst3e44225d5b3f&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                                                  Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpQrMF31/Rinst4222616e979d1&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes">
 <hr />
