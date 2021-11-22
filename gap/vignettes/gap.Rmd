@@ -847,39 +847,39 @@ Now three functions are in place.
 
 ## get_b_se
 
-    A record of the eQTLGen data is shown below
+A record of the eQTLGen data is shown below
 
-    ```
-            SNP    Pvalue SNPChr  SNPPos AssessedAllele OtherAllele Zscore
-     rs1003563 2.308e-06     12 6424577              A           G 4.7245
-                Gene GeneSymbol GeneChr GenePos NrCohorts NrSamples         FDR
-     ENSG00000111321       LTBR      12 6492472        34     23991 0.006278872
-     BonferroniP hg19_chr hg19_pos AlleleA AlleleB allA_total allAB_total
-               1       12  6424577       A       G       2574        8483
-     allB_total AlleleB_all
-           7859   0.6396966
-    ```
+```
+        SNP    Pvalue SNPChr  SNPPos AssessedAllele OtherAllele Zscore
+ rs1003563 2.308e-06     12 6424577              A           G 4.7245
+            Gene GeneSymbol GeneChr GenePos NrCohorts NrSamples         FDR
+ ENSG00000111321       LTBR      12 6492472        34     23991 0.006278872
+ BonferroniP hg19_chr hg19_pos AlleleA AlleleB allA_total allAB_total
+           1       12  6424577       A       G       2574        8483
+ allB_total AlleleB_all
+       7859   0.6396966
+```
 
-    from which we obtain the effect size and its standard error as follows,
+from which we obtain the effect size and its standard error as follows,
 
-    ```{r}
-    get_b_se(0.6396966,23991,4.7245)
-    ```
+```{r}
+get_b_se(0.6396966,23991,4.7245)
+```
 
 ## get_pve_se
 
-    This function obtains proportion of explained variation (PVE) from n, z; its
-    standard error is based on $r^2$ instead of variance of the ratio.
+This function obtains proportion of explained variation (PVE) from n, z; its
+standard error is based on $r^2$ instead of variance of the ratio.
 
 ## get_sdy
 
-    We continue with the eQTLGen example above,
+We continue with the eQTLGen example above,
 
-    ```{r}
-    get_sdy(0.6396966,23991,0.04490488,0.009504684)
-    ```
+```{r}
+get_sdy(0.6396966,23991,0.04490488,0.009504684)
+```
 
-    and indeed the eQTLGen data were standardized.
+and indeed the eQTLGen data were standardized.
 
 # Polygenic modeling
 
