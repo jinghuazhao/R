@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/." />
 
-<meta name="date" content="2021-11-21" />
+<meta name="date" content="2021-11-22" />
 
 <title>Genetic Analysis Package</title>
 
@@ -163,7 +163,7 @@ div.csl-indent {
 
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, <a href="https://jinghuazhao.github.io/" class="uri">https://jinghuazhao.github.io/</a>.</h4>
-<h4 class="date">2021-11-21</h4>
+<h4 class="date">2021-11-22</h4>
 
 
 <div id="TOC">
@@ -194,7 +194,7 @@ div.csl-indent {
 <li><a href="#forest-plot">Forest plot</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#logp-log10p-and-p-value-for-a-very-large-z-from-normal01">log(p), log10(p) and p value for a very large z from Normal(0,1)</a>
+<li><a href="#significance-level-for-z-normal01">Significance level for z ~ Normal(0,1)</a>
 <ul>
 <li><a href="#logp-and-log10p">log(p) and log10(p)</a></li>
 <li><a href="#rationale">Rationale</a></li>
@@ -1129,8 +1129,8 @@ Forest plots
 </div>
 </div>
 </div>
-<div id="logp-log10p-and-p-value-for-a-very-large-z-from-normal01" class="section level1">
-<h1>log(p), log10(p) and p value for a very large z from Normal(0,1)</h1>
+<div id="significance-level-for-z-normal01" class="section level1">
+<h1>Significance level for z ~ Normal(0,1)</h1>
 <p>When a Normally distributed association statistic z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.</p>
 <div id="logp-and-log10p" class="section level2">
 <h2>log(p) and log10(p)</h2>
@@ -2084,10 +2084,10 @@ se &amp; = 1/d
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
 #&gt;      Package LibPath                                                  Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpOLedJg/Rinst3373d723a12f9&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpOLedJg/Rinst3373d723a12f9&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpOLedJg/Rinst3373d723a12f9&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpOLedJg/Rinst3373d723a12f9&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJWxGro/Rinst35d4b485414d1&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJWxGro/Rinst35d4b485414d1&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJWxGro/Rinst35d4b485414d1&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/RtmpJWxGro/Rinst35d4b485414d1&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes">
 <hr />
