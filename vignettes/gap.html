@@ -1473,44 +1473,30 @@ se &amp; = 1/d
 </div>
 <div id="get_b_se" class="section level2">
 <h2>get_b_se</h2>
-<pre><code>A record of the eQTLGen data is shown below
-
-```
-        SNP    Pvalue SNPChr  SNPPos AssessedAllele OtherAllele Zscore
+<p>A record of the eQTLGen data is shown below</p>
+<pre><code>        SNP    Pvalue SNPChr  SNPPos AssessedAllele OtherAllele Zscore
  rs1003563 2.308e-06     12 6424577              A           G 4.7245
             Gene GeneSymbol GeneChr GenePos NrCohorts NrSamples         FDR
  ENSG00000111321       LTBR      12 6492472        34     23991 0.006278872
  BonferroniP hg19_chr hg19_pos AlleleA AlleleB allA_total allAB_total
            1       12  6424577       A       G       2574        8483
  allB_total AlleleB_all
-       7859   0.6396966
-```
-
-from which we obtain the effect size and its standard error as follows,
-
-
-```r
-get_b_se(0.6396966,23991,4.7245)
-#&gt;               b          se
-#&gt; [1,] 0.04490488 0.009504684
-```</code></pre>
+       7859   0.6396966</code></pre>
+<p>from which we obtain the effect size and its standard error as follows,</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_b_se</span>(<span class="fl">0.6396966</span>,<span class="dv">23991</span>,<span class="fl">4.7245</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               b          se</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.04490488 0.009504684</span></span></code></pre></div>
 </div>
 <div id="get_pve_se" class="section level2">
 <h2>get_pve_se</h2>
-<pre><code>This function obtains proportion of explained variation (PVE) from n, z; its
-standard error is based on $r^2$ instead of variance of the ratio.</code></pre>
+<p>This function obtains proportion of explained variation (PVE) from n, z; its standard error is based on <span class="math inline">\(r^2\)</span> instead of variance of the ratio.</p>
 </div>
 <div id="get_sdy" class="section level2">
 <h2>get_sdy</h2>
-<pre><code>We continue with the eQTLGen example above,
-
-
-```r
-get_sdy(0.6396966,23991,0.04490488,0.009504684)
-#&gt; [1] 1
-```
-
-and indeed the eQTLGen data were standardized.</code></pre>
+<p>We continue with the eQTLGen example above,</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_sdy</span>(<span class="fl">0.6396966</span>,<span class="dv">23991</span>,<span class="fl">0.04490488</span>,<span class="fl">0.009504684</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<p>and indeed the eQTLGen data were standardized.</p>
 </div>
 </div>
 <div id="polygenic-modeling" class="section level1">
@@ -2112,11 +2098,11 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; x2 : function (p1, p2, n1, n2)  
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
-#&gt;      Package LibPath                                                  Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmpoq46TJ/Rinst285173c018e5d&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmpoq46TJ/Rinst285173c018e5d&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmpoq46TJ/Rinst285173c018e5d&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/Rtmpoq46TJ/Rinst285173c018e5d&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                                                      Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp4DCOgI/Rinstb81d5d702792&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp4DCOgI/Rinstb81d5d702792&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp4DCOgI/Rinstb81d5d702792&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp4DCOgI/Rinstb81d5d702792&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes">
 <hr />
