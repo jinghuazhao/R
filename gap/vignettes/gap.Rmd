@@ -748,7 +748,7 @@ l <- cs(tbl,log_p="logp")
 
 Several functions related to linear regression are detailed here.
 
-We first make some preparations.
+## Some preparations
 
 Let $\mbox{x} = SNP\ dosage$. Note that $\mbox{Var}(\mbox{x})=2f(1-f)$, $f=MAF$ or $1-MAF$ by symmetry.
 
@@ -786,7 +786,7 @@ Finally, we need some facts about $\chi_1^2$, $\chi^2$ distribution of one degre
 
 We now have the following results.
 
-1. The proportion of variants explained (PVE).
+## The proportion of variants explained (PVE)
 
 From above we have
 
@@ -830,7 +830,9 @@ Characteristics          | Linear regression | $t$-statistic
 estimate | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i}}$ | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i-2}}$
 variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
 
-2. When $\mbox{Var}(\mbox{y})=1$, as in cis eQTLGen data, we have $b$ and its standard error (se) as follows,
+## The effect size and standard error estimates
+
+When $\mbox{Var}(\mbox{y})=1$, as in cis eQTLGen data, we have $b$ and its standard error (se) as follows,
 
 $$
 \begin{align}
