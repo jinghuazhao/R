@@ -872,7 +872,7 @@ We now have results 1 and 2 below.
 
 1.  The proportion of variants explained (PVE).
 
-    From above we have.
+    From above we have
 
     $$
     \begin{align}
