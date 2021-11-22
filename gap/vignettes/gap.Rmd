@@ -744,91 +744,7 @@ z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
 ```
 
-# Polygenic modeling
-
-In line with the recent surge of interest in the polygenic models, a separate
-vignette is available through `vignette("h2",package="gap.examples")` demonstrating
-aspect of the models on heritability.
-
-Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
-
-# Mendelian randomization
-
-The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
-
-```{r gsmr, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
-knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
-res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
-f <- "INF1_CAD-FEV1.csv"
-write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
-top <- function(r)
-       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
-r <- read.csv(f,as.is=TRUE)
-p <- top(r)
-knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV1",digits=3)
-unlink(f)
-```
-
-The nearest reference for the implemented approaches is Ligthart et al. (2018)@ligthart18.
-
-We would be of interest to contrast their effect sizes as well,
-
-```{r gsmr2, fig.cap="Combined forest plots for LIF.R, FEV1 and CAD", fig.height=7, fig.width=7}
-mr_names <- names(mr)
-LIF.R <- cbind(mr[grepl("SNP|LIF.R",mr_names)],trait="LIF.R"); names(LIF.R) <- c("SNP","b","se","trait")
-FEV1 <- cbind(mr[grepl("SNP|FEV1",mr_names)],trait="FEV1"); names(FEV1) <- c("SNP","b","se","trait")
-CAD <- cbind(mr[grepl("SNP|CAD",mr_names)],trait="CAD"); names(CAD) <- c("SNP","b","se","trait")
-mr2 <- within(rbind(LIF.R,FEV1,CAD),{y=b})
-library(ggplot2)
-p <- ggplot(mr2,aes(y = SNP, x = y))+
-theme_bw()+
-geom_point()+
-facet_wrap(~trait,ncol=3,scales="free_x")+
-geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = SNP))+
-geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
-xlab("Effect size")+
-ylab("")
-p
-```
-
-# Miscellaneous functions
-
-## chr_pos_a1_a2 and inv_chr_pos_a1_a2
-
-They are functions to handle SNPid.
-```{r}
-require(gap)
-s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
-inv_chr_pos_a1_a2(s)
-inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
-```
-
-## gc.lambda
-
-The definition is as follows,
-```{r}
-gc.lambda <- function(p) {
-  p <- p[!is.na(p)]
-  n <- length(p)
-
-  obs <- qchisq(p,1,lower.tail=FALSE)
-  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
-
-  lambda <- median(obs)/median(exp)
-  return(lambda)
-}
-
-# A simplified version is as follows,
-# obs <- median(chisq)
-# exp <- qchisq(0.5, 1) # 0.4549364
-# lambda <- obs/exp
-# see also estlambda from GenABEL and qq.chisq from snpStats
-
-# A related function
-
-lambda1000 <- function(lambda, ncases, ncontrols)
-  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
-```
+## Linear regression
 
 Several functions related to linear regression are detailed here.
 
@@ -958,6 +874,92 @@ We continue with the eQTLGen example above,
 get_sdy(0.6396966,23991,0.04490488,0.009504684)
 ```
 and indeed the eQTLGen data were standardized.
+
+# Polygenic modeling
+
+In line with the recent surge of interest in the polygenic models, a separate
+vignette is available through `vignette("h2",package="gap.examples")` demonstrating
+aspect of the models on heritability.
+
+Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
+
+# Mendelian randomization
+
+The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
+
+```{r gsmr, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
+knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")
+res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
+f <- "INF1_CAD-FEV1.csv"
+write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
+top <- function(r)
+       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
+r <- read.csv(f,as.is=TRUE)
+p <- top(r)
+knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV1",digits=3)
+unlink(f)
+```
+
+The nearest reference for the implemented approaches is Ligthart et al. (2018)@ligthart18.
+
+We would be of interest to contrast their effect sizes as well,
+
+```{r gsmr2, fig.cap="Combined forest plots for LIF.R, FEV1 and CAD", fig.height=7, fig.width=7}
+mr_names <- names(mr)
+LIF.R <- cbind(mr[grepl("SNP|LIF.R",mr_names)],trait="LIF.R"); names(LIF.R) <- c("SNP","b","se","trait")
+FEV1 <- cbind(mr[grepl("SNP|FEV1",mr_names)],trait="FEV1"); names(FEV1) <- c("SNP","b","se","trait")
+CAD <- cbind(mr[grepl("SNP|CAD",mr_names)],trait="CAD"); names(CAD) <- c("SNP","b","se","trait")
+mr2 <- within(rbind(LIF.R,FEV1,CAD),{y=b})
+library(ggplot2)
+p <- ggplot(mr2,aes(y = SNP, x = y))+
+theme_bw()+
+geom_point()+
+facet_wrap(~trait,ncol=3,scales="free_x")+
+geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = SNP))+
+geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
+xlab("Effect size")+
+ylab("")
+p
+```
+
+# Miscellaneous functions
+
+## chr_pos_a1_a2 and inv_chr_pos_a1_a2
+
+They are functions to handle SNPid.
+```{r}
+require(gap)
+s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
+inv_chr_pos_a1_a2(s)
+inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
+```
+
+## gc.lambda
+
+The definition is as follows,
+```{r}
+gc.lambda <- function(p) {
+  p <- p[!is.na(p)]
+  n <- length(p)
+
+  obs <- qchisq(p,1,lower.tail=FALSE)
+  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
+
+  lambda <- median(obs)/median(exp)
+  return(lambda)
+}
+
+# A simplified version is as follows,
+# obs <- median(chisq)
+# exp <- qchisq(0.5, 1) # 0.4549364
+# lambda <- obs/exp
+# see also estlambda from GenABEL and qq.chisq from snpStats
+
+# A related function
+
+lambda1000 <- function(lambda, ncases, ncontrols)
+  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
+```
 
 ## invnormal
 
