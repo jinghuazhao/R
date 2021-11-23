@@ -3,7 +3,6 @@
 module load gcc/6
 module load pcre/8.38
 module load texlive
-module load nettle-3.3-gcc-5.4.0-aqtuswf
 
 export version=4.1.2
 export major=$(cut -d. -f1 <<<${version})
