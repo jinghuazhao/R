@@ -989,6 +989,8 @@ sd(y)
 
 ## revStrand
 
+This functions obtains allele(s) on the opposite strand.
+
 ```{r}
 alleles <- c("a","c","G","t")
 revStrand(alleles)
