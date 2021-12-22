@@ -176,6 +176,7 @@ metareg           |      Fixed and random effects model for meta-analysis
 muvar             |      Means and variances under 1- and 2- locus (diallelic) QTL model
 pvalue            |      P value for a normal deviate
 read.ms.output    |      A utility function to read ms output
+revStrand         |      Allele on the reverse strand
 runshinygap       |      Start shinygap
 snptest\_sample   |      A utility to generate SNPTEST sample file
 twinan90          |      Classic twin models
@@ -984,6 +985,13 @@ Ni <- 1:50
 y <- invnormal(Ni)
 mean(y)
 sd(y)
+```
+
+## revStrand
+
+```{r}
+alleles <- c("a","c","G","t")
+revStrand(alleles)
 ```
 
 ## snptest_sample

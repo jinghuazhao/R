@@ -136,6 +136,7 @@ metap             \tab      Meta-analysis of p values\cr
 metareg           \tab      Fixed and random effects model for meta-analysis\cr
 muvar             \tab      Means and variances under 1- and 2- locus (diallelic) QTL model\cr
 read.ms.output    \tab      A utility function to read ms output\cr
+revStrand         \tab      Allele on the reverse strand\cr
 runshinygap       \tab      Start shinygap\cr
 snptest_sample    \tab      A utility to generate SNPTEST sample file\cr
 whscore           \tab      Whittemore-Halpern scores for allele-sharing\cr
