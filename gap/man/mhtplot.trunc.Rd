@@ -26,6 +26,7 @@ mhtplot.trunc(
   y.ax.space = 5,
   y.brk1,
   y.brk2,
+  trunc.yaxis = TRUE,
   delta = 0.05,
   ...
 )
@@ -73,6 +74,8 @@ mhtplot.trunc(
 
 \item{y.brk2}{upper -log10(P) break point.}
 
+\item{trunc.yaxis}{do not truncate y-axisx when FALSE.}
+
 \item{delta}{a value to enable column(s) of red points.}
 
 \item{...}{other options.}
@@ -109,7 +112,8 @@ mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
               cex.mtext=1.2, cex.text=1.2,
               annotatelog10P=156, annotateTop = FALSE,
               highlight=c("rs13021737","rs17817449","rs6567160"),
-              mtext.line=3, y.brk1=200, y.brk2=280, cex.axis=1.2, cex.y=1.2, cex=0.5,
+              mtext.line=3, y.brk1=200, y.brk2=280, trunc.yaxis=TRUE,
+              cex.axis=1.2, cex.y=1.2, cex=0.5,
               y.ax.space=20,
               col = c("blue4", "skyblue")
 )
