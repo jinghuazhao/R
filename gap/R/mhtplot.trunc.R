@@ -127,7 +127,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
       stop("User error: Upper breakpoint must be lower than maximum -log10(P-value)")
   }
   offset <- y.brk2-y.brk1
-  d <- within(d, {
+  if (trunc.yaxis) d <- within(d, {
     gapped <- log10P > y.brk1 & log10P < y.brk2
     above <- log10P > y.brk2
     log10P[gapped] <- NA
@@ -170,19 +170,18 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (genomewideline) abline(h = genomewideline, col = "red")
   if (!is.null(highlight)) {
     if (any(!(highlight %in% with(d,SNP)))) warning("You're trying to highlight SNPs that don't exist in your results.")
-    d.highlight = d[which(with(d,SNP) %in% highlight), ]
+    d.highlight <- d[which(with(d,SNP) %in% highlight), ]
     with(d.highlight, points(pos, log10P, col = "red", pch = 20, ...))
     d.column <- subset(merge(d,d.highlight[c("CHR","BP")],by=c("CHR")),BP.x>(1-delta)*BP.y & BP.x<(1+delta)*BP.y)
     print(nrow(d.column))
     with(d.column,points(pos, log10P, col = "red", pch = 20, ...))
   }
   if (!is.null(annotatelog10P)) {
-    topHits = subset(d, log10P >= annotatelog10P)
+    topHits <- subset(d, log10P >= annotatelog10P)
     if (!annotateTop) {
       with(subset(topHits,SNP %in% highlight),
            calibrate::textxy(pos, log10P, offset = 0.625, pos = 3, labs = SNP, cex = cex.text, font = 4))
-    }
-    else {
+    } else {
       topHits <- topHits[order(with(topHits,log10P)), ]
       topSNPs <- NULL
       for (i in unique(with(topHits,CHR))) {
