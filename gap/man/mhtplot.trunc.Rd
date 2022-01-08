@@ -22,11 +22,11 @@ mhtplot.trunc(
   cex.mtext = 1.5,
   cex.text = 0.7,
   mtext.line = 2,
-  cex.y = 1,
   y.ax.space = 5,
   y.brk1,
   y.brk2,
   trunc.yaxis = TRUE,
+  cex.axis = 1.2,
   delta = 0.05,
   ...
 )
@@ -66,8 +66,6 @@ mhtplot.trunc(
 
 \item{mtext.line}{position of the y lab.}
 
-\item{cex.y}{y axis numbers.}
-
 \item{y.ax.space}{interval of ticks of the y axis.}
 
 \item{y.brk1}{lower -log10(P) break point.}
@@ -75,6 +73,8 @@ mhtplot.trunc(
 \item{y.brk2}{upper -log10(P) break point.}
 
 \item{trunc.yaxis}{do not truncate y-axisx when FALSE.}
+
+\item{cex.axis}{extension factor for y-axis.}
 
 \item{delta}{a value to enable column(s) of red points.}
 
@@ -113,7 +113,7 @@ mhtplot.trunc(BMI, chr="CHR", bp="POS", z="Z", snp="SNP",
               annotatelog10P=156, annotateTop = FALSE,
               highlight=c("rs13021737","rs17817449","rs6567160"),
               mtext.line=3, y.brk1=200, y.brk2=280, trunc.yaxis=TRUE,
-              cex.axis=1.2, cex.y=1.2, cex=0.5,
+              cex.axis=1.2, cex=0.5,
               y.ax.space=20,
               col = c("blue4", "skyblue")
 )

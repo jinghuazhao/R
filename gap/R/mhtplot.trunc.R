@@ -21,11 +21,11 @@
 #' @param cex.mtext axis label extension factor.
 #' @param cex.text SNP label extension factor.
 #' @param mtext.line position of the y lab.
-#' @param cex.y y axis numbers.
 #' @param y.ax.space interval of ticks of the y axis.
 #' @param y.brk1 lower -log10(P) break point.
 #' @param y.brk2 upper -log10(P) break point.
 #' @param trunc.yaxis do not truncate y-axisx when FALSE.
+#' @param cex.axis extension factor for y-axis.
 #' @param delta a value to enable column(s) of red points.
 #' @param ... other options.
 #' @return The plot is shown on or saved to the appropriate device.
@@ -53,7 +53,7 @@
 #'               annotatelog10P=156, annotateTop = FALSE,
 #'               highlight=c("rs13021737","rs17817449","rs6567160"),
 #'               mtext.line=3, y.brk1=200, y.brk2=280, trunc.yaxis=TRUE,
-#'               cex.axis=1.2, cex.y=1.2, cex=0.5,
+#'               cex.axis=1.2, cex=0.5,
 #'               y.ax.space=20,
 #'               col = c("blue4", "skyblue")
 #' )
@@ -69,8 +69,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
                            chrlabs = NULL, suggestiveline = -log10(1e-05),
                            genomewideline = -log10(5e-08), highlight = NULL,
                            annotatelog10P = NULL, annotateTop = FALSE, cex.mtext=1.5, cex.text=0.7,
-                           mtext.line = 2, cex.y = 1, y.ax.space = 5, y.brk1, y.brk2, 
-                           trunc.yaxis=TRUE, delta=0.05, ...)
+                           mtext.line = 2, y.ax.space = 5, y.brk1, y.brk2, trunc.yaxis=TRUE,
+                           cex.axis=1.2, delta=0.05, ...)
 {
   for (q in c("calibrate","plotrix")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
@@ -146,7 +146,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
   if (trunc.yaxis)
   {
-    axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.y, las=1)
+    axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.axis, las=1)
     plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   } else axis(side=2, las=1)
   if (!is.null(chrlabs)) {
