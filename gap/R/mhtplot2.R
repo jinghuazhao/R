@@ -1,3 +1,16 @@
+textbox <- function(label, name=NULL, gp=NULL, vp=NULL)
+{
+  gt <- grid::gTree(label=label, name=name, gp=gp, vp=vp, cl="textboxtree")
+  grid::grid.draw(gt)
+}
+
+makeContent.textboxtree <- function(x)
+{
+  t <- grid::textGrob(x$label, name="text")
+  rr <- grid::roundrectGrob(width=1.5*grid::grobWidth(t), height=1.5*grid::grobHeight(t), name="box")
+  grid::setChildren(x, grid::gList(t, rr))
+}
+
 mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), 
     ...) 
 {
@@ -128,15 +141,7 @@ mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(),
                   l2 <- hu - l + 1
                   col.index <- as.integer(colnames(namecol)[gmat[rownames(gmat)==hchrs[k]]])
                   col.label <- colors()[col.index]
-                  if (hboxed) {
-                    tg <- grid::textGrob(hchrs[k])
-                    rg <- grid::rectGrob(x = CM[chr][l1], y = max(y[l1:l2]) + 
-                      hyoffs, width = 1.1 * grid::grobWidth(tg), height = 1.3 * 
-                      grid::grobHeight(tg), gp = grid::gpar(col = "black", 
-                      lwd = 2.5))
-                    boxedText <- grid::gTree(children = grid::gList(tg, rg))
-                    grid::grid.draw(boxedText)
-                  }
+                  if (hboxed) textbox(hchrs[k], name="tbt", vp=grid::viewport(x = CM[chr][l1], y = max(y[l1:l2]) +  hyoffs))
                   else text(CM[chr][l1], max(y[l1:l2] + hyoffs), hchrs[k],
                        col=col.label, cex = hcex, font=3, ...)
  #                 points(CM[l + (l1:l2)], y[l1:l2], col = col.label, cex = pcex, ...)
