@@ -580,3 +580,23 @@ allDuplicated <- function(x)
   return(all_dup)
 }
 
+mht.control <- function(type="p", usepos=FALSE, logscale=TRUE, base=10, cutoffs=NULL, colors=NULL,
+                        labels=NULL, srt=45, gap=NULL, cex=0.4, yline=3, xline=3)
+               list(type=type, usepos=usepos, logscale=logscale, base=base, cutoffs=cutoffs, colors=colors,
+                    labels=labels, srt=srt, gap=gap, cex=cex, yline=yline, xline=xline)
+
+hmht.control <- function(data=NULL, colors=NULL, yoffset=0.25, cex=1.5, boxed=FALSE)
+                list(data=data,colors=colors,yoffset=yoffset,cex=cex,boxed=boxed)
+
+textbox <- function(label, name=NULL, gp=NULL, vp=NULL)
+{
+  gt <- grid::gTree(label=label, name=name, gp=gp, vp=vp, cl="textboxtree")
+  grid::grid.draw(gt)
+}
+
+makeContent.textboxtree <- function(x)
+{
+  t <- grid::textGrob(x$label, name="text")
+  rr <- grid::roundrectGrob(width=1.5*grid::grobWidth(t), height=1.5*grid::grobHeight(t), name="box")
+  grid::setChildren(x, grid::gList(t, rr))
+}
