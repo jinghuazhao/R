@@ -67,6 +67,7 @@
 \alias{se.exp}
 \alias{se.invlogit}
 \alias{solve_skol}
+\alias{textbox}
 \alias{toETDT}
 \alias{ungcode}
 \alias{VR}
@@ -198,16 +199,6 @@ x2 is a simple chi-squared test of two proportions.
 
 z is a normal z-test of two proportions used by tscc.
 
-}
-\examples{
-\dontrun{
-#
-s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
-inv_chr_pos_a1_a2(s)
-inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
-#
-p <- sun3d(pretty=FALSE)
-}
 }
 \details{These functions are not so frequently called by users}
 \keyword{internal}
