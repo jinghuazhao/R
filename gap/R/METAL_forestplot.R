@@ -42,7 +42,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
        {
          requireNamespace("meta")
          mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title)
-         meta::forest(mg,colgap.forest.left = "1cm")
+         meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"))
          requireNamespace("grid")
          grid::grid.text(title,0.5,0.9)
          with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
