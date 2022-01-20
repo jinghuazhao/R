@@ -1,5 +1,58 @@
 # worked 28/6/03
 # note that tables are symmetric do not fix, see kbyl below
+
+#' LD statistics for two diallelic markers
+#'
+#' LD statistics for two SNPs.
+#'
+#' It is possible to perform permutation test of \eqn{r^2} by re-ordering the genotype through
+#' R's sample function, obtaining the haplotype frequencies by \code{\link[gap]{gc.em}}
+#' or \code{\link[gap]{genecounting}}, supplying the estimated haplotype frequencies to
+#' the current function and record x2, and comparing the observed x2 and that from the
+#' replicates.
+#'
+#' @param h a vector of haplotype frequencies.
+#' @param n number of haplotypes.
+#'
+#' @export
+#' @return
+#' The returned value is a list containing:
+#' \describe{
+#' \item{h}{the original haplotype frequency vector}
+#' \item{n}{the number of haplotypes}
+#' \item{D}{the linkage disequilibrium parameter}
+#' \item{VarD}{the variance of D}
+#' \item{Dmax}{the maximum of D}
+#' \item{VarDmax}{the variance of Dmax}
+#' \item{Dprime}{the scaled disequilibrium parameter}
+#' \item{VarDprime}{the variance of Dprime}
+#' \item{x2}{the Chi-squared statistic}
+#' \item{lor}{the log(OR) statistic}
+#' \item{vlor}{the var[log(OR)] statistic}
+#' }
+#'
+#' @references
+#' Zabetian CP, Buxbaum SG, Elston RC, Kohnke MD, Anderson GM, Gelernter J, Cubells JF.
+#' The structure of linkage disequilibrium at the DBH locus strongly influences the 
+#' magnitude of association between diallelic markers and plasma dopamine beta-hydroxylase activity
+#' Am J Hum Genet 72: 1389-1400 
+#'
+#' Zapata C, Alvarez G, Carollo C (1997) Approximate variance of the standardized
+#'  measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
+#'
+#' @seealso \code{\link[gap]{LDkl}}
+#'
+#' @examples
+#' \dontrun{
+#' h <- c(0.442356,0.291532,0.245794,0.020319)
+#' n <- 481*2
+#' t <- LD22(h,n)
+#' }
+#'
+#' @author Jing Hua Zhao
+#' @note extracted from 2ld.c.
+#' @keywords models
+
 LD22<-function(h,n) 
 {
    D<-VarD<-Dmax<-VarDmax<-Dprime<-VarDprime<-x2<-lor<-vlor<-00
@@ -17,6 +70,81 @@ LD22<-function(h,n)
 
 # refine on 17/4/2005
 # verbose, default values, etc.
+
+#' LD statistics for two multiallelic markers
+#'
+#' LD statistics for two multiallelic loci. For two diallelic makers,
+#' the familiar \eqn{r^2}{r^2} has standard error seX2.
+#'
+#' @param n1 number of alleles at marker 1.
+#' @param n2 number of alleles at marker 2.
+#' @param h a vector of haplotype frequencies.
+#' @param n number of haplotypes.
+#' @param optrho type of contingency table association, 0=Pearson, 1=Tschuprow, 2=Cramer (default).
+#' @param verbose detailed output of individual statistics.
+#'
+#' @export
+#' @return The returned value is a list containing:
+#' \describe{
+#' \item{n1}{the number of alleles at marker 1}
+#' \item{n2}{the number of alleles at marker 2}
+#' \item{h}{the haplotype frequency vector}
+#' \item{n}{the number of haplotypes}
+#' \item{Dp}{D'}
+#' \item{VarDp}{variance of D'}
+#' \item{Dijtable}{table of Dij}
+#' \item{VarDijtable}{table of variances for Dij}
+#' \item{Dmaxtable}{table of Dmax}
+#' \item{Dijptable}{table of Dij'}
+#' \item{VarDijptable}{table of variances for Dij'}
+#' \item{X2table}{table of Chi-squares (based on Dij)}
+#' \item{ptable}{table of p values}
+#' \item{x2}{the Chi-squared statistic}
+#' \item{seX2}{the standard error of x2/n}
+#' \item{rho}{the measure of association}
+#' \item{seR}{the standard error of rho}
+#' \item{optrho}{the method for calculating rho}
+#' \item{klinfo}{the Kullback-Leibler information}
+#' }
+#'
+#' @references
+#' Bishop YMM, Fienberg SE, Holland PW (1975) Discrete Multivariate Analysis
+#' -- Theory and Practice, The MIT press
+#'
+#' Cramer H (1946) Mathematical Methods of Statistics. Princeton Univ. Press
+#'
+#' Zapata C, Carollo C, Rodriquez S (2001) Sampleing variance and distribution
+#' of the D' measure of overall gametic disequilibrium between multiallelic loci.
+#' Ann. Hum. Genet. 65: 395-406
+#'
+#' Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
+#' linkage disequilibrium analysis. Bioinformatics 20:1325-1326
+#'
+#' @seealso \code{\link[gap]{LD22}}
+#'
+#' @examples
+#' \dontrun{
+#' # two examples in the C program 2LD:
+#' # two SNPs as in 2by2.dat
+#' # this can be compared with output from LD22
+#'
+#' h <- c(0.442356,0.291532,0.245794,0.020319)
+#' n <- 481*2
+#' t <- LDkl(2,2,h,n)
+#' t
+#'
+#' # two multiallelic markers as in kbyl.dat
+#' # the two-locus haplotype vector is in file "kbyl.dat"
+#'
+#' filespec <- system.file("tests/2ld/kbyl.dat")
+#' h <- scan(filespec,skip=1)
+#' t <- LDkl(9,5,h,213*2,verbose=TRUE)
+#' }
+#'
+#' @author Jing Hua Zhao
+#' @note adapted from 2ld.c.
+#' @keywords models
+
 LDkl<-function(n1=2,n2=2,h,n,optrho=2,verbose=FALSE)
 {
    Dp<-x2<-seX2<-rho<-seR<-klinfo<-0

@@ -1,3 +1,50 @@
+#' Q-Q plot for uniformly distributed random variable
+#'
+#' This function produces Q-Q plot for a random variable following uniform distribution with or
+#' without using log-scale. Note that the log-scale is by default for type "exp", which is a plot based on
+#' exponential order statistics. This appears to be more appropriate than the commonly used procedure whereby
+#' the expected value of uniform order statistics is directly log-transformed.
+#'
+#' @param u a vector of uniformly distributed random variables.
+#' @param type string option to specify distribution: "unif"=uniform, "exp"=exponential.
+#' @param logscale to use logscale.
+#' @param base the base of the log function.
+#' @param col color for points.
+#' @param lcol color for the diagonal line.
+#' @param ci logical option to show confidence interval.
+#' @param alpha 1-confidence level, e.g., 0.05.
+#' @param ... other options as appropriae for the qqplot function.
+#'
+#' @export
+#' @return
+#' The returned value is a list with components of a qqplot:
+#' \describe{
+#' \item{x}{expected value for uniform order statistics or its -log(,base) counterpart}
+#' \item{y}{observed value or its -log(,base) counterpart}
+#' }
+#' @references
+#' Balakrishnan N, Nevzorov VB. A Primer on Statistical Distributions. Wiley 2003.
+#'
+#' Casella G, Berger RL. Statistical Inference, Second Edition. Duxbury 2002.
+#'
+#' Davison AC. Statistical Models. Cambridge University Press 2003.
+#'
+#' @seealso \code{\link[gap]{qqfun}}
+#'
+#' @examples
+#' \dontrun{
+#' # Q-Q Plot for 1000 U(0,1) r.v., marking those <= 1e-5
+#' u_obs <- runif(1000)
+#' r <- qqunif(u_obs,pch=21,bg="blue",bty="n")
+#' u_exp <- r$y
+#' hits <- u_exp >= 2.30103
+#' points(r$x[hits],u_exp[hits],pch=21,bg="green")
+#' legend("topleft",sprintf("GC.lambda=\%.4f",gc.lambda(u_obs)))
+#' }
+#'
+#' @author Jing Hua Zhao
+#' @keywords hplot distribution univar
+
 qqunif <- function(u,type="unif",logscale=TRUE,base=10,col=palette()[4],lcol=palette()[2],ci=FALSE,alpha=0.05,...)
 {
   u <- u[!is.na(u)]

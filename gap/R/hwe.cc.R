@@ -544,6 +544,68 @@ DevHaGdominant.est <- function(case,ctl,k0,initial) {
          deviance=c(deviance, 1-pchisq(deviance,1)) ) 
 }
 
+#' A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
+#'
+#' A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
+#'
+#' @param model model specification, dominant, recessive.
+#' @param case a vector of genotype counts in cases.
+#' @param ctrl a vector of genotype counts in controls.
+#' @param k0 prevalence of disease in the population.
+#' @param initial1 initial values for beta, gamma, and q.
+#' @param initial2 initial values for logit(p) and log(gamma).
+#'
+#' @details
+#' This is a collection of utility functions. The null hypothesis declares that the proportions of
+#' genotypes are according to Hardy-Weinberg law, while under the alternative hypothesis, the expected
+#' genotype counts are according to the probabilities that particular genotypes are obtained conditional
+#' on the prevalence of disease in the population. In so doing, Hardy-Weinberg equilibrium is considered
+#' using both case and control samples but pending on the disease model such that 2-parameter multiplicative
+#' model is built on baseline genotype \eqn{\alpha}{alpha}, \eqn{\alpha\beta}{alpha beta} and
+#' \eqn{\alpha\gamma}{alpha gamma}.
+#'
+#' @export
+#' @return
+#' The returned value is a list with the following components.
+#' \describe{
+#' \item{Cox}{statistics under a general model}
+#' \item{t2par}{under the null hypothesis}
+#' \item{t3par}{under the alternative hypothesis}
+#' \item{lrt.stat}{the log-likelihood ratio statistic}
+#' \item{pval}{the corresponding p value}
+#' }
+#'
+#' @references
+#' Yu C, Zhang S, Zhou C, Sile S. A likelihood ratio test of population Hardy-Weinberg equilibrium
+#' for case-control studies. Genetic Epidemiology 33:275-280, 2009
+#'
+#' @seealso \code{\link[gap]{hwe}}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' ### Saba Sile, email of Jan 26, 2007, data always in order of GG AG AA, p=Pr(G),
+#' ### q=1-p=Pr(A)
+#' case=c(155,27,4)
+#' ctrl=c(408,55,15)
+#' k0=.2
+#' initial1=c(1.0,0.94,0.0904)
+#' initial2=c(logit(1-0.0904),log(0.94))
+#' hwe.cc("recessive",case,ctrl,k0, initial1, initial2)
+#'
+#' ### John Phillips III, TGFb1 data codon 10: TT CT CC, CC is abnormal and increasing
+#' ### TGFb1 activity
+#' case=c(29,78,13)
+#' ctrl=c(17,28,6)
+#' k0 <- 1e-5
+#' initial1 <- c(2.45,2.45,0.34)
+#' initial2 <- c(logit(1-0.34),log(2.45))
+#' hwe.cc("dominant",case,ctrl,k0,initial1,initial2)
+#' }
+#'
+#' @author Chang Yu, Li Wang, Jing Hua Zhao
+#' @keywords htest
+
 hwe.cc <- function(model, case, ctrl, k0, initial1, initial2)
 {
 model.int <- charmatch(model,c("dominant","recessive"))

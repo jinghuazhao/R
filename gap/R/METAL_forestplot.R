@@ -1,3 +1,45 @@
+#' forest plot as R/meta's forest for METAL outputs
+#' 
+#' This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
+#' for forest plot. It also takes a SNPID-rsid mapping (rsid) as contributing studies often
+#' involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A1_A2 (A1<=A2).
+#'
+#' @param tbl Meta-anslysis summary statistics.
+#' @param all statistics from all contributing studies.
+#' @param rsid SNPID-rsid mapping file.
+#' @param package style of plot as in meta, rmeta or forestplot.
+#' @param split when TRUE, individual prot-MarkerName.pdf will be generated.
+#' @param ... options to use for the individual pdf device.
+#'
+#' @details
+#' The study-specific and total sample sizes (N) can be customised from METAL commands
+#'
+#' CUSTOMVARIABLE N\cr
+#' LABEL N as N\cr
+#' WEIGHTLABEL N
+#'
+#' @export
+#' @return It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
+#'
+#' @references
+#' Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf, 
+#' https://CRAN.R-project.org/package=meta.
+#'
+#' Willer CJ, Li Y, Abecasis GR. (2010). METAL: fast and efficient meta-analysis of genomewideassociation scans. Bioinformations. 26:2190-1,
+#' https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
+#'
+#' @seealso \code{\link[gap]{METAL_forestplot}}
+#'
+#' @examples
+#' \dontrun{
+#'  require(gap.datasets)
+#'  data(OPG)
+#'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
+#' }
+#'
+#' @author Jing Hua Zhao
+#' @keywords hplot distribution
+
 METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
 {
   prot <- MarkerName <- NA
