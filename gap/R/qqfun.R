@@ -17,7 +17,7 @@
 #'    axis; set to \code{1} for horizontal labels (see \code{\link[graphics]{par}}).
 #' @param col color for points; the default is the \emph{fourth} entry
 #'    in the current color palette (see \code{\link[grDevices]{palette}
-#'    and \code{\link[graphics]{par}})}
+#'    and \code{\link[graphics]{par}}).
 #' @param lcol color for lines; the default is the \emph{second} entry as above.
 #' @param xlim the x limits (x1, x2) of the plot. Note that x1 > x2 is allowed and leads to a reversed axis.
 #' @param ylim the y limits of the plot.

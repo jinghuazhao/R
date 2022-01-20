@@ -30,20 +30,20 @@ tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)
 \value{
 The returned value is a list containing a copy of the input plus output as follows,
 \describe{
- \item{model}{any in c("multiplicative","additive","dominant","recessive")}
- \item{GRR}{genotype relative risk}
- \item{p1}{the estimated risk allele frequency in cases}
- \item{pprime}{expected risk allele frequency in cases}
- \item{p}{expected risk allele frequency in controls}
- \item{n1}{total number of cases}
- \item{n2}{total number of controls}
- \item{M}{total number of markers}
- \item{alpha.genome}{false positive rate at genome level}
- \item{pi.samples}{sample\% to be genotyped at stage 1}
- \item{pi.markers}{markers\% to be selected (also used as the false positive rate at stage 1)}
- \item{K}{the population prevalence}
- \item{C}{threshoulds for no stage, stage 1, stage 2, joint analysis}
- \item{power}{power corresponding to C}
+ \item{model}{any in c("multiplicative","additive","dominant","recessive").}
+ \item{GRR}{genotype relative risk.}
+ \item{p1}{the estimated risk allele frequency in cases.}
+ \item{pprime}{expected risk allele frequency in cases.}
+ \item{p}{expected risk allele frequency in controls.}
+ \item{n1}{total number of cases.}
+ \item{n2}{total number of controls.}
+ \item{M}{total number of markers.}
+ \item{alpha.genome}{false positive rate at genome level.}
+ \item{pi.samples}{sample\% to be genotyped at stage 1.}
+ \item{pi.markers}{markers\% to be selected (also used as the false positive rate at stage 1).}
+ \item{K}{the population prevalence.}
+ \item{C}{threshoulds for no stage, stage 1, stage 2, joint analysis.}
+ \item{power}{power corresponding to C.}
 }
 }
 \description{
@@ -64,6 +64,7 @@ are threshoulds at stages 1, 2 replication and joint analysis,
 solve.skol is adapted from CaTS.
 }
 \examples{
+\dontrun{
 K <- 0.1
 p1 <- 0.4
 n1 <- 1000
@@ -76,10 +77,12 @@ pi.samples <- 0.2
 pi.markers <- 0.1
 
 options(echo=FALSE)
-cat("sample\\%,marker\\%,GRR,(thresholds x 4)(power estimates x 4)\n")
-for(GRR in c(1.3,1.35,1.40)) {
+cat("sample\\%,marker\\%,GRR,(thresholds x 4)(power estimates x 4)","\n")
+for(GRR in c(1.3,1.35,1.40))
+{
    cat("\n")
-   for(pi.samples in c(1.0,0.5,0.4,0.3,0.2)) {
+   for(pi.samples in c(1.0,0.5,0.4,0.3,0.2))
+   {
       if(pi.samples==1.0) s <- 1.0
       else s <- c(0.1,0.05,0.01)
       for(pi.markers in s)
@@ -95,7 +98,7 @@ for(GRR in c(1.3,1.35,1.40)) {
    }
 }
 options(echo=TRUE)
-
+}
 }
 \references{
 Skol AD, Scott LJ, Abecasis GR, Boehkne M (2006).

@@ -82,6 +82,7 @@ solve_skol <- function(rootfun,target,lo,hi,e)
 #' genome-wide association studies. Nature Genetics 38:209-213
 #'
 #' @examples
+#' \dontrun{
 #' K <- 0.1
 #' p1 <- 0.4
 #' n1 <- 1000
@@ -94,10 +95,12 @@ solve_skol <- function(rootfun,target,lo,hi,e)
 #' pi.markers <- 0.1
 #'
 #' options(echo=FALSE)
-#' cat("sample\%,marker\%,GRR,(thresholds x 4)(power estimates x 4)\n")
-#' for(GRR in c(1.3,1.35,1.40)) {
+#' cat("sample\%,marker\%,GRR,(thresholds x 4)(power estimates x 4)","\n")
+#' for(GRR in c(1.3,1.35,1.40))
+#' {
 #'    cat("\n")
-#'    for(pi.samples in c(1.0,0.5,0.4,0.3,0.2)) {
+#'    for(pi.samples in c(1.0,0.5,0.4,0.3,0.2))
+#'    {
 #'       if(pi.samples==1.0) s <- 1.0
 #'       else s <- c(0.1,0.05,0.01)
 #'       for(pi.markers in s)
@@ -113,7 +116,7 @@ solve_skol <- function(rootfun,target,lo,hi,e)
 #'    }
 #' }
 #' options(echo=TRUE)
-#'
+#' }
 #' @author Jing Hua Zhao
 #' @note solve.skol is adapted from CaTS.
 #' @keywords misc
