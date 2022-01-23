@@ -7,7 +7,6 @@
 \alias{lambda1000}
 \alias{mr}
 \alias{sun3d}
-\alias{PARn}
 \alias{HapDesign}
 \alias{HapFreqSE}
 \alias{allele.recode}
@@ -162,8 +161,6 @@ makeRLEplot for RLE plot.
 sun3d is for 3D Manhattan plot according to Sun, et al. (2018).
 
 micombine is used to combine imputation results.
-
-PARn calculates population attributable risk (PAR) for a list of frequencies and relative risks (RRs).
 
 plem2m is also experimental for PLEM format.
 

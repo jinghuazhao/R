@@ -1,10 +1,32 @@
-# 9-3-2008 MRC-Epid JHZ
+#'
+#' Functions for single nucleotide polymorphisms (SNPs)
+#'
+#' Eventually, this will be a set of functions specifically for single
+#' nucleotide polymorphisms (SNPs), which are biallelic markers. This
+#' is particularly relevant to the genomewide association studies (GWAS)
+#' using GeneChips and in line with the classic generalised single-locus
+#' model. snp.HWE is from Abecasis's website and yet to be adapted for 
+#' chromosome X.
+#'
+#' snp.ES provides effect size estimates based on the linear regression coefficient and standard error.
+#' For logistic regression, we can have similar idea for log(OR) and log(SE(OR)).
+#'
+#' snp.HWE gives an exact Hardy-Weinberg Equilibrium (HWE) test and it return -1 in the case of misspecification of genotype counts.
+#'
+#' snp.PAR calculates the the population attributable risk (PAR) for a particular SNP.
+#' Internally, it calls for an internal function PARn, given a 
+#' set of frequencies and associate relative risks (RR). Other
+#' 2x2 table statistics familiar to epidemiologists can be added when
+#' necessary.
+#'
+#' @author Jing Hua Zhao, Shengxu Li
+#' @keywords utilities
 
-PARn <- function(p,RRlist)
-{
-   if (abs(sum(p)-1)>.Machine$double.eps) print("The frequencies do not sum up to one")
-   1 - 1/(p%*%RRlist)
-}
+#' @param beta Regression coefficient.
+#' @param SE Standard error for beta.
+#' @param N Sample size.
+#'
+#' @rdname SNP
 
 snp.ES <- function(beta,SE,N)
 {
@@ -13,6 +35,9 @@ snp.ES <- function(beta,SE,N)
    df <- N - 2
    t^2/(t^2+df)
 }
+
+#' @param g Observed genotype vector.
+#' @rdname SNP
 
 snp.HWE <- function(g)
 {
@@ -67,6 +92,22 @@ snp.HWE <- function(g)
    min(1.0, sum(probs[probs <= target])/ mysum)
 }
 
+#' @param p genotype frequencies.
+#' @param RRlist A list of RRs.
+#' @rdname SNP
+
+PARn <- function(p,RRlist)
+{
+   if (abs(sum(p)-1)>.Machine$double.eps) print("The frequencies do not sum up to one")
+   1 - 1/(p%*%RRlist)
+}
+
+#' @param unit Unit to exponentiate for homozygote.
+#' @param MAF Minar allele frequency.
+#' @param RR Relative risk.
+#'
+#' @rdname SNP
+
 snp.PAR <- function(RR,MAF,unit=2)
 {
    RR2 <- RR^unit
@@ -76,3 +117,5 @@ snp.PAR <- function(RR,MAF,unit=2)
    pq <- c(p^2,2*p*q,q^2)
    PARn(pq,RRlist)
 }
+
+#' 9-3-2008 MRC-Epid JHZ

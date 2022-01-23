@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.2.3-2
-24-11-2021
+23-1-2022
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
 		Merge plogp.Rmd and functions.Rmd from pQTLtools
 		Apply Sweave2knitr() to gap.Rnw and jss.Rnw and change gap.Rnw to gap.Rmd

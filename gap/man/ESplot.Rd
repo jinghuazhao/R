@@ -36,7 +36,7 @@ within(data.frame(
    plot(x,y,type="n",xlab="",ylab="",axes=FALSE)
    points((lcl+ucl)/2,y,pch=22,bg="black",cex=3)
    segments(lcl,y,ucl,y,lwd=3,lty="solid")
-   axis(1,cex.axis=1.5,lwd=0)
+   axis(1,cex.axis=1.5,lwd=0.5)
    par(las=1)
    abline(v=1)
    axis(2,labels=id,at=y,lty="blank",hadj=0.2,cex.axis=1.5)
