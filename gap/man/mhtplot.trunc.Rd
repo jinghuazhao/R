@@ -124,6 +124,6 @@ dev.off()
 \code{\link[gap]{mhtplot}}.
 }
 \author{
-James Peters, Jing Hua Zhao.
+James Peters, Jing Hua Zhao
 }
 \keyword{hplot.}

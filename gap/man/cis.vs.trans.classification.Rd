@@ -36,3 +36,6 @@ knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
 with(cistrans,total)
 }
 }
+\author{
+James Peters
+}

@@ -18,3 +18,6 @@ log10(p) for a normal deviate z
 \examples{
 log10p(100)
 }
+\author{
+James Peters
+}

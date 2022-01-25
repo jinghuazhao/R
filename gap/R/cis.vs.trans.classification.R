@@ -22,6 +22,7 @@
 #' knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
 #' with(cistrans,total)
 #' }
+#' @author James Peters
 
 cis.vs.trans.classification <- function(hits, panel, id, radius=1e6)
 # cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")

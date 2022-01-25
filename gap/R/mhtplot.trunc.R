@@ -59,7 +59,7 @@
 #' )
 #' dev.off()
 #' }
-#' @author James Peters, Jing Hua Zhao.
+#' @author James Peters, Jing Hua Zhao
 #' @keywords hplot.
 #' @seealso \code{\link[gap]{mhtplot}}.
 #' @export
