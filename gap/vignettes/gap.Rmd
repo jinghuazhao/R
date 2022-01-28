@@ -866,7 +866,7 @@ get_b_se(0.6396966,23991,4.7245)
 ## get_pve_se
 
 This function obtains proportion of explained variation (PVE) from n, z; its
-standard error is based on $r^2$ instead of variance of the ratio.
+standard error is based on variance of the ratio (correction=TRUE) or $r^2$.
 
 ## get_sdy
 
