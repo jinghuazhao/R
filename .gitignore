@@ -4,7 +4,7 @@ gap_*
 gap/inst/shinygap/.Rhistory
 lmm_*
 pan_*
-pQTLtools_*
+pQTLtools*
 tdthap_*
 *.Rcheck
 work
