@@ -1,9 +1,10 @@
 Package: gap.datasets
 Version: 0.0.5
-Date: 2019-6-4
+Date: 2022-5-6
 Title: Datasets for 'gap'
-Author: Jing Hua Zhao with suggestions from R-Core
-Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
+Authors@R: c(person("Jing Hua", "Zhao", role = c("aut", "cre"),
+                    email="jinghuazhao@hotmail.com"),
+             person("Swetlana", "Herbrandt", role = "ctb"))
 Description: Datasets associated with the 'gap' package. Currently,
              it includes an example data for regional association
              plot (CDKN), an example data for a genomewide association
@@ -19,3 +20,4 @@ URL: https://jinghuazhao.github.io/R/
 NeedsCompilation: no
 Packaged: 2019-05-27 19:04:29 UTC; jhz22
 Depends: R (>= 2.10)
+RoxygenNote: 7.1.2

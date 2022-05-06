@@ -9,7 +9,7 @@ The data contains data on 51 individuals in a pedigree. Below it is used for com
 \format{A data frame}
 \source{Morgan v3.}
 \references{
-Morgan v3. \url{http://www.stat.washington.edu/thompson/Genepi/MORGAN/Morgan.shtml}
+Morgan v3. \url{https://sites.stat.washington.edu/thompson/Genepi/MORGAN/Morgan.shtml}
 } 
 \examples{\dontrun{
 km <- kin.morgan(l51)
