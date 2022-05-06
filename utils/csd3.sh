@@ -1,9 +1,8 @@
 #!/usr/bin/bash
 
-module load gcc/6
-module load texlive
+module load gcc/6 texlive
 
-export version=4.1.3
+export version=4.2.0
 export major=$(cut -d. -f1 <<<${version})
 export minor1=$(cut -d. -f2 <<<${version})
 export minor2=$(cut -d. -f3 <<<${version})
