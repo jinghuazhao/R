@@ -58,7 +58,7 @@
 #' @return For each pedigree, the function generates a .dot file to be used by dot. The
 #' collection of all pedigrees (*.dot) can also be put together.
 #' 
-#' @seealso package sem in CRAN and Rgraphviz in BioConductor \url{http://www.bioconductor.org}.
+#' @seealso package sem in CRAN and Rgraphviz in BioConductor \url{https://www.bioconductor.org/}.
 #'
 #' @examples
 #' \dontrun{
@@ -103,7 +103,7 @@
 #' sink()
 #' file.show("gaw14.dot")
 #' # more details
-#' pedtodot(ped,sink=FALSE,page="B5",url="http://www.mrc-epid.cam.ac.uk/")
+#' pedtodot(ped,sink=FALSE,page="B5",url="https://jinghuazhao.github.io/")
 #'
 #' # An example from Richard Mott and in the demo
 #' filespec <- system.file("tests/ped.1.3.pre")
@@ -117,7 +117,7 @@
 #' @keywords dplot
 
 pedtodot <- function(pedfile,makeped=FALSE,sink=TRUE,page="B5",
-            url="http://www.mrc-epid.cam.ac.uk",height=0.5,width=0.75,rotate=0,dir="none")
+            url="https://jinghuazhao.github.io/",height=0.5,width=0.75,rotate=0,dir="none")
 {
   if (makeped) ped <- pedfile[,-c(5,6,7,9)]
   else ped <- pedfile

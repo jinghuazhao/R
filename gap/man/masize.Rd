@@ -3,9 +3,6 @@
 \name{masize}
 \alias{masize}
 \title{Sample size calculation for mediation analysis}
-\source{
-Originally from http://www.epibiostat.ucsf.edu/biostat/mediation/
-}
 \usage{
 masize(model, opts, alpha = 0.025, gamma = 0.2)
 }

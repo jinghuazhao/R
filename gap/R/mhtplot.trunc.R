@@ -37,7 +37,7 @@
 #' mhtplot.trunc(mhtdata, chr = "chr", bp = "pos", z = "z", snp = "rsn",
 #'               y.brk1=6, y.brk2=10, y.ax.space=1, mtext.line=2.5)
 #' # https://portals.broadinstitute.org/collaboration/
-#' # giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
+#' # giant/images/c/c8/Meta-analysis_Locke_et_al%2BUKBiobank_2018_UPDATED.txt.gz
 #' gz <- gzfile("work/Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
 #' BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
 #' print(subset(BMI[c("CHR","POS","SNP","P")],CHR!=16 & P<=1e-150))

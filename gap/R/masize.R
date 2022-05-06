@@ -192,7 +192,6 @@ getb0 <- function(p, X, b1, b2)
 #'
 #' @seealso \code{\link[gap]{ab}}
 #'
-#' @source Originally from http://www.epibiostat.ucsf.edu/biostat/mediation/
 #' @examples
 #' \dontrun{
 #' ## linear model

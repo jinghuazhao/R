@@ -9,7 +9,7 @@ pedtodot(
   makeped = FALSE,
   sink = TRUE,
   page = "B5",
-  url = "http://www.mrc-epid.cam.ac.uk",
+  url = "https://jinghuazhao.github.io/",
   height = 0.5,
   width = 0.75,
   rotate = 0,
@@ -131,7 +131,7 @@ pedtodot(ped,sink=FALSE)
 sink()
 file.show("gaw14.dot")
 # more details
-pedtodot(ped,sink=FALSE,page="B5",url="http://www.mrc-epid.cam.ac.uk/")
+pedtodot(ped,sink=FALSE,page="B5",url="https://jinghuazhao.github.io/")
 
 # An example from Richard Mott and in the demo
 filespec <- system.file("tests/ped.1.3.pre")
@@ -142,7 +142,7 @@ pedtodot(pre,dir="forward")
 
 }
 \seealso{
-package sem in CRAN and Rgraphviz in BioConductor \url{http://www.bioconductor.org}.
+package sem in CRAN and Rgraphviz in BioConductor \url{https://www.bioconductor.org/}.
 }
 \author{
 David Duffy, Jing Hua Zhao

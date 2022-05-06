@@ -31,7 +31,7 @@
 #'
 #' @references
 #' Hadfield JD (2010). MCMC Methods for multi-response generalized linear mixed models:
-#' The MCMCglmm R Package, J Stat Soft 33(2):1-22, http://www.jstatsoft.org/v33/i02/.
+#' The MCMCglmm R Package, J Stat Soft 33(2):1-22, https://www.jstatsoft.org/article/view/v033i02.
 #'
 #' @examples
 #' \dontrun{

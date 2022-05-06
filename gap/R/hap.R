@@ -56,7 +56,7 @@ hap.control <- function(mb=0,pr=0,po=0.001,to=0.001,th=1,maxit=100,n=0,
 #'
 #' @references
 #'
-#' Clayton DG (2001) SNPHAP. http://www-gene.cimr.cam.ac.uk/clayton/software.
+#' Clayton DG (2001) SNPHAP. https://github.com/chr1swallace/snphap.
 #'
 #' Zhao JH and W Qian (2003) Association analysis of unrelated individuals
 #' using polymorphic genetic markers. RSS 2003, Hassalt, Belgium

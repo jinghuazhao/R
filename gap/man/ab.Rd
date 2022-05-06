@@ -67,7 +67,7 @@ Kline RB. Principles and practice of structural equation modeling, Second Editio
 MacKinnon DP. Introduction to Statistical Mediation Analysis. Taylor & Francis Group 2008.
 
 Preacher KJ, Leonardelli GJ. Calculation for the Sobel Test-An interactive calculation tool for mediation tests
-http://www.people.ku.edu/~preacher/sobel/sobel.htm
+https://quantpsy.org/sobel/sobel.htm
 }
 \seealso{
 \code{\link[gap]{ccsize}}

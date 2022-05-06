@@ -40,7 +40,7 @@
 #' u <- with(chr_pos,max(as.numeric(chrpos),na.rm=TRUE))
 #' LD <- with(chr_pos,GetLDInfo(unique(chr),l,u))
 #' # We have complaints; a possibility is to get around with 
-#' # https://ftp.hapmap.org/hapmap/
+#' # https://ftp.ncbi.nlm.nih.gov/hapmap/
 #' hit_LD <- subset(LD,SNPA==hit)
 #' hit_LD <- within(hit_LD,{RSQR=r2})
 #' info <- GetSNPInfo(p$SNP)

@@ -28,7 +28,7 @@
 #' @param burn number of burn-ins with default value 50.
 #' @param idum seed for pseudorandom number sequence.
 #'
-#' @source \url{http://www.stat.cmu.edu}
+#' @source \url{https://www.cmu.edu/dietrich/statistics-datascience/index.html}
 #'
 #' @export
 #' @return The returned value is a list containing:

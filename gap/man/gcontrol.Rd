@@ -4,7 +4,7 @@
 \alias{gcontrol}
 \title{genomic control}
 \source{
-\url{http://www.stat.cmu.edu}
+\url{https://www.cmu.edu/dietrich/statistics-datascience/index.html}
 }
 \usage{
 gcontrol(

@@ -1,11 +1,10 @@
 Package: gap
 Version: 1.2.3-2
-Date: 2022-1-28
+Date: 2022-5-6
 Title: Genetic Analysis Package
-Authors@R: c(
-    person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"),
-      comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")
-    ),
+Authors@R: c(person("Jing Hua", "Zhao", role = c("aut", "cre"),
+                    email = "jinghuazhao@hotmail.com",
+      comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")),
     person("Kurt", "Hornik", role = "ctb"),
     person("Brian", "Ripley", role = "ctb"),
     person("Uwe", "Liggs", role = "ctb")
@@ -23,7 +22,7 @@ Suggests: BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
 VignetteBuilder: knitr
 Enhances: shiny
 Description: As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18.
-        <10.18637/jss.v023.i08>], it is designed as an integrated package for genetic data
+        <doi:10.18637/jss.v023.i08>], it is designed as an integrated package for genetic data
         analysis of both population and family data. Currently, it contains functions for
         sample size calculations of both population-based and family-based designs, probability
         of familial disease aggregation, kinship calculation, statistics in linkage analysis,
