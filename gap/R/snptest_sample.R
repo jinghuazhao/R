@@ -12,8 +12,10 @@
 #' @export
 #' @return Output file in SNPTEST's sample format.
 #' @examples
+#' \dontrun{
 #' d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
 #' snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
+#' }
 
 snptest_sample <- function(data,sample_file="snptest.sample",ID_1="ID_1",ID_2="ID_2",missing="missing",C=NULL,D=NULL,P=NULL)
 {

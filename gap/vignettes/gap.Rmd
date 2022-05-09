@@ -1033,4 +1033,5 @@ lsf.str("package:gap")
 data(package="gap")$results
 ```
 
-[^1]: [https://www.stat.cmu.edu/~hseltman/files/ratio.pdf](https://www.stat.cmu.edu/~hseltman/files/ratio.pdf)
+[^1]: Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
+
