@@ -1,5 +1,9 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.2.3-3
+09-05-2022
+		change cnvplot(cnv) to cnvplot(gap.datasets::cnv)
+		Revise gap.Rmd to comply with csl.
 Version 1.2.3-2
 06-05-2022
 gap.Rmd		Drop fig=TRUE from gap.Rnw since it causes problems
