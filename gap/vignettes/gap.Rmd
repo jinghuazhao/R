@@ -34,7 +34,7 @@ This package was initiated to integrate some C/Fortran/SAS programs I have writt
 or used over the years. As such, it would rather be a long-term project, but an
 immediate benefit would be something complementary to other packages currently
 available from CRAN, e.g. **genetics**, **hwde**, etc. I hope eventually this will
-be part of a bigger effort to fulfill most of the requirements foreseen by many@guo00,
+be part of a bigger effort to fulfill most of the requirements foreseen by many @guo00,
 within the portable environment of R for data management, analysis, graphics and
 object-oriented programming. My view has been outlined more formally[@zt06a; @zt06b]
 in relation to other package systems and also on package **kinship** [@zhao05; @zhao06].
@@ -249,7 +249,7 @@ See examples of haplotype analysis there -- additional examples are given below.
 
 I would like to highlight `pedtodot`, `pbsize`, `fbsize` and `ccsize` functions
 used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as
-reported@zhao07.
+reported @zhao07.
 
 ## Pedigree drawing
 
@@ -902,7 +902,7 @@ knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV
 unlink(f)
 ```
 
-The nearest reference for the implemented approaches is Ligthart et al@ligthart18.
+The nearest reference for the implemented approaches is Ligthart et al @ligthart18.
 
 We would be of interest to contrast their effect sizes as well,
 
