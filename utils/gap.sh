@@ -15,7 +15,7 @@ cp README.Rmd ${wd}/gap/vignettes/shinygap.Rmd
 cp shinygap.bib ${wd}/gap/vignettes/shinygap.bib
 cd ${wd}
 
-export version=1.2.3-4
+export version=1.2.3-6
 
 R CMD build --compact-vignettes=both --md5 --resave-data --log gap
 R CMD INSTALL --compact-docs --data-compress=xz gap_${version}.tar.gz
