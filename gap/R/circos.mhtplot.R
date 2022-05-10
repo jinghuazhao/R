@@ -8,10 +8,12 @@
 #' @export
 #' @return None.
 #' @examples
+#' \dontrun{
 #' require(gap.datasets)
 #' glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
 #'            "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 #' circos.mhtplot(mhtdata,glist)
+#'
 
 circos.mhtplot <- function(data, glist)
 # circos.mhtplot(mhtdata,g)

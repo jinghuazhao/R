@@ -12,7 +12,7 @@
 #' @details
 #' \tabular{ll}{
 #' Package: \tab gap\cr
-#' Version: \tab 1.2.3-2\cr
+#' Version: \tab 1.2.3-6\cr
 #' Depends: \tab R(>= 2.1.0)\cr
 #' Imports: \tab dplyr, ggplot2, plotly \cr
 #' Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
