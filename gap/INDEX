@@ -57,6 +57,7 @@ ESplot                  Effect-size plot
 circos.cnvplot          circos plot of CNVs
 circos.cis.vs.trans.plot circos plot of cis/trans classification
 circos.mhtplot          circos Manhattan plot with gene annotation
+circos.mhtplot2         Another circos Manhattan plot
 cnvplot                 genomewide plot of CNVs
 METAL_forestplot        forest plot as R/meta's forest for METAL outputs
 makeRLEplot		make relative log expression plot

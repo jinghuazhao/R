@@ -18,7 +18,7 @@ many projects hence also in line with the name (gap).
 \details{
 \tabular{ll}{
 Package: \tab gap\cr
-Version: \tab 1.2.3-6\cr
+Version: \tab 1.3\cr
 Depends: \tab R(>= 2.1.0)\cr
 Imports: \tab dplyr, ggplot2, plotly \cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
@@ -89,7 +89,8 @@ asplot            \tab      Regional association plot\cr
 ESplot            \tab      Effect-size plot\cr
 circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
 circos.cnvplot    \tab      circos plot of CNVs\cr
-circos.mhtplot 	  \tab      circos Manhattan plot with gene annotation\cr
+circos.mhtplot    \tab      circos Manhattan plot with gene annotation\cr
+circos.mhtplot2   \tab      Another circos Manhattan plot\cr
 cnvplot           \tab      genomewide plot of CNVs\cr
 makeRLEplot       \tab      make relative log expression plot\cr
 METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr

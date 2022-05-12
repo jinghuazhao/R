@@ -130,6 +130,7 @@ ESplot            |      Effect-size plot
 circos.cnvplot    |      circos plot of CNVs
 circos.cis.vs.trans.plot | circos plot of cis/trans classification
 circos.mhtplot    |      circos Manhattan plot with gene annotation
+circos.mhtplot2   |      Another circos Manhattan plot
 cnvplot           |      genomewide plot of CNVs
 METAL\_forestplot |      forest plot as R/meta's forest for METAL outputs
 makeRLEplot       |      make relative log expression plot
@@ -514,6 +515,24 @@ We could also go further with a circos Manhattan plot,
 
 ```{r circos, fig.cap="A circos Manhattan plot", fig.height=7, fig.width=8}
 circos.mhtplot(mhtdata, glist)
+```
+
+and a version with y-axis,
+
+```{r circos2, fig.cap="Another circos Manhattan plot", fig.height=7, fig.width=8}
+require(gap.datasets)
+library(dplyr)
+testdat <- mhtdata[c("chr","pos","p","gene","start","end")] %>%
+           rename(log10p=p) %>%
+           mutate(chr=paste0("chr",chr),log10p=-log10(log10p))
+dat <- mutate(testdat,start=pos,end=pos) %>%
+       select(chr,start,end,log10p)
+labs <- subset(testdat,gene %in% glist) %>%
+        group_by(gene,chr,start,end) %>%
+        summarize() %>%
+        mutate(cols="blue") %>%
+        select(chr,start,end,gene,cols)
+circos.mhtplot2(dat,labs,ticks=0:2*10)
 ```
 
 We now experiment with Miami plot,

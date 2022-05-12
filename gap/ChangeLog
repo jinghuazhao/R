@@ -1,5 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.3
+12-05-2022	Add circos.mhtplot2()
+
 Version 1.2.3-6
 10-05-2022	Switch back to three-character maintainer name.
 
