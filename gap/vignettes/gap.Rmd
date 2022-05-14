@@ -70,7 +70,9 @@ Several other updates are worth mentioning:
     easier generation of .Rd files through devtools::document().
 
 It is likely these experiences will be shared with/useful for other colleagues
-in converting their work into R.
+in converting their work into R. I found occasionally it is useful to use
+specific functions without loading the whole package (i.e., `library(gap)`),
+e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
 
 # Implementation
 
