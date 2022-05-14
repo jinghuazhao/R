@@ -12,7 +12,7 @@ vignette: >
   %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
 output:
-  knitr:::html_vignette:
+  knitr::html_vignette:
     toc: yes
 ---
 
@@ -63,7 +63,7 @@ Several other updates are worth mentioning:
 
 2.  multiple figures generated from a code section to be embedded.
 
-3.  Experimental implementation of a shiny App (`runshinygap`()).
+3.  experimental implementation of a shiny App (`runshinygap`()).
 
 4.  **roxygen2** style documentation in companion with R code to allow for
     easier generation of .Rd files through devtools::document().
