@@ -12,8 +12,9 @@ vignette: >
   %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
 output:
-rmarkdown::pdf_document:
-      toc: yes
+  rmarkdown::html_vignette:
+        toc: true
+  number_sections: true
 ---
 
 ```{r setup, include=FALSE}
