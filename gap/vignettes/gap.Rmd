@@ -12,8 +12,8 @@ vignette: >
   %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
 output:
-  knitr::html_vignette:
-    toc: yes
+rmarkdown::html_vignette:
+      toc: yes
 ---
 
 ```{r setup, include=FALSE}
