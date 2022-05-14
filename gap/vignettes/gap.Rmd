@@ -1,5 +1,11 @@
 ---
 title: "Genetic Analysis Package"
+output:
+  rmarkdown::html_vignette:
+    mathjax:  default
+    fig_caption:  true
+    toc: true
+    section_numbering: true
 author:
   - Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/.
 date: '`r Sys.Date()`'
@@ -11,10 +17,6 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
-output:
-  rmarkdown::html_vignette:
-        toc: true
-  number_sections: true
 ---
 
 ```{r setup, include=FALSE}
