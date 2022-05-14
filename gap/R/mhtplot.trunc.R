@@ -1,6 +1,6 @@
 #' Truncated Manhattan plot
 #'
-#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
+#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed. In the future, the function should allow for additional data for adjustment of labels, positions, and -log10(P) to resolve separation.
 #'
 #' The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for R will break down when p <= 1e-324.
 #'
@@ -25,7 +25,7 @@
 #' @param y.brk1 lower -log10(P) break point.
 #' @param y.brk2 upper -log10(P) break point.
 #' @param trunc.yaxis do not truncate y-axisx when FALSE.
-#' @param cex.axis extension factor for y-axis.
+#' @param cex.axis extension factor for x-, y-axis.
 #' @param delta a value to enable column(s) of red points.
 #' @param ... other options.
 #' @return The plot is shown on or saved to the appropriate device.
@@ -156,7 +156,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
     }
     else warning("If you're trying to specify chromosome labels, chrlabs must be a character vector")
   }
-  if (nchr == 1) axis(1, ...) else axis(1, at = ticks, labels = labs)
+  if (nchr == 1) axis(1, cex.axis=cex.axis, ...) else axis(1, at = ticks, labels = labs, cex.axis=cex.axis)
   col <- rep(col, max(with(d,CHR)))
   if (nchr == 1) with(d, points(pos, log10P, pch = 20, col = col[1], ...))
   else {
