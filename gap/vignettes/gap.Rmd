@@ -12,7 +12,7 @@ vignette: >
   %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
 output:
-rmarkdown::html_vignette:
+rmarkdown::pdf_document:
       toc: yes
 ---
 
