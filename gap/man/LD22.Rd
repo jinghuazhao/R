@@ -38,7 +38,7 @@ the current function and record x2, and comparing the observed x2 and that from 
 replicates.
 }
 \note{
-extracted from 2ld.c.
+extracted from 2ld.c, worked 28/6/03, tables are symmetric do not fix, see kbyl below
 }
 \examples{
 \dontrun{
