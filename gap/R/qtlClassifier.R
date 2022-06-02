@@ -4,7 +4,7 @@
 #'
 #' @param geneSNP data.frame with columns on gene and SNP.
 #' @param SNPPos data.frame containing SNP, chromosome and position.
-#' @param genePos data.frame containing gene, start and end positions.
+#' @param genePos data.frame containing gene, chromosome, start and end positions.
 #' @param radius flanking distance.
 #'
 #' @export
@@ -107,8 +107,7 @@ qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
         res5 <- c(res5, pos)
         res6 <- c(res6, type)
     }
-    res <- data.frame(as.numeric(res1), as.numeric(res2), as.numeric(res3), 
-        as.numeric(res4), as.numeric(res5), res6)
+    res <- data.frame(res1, as.numeric(res2), as.numeric(res3), res4, as.numeric(res5), res6)
     colnames(res) <- c("geneChrom", "geneStart", "geneEnd", "SNPChrom", "SNPPos", "Type")
     return(cbind(geneSNP, res[-1, ]))
 }

@@ -11,7 +11,7 @@ qtlClassifier(geneSNP, SNPPos, genePos, radius)
 
 \item{SNPPos}{data.frame containing SNP, chromosome and position.}
 
-\item{genePos}{data.frame containing gene, start and end positions.}
+\item{genePos}{data.frame containing gene, chromosome, start and end positions.}
 
 \item{radius}{flanking distance.}
 }
