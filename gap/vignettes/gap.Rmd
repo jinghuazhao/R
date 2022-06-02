@@ -180,6 +180,7 @@ metap             |      Meta-analysis of p values
 metareg           |      Fixed and random effects model for meta-analysis
 muvar             |      Means and variances under 1- and 2- locus (diallelic) QTL model
 pvalue            |      P value for a normal deviate
+qtlClassifier     |      A QTL cis/trans classifier
 read.ms.output    |      A utility function to read ms output
 revStrand         |      Allele on the reverse strand
 runshinygap       |      Start shinygap
