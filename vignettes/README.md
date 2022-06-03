@@ -6,4 +6,4 @@
    * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf)
    * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html)
 2. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf)
-3. [pQTLtools][https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html)
+3. [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html)
