@@ -44,13 +44,13 @@
 qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
 {
     if (dim(geneSNP)[2] != 2) {
-        stop("The geneSNP data.frame need 2 colums.")
+        stop("The geneSNP data.frame need 2 columns.")
     }
     if (dim(SNPPos)[2] != 3) {
-        stop("The SNP position data.frame need 3 colums.")
+        stop("The SNP position data.frame need 3 columns.")
     }
     if (dim(genePos)[2] != 4) {
-        stop("The gene position data.frame need 4 colums.")
+        stop("The gene position data.frame need 4 columns.")
     }
     res1 <- 0
     res2 <- 0
@@ -62,9 +62,9 @@ qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
         qtl_gene <- as.character(geneSNP[i, 1])
         bool <- toupper(as.character(genePos[, 1])) %in% toupper(qtl_gene)
         if (any(bool)) {
-            genechr <- genePos[, 2][bool][1]
-            genestart <- genePos[, 3][bool][1]
-            genestop <- genePos[, 4][bool][1]
+            genechr <- genePos[bool, 2][1]
+            genestart <- genePos[bool, 3][1]
+            genestop <- genePos[bool, 4][1]
         }
         else {
             cat("gene:", qtl_gene, "\t: position is missing\n")
@@ -75,8 +75,8 @@ qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
         qtl_snp <- as.character(geneSNP[i, 2])
         bool <- toupper(as.character(SNPPos[, 1])) %in% toupper(qtl_snp)
         if (any(bool)) {
-            chrsnp <- SNPPos[, 2][bool][1]
-            pos <- SNPPos[, 3][bool][1]
+            chrsnp <- SNPPos[bool, 2][1]
+            pos <- SNPPos[bool, 3][1]
         }
         else {
             cat("SNP", qtl_snp, "\t: position is missing\n")
