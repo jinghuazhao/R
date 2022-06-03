@@ -44,6 +44,8 @@ I have contributed to [**ITHIM** injurymodel](https://github.com/ithim/injurymod
 
 My recent work involves [https://cambridge-ceu.github.io/](https://cambridge-ceu.github.io/) ([minima](https://cambridge-ceu.github.io/cambridge-ceu-minima.github.io/)) ([GitHub](https://github.com/cambridge-ceu)).
 
+---
+
 [^1]: Featured in CRAN task views:
 
     > - Genetics: **gap**, **tdthap**
