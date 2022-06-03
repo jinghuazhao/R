@@ -58,7 +58,7 @@ qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
     res4 <- 0
     res5 <- 0
     res6 <- ""
-    for (i in 1:dim(geneSNP)[1]) {
+    for (i in 1:nrow(geneSNP)) {
         qtl_gene <- as.character(geneSNP[i, 1])
         bool <- toupper(as.character(genePos[, 1])) %in% toupper(qtl_gene)
         if (any(bool)) {
