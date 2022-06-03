@@ -69,6 +69,7 @@ pqtl3dplotly            3D pQTL plotly
 mhtplot.trunc           truncated Manhattan plot
 miamiplot               Miami plot
 pedtodot                Converting pedigree(s) to dot file(s)
+pedtodot_verbatim       Pedigree-drawing with graphviz
 plot.hap.score          Plot haplotype frequencies versus haplotype score statistics
 qqfun                   Quantile-comparison plots
 qqunif                  Q-Q plot for uniformly distributed random variable

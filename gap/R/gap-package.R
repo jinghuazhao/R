@@ -96,6 +96,7 @@
 #' mhtplot.trunc     \tab      truncated Manhattan plot\cr
 #' miamiplot         \tab      Miami plot\cr
 #' pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
+#' pedtodot_verbatim \tab      Pedigree-drawing with graphviz\cr
 #' plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 #' qqfun             \tab      Quantile-comparison plots\cr
 #' qqunif            \tab      Q-Q plot for uniformly distributed random variable\cr

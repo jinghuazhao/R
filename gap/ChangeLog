@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.3
-02-08-2022	Add qtlClassifier()
+03-08-2022	Add qtlClassifier(), pedtodot_verbatim()
 		Add circos.mhtplot2(); Clarificaiton of YAML declaration in gap.Rmd
 		Add cex.axis to axis(1) in mhtplot.trunc() & notes on adjustment data
 		Mask circos.cnvplot due to excessive running time.
