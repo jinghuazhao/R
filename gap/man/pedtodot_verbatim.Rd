@@ -15,11 +15,11 @@ pedtodot_verbatim(f, run = FALSE)
 No value is returned but outputs in .dot, .pdf, and .svg.
 }
 \description{
-Read a GAS or LINKAGE format pedigree, return a digraph in the dot language
-call dot/neato to make pedigree drawing
+Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and optionally
+call dot/neato to make pedigree drawing.
 }
 \details{
-This is a verbatim translation of the original pedtodot implemneted in Bash/awk.
+This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to `pedtodot` which was largely a mirror.
 To check independently, try `xsel -i < <(cat pedtodot_verbatim.R)` or `cat pedtodot_verbatim.R | xsel -i` and paste into an R session.
 }
 \note{
