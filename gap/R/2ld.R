@@ -132,8 +132,9 @@ LD22<-function(h,n)
 #'
 #' # two multiallelic markers as in kbyl.dat
 #' # the two-locus haplotype vector is in file "kbyl.dat"
+#' # The data is now available from 2ld in Haplotype-Analysis
 #'
-#' filespec <- system.file("tests/2ld/kbyl.dat")
+#' filespec <- system.file("kbyl.dat")
 #' h <- scan(filespec,skip=1)
 #' t <- LDkl(9,5,h,213*2,verbose=TRUE)
 #' }
@@ -238,12 +239,7 @@ LDkl<-function(n1=2,n2=2,h,n,optrho=2,verbose=FALSE)
 #' # an example with known genotype counts 
 #' z <- klem(obs=1:9)
 #' # an example with imputed genotypes at SH2B1
-#' cwd <- getwd()
-#' cs.dir <- file.path(path.package("gap"),"tests/klem")
-#' setwd(cs.dir)
-#' dir()
-#' source("SH2B1.R",echo=TRUE)
-#' setwd(cwd)
+#' source(file.path(path.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
 #' }
 #'
 #' @author Jing Hua Zhao

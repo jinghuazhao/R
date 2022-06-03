@@ -63,8 +63,9 @@ t
 
 # two multiallelic markers as in kbyl.dat
 # the two-locus haplotype vector is in file "kbyl.dat"
+# The data is now available from 2ld in Haplotype-Analysis
 
-filespec <- system.file("tests/2ld/kbyl.dat")
+filespec <- system.file("kbyl.dat")
 h <- scan(filespec,skip=1)
 t <- LDkl(9,5,h,213*2,verbose=TRUE)
 }

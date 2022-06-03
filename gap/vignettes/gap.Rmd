@@ -230,12 +230,13 @@ genomewide association studies (GWAS) therefore are likely to be more familiar t
 R couunterparts in `gap`. However, you need to follow their instructions to compile
 for a particular computer system.
 
-I have included `ms` code (which is required by `read.ms.output` and .xls files
-to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a 
-classic twin example for ACE model in **OpenMx**. The package is now available from
-CRAN.
+I have kept the original `pedtodot.sh` by David Duffy which enables contrast with
+`pedtodot_verbatim()` and `pedtodot()` reported as application notes.
 
-For these models it is actually simpler to use facilities as in package **mets**, which
+I have also included `ms` code (which is required by `read.ms.output` and .xls files
+to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a classic twin
+example for ACE model in **OpenMx**. The package is now available from CRAN. For
+these models it is actually simpler to use facilities as in package **mets**, which
 is now in suggests.
 
 A final category is `twinan90`, which is now dropped from the package function list

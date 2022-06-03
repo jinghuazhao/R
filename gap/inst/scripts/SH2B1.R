@@ -1,6 +1,6 @@
 # 2-4-2010 MRC-Epid JHZ
 
-SH2B1 <- read.table("SH2B1.txt")
+SH2B1 <- read.table("SH2B1.txt.gz")
 n9 <- matrix(0,3,3)
 rs8055982 <- as.numeric(SH2B1[1,-c(1:5,10662)])
 rs7498665 <- as.numeric(SH2B1[1,-c(1:5,10662)])
