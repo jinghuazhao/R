@@ -2,7 +2,7 @@
 
 ## A summary
 
-Links to packages[^1] I have maintained are as shown in the following table, with individual files listed by GitHub.
+Links to packages[^1] I have maintained are as shown in the following table, while individual files can be found from GitHub.
 
 **Packages** | [CRAN](http://cran.r-project.org) | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|------------------------------|---------------------------------------------
