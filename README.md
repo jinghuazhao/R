@@ -16,13 +16,13 @@ This repository contains packages **CGR** which is not available from CRAN and *
 
 ## Vignettes
 
-1. [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)
-   * [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf)
-   * [h2](https://jinghuazhao.github.io/R/vignettes/h2.pdf)
-   * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf)
-   * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html)
-2. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf)
-3. [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html)
+1. [gap](https://jinghuazhao.github.io/R/vignettes/gap.html). Vignette for **gap**.
+   * [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf). The JSS paper on **gap**.
+   * [h2](https://jinghuazhao.github.io/R/vignettes/h2.pdf). Polygenic modeling now contained in **gap.examples**.
+   * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf). *R News* application note.
+   * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html). Shiny app on study designs in **gap**.
+2. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf). Vignette for **kinship**.
+3. [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html). Vignette for **pQTLtools**.
 
 ## Installation
 
