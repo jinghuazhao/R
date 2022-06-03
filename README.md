@@ -2,7 +2,7 @@
 
 ## A summary[^1]
 
-This repository contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. Links to packages I have maintained are as shown in the following table, with individual files listed by GitHub.
+Links to packages I have maintained are as shown in the following table, with individual files listed by GitHub.
 
 **Packages** | [CRAN](http://cran.r-project.org) | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|------------------------------|---------------------------------------------
@@ -13,6 +13,8 @@ This repository contains packages **CGR** which is not available from CRAN and *
 **pan** | [https://cran.r-project.org/package=pan](https://cran.r-project.org/package=pan)      | [https://github.com/cran/pan](https://github.com/cran/pan) | [https://rdrr.io/cran/pan/](https://rdrr.io/cran/pan/)
 **tdthap**  | [https://cran.r-project.org/package=tdthap](https://cran.r-project.org/package=tdthap) | [https://github.com/cran/tdthap](https://github.com/cran/tdthap) | [https://rdrr.io/cran/tdthap/](https://rdrr.io/cran/tdthap/)
 **kinship**[^2] | [https://cran.r-project.org/src/contrib/Archive/kinship/](https://cran.r-project.org/src/contrib/Archive/kinship/) | [https://github.com/cran/kinship](https://github.com/cran/kinship)
+
+It contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. 
 
 ## Vignettes
 
