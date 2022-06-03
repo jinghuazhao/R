@@ -1,8 +1,8 @@
 # R
 
-## A summary[^1]
+## A summary
 
-Links to packages I have maintained are as shown in the following table, with individual files listed by GitHub.
+Links to packages[^1] I have maintained are as shown in the following table, with individual files listed by GitHub.
 
 **Packages** | [CRAN](http://cran.r-project.org) | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ library(devtools)
 install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 ```
 
-## Organisations
+## Other work
 
 I have implemented an earlier version of the `g.binread` function in [**GGIR**](https://cran.r-project.org/package=GGIR) package.
 
