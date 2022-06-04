@@ -5,6 +5,8 @@
 #'
 #' @param f A data.frame containing pedigrees, each with pedigree id, individual id, father id, mother id, sex and affection status.
 #' @param run A flag to run dot/neato on the generated .dot file(s).
+#' @param toDOT A flag to generate script for DOT::dot().
+#' @param ... Other flag(s) for DOT::dot().
 #'
 #' @details
 #' This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to `pedtodot` which was largely a mirror.
@@ -22,7 +24,7 @@
 #' }
 #' @note Adapted from Bash/awk script by David Duffy
 
-pedtodot_verbatim <- function(f,run=FALSE)
+pedtodot_verbatim <- function(f,run=FALSE,toDOT=FALSE,...)
 {
   shape <- shade <- array()
   shape["f"] <- "box,regular=1"
@@ -37,13 +39,14 @@ pedtodot_verbatim <- function(f,run=FALSE)
   shade["1"] <- "white"
   shade["x"] <- "white"
   shade["0"] <- "white"
+  eol <- ifelse(toDOT,"","\n")
 
   uid <- unique(f[,1])
   for (pidx in 1:length(uid))
   {
     p <- uid[pidx]
     cat("Pedigree ",p,"\n")
-    sink(paste0(p,".dot"))
+    sink(paste0(p,ifelse(toDOT,".R",".dot")))
     ped <- subset(f,f[,1]==p)
     sex <- aff <- array()
     marriage <- child <- array(0)
@@ -60,36 +63,41 @@ pedtodot_verbatim <- function(f,run=FALSE)
           child[paste0(parents,"-",marriage[parents])] <- f2
        }
     }
-    cat (paste0("digraph Ped_", p, " {\n"))
-    cat ("# page =\"11,8.5\" ;\n")
-    cat ("node [shape=diamond] ;\n")
-    cat ("ratio =\"auto\" ;\n")
-    cat ("mincross = 2.0 ;\n")
-    cat (paste0("label=\"Pedigree ", p, "\" ;\n"))
-    cat ("rotate=0 ;\n")
+    cat (paste0(ifelse(toDOT,"dot('",""),"digraph Ped_", p, " {", eol))
+    cat ("node [shape=diamond] ;",eol)
+    cat ("ratio =\"auto\" ;",eol)
+    cat ("mincross = 2.0 ;",eol)
+    cat (paste0("label=\"Pedigree ", p, "\" ;",eol))
+    cat ("rotate=0 ;",eol)
     for (s in 1:(length(sex)-1)) {
-        cat (paste0("\"", names(sex[s+1]), "\" [shape=", shape[sex[s+1]], ",", " style=filled,fillcolor=", shade[aff[s+1]], "] ;\n"))
+        cat (paste0("\"", names(sex[s+1]), "\" [shape=", shape[sex[s+1]], ",", " style=filled,fillcolor=", shade[aff[s+1]], "] ;",eol))
     }
     for (m in 1:(length(marriage)-1)) {
         par <- unlist(strsplit(names(marriage[m+1]),"-"))
         mating_t <- paste0("\"t_", par[1], "x", par[2], "\"")
         mating_b <- paste0("\"b_", par[1], "x", par[2], "\"")
-        cat (paste0(mating_t, "[shape=diamond,style=filled,label=\"\",height=.1,width=.1] ;\n"))
-        cat (paste0(mating_b, "[shape=diamond,style=filled,label=\"\",height=.1,width=.1] ;\n"))
-        cat (paste0("\"", par[1], "\" -> ", mating_t, " [dir=none, weight=1, penwidth=3.0] ;\n"))
-        cat (paste0("\"", par[2], "\" -> ", mating_t, " [dir=none, weight=1, penwidth=3.0] ;\n"))
-        cat (paste0(mating_t, " -> ", mating_b, " [dir=none, weight=1, penwidth=3.0] ;\n"))
+        cat (paste0(mating_t, " [shape=diamond,style=filled,label=\"\",height=.1,width=.1] ;",eol))
+        cat (paste0(mating_b, " [shape=diamond,style=filled,label=\"\",height=.1,width=.1] ;",eol))
+        cat (paste0("\"", par[1], "\" -> ", mating_t, " [dir=none, weight=1, penwidth=3.0] ;",eol))
+        cat (paste0("\"", par[2], "\" -> ", mating_t, " [dir=none, weight=1, penwidth=3.0] ;",eol))
+        cat (paste0(mating_t, " -> ", mating_b, " [dir=none, weight=1, penwidth=3.0] ;",eol))
         pair <- paste0(par[1],"-",par[2])
         for (k in 1:marriage[pair]) {
-            cat (paste0(mating_b, " -> \"", child[paste0(pair,"-",k)], "\"", " [dir=none, weight=2] ;\n"))
+            cat (paste0(mating_b, " -> \"", child[paste0(pair,"-",k)], "\"", " [dir=none, weight=2] ;",eol))
         }
     }
-    cat ("}\n")
+    cat (paste0(ifelse(toDOT,"}')","}"),eol))
     sink()
     if (run) {
-       cat(sprintf("running dot/neato on %s\n",p))
-       system(sprintf("dot -Tpdf %s.dot -o %s_dot.pdf",p,p))
-       system(sprintf("neato -Tsvg %s.dot -o %s_neato.svg",p,p))
+       if(!toDOT) {
+         cat(sprintf("running dot/neato on %s\n",p))
+         system(sprintf("dot -Tpdf %s.dot -o %s_dot.pdf",p,p))
+         system(sprintf("neato -Tsvg %s.dot -o %s_neato.svg",p,p))
+       } else {
+         cat(sprintf("running DOT::dot on %s\n",p))
+         requireNamespace("DOT")
+         source(paste0(p,".R"))
+       }
     }
   }
 }
