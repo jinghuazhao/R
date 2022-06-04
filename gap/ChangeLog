@@ -6,7 +6,7 @@ Version 1.3
 		Add cex.axis to axis(1) in mhtplot.trunc() & notes on adjustment data
 		Mask circos.cnvplot due to excessive running time.
 		Redocument klem, metareg, mtdt, plot.hap.score, print.hap.score
-		Suggests: DOT
+		Suggests: DiagrammeR, DOT, readr
 
 Version 1.2.3-6
 10-05-2022	Switch back to three-character maintainer name.
