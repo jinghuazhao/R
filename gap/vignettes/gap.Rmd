@@ -315,9 +315,9 @@ p3 <- data.frame(pid=10081,p2)
 ```
 
 ```{r pedtodot, fig.cap="10081", fig.height=8, fig.width=7}
-print(p3)
+print(p3,row.names=FALSE)
 library(DOT)
-pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE)
+pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
 ```
 
 ### Kinship calculation
