@@ -316,12 +316,12 @@ p3 <- data.frame(pid=10081,p2)
 
 ```{r pedtodot, fig.cap="", fig.height=8, fig.width=7}
 print(p3,row.names=FALSE)
-library(DiagrammeR)
-pedtodot_verbatim(p3)
-grViz(readr::read_file("10081.dot"))
 library(DOT)
 # one can see the diagram in RStudio
 pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
+library(DiagrammeR)
+pedtodot_verbatim(p3)
+grViz(readr::read_file("10081.dot"))
 ```
 
 ### Kinship calculation
