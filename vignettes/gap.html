@@ -742,26 +742,26 @@ A pedigree diagram
 </p>
 </div>
 <p>We also demonstrate through pedigree 10081 example with <code>pedtodot</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p3)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      pid id fid mid sex aff GABRB1 D4S1645</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  10081  1   2   3   2   2    7/7    7/10</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  10081  2   0   0   1   1    -/-     -/-</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  10081  3   0   0   2   2    7/9    3/10</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  10081  4   2   3   2   2    7/9     3/7</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  10081  5   2   3   2   1    7/7    7/10</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  10081  6   2   3   1   1    7/7    7/10</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  10081  7   2   3   2   1    7/7    7/10</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  10081  8   0   0   1   1    -/-     -/-</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9  10081  9   8   4   1   1    7/9    3/10</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 10081 10   0   0   2   1    -/-     -/-</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 10081 11   2  10   2   1    7/7     7/7</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 10081 12   2  10   2   2    6/7     7/7</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 10081 13   0   0   1   1    -/-     -/-</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 10081 14  13  11   1   1    7/8     7/8</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 10081 15   0   0   1   1    -/-     -/-</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 10081 16  15  12   2   1    6/6     7/7</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p3,<span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    pid id fid mid sex aff GABRB1 D4S1645</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  1   2   3   2   2    7/7    7/10</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  2   0   0   1   1    -/-     -/-</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  3   0   0   2   2    7/9    3/10</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  4   2   3   2   2    7/9     3/7</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  5   2   3   2   1    7/7    7/10</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  6   2   3   1   1    7/7    7/10</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  7   2   3   2   1    7/7    7/10</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  8   0   0   1   1    -/-     -/-</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081  9   8   4   1   1    7/9    3/10</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 10   0   0   2   1    -/-     -/-</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 11   2  10   2   1    7/7     7/7</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 12   2  10   2   2    6/7     7/7</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 13   0   0   1   1    -/-     -/-</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 14  13  11   1   1    7/8     7/8</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 15   0   0   1   1    -/-     -/-</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10081 16  15  12   2   1    6/6     7/7</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DOT)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">pedtodot_verbatim</span>(p3,<span class="at">run=</span><span class="cn">TRUE</span>,<span class="at">toDOT=</span><span class="cn">TRUE</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">pedtodot_verbatim</span>(p3,<span class="at">run=</span><span class="cn">TRUE</span>,<span class="at">toDOT=</span><span class="cn">TRUE</span>,<span class="at">return=</span><span class="st">&quot;verbatim&quot;</span>)</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Pedigree  10081 </span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; running DOT::dot on 10081</span></span></code></pre></div>
 </div>
@@ -2186,10 +2186,10 @@ Combined forest plots for LIF.R, FEV1 and CAD
 #&gt; xy : function (x)  
 #&gt; z : function (p1, p2, n1, n2, r)
 #&gt;      Package LibPath                                                       Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp0JGjzL/Rinst24ab4612127a5&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp0JGjzL/Rinst24ab4612127a5&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp0JGjzL/Rinst24ab4612127a5&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/Rtmp0JGjzL/Rinst24ab4612127a5&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpJogkIC/Rinst106e27fd41c84&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpJogkIC/Rinst106e27fd41c84&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpJogkIC/Rinst106e27fd41c84&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpJogkIC/Rinst106e27fd41c84&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes">
 <hr />
