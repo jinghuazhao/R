@@ -63,7 +63,7 @@ pedtodot_verbatim <- function(f,run=FALSE,toDOT=FALSE,...)
           child[paste0(parents,"-",marriage[parents])] <- f2
        }
     }
-    cat (paste0(ifelse(toDOT,"dot('",""),"digraph Ped_", p, " {", eol))
+    cat (paste0(ifelse(toDOT,"DOT::dot('",""),"digraph Ped_", p, " {", eol))
     cat ("node [shape=diamond] ;",eol)
     cat ("ratio =\"auto\" ;",eol)
     cat ("mincross = 2.0 ;",eol)
