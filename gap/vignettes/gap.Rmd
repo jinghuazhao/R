@@ -266,7 +266,7 @@ I have included the original file for the *R News* as well as put examples in se
 vignettes. They can be accessed via `vignette("rnews",package="gap.examples")` and 
 `vignette("pedtodot", package="gap.examples")`, respectively.
 
-We also demonstrate through pedigree 10081 example @zhao06 with `pedtodot`.
+We also demonstrate through pedigree 10081 example @zhao06 with `pedtodot_verbatim`.
 
 ```{r, echo=FALSE}
 p1 <- "
