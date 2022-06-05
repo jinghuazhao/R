@@ -295,6 +295,7 @@ p3 <- data.frame(pid=10081,p2)
 ```
 
 ```{r pedtodot, fig.cap="", fig.height=8, fig.width=7}
+library(gap)
 print(p3,row.names=FALSE)
 library(DOT)
 # one can see the diagram in RStudio
@@ -317,7 +318,6 @@ kinship matrix.
 The pedigree diagram is as follows,
 
 ```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
-library(gap)
 # pedigree diagram
 data(lukas, package="gap.datasets")
 library(kinship2)
@@ -331,7 +331,6 @@ We then turn to the kinship calculation.
 
 ```{r}
 # unordered individuals
-library(gap)
 gk1 <- kin.morgan(lukas)
 write.table(gk1$kin.matrix,"gap_1.txt",quote=FALSE)
 
