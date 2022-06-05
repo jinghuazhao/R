@@ -56,7 +56,8 @@ other established software. At the meantime, the size of the package surpasses
 the limit as imposed by CRAN, thus the old good feature of `S` as with
 `R` that value both code and data alike has to suffer slightly in that
 **gap.datasets** and **gap.examples** are spun off as two separate
-packages; they do deserve a glimpse however for some general ideas.
+packages; they do deserve a glimpse however for some general ideas. A separate
+initiative has been made in the **pQTLtools** package.
 
 Several other updates are worth mentioning: 
 
@@ -287,7 +288,7 @@ ped <- with(lukas,pedigree(id,father,mother,sex))
 plot(ped,cex=0.4)
 ```
 
-We also demonstrate through pedigree 10081 example with `pedtodot`.
+We also demonstrate through pedigree 10081 example @zhao06 with `pedtodot`.
 
 ```{r, echo=FALSE}
 p1 <- "
@@ -1098,4 +1099,3 @@ data(package="gap")$results
 ```
 
 [^1]: Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
-
