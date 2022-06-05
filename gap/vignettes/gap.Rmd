@@ -187,7 +187,6 @@ read.ms.output    |      A utility function to read ms output
 revStrand         |      Allele on the reverse strand
 runshinygap       |      Start shinygap
 snptest\_sample   |      A utility to generate SNPTEST sample file
-twinan90          |      Classic twin models
 whscore           |      Whittemore-Halpern scores for allele-sharing
 weighted.median   |      Weighted median with interpolation
 
@@ -242,7 +241,7 @@ is now in suggests.
 
 A final category is `twinan90`, which is now dropped from the package function list
 due to difficulty to keep up with the requirements by the `R` environment but 
-nevertheless you will still be able to compile and use otherwise.
+nevertheless you will still be able to compile and use otherwise from **gap.examples**.
 
 # Demos
 
