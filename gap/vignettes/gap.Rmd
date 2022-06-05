@@ -267,27 +267,6 @@ I have included the original file for the *R News* as well as put examples in se
 vignettes. They can be accessed via `vignette("rnews",package="gap.examples")` and 
 `vignette("pedtodot", package="gap.examples")`, respectively.
 
-## Kinship calculation
-
-Next, I will provide an example for kinship calculation using `kin.morgan`.
-It is recommended that individuals in a pedigree are ordered so that parents
-always precede their children. In this regard, package **pedigree** can be
-used, and package **kinship2** can be used to produce pedigree diagram as with
-kinship matrix.
-
-### Pedigree diagram
-
-The pedigree diagram is as follows,
-
-```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
-library(gap)
-# pedigree diagram
-data(lukas, package="gap.datasets")
-library(kinship2)
-ped <- with(lukas,pedigree(id,father,mother,sex))
-plot(ped,cex=0.4)
-```
-
 We also demonstrate through pedigree 10081 example @zhao06 with `pedtodot`.
 
 ```{r, echo=FALSE}
@@ -323,6 +302,27 @@ pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
 library(DiagrammeR)
 pedtodot_verbatim(p3)
 grViz(readr::read_file("10081.dot"))
+```
+
+## Kinship calculation
+
+Next, I will provide an example for kinship calculation using `kin.morgan`.
+It is recommended that individuals in a pedigree are ordered so that parents
+always precede their children. In this regard, package **pedigree** can be
+used, and package **kinship2** can be used to produce pedigree diagram as with
+kinship matrix.
+
+### Pedigree diagram
+
+The pedigree diagram is as follows,
+
+```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
+library(gap)
+# pedigree diagram
+data(lukas, package="gap.datasets")
+library(kinship2)
+ped <- with(lukas,pedigree(id,father,mother,sex))
+plot(ped,cex=0.4)
 ```
 
 ### Kinship calculation
