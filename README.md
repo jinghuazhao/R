@@ -20,11 +20,13 @@ It contains packages **CGR** which is not available from CRAN and **kinship** wh
 
 1. [gap](https://jinghuazhao.github.io/R/vignettes/gap.html). Package vignette.
    * [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf). The JSS paper.
+   * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html). Shiny app on study designs.
+2. [gap.examples](https://jinghuazhao.github.io/R/vignettes/gap.examples.pdf)
    * [h2](https://jinghuazhao.github.io/R/vignettes/h2.pdf). Polygenic modeling now contained in **gap.examples**.
    * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf). *R News* application note.
-   * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html). Shiny app on study designs.
-2. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf). Package vignette.
-3. [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html). Package vignette.
+   * [pedtodot](https://jinghuazhao.github.io/R/vignettes/pedtodot.pdf). Example usages of *pedtodot*.
+3. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf). Package vignette.
+4. [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html). Package vignette.
 
 ## Installation
 
