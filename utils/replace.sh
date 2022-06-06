@@ -7,6 +7,8 @@ do
   cp work/${f} vignettes
 done
 
+git add README.md
+git commit -m "README"
 git add utils
 git commit -m "utils"
 git add vignettes
