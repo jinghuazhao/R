@@ -46,6 +46,8 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 
 [^1]: Other work
 
+    > I recently contributed to NeRiT (Network Regression method in TWAS), [NeRiT](https://github.com/XiuyuanJin/NeRiT).
+
     > I have implemented an earlier version of the `g.binread` function in [**GGIR**](https://cran.r-project.org/package=GGIR) package.
 
     > I have contributed to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC.
