@@ -26,9 +26,9 @@ It contains packages **CGR** which is not available from CRAN and **kinship** wh
    * [pedtodot](https://jinghuazhao.github.io/R/vignettes/pedtodot.pdf). Example usages of *pedtodot*.
    * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf). *R News* application note.
 3. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf). Package vignette.
-4. [lmm](https://jinghuazhao.github.io/R/vignettes/lmm-tr.pdf). Package vignette.
-5. [pan](https://jinghuazhao.github.io/R/vignettes/pan-tr.pdf). Package vignette.
-6. [tdthap](https://jinghuazhao.github.io/R/vignettes/tdthap-paper.pdf). Package vignette.
+4. [lmm](https://cran.r-project.org/web/packages/lmm/vignettes/lmm-tr.pdf). Package vignette.
+5. [pan](https://cran.r-project.org/web/packages/pan/vignettes/pan-tr.pdf). Package vignette.
+6. [tdthap](https://cran.r-project.org/web/packages/tdthap/vignettes/tdthap-paper.pdf). Package vignette.
 
 ## Installation
 
