@@ -2,7 +2,7 @@
 
 # to replace heavily compressed files with default to enable FireFox
 
-for f in jss.pdf gap.examples.pdf rnews.pdf lmm-tr.pdf pan-tr.pdf tdthap-paper.pdf
+for f in jss.pdf gap.examples.pdf rnews.pdf
 do
   cp work/${f} vignettes
 done
