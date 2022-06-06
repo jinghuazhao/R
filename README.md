@@ -44,7 +44,7 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 
 ***
 
-[^1]: Other work
+[^1]: Additional work
 
     > I recently contributed to NeRiT (Network Regression method in TWAS), [NeRiT](https://github.com/XiuyuanJin/NeRiT).
 
@@ -54,7 +54,7 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 
     > My recent work involves [https://cambridge-ceu.github.io/](https://cambridge-ceu.github.io/) ([minima](https://cambridge-ceu.github.io/cambridge-ceu-minima.github.io/)) ([GitHub](https://github.com/cambridge-ceu)).
 
-[^2]: Featured in CRAN task views:
+[^2]: Featured CRAN task views:
 
     > - Genetics: **gap**, **tdthap**
     > - Meta-Analysis: **gap**
