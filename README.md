@@ -18,7 +18,7 @@ It contains packages **CGR** which is not available from CRAN and **kinship** wh
 
 ## Vignettes
 
-1. [gap](https://jinghuazhao.github.io/R/vignettes/gap.html). Package vignette.
+1. [gap](https://jinghuazhao.github.io/R/vignettes/gap.html). Package vignette[^3].
    * [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf). The JSS paper.
    * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html). Shiny app on study designs.
 2. [gap.examples](https://jinghuazhao.github.io/R/vignettes/gap.examples.pdf)
@@ -26,7 +26,6 @@ It contains packages **CGR** which is not available from CRAN and **kinship** wh
    * [pedtodot](https://jinghuazhao.github.io/R/vignettes/pedtodot.pdf). Example usages of *pedtodot*.
    * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf). *R News* application note.
 3. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf). Package vignette.
-4. [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html). Package vignette.
 
 ## Installation
 
@@ -57,3 +56,6 @@ My recent work involves [https://cambridge-ceu.github.io/](https://cambridge-ceu
     > - Social science: **lmm**, **pan**
 
 [^2]: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
+
+[^3]: Additional use can be found from [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html). Package vignette.
+
