@@ -42,7 +42,7 @@ library(devtools)
 install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 ```
 
-===
+***
 
 [^1]: Other work
 
