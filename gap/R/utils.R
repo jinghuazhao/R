@@ -396,55 +396,6 @@ ReadGRMPCA <- function(prefix)
 lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 
-chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
-{
-  chr <- paste0(prefix,chr)
-  chrpos <- paste(chr,pos,sep=seps[1])
-  a1a2 <- paste(a1,a2,sep=seps[3])
-  a2a1 <- paste(a2,a1,sep=seps[3])
-  swap <- (a1 > a2)
-  a1a2[swap] <- a2a1[swap]
-  a1a2.lower <- tolower(a1a2)
-  a1a2.upper <- toupper(a1a2)
-  if(uppercase) paste(chrpos,a1a2.upper,sep=seps[2]) else paste(chrpos,a1a2.lower,sep=seps[2])
-}
-
-inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
-{
-  if ((seps[1]==seps[2])&(seps[2]==seps[3]))
-  {
-    s <- sapply(chr_pos_a1_a2,strsplit,seps[1])
-    chr <- lapply(s,"[",1)
-    pos <- lapply(s,"[",2)
-    a1 <- lapply(s,"[",3)
-    a2 <- lapply(s,"[",4)
-  } else if ((seps[1]!=seps[2])&(seps[2]==seps[3]))
-  {
-    s <- sapply(chr_pos_a1_a2,strsplit,seps[2])
-    chrpos <- lapply(s,"[",1)
-    s1 <- sapply(chrpos,strsplit,seps[1])
-    chr <- lapply(s1,"[",1)
-    pos <- lapply(s1,"[",2)
-    a1 <- lapply(s,"[",2)
-    a2 <- lapply(s,"[",3)
-  } else if ((seps[1]!=seps[2])&(seps[2]!=seps[3]))
-  {
-    s <- sapply(chr_pos_a1_a2,strsplit,seps[2])
-    chrpos <- lapply(s,"[",1)
-    s1 <- sapply(chrpos,strsplit,seps[1])
-    chr <- lapply(s1,"[",1)
-    pos <- lapply(s1,"[",2)
-    s2 <- lapply(s,"[",2)
-    s3 <- sapply(s2,strsplit,seps[3])
-    a1 <- lapply(s3,"[",1)
-    a2 <- lapply(s3,"[",2)
-  }
-  if (prefix=="") chr <- gsub("chr","",chr)
-  s <- data.frame(chr=unlist(chr),pos=unlist(pos),a1=unlist(a1),a2=unlist(a2))
-  names(s) <- c("chr","pos","a1","a2")
-  return(s)
-}
-
 sun3d <- function(xyz="INF1.merge.cis.vs.trans",
                       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
                       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
@@ -579,14 +530,6 @@ allDuplicated <- function(x)
   all_dup <- front | back
   return(all_dup)
 }
-
-mht.control <- function(type="p", usepos=FALSE, logscale=TRUE, base=10, cutoffs=NULL, colors=NULL,
-                        labels=NULL, srt=45, gap=NULL, cex=0.4, yline=3, xline=3)
-               list(type=type, usepos=usepos, logscale=logscale, base=base, cutoffs=cutoffs, colors=colors,
-                    labels=labels, srt=srt, gap=gap, cex=cex, yline=yline, xline=xline)
-
-hmht.control <- function(data=NULL, colors=NULL, yoffset=0.25, cex=1.5, boxed=FALSE)
-                list(data=data,colors=colors,yoffset=yoffset,cex=cex,boxed=boxed)
 
 textbox <- function(label, name=NULL, gp=NULL, vp=NULL)
 {

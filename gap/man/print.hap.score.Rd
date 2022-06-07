@@ -9,14 +9,15 @@
 \arguments{
 \item{x}{The object returned from hap.score (which has class hap.score).}
 
-\item{...}{Optional argunents.
-
+\item{...}{Optional argunents.}
+}
+\value{
 Nothing is returned.
 
 This is a print method function used to print information from
 hap.score class, with haplotype-specific information given in a
 table. Because hap.score is a class, the generic print function 
-can be used, which in turn calls this print.hap.score function.}
+can be used, which in turn calls this print.hap.score function.
 }
 \description{
 Method function to print a class of type hap.score

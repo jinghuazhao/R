@@ -144,10 +144,24 @@
 #' this largely remains as a preliminary work to be consolidated in the
 #' near future.
 #'
+#' @useDynLib gap
 #' @author Jing Hua Zhao in collaboration with other colleagues, and with
 #'         help from Kurt Hornik and Brian Ripley of the R core development team
 #' 
 #' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
+#'
+#' @import dplyr gap.datasets utils
+#' @importFrom grDevices palette xy.coords
+#' @importFrom graphics abline arrows axis box boxplot
+#'             identify legend lines mtext par points
+#'             segments text title
+#' @importFrom stats as.formula coef coefficients cor
+#'             dnorm glm integrate lm median nlm
+#'             pchisq pf pnorm ppoints pt qchisq qnorm
+#'             qqplot qt quantile rbinom rexp rnorm
+#'             runif sd var
+#' @importFrom utils data head packageDescription read.csv
+#'             read.delim read.table tail write.table
 #'
 #' @references
 #' Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.

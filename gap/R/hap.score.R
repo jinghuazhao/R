@@ -439,7 +439,8 @@ plot.hap.score <- function(x, ...){
 #' @param x The object returned from hap.score (which has class hap.score).
 #' @param ... Optional argunents.
 #'
-#' Nothing is returned.
+#' @export
+#' @return Nothing is returned.
 #' 
 #' This is a print method function used to print information from
 #' hap.score class, with haplotype-specific information given in a
