@@ -42,17 +42,13 @@ library(devtools)
 install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 ```
 
-***
+---
 
-[^1]: Additional work
+[^1]: Contributed work
 
-    > I recently contributed to NeRiT (Network Regression method in TWAS), [NeRiT](https://github.com/XiuyuanJin/NeRiT).
-
-    > I have implemented an earlier version of the `g.binread` function in [**GGIR**](https://cran.r-project.org/package=GGIR) package.
-
-    > I have contributed to [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC.
-
-    > My recent work involves [https://cambridge-ceu.github.io/](https://cambridge-ceu.github.io/) ([minima](https://cambridge-ceu.github.io/cambridge-ceu-minima.github.io/)) ([GitHub](https://github.com/cambridge-ceu)).
+    > - Network Regression method in TWAS, [NeRiT](https://github.com/XiuyuanJin/NeRiT).
+    > - `g.binread` function in [**GGIR**](https://cran.r-project.org/package=GGIR) package.
+    > - [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC.
 
 [^2]: Featured CRAN task views:
 
@@ -62,5 +58,5 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 
 [^3]: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
 
-[^4]: Additional use can be found from [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html). Package vignette.
+[^4]: Additional use can be found from a package vignette [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html).
 
