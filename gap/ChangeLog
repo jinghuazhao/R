@@ -1,9 +1,10 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.3
-07-06-2022	Add qtlClassifier(), pedtodot_verbatim(), drop Dev* for hwe.cc from NAMESPACE
+07-06-2022	Add qtlClassifier(), pedtodot_verbatim()
 		Add circos.mhtplot2(); Clarificaiton of YAML declaration in gap.Rmd
 		Add cex.axis to axis(1) in mhtplot.trunc() & notes on adjustment data
+		Drop Cox.est, Cox.T, Dev* for hwe.cc from NAMESPACE
 		Mask circos.cnvplot due to excessive running time.
 		Redocument klem, metareg, mtdt, plot.hap.score, print.hap.score
 		Suggests: DiagrammeR, DOT, readr
