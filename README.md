@@ -47,7 +47,7 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 [^1]: Contributed work
 
     > - Network Regression method in TWAS, [NeRiT](https://github.com/XiuyuanJin/NeRiT).
-    > - `g.binread` function in [**GGIR**](https://cran.r-project.org/package=GGIR) package.
+    > - `g.binread` function, [**GGIR**](https://cran.r-project.org/package=GGIR).
     > - [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC.
 
 [^2]: Featured CRAN task views:
