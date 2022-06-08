@@ -4,6 +4,8 @@
 #'
 #' @param x (alpha)numeric value indicating chromosome.
 #'
+#' @export
+#' @return As indicated.
 
 xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
 
@@ -13,6 +15,8 @@ xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
 #'
 #' @param x Chromosome name in strings
 #'
+#' @export
+#' @return As indicated.
 
 ixy <- function(x) if (x=="X") 23 else if (x=="Y") 24 else x
 
@@ -24,6 +28,12 @@ ixy <- function(x) if (x=="X") 23 else if (x=="Y") 24 else x
 #' @param plot A flag for plot.
 #' @param cex A scaling factor for labels.
 #'
+#' @export
+#' @return A list with two variables.
+#' \describe{
+#'   \item{n}{Number of chromosomes.}
+#'   \item{CM}{Cumulative lengths starting from 0.}
+#' }
 
 grid2d <- function(chrlen, plot=TRUE, cex=0.6)
 {
@@ -43,7 +53,7 @@ grid2d <- function(chrlen, plot=TRUE, cex=0.6)
     }
     segments(0,0,CM[n],0)
     segments(0,0,0,CM[n])
-    title(xlab="pQTL position",ylab="protein position",line=2)
+    title(xlab="QTL position",ylab="Gene position",line=2)
   }
   invisible(list(n=n, CM=c(0,CM)))
 }

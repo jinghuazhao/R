@@ -9,6 +9,9 @@ ixy(x)
 \arguments{
 \item{x}{Chromosome name in strings}
 }
+\value{
+As indicated.
+}
 \description{
 This function converts 1:22, X, Y back to 1:24.
 }

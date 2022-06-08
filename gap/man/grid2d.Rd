@@ -13,6 +13,13 @@ grid2d(chrlen, plot = TRUE, cex = 0.6)
 
 \item{cex}{A scaling factor for labels.}
 }
+\value{
+A list with two variables.
+\describe{
+  \item{n}{Number of chromosomes.}
+  \item{CM}{Cumulative lengths starting from 0.}
+}
+}
 \description{
 This function build 2-d grids
 }
