@@ -21,20 +21,6 @@ Links to packages I have maintained[^1] are as shown in the following table, whi
 
 It contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. 
 
-## Vignettes
-
-1. [gap](https://jinghuazhao.github.io/R/vignettes/gap.html). Package vignette.
-   * [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf). The JSS paper.
-   * [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html). Shiny app on study designs.
-2. [gap.examples](https://jinghuazhao.github.io/R/vignettes/gap.examples.pdf)
-   * [h2](https://jinghuazhao.github.io/R/vignettes/h2.pdf). Polygenic modeling.
-   * [pedtodot](https://jinghuazhao.github.io/R/vignettes/pedtodot.pdf). Example usages of *pedtodot*.
-   * [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf). *R News* application note.
-3. [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf). Package vignette.
-4. [lmm](https://cran.r-project.org/web/packages/lmm/vignettes/lmm-tr.pdf). Package vignette.
-5. [pan](https://cran.r-project.org/web/packages/pan/vignettes/pan-tr.pdf). Package vignette.
-6. [tdthap](https://cran.r-project.org/web/packages/tdthap/vignettes/tdthap-paper.pdf). Package vignette.
-
 ## Installation
 
 You can install these packages either from CRAN, e.g.,
