@@ -96,9 +96,6 @@ makeRLEplot       \tab      make relative log expression plot\cr
 METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
-qtl2dplot         \tab      2D QTL plot\cr
-qtl2dplotly       \tab      2D QTL plotly\cr
-qtl3dplotly       \tab      3D QTL plotly\cr
 mhtplot.trunc     \tab      truncated Manhattan plot\cr
 miamiplot         \tab      Miami plot\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
@@ -106,6 +103,9 @@ pedtodot_verbatim \tab      Pedigree-drawing with graphviz\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 qqfun             \tab      Quantile-comparison plots\cr
 qqunif            \tab      Q-Q plot for uniformly distributed random variable\cr
+qtl2dplot         \tab      2D QTL plot\cr
+qtl2dplotly       \tab      2D QTL plotly\cr
+qtl3dplotly       \tab      3D QTL plotly\cr
 \cr
 \strong{UTITLITIES}\cr
 \cr
