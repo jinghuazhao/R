@@ -1,6 +1,5 @@
 \name{gap-internal}
 \alias{allDuplicated}
-\alias{grid2d}
 \alias{hg18}
 \alias{hg19}
 \alias{hg38}
@@ -14,8 +13,6 @@
 \alias{a2g}
 \alias{ci}
 \alias{cov.invlogit}
-\alias{ExpN.recessiveH0}
-\alias{ExpN.recessiveHa}
 \alias{g2a}
 \alias{g2a.c}
 \alias{gc.control}
@@ -30,7 +27,6 @@
 \alias{hw}
 \alias{invlogit}
 \alias{is.miss}
-\alias{ixy}
 \alias{KCC}
 \alias{k}
 \alias{logit}
@@ -57,7 +53,6 @@
 \alias{WriteGRMBin}
 \alias{WriteGRMSAS}
 \alias{x2}
-\alias{xy}
 \alias{z}
 \title{Internal functions for gap}
 \usage{
@@ -106,8 +101,6 @@ g2a.c is the C version of g2c.
 gc.control is used by gc.em().
 
 gcode is as a2g.
-
-grid2d is used to optional draw a 2-d grid according to chromosomal lengths.
 
 grec2g is undocumented.
 

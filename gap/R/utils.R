@@ -497,32 +497,6 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
 # sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
 # plotly::toRGB( c('#BF382A', '#0C4B8E')) ==> "rgba(191,56,42,1)" "rgba(12,75,142,1)"
 
-xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
-ixy <- function(x) if (x=="X") 23 else if (x=="Y") 24 else x
-
-grid2d <- function(chrlen, plot=TRUE, cex=0.6)
-{
-  CM <- cumsum(chrlen)
-  n <- length(chrlen)
-  xy <- xy.coords(c(0,CM), c(0,CM))
-  if (plot)
-  {
-    par(xaxt = "n", yaxt = "n")
-    plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
-    par(xaxt = "s", yaxt = "s", xpd = TRUE)
-    for (x in 1:n) {
-        segments(CM[x],0,CM[x],CM[n],col="black")
-        segments(0,CM[x],CM[n],CM[x],col="black")
-        text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=cex)
-        text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=cex)
-    }
-    segments(0,0,CM[n],0)
-    segments(0,0,0,CM[n])
-    title(xlab="pQTL position",ylab="protein position",line=2)
-  }
-  invisible(list(n=n, CM=c(0,CM)))
-}
-
 allDuplicated <- function(x)
 {
   front <- duplicated(x)
