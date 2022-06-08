@@ -4,14 +4,24 @@
 \alias{grid2d}
 \title{Two-dimensional grid}
 \usage{
-grid2d(chrlen, plot = TRUE, cex = 0.6)
+grid2d(
+  chrlen,
+  plot = TRUE,
+  cex.labels = 0.6,
+  xlab = "QTL position",
+  ylab = "Gene position"
+)
 }
 \arguments{
 \item{chrlen}{Lengths of chromosomes; e.g., hg18, hg19 or hg38.}
 
 \item{plot}{A flag for plot.}
 
-\item{cex}{A scaling factor for labels.}
+\item{cex.labels}{A scaling factor for labels.}
+
+\item{xlab}{X-axis title.}
+
+\item{ylab}{Y-axis title.}
 }
 \value{
 A list with two variables.

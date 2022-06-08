@@ -14,7 +14,11 @@
 #' @param lp log10(p).
 #' @param cis cis variant when TRUE.
 #' @param plot to plot when TRUE.
-#' @param cex extension factor.
+#' @param cex.labels Axis label extension factor.
+#' @param cex.points Data point extension factor.
+#' @param xlab X-axis title.
+#' @param ylab Y-axis title.
+#'
 #' @export
 #' @return positional information.
 #' @examples
@@ -28,9 +32,10 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
                       gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
                       protein="p.target.short", gene="p.gene", lp="log10p",
                       cis="cis",
-                      plot=TRUE, cex=0.6)
+                      plot=TRUE,
+                      cex.labels=0.6, cex.points=0.6, xlab="QTL position", ylab="Gene position")
 {
-  r <- grid2d(chrlen, plot=plot)
+  r <- grid2d(chrlen, plot=plot, cex.labels=cex.labels, xlab=xlab, ylab=ylab)
   n <- with(r, n)
   CM <- with(r, CM)
   chr1 <- d[[snp_chr]]
@@ -43,8 +48,8 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
   mid <- (d[[gene_start]] + d[[gene_end]])/2
   pos2 <- CM[chr2] + mid
   if (plot) {
-     points(pos1, pos2, cex=cex, col=ifelse(d[[cis]],"red","blue"), pch=19)
-     legend("top", legend=c("cis","trans"), box.lty=0, cex=cex, col=c("red","blue"),
+     points(pos1, pos2, cex=cex.points, col=ifelse(d[[cis]],"red","blue"), pch=19)
+     legend("top", legend=c("cis","trans"), box.lty=0, cex=cex.points, col=c("red","blue"),
             horiz=TRUE, inset=c(0,1), xpd=TRUE, pch=19)
   }
   return(list(n=n, CM=CM, data=data.frame(id=d[[snp_name]],

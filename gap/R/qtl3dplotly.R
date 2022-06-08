@@ -4,10 +4,17 @@
 #' @param d Data in qtl2d() format.
 #' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param zmax Maximum -log10p to truncate, above which they would be set to this value.
+#' @param qtl.id QTL id.
+#' @param qtl.prefix QTL prefix.
+#' @param qtl.target QTL target.
+#' @param qtl.gene QTL gene.
+#' @param xlab X-axis title.
+#' @param ylab Y-axis title.
+#'
 #' @export
 #' @return A plotly figure.
-#' @examples
 #'
+#' @examples
 #' \dontrun{
 #' INF <- Sys.getenv("INF")
 #' d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
@@ -16,7 +23,8 @@
 #' r
 #' }
 
-qtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
+qtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300, qtl.id="SNPid:", qtl.prefix="QTL:", qtl.target="Protein:", qtl.gene="target (gene):",
+                        xlab="QTL position", ylab="Gene position")
 {
   n <- CM <- snpid <- pos_qtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- cistrans <- y <- NA
   t2d <- qtl2dplot(d, chrlen, plot=FALSE)
@@ -28,9 +36,9 @@ qtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
        tktxts[x] <- xy(x)
   }
   t2d_pos <- with(t2d, data) %>%
-             dplyr::mutate(snpid=paste("SNPid:",id),pos_qtl=paste0("QTL: ",chr1,":",pos1),
-                           pos_prot=paste0("Protein: ",chr2,":",pos2),
-                           prot_gene=paste0("target (gene):", target, "(", gene, ")"),
+             dplyr::mutate(snpid=paste(qtl.id,id),pos_qtl=paste0(qtl.prefix,chr1,":",pos1),
+                           pos_prot=paste0(qtl.target,chr2,":",pos2),
+                           prot_gene=paste0(qtl.gene, target, "(", gene, ")"),
                            lp=paste("-log10(P):", -log10p),
                            text=paste(snpid, pos_qtl, pos_prot, prot_gene, lp, sep="\n")) %>%
              dplyr::mutate(z=if_else(-log10p<=zmax,-log10p,zmax)) %>%
@@ -38,7 +46,7 @@ qtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
   fig <- with(t2d_pos,
          plotly::plot_ly(t2d_pos, x = ~x, y = ~y, z = ~z, color = ~cistrans, colors = c('#BF382A', '#0C4B8E')) %>%
          plotly::add_markers(type="scatter3d", text=text) %>%
-         plotly::layout(scene = list(xaxis = list(title = "QTL position",
+         plotly::layout(scene = list(xaxis = list(title = xlab,
                                                   tickmode = "array",
                                                   autotick = FALSE,
                                                   tick0 = 1,
@@ -48,7 +56,7 @@ qtl3dplotly <- function(d, chrlen=gap::hg19, zmax=300)
                                                   tickfont = list (size = 10),
                                                   tickvals = tkvals,
                                                   ticktext = tktxts),
-                                     yaxis = list(title = "Gene position",
+                                     yaxis = list(title = ylab,
                                                   tickmode = "array",
                                                   autotick = FALSE,
                                                   tick0 = 1,

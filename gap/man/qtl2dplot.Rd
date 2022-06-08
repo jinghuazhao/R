@@ -18,7 +18,10 @@ qtl2dplot(
   lp = "log10p",
   cis = "cis",
   plot = TRUE,
-  cex = 0.6
+  cex.labels = 0.6,
+  cex.points = 0.6,
+  xlab = "QTL position",
+  ylab = "Gene position"
 )
 }
 \arguments{
@@ -48,7 +51,13 @@ qtl2dplot(
 
 \item{plot}{to plot when TRUE.}
 
-\item{cex}{extension factor.}
+\item{cex.labels}{Axis label extension factor.}
+
+\item{cex.points}{Data point extension factor.}
+
+\item{xlab}{X-axis title.}
+
+\item{ylab}{Y-axis title.}
 }
 \value{
 positional information.
