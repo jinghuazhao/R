@@ -6,6 +6,7 @@ Version 1.3
 		Add circos.mhtplot2(); Clarification of YAML declaration in gap.Rmd
 		Add cex.axis to axis(1) in mhtplot.trunc() & notes on adjustment data
 		Drop Cox.est, Cox.T, Dev* for hwe.cc from NAMESPACE and export fbsize
+		Drop (p) to get qtl2plot(), qtl2plotly() and qtl3plotly().
 		Mask circos.cnvplot due to excessive running time.
 		Redocument grid2d, klem, metareg, mtdt, plot.hap.score, print.hap.score
 		Suggests: DiagrammeR, DOT, readr
