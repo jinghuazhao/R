@@ -7,7 +7,7 @@
 qtlClassifier(geneSNP, SNPPos, genePos, radius)
 }
 \arguments{
-\item{geneSNP}{data.frame with columns on gene and SNP.}
+\item{geneSNP}{data.frame with columns on gene, SNP and biomarker (e.g., expression, protein).}
 
 \item{SNPPos}{data.frame containing SNP, chromosome and position.}
 
@@ -16,7 +16,7 @@ qtlClassifier(geneSNP, SNPPos, genePos, radius)
 \item{radius}{flanking distance.}
 }
 \value{
-It returns a data.frame with the following columns,
+It returns a geneSNP-prefixed data.frame with the following columns,
 \describe{
   \item{geneChrom}{gene chromosome}
   \item{geneStart}{gene start}
@@ -39,7 +39,7 @@ This is adapted from iBMQ/eqtlClassifier as an xQTL (x=e, p, me, ...) classifier
   names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 
   options(width=200)
-  geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP")]
+  geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP","prot")]
   SNPPos <- hits[c("SNP","Chr","bp")]
   genePos <- inf1[c("gene","chr","start","end")]
   cvt <- qtlClassifier(geneSNP,SNPPos,genePos,1e6)
