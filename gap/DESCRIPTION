@@ -13,12 +13,12 @@ URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 2.10), gap.datasets
 Imports: dplyr, ggplot2, plotly
-Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix,
-          calibrate, circlize, coda, cowplot, coxme, foreign, forestplot,
-          genetics, grid, haplo.stats, htmlwidgets,
-          jsonlite, kinship2, knitr, lattice, magic, matrixStats,
-          meta, metafor, mets, nlme, pedigree, pedigreemm, plotrix,
-          readr, reshape, rmarkdown, rmeta, rms, survival
+Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm,
+        R2jags, bdsmatrix, calibrate, circlize, coda, cowplot, coxme,
+        foreign, forestplot, genetics, grid, haplo.stats, htmlwidgets,
+        jsonlite, kinship2, knitr, lattice, magic, matrixStats, meta,
+        metafor, mets, nlme, pedigree, pedigreemm, plotrix, readr,
+        reshape, rmarkdown, rmeta, rms, survival
 VignetteBuilder: knitr
 Enhances: shiny
 Description: As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package". J Stat Soft 23(8):1-18.
@@ -35,6 +35,12 @@ LazyLoad: Yes
 NeedsCompilation: yes
 Repository: CRAN
 Encoding: UTF-8
-Packaged: 2017-11-24 23:42:52 UTC; jhz22
+Packaged: 2022-06-16 14:41:31 UTC; jhz22
 Date/Publication: 2017-04-19 11:10:23 UTC
 RoxygenNote: 7.2.0
+Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>,
+    0000-0003-4930-3582),
+  Kurt Hornik [ctb],
+  Brian Ripley [ctb],
+  Uwe Liggs [ctb]
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
