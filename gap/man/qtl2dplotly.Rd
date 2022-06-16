@@ -4,12 +4,36 @@
 \alias{qtl2dplotly}
 \title{2D QTL plotly}
 \usage{
-qtl2dplotly(d, chrlen = gap::hg19)
+qtl2dplotly(
+  d,
+  chrlen = gap::hg19,
+  qtl.id = "SNPid:",
+  qtl.prefix = "QTL:",
+  qtl.target = "Protein:",
+  qtl.gene = "target (gene):",
+  TSS = FALSE,
+  xlab = "QTL position",
+  ylab = "Gene position"
+)
 }
 \arguments{
 \item{d}{Data in qtl2dplot() format.}
 
 \item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
+
+\item{qtl.id}{QTL id.}
+
+\item{qtl.prefix}{QTL prefix.}
+
+\item{qtl.target}{QTL target.}
+
+\item{qtl.gene}{QTL gene.}
+
+\item{TSS}{to use TSS when TRUE.}
+
+\item{xlab}{X-axis title.}
+
+\item{ylab}{Y-axis title.}
 }
 \value{
 A plotly figure.
@@ -18,7 +42,6 @@ A plotly figure.
 2D QTL plotly
 }
 \examples{
-
 \dontrun{
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)

@@ -1,14 +1,15 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.3
-08-06-2022	Generate NAMESPACE by roxygen2
+16-06-2022	Generate NAMESPACE by roxygen2
 		Add qtlClassifier(), pedtodot_verbatim()
 		Add circos.mhtplot2(); Clarification of YAML declaration in gap.Rmd
 		Add cex.axis to axis(1) in mhtplot.trunc() & notes on adjustment data
 		Drop Cox.est, Cox.T, Dev* for hwe.cc from NAMESPACE and export fbsize
-		Drop (p) to get qtl2plot(), qtl2plotly() and qtl3plotly().
+		Drop (p) and add options to get qtl2plot(), qtl2plotly() and qtl3plotly().
 		Mask circos.cnvplot due to excessive running time.
-		Redocument grid2d, klem, metareg, mtdt, plot.hap.score, print.hap.score
+		Redocument grid2d, klem, metareg, mtdt, plot.hap.score, print.hap.score.
+		Revise grid2d, qtl(2|3)dplt(ly)() so as to accommodate TSS.
 		Suggests: DiagrammeR, DOT, readr
 
 Version 1.2.3-6

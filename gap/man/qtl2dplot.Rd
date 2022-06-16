@@ -2,7 +2,7 @@
 % Please edit documentation in R/qtl2dplot.R
 \name{qtl2dplot}
 \alias{qtl2dplot}
-\title{2D pQTL plot}
+\title{2D QTL plot}
 \usage{
 qtl2dplot(
   d,
@@ -13,12 +13,16 @@ qtl2dplot(
   gene_chr = "p.chr",
   gene_start = "p.start",
   gene_end = "p.end",
-  protein = "p.target.short",
+  trait = "p.target.short",
   gene = "p.gene",
   lp = "log10p",
+  TSS = FALSE,
   cis = "cis",
   plot = TRUE,
-  cex = 0.6
+  cex.labels = 0.6,
+  cex.points = 0.6,
+  xlab = "QTL position",
+  ylab = "Gene position"
 )
 }
 \arguments{
@@ -38,23 +42,31 @@ qtl2dplot(
 
 \item{gene_end}{gene end position.}
 
-\item{protein}{protein name.}
+\item{trait}{trait name.}
 
 \item{gene}{gene name.}
 
 \item{lp}{log10(p).}
 
+\item{TSS}{to use TSS when TRUE.}
+
 \item{cis}{cis variant when TRUE.}
 
 \item{plot}{to plot when TRUE.}
 
-\item{cex}{extension factor.}
+\item{cex.labels}{Axis label extension factor.}
+
+\item{cex.points}{Data point extension factor.}
+
+\item{xlab}{X-axis title.}
+
+\item{ylab}{Y-axis title.}
 }
 \value{
 positional information.
 }
 \description{
-2D pQTL plot
+2D QTL plot
 }
 \examples{
 \dontrun{

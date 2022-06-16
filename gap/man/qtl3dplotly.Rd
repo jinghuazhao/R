@@ -4,7 +4,18 @@
 \alias{qtl3dplotly}
 \title{3D QTL plot}
 \usage{
-qtl3dplotly(d, chrlen = gap::hg19, zmax = 300)
+qtl3dplotly(
+  d,
+  chrlen = gap::hg19,
+  zmax = 300,
+  qtl.id = "SNPid:",
+  qtl.prefix = "QTL:",
+  qtl.target = "Protein:",
+  qtl.gene = "target (gene):",
+  TSS = FALSE,
+  xlab = "QTL position",
+  ylab = "Gene position"
+)
 }
 \arguments{
 \item{d}{Data in qtl2d() format.}
@@ -12,6 +23,20 @@ qtl3dplotly(d, chrlen = gap::hg19, zmax = 300)
 \item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
 
 \item{zmax}{Maximum -log10p to truncate, above which they would be set to this value.}
+
+\item{qtl.id}{QTL id.}
+
+\item{qtl.prefix}{QTL prefix.}
+
+\item{qtl.target}{QTL target.}
+
+\item{qtl.gene}{QTL gene.}
+
+\item{TSS}{to use TSS when TRUE.}
+
+\item{xlab}{X-axis title.}
+
+\item{ylab}{Y-axis title.}
 }
 \value{
 A plotly figure.
@@ -20,7 +45,6 @@ A plotly figure.
 3D QTL plot
 }
 \examples{
-
 \dontrun{
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)

@@ -2,14 +2,14 @@
 #'
 #' The function obtains QTL (simply called SNP here) cis/trans classification based on gene positions.
 #'
-#' @param geneSNP data.frame with columns on gene and SNP.
+#' @param geneSNP data.frame with columns on gene, SNP and biomarker (e.g., expression, protein).
 #' @param SNPPos data.frame containing SNP, chromosome and position.
 #' @param genePos data.frame containing gene, chromosome, start and end positions.
 #' @param radius flanking distance.
 #'
 #' @export
 #' @return
-#' It returns a data.frame with the following columns,
+#' It returns a geneSNP-prefixed data.frame with the following columns,
 #' \describe{
 #'   \item{geneChrom}{gene chromosome}
 #'   \item{geneStart}{gene start}
@@ -26,7 +26,7 @@
 #'   names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 #'
 #'   options(width=200)
-#'   geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP")]
+#'   geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP","prot")]
 #'   SNPPos <- hits[c("SNP","Chr","bp")]
 #'   genePos <- inf1[c("gene","chr","start","end")]
 #'   cvt <- qtlClassifier(geneSNP,SNPPos,genePos,1e6)
@@ -43,8 +43,8 @@
 
 qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
 {
-    if (dim(geneSNP)[2] != 2) {
-        stop("The geneSNP data.frame need 2 columns.")
+    if (dim(geneSNP)[2] != 3) {
+        stop("The geneSNP data.frame need 3 columns.")
     }
     if (dim(SNPPos)[2] != 3) {
         stop("The SNP position data.frame need 3 columns.")
