@@ -518,7 +518,7 @@ legend("topleft",sprintf("GC.lambda=%.4f",gc.lambda(u_obs)))
 Based on a chicken genome scan data, the code below generates a Manhattan plot, demonstrating
 the use of gaps to separate chromosomes.
 
-```{r chicken, fig.cap="A genome-wide association study on chickens", fig.with=7, fig.width=7, results="hide"}
+```{r chicken, fig.cap="A genome-wide association study on chickens", fig.height=7, fig.width=7, results="hide"}
 ord <- with(w4,order(chr,pos))
 w4 <- w4[ord,]
 oldpar <- par()
@@ -603,7 +603,7 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 )
 ```
 
-```{r il12b, crop=NULL, echo=FALSE, fig.cap="Association of IL-12B", fig.height=7, fig.width=8}
+```{r il12b, echo=FALSE, fig.cap="Association of IL-12B", fig.height=7, fig.width=8}
 knitr::include_graphics("IL12B.png")
 ```
 
