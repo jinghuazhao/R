@@ -18,7 +18,7 @@ many projects hence also in line with the name (gap).
 \details{
 \tabular{ll}{
 Package: \tab gap\cr
-Version: \tab 1.2.3-6\cr
+Version: \tab 1.3\cr
 Depends: \tab R(>= 2.1.0)\cr
 Imports: \tab dplyr, ggplot2, plotly \cr
 Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
@@ -89,21 +89,23 @@ asplot            \tab      Regional association plot\cr
 ESplot            \tab      Effect-size plot\cr
 circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
 circos.cnvplot    \tab      circos plot of CNVs\cr
-circos.mhtplot 	  \tab      circos Manhattan plot with gene annotation\cr
+circos.mhtplot    \tab      circos Manhattan plot with gene annotation\cr
+circos.mhtplot2   \tab      Another circos Manhattan plot\cr
 cnvplot           \tab      genomewide plot of CNVs\cr
 makeRLEplot       \tab      make relative log expression plot\cr
 METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 mhtplot           \tab      Manhattan plot\cr
 mhtplot2          \tab      Manhattan plot with annotations\cr
-pqtl2dplot        \tab      2D pQTL plot\cr
-pqtl2dplotly      \tab      2D pQTL plotly\cr
-pqtl3dplotly      \tab      3D pQTL plotly\cr
 mhtplot.trunc     \tab      truncated Manhattan plot\cr
 miamiplot         \tab      Miami plot\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
+pedtodot_verbatim \tab      Pedigree-drawing with graphviz\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 qqfun             \tab      Quantile-comparison plots\cr
 qqunif            \tab      Q-Q plot for uniformly distributed random variable\cr
+qtl2dplot         \tab      2D QTL plot\cr
+qtl2dplotly       \tab      2D QTL plotly\cr
+qtl3dplotly       \tab      3D QTL plotly\cr
 \cr
 \strong{UTITLITIES}\cr
 \cr
@@ -133,6 +135,7 @@ makeped           \tab      A function to prepare pedigrees in post-MAKEPED form
 metap             \tab      Meta-analysis of p values\cr
 metareg           \tab      Fixed and random effects model for meta-analysis\cr
 muvar             \tab      Means and variances under 1- and 2- locus (diallelic) QTL model\cr
+qtlClassifier     \tab      A QTL cis/trans classifier\cr
 read.ms.output    \tab      A utility function to read ms output\cr
 revStrand         \tab      Allele on the reverse strand\cr
 runshinygap       \tab      Start shinygap\cr

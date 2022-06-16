@@ -1,5 +1,11 @@
 ---
 title: "Genetic Analysis Package"
+output:
+  rmarkdown::html_vignette:
+    mathjax:  default
+    fig_caption:  true
+    toc: true
+    section_numbering: true
 author:
   - Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/.
 date: '`r Sys.Date()`'
@@ -11,9 +17,6 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
   %\VignetteEncoding{UTF-8}
-output:
-  knitr:::html_vignette:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -53,7 +56,8 @@ other established software. At the meantime, the size of the package surpasses
 the limit as imposed by CRAN, thus the old good feature of `S` as with
 `R` that value both code and data alike has to suffer slightly in that
 **gap.datasets** and **gap.examples** are spun off as two separate
-packages; they do deserve a glimpse however for some general ideas.
+packages; they do deserve a glimpse however for some general ideas. A separate
+initiative has been made in the **pQTLtools** package.
 
 Several other updates are worth mentioning: 
 
@@ -63,13 +67,15 @@ Several other updates are worth mentioning:
 
 2.  multiple figures generated from a code section to be embedded.
 
-3.  Experimental implementation of a shiny App (`runshinygap`()).
+3.  experimental implementation of a shiny App (`runshinygap`()).
 
 4.  **roxygen2** style documentation in companion with R code to allow for
     easier generation of .Rd files through devtools::document().
 
 It is likely these experiences will be shared with/useful for other colleagues
-in converting their work into R.
+in converting their work into R. I found occasionally it is useful to use
+specific functions without loading the whole package (i.e., `library(gap)`),
+e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
 
 # Implementation
 
@@ -130,20 +136,22 @@ ESplot            |      Effect-size plot
 circos.cnvplot    |      circos plot of CNVs
 circos.cis.vs.trans.plot | circos plot of cis/trans classification
 circos.mhtplot    |      circos Manhattan plot with gene annotation
+circos.mhtplot2   |      Another circos Manhattan plot
 cnvplot           |      genomewide plot of CNVs
 METAL\_forestplot |      forest plot as R/meta's forest for METAL outputs
 makeRLEplot       |      make relative log expression plot
 mhtplot           |      Manhattan plot
 mhtplot2          |      Manhattan plot with annotations
-pqtl2dplot        |      2D pQTL plot
-pqtl2dplotly      |      2D pQTL plotly
-pqtl3dplotly      |      3D pQTL plotly
 mhtplot.trunc     |      truncated Manhattan plot
 miamiplot         |      Miami plot
 pedtodot          |      Converting pedigree(s) to dot file(s)
+pedtodot_verbatim |      Pedigree-drawing with graphviz
 plot.hap.score    |      Plot haplotype frequencies versus haplotype score statistics
 qqfun             |      Quantile-comparison plots
 qqunif            |      Q-Q plot for uniformly distributed random variable
+qtl2dplot         |      2D QTL plot
+qtl2dplotly       |      2D QTL plotly
+qtl3dplotly       |      3D QTL plotly
 &nbsp; | &nbsp;
 **UTILITIES** | &nbsp;
 SNP               |      Functions for single nucleotide polymorphisms (SNPs)
@@ -174,11 +182,11 @@ metap             |      Meta-analysis of p values
 metareg           |      Fixed and random effects model for meta-analysis
 muvar             |      Means and variances under 1- and 2- locus (diallelic) QTL model
 pvalue            |      P value for a normal deviate
+qtlClassifier     |      A QTL cis/trans classifier
 read.ms.output    |      A utility function to read ms output
 revStrand         |      Allele on the reverse strand
 runshinygap       |      Start shinygap
 snptest\_sample   |      A utility to generate SNPTEST sample file
-twinan90          |      Classic twin models
 whscore           |      Whittemore-Halpern scores for allele-sharing
 weighted.median   |      Weighted median with interpolation
 
@@ -222,17 +230,18 @@ genomewide association studies (GWAS) therefore are likely to be more familiar t
 R couunterparts in `gap`. However, you need to follow their instructions to compile
 for a particular computer system.
 
-I have included `ms` code (which is required by `read.ms.output` and .xls files
-to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a 
-classic twin example for ACE model in **OpenMx**. The package is now available from
-CRAN.
+I have kept the original `pedtodot.sh` by David Duffy which enables contrast with
+`pedtodot_verbatim()` and `pedtodot()` reported as application notes.
 
-For these models it is actually simpler to use facilities as in package **mets**, which
+I have also included `ms` code (which is required by `read.ms.output` and .xls files
+to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a classic twin
+example for ACE model in **OpenMx**. The package is now available from CRAN. For
+these models it is actually simpler to use facilities as in package **mets**, which
 is now in suggests.
 
 A final category is `twinan90`, which is now dropped from the package function list
 due to difficulty to keep up with the requirements by the `R` environment but 
-nevertheless you will still be able to compile and use otherwise.
+nevertheless you will still be able to compile and use otherwise from **gap.examples**.
 
 # Demos
 
@@ -257,6 +266,44 @@ I have included the original file for the *R News* as well as put examples in se
 vignettes. They can be accessed via `vignette("rnews",package="gap.examples")` and 
 `vignette("pedtodot", package="gap.examples")`, respectively.
 
+We also demonstrate through pedigree 10081 example @zhao06 with `pedtodot_verbatim`.
+
+```{r, echo=FALSE}
+p1 <- "
+ 1  2   3  2  2  7/7  7/10
+ 2  0   0  1  1  -/-  -/-
+ 3  0   0  2  2  7/9  3/10
+ 4  2   3  2  2  7/9  3/7
+ 5  2   3  2  1  7/7  7/10
+ 6  2   3  1  1  7/7  7/10
+ 7  2   3  2  1  7/7  7/10
+ 8  0   0  1  1  -/-  -/-
+ 9  8   4  1  1  7/9  3/10
+10  0   0  2  1  -/-  -/-
+11  2  10  2  1  7/7  7/7
+12  2  10  2  2  6/7  7/7
+13  0   0  1  1  -/-  -/-
+14 13  11  1  1  7/8  7/8
+15  0   0  1  1  -/-  -/-
+16 15  12  2  1  6/6  7/7
+"
+
+p2 <- as.data.frame(scan(file=textConnection(p1),what=list(0,0,0,0,0,"","")))
+names(p2) <-c("id","fid","mid","sex","aff","GABRB1","D4S1645")
+p3 <- data.frame(pid=10081,p2)
+```
+
+```{r pedtodot, fig.cap="", fig.height=8, fig.width=7}
+library(gap)
+print(p3,row.names=FALSE)
+library(DOT)
+# one can see the diagram in RStudio
+pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
+library(DiagrammeR)
+pedtodot_verbatim(p3)
+grViz(readr::read_file("10081.dot"))
+```
+
 ## Kinship calculation
 
 Next, I will provide an example for kinship calculation using `kin.morgan`.
@@ -270,7 +317,6 @@ kinship matrix.
 The pedigree diagram is as follows,
 
 ```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
-library(gap)
 # pedigree diagram
 data(lukas, package="gap.datasets")
 library(kinship2)
@@ -284,7 +330,6 @@ We then turn to the kinship calculation.
 
 ```{r}
 # unordered individuals
-library(gap)
 gk1 <- kin.morgan(lukas)
 write.table(gk1$kin.matrix,"gap_1.txt",quote=FALSE)
 
@@ -514,6 +559,24 @@ We could also go further with a circos Manhattan plot,
 
 ```{r circos, fig.cap="A circos Manhattan plot", fig.height=7, fig.width=8}
 circos.mhtplot(mhtdata, glist)
+```
+
+and a version with y-axis,
+
+```{r circos2, fig.cap="Another circos Manhattan plot", fig.height=7, fig.width=8}
+require(gap.datasets)
+library(dplyr)
+testdat <- mhtdata[c("chr","pos","p","gene","start","end")] %>%
+           rename(log10p=p) %>%
+           mutate(chr=paste0("chr",chr),log10p=-log10(log10p))
+dat <- mutate(testdat,start=pos,end=pos) %>%
+       select(chr,start,end,log10p)
+labs <- subset(testdat,gene %in% glist) %>%
+        group_by(gene,chr,start,end) %>%
+        summarize() %>%
+        mutate(cols="blue") %>%
+        select(chr,start,end,gene,cols)
+circos.mhtplot2(dat,labs,ticks=0:2*10)
 ```
 
 We now experiment with Miami plot,
@@ -1034,4 +1097,3 @@ data(package="gap")$results
 ```
 
 [^1]: Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
-

@@ -12,7 +12,7 @@
 #' @details
 #' \tabular{ll}{
 #' Package: \tab gap\cr
-#' Version: \tab 1.2.3-6\cr
+#' Version: \tab 1.3\cr
 #' Depends: \tab R(>= 2.1.0)\cr
 #' Imports: \tab dplyr, ggplot2, plotly \cr
 #' Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
@@ -83,21 +83,23 @@
 #' ESplot            \tab      Effect-size plot\cr
 #' circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
 #' circos.cnvplot    \tab      circos plot of CNVs\cr
-#' circos.mhtplot 	  \tab      circos Manhattan plot with gene annotation\cr
+#' circos.mhtplot    \tab      circos Manhattan plot with gene annotation\cr
+#' circos.mhtplot2   \tab      Another circos Manhattan plot\cr
 #' cnvplot           \tab      genomewide plot of CNVs\cr
 #' makeRLEplot       \tab      make relative log expression plot\cr
 #' METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 #' mhtplot           \tab      Manhattan plot\cr
 #' mhtplot2          \tab      Manhattan plot with annotations\cr
-#' pqtl2dplot        \tab      2D pQTL plot\cr
-#' pqtl2dplotly      \tab      2D pQTL plotly\cr
-#' pqtl3dplotly      \tab      3D pQTL plotly\cr
 #' mhtplot.trunc     \tab      truncated Manhattan plot\cr
 #' miamiplot         \tab      Miami plot\cr
 #' pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
+#' pedtodot_verbatim \tab      Pedigree-drawing with graphviz\cr
 #' plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
 #' qqfun             \tab      Quantile-comparison plots\cr
 #' qqunif            \tab      Q-Q plot for uniformly distributed random variable\cr
+#' qtl2dplot         \tab      2D QTL plot\cr
+#' qtl2dplotly       \tab      2D QTL plotly\cr
+#' qtl3dplotly       \tab      3D QTL plotly\cr
 #' \cr
 #' \strong{UTITLITIES}\cr
 #' \cr
@@ -127,6 +129,7 @@
 #' metap             \tab      Meta-analysis of p values\cr
 #' metareg           \tab      Fixed and random effects model for meta-analysis\cr
 #' muvar             \tab      Means and variances under 1- and 2- locus (diallelic) QTL model\cr
+#' qtlClassifier     \tab      A QTL cis/trans classifier\cr
 #' read.ms.output    \tab      A utility function to read ms output\cr
 #' revStrand         \tab      Allele on the reverse strand\cr
 #' runshinygap       \tab      Start shinygap\cr
@@ -141,10 +144,24 @@
 #' this largely remains as a preliminary work to be consolidated in the
 #' near future.
 #'
+#' @useDynLib gap
 #' @author Jing Hua Zhao in collaboration with other colleagues, and with
 #'         help from Kurt Hornik and Brian Ripley of the R core development team
 #' 
 #' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
+#'
+#' @import dplyr gap.datasets utils
+#' @importFrom grDevices palette xy.coords
+#' @importFrom graphics abline arrows axis box boxplot
+#'             identify legend lines mtext par points
+#'             segments text title
+#' @importFrom stats as.formula coef coefficients cor
+#'             dnorm glm integrate lm median nlm
+#'             pchisq pf pnorm ppoints pt qchisq qnorm
+#'             qqplot qt quantile rbinom rexp rnorm
+#'             runif sd var
+#' @importFrom utils data head packageDescription read.csv
+#'             read.delim read.table tail write.table
 #'
 #' @references
 #' Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.

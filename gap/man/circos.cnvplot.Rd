@@ -16,5 +16,7 @@ None.
 The function plots frequency of CNVs.
 }
 \examples{
+\dontrun{
 circos.cnvplot(cnv)
+}
 }

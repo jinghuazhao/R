@@ -31,6 +31,8 @@
 #'    \item boxed if the label for the highlited region with default value FALSE
 #' }
 #' @param ... other options in compatible with the R plot function.
+#'
+#' @export
 #' @return The plot is shown on or saved to the appropriate device.
 #' @seealso \code{\link[gap]{qqunif}}
 #' @examples
@@ -228,3 +230,44 @@ mhtplot <- function(data, control=mht.control(), hcontrol=hmht.control(), ...) {
   mtext(xlabel,1,line=xline,las=0,cex=0.5) }
 
 #3-9-2013 MRC-Epid JHZ
+
+#' Controls for mhtplot
+#'
+#' Parameter specification through function
+#'
+#' @param type Type of plot.
+#' @param usepos A flag.
+#' @param logscale A flag for log-scale.
+#' @param base Base of log.
+#' @param cutoffs Cutoffs of P-value, etc.
+#' @param colors Colours for chromosomes.
+#' @param labels Labels for chromosomes.
+#' @param srt Rotation degrees.
+#' @param gap Gap between data points.
+#' @param cex Scaling factor of data points.
+#' @param yline Vertical adjustment.
+#' @param xline Horiztonal adjustment.
+#'
+#' @export
+#' @return A list as above.
+
+mht.control <- function(type="p", usepos=FALSE, logscale=TRUE, base=10, cutoffs=NULL, colors=NULL,
+                        labels=NULL, srt=45, gap=NULL, cex=0.4, yline=3, xline=3)
+               list(type=type, usepos=usepos, logscale=logscale, base=base, cutoffs=cutoffs, colors=colors,
+                    labels=labels, srt=srt, gap=gap, cex=cex, yline=yline, xline=xline)
+
+#' Controls for highlights
+#'
+#' Specification of highlights
+#'
+#' @param data Data.
+#' @param colors Colors.
+#' @param yoffset Y offset.
+#' @param cex Scaling factor.
+#' @param boxed Label in box.
+#'
+#' @export
+#' @return A list as above.
+
+hmht.control <- function(data=NULL, colors=NULL, yoffset=0.25, cex=1.5, boxed=FALSE)
+                list(data=data,colors=colors,yoffset=yoffset,cex=cex,boxed=boxed)

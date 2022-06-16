@@ -396,55 +396,6 @@ ReadGRMPCA <- function(prefix)
 lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 
-chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
-{
-  chr <- paste0(prefix,chr)
-  chrpos <- paste(chr,pos,sep=seps[1])
-  a1a2 <- paste(a1,a2,sep=seps[3])
-  a2a1 <- paste(a2,a1,sep=seps[3])
-  swap <- (a1 > a2)
-  a1a2[swap] <- a2a1[swap]
-  a1a2.lower <- tolower(a1a2)
-  a1a2.upper <- toupper(a1a2)
-  if(uppercase) paste(chrpos,a1a2.upper,sep=seps[2]) else paste(chrpos,a1a2.lower,sep=seps[2])
-}
-
-inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
-{
-  if ((seps[1]==seps[2])&(seps[2]==seps[3]))
-  {
-    s <- sapply(chr_pos_a1_a2,strsplit,seps[1])
-    chr <- lapply(s,"[",1)
-    pos <- lapply(s,"[",2)
-    a1 <- lapply(s,"[",3)
-    a2 <- lapply(s,"[",4)
-  } else if ((seps[1]!=seps[2])&(seps[2]==seps[3]))
-  {
-    s <- sapply(chr_pos_a1_a2,strsplit,seps[2])
-    chrpos <- lapply(s,"[",1)
-    s1 <- sapply(chrpos,strsplit,seps[1])
-    chr <- lapply(s1,"[",1)
-    pos <- lapply(s1,"[",2)
-    a1 <- lapply(s,"[",2)
-    a2 <- lapply(s,"[",3)
-  } else if ((seps[1]!=seps[2])&(seps[2]!=seps[3]))
-  {
-    s <- sapply(chr_pos_a1_a2,strsplit,seps[2])
-    chrpos <- lapply(s,"[",1)
-    s1 <- sapply(chrpos,strsplit,seps[1])
-    chr <- lapply(s1,"[",1)
-    pos <- lapply(s1,"[",2)
-    s2 <- lapply(s,"[",2)
-    s3 <- sapply(s2,strsplit,seps[3])
-    a1 <- lapply(s3,"[",1)
-    a2 <- lapply(s3,"[",2)
-  }
-  if (prefix=="") chr <- gsub("chr","",chr)
-  s <- data.frame(chr=unlist(chr),pos=unlist(pos),a1=unlist(a1),a2=unlist(a2))
-  names(s) <- c("chr","pos","a1","a2")
-  return(s)
-}
-
 sun3d <- function(xyz="INF1.merge.cis.vs.trans",
                       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
                       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
@@ -508,7 +459,7 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
     jsHooks = list()
   )
   d <- read.csv(xyz,as.is=TRUE)
-  r <- pqtl2dplot(d, plot=FALSE)
+  r <- qtl2dplot(d, plot=FALSE)
   cuts <- with(r, abs(log10p) > log10p.max)
   r <- within(r,{x=x/xy.scale[1]; y=y/xy.scale[2]; log10p[!cuts] <- abs(log10p[!cuts]); log10p[cuts] <- log10p.max})
   fixes <- function(col,d) paste(paste(prefix[col],d[,col],sep=":"),postfix)
@@ -546,32 +497,6 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
 # sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
 # plotly::toRGB( c('#BF382A', '#0C4B8E')) ==> "rgba(191,56,42,1)" "rgba(12,75,142,1)"
 
-xy <- function(x) if (x<23) x else if (x==23) "X" else if (x==24) "Y"
-ixy <- function(x) if (x=="X") 23 else if (x=="Y") 24 else x
-
-grid2d <- function(chrlen, plot=TRUE, cex=0.6)
-{
-  CM <- cumsum(chrlen)
-  n <- length(chrlen)
-  xy <- xy.coords(c(0,CM), c(0,CM))
-  if (plot)
-  {
-    par(xaxt = "n", yaxt = "n")
-    plot(xy$x, xy$y, type = "n", ann = FALSE, axes = FALSE)
-    par(xaxt = "s", yaxt = "s", xpd = TRUE)
-    for (x in 1:n) {
-        segments(CM[x],0,CM[x],CM[n],col="black")
-        segments(0,CM[x],CM[n],CM[x],col="black")
-        text(ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), 0, pos = 1, offset = 0.5, xy(x), cex=cex)
-        text(0, ifelse(x == 1, CM[x]/2, (CM[x] + CM[x-1])/2), pos = 2, offset = 0.5, xy(x), cex=cex)
-    }
-    segments(0,0,CM[n],0)
-    segments(0,0,0,CM[n])
-    title(xlab="pQTL position",ylab="protein position",line=2)
-  }
-  invisible(list(n=n, CM=c(0,CM)))
-}
-
 allDuplicated <- function(x)
 {
   front <- duplicated(x)
@@ -579,14 +504,6 @@ allDuplicated <- function(x)
   all_dup <- front | back
   return(all_dup)
 }
-
-mht.control <- function(type="p", usepos=FALSE, logscale=TRUE, base=10, cutoffs=NULL, colors=NULL,
-                        labels=NULL, srt=45, gap=NULL, cex=0.4, yline=3, xline=3)
-               list(type=type, usepos=usepos, logscale=logscale, base=base, cutoffs=cutoffs, colors=colors,
-                    labels=labels, srt=srt, gap=gap, cex=cex, yline=yline, xline=xline)
-
-hmht.control <- function(data=NULL, colors=NULL, yoffset=0.25, cex=1.5, boxed=FALSE)
-                list(data=data,colors=colors,yoffset=yoffset,cex=cex,boxed=boxed)
 
 textbox <- function(label, name=NULL, gp=NULL, vp=NULL)
 {

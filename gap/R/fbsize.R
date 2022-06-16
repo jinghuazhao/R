@@ -16,6 +16,7 @@
 #' @param debug verbose output.
 #' @param error 0=use the correct formula,1=the original paper.
 #'
+#' @export
 #' @return The returned value is a list containing:
 #'
 #' \describe{

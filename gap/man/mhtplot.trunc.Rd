@@ -74,7 +74,7 @@ mhtplot.trunc(
 
 \item{trunc.yaxis}{do not truncate y-axisx when FALSE.}
 
-\item{cex.axis}{extension factor for y-axis.}
+\item{cex.axis}{extension factor for x-, y-axis.}
 
 \item{delta}{a value to enable column(s) of red points.}
 
@@ -84,7 +84,7 @@ mhtplot.trunc(
 The plot is shown on or saved to the appropriate device.
 }
 \description{
-To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
+To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed. In the future, the function should allow for additional data for adjustment of labels, positions, and -log10(P) to resolve separation.
 }
 \details{
 The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for R will break down when p <= 1e-324.

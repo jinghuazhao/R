@@ -1,6 +1,3 @@
-# worked 28/6/03
-# note that tables are symmetric do not fix, see kbyl below
-
 #' LD statistics for two diallelic markers
 #'
 #' LD statistics for two SNPs.
@@ -50,7 +47,7 @@
 #' }
 #'
 #' @author Jing Hua Zhao
-#' @note extracted from 2ld.c.
+#' @note extracted from 2ld.c, worked 28/6/03, tables are symmetric do not fix, see kbyl below
 #' @keywords models
 
 LD22<-function(h,n) 
@@ -135,8 +132,9 @@ LD22<-function(h,n)
 #'
 #' # two multiallelic markers as in kbyl.dat
 #' # the two-locus haplotype vector is in file "kbyl.dat"
+#' # The data is now available from 2ld in Haplotype-Analysis
 #'
-#' filespec <- system.file("tests/2ld/kbyl.dat")
+#' filespec <- system.file("kbyl.dat")
 #' h <- scan(filespec,skip=1)
 #' t <- LDkl(9,5,h,213*2,verbose=TRUE)
 #' }
@@ -213,6 +211,40 @@ LDkl<-function(n1=2,n2=2,h,n,optrho=2,verbose=FALSE)
    x2=x2, seX2=seX2, rho=rho, seR=seR, optrho=optrho, klinfo=klinfo))
 }
 
+#' Haplotype frequency estimation based on a genotype table of two multiallelic markers
+#'
+#' Haplotype frequency estimation using expectation-maximization algorithm based on a table of genotypes of two multiallelic markers.
+#'
+#' @param obs a table of genotype counts.
+#' @param k number of alleles at marker 1.
+#' @param l number of alleles at marker 2.
+#'
+#' The dimension of the genotype table should be k*(k+1)/2 x l*(l+1)/2.
+#'
+#' Modified from 2ld.c.
+#'
+#' @export
+#' @return
+#' The returned value is a list containing:
+#' \describe{
+#'  \item{h}{haplotype Frequencies.}
+#'  \item{l0}{log-likelihood under linkage equilibrium.}
+#'  \item{l1}{log-likelihood under linkage disequilibrium.}
+#' }
+#'
+#' @seealso{\code{\link[gap]{genecounting}}}
+#'
+#' @examples
+#' \dontrun{
+#' # an example with known genotype counts 
+#' z <- klem(obs=1:9)
+#' # an example with imputed genotypes at SH2B1
+#' source(file.path(path.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
+#' }
+#'
+#' @author Jing Hua Zhao
+#' @keywords htest
+
 klem <- function(obs,k=2,l=2)
 {
   if(length(obs)!=k*l*(k+1)*(l+1)/4) stop("incorrect length of genotype table")
@@ -222,4 +254,3 @@ klem <- function(obs,k=2,l=2)
         Rh=as.double(h),l0=as.double(l0),l1=as.double(l1))
   invisible(list(h=z$Rh,l0=z$l0,l1=z$l1))
 }
-

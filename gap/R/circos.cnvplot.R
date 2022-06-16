@@ -7,7 +7,9 @@
 #' @export
 #' @return None.
 #' @examples
+#' \dontrun{
 #' circos.cnvplot(cnv)
+#' }
 
 circos.cnvplot <- function(data)
 {

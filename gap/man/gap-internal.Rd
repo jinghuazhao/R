@@ -1,6 +1,5 @@
 \name{gap-internal}
 \alias{allDuplicated}
-\alias{grid2d}
 \alias{hg18}
 \alias{hg19}
 \alias{hg38}
@@ -12,25 +11,8 @@
 \alias{allele.recode}
 \alias{geno.recode}
 \alias{a2g}
-\alias{chr_pos_a1_a2}
 \alias{ci}
-\alias{Cox.est}
-\alias{Cox.T}
 \alias{cov.invlogit}
-\alias{Dev}
-\alias{Dev.est}
-\alias{DevH0dominant}
-\alias{DevH0dominant.est}
-\alias{DevH0recessive}
-\alias{DevH0recessive.est}
-\alias{DevHaGdominant}
-\alias{DevHaGdominant.est}
-\alias{DevHaGrecessive}
-\alias{DevHaGrecessive.est}
-\alias{DevHa.recessive}
-\alias{DevHa.recessive.est}
-\alias{ExpN.recessiveH0}
-\alias{ExpN.recessiveHa}
 \alias{g2a}
 \alias{g2a.c}
 \alias{gc.control}
@@ -42,18 +24,14 @@
 \alias{hap.control}
 \alias{hap.score.glm}
 \alias{hap.score.podds}
-\alias{hmht.control}
 \alias{hw}
-\alias{inv_chr_pos_a1_a2}
 \alias{invlogit}
 \alias{is.miss}
-\alias{ixy}
 \alias{KCC}
 \alias{k}
 \alias{logit}
 \alias{m2plem}
 \alias{makeRLEplot}
-\alias{mht.control}
 \alias{micombine}
 \alias{mr.boot}
 \alias{plem2m}
@@ -75,7 +53,6 @@
 \alias{WriteGRMBin}
 \alias{WriteGRMSAS}
 \alias{x2}
-\alias{xy}
 \alias{z}
 \title{Internal functions for gap}
 \usage{
@@ -117,8 +94,6 @@ These are internal functions.
 
 a2g gives allele-to-genotype conversion.
 
-chr_pos_a1_a2 produces SNPID format.
-
 g2a returns two alleles according to a genotype identifier.
 
 g2a.c is the C version of g2c.
@@ -126,8 +101,6 @@ g2a.c is the C version of g2c.
 gc.control is used by gc.em().
 
 gcode is as a2g.
-
-grid2d is used to optional draw a 2-d grid according to chromosomal lengths.
 
 grec2g is undocumented.
 
@@ -143,8 +116,6 @@ included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
 hap.score.glm, hap.score.podds are used by hap.score().
 
 invlogit, inverse logit transformation.
-
-inv_chr_pos_a1_a2 is the inverse function of chr_pos_a1_a2.
 
 is.miss is undocumented.
 

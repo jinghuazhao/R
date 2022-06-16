@@ -390,11 +390,82 @@ if(!adjusted){
 return(list(u.score=u.score, v.score=v.score))
 }
 
+#' Plot haplotype frequencies versus haplotype score statistics
+#'
+#' Method function to plot a class of type hap.score
+#'
+#' @param x The object returned from hap.score (which has class hap.score).
+#' @param ... Optional arguments.
+#'
+#' @export
+#' @return
+#' Nothing is returned.
+#'
+#' This is a plot method function used to plot haplotype frequencies on
+#' the x-axis and haplotype-specific scores on the y-axis. Because
+#' hap.score is a class, the generic plot function 
+#' can be used, which in turn calls this plot.hap.score function.
+#'
+#' @references
+#' Schaid DJ, Rowland CM, Tines DE, Jacobson RM,  Poland  GA (2002)
+#' Score tests for association of traits with haplotypes when
+#' linkage phase is ambiguous. Amer J Hum Genet 70:425-34
+#'
+#' @seealso{\code{\link[gap]{hap.score}}}
+#'
+#' @examples
+#' \dontrun{
+#' save <- hap.score(y, geno, trait.type = "gaussian")
+#' 
+#' # Example illustrating generic plot function:
+#' plot(save)
+#'
+#' # Example illustrating specific method plot function:
+#' plot.hap.score(save)
+#' }
+#'
+#' @keywords hplot
+
 plot.hap.score <- function(x, ...){
    plot(x$hap.prob, x$score.haplo, xlab="Haplotype Frequency", 
         ylab="Haploltype Score Statistic", ...)
    invisible()
 }
+
+#' Print a hap.score object
+#'
+#' Method function to print a class of type hap.score
+#'
+#' @param x The object returned from hap.score (which has class hap.score).
+#' @param ... Optional argunents.
+#'
+#' @export
+#' @return Nothing is returned.
+#' 
+#' This is a print method function used to print information from
+#' hap.score class, with haplotype-specific information given in a
+#' table. Because hap.score is a class, the generic print function 
+#' can be used, which in turn calls this print.hap.score function.
+#'
+#' @references
+#' Schaid DJ, Rowland CM, Tines DE, Jacobson RM, Poland  GA (2002)
+#' Score tests for association of traits with haplotypes when
+#' linkage phase is ambiguous. Amer J Hum Genet 70:425-34
+#'
+#' @seealso{\code{\link[gap]{hap.score}}}
+#'
+#' @examples
+#' \dontrun{
+#' save <- hap.score(y, geno, trait.type = "gaussian")
+#'
+#' # Example illustrating generic print function:
+#' print(save)
+#'
+#' # Example illustrating specific method print function:
+#' print.hap.score(save)
+#' }
+#'
+#' @keywords print
 
 print.hap.score <- function(x, ...){
 
