@@ -15,7 +15,6 @@ qtl2dplot(
   gene_end = "p.end",
   trait = "p.target.short",
   gene = "p.gene",
-  lp = "log10p",
   TSS = FALSE,
   cis = "cis",
   plot = TRUE,
@@ -45,8 +44,6 @@ qtl2dplot(
 \item{trait}{trait name.}
 
 \item{gene}{gene name.}
-
-\item{lp}{log10(p).}
 
 \item{TSS}{to use TSS when TRUE.}
 

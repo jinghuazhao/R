@@ -11,7 +11,6 @@
 #' @param gene_end gene end position.
 #' @param trait trait name.
 #' @param gene gene name.
-#' @param lp log10(p).
 #' @param TSS to use TSS when TRUE.
 #' @param cis cis variant when TRUE.
 #' @param plot to plot when TRUE.
@@ -31,7 +30,7 @@
 
 qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
                       gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
-                      trait="p.target.short", gene="p.gene", lp="log10p", TSS=FALSE,
+                      trait="p.target.short", gene="p.gene", TSS=FALSE,
                       cis="cis",
                       plot=TRUE,
                       cex.labels=0.6, cex.points=0.6, xlab="QTL position", ylab="Gene position")
@@ -46,7 +45,8 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
   chr2 <- d[[gene_chr]]
   chr2[chr2=="X"] <- 23
   chr2[chr2=="Y"] <- 24
-  pos <- ifelse(TSS,d[[gene_start]],(d[[gene_start]] + d[[gene_end]])/2)
+  pos <- (d[[gene_start]] + d[[gene_end]])/2
+  if (TSS) pos <- d[[gene_start]]
   pos2 <- CM[chr2] + pos
   if (plot) {
      points(pos1, pos2, cex=cex.points, col=ifelse(d[[cis]],"red","blue"), pch=19)
@@ -57,7 +57,7 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
                                           chr1=chr1, pos1=d[[snp_pos]],
                                           chr2=chr2, pos2=pos,
                                           x=pos1, y=pos2,
-                                          target=d[[trait]], gene=d[[gene]], log10p=d[[lp]],
+                                          target=d[[trait]], gene=d[[gene]],
                                           cistrans=ifelse(d[[cis]],"cis","trans")
   )))
 }

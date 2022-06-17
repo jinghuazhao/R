@@ -13,7 +13,8 @@ qtl2dplotly(
   qtl.gene = "target (gene):",
   TSS = FALSE,
   xlab = "QTL position",
-  ylab = "Gene position"
+  ylab = "Gene position",
+  ...
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ qtl2dplotly(
 \item{xlab}{X-axis title.}
 
 \item{ylab}{Y-axis title.}
+
+\item{...}{Additional arguments to qtl2dplot.}
 }
 \value{
 A plotly figure.

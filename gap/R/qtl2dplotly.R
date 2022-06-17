@@ -10,6 +10,7 @@
 #' @param TSS to use TSS when TRUE.
 #' @param xlab X-axis title.
 #' @param ylab Y-axis title.
+#' @param ... Additional arguments to qtl2dplot.
 #'
 #' @export
 #' @return A plotly figure.
@@ -24,10 +25,10 @@
 #' }
 
 qtl2dplotly <- function(d, chrlen=gap::hg19, qtl.id="SNPid:", qtl.prefix="QTL:", qtl.target="Protein:", qtl.gene="target (gene):",
-                        TSS=FALSE, xlab="QTL position", ylab="Gene position")
+                        TSS=FALSE, xlab="QTL position", ylab="Gene position",...)
 {
   n <- CM <- snpid <- pos_qtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- cistrans <- y <- NA
-  t2d <- qtl2dplot(d, chrlen, TSS, plot=FALSE)
+  t2d <- qtl2dplot(d, chrlen, TSS, plot=FALSE, ...)
   n <- with(t2d, n)
   CM <- with(t2d, CM)
   tkvals <- tktxts <- vector()
