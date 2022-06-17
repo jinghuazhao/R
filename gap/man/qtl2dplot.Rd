@@ -17,6 +17,7 @@ qtl2dplot(
   gene = "p.gene",
   TSS = FALSE,
   cis = "cis",
+  value = "log10p",
   plot = TRUE,
   cex.labels = 0.6,
   cex.points = 0.6,
@@ -49,6 +50,8 @@ qtl2dplot(
 
 \item{cis}{cis variant when TRUE.}
 
+\item{value}{A specific value to show.}
+
 \item{plot}{to plot when TRUE.}
 
 \item{cex.labels}{Axis label extension factor.}
@@ -63,7 +66,7 @@ qtl2dplot(
 positional information.
 }
 \description{
-2D QTL plot
+This function is both used as its own for a 2d plot and/or generate data for a plotly counterpart.
 }
 \examples{
 \dontrun{

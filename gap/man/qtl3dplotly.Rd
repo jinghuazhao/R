@@ -10,11 +10,12 @@ qtl3dplotly(
   zmax = 300,
   qtl.id = "SNPid:",
   qtl.prefix = "QTL:",
-  qtl.target = "Protein:",
-  qtl.gene = "target (gene):",
+  qtl.gene = "Gene:",
+  target.type = "Protein",
   TSS = FALSE,
   xlab = "QTL position",
-  ylab = "Gene position"
+  ylab = "Gene position",
+  ...
 )
 }
 \arguments{
@@ -22,21 +23,23 @@ qtl3dplotly(
 
 \item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
 
-\item{zmax}{Maximum -log10p to truncate, above which they would be set to this value.}
+\item{zmax}{Maximum value (e.g., -log10p) to truncate, above which they would be set to this value.}
 
 \item{qtl.id}{QTL id.}
 
 \item{qtl.prefix}{QTL prefix.}
 
-\item{qtl.target}{QTL target.}
+\item{qtl.gene}{QTL target gene.}
 
-\item{qtl.gene}{QTL gene.}
+\item{target.type}{Type of target, e.g., protein.}
 
 \item{TSS}{to use TSS when TRUE.}
 
 \item{xlab}{X-axis title.}
 
 \item{ylab}{Y-axis title.}
+
+\item{...}{Additional arguments, e.g., to qtl2dplot().}
 }
 \value{
 A plotly figure.
@@ -46,8 +49,10 @@ A plotly figure.
 }
 \examples{
 \dontrun{
+suppressMessages(library(dplyr))
 INF <- Sys.getenv("INF")
-d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
+d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE) \%>\%
+     mutate(log10p=-log10p)
 r <- qtl3dplotly(d,zmax=300)
 htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.qtl3dplotly.html"))
 r

@@ -1,5 +1,7 @@
 #' 2D QTL plot
 #'
+#' This function is both used as its own for a 2d plot and/or generate data for a plotly counterpart.
+#'
 #' @md
 #' @param d Data to be used.
 #' @param chrlen lengths of chromosomes for specific build: hg18, hg19, hg38.
@@ -13,6 +15,7 @@
 #' @param gene gene name.
 #' @param TSS to use TSS when TRUE.
 #' @param cis cis variant when TRUE.
+#' @param value A specific value to show.
 #' @param plot to plot when TRUE.
 #' @param cex.labels Axis label extension factor.
 #' @param cex.points Data point extension factor.
@@ -31,7 +34,7 @@
 qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
                       gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
                       trait="p.target.short", gene="p.gene", TSS=FALSE,
-                      cis="cis",
+                      cis="cis",value="log10p",
                       plot=TRUE,
                       cex.labels=0.6, cex.points=0.6, xlab="QTL position", ylab="Gene position")
 {
@@ -56,7 +59,7 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
   return(list(n=n, CM=CM, data=data.frame(id=d[[snp_name]],
                                           chr1=chr1, pos1=d[[snp_pos]],
                                           chr2=chr2, pos2=pos,
-                                          x=pos1, y=pos2,
+                                          x=pos1, y=pos2, value=d[[value]],
                                           target=d[[trait]], gene=d[[gene]],
                                           cistrans=ifelse(d[[cis]],"cis","trans")
   )))

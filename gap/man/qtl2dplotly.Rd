@@ -9,8 +9,8 @@ qtl2dplotly(
   chrlen = gap::hg19,
   qtl.id = "SNPid:",
   qtl.prefix = "QTL:",
-  qtl.target = "Protein:",
-  qtl.gene = "target (gene):",
+  qtl.gene = "Gene:",
+  target.type = "Protein",
   TSS = FALSE,
   xlab = "QTL position",
   ylab = "Gene position",
@@ -26,9 +26,9 @@ qtl2dplotly(
 
 \item{qtl.prefix}{QTL prefix.}
 
-\item{qtl.target}{QTL target.}
-
 \item{qtl.gene}{QTL gene.}
+
+\item{target.type}{Type of target, e.g., protein.}
 
 \item{TSS}{to use TSS when TRUE.}
 
@@ -36,7 +36,7 @@ qtl2dplotly(
 
 \item{ylab}{Y-axis title.}
 
-\item{...}{Additional arguments to qtl2dplot.}
+\item{...}{Additional arguments, e.g., target, log10p, to qtl2dplot.}
 }
 \value{
 A plotly figure.

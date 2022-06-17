@@ -5,12 +5,12 @@
 #' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param qtl.id QTL id.
 #' @param qtl.prefix QTL prefix.
-#' @param qtl.target QTL target.
 #' @param qtl.gene QTL gene.
+#' @param target.type Type of target, e.g., protein.
 #' @param TSS to use TSS when TRUE.
 #' @param xlab X-axis title.
 #' @param ylab Y-axis title.
-#' @param ... Additional arguments to qtl2dplot.
+#' @param ... Additional arguments, e.g., target, log10p, to qtl2dplot.
 #'
 #' @export
 #' @return A plotly figure.
@@ -24,11 +24,11 @@
 #' r
 #' }
 
-qtl2dplotly <- function(d, chrlen=gap::hg19, qtl.id="SNPid:", qtl.prefix="QTL:", qtl.target="Protein:", qtl.gene="target (gene):",
+qtl2dplotly <- function(d, chrlen=gap::hg19, qtl.id="SNPid:", qtl.prefix="QTL:", qtl.gene="Gene:", target.type="Protein",
                         TSS=FALSE, xlab="QTL position", ylab="Gene position",...)
 {
-  n <- CM <- snpid <- pos_qtl <- pos_prot <- prot_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- log10p <- cistrans <- y <- NA
-  t2d <- qtl2dplot(d, chrlen, TSS, plot=FALSE, ...)
+  n <- CM <- snpid <- pos_qtl <- pos_gene <- target_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- value <- cistrans <- y <- NA
+  t2d <- qtl2dplot(d, chrlen, TSS=TSS, plot=FALSE, ...)
   n <- with(t2d, n)
   CM <- with(t2d, CM)
   tkvals <- tktxts <- vector()
@@ -39,10 +39,10 @@ qtl2dplotly <- function(d, chrlen=gap::hg19, qtl.id="SNPid:", qtl.prefix="QTL:",
   t2d_pos <- with(t2d, data) %>%
              dplyr::mutate(snpid=paste(qtl.id,id),
                            pos_qtl=paste0(qtl.prefix,chr1,":",pos1),
-                           pos_prot=paste0("Protein: ",chr2,":",pos2),
-                           prot_gene=paste0(qtl.gene, target, "(", gene, ")"),
-                           lp=paste("-log10(P):", -log10p),
-                           text=paste(snpid, pos_qtl, pos_prot, prot_gene, lp, sep="\n")) %>%
+                           pos_gene=paste0(qtl.gene,chr2,":",pos2),
+                           target_gene=paste0(target.type, " (gene): ", target, " (", gene, ")"),
+                           lp=paste("value:", value),
+                           text=paste(snpid, pos_qtl, pos_gene, target_gene, lp, sep="\n")) %>%
              dplyr::select(x,y,cistrans,text)
   axes <- list(tickmode = "array",
                tick0 = 1,

@@ -26,7 +26,7 @@
 #'   names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 #'
 #'   options(width=200)
-#'   geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP","prot")]
+#'   geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP","prot","log10p")]
 #'   SNPPos <- hits[c("SNP","Chr","bp")]
 #'   genePos <- inf1[c("gene","chr","start","end")]
 #'   cvt <- qtlClassifier(geneSNP,SNPPos,genePos,1e6)
@@ -43,8 +43,8 @@
 
 qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
 {
-    if (dim(geneSNP)[2] != 3) {
-        stop("The geneSNP data.frame need 3 columns.")
+    if (dim(geneSNP)[2] < 3) {
+        stop("The geneSNP data.frame need at least 3 columns.")
     }
     if (dim(SNPPos)[2] != 3) {
         stop("The SNP position data.frame need 3 columns.")
