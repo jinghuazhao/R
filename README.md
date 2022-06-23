@@ -2,7 +2,7 @@
 
 ## A summary
 
-Links to packages I have maintained[^1] are as shown in the following table, while individual files can be found from GitHub.
+Links to packages I have maintained[^1] are as shown in the following table, while individual files can be found from [https://github.com/jinghuazhao/R](https://github.com/jinghuazhao/R).
 
 **Packages**[^2] | [CRAN](http://cran.r-project.org) | Vignette | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|---------|---------------------|---------------------------------------------
