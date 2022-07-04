@@ -96,7 +96,7 @@ gcp               |      Permutation tests using GENECOUNTING
 gc.lambda         |      Estionmation of the genomic control inflation statistic (lambda)
 genecounting      |      Gene counting for haplotype analysis
 gif               |      Kinship coefficient and genetic index of familiality
-grmMCMC           |      Mixed modeling with genetic relationship matrices
+MCMCgrm           |      Mixed modeling with genetic relationship matrices
 gsmr              |      Mendelian randomization analysis
 hap               |      Haplotype reconstruction
 hap.em            |      Gene counting for haplotype analysis
