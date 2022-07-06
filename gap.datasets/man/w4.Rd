@@ -11,5 +11,5 @@ on chromosome and positions.
 \examples{
 head(w4)
 }
-\source{Guo Jun <guojun.yz@gmail.com>}
+\source{Titan <lone9@qq.com>}
 \keyword{datasets}
