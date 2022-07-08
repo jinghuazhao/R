@@ -20,6 +20,7 @@ make
 make install
 cd $HOME/bin
 ln -sf  ${prefix}/R-${version}/bin/R
+Rscript -e 'update.packages(checkBuilt=TRUE,ask=FALSE)'
 
 # --- more recent pcre has been installed independently
 
