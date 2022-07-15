@@ -12,7 +12,11 @@
 #' @param ... options to use for the individual pdf device.
 #'
 #' @details
-#' The study-specific and total sample sizes (N) can be customised from METAL commands
+#' The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
+#' a `MarkerName` variable which is typically a unique SNP identifier (e.g., chr:pos:a1:a2) and the `tbl` argument has variables
+#' `A1` and `A2` as produced by METAL while the `all` argument has `EFFECT_ALLELE` and `REFERENCE_ALLELE` as with a `study` variable
+#' indicating study name. Another variable common the `tbl` and `all` is `prot` variable as the function was developed in a protein
+#' based meta-analysis. It is now clear that all information is in place for generation of a list of Forest plots through a batch run.
 #'
 #' CUSTOMVARIABLE N\cr
 #' LABEL N as N\cr
