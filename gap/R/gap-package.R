@@ -86,12 +86,14 @@
 #' circos.mhtplot    \tab      circos Manhattan plot with gene annotation\cr
 #' circos.mhtplot2   \tab      Another circos Manhattan plot\cr
 #' cnvplot           \tab      genomewide plot of CNVs\cr
+#' labelManhattan    \tab      Annotate Manhattan or Miami Plot\cr
 #' makeRLEplot       \tab      make relative log expression plot\cr
 #' METAL_forestplot  \tab      forest plot as R/meta's forest for METAL outputs\cr
 #' mhtplot           \tab      Manhattan plot\cr
 #' mhtplot2          \tab      Manhattan plot with annotations\cr
 #' mhtplot.trunc     \tab      truncated Manhattan plot\cr
 #' miamiplot         \tab      Miami plot\cr
+#' miamiplot2        \tab      Miami plot\cr
 #' pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
 #' pedtodot_verbatim \tab      Pedigree-drawing with graphviz\cr
 #' plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
