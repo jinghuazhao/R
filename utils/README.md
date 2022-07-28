@@ -41,3 +41,5 @@ as in package 'lmm'.
 * [st.sh](st.sh) is a batch file for GitHub.
 
 * [suggests.R](suggests.R) is useful to install susggested packages.
+
+pQTLtools is somewhat poorly mirrored here, [https://rdrr.io/github/jinghuazhao/pQTLtools/](https://rdrr.io/github/jinghuazhao/pQTLtools/).
