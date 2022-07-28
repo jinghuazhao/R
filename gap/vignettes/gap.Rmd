@@ -583,7 +583,9 @@ circos.mhtplot2(dat,labs,ticks=0:2*10)
 
 As a side note, the data is used by `manhattanly`.
 
-```{r mhttest, fig.cap="Manhattanly plot", fig.height=8, fig.width=8, plotly=TRUE}
+```r
+#too slowly to show here.
+#{r mhttest, fig.cap="Manhattanly plot", fig.height=8, fig.width=8, plotly=TRUE}
 library(manhattanly)
 mhttest <- manhattanly(mhtdata, chr = "chr", bp = "pos",
                        snp = "rsn", annotation1 = "gene", suggestiveline = TRUE,
