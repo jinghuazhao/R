@@ -581,6 +581,17 @@ labs <- subset(testdat,gene %in% glist) %>%
 circos.mhtplot2(dat,labs,ticks=0:2*10)
 ```
 
+As a side note, the data is used by `manhattanly`.
+
+```{r mhttest, fig.cap="Manhattanly plot", fig.height=8, fig.width=8, plotly=TRUE}
+library(manhattanly)
+mhttest <- manhattanly(mhtdata, chr = "chr", bp = "pos",
+                       snp = "rsn", annotation1 = "gene", suggestiveline = TRUE,
+                       annotation2 = "rsn", p = "p")
+mhttest
+htmlwidgets::saveWidget(mhttest,"mhttest.html")
+```
+
 We now experiment with Miami plot,
 
 ```{r miami, fig.cap="Miami plots", fig.height=7, fig.width=7}
