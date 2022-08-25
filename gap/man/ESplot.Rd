@@ -4,12 +4,14 @@
 \alias{ESplot}
 \title{Effect-size plot}
 \usage{
-ESplot(ESdat, alpha = 0.05)
+ESplot(ESdat, alpha = 0.05, fontsize = 12)
 }
 \arguments{
 \item{ESdat}{A data frame consisting of model id, parameter estimates and standard errors.}
 
 \item{alpha}{Type-I error rate used to construct 100(1-alpha) confidence interval.}
+
+\item{fontsize}{size of font.}
 }
 \value{
 A high resolution plot object.

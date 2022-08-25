@@ -5,6 +5,7 @@
 #' @md
 #' @param ESdat A data frame consisting of model id, parameter estimates and standard errors.
 #' @param alpha Type-I error rate used to construct 100(1-alpha) confidence interval.
+#' @param fontsize size of font.
 #' 
 #' @export
 #' @return A high resolution plot object.
@@ -37,7 +38,7 @@
 #' @author Jing Hua Zhao
 #' @keywords hplot
 
-ESplot <- function(ESdat,alpha=0.05)
+ESplot <- function(ESdat,alpha=0.05,fontsize=12)
 {
    id <- ESdat[,1]
    ES <- ESdat[,2]
@@ -56,7 +57,7 @@ ESplot <- function(ESdat,alpha=0.05)
         ggplot2::scale_y_continuous(breaks=y,label=with(ESdata,id),name="",trans="reverse")+
         ggplot2::geom_vline(xintercept=0, color="black", linetype="dashed", alpha=.5)+
         ggplot2::theme_minimal()+
-        ggplot2::theme(text=ggplot2::element_text(size=12, color="black"))+
+        ggplot2::theme(text=ggplot2::element_text(size=fontsize, color="black"))+
         ggplot2::theme(panel.grid=ggplot2::element_blank())+
         ggplot2::theme(panel.spacing = ggplot2::unit(1, "lines"))
    f
