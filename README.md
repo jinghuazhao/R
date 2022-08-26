@@ -1,5 +1,9 @@
 # R
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 ## A summary
 
 Shown below are links to packages I have maintained[^1], with individual files to be found from [https://github.com/jinghuazhao/R](https://github.com/jinghuazhao/R).
