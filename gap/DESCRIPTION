@@ -1,13 +1,14 @@
 Package: gap
 Version: 1.3
-Date: 2022-8-25
+Date: 2022-8-26
 Title: Genetic Analysis Package
 Authors@R: c(person("Jing Hua", "Zhao", role = c("aut", "cre"),
                     email = "jinghuazhao@hotmail.com",
                     comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")),
     person("Kurt", "Hornik", role = "ctb"),
     person("Brian", "Ripley", role = "ctb"),
-    person("Uwe", "Liggs", role = "ctb")
+    person("Uwe", "Liggs", role = "ctb"),
+    person("Achim", "Zeileis", role = "ctb")
   )
 URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
