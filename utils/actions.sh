@@ -1,4 +1,4 @@
-# The canonical actions are inappropriate for a cluster of R packages here.
+# The canonical actions are inappropriate for a collection of R packages here.
 
 Rscript -e '
   library(usethis)
@@ -7,6 +7,6 @@ Rscript -e '
   use_github_action_check_release(save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
 '
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-ch>
+ <!-- badges: start -->
+[![R-CMD-check](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
