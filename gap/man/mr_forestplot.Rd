@@ -37,11 +37,11 @@ This is a wrapper of meta::forest() for multi-outcome Mendelian Randomization. I
          IGA glomerulonephritis -0.32696600 0.105262000
                   atopic eczema -0.00204018 0.000678061
 
- # SNP effects on multiple disease outcomes without summary level statistics
+ # default output
+ mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+ # no summary level statistics
  mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=24, leftlabs=c("Outcome","b","SE"), rightlabs="ci",
                plotwidth="5inch",sm="OR",
                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
- # default output
- mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
 }
 }

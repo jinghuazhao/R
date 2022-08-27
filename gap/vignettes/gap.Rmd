@@ -973,7 +973,7 @@ Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
 
 First, we illustrate with `mr_forestplot()`.
 
-```{r, echo=FALSE}
+```{r tnfb, echo=FALSE}
 tnfb <- '
               "multiple sclerosis"  0.69058600 0.059270400
     "systemic lupus erythematosus"  0.76687500 0.079000500
@@ -991,16 +991,16 @@ tnfb <- '
 
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0)))
 names(tnfb) <-c("outcome","Effect","StdErr")
+library(meta)
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.height=8, fig.width=12, results="hide"}
-library(meta)
-# SNP effects on multiple disease outcomes without summary level statistics
-mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=24, leftlabs=c("Outcome","b","SE"), rightlabs="ci",
-              plotwidth="5inch",sm="OR",
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
 # default output
-mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+mr_forestplot(tnfb,colgap.forest.left="0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+# no summary level statistics
+mr_forestplot(tnfb, colgap.forest.left="0.5cm", fontsize=24,
+              leftlabs=c("Outcome","b","SE"), rightlabs="ci", plotwidth="5inch",sm="OR",
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, backtransf=TRUE, spacing=1.6)
 ```
 
 The function `gsmr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data.

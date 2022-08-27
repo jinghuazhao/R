@@ -26,12 +26,12 @@
 #'          IGA glomerulonephritis -0.32696600 0.105262000
 #'                   atopic eczema -0.00204018 0.000678061
 #'
-#'  # SNP effects on multiple disease outcomes without summary level statistics
+#'  # default output
+#'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+#'  # no summary level statistics
 #'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=24, leftlabs=c("Outcome","b","SE"), rightlabs="ci",
 #'                plotwidth="5inch",sm="OR",
 #'                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
-#'  # default output
-#'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
 #' }
 
 mr_forestplot <- function(dat,sm="MD",title="",...)
@@ -42,6 +42,5 @@ mr_forestplot <- function(dat,sm="MD",title="",...)
    StdErr <- dat[,3]
    mg <- meta::metagen(Effect,StdErr,sprintf("%s",outcome),sm=sm,title=title)
    meta::forest(mg,...)
-   with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q,
-               "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
+   with(mg,cat("Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
 }
