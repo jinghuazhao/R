@@ -32,8 +32,8 @@
 #'  # default output
 #'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
 #'  # no summary level statistics
-#'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=14, leftlabs=c("Outcome","b","SE"), rightlabs="ci",
-#'                plotwidth="5inch",sm="OR",
+#'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=14,
+#'                leftcols="studlab", leftlabs="Outcome", plotwidth="5inch", sm="OR", rightlabs="ci",
 #'                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
 #' }
 

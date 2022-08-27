@@ -998,7 +998,7 @@ names(tnfb) <-c("outcome","Effect","StdErr")
 mr_forestplot(tnfb,colgap.forest.left="0.05cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
 # no summary level statistics
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
-              leftlabs=c("Outcome","b","SE"), rightlabs="ci", plotwidth="3inch",sm="OR",
+              leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, backtransf=TRUE, spacing=1.6)
 ```
 
