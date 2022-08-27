@@ -991,14 +991,13 @@ tnfb <- '
 
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0)))
 names(tnfb) <-c("outcome","Effect","StdErr")
-library(meta)
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.height=8, fig.width=12, results="hide"}
 # default output
-mr_forestplot(tnfb,colgap.forest.left="0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+mr_forestplot(tnfb,colgap.forest.left="0.5cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
 # no summary level statistics
-mr_forestplot(tnfb, colgap.forest.left="0.5cm", fontsize=24,
+mr_forestplot(tnfb, colgap.forest.left="0.5cm", fontsize=14,
               leftlabs=c("Outcome","b","SE"), rightlabs="ci", plotwidth="5inch",sm="OR",
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, backtransf=TRUE, spacing=1.6)
 ```
