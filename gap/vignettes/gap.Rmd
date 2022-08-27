@@ -146,6 +146,7 @@ mhtplot2          |      Manhattan plot with annotations
 mhtplot.trunc     |      truncated Manhattan plot
 miamiplot         |      Miami plot
 miamiplot2        |      Miami plot
+mr_forestplot     |      Mendelian Randomization forest plot
 pedtodot          |      Converting pedigree(s) to dot file(s)
 pedtodot_verbatim |      Pedigree-drawing with graphviz
 plot.hap.score    |      Plot haplotype frequencies versus haplotype score statistics
@@ -970,7 +971,39 @@ Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
 
 # Mendelian randomization
 
-The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
+First, we illustrate with `mr_forestplot()`.
+
+```{r, echo=FALSE}
+tnfb <- '
+              "multiple sclerosis"  0.69058600 0.059270400
+    "systemic lupus erythematosus"  0.76687500 0.079000500
+          "sclerosing cholangitis"  0.62671500 0.075954700
+   "juvenile idiopathic arthritis" -1.17577000 0.160293000
+                       "psoriasis"  0.00582586 0.000800016
+            "rheumatoid arthritis" -0.00378072 0.000625160
+      "inflammatory bowel disease" -0.14334200 0.025272500
+          "ankylosing spondylitis" -0.00316852 0.000626225
+                  "hypothyroidism" -0.00432054 0.000987324
+               "allergic rhinitis"  0.00393075 0.000926002
+          "IGA glomerulonephritis" -0.32696600 0.105262000
+                   "atopic eczema" -0.00204018 0.000678061
+'
+
+tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0)))
+names(tnfb) <-c("outcome","Effect","StdErr")
+```
+
+```{r mr_forestplot, fig.cap="Forest plots", fig.height=8, fig.width=12, results="hide")
+library(meta)
+# SNP effects on multiple disease outcomes without summary level statistics
+mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=24, leftlabs=c("Outcome","b","SE"), rightlabs="ci",
+              plotwidth="5inch",sm="OR",
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
+# default output
+mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=24,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+```
+
+The function `gsmr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
 ```{r gsmr, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
 knitr::kable(mr,caption="Table 1. LIF.R and CAD/FEV1")

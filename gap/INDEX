@@ -67,6 +67,7 @@ mhtplot2                Manhattan plot with annotations
 mhtplot.trunc           truncated Manhattan plot
 miamiplot               Miami plot
 miamiplot2              Miami plot
+mr_forestplot           Mendelian Randomization forest plot
 pedtodot                Converting pedigree(s) to dot file(s)
 pedtodot_verbatim       Pedigree-drawing with graphviz
 plot.hap.score          Plot haplotype frequencies versus haplotype score statistics

@@ -100,6 +100,7 @@ mhtplot2          \tab      Manhattan plot with annotations\cr
 mhtplot.trunc     \tab      truncated Manhattan plot\cr
 miamiplot         \tab      Miami plot\cr
 miamiplot2        \tab      Miami plot\cr
+mr_forestplot     \tab      Mendelian Randomization forest plot\cr
 pedtodot          \tab      Converting pedigree(s) to dot file(s)\cr
 pedtodot_verbatim \tab      Pedigree-drawing with graphviz\cr
 plot.hap.score    \tab      Plot haplotype frequencies versus haplotype score statistics\cr
