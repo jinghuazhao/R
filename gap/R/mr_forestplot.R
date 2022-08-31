@@ -23,7 +23,7 @@
 #'          "ankylosing spondylitis" -0.00316852 0.000626225
 #'                  "hypothyroidism" -0.00432054 0.000987324
 #'               "allergic rhinitis"  0.00393075 0.000926002
-#'          "IGA glomerulonephritis" -0.32696600 0.105262000
+#'          "IgA glomerulonephritis" -0.32696600 0.105262000
 #'                   "atopic eczema" -0.00204018 0.000678061
 #'  '
 #'  tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0)))
@@ -33,7 +33,7 @@
 #'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
 #'  # no summary level statistics
 #'  mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=14,
-#'                leftcols="studlab", leftlabs="Outcome", plotwidth="5inch", sm="OR", rightlabs="ci",
+#'                leftcols="studlab", leftlabs="Outcome", plotwidth="5inch", sm="OR", rightlabs="ci", sortvar=Effect,
 #'                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
 #' }
 
