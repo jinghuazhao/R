@@ -41,10 +41,10 @@ This is a wrapper of meta::forest() for multi-outcome Mendelian Randomization. I
  names(tnfb) <-c("outcome","Effect","StdErr")
 
  # default output
- mr_forestplot(tnfb[c("outcome","Effect","StdErr")],colgap.forest.left = "0.5cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+ mr_forestplot(tnfb,colgap.forest.left = "0.5cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
  # no summary level statistics
- mr_forestplot(tnfb[c("outcome","Effect","StdErr")], colgap.forest.left = "0.5cm", fontsize=14,
-               leftcols="studlab", leftlabs="Outcome", plotwidth="5inch", sm="OR", rightlabs="ci", sortvar=Effect,
+ mr_forestplot(tnfb, colgap.forest.left = "0.5cm", fontsize=14,
+               leftcols="studlab", leftlabs="Outcome", plotwidth="5inch", sm="OR", rightlabs="ci", sortvar=tnfb[["Effect"]],
                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
 }
 }
