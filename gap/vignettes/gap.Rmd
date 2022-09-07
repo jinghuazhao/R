@@ -991,7 +991,7 @@ tnfb <- '
 
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         setNames(c("outcome","Effect","StdErr")) %>%
-        mutate(outcome=gsub("^[a-z]","\\U\\1",outcome,perl=TRUE))
+        mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
