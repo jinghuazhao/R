@@ -989,8 +989,9 @@ tnfb <- '
                    "atopic eczema" -0.00204018 0.000678061
 '
 
-tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0)))
-names(tnfb) <-c("outcome","Effect","StdErr")
+tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
+        setNames(c("outcome","Effect","StdErr")) %>%
+        mutate(outcome=gsub("^[a-z]","\\U\\1",outcome,perl=TRUE))
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
@@ -1001,7 +1002,7 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci", sortvar=tnfb[["Effect"]],
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, backtransf=TRUE, spacing=1.6)
 # with P values
-mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=24, leftcols=c("studlab","pval"),leftlabs=c("Outcome","P"), digits.pval=8,
+mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14, leftcols=c("studlab","pval"),leftlabs=c("Outcome","P"), digits.pval=5,
               plotwidth="3inch", sortvar=tnfb[["Effect"]],
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,addrow=TRUE,backtransf=TRUE,spacing=1.6)
 ```
