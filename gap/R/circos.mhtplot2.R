@@ -6,6 +6,7 @@
 #' @param labs Data on labels.
 #' @param species Genome build.
 #' @param ticks Tick positions.
+#' @param y Position of y-axis.
 #'
 #' @export
 #' @return
@@ -31,7 +32,7 @@
 #' # https://www.rapidtables.com/web/color/RGB_Color.html
 #' }
 
-circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10)
+circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
 {
   requireNamespace("circlize")
   circlize::circos.clear()
@@ -60,6 +61,13 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10)
   circlize::circos.yaxis(side = "left", at = ticks, labels = ticks,
               sector.index = circlize::get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3,
               tick.length = 0.5*(circlize::convert_x(1, "mm", circlize::CELL_META$sector.index,circlize::CELL_META$track.index)))
+  circos.genomicText(data.frame(start=1,end=1),sector.index=get.all.sector.index()[1],
+                     labels = "-log10(P)",
+                     h = "bottom",
+                     cex = 0.6,
+                     y = y,
+                     adj = c(0.2, 1.5),
+                     facing = "clockwise")
 # circlize::circos.genomicTrackPlotRegion(QTLs, panel.fun = function(region, value,  ...)
 #                        circlize::circos.genomicPoints(region, value, pch = 19, col = "red", cex = 0.3),
 #                                                       track.height = 0.2, bg.border = NA, bg.col = "#A6E1F4", ylim = c(-30, 0))

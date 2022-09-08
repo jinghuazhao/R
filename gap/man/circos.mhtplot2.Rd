@@ -4,7 +4,7 @@
 \alias{circos.mhtplot2}
 \title{Another circos Manhattan plot}
 \usage{
-circos.mhtplot2(dat, labs, species = "hg18", ticks = 0:3 * 10)
+circos.mhtplot2(dat, labs, species = "hg18", ticks = 0:3 * 10, y = 20)
 }
 \arguments{
 \item{dat}{Data to be plotted with variables chr, pos, log10p.}
@@ -14,6 +14,8 @@ circos.mhtplot2(dat, labs, species = "hg18", ticks = 0:3 * 10)
 \item{species}{Genome build.}
 
 \item{ticks}{Tick positions.}
+
+\item{y}{Position of y-axis.}
 }
 \value{
 There is no return value but a plot.
