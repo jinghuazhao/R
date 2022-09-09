@@ -4,7 +4,7 @@
 \alias{mr_forestplot}
 \title{Mendelian Randomization forest plot}
 \usage{
-mr_forestplot(dat, sm = "MD", title = "", ...)
+mr_forestplot(dat, sm = "", title = "", ...)
 }
 \arguments{
 \item{dat}{A data.frame with outcome id, effect size and standard error.}

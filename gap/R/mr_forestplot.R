@@ -37,7 +37,7 @@
 #'                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
 #' }
 
-mr_forestplot <- function(dat,sm="MD",title="",...)
+mr_forestplot <- function(dat,sm="",title="",...)
 {
    requireNamespace("meta")
    outcome <- dat[,1]
