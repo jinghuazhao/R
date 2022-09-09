@@ -1002,8 +1002,10 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci", sortvar=tnfb[["Effect"]],
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, backtransf=TRUE, spacing=1.6)
 # with P values
-mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14, leftcols=c("studlab","pval"),leftlabs=c("Outcome","P"), digits.pval=5,
+mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
+              leftcols=c("studlab","pval"),leftlabs=c("Outcome","P"), digits.pval=5,
               plotwidth="3inch", sortvar=tnfb[["Effect"]],
+              rightcols=c("effect","ci"), rightlabs=c("","95%CI"),
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,addrow=TRUE,backtransf=TRUE,spacing=1.6)
 ```
 

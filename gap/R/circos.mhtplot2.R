@@ -6,7 +6,7 @@
 #' @param labs Data on labels.
 #' @param species Genome build.
 #' @param ticks Tick positions.
-#' @param y Position of y-axis.
+#' @param y Starting position of y-axis label.
 #'
 #' @export
 #' @return

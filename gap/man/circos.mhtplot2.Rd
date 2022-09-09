@@ -15,7 +15,7 @@ circos.mhtplot2(dat, labs, species = "hg18", ticks = 0:3 * 10, y = 20)
 
 \item{ticks}{Tick positions.}
 
-\item{y}{Position of y-axis.}
+\item{y}{Starting position of y-axis label.}
 }
 \value{
 There is no return value but a plot.
