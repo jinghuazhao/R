@@ -37,14 +37,27 @@ This is a wrapper of meta::forest() for multi-outcome Mendelian Randomization. I
          "IgA glomerulonephritis" -0.32696600 0.105262000
                   "atopic eczema" -0.00204018 0.000678061
  '
- tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0)))
- names(tnfb) <-c("outcome","Effect","StdErr")
+ require(dplyr)
+ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) \%>\%
+         setNames(c("outcome","Effect","StdErr")) \%>\%
+         mutate(outcome=gsub("\\\\b(^[a-z])","\\\\U\\\\1",outcome,perl=TRUE))
 
  # default output
- mr_forestplot(tnfb,colgap.forest.left = "0.5cm",fontsize=14,leftlabs=c("Outcome","b","SE"), spacing=1.6)
+ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
+               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+               spacing=1.6)
  # no summary level statistics
- mr_forestplot(tnfb, colgap.forest.left = "0.5cm", fontsize=14,
-               leftcols="studlab", leftlabs="Outcome", plotwidth="5inch", sm="OR", rightlabs="ci", sortvar=tnfb[["Effect"]],
-               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, addrow=TRUE, backtransf=TRUE, spacing=1.6)
+ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
+               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci", 
+               sortvar=tnfb[["Effect"]],
+               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+               backtransf=TRUE, spacing=1.6)
+ # with P values
+ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
+               leftcols=c("studlab","pval"), leftlabs=c("Outcome","P"), digits.pval=2, scientific.pval=TRUE,
+               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
+               rightcols=c("effect","ci"), rightlabs=c("OR","95\%CI"), digits=3,
+               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+               addrow=TRUE, backtransf=TRUE, spacing=1.6)
 }
 }
