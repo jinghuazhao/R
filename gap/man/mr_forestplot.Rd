@@ -54,9 +54,10 @@ This is a wrapper of meta::forest() for multi-outcome Mendelian Randomization. I
                backtransf=TRUE, spacing=1.6)
  # with P values
  mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
-               leftcols=c("studlab","pval"), leftlabs=c("Outcome","P"), digits.pval=2, scientific.pval=TRUE,
+               leftcols=c("studlab"), leftlabs=c("Outcome"),
                plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
-               rightcols=c("effect","ci"), rightlabs=c("OR","95\%CI"), digits=3,
+               rightcols=c("effect","ci","pval"), rightlabs=c("OR","95\%CI","P"),
+               digits=3, digits.pval=2, scientific.pval=TRUE,
                common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
                addrow=TRUE, backtransf=TRUE, spacing=1.6)
 }

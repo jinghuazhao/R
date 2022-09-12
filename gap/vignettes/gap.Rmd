@@ -995,19 +995,25 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
+
 # default output
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, spacing=1.6)
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+              spacing=1.6)
 # no summary level statistics
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
-              leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci", sortvar=tnfb[["Effect"]],
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE, backtransf=TRUE, spacing=1.6)
+              leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
+              sortvar=tnfb[["Effect"]],
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+              backtransf=TRUE, spacing=1.6)
 # with P values
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
-              leftcols=c("studlab","pval"), leftlabs=c("Outcome","P"), digits.pval=2,scientific.pval=TRUE,
+              leftcols=c("studlab"), leftlabs=c("Outcome"),
               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
-              rightcols=c("effect","ci"), rightlabs=c("OR","95%CI"),digits=3,
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,addrow=TRUE,backtransf=TRUE,spacing=1.6)
+              rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","P"),
+              digits=3, digits.pval=2, scientific.pval=TRUE,
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+              addrow=TRUE, backtransf=TRUE, spacing=1.6)
 ```
 
 The function `gsmr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
