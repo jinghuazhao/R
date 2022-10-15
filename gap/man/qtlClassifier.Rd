@@ -35,11 +35,13 @@ This is adapted from iBMQ/eqtlClassifier as an xQTL (x=e, p, me, ...) classifier
 \examples{
 \dontrun{
   merged <- read.delim("INF1.merge",as.is=TRUE)
-  hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],inf1[c("prot","uniprot")],by="prot")
+  hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
+                inf1[c("prot","uniprot")],by="prot")
   names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 
   options(width=200)
-  geneSNP <- merge(hits[c("prot","SNP","log10p")],inf1[c("prot","gene")],by="prot")[c("gene","SNP","prot","log10p")]
+  geneSNP <- merge(hits[c("prot","SNP","log10p")],
+                   inf1[c("prot","gene")],by="prot")[c("gene","SNP","prot","log10p")]
   SNPPos <- hits[c("SNP","Chr","bp")]
   genePos <- inf1[c("gene","chr","start","end")]
   cvt <- qtlClassifier(geneSNP,SNPPos,genePos,1e6)

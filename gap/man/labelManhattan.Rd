@@ -55,7 +55,8 @@ Extended to handle extreme P values.
 }
 \examples{
 \dontrun{
-labelManhattan(c(4,5,11,19),c(9994215,16717922,45538760,51699256),c("GENE1","GENE2","GENE3","GENE4"),gwas1,chrmaxpos=chrmaxpos)
+labelManhattan(c(4,5,11,19),c(9994215,16717922,45538760,51699256),c("GENE1","GENE2","GENE3","GENE4"),
+               gwas1,chrmaxpos=chrmaxpos)
 labelManhattan(geneLabels$chr,geneLabel$pos,geneLabel$geneName,gwas1,chrmaxpos=chrmaxpos)
 }
 }
@@ -63,7 +64,6 @@ labelManhattan(geneLabels$chr,geneLabel$pos,geneLabel$geneName,gwas1,chrmaxpos=c
 Jonathan Marten
 }
 \keyword{GWAS,}
-\keyword{Manhattan}
-\keyword{Miami}
+\keyword{Manhattan,}
+\keyword{Miami,}
 \keyword{annotation}
-\keyword{plot,}

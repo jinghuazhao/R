@@ -26,13 +26,14 @@
 #'
 #' @author Jonathan Marten
 #' @note Extended to handle extreme P values.
-#' @keywords GWAS, Miami plot, Manhattan plot
+#' @keywords GWAS, Miami, Manhattan
 #' @examples
 #' # miamiplot2(gwas1, gwas2)
 #' # chrmaxpos <- miamiplot2(gwas1, gwas2)
 #' gwas <- within(mhtdata[c("chr","pos","p")], {z=qnorm(p/2)})
 #' chrmaxpos <- miamiplot2(gwas,gwas,name1="Batch 2",name2="Batch 1",z1="z",z2="z")
-#' labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO"),gwas,gwasZLab="z",chrmaxpos=chrmaxpos)
+#' labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO"),
+#'                gwas,gwasZLab="z",chrmaxpos=chrmaxpos)
 
 miamiplot2 <- function(gwas1,gwas2,name1="GWAS 1",name2="GWAS 2",chr1="chr",chr2="chr",pos1="pos",pos2="pos",p1="p",p2="p",z1=NULL,z2=NULL,
                        sug=1e-5,sig=5e-8,pcutoff=0.1,topcols=c("green3","darkgreen"),botcols=c("royalblue1","navy"),yAxisInterval=5)
