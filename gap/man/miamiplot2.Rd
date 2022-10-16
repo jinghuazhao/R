@@ -82,6 +82,6 @@ labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO
 \author{
 Jonathan Marten
 }
-\keyword{GWAS,}
+\keyword{GWAS}
 \keyword{Manhattan}
-\keyword{Miami,}
+\keyword{Miami}

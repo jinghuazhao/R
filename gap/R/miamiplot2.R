@@ -26,7 +26,7 @@
 #'
 #' @author Jonathan Marten
 #' @note Extended to handle extreme P values.
-#' @keywords GWAS, Miami, Manhattan
+#' @keywords GWAS Miami Manhattan
 #' @examples
 #' # miamiplot2(gwas1, gwas2)
 #' # chrmaxpos <- miamiplot2(gwas1, gwas2)

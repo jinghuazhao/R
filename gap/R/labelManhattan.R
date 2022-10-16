@@ -20,10 +20,11 @@
 #'
 #' @author Jonathan Marten
 #' @note Extended to handle extreme P values.
-#' @keywords GWAS, Miami, Manhattan, annotation
+#' @keywords GWAS Miami Manhattan annotation
 #' @examples
 #' \dontrun{
-#' labelManhattan(c(4,5,11,19),c(9994215,16717922,45538760,51699256),c("GENE1","GENE2","GENE3","GENE4"),
+#' labelManhattan(c(4,5,11,19),c(9994215,16717922,45538760,51699256),
+#'                c("GENE1","GENE2","GENE3","GENE4"),
 #'                gwas1,chrmaxpos=chrmaxpos)
 #' labelManhattan(geneLabels$chr,geneLabel$pos,geneLabel$geneName,gwas1,chrmaxpos=chrmaxpos)
 #' }

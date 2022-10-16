@@ -1,6 +1,6 @@
 #' Multiple imputation analysis for hap
 #'
-#' This command reads outputs from hap session that uses multiple imputations, i.e. -mi\# option. To
+#' This command reads outputs from hap session that uses multiple imputations, i.e. -mi# option. To
 #' simplify matters it assumes -ss option is specified together with -mi option there.
 #'
 #' This is a very naive version of MIANALYZE, but can produce results for PROC MIANALYZE of SAS.

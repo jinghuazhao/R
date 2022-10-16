@@ -36,7 +36,7 @@ mia(
 The returned value is a list.
 }
 \description{
-This command reads outputs from hap session that uses multiple imputations, i.e. -mi\# option. To
+This command reads outputs from hap session that uses multiple imputations, i.e. -mi# option. To
 simplify matters it assumes -ss option is specified together with -mi option there.
 }
 \details{
