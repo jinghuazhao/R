@@ -46,12 +46,14 @@ pQTLtools is somewhat poorly mirrored here, [https://rdrr.io/github/jinghuazhao/
 
 ## clang / gcc errror messages
 
-This is replicated under Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15.
-
-Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
+The settings below are derived from the following links,
 
 * clang, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang)
 * gcc, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc)
+
+Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
+
+Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
 
 ### .R/Makevars
 
