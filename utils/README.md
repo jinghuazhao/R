@@ -48,7 +48,7 @@ pQTLtools is somewhat poorly mirrored here, [https://rdrr.io/github/jinghuazhao/
 
 This is replicated under Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15.
 
-Fedora 26 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `v8-devel`, `xorg-x11-fonts*`, `libjpeg-turbo-devel`..
+Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
 
 * clang, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang)
 * gcc, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc)
@@ -95,12 +95,15 @@ export _R_CHECK_RD_VALIDATE_RD2HTML_ true
 export _R_CHECK_RD_MATH_RENDERING_ true
 ```
 
-## R-devel
+### R-devel
 
 This is how R-devel is compiled,
 
 ```bash
-#!/usr/bin/bash
+cd ${HOME}
+wget -qO- https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz | \
+tar xfz -
+cd R-devel
 
 CFLAGS="-g -O2 -Wall -pedantic -mtune=native -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection -Werror=implicit-function-declaration -Wstrict-prototypes" \
 FFLAGS="-g -O2 -mtune=native -Wall -pedantic" \
@@ -108,6 +111,7 @@ CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-pare
 JAVA_HOME=/usr/lib/jvm/java-11 \
 ./configure
 make
+ln -s ${HOME}/bin/R ${HOME}/bin/R-devel
 ```
 
 ## R CMD check
