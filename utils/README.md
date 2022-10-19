@@ -43,3 +43,74 @@ as in package 'lmm'.
 * [suggests.R](suggests.R) is useful to install susggested packages.
 
 pQTLtools is somewhat poorly mirrored here, [https://rdrr.io/github/jinghuazhao/pQTLtools/](https://rdrr.io/github/jinghuazhao/pQTLtools/).
+
+## clang / gcc errror messages
+
+This is replicated under Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15.
+
+Fedora 26 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `v8-devel`, `xorg-x11-fonts*`, `libjpeg-turbo-devel`..
+
+### .R/Makevars
+
+```bash
+export _R_CHECK_INSTALL_DEPENDS_ true
+## the next is the default, but --as-cran has true
+export _R_CHECK_SUGGESTS_ONLY_ false
+export _R_CHECK_NO_RECOMMENDED_ true
+export _R_CHECK_DOC_SIZES2_ true
+export _R_CHECK_DEPRECATED_DEFUNCT_ true
+export _R_CHECK_SCREEN_DEVICE_ warn
+export _R_CHECK_REPLACING_IMPORTS_ true
+export _R_CHECK_TOPLEVEL_FILES_ true
+export _R_CHECK_DOT_FIRSTLIB_ true
+export _R_CHECK_RD_LINE_WIDTHS_ true
+export _R_CHECK_S3_METHODS_NOT_REGISTERED_ true
+export _R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_ true
+export _R_CHECK_CODE_USAGE_WITH_ONLY_BASE_ATTACHED_ TRUE
+export _R_CHECK_NATIVE_ROUTINE_REGISTRATION_ true
+export _R_CHECK_FF_CALLS_ registration
+export _R_CHECK_PRAGMAS_ true
+export _R_CHECK_COMPILATION_FLAGS_ true
+export _R_CHECK_R_DEPENDS_ true
+export _R_CHECK_PACKAGES_USED_IN_TESTS_USE_SUBDIRS_ true
+export _R_CHECK_PKG_SIZES_ false
+export _R_CHECK_SHLIB_OPENMP_FLAGS_ true
+
+export _R_CHECK_LIMIT_CORES_ true
+export _R_CHECK_LENGTH_1_CONDITION_ package:_R_CHECK_PACKAGE_NAME_,verbose
+#export _R_CHECK_LENGTH_1_LOGIC2_ "package:_R_CHECK_PACKAGE_NAME_,verbose"
+export _R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV_ true
+export _R_CHECK_COMPILATION_FLAGS_KNOWN_ "-Wno-deprecated-declarations -Wno-ignored-attributes -Wno-parentheses-Werror=format-security -Wp,-D_FORTIFY_SOURCE=2i -Werror=implicit-function-declaration"
+export _R_CHECK_AUTOCONF_ true
+export _R_CHECK_THINGS_IN_CHECK_DIR_ true
+export _R_CHECK_THINGS_IN_TEMP_DIR_ true
+export _R_CHECK_THINGS_IN_TEMP_DIR_EXCLUDE_ "^ompi"
+export _R_CHECK_BASHISMS_ true
+export _R_CHECK_DEPENDS_ONLY_DATA_ true
+export _R_CHECK_MATRIX_DATA_ TRUE
+export _R_CHECK_RD_VALIDATE_RD2HTML_ true
+export _R_CHECK_RD_MATH_RENDERING_ true
+```
+
+## R-devel
+
+This is how R-devel is compiled,
+
+```bash
+#!/usr/bin/bash
+
+CFLAGS="-g -O2 -Wall -pedantic -mtune=native -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection -Werror=implicit-function-declaration -Wstrict-prototypes" \
+FFLAGS="-g -O2 -mtune=native -Wall -pedantic" \
+CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-parentheses -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" \
+JAVA_HOME=/usr/lib/jvm/java-11 \
+./configure
+make
+```
+
+## R CMD check
+
+This is standard,
+
+```bash
+R-devel CMD check --as-cran gap_1.3.tar.gz
+```
