@@ -50,6 +50,9 @@ This is replicated under Fedora 36, which has gcc 12.0.1 and clang 14.0.5 althou
 
 Fedora 26 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `v8-devel`, `xorg-x11-fonts*`, `libjpeg-turbo-devel`..
 
+* clang, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang)
+* gcc, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc)
+
 ### .R/Makevars
 
 ```bash
