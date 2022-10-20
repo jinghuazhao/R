@@ -153,4 +153,4 @@ Error: Vignette re-building failed.
 Execution halted
 ```
 
-It turns out package `meta` was missing from the package list, which did away the error after installation.
+It turns out package `meta` is missing from the package list, which removes the error after installation.
