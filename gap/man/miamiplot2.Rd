@@ -72,12 +72,14 @@ Creates a Miami plot to compare results from two genome-wide association analyse
 Extended to handle extreme P values.
 }
 \examples{
+\dontrun{
 # miamiplot2(gwas1, gwas2)
 # chrmaxpos <- miamiplot2(gwas1, gwas2)
 gwas <- within(mhtdata[c("chr","pos","p")], {z=qnorm(p/2)})
 chrmaxpos <- miamiplot2(gwas,gwas,name1="Batch 2",name2="Batch 1",z1="z",z2="z")
 labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO"),
                gwas,gwasZLab="z",chrmaxpos=chrmaxpos)
+}
 }
 \author{
 Jonathan Marten
