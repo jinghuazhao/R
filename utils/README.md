@@ -53,7 +53,7 @@ The settings below are derived from the following links,
 
 Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
 
-Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
+Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `cairo-devel`, `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
 
 ### .R/Makevars
 
@@ -116,10 +116,41 @@ make
 ln -s ${HOME}/bin/R ${HOME}/bin/R-devel
 ```
 
-## R CMD check
+### R CMD check
 
 This is standard,
 
 ```bash
 R-devel CMD check --as-cran gap_1.3.tar.gz
 ```
+
+For a while under Fedora 36, there has been the following error message,
+
+```
+* checking re-building of vignette outputs ... [34s/45s] ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘gap.Rmd’ using rmarkdown
+Read 16 records
+Warning in grid.Call.graphics(C_segments, x$x0, x$y0, x$x1, x$y1, x$arrow) :
+  semi-transparency is not supported on this device: reported only once per page
+Failed with error:  'error reading from connection'
+Quitting from lines 668-670 (gap.Rmd) 
+Error: processing vignette 'gap.Rmd' failed with diagnostics:
+error reading from connection
+--- failed re-building ‘gap.Rmd’
+
+--- re-building ‘shinygap.Rmd’ using rmarkdown
+--- finished re-building ‘shinygap.Rmd’
+
+--- re-building ‘jss.Rnw’ using Sweave
+--- finished re-building ‘jss.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘gap.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+```
+
+It turns out package `meta` was missing from the package list, which did away the error after installation.
