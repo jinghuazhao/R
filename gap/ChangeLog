@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.3
-27-08-2022	Generate NAMESPACE by roxygen2 and add README.md
+20-10-2022	Fix a function declaration without a prototype in C [-Wstrict-prototypes]
+		Generate NAMESPACE by roxygen2 and add README.md
 		Add mr_forestplot()
 		Add qtlClassifier(), pedtodot_verbatim(), miamiplot2()/labelManhattan()
 		Add circos.mhtplot2(); Clarification of YAML declaration in gap.Rmd

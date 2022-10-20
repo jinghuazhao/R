@@ -62,7 +62,7 @@ GLOBAL int n_compnts;	/* # of components found	*/
 GLOBAL int max_ncmps;	/* # of components allocated	*/
 GLOBAL int max_cpsize;  /* maximum component size found */
 
-GLOBAL Ind *nghd;	   
+GLOBAL Ind *nghd;
 GLOBAL Component *cmplist;  /* vector of components */
 GLOBAL Ind nullnode;
 

@@ -22,9 +22,9 @@ int    Coutcol_obs;     /* column number for observed max */
 int    Chi2Flag;        /* max chi2 is larger    --> 1 */
                         /* 1 to others is larger --> 0 */
 double Combi(int, int);
-void BasicStatistic(), CheckZero();
+void BasicStatistic(void), CheckZero(void);
 int CalcLj(int), CalcUj(int), CalcLoutj(int),CalcUoutj(int);
-double MaxChiSquare(), MaxAmongOneToOthers();
+double MaxChiSquare(void), MaxAmongOneToOthers(void);
 
 void x22k(int *a, int *tablen, double *x2a, double *x2b, int *col1, int *col2, double *p)
 {
@@ -166,7 +166,7 @@ void x22k(int *a, int *tablen, double *x2a, double *x2b, int *col1, int *col2, d
     Rprintf("------------------------------------------------\n");
 }
 
-double MaxChiSquare()
+double MaxChiSquare(void)
 {
   int     i,j;
   int     z11,z12,z21,z22;
@@ -227,7 +227,7 @@ double MaxChiSquare()
   return maxchi;
 }
 
-double MaxAmongOneToOthers()
+double MaxAmongOneToOthers(void)
 {
   int     i;
   int     z11,z12,z21,z22;
@@ -296,7 +296,7 @@ double Combi(int x, int y)
   return z;
 }
 
-void BasicStatistic()
+void BasicStatistic(void)
 {
   int i;
   N1 = 0;
@@ -311,7 +311,7 @@ void BasicStatistic()
   N = N1 + N2;
 }
 
-void CheckZero()
+void CheckZero(void)
 {
   int i,j;
   for(i = 0; i < K; i++)
@@ -426,7 +426,7 @@ int CalcUoutj(int col)
 }
 
 #ifdef executable
-void ReadData()
+void ReadData(void)
 {
   int i;
     while(1){
@@ -448,7 +448,7 @@ void ReadData()
     }
 }
 
-void DisplayData()
+void DisplayData(void)
 {
   int i;
   Rprintf("\n");

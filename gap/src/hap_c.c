@@ -1345,7 +1345,7 @@ void norm2(double *g1, double *g2) {
 
 /* Generate standard normal deviate */
 
-double snd() {
+double snd(void) {
    double this_one;
    snd_call = !snd_call;
    if (snd_call) {

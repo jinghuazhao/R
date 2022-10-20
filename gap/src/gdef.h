@@ -28,7 +28,7 @@ GLOBAL FILE * pfile;			/*pointer to current input file	*/
 GLOBAL int gethostname (char *, int);
 GLOBAL void give_up(char *, int, char *, ...);
 GLOBAL void print_head (char *);
-GLOBAL void print_tail ();
+/*GLOBAL void print_tail ();*/
 GLOBAL void print_val (double);
 GLOBAL void print_val5 (double);
 GLOBAL void alloc_chk (void *, char *);

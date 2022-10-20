@@ -158,9 +158,9 @@ u_byte ped_integers;
 /*                                                                          */
 /****************************************************************************/
 
-void read_pedigree(pedigree_s)
- s_byte pedigree_s[];   /* string id's  */
+void read_pedigree(s_byte pedigree_s[])
 {
+/*s_byte pedigree_s[];*/ /* string id's  */
   Rprintf("\n\tPedigree   -> ");
   ignore_int(fscanf(stdin,"%s",pedigree_s));
 }
@@ -172,9 +172,9 @@ void read_pedigree(pedigree_s)
 /*                                                                          */
 /****************************************************************************/
 
-void read_person(person_s)
- s_byte person_s[];   /* string id's  */
+void read_person(s_byte person_s[])
 {
+/*s_byte person_s[];*/ /* string id's  */
   Rprintf("\tPerson     -> ");
   ignore_int(fscanf(stdin,"%s",person_s));
 }
@@ -184,10 +184,10 @@ void read_person(person_s)
 /*                                                                          */
 /****************************************************************************/
 
-s_intg ind_lookup(name,sequence)
-  s_byte name[];
-  s_intg sequence;  /* the number of people in previous pedigrees */
+s_intg ind_lookup(s_byte name[],s_intg sequence)
 {
+/*s_byte name[];
+  s_intg sequence;*/ /* the number of people in previous pedigrees */
 
 /* Search through all people in this pedigree that have been read in so far */
 /* and find the one whose original id matches that in the name parameter.   */
@@ -214,10 +214,10 @@ return(0);
 /*                                                                          */
 /****************************************************************************/
 
-s_intg chk_dupli(name)
-  s_byte name[];
+s_intg chk_dupli(s_byte name[])
 /*  s_intg sequence;   the number of people in previous pedigrees */
 {
+/*s_byte name[];*/
 
 /* Search through all people in this pedigree that have been read in so far */
 /* and see if this individual id is unique. If it is unique return 0 else   */
@@ -247,13 +247,13 @@ return(0);
 /*                                                                           */
 /*****************************************************************************/
 
-void getind(id,sequence,newped_s,nuped)
-     s_intg *id;
-     s_intg sequence;
-     s_byte newped_s[];
-     s_intg nuped;
-
+void getind(s_intg *id,s_intg sequence,s_byte newped_s[],s_intg nuped)
 {
+/*s_intg *id;
+  s_intg sequence;
+  s_byte newped_s[];
+  s_intg nuped;
+*/
 /*s_intg temp_i;                  Holds id if id's are integers. */
   s_byte temp_s[maxname];      /* Holds id if id's are strings.  */
   s_intg found_id;
@@ -327,13 +327,13 @@ void getind(id,sequence,newped_s,nuped)
 /*                                                                           */
 /*****************************************************************************/
 
-void getindpa(id,sequence,newped_s,nuped)
-     s_intg *id;
-     s_intg sequence;
-     s_byte newped_s[];
-     s_intg nuped;
-
+void getindpa(s_intg *id,s_intg sequence,s_byte newped_s[],s_intg nuped)
 {
+/*s_intg *id;
+  s_intg sequence;
+  s_byte newped_s[];
+  s_intg nuped;
+*/
 /*s_intg temp_i;                  Holds id if id's are integers. */
   s_byte temp_s[maxname];      /* Holds id if id's are strings.  */
   s_intg found_id;
@@ -404,10 +404,10 @@ void getindpa(id,sequence,newped_s,nuped)
 /*                                                                           */
 /*****************************************************************************/
 
-void getphenotype(id)
-     s_intg *id;
-
+void getphenotype(s_intg *id)
 {
+/*s_intg *id;*/
+
   s_intg i;
   s_byte c;
 
@@ -433,7 +433,7 @@ void getphenotype(id)
 /*                                                                           */
 /*****************************************************************************/
 
-void readped()
+void readped(void)
 {
   s_intg i;
 /*s_intg j;*/
@@ -468,7 +468,7 @@ void readped()
 
     /* Get person. */
 
-    getind(&thisone,sequence,thisped_s,nuped); 
+    getind(&thisone,sequence,thisped_s,nuped);
 
     /* Get persons father. */
 
@@ -517,7 +517,7 @@ void readped()
 }
 
 /* *******************************************************************  */
-void pointers()
+void pointers(void)
 {
   struct ind *q;
   s_intg      i;
@@ -597,9 +597,9 @@ void pointers()
 /*                                                                           */
 /*****************************************************************************/
 
-void save_loops(count)
-    s_intg count;
+void save_loops(s_intg count)
 {
+/*s_intg count;*/
   s_intg i;
   s_byte response;
   s_byte loop_file[max_filespec];
@@ -637,9 +637,9 @@ void save_loops(count)
 /*                                                                          */
 /****************************************************************************/
 
-s_intg largest_id(person_index)
-   s_intg person_index;
+s_intg largest_id(s_intg person_index)
 {
+/* s_intg person_index;*/
 
 /* s_intg pedigree_number;*/
    s_intg largest;
@@ -669,10 +669,10 @@ s_intg largest_id(person_index)
 /*                                                                           */
 /*****************************************************************************/
 
-void add_loop(start_of_ped,old)
-  s_intg start_of_ped;
-  s_intg old;
+void add_loop(s_intg start_of_ped,s_intg old)
 {
+/*s_intg start_of_ped;
+  s_intg old;*/
   s_intg i,max_i;
   s_intg new;
   s_intg next_possible_id;
@@ -692,7 +692,7 @@ void add_loop(start_of_ped,old)
    i++;
   }
   loop_i = max_i + 1;
-  
+
   /* Get next possible id for this pedigree */
 
   next_possible_id = largest_id(old) + 1;
@@ -773,7 +773,7 @@ void add_loop(start_of_ped,old)
 /*                                                                           */
 /*****************************************************************************/
 #ifdef executable
-void file_loops()
+void file_loops(void)
 #else
 void file_loops(char **loopfile)
 #endif
@@ -849,7 +849,7 @@ void file_loops(char **loopfile)
 /*                                                                           */
 /*****************************************************************************/
 
-void some_loops()
+void some_loops(void)
 {
 /*s_byte response;*/
 /*s_intg person_i;*/
@@ -888,7 +888,7 @@ void some_loops()
 	       start_of_ped = i;
 	       pedigree = person[i]->ped;
 	     }
-           
+
 	   i++;
          }
 
@@ -910,7 +910,7 @@ void some_loops()
              loops[count++] = i;
              /* Any loops with indices above i should be incremented by one,
                 since add_loop shifts all the indices above i */
-             for (ii = 0; ii < count; ii++) 
+             for (ii = 0; ii < count; ii++)
               if (loops[ii] > i) loops[ii] += 1;
 		     found_per = TRUE;
              add_loop(start_of_ped,i);
@@ -941,7 +941,7 @@ void some_loops()
 /*****************************************************************************/
 
 #ifdef executable
-void get_loops()
+void get_loops(void)
 #else
 void get_loops(int *withloop, char **loopfile)
 #endif
@@ -968,9 +968,9 @@ void get_loops(int *withloop, char **loopfile)
 /*                                                                          */
 /****************************************************************************/
 
-s_intg count_generations(person_x)
-  s_intg person_x;
+s_intg count_generations(s_intg person_x)
 {
+/*s_intg person_x;*/
   struct ind *decendent;
   s_intg count;
 
@@ -995,10 +995,9 @@ s_intg count_generations(person_x)
 /*                                                                          */
 /****************************************************************************/
 
-void clear_proband(person_index)
-     s_intg person_index;
+void clear_proband(s_intg person_index)
 {
-
+/*s_intg person_index;*/
   s_intg pedigree;
   s_intg i;
   s_intg found_ped;
@@ -1035,14 +1034,13 @@ void clear_proband(person_index)
 /*                                                                           */
 /*****************************************************************************/
 
-void save_probands(count)
-    s_intg count;
+void save_probands(s_intg count)
 {
+/*s_intg count;*/
   s_intg i;
   s_byte response;
   s_byte proband_file[max_filespec];
   FILE   *prof;
-
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
@@ -1073,7 +1071,7 @@ void save_probands(count)
 /*                                                                          */
 /****************************************************************************/
 
-void auto_probands()
+void auto_probands(void)
 {
   s_intg i,istart;
   s_intg ped_num;		        /* current pedigree */
@@ -1111,7 +1109,7 @@ if (trys > 20) {
 while(i<=totperson) {
   ped_num = person[i]->ped;
   max_level = 0;
-  istart = i; /* Starting number of this pedigree */  
+  istart = i; /* Starting number of this pedigree */
   while((i<=totperson) && (ped_num == person[i]->ped)) {
     if ( (person[i]->paid == 0) &&
          (person[i]->maid == 0) &&
@@ -1139,7 +1137,7 @@ while(i<=totperson) {
 /*                                                                           */
 /*****************************************************************************/
 #ifdef executable
-void file_probands()
+void file_probands(void)
 #else
 void file_probands(char **probandfile)
 #endif
@@ -1193,7 +1191,7 @@ void file_probands(char **probandfile)
    REprintf("Proband %s in pedigree %s is in loop %d \n"
    ,person[j]->oldid_s,person[j]->oldped_s,person[j]->proband);
    error("%d",1);
-   } 
+   }
    else person[j]->proband = 1;
    found = TRUE;
         }
@@ -1217,7 +1215,7 @@ void file_probands(char **probandfile)
 /*                                                                           */
 /*****************************************************************************/
 
-void all_probands()
+void all_probands(void)
 {
 /*s_byte response;*/
   s_intg pedigree;
@@ -1286,7 +1284,7 @@ void all_probands()
 /*                                                                           */
 /*****************************************************************************/
 
-void some_probands()
+void some_probands(void)
 {
 /*s_byte response;*/
 /*s_intg person_i;*/
@@ -1325,7 +1323,6 @@ void some_probands()
 	       start_of_ped = i;
 	       pedigree = person[i]->ped;
 	     }
-           
 	   i++;
          }
 
@@ -1381,7 +1378,7 @@ void some_probands()
 /*                                                                           */
 /*****************************************************************************/
 #ifdef executable
-void get_probands()
+void get_probands(void)
 #else
 void get_probands(int *auto_proband,char **probandfile)
 #endif
@@ -1421,7 +1418,7 @@ void get_probands(int *auto_proband,char **probandfile)
 /*                                                                          */
 /****************************************************************************/
 
-void writeped()
+void writeped(void)
 {
   s_intg i;
   s_byte *ped_format;
@@ -1489,7 +1486,7 @@ void writeped()
     if (ped_integers)
     fprintf(pedout,"%s",  person[i]->oldped_s);     /* Use original ids */
     else fprintf(pedout,ped_format, person[i]->ped); /* This renumbers pedigrees */
-    
+
     fprintf(pedout,ind_format,  person[i]->id);
 
     if (person[i]->pa != NULL)
@@ -1536,10 +1533,10 @@ void writeped()
 /*                                                                           */
 /*****************************************************************************/
 
-s_intg strcmp_i(s1,s2)
-     register u_byte *s1;
-     register u_byte *s2;
+s_intg strcmp_i(u_byte *s1, u_byte *s2)
 {
+/*register u_byte *s1;
+  register u_byte *s2;*/
   while(((*s1 >= 'a' && *s1 <= 'z')?
 	 (*s1 & 0xdf):
 	 (*s1))==
@@ -1557,12 +1554,12 @@ s_intg strcmp_i(s1,s2)
 /*                                                                           */
 /*****************************************************************************/
 
-void check_ids()
+void check_ids(void)
 {
   s_intg i,j;
-  
+
   /* Scan through the pedigree ids until the first non-digit is found; */
-  /*  set ped_integers to FALSE if any non-digit is found.             */ 
+  /*  set ped_integers to FALSE if any non-digit is found.             */
   ped_integers = TRUE;
   i = 1;
   while ((ped_integers) && (i<=totperson)) {
@@ -1581,7 +1578,7 @@ void check_ids()
 /*                                                                           */
 /*****************************************************************************/
 
-void check_sex()
+void check_sex(void)
 {
   s_intg i;
 
@@ -1623,9 +1620,8 @@ void check_sex()
 /*                                                                           */
 /*****************************************************************************/
 
-void check_no_phen()
+void check_no_phen(void)
 {
-
   s_intg i;
 
   for(i=1; i<=totperson; i++) {
@@ -1646,7 +1642,7 @@ void check_no_phen()
 /*                                                                           */
 /*****************************************************************************/
 
-void check_no_family()
+void check_no_family(void)
 {
   u_intg i;
 
@@ -1678,11 +1674,11 @@ void check_no_family()
 /*                                                                           */
 /*****************************************************************************/
 
-main(argc,argv)
-     s_intg argc;
-     u_byte *argv[];
+main(s_intg argc,u_byte *argv[])
 {
-
+/*s_intg argc;
+  u_byte *argv[];
+*/
   s_intg no_ques = FALSE;
   u_byte response;
 
@@ -1700,13 +1696,13 @@ main(argc,argv)
   Rprintf("  722 West 168th Street  \n");
   Rprintf("  New York, NY 10032 \n");
   Rprintf("  Tel (212) 960-2507  Fax (212) 568-2750 \n\n"); */
-  
+
   Rprintf(" Constants in effect \n");
   Rprintf("Maximum number of pedigrees                %d\n",maxped-1);
   Rprintf("Maximum number of individuals              %d\n",maxind-1);
   Rprintf("Maximum characters used in phenotypic data %d\n", maxallchars);
   Rprintf("Maximum number of characters in an id      %d\n\n",maxname);
- 
+
   if (argc > 4) {
     error("\nERROR: Two many command line arguments");
   }
@@ -1763,7 +1759,7 @@ main(argc,argv)
   pointers();
   if (no_ques) auto_probands(); /* Set all probands automatically */
   else {
-   get_loops(); 
+   get_loops();
    get_probands();
   }
   writeped();
@@ -1772,7 +1768,7 @@ main(argc,argv)
   fclose(pedout);
 
 }
-#else 
+#else
 void makeped_c(char **pifile, char **pofile, int *autoselect, 
              int *withloop, char **loopfile, 
              int *autoproband, char **probandfile)
@@ -1783,7 +1779,7 @@ void makeped_c(char **pifile, char **pofile, int *autoselect,
   Rprintf("Maximum number of individuals              %d\n",maxind-1);
   Rprintf("Maximum characters used in phenotypic data %d\n", maxallchars);
   Rprintf("Maximum number of characters in an id      %d\n\n",maxname);
- 
+
   found_error = FALSE;
 
   if ((pedfile = fopen(*pifile, "r")) == NULL){

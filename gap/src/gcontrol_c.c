@@ -21,7 +21,7 @@
 int getnum(FILE *, double *);
 double poz(double);
 double median(double *,int *);
-double rnorm(long *),runif(long *),dnorm(double),rchisq(int,long *);
+double rnorm(long *),runif(long int *),dnorm(double),rchisq(int,long *);
 double chi(int *,int *,int,int);
 void sort(double *,int *,double *);
 void prog(double *,int,double *,long *,double *,int *);
@@ -338,11 +338,11 @@ double rchisq(int ia, long *idum)
 void rgamma(int *m,double *na,double *nb,double *x,long *idum)
 {
   int na_dim1, na_offset, nb_dim1, nb_offset, x_dim1, x_offset, i_1;
-  int s_stop();
+/*int s_stop();*/
   double work[6];
-  extern double rgkm3_();
+  extern double rgkm3_(double *,double *,int *,long *);
   int i, j, k;
-  extern double rgs_();
+  extern double rgs_(double *,long *);
 
   na_dim1 = *m;
   na_offset = na_dim1 + 1;
@@ -382,9 +382,9 @@ void rgamma(int *m,double *na,double *nb,double *x,long *idum)
 double rgs_(double *alp,long *idum)
 {
   double ret_val;
-  double log(), exp();
+  double log(double), exp(double);
   static double b, p, x, u1, u2;
-  extern double runif();
+  extern double runif(long int *);
 L100:
   u1 = runif(idum);
   b = (*alp + 2.718281828) / 2.718281828;
@@ -405,9 +405,9 @@ L300:
 double rgkm3_(double *alp,double *work,int *k,long *idum)
 {
   double ret_val;
-  double sqrt(), log();
+  double sqrt(double), log(double);
   static double u, w, u1, u2;
-  extern double runif();
+  extern double runif(long int *);
 
   --work;
   if (work[1] == *alp) goto L100;
@@ -754,7 +754,7 @@ void gcontrol_c(double *kdata, int *nkdata, double *zeta, double *kappa,
       p=dnorm(fun1)*(*epsilon)/(dnorm(fun1)*(*epsilon)+dnorm(fun2)*(1.-*epsilon));
       delta[j]=(p>runif(&idum));
       if (i>=*burn) deltot[j]+=p;
-      if(i>=*burn && j==0) /*printf("%14.9f \n",p)*/;
+      /*if(i>=*burn && j==0) printf("%14.9f \n",p)*/;
       cc=dd*(x[j]/lambda+(*kappa)/(*tau2));
       A[j]=delta[j]*(sqrt(dd)*rnorm(&idum)+cc)+
         (1-delta[j])*(sqrt(*tau2)*rnorm(&idum)+(*kappa));

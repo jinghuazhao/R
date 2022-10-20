@@ -36,15 +36,15 @@ typedef struct vertex_list
 /* Graph handling routines needed */
 /*================================*/
 
-void            no_probands(), make_edge();
-int             connected(), new_proband();
-vertex          *find_vertex();
+void            no_probands(void), make_edge(vertex *, vertex *);
+int             connected(vertex *, vertex *), new_proband(vertex *);
+vertex          *find_vertex(int);
 vertex_list     *proband_list;
 
 void gif_c(int *data, int *famsize, int *gifset, int *giflen, double *gifval)
 {
   int     id, i, j, k, n_prob;
-  double  total_kinship();
+  double  total_kinship(void);
   vertex  *top, *bot;
 
   top=bot=NULL;
@@ -84,8 +84,8 @@ void gif_c(int *data, int *famsize, int *gifset, int *giflen, double *gifval)
 /* Kinship finding routines */
 /*==========================*/
 
-static int      max_path_length=200, path_length[200];
-void    path_find(vertex *v, int length, int going_up)
+static int max_path_length=200, path_length[200];
+void path_find(vertex *v, int length, int going_up)
 {
   edge    *e;
   int     new_length = length+1;
@@ -108,7 +108,7 @@ void    path_find(vertex *v, int length, int going_up)
   }
 }
 
-double  total_kinship()
+double total_kinship(void)
 {
   int             i;
   double          half, kin;
@@ -134,7 +134,7 @@ double  total_kinship()
 static vertex   *binary_tree = NULL;
 static int      n_proband=0;
 
-vertex  *new_vertex()
+vertex  *new_vertex(void)
 {
   vertex  *v;
   if (!(v = (vertex *) calloc(1,sizeof(vertex))))
@@ -160,7 +160,7 @@ vertex *find_vertex(int i)
   return(*vv);
 }
 
-vertex_list     *new_vertex_list()
+vertex_list *new_vertex_list(void)
 {
   vertex_list     *vl;
   if (!(vl = (vertex_list *)calloc(1,sizeof(vertex_list))))
@@ -170,7 +170,7 @@ vertex_list     *new_vertex_list()
   return(vl);
 }
 
-int     new_proband(vertex *v)
+int new_proband(vertex *v)
 {
   vertex_list     *vl;
 
@@ -184,7 +184,7 @@ int     new_proband(vertex *v)
   return(1);
 }
 
-edge    *new_edge()
+edge *new_edge(void)
 {
   edge    *e;
   if (!(e = (edge *)calloc(1,sizeof(edge))))
@@ -195,7 +195,7 @@ edge    *new_edge()
   return(e);
 }
 
-void    make_edge(vertex *bot, vertex *top)
+void make_edge(vertex *bot, vertex *top)
 {
   edge    *e;
 
@@ -208,7 +208,7 @@ void    make_edge(vertex *bot, vertex *top)
   bot->up = e;
 }
 
-int     connected(vertex *bot, vertex *top)
+int connected(vertex *bot, vertex *top)
 {
   edge    *e;
 
@@ -226,7 +226,7 @@ void    free_edge(edge *e)
   }
 }
 
-void    free_vertex(vertex *v)
+void free_vertex(vertex *v)
 {
   if (v)
   {
@@ -237,7 +237,7 @@ void    free_vertex(vertex *v)
   }
 }
 
-void    free_vertex_list(vertex_list *vl)
+void free_vertex_list(vertex_list *vl)
 {
   if (vl)
   {
@@ -246,9 +246,9 @@ void    free_vertex_list(vertex_list *vl)
   }
 }
 
-void    no_probands()
+void no_probands(void)
 {
-  vertex_list     *vl;
+  vertex_list *vl;
   if (proband_list)
   {
     for (vl = proband_list; vl; vl=vl->n) vl->c->proband = 0;
@@ -263,7 +263,7 @@ void    no_probands()
 /*==============*/
 
 #ifdef UNIX
-double cpu_time()
+double cpu_time(void)
 {
   struct rusage   r;
   double          time;
@@ -276,7 +276,7 @@ double cpu_time()
 
 #else
 
-double cpu_time ()
+double cpu_time (void)
 {
   time_t   start, finish;
   double   elapsed_time;
@@ -304,15 +304,15 @@ int             line_no;
 /* Time program */
 /*==============*/
 
-double  cpu_time();
+double  cpu_time(void);
 
 /*=========================*/
 /* Input handling routines */
 /*=========================*/
 
-char    *newline()
+char *newline()
 {
-  int     i, blank;
+  int i, blank;
 
   if (!fgets(line_buff,MAXLINE,stdin)) return(NULL);
   while (line_buff[0] == '%')
@@ -357,7 +357,7 @@ int main(int argc, char **argv)
 {
   char    *progname = argv[0], *line, *newline();
   int     i, j, k, n_prob, got_opt();
-  double  total_kinship();
+  double  total_kinship(void);
   vertex  *top, *bot;
   blankline = &whereblank;
   line_no=0;
@@ -404,4 +404,3 @@ int main(int argc, char **argv)
 }
 
 #endif
-
