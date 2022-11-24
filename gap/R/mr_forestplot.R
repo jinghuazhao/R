@@ -57,7 +57,7 @@ mr_forestplot <- function(dat,sm="",title="",...)
    outcome <- dat[,1]
    Effect <- dat[,2]
    StdErr <- dat[,3]
-   mg <- meta::metagen(Effect,StdErr,sprintf("%s",outcome),sm=sm,title=title)
+   mg <- meta::metagen(Effect,StdErr,sprintf("%s",outcome),sm=sm,title=title,method.tau.ci="")
    meta::forest(mg,...)
    with(mg,cat("Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
 }
