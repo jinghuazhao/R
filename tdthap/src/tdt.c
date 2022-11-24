@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-double asran();
+double asran(void);
 void asran_seed(int, int, int);
 
 /*
@@ -188,7 +188,7 @@ void asran_seed(int i1, int i2, int i3)
    iz = i3;
    }
 
-double asran()
+double asran(void)
    {
    double r;
 

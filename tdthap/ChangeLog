@@ -1,3 +1,8 @@
+v1.2
+
+2022-10-28	Regression of mktemp to `int mkstemp`
+		Explicit protyping with asran() to asran(void) in tdt.c
+
 v1.1-11
 
 2019-08-22	Replace mkstemp (not working under Windows) with mktemp

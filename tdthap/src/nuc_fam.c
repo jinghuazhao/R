@@ -4,7 +4,7 @@
 
 #include "nuc_fam.h"
 
-/* 
+/*
    Declarations of functions local to this file
 */
 
@@ -15,27 +15,27 @@ int fill_in(int child[2], int unknown[2], int known[2]);
 
 /* ============================ S/R-callable ================================*/
 
-/* 
-   Take a pedfile-style input and write to file the affected offspring 
-   plus the transmitted and untransmitted haplotypes. First argument is 
-   length of input vectors, but is returned as the number of records 
+/*
+   Take a pedfile-style input and write to file the affected offspring
+   plus the transmitted and untransmitted haplotypes. First argument is
+   length of input vectors, but is returned as the number of records
    written. Treatment of multiple cases per family is either:
    use all (0),
-   use all but generate separate family for each case (with all other 
+   use all but generate separate family for each case (with all other
    sibs non-cases) (1), or
    use first case only (2).
-   Imputation of missing parental genotypes may be done either with or 
+   Imputation of missing parental genotypes may be done either with or
    without use of affected offspring.
 */
-char *mktemp(char *);
+int mkstemp(char *);
 void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
-		  int *sex, int *aff, int *if_qt, double *qt, 
-		  int *m, int *markers, 
+		  int *sex, int *aff, int *if_qt, double *qt,
+		  int *m, int *markers,
 		  int *multiple_cases, int *impute_using_affected,
 		  char **ofname) {
   Family *first, *f, *prev;
   FILE *outfile;
-  int nn, mm, hr, iqt;
+  int nn, mm, hr, iqt, z;
   char *tmp;
   nn = *n;
   mm = *m;
@@ -57,7 +57,7 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
   }
 
   /* Do remaining computations on families */
-  
+
   prev = (Family *) 0;
   for (f=first; f; f=f->next) {
     /* Impute missing parental genotypes */
@@ -81,14 +81,14 @@ void hap_transmit(int *n, int *ped, int *id, int *father, int *mother,
     else {
       prev = f;
     }
-  } 
+  }
 
   /* Write haplotypes to disk */
 
   tmp = *ofname;
   /* If no file name supplied, generate one */
   if (!*tmp) {
-    mktemp(tmp);
+    z = mkstemp(tmp);
     *ofname = tmp;
   }
   outfile = fopen(tmp, "wb");
