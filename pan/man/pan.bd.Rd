@@ -62,7 +62,7 @@ See description for pan().
 \value{
 A list with the same components as that from pan(), with two
 minor differences: the dimension of "psi" is now (q x q x r x
-"iter"), and the dimension of "last\$psi" is now (q x q x r).
+"iter"), and the dimension of "last$psi" is now (q x q x r).
 }
 
 \keyword{models}
