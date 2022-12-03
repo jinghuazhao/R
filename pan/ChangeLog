@@ -1,9 +1,6 @@
-Version 1.8
-
-2022-12-03	Refine pan.bd.Rd
-
 Version 1.7
 
+2022-12-03	Refine pan.bd.Rd
 2020-11-09	Refine vignette
 		nhyp=nhyp,hyp=hyp specification for pan()
 		Apply -fc-prototypes-external for C prototypes
