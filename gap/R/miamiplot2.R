@@ -39,97 +39,77 @@
 
 miamiplot2 <- function(gwas1,gwas2,name1="GWAS 1",name2="GWAS 2",chr1="chr",chr2="chr",pos1="pos",pos2="pos",p1="p",p2="p",z1=NULL,z2=NULL,
                        sug=1e-5,sig=5e-8,pcutoff=0.1,topcols=c("green3","darkgreen"),botcols=c("royalblue1","navy"),yAxisInterval=5)
+## plots two manhattan plots top to bottom
+## TO DO: allow highlighting regions?
 {
-	## plots two manhattan plots top to bottom
-	## TO DO: allow highlighting regions?
 
-   #Input checks:
-   if(length(which(names(gwas1)==chr1))==0){
-      stop(paste0("Could not find column ",chr1," in gwas1"))
-   }
-   if(length(which(names(gwas2)==chr2))==0){
-      stop(paste0("Could not find column ",chr2," in gwas2"))
-   }
-   if(length(which(names(gwas1)==pos1))==0){
-      stop(paste0("Could not find column ",pos1," in gwas1"))
-   }
-   if(length(which(names(gwas2)==pos2))==0){
-      stop(paste0("Could not find column ",pos2," in gwas2"))
-   }
-   if(length(which(names(gwas1)==p1))==0){
-      stop(paste0("Could not find column ",p1," in gwas1"))
-   }
-   if(length(which(names(gwas2)==p2))==0){
-      stop(paste0("Could not find column ",p2," in gwas2"))
-   }
+# Input checks:
+  if(length(which(names(gwas1)==chr1))==0) stop(paste0("Could not find column ",chr1," in gwas1"))
+  if(length(which(names(gwas2)==chr2))==0) stop(paste0("Could not find column ",chr2," in gwas2"))
+  if(length(which(names(gwas1)==pos1))==0) stop(paste0("Could not find column ",pos1," in gwas1"))
+  if(length(which(names(gwas2)==pos2))==0) stop(paste0("Could not find column ",pos2," in gwas2"))
+  if(length(which(names(gwas1)==p1))==0)   stop(paste0("Could not find column ",p1," in gwas1"))
+  if(length(which(names(gwas2)==p2))==0)   stop(paste0("Could not find column ",p2," in gwas2"))
 
-	# make data frames with just the required cols from the input. Probably v. inefficient but hey.
-        if(is.null(z1))
-	dat1 <- within(data.frame("chr"=gwas1[,which(names(gwas1)==chr1)], "pos"=gwas1[,which(names(gwas1)==pos1)], "p"=gwas1[,which(names(gwas1)==p1)]),
-                {log10p=-log10(p)})
-        else
-	dat1 <- within(data.frame("chr"=gwas1[,which(names(gwas1)==chr1)], "pos"=gwas1[,which(names(gwas1)==pos1)], "z"=gwas1[,which(names(gwas1)==z1)]),
-                {log10p=-log10p(z)})
-        if(is.null(z2))
-	dat2 <- within(data.frame("chr"=gwas2[,which(names(gwas2)==chr2)], "pos"=gwas2[,which(names(gwas2)==pos2)], "p"=gwas2[,which(names(gwas2)==p2)]),
-                {log10p=-log10(p)})
-        else
-	dat2 <- within(data.frame("chr"=gwas2[,which(names(gwas2)==chr2)], "pos"=gwas2[,which(names(gwas2)==pos2)], "z"=gwas2[,which(names(gwas2)==z2)]),
-                {log10p=-log10p(z)})
+# make data frames with just the required cols from the input. Probably v. inefficient but hey.
+  if(is.null(z1))
+  dat1 <- within(data.frame(chr=gwas1[chr1], pos=gwas1[pos1], p=gwas1[p1]), {log10p <- -log10(p); gpos <- NA})
+  else
+  dat1 <- within(data.frame(chr=gwas1[chr1], pos=gwas1[pos1], z=gwas1[z1]), {log10p <- -log10p(z); gpos <- NA})
+  if(is.null(z2))
+  dat2 <- within(data.frame(chr=gwas2[chr2], pos=gwas2[pos2], p=gwas2[p2]), {log10p <- -log10(p); gpos <- NA})
+  else
+  dat2 <- within(data.frame(chr=gwas2[chr2], pos=gwas2[pos2], z=gwas2[z2]), {log10p <- -log10p(z); gpos <- NA})
 
-	# make object with cumulative chr start and end positions - to allow plotting of GWASes with different numbers of SNPs without things being misaligned.
-	chrmaxpos <- data.frame("chr"=1:22,"maxpos"=NA,"genomestartpos"=NA)
-	for(i in 1:22){
-		chrmaxpos$maxpos[i] <- max(c(dat1$pos[dat1$chr==i],dat2$pos[dat2$chr==i]),na.rm=TRUE)
-		if(i==1){
-			chrmaxpos$genomestartpos[i] <- 0
-		} else {
-			chrmaxpos$genomestartpos[i] <- chrmaxpos$genomestartpos[i-1] + chrmaxpos$maxpos[i-1]
-		}
-	}
-	# Positions for plotting chr labels in centre of chromosomes
-	chrmaxpos$labpos <- chrmaxpos$genomestartpos + 0.5*chrmaxpos$maxpos
+# make object with cumulative chr start and end positions - to allow plotting of GWASs with different numbers of SNPs without things being misaligned.
+  chrmaxpos <- data.frame(chr=1:22,maxpos=NA,genomestartpos=NA)
+  for(i in 1:22)
+  {
+     chrmaxpos$maxpos[i] <- max(c(dat1$pos[dat1$chr==i],dat2$pos[dat2$chr==i]),na.rm=TRUE)
+     if(i==1) chrmaxpos$genomestartpos[i] <- 0
+     else chrmaxpos$genomestartpos[i] <- chrmaxpos$genomestartpos[i-1] + chrmaxpos$maxpos[i-1]
+  }
 
-	# Get 'genome' positions of each SNP
-	dat1$gpos <- NA
-	dat2$gpos <- NA
+# Positions for plotting chr labels in centre of chromosomes
+  chrmaxpos$labpos <- chrmaxpos$genomestartpos + 0.5*chrmaxpos$maxpos
 
-	for(ch in 1:22){
-		vec <- which(dat1$chr==ch)
-		dat1$gpos[vec] <- dat1$pos[vec]+chrmaxpos$genomestartpos[ch]
-		vec2 <- which(dat2$chr==ch)
-		dat2$gpos[vec2] <- dat2$pos[vec2]+chrmaxpos$genomestartpos[ch]
-	}
+# Get 'genome' positions of each SNP
+  for(ch in 1:22){
+     vec <- which(dat1$chr==ch)
+     dat1$gpos[vec] <- dat1$pos[vec]+chrmaxpos$genomestartpos[ch]
+     vec2 <- which(dat2$chr==ch)
+     dat2$gpos[vec2] <- dat2$pos[vec2]+chrmaxpos$genomestartpos[ch]
+  }
 
-	# Parameters for graph - ylim, vector of SNPs to plot and colours
-	#maxp <- max(-log10(min(dat1$p)),-log10(min(dat2$p))) +2
-	maxp <- max(max(dat1$log10p,na.rm=TRUE),max(dat2$log10p,na.rm=TRUE))
-	plotvec1 <- which(dat1$log10p>=-log10(pcutoff))
-	plotvec2 <- which(dat2$log10p>=-log10(pcutoff))
-	col1 <- rep(topcols,22)[dat1$chr[plotvec1]]
-	col2 <- rep(botcols,22)[dat2$chr[plotvec2]]
+# Parameters for graph - ylim, vector of SNPs to plot and colours
+# maxp <- max(-log10(min(dat1$p)),-log10(min(dat2$p))) +2
+  maxp <- max(max(dat1$log10p,na.rm=TRUE),max(dat2$log10p,na.rm=TRUE))
+  plotvec1 <- which(dat1$log10p>=-log10(pcutoff))
+  plotvec2 <- which(dat2$log10p>=-log10(pcutoff))
+  col1 <- rep(topcols,22)[dat1$chr[plotvec1]]
+  col2 <- rep(botcols,22)[dat2$chr[plotvec2]]
 
-	#Plot graph
-	plot(dat1$gpos[plotvec1], dat1$log10p[plotvec1], pch=20, cex=0.8,col=col1,ylim=c((-maxp-2), (maxp+8)),xaxt="n",yaxt="n",ylab="-log10(P-value)",xlab="",bty="n")
-	points(dat2$gpos[plotvec2],-dat2$log10p[plotvec2], pch=20, cex=0.8,col=col2)
+# Plot graph
+  plot(dat1[plotvec1,c("gpos", "log10p")], pch=20, cex=0.6, col=col1, ylim=c(-maxp-2, maxp+8),
+       xaxt="n",yaxt="n",xlab="",ylab="-log10(P-value)",bty="n")
+  points(dat2$gpos[plotvec2],-dat2$log10p[plotvec2], pch=20, cex=0.6, col=col2)
 
-	# Add significance lines and chromosome numbers
-	abline(h=-log10(sug),col="gray70",lty=2)
-	abline(h=log10(sug),col="gray70",lty=2)
-	abline(h=-log10(sig),col="gray50",lty=2)
-	abline(h=log10(sig),col="gray50",lty=2)
-	#axis(1,at=chrmaxpos$genomestartpos,labels=rep("",22),pos=0)
-	text(chrmaxpos$labpos,0,as.character(1:22),cex=0.8)
-	axisLabNum <- floor(maxp/yAxisInterval) # number of labels needed for each side of axis
-	axisLabAt <-  seq(-yAxisInterval*axisLabNum, yAxisInterval*axisLabNum, yAxisInterval) # position of each axis tick mark
-	axisLabels <- c(seq(axisLabNum*yAxisInterval,0,-yAxisInterval),seq(yAxisInterval,axisLabNum*yAxisInterval,yAxisInterval))
+# Add significance lines and chromosome numbers
+  abline(h=-log10(sug),col="gray70",lty=2)
+  abline(h=log10(sug),col="gray70",lty=2)
+  abline(h=-log10(sig),col="gray50",lty=2)
+  abline(h=log10(sig),col="gray50",lty=2)
+  text(chrmaxpos$labpos,0,as.character(1:22),cex=0.8)
+  axisLabNum <- floor(maxp/yAxisInterval) # number of labels needed for each side of axis
+  axisLabAt <-  seq(-yAxisInterval*axisLabNum, yAxisInterval*axisLabNum, yAxisInterval) # position of each axis tick mark
+  axisLabels <- c(seq(axisLabNum*yAxisInterval,0,-yAxisInterval),seq(yAxisInterval,axisLabNum*yAxisInterval,yAxisInterval))
+  axis(2, at=axisLabAt, labels=axisLabels)
+# axis(1,at=chrmaxpos$genomestartpos,labels=rep("",22),pos=0)
 
-	axis(2, at=axisLabAt, labels=axisLabels)
+# Add titles to each side of the plot
+  mtext(name1,side=3,font=2)
+  mtext(name2,side=1,font=2)
 
-	# Add titles to each side of the plot
-	mtext(name1,side=3,font=2)
-	mtext(name2,side=1,font=2)
-
-	# Returns the position-modifier values for each chromosome - required for labelManhattan function
-	return(chrmaxpos)
+# Returns the position-modifier values for each chromosome - required for labelManhattan function
+  return(chrmaxpos)
 }
