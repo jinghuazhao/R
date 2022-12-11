@@ -52,14 +52,10 @@ miamiplot2 <- function(gwas1,gwas2,name1="GWAS 1",name2="GWAS 2",chr1="chr",chr2
   if(length(which(names(gwas2)==p2))==0)   stop(paste0("Could not find column ",p2," in gwas2"))
 
 # make data frames with just the required cols from the input. Probably v. inefficient but hey.
-  if(is.null(z1))
-  dat1 <- within(data.frame(chr=gwas1[chr1], pos=gwas1[pos1], p=gwas1[p1]), {log10p <- -log10(p); gpos <- NA})
-  else
-  dat1 <- within(data.frame(chr=gwas1[chr1], pos=gwas1[pos1], z=gwas1[z1]), {log10p <- -log10p(z); gpos <- NA})
-  if(is.null(z2))
-  dat2 <- within(data.frame(chr=gwas2[chr2], pos=gwas2[pos2], p=gwas2[p2]), {log10p <- -log10(p); gpos <- NA})
-  else
-  dat2 <- within(data.frame(chr=gwas2[chr2], pos=gwas2[pos2], z=gwas2[z2]), {log10p <- -log10p(z); gpos <- NA})
+  if(is.null(z1)) dat1 <- within(data.frame(chr=gwas1[chr1], pos=gwas1[pos1], p=gwas1[p1]), {log10p <- -log10(p); gpos <- NA})
+  else dat1 <- within(data.frame(chr=gwas1[chr1], pos=gwas1[pos1], z=gwas1[z1]), {log10p <- -log10p(z); gpos <- NA})
+  if(is.null(z2)) dat2 <- within(data.frame(chr=gwas2[chr2], pos=gwas2[pos2], p=gwas2[p2]), {log10p <- -log10(p); gpos <- NA})
+  else dat2 <- within(data.frame(chr=gwas2[chr2], pos=gwas2[pos2], z=gwas2[z2]), {log10p <- -log10p(z); gpos <- NA})
 
 # make object with cumulative chr start and end positions - to allow plotting of GWASs with different numbers of SNPs without things being misaligned.
   chrmaxpos <- data.frame(chr=1:22,maxpos=NA,genomestartpos=NA)
@@ -82,7 +78,7 @@ miamiplot2 <- function(gwas1,gwas2,name1="GWAS 1",name2="GWAS 2",chr1="chr",chr2
   }
 
 # Parameters for graph - ylim, vector of SNPs to plot and colours
-# maxp <- max(-log10(min(dat1$p)),-log10(min(dat2$p))) +2
+# maxp <- max(-log10(min(dat1$p)),-log10(min(dat2$p)))+2
   maxp <- max(max(dat1$log10p,na.rm=TRUE),max(dat2$log10p,na.rm=TRUE))
   plotvec1 <- which(dat1$log10p>=-log10(pcutoff))
   plotvec2 <- which(dat2$log10p>=-log10(pcutoff))
