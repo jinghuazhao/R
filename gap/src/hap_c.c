@@ -1228,14 +1228,14 @@ int hap_write(FILE *outfile, int n_loci, char **names, CODE *coding,
       for (j=0; j<n_loci; j++){
         k = order? order[j]: j;
         if(numeric)
-          sprintf(c,"%d",list[i]->loci[k]);
+          snprintf(c,7,"%d",list[i]->loci[k]);
         else {
 /*
           sprintf(c, "%d", allele_code(list[i]->loci[k], coding[j]));
 */
           l=list[i]->loci[k];
           strcpy(c, l? (l==1? coding[j].one : coding[j].two) : " ");
-          if(coding[j].anum==1) sprintf(c,"%d",list[i]->loci[k]);
+          if(coding[j].anum==1) snprintf(c,7,"%d",list[i]->loci[k]);
         }
       if (tabdel) {
         if(all_snps) fprintf(outfile,"%s\t",c);
@@ -1285,14 +1285,14 @@ int hap_write(FILE *outfile, int n_loci, char **names, CODE *coding,
             for (j=0; j<n_loci; j++) {
               k = order? order[j]: j;
               if(numeric)
-                sprintf(c,"%d",(*h)->loci[k]);
+                snprintf(c,7,"%d",(*h)->loci[k]);
               else {
 /*
                 sprintf(c,"%d",allele_code((*h)->loci[k], coding[j]));
 */
                 l=(*h)->loci[k];
                 strcpy(c,l? (l==1? coding[j].one : coding[j].two) : " ");
-                if(coding[j].anum==1) sprintf(c,"%d",(*h)->loci[k]);
+                if(coding[j].anum==1) snprintf(c,7,"%d",(*h)->loci[k]);
               }
               if (tabdel) {
                 if(all_snps) fprintf(outfile, "%s\t", c);

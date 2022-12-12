@@ -21,7 +21,6 @@
 \alias{getb1star}
 \alias{getPTE}
 \alias{grec2g}
-\alias{hap.control}
 \alias{hap.score.glm}
 \alias{hap.score.podds}
 \alias{hw}
@@ -103,8 +102,6 @@ gc.control is used by gc.em().
 gcode is as a2g.
 
 grec2g is undocumented.
-
-hap.control is used by hap.em().
 
 HapDesign and HapFreqSE both accept a \code{\link[haplo.stats]{haplo.em}} object to derieve a design/dosage
 matrix and standard error of haplotype frequency estimates. The former is appropriate for haplotype trend 
