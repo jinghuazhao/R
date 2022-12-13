@@ -1,7 +1,6 @@
 # R
 
 [![pages-build-deployment](https://github.com/jinghuazhao/R/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/R/actions/workflows/pages/pages-build-deployment)
-[![R-CMD-check](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/R/actions/workflows/R-CMD-check.yaml)
 
 ## A summary
 
