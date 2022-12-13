@@ -1,4 +1,20 @@
-# 6-6-2018 MRC-Epid JHZ
+#' Disease prevalences in cases and controls
+#'
+#' @param model Disease model (one of "multiplicative","additive","recessive","dominant","overdominant").
+#' @param GRR genotype relative risk.
+#' @param p1 disease allele frequency.
+#' @param K disease prevalence in the whole population.
+#'
+#' @details It is used by both tscc() and pbsize2().
+#'
+#' @export
+#' @return A list of two elements,
+#' \describe{
+#' \item{pprime}{prevlence in cases.}
+#' \item{p}{prevalence in controls.}
+#' }
+#'
+#' # 6-6-2018 MRC-Epid JHZ
 
 KCC <- function(model,GRR,p1,K)
 {

@@ -26,7 +26,6 @@
 \alias{hw}
 \alias{invlogit}
 \alias{is.miss}
-\alias{KCC}
 \alias{k}
 \alias{logit}
 \alias{m2plem}
@@ -60,7 +59,6 @@ chr_pos_a1_a2(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 g2a(g)
 g2a.c(g)
 inv_chr_pos_a1_a2(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
-KCC(model,GRR,p1,K)
 sun3d(xyz="INF1.merge.cis.vs.trans",
       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
