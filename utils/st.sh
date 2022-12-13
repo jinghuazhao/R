@@ -2,6 +2,8 @@
 
 for f in gap.html jss.pdf shinygap.html; do cp ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
 
+git add .github
+git commit -m ".github"
 git add .gitignore
 git commit -m "These are ignored"
 git add CGR CGR_1.0-5.tar.gz
