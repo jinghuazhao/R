@@ -87,8 +87,8 @@ hap.control <- function(mb=0,pr=0,po=0.001,to=0.001,th=1,maxit=100,n=0,
 #' @note adapted from hap.
 #' @keywords models
 
-hap<-function(id,data,nloci,loci=rep(2,nloci),names=paste("loci",1:nloci,sep=""),
-              control=hap.control())
+hap <- function(id,data,nloci,loci=rep(2,nloci),names=paste("loci",1:nloci,sep=""),
+                control=hap.control())
 {
   if (control$rv & control$ro) stop("rv and ro flags cannot both be set in hap.control\n");
 # if (mi==0 & (mc | ds | de)) stop("mc, ds, de parameters are only legal if mi is set\n");
