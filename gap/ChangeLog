@@ -3,7 +3,8 @@ Version history of the R genetic analysis package (R/gap)
 Version 1.3-2
 13-12-2022	Simplify miamiplot2 code
 		Replace sprintf with snprintf according to https://developer.r-project.org/blosxom.cgi/R-devel/2022/12/04
-		Document and export hap.control(), KCC() due to new query from Cecil Asa-Atiemo <asaatiemo@gmail.com>
+		Document and export hap.control()
+                Document and export KCC() due to new query from Cecil Asa-Atiemo <asaatiemo@gmail.com>
 
 Version 1.3-1
 20-10-2022	Remove README.md and mask miamiplot2 example
