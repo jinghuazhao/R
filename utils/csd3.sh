@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
 module load gcc/6 texlive
+module load pcre2-10.20-gcc-5.4.0-tcuhtrb
+module load geos-3.6.2-gcc-5.4.0-vejexvy
 
 export version=4.2.2
 export major=$(cut -d. -f1 <<<${version})
@@ -15,7 +17,7 @@ tar xvfz -
 cd R-${version}
 ./configure --prefix=${prefix} \
             --with-pcre1 \
-            --enable-R-shlib CPPFLAGS=-I${prefix}/include LDFLAGS=-L${prefix}/lib
+            --enable-R-shlib CPPFLAGS=-I${prefix}/include LDFLAGS=-L${prefix}/lib LIBS=-ltinfo
 make
 make install
 cd $HOME/bin
@@ -23,8 +25,6 @@ ln -sf  ${prefix}/R-${version}/bin/R
 Rscript -e 'update.packages(checkBuilt=TRUE,ask=FALSE)'
 
 # --- more recent pcre has been installed independently
-
-module load pcre/8.38
 
 function read_parse_version()
 {
