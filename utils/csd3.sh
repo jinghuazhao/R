@@ -14,6 +14,5 @@ cd R-${version}
             --enable-R-shlib CPPFLAGS=-I${gcc6}/include:${HPC_WORK}/include LDFLAGS=-L${gcc6}/lib64:${gcc6}/lib:${HPC_WORK}/lib LIBS=-ltinfo
 make
 make install
-cd $HOME/bin
-ln -sf  ${prefix}/R-${version}/bin/R
+ln -sf  ${prefix}/R-${version}/bin/R $HOME/bin/R
 Rscript -e 'update.packages(checkBuilt=TRUE,ask=FALSE)'
