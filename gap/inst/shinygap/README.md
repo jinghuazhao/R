@@ -80,7 +80,7 @@ $z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
 
 # References
 
-Cai, J., and D. Zeng. 2004. <span>“<a href="https://www.ncbi.nlm.nih.gov/15606422">Sample Size/Power Calculation for Case–Cohort Studies</a>.”</span> Journal Article. <em>Biometrics</em> 60 (4): 1015–24.
+Cai, J., and D. Zeng. 2004. <span>“<a href="https://pubmed.ncbi.nlm.nih.gov/15606422">Sample Size/Power Calculation for Case–Cohort Studies</a>.”</span> Journal Article. <em>Biometrics</em> 60 (4): 1015–24.
 
 Skol, A. D., L. J. Scott, G. R. Abecasis, and M. Boehnke. 2006. <span>“Joint Analysis Is More Efficient Than Replication-Based Analysis for Two-Stage Genome-Wide Association Studies.”</span> <em>Nat Genet</em> 38 (2): 209–13.
 
