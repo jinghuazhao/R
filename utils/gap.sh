@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+module load gcc/6 texlive
+module load pcre2-10.20-gcc-5.4.0-tcuhtrb
+module load geos-3.6.2-gcc-5.4.0-vejexvy
+
 export wd=~/R
 cd ${wd}/gap
 Rscript -e "devtools::document()"
