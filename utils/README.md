@@ -113,8 +113,10 @@ CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-pare
 JAVA_HOME=/usr/lib/jvm/java-11 \
 ./configure
 make
-ln -s ${HOME}/bin/R ${HOME}/bin/R-devel
+ln -sf R-devel/bin/R ${HOME}/bin/R-devel
 ```
+
+A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37.
 
 ### R CMD check
 
@@ -154,3 +156,21 @@ Execution halted
 ```
 
 It turns out package `meta` is missing from the package list, which removes the error after installation.
+
+## html
+
+This is standard, e.g.,
+
+```bash
+pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+```
+
+## R version
+
+R version x.x.x. can be parsed as follows,
+
+```bash
+export version=4.2.2
+IFS=\. read major minor1 minor2 <<<${version}
+echo ${major}.${minor1}.${minor2}
+```

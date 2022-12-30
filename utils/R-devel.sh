@@ -21,13 +21,18 @@ sudo dnf install texinfo-tex
 sudo dnf install texlive-collection-fontsrecommended
 sudo dnf install texlive-collection-latexrecommended
 sudo dnf install tidy
-wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
-tar xvfz -
 sudo dnf install lapack-devel
 sudo dnf install v8-devel
 sudo dnf install xorg-x11-fonts-100dpi
 sudo dnf install xorg-x11-fonts-75dpi
 export R_LIBS=$HOME/R-devel/library
-sudo dnf install https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.3.1.tar.gz | tar xfz -
+wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
+tar xvfz -
+cd R-devel
 ./configure
-
+make
+wget -qO- https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.3.1.tar.gz | \
+tar xfz -
+./configure
+make
+sudo make install
