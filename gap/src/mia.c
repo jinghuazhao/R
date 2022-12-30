@@ -40,7 +40,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
     return;
   }
 
-  sprintf(ofname,"%s",*miafile);
+  snprintf(ofname,MAX_FILENAME_LEN,"%s",*miafile);
   if(!ofname[0]) strcpy(ofname,"mia.out");
   outfile=fopen(ofname,"w");
   if(!outfile) goto open_error;
@@ -51,7 +51,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
   sasfile=NULL;
   if(!*so) /*haplotype order*/
   {
-    sprintf(tpname,"%s.%03d",*hapfile,1);
+    snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",*hapfile,1);
     infile=fopen(tpname,"r");
     if(!infile) goto read_error;
     else {
@@ -92,7 +92,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
     }
     for(i=1;i<=mimp;i++) {
       if(i>1) {
-        sprintf(tpname,"%s.%03d",*hapfile,i);
+        snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",*hapfile,i);
         infile=fopen(tpname,"r");
       }
       if(!infile) goto read_error;
@@ -149,7 +149,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
     for(j=0;j<mimp;j++) fprintf(outfile," %8d",j+1);
     fprintf(outfile,"\n\n");
     if(*sas) {
-      sprintf(tpname,"%s.sas",*hapfile);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.sas",*hapfile);
       sasfile=fopen(tpname,"w");
       if(!sasfile) goto open_error;
       fprintf(sasfile,"/*produced from HAP output by JH Zhao*/\n\n");
@@ -194,7 +194,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
   {
     fprintf(outfile,"Site names\n\n");
     for(i=1;i<=mimp;i++) {
-      sprintf(tpname,"%s.%03d",*assfile,i);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",*assfile,i);
       infile=fopen(tpname,"r");
       if(!infile) goto read_error;
       else {
@@ -240,7 +240,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
     }
     l=0;
     for(i=1;i<=mimp;i++) {
-      sprintf(tpname,"%s.%03d",*assfile,i);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",*assfile,i);
       infile=fopen(tpname,"r");
       if(infile) {
         ignore_char(fgets(line,MAX_LINE_LEN,infile));
@@ -270,7 +270,7 @@ void mia_c(char **hapfile,char **assfile, char **miafile, int *so, int *ns, int 
       } else goto read_error;
     }
     if(*sas) {
-      sprintf(tpname,"%s.sas",*assfile);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.sas",*assfile);
       sasfile=fopen(tpname,"w");
       if(!sasfile) goto open_error;
       fprintf(sasfile,"/*produced from HAP output by JH Zhao*/\n\n");
@@ -396,7 +396,7 @@ int main (int argc, char **argv)
 
   if(!so) /*haplotype order*/
   {
-    sprintf(tpname,"%s.%03d",ifname,1);
+    snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",ifname,1);
     infile=fopen(tpname,"r");
     if(!infile) goto read_error;
     else {
@@ -437,7 +437,7 @@ int main (int argc, char **argv)
     }
     for(i=1;i<=mimp;i++) {
       if(i>1) {
-        sprintf(tpname,"%s.%03d",ifname,i);
+        snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",ifname,i);
         infile=fopen(tpname,"r");
       }
       if(!infile) goto read_error;
@@ -494,7 +494,7 @@ int main (int argc, char **argv)
     for(j=0;j<mimp;j++) fprintf(outfile," %8d",j+1);
     fprintf(outfile,"\n\n");
     if(sas) {
-      sprintf(tpname,"%s.sas",ifname);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.sas",ifname);
       sasfile=fopen(tpname,"w");
       if(!sasfile) goto open_error;
       fprintf(sasfile,"/*produced from HAP output by JH Zhao*/\n\n");
@@ -539,7 +539,7 @@ int main (int argc, char **argv)
   {
     fprintf(outfile,"Site names\n\n");
     for(i=1;i<=mimp;i++) {
-      sprintf(tpname,"%s.%03d",ifname,i);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",ifname,i);
       infile=fopen(tpname,"r");
       if(!infile) goto read_error;
       else {
@@ -585,7 +585,7 @@ int main (int argc, char **argv)
     }
     l=0;
     for(i=1;i<=mimp;i++) {
-      sprintf(tpname,"%s.%03d",ifname,i);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.%03d",ifname,i);
       infile=fopen(tpname,"r");
       if(infile) {
         ignore_char(fgets(line,MAX_LINE_LEN,infile));
@@ -616,7 +616,7 @@ int main (int argc, char **argv)
       } else goto read_error;
     }
     if(sas) {
-      sprintf(tpname,"%s.sas",ifname);
+      snprintf(tpname,MAX_FILENAME_LEN,"%s.sas",ifname);
       sasfile=fopen(tpname,"w");
       if(!sasfile) goto open_error;
       fprintf(sasfile,"/*produced from HAP output by JH Zhao*/\n\n");
