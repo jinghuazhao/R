@@ -13,7 +13,7 @@ export HPC_WORK=/rds/user/jhz22/hpc-work
 export include=${gcc6}/include:${intl}/include:${HPC_WORK}/include
 export ldflags=${gcc6}/lib64:${gcc6}/lib:${intl}/lib:${HPC_WORK}/lib64:${HPC_WORK}/lib
 ./configure --prefix=${prefix} \
-            --with-pcre1 \
+            --with-pcre2 \
             --enable-R-shlib CPPFLAGS=-I${include} LDFLAGS=-L${ldflags} LIBS=-ltinfo LIBS=-lintl
 make
 make install
