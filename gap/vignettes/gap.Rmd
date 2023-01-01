@@ -625,7 +625,7 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 ```
 
 ```{r il12b, echo=FALSE, fig.align="left", fig.cap="Association of IL-12B", fig.height=7, fig.width=8}
-knitr::include_graphics("IL12B.png")
+knitr::include_graphics("IL-12B.png")
 ```
 
 The code below obtains a regional association plot with the `asplot` function,
