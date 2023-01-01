@@ -262,6 +262,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <div id="TOC">
 <ul>
+<li><a href="#an-overview" id="toc-an-overview">An overview</a></li>
 <li><a href="#protein-panels" id="toc-protein-panels">Protein
 panels</a></li>
 <li><a href="#published-data" id="toc-published-data">Published
@@ -273,13 +274,20 @@ data</a></li>
 </ul>
 </div>
 
-<p>Data contained in this package broadly fulls into several categories,
-either in data/ or inst/<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (csd3.sh, docs.sh, EndNote/, Olink/,
-scripts/) directories.</p>
+<div id="an-overview" class="section level2">
+<h2>An overview</h2>
+<p>Collections in in this package are in two subdirectories</p>
+<ol style="list-style-type: decimal">
+<li>data/, which contains R objects.</li>
+<li>inst/, which contains <code>csd3.sh</code>, <code>docs.sh</code>,
+EndNote/, Olink/, scripts/ that will spread into the package’s root
+directory after installation.</li>
+</ol>
+</div>
 <div id="protein-panels" class="section level2">
 <h2>Protein panels</h2>
-<p>The Olink qPCR inflammation panel (<code>inf1</code>) is used in the
-SCALLOP consortium.</p>
+<p>The Olink qPCR inflammation panel (<code>inf1</code>) used in the
+SCALLOP consortium seeds the collection.</p>
 <table style="width:100%;">
 <caption>Table 1. Olink/inflammation panel</caption>
 <colgroup>
@@ -1328,8 +1336,9 @@ receptor (DNER)</td>
 </tr>
 </tbody>
 </table>
-<p>This is later extended to include Olink NGS, Caprion and SWATH-MS
-panels. <code>SomaScanV4.1</code> is directly from SomaLogic.</p>
+<p>This is later extended to include all 12 Olink qPCR panels, Olink
+NGS, Caprion and SWATH-MS panels. <code>SomaScanV4.1</code> is directly
+from SomaLogic.</p>
 </div>
 <div id="published-data" class="section level2">
 <h2>Published data</h2>
@@ -1343,9 +1352,8 @@ panels. <code>SomaScanV4.1</code> is directly from SomaLogic.</p>
 </div>
 <div id="scripts" class="section level2">
 <h2>Scripts</h2>
-<p>Files <code>csd3.sh</code> and <code>docs.sh</code> contain statement
-for package handling under Cambridge University’s CSD3 system and
-GitHub, separately.</p>
+<p>Files <code>csd3.sh</code> and <code>docs.sh</code> handle package
+under Cambridge University’s CSD3 system and GitHub, respectively.</p>
 <p>This is with the <code>scripts/</code> directory, showing how data
 are generated and can be extended.</p>
 <p>Directory <code>Olink/</code> contains an analysis involving COVID-19
@@ -1368,13 +1376,6 @@ Plasma Proteome.”</span> Journal Article. <em>Nature</em> 558 (7708):
 73–79. <a href="https://doi.org/10.1038/s41586-018-0175-2">https://doi.org/10.1038/s41586-018-0175-2</a>.
 </div>
 </div>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
-<ol>
-<li id="fn1"><p>As usual, entries in this directory will be installed
-separately.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 
 
