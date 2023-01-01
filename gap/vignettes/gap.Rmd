@@ -624,7 +624,7 @@ mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
 )
 ```
 
-```{r il12b, echo=FALSE, fig.align="left", fig.cap="Association of IL-12B", fig.height=6, fig.width=6}
+```{r il12b, echo=FALSE, fig.align="left", fig.cap="Association of IL-12B", fig.height=5, fig.width=5}
 knitr::include_graphics("IL-12B.png")
 ```
 
