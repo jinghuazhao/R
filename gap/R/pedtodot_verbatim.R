@@ -18,9 +18,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' # the pedigree in pedtodot as p2
-#'   f <- read.table("p2")
-#'   pedtodot_verbatim(f)
+#' # pedigree p3 in pedtodot
+#'   pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
 #' }
 #' @note Adapted from Bash/awk script by David Duffy
 
