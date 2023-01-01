@@ -375,19 +375,14 @@ data</a></li>
 </ul>
 </div>
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;knitr&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> pkgs) <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">grep</span>(<span class="fu">paste</span>(<span class="st">&quot;^package:&quot;</span>, p, <span class="st">&quot;$&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), <span class="fu">search</span>())) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(p)) <span class="fu">warning</span>(<span class="fu">paste0</span>(<span class="st">&quot;This vignette needs package `&quot;</span>, p, <span class="st">&quot;&#39;; please install&quot;</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">suppressMessages</span>(<span class="fu">lapply</span>(pkgs, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)))</span></code></pre></div>
 <p>Data contained in this package broadly fulls into several
 categories.</p>
 <div id="protein-panels" class="section level2">
 <h2>Protein panels</h2>
 <p>The Olink qPCR panel, especially the inflammation panel
 (<code>inf1</code>) as used in the SCALLOP consortium.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">200</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(pQTLdata<span class="sc">::</span>inf1,<span class="at">caption=</span><span class="st">&quot;Table 1. Olink/inflammation panel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">200</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(pQTLdata<span class="sc">::</span>inf1,<span class="at">caption=</span><span class="st">&quot;Table 1. Olink/inflammation panel&quot;</span>)</span></code></pre></div>
 <table style="width:100%;">
 <caption>Table 1. Olink/inflammation panel</caption>
 <colgroup>
