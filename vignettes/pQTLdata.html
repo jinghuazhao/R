@@ -276,13 +276,16 @@ data</a></li>
 
 <div id="an-overview" class="section level2">
 <h2>An overview</h2>
-<p>Collections in in this package are in two subdirectories</p>
+<p>The collections are in two locations:</p>
 <ol style="list-style-type: decimal">
-<li>data/, which contains R objects.</li>
-<li>inst/, which contains <code>csd3.sh</code>, <code>docs.sh</code>,
-EndNote/, Olink/, scripts/ that will spread into the package’s root
-directory after installation.</li>
+<li><strong><code>data/</code></strong>. R datasets.</li>
+<li><strong><code>inst/</code></strong>. <code>csd3.sh</code>,
+<code>docs.sh</code>, <code>EndNote/</code>, <code>Olink/</code>,
+<code>scripts/</code> which spread into the package’s root directory
+after installation.</li>
 </ol>
+<p>as a result of several years of proteomic analysis to faciliate basic
+queries and future extensions.</p>
 </div>
 <div id="protein-panels" class="section level2">
 <h2>Protein panels</h2>
@@ -1336,33 +1339,39 @@ receptor (DNER)</td>
 </tr>
 </tbody>
 </table>
-<p>This is later extended to include all 12 Olink qPCR panels, Olink
-NGS, Caprion and SWATH-MS panels. <code>SomaScanV4.1</code> is directly
-from SomaLogic.</p>
+<p>followed by inclusion of all 12 Olink qPCR panels, Olink NGS, Caprion
+and SWATH-MS panels. <code>SomaScanV4.1</code> is directly from
+SomaLogic.</p>
 </div>
 <div id="published-data" class="section level2">
 <h2>Published data</h2>
-<p>This is notably the analysis of INTERVAL data as reported by <span class="citation">Sun et al. (2018)</span>, which includes the panel
-<code>SomaLogic160410</code>, supplementary tables 4, 6, 18.</p>
+<p>This associates with the analysis of INTERVAL[^interval] data as
+reported by <span class="citation">Sun et al. (2018)</span>, which
+includes the panel <code>SomaLogic160410</code>, supplementary tables 4,
+6, 18.</p>
 </div>
 <div id="reference-data" class="section level2">
 <h2>Reference data</h2>
-<p>These include <code>biomaRt</code>, <code>hg19</code> and
-<code>hg19Tables</code> from BioMART and UCSC.</p>
+<p>Extractions <code>biomaRt</code>, <code>hg19</code> and
+<code>hg19Tables</code> are based on ENSEMBL BioMart, <a href="https://www.ensembl.org/index.html">https://www.ensembl.org/index.html</a>
+and UCSC, <a href="https://genome.ucsc.edu/">https://genome.ucsc.edu/</a>.</p>
 </div>
 <div id="scripts" class="section level2">
 <h2>Scripts</h2>
-<p>Files <code>csd3.sh</code> and <code>docs.sh</code> handle package
-under Cambridge University’s CSD3 system and GitHub, respectively.</p>
-<p>This is with the <code>scripts/</code> directory, showing how data
-are generated and can be extended.</p>
-<p>Directory <code>Olink/</code> contains an analysis involving COVID-19
-data.</p>
+<p>An analysis involving COVID-19 data is in <code>Olink/</code>
+directory , while the <code>scripts/</code> directory records data
+generation which potentially can be extended.</p>
+<p>Specifically, <code>csd3.sh</code> handles package under Cambridge
+Service for Data Driven Discovery (CSD3) system, and
+<code>docs.sh</code> operates with GitHub, <a href="https://github.com/">https://github.com/</a>.</p>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
-<p>The collection with EndNote/ includes references in <span class="citation">Sun et al. (2018)</span> and <span class="citation">Suhre, McCarthy, and Schwenk (2020)</span> are EndNote
-libraries.</p>
+<p>The <code>EndNote/</code> directory includes references in <span class="citation">Sun et al. (2018)</span> and <span class="citation">Suhre, McCarthy, and Schwenk (2020)</span> in format of
+EndNote, <a href="https://endnote.com/">https://endnote.com/</a>.</p>
+<p>:[^interval]:</p>
+<pre><code>The INTERVAL study
+See [http://www.donorhealth-btru.nihr.ac.uk/studies/interval-study/](http://www.donorhealth-btru.nihr.ac.uk/studies/interval-study/), </code></pre>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-suhre20" class="csl-entry">
 Suhre, K., M. I. McCarthy, and J. M. Schwenk. 2020. <span>“Genetics
