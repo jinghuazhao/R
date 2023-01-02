@@ -666,7 +666,7 @@ It is possible to draw many forest plots given a list of variants; an example is
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=12, results="hide"}
 data(OPG,package="gap.datasets")
-METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=8.75,height=5)
+METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=6.75,height=5)
 ```
 
 # Significance level for z ~ Normal(0,1)
@@ -994,7 +994,7 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
 ```
 
-```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
+```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=6, fig.width=8, results="hide"}
 
 # default output
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
