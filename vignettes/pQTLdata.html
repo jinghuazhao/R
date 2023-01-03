@@ -270,14 +270,15 @@ data</a></li>
 <li><a href="#reference-data" id="toc-reference-data">Reference
 data</a></li>
 <li><a href="#scripts" id="toc-scripts">Scripts</a></li>
+<li><a href="#urls" id="toc-urls">URLs</a></li>
 <li><a href="#references" id="toc-references">References</a></li>
 </ul>
 </div>
 
 <div id="an-overview" class="section level2">
 <h2>An overview</h2>
-<p>As used in several years of proteomic analysis, the collections are
-in two locations:</p>
+<p>As used in several years of proteomic analysis and for future
+extensions, the collections are in two locations:</p>
 <ol style="list-style-type: decimal">
 <li><strong><code>data/</code></strong>. R datasets.</li>
 <li><strong><code>inst/</code></strong>. <code>EndNote/</code>,
@@ -285,14 +286,11 @@ in two locations:</p>
 <code>docs.sh</code> which spread into the package’s root directory
 after installation.</li>
 </ol>
-<p>for future extensions.</p>
 </div>
 <div id="protein-panels" class="section level2">
 <h2>Protein panels</h2>
-<p>The Olink (<a href="https://olink.com/">https://olink.com/</a>) qPCR
-inflammation panel (<code>inf1</code>) used in the SCALLOP consortium
-(<a href="http://www.scallop-consortium.com/">http://www.scallop-consortium.com/</a>)
-seeds the collection.</p>
+<p>The Olink qPCR inflammation panel (<code>inf1</code>) used in the
+SCALLOP consortium seeds the collection.</p>
 <table style="width:100%;">
 <caption>Table 1. Olink/inflammation panel</caption>
 <colgroup>
@@ -1343,19 +1341,18 @@ receptor (DNER)</td>
 </table>
 <p>followed by inclusion of all 12 Olink qPCR panels, Olink NGS, Caprion
 and SWATH-MS panels. <code>SomaScanV4.1</code> is directly from
-SomaLogic, <a href="https://somalogic.com/">https://somalogic.com/</a>.</p>
+SomaLogic.</p>
 </div>
 <div id="published-data" class="section level2">
 <h2>Published data</h2>
-<p>This associates with the analysis of INTERVAL<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> data as reported by
+<p>This associates with the analysis of INTERVAL data as reported by
 <span class="citation">Sun et al. (2018)</span>, which includes the
 panel <code>SomaLogic160410</code>, supplementary tables 4, 6, 18.</p>
 </div>
 <div id="reference-data" class="section level2">
 <h2>Reference data</h2>
 <p>Extractions <code>biomaRt</code>, <code>hg19</code> and
-<code>hg19Tables</code> are based on ENSEMBL BioMart, <a href="https://www.ensembl.org/index.html">https://www.ensembl.org/index.html</a>
-and UCSC, <a href="https://genome.ucsc.edu/">https://genome.ucsc.edu/</a>.</p>
+<code>hg19Tables</code> are based on ENSEMBL BioMart and UCSC.</p>
 </div>
 <div id="scripts" class="section level2">
 <h2>Scripts</h2>
@@ -1364,12 +1361,27 @@ directory , while the <code>scripts/</code> directory records data
 generation which potentially can be extended.</p>
 <p>Specifically, <code>csd3.sh</code> handles package under Cambridge
 Service for Data Driven Discovery (CSD3) system, and
-<code>docs.sh</code> operates with GitHub, <a href="https://github.com/">https://github.com/</a>.</p>
+<code>docs.sh</code> operates with GitHub.</p>
+</div>
+<div id="urls" class="section level2">
+<h2>URLs</h2>
+<ul>
+<li>Cell Carta, <a href="https://cellcarta.com/">https://cellcarta.com/</a></li>
+<li>EndNote, <a href="https://endnote.com/">https://endnote.com/</a></li>
+<li>ENSEMBL BioMart, <a href="https://www.ensembl.org/index.html">https://www.ensembl.org/index.html</a></li>
+<li>GitHub, <a href="https://github.com/">https://github.com/</a></li>
+<li>INTERVAL study, <a href="http://www.donorhealth-btru.nihr.ac.uk/studies/interval-study/">http://www.donorhealth-btru.nihr.ac.uk/studies/interval-study/</a></li>
+<li>Olink, <a href="https://olink.com/">https://olink.com/</a></li>
+<li>SCALLOP consortium, <a href="http://www.scallop-consortium.com/">http://www.scallop-consortium.com/</a></li>
+<li>SomaLogic, <a href="https://somalogic.com/">https://somalogic.com/</a></li>
+<li>SWATH-MS, <a href="https://www.creative-proteomics.com/ngpro/swath-ms.html">https://www.creative-proteomics.com/ngpro/swath-ms.html</a></li>
+<li>UCSC, <a href="https://genome.ucsc.edu/">https://genome.ucsc.edu/</a></li>
+</ul>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
 <p>The <code>EndNote/</code> directory includes references in <span class="citation">Sun et al. (2018)</span> and <span class="citation">Suhre, McCarthy, and Schwenk (2020)</span> formatted in
-EndNote, <a href="https://endnote.com/">https://endnote.com/</a>.</p>
+EndNote.</p>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-suhre20" class="csl-entry">
 Suhre, K., M. I. McCarthy, and J. M. Schwenk. 2020. <span>“Genetics
@@ -1383,13 +1395,6 @@ Plasma Proteome.”</span> Journal Article. <em>Nature</em> 558 (7708):
 73–79. <a href="https://doi.org/10.1038/s41586-018-0175-2">https://doi.org/10.1038/s41586-018-0175-2</a>.
 </div>
 </div>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
-<ol>
-<li id="fn1"><h2 id="the-interval-study">The INTERVAL study</h2>
-<p>See <a href="http://www.donorhealth-btru.nihr.ac.uk/studies/interval-study/">http://www.donorhealth-btru.nihr.ac.uk/studies/interval-study/</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 
 
