@@ -9,7 +9,7 @@
 #' @param rsid SNPID-rsid mapping file.
 #' @param package style of plot as in meta, rmeta or forestplot.
 #' @param split when TRUE, individual prot-MarkerName.pdf will be generated.
-#' @param ... options to use for the individual pdf device.
+#' @param ... Additional arguments to meta::forest.
 #'
 #' @details
 #' The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
@@ -38,7 +38,7 @@
 #' \dontrun{
 #'  require(gap.datasets)
 #'  data(OPG)
-#'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
+#'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2)
 #' }
 #'
 #' @author Jing Hua Zhao
@@ -83,12 +83,12 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
        print(cbind(A1,A2,EFFECT_ALLELE,REFERENCE_ALLELE,a1,a2,format(BETA,digits=3),format(BETA*c,digits=3)))
        BETA <- BETA * c
        title <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
-       if (split) pdf(paste0(p,"-",m,".pdf"),...)
+       if (split) pdf(paste0(p,"-",m,".pdf"))
        if (package=="meta")
        {
          requireNamespace("meta")
          mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,method.tau.ci="")
-         meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"))
+         meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
          requireNamespace("grid")
          grid::grid.text(title,0.5,0.9)
          with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))

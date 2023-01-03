@@ -17,7 +17,7 @@ METAL_forestplot(tbl, all, rsid, package = "meta", split = FALSE, ...)
 
 \item{split}{when TRUE, individual prot-MarkerName.pdf will be generated.}
 
-\item{...}{options to use for the individual pdf device.}
+\item{...}{Additional arguments to meta::forest.}
 }
 \value{
 It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
@@ -42,7 +42,7 @@ WEIGHTLABEL N
 \dontrun{
  require(gap.datasets)
  data(OPG)
- METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
+ METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2)
 }
 
 }
