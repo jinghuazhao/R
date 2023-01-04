@@ -364,9 +364,9 @@ sum(abs(z))
 
 We see that in the second case, the result agrees with **kinship2**.
 
-## Study design
+# Study design
 
-### Family-based design
+## Family-based design
 
 It now has an experimental work via Shiny from `inst/shinygap`.
 
@@ -414,7 +414,7 @@ data.frame(fbsize(g,p))
 table1
 ```
 
-### Population-based design
+## Population-based design
 
 The example involving population-based design is as follows,
 
@@ -449,7 +449,7 @@ table5 <- read.table(outfile,header=TRUE,sep="\t")
 table5
 ```
 
-### Case-cohort design
+## Case-cohort design
 
 For case-cohort design, we obtain results for ARIC and EPIC studies.
 
@@ -503,11 +503,11 @@ read.table(outfile,header=TRUE,sep="\t")
 unlink(outfile)
 ```
 
-## Graphics
+# Graphics
 
 I now include some figures from the documentation that may be of interest.
 
-### Genome-wide association
+## Genome-wide association
 
 The following code is used to obtain a Q-Q plot via `qqunif` function,
 
@@ -643,7 +643,7 @@ the option open for generating such plots on the fly and locally.
 
 Note that all these can serve as templates to customize features of your own.
 
-### Copy number variation
+## Copy number variation
 
 A plot of copy number variation (CNV) is shown here,
 
@@ -651,7 +651,7 @@ A plot of copy number variation (CNV) is shown here,
 cnvplot(gap.datasets::cnv)
 ```
 
-### Effect size plot
+## Effect size plot
 
 The code below obtains an effect size plot via the `ESplot` function.
 
@@ -663,7 +663,7 @@ rs12075 <- data.frame(id=c("CCL2","CCL7","CCL8","CCL11","CCL13","CXCL6","Monocyt
 ESplot(rs12075)
 ```
 
-### Forest plot
+## Forest plot
 
 It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
 
