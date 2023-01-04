@@ -3,6 +3,7 @@ Version history of the R genetic analysis package (R/gap)
 Version 1.3-2
 04-01-2023	Simplify miamiplot2 code
 		Rename `gsmr` to `mr` with the test data reading from the console
+		Move `...` from pdf() to meta() in METAL_forestplot()
 		gap.Rmd now uses `convert -resize 25% IL.12B-mhtplot.trunc.png IL-12B.png`
 		Replace sprintf with snprintf according to https://developer.r-project.org/blosxom.cgi/R-devel/2022/12/04
 		Document and export hap.control()

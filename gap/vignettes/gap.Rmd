@@ -1019,7 +1019,7 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
 The function `mr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
 ```{r mr, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
-mrdat <- scan(nlines=9, what=list("",0,0,0,0,0,0))
+mrdat <- '
  rs188743906  0.6804   0.1104  0.00177 0.01660        NA        NA
    rs2289779 -0.0788   0.0134  0.00104 0.00261 -0.007543 0.0092258
  rs117804300 -0.2281   0.0390 -0.00392 0.00855  0.109372 0.0362219
@@ -1029,41 +1029,39 @@ mrdat <- scan(nlines=9, what=list("",0,0,0,0,0,0))
     rs176690 -0.0973   0.0142  0.00293 0.00306 -0.000007 0.0107781
  rs147278971 -0.2336   0.0378 -0.01240 0.00792  0.079873 0.0397491
   rs11562629  0.1155   0.0181  0.00960 0.00378 -0.010040 0.0151460
-
-mrdat <- setNames(as.data.frame(mrdat), c("SNP", "b.LIF.R", "SE.LIF.R", "b.FEV1", "SE.FEV1", "b.CAD", "SE.CAD"))
+'
+mrdat <- setNames(as.data.frame(scan(file=textConnection(mrdat), what=list("",0,0,0,0,0,0))), 
+         c("SNP", "b.LIF.R", "SE.LIF.R", "b.FEV1", "SE.FEV1", "b.CAD", "SE.CAD"))
 knitr::kable(mrdat,caption="Table 2. LIF.R and CAD/FEV1")
-res <- gsmr(mrdat, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
-f <- "INF1_CAD-FEV1.csv"
-write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
-top <- function(r)
-       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
-r <- read.csv(f,as.is=TRUE)
-p <- top(r)
-rp <- t(data.frame(r[-1],p))
-colnames(rp) <- r[[1]]
-knitr::kable(format(rp,digits=3),caption="Table 3. LIFR variant rs635634 and CAD/FEV1",align="r")
-unlink(f)
+res <- mr(mrdat, "LIF.R", c("CAD","FEV1"), other_plots=TRUE)
+s <- res$r[-1,]
+colnames(s) <- res$r[1,]
+r <- matrix(as.numeric(s[,-1]),nrow(s),dimnames=list(res$r[-1,1],res$r[1,-1]))
+p <- sapply(c("IVW","EGGER","WM","PWM"), function(x)
+     format(2*pnorm(-abs(r[,paste0("b",x)]/r[,paste0("seb",x)])),digits=3,scientific=TRUE))
+rp <- t(data.frame(round(r,3),p))
+knitr::kable(rp, align="r", caption="Table 3. LIFR variant rs635634 and CAD/FEV1")
 ```
 
 The nearest reference for the implemented approaches is Ligthart et al @ligthart18.
 
 We would be of interest to contrast their effect sizes as well,
 
-```{r gsmr2, fig.cap="Combined forest plots for LIF.R, FEV1 and CAD", fig.height=7, fig.width=7}
-mr_names <- names(mr)
-LIF.R <- cbind(mr[grepl("SNP|LIF.R",mr_names)],trait="LIF.R"); names(LIF.R) <- c("SNP","b","se","trait")
-FEV1 <- cbind(mr[grepl("SNP|FEV1",mr_names)],trait="FEV1"); names(FEV1) <- c("SNP","b","se","trait")
-CAD <- cbind(mr[grepl("SNP|CAD",mr_names)],trait="CAD"); names(CAD) <- c("SNP","b","se","trait")
-mr2 <- within(rbind(LIF.R,FEV1,CAD),{y=b})
+```{r mr2, fig.cap="Combined forest plots for LIF.R, FEV1 and CAD", fig.height=7, fig.width=7}
+mr_names <- names(mrdat)
+LIF.R <- cbind(mrdat[grepl("SNP|LIF.R",mr_names)],trait="LIF.R"); names(LIF.R) <- c("SNP","b","se","trait")
+FEV1 <- cbind(mrdat[grepl("SNP|FEV1",mr_names)],trait="FEV1"); names(FEV1) <- c("SNP","b","se","trait")
+CAD <- cbind(mrdat[grepl("SNP|CAD",mr_names)],trait="CAD"); names(CAD) <- c("SNP","b","se","trait")
+mrdat2 <- within(rbind(LIF.R,FEV1,CAD),{y=b})
 library(ggplot2)
-p <- ggplot(mr2,aes(y = SNP, x = y))+
-theme_bw()+
-geom_point()+
-facet_wrap(~trait,ncol=3,scales="free_x")+
-geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = SNP))+
-geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
-xlab("Effect size")+
-ylab("")
+p <- ggplot2::ggplot(mrdat2,aes(y = SNP, x = y))+
+     ggplot2::theme_bw()+
+     ggplot2::geom_point()+
+     ggplot2::facet_wrap(~ trait, ncol=3, scales="free_x")+
+     ggplot2::geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = SNP))+
+     ggplot2::geom_vline(lty=2, ggplot2::aes(xintercept=0), colour = 'red')+
+     ggplot2::xlab("Effect size")+
+     ggplot2::ylab("")
 p
 ```
 

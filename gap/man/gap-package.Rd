@@ -47,7 +47,7 @@ gcp               \tab      Permutation tests using GENECOUNTING\cr
 gc.lambda         \tab      Estimation of the genomic control inflation statistic (lambda)\cr
 genecounting      \tab      Gene counting for haplotype analysis\cr
 gif               \tab      Kinship coefficient and genetic index of familiality\cr
-gsmr              \tab      Mendelian randomization analysis\cr
+mr                \tab      Mendelian randomization analysis\cr
 hap               \tab      Haplotype reconstruction\cr
 hap.em            \tab      Gene counting for haplotype analysis\cr
 hap.score         \tab      Score statistics for association of traits with haplotypes\cr

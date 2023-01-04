@@ -13,7 +13,7 @@ gcp                     Permutation tests using GENECOUNTING
 gc.lambda               Estionmation of the genomic control inflation statistic (lambda)
 genecounting            Gene counting for haplotype analysis
 gif                     Kinship coefficient and genetic index of familiality
-gsmr                    Mendelian randomization analysis
+mr                      Mendelian randomization analysis
 hap                     Haplotype reconstruction
 hap.em                  Gene counting for haplotype analysis
 hap.score               Score statistics for association of traits with haplotypes
