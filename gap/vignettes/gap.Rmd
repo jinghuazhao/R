@@ -816,17 +816,6 @@ the y-axis allows for truncation leaving out a given range to highlight the larg
 
 A plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-analysis/BMI/](https://jinghuazhao.github.io/Omics-analysis/BMI/).
 
-# Fine-mapping
-
-The function `cs` obtains credible set.
-```r
-# zcat METAL/4E.BP1-1.tbl.gz | \
-# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
-tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
-z <- cs(tbl)
-l <- cs(tbl,log_p="logp")
-```
-
 # Linear regression
 
 Several functions related to linear regression are detailed here.
@@ -968,6 +957,17 @@ get_sdy(0.6396966,23991,0.04490488,0.009504684)
 ```
 
 and indeed the eQTLGen data were standardized.
+
+# Fine-mapping
+
+The function `cs` obtains credible set.
+```r
+# zcat METAL/4E.BP1-1.tbl.gz | \
+# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
+z <- cs(tbl)
+l <- cs(tbl,log_p="logp")
+```
 
 # Polygenic modeling
 
