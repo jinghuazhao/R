@@ -5,14 +5,14 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
-fontsize: 12pt
+fontsize: 11pt
 lot: true
 lof: true
 author:
   - Department of Public Health and Primary Care
   - University of Cambridge
   - Cambridge, UK
-  - https://jinghuazhao.github.io/.
+  - https://jinghuazhao.github.io/
 date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
@@ -66,7 +66,7 @@ initiative has been made in the **pQTLtools** package.
 
 Several other updates are worth mentioning: 
 
-1.  use of markdown from the noweb/Sweave format which
+1.  use of markdown and then bookdown from the noweb/Sweave format which
     allows for Citation Style Language (CSL) (https://citationstyles.org/)
     to format the bibliography.
 
@@ -299,7 +299,7 @@ p3 <- data.frame(pid=10081,p2)
 
 ```{r pedtodot, fig.cap="An example pedigree", fig.height=8, fig.width=7}
 library(gap)
-print(p3,row.names=FALSE)
+knitr::kable(p3,caption="An example pedigree")
 library(DOT)
 # one can see the diagram in RStudio
 pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
@@ -412,7 +412,8 @@ unlink(outfile)
 g <- 4.5
 p <- 0.15
 alz <- data.frame(fbsize(g,p))
-knitr::kable(list(table1,alz),caption="Table 1. Power/Sample size of family-based designs (Alzheimer's disease)")
+knitr::kable(table1,caption="Power/Sample size of family-based designs")
+knitr::kable(alz,caption="Power/Sample size of study on Alzheimer's disease")
 ```
 
 ## Population-based design
@@ -447,7 +448,7 @@ for(i in 1:dim(models)[1])
    cat("\n",file=outfile,append=TRUE)
 } 
 table5 <- read.table(outfile,header=TRUE,sep="\t")
-knitr::kable(table5,caption="Table 2. Sample size of population-based design")
+knitr::kable(table5,caption="Sample size of population-based design")
 ```
 
 ## Case-cohort design
@@ -500,7 +501,7 @@ for(pD in s_pD)
       }
    }
 }
-knitr::kable(read.table(outfile,header=TRUE,sep="\t"),caption="Table 3. Sample size of case-cohort designs")
+knitr::kable(read.table(outfile,header=TRUE,sep="\t"),caption="Sample size of case-cohort designs")
 unlink(outfile)
 ```
 
@@ -801,7 +802,7 @@ for (z in c(5,10,30,40,50,100,500,1000,2000,3000,5000))
   v <- rbind(v,vi)
 }
 names(v) <- c("z","P","log(P)","log10(P)")
-knitr::kable(v,caption="Table 4. z,P,log(P) and log10(P)")
+knitr::kable(v,caption="z,P,log(P) and log10(P)")
 ```
 
 ## Application
@@ -996,7 +997,7 @@ mrdat <- '
 '
 mrdat <- setNames(as.data.frame(scan(file=textConnection(mrdat), what=list("",0,0,0,0,0,0))), 
          c("SNP", "b.LIF.R", "SE.LIF.R", "b.FEV1", "SE.FEV1", "b.CAD", "SE.CAD"))
-knitr::kable(mrdat,caption="Table 5. LIF-R and CAD/FEV1")
+knitr::kable(mrdat,caption="LIF-R and CAD/FEV1")
 res <- mr(mrdat, "LIF.R", c("CAD","FEV1"), other_plots=TRUE)
 s <- res$r[-1,]
 colnames(s) <- res$r[1,]
@@ -1004,7 +1005,7 @@ r <- matrix(as.numeric(s[,-1]),nrow(s),dimnames=list(res$r[-1,1],res$r[1,-1]))
 p <- sapply(c("IVW","EGGER","WM","PWM"), function(x)
      format(2*pnorm(-abs(r[,paste0("b",x)]/r[,paste0("seb",x)])),digits=3,scientific=TRUE))
 rp <- t(data.frame(round(r,3),p))
-knitr::kable(rp, align="r", caption="Table 3. LIFR variant rs635634 and CAD/FEV1")
+knitr::kable(rp, align="r", caption="LIFR variant rs635634 and CAD/FEV1")
 ```
 
 The nearest reference for the implemented approaches is Ligthart et al @ligthart18.
