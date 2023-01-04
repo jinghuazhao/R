@@ -3,7 +3,7 @@ title: "Genetic Analysis Package"
 output:
   bookdown::html_document2:
     toc: true
-    toc_float: false
+    toc_float: true
 author:
   - Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/.
 date: '`r Sys.Date()`'
