@@ -41,7 +41,6 @@
 #' gc.lambda         \tab      Estimation of the genomic control inflation statistic (lambda)\cr
 #' genecounting      \tab      Gene counting for haplotype analysis\cr
 #' gif               \tab      Kinship coefficient and genetic index of familiality\cr
-#' mr                \tab      Mendelian randomization analysis\cr
 #' hap               \tab      Haplotype reconstruction\cr
 #' hap.em            \tab      Gene counting for haplotype analysis\cr
 #' hap.score         \tab      Score statistics for association of traits with haplotypes\cr
@@ -63,6 +62,7 @@
 #' masize            \tab      Sample size calculation for mediation analysis\cr
 #' MCMCgrm           \tab	    Mixed modeling with genetic relationship matrices\cr
 #' mia               \tab      multiple imputation analysis for hap\cr
+#' mr                \tab      Mendelian randomization analysis\cr
 #' mtdt              \tab      Transmission/disequilibrium test of a multiallelic marker\cr
 #' mtdt2             \tab      Transmission/disequilibrium test of a multiallelic marker\cr
 #'                   \tab      by Bradley-Terry model\cr

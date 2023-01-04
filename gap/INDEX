@@ -13,7 +13,6 @@ gcp                     Permutation tests using GENECOUNTING
 gc.lambda               Estionmation of the genomic control inflation statistic (lambda)
 genecounting            Gene counting for haplotype analysis
 gif                     Kinship coefficient and genetic index of familiality
-mr                      Mendelian randomization analysis
 hap                     Haplotype reconstruction
 hap.em                  Gene counting for haplotype analysis
 hap.score               Score statistics for association of traits with haplotypes
@@ -36,6 +35,7 @@ logp                    log(p) for a normal deviate
 masize                  Sample size calculation for mediation analysis
 MCMCgrm                 Mixed modeling with genetic relationship matrices
 mia                     multiple imputation analysis for hap
+mr                      Mendelian randomization analysis
 mtdt                    Transmission/disequilibrium test of a multiallelic marker
 mtdt2                   Transmission/disequilibrium test of a multiallelic marker
                         by Bradley-Terry model

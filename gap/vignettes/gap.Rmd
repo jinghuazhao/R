@@ -97,7 +97,6 @@ gc.lambda         |      Estionmation of the genomic control inflation statistic
 genecounting      |      Gene counting for haplotype analysis
 gif               |      Kinship coefficient and genetic index of familiality
 MCMCgrm           |      Mixed modeling with genetic relationship matrices
-mr                |      Mendelian randomization analysis
 hap               |      Haplotype reconstruction
 hap.em            |      Gene counting for haplotype analysis
 hap.score         |      Score statistics for association of traits with haplotypes
@@ -116,6 +115,7 @@ log10pvalue       |      log10(p) for a P value including its scientific format
 logp              |      log(p) for a normal deviate
 masize            |      Sample size calculation for mediation analysis
 mia               |      multiple imputation analysis for hap
+mr                |      Mendelian randomization analysis
 mtdt              |      Transmission/disequilibrium test of a multiallelic marker
 mtdt2             |      Transmission/disequilibrium test of a multiallelic marker
 &nbsp;            |      by Bradley-Terry model
@@ -971,7 +971,7 @@ Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
 
 # Mendelian randomization
 
-The function `mr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
+The function `mr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data. The following example is from analysis of a real data on LIF-R protein and CVD/FEV1.
 
 ```{r mr, echo=FALSE, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
 mrdat <- '
