@@ -82,7 +82,7 @@ e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
 
 # Implementation
 
-The following list shows the data and functions currently available.
+The following list shows the functions currently available.
 
 Name              |      Description
 ------------------|------------------------------------------------------------------
@@ -251,7 +251,7 @@ nevertheless you will still be able to compile and use otherwise from **gap.exam
 
 # Demos
 
-This has been a template for self-contained examples:
+This has been a template for adding self-contained examples:
 
 ```r
 library(gap)
@@ -260,11 +260,7 @@ demo(gap)
 
 See examples of haplotype analysis there -- additional examples are given below.
 
-# Examples
-
-I would like to highlight `pedtodot`, `pbsize`, `fbsize` and `ccsize` functions
-used for pedigree drawing and power/sample calculations in a genome-wide asssociatoin study as
-reported @zhao07.
+# Pedigrees and kinship
 
 ## Pedigree drawing
 
@@ -318,7 +314,7 @@ always precede their children. In this regard, package **pedigree** can be
 used, and package **kinship2** can be used to produce pedigree diagram as with
 kinship matrix.
 
-### Pedigree diagram
+## Pedigree diagram
 
 The pedigree diagram is as follows,
 
@@ -330,7 +326,7 @@ ped <- with(lukas,pedigree(id,father,mother,sex))
 plot(ped,cex=0.4)
 ```
 
-### Kinship calculation
+## Kinship calculation
 
 We then turn to the kinship calculation.
 
@@ -364,11 +360,15 @@ sum(abs(z))
 
 We see that in the second case, the result agrees with **kinship2**.
 
-# Study design
+# Study designs
 
-## Family-based design
+I would like to highlight `fbsize`, `pbsize` and `ccsize` functions used
+for power/sample calculations in a genome-wide asssociatoin study as
+reported @zhao07.
 
 It now has an experimental work via Shiny from `inst/shinygap`.
+
+## Family-based design
 
 The example involving family-based design is as follows,
 
@@ -672,7 +672,7 @@ data(OPG,package="gap.datasets")
 METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
 ```
 
-# Significance levels
+# Significance
 
 Our focus is on z ~ Normal(0,1), whose schematic diagram is shown below.
 
@@ -740,7 +740,7 @@ z <- 20000
 ```
 giving -log10(p) = 86858901.
 
-## p, log(p), log10(p) and the multiple precision arithmetic
+## Multiple precision arithmetic
 
 We would be curious about the p value itself as well, which is furnished with the Rmpfr package
 ```r
@@ -906,7 +906,7 @@ Characteristics          | Linear regression | $t$-statistic
 estimate | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i}}$ | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i-2}}$
 variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
 
-## The effect size and standard error estimates
+## Effect size and standard error
 
 When $\mbox{Var}(\mbox{y})=1$, as in cis eQTLGen data, we have $b$ and its standard error (se) as follows,
 
@@ -1160,7 +1160,8 @@ which produce less outputs for certain configurations than expected.
 I believe by now the package should have given you a flavour of initiatives
 I have made so far in relation to how the project was envisaged. More importantly,
 it is clear that availability of the package will serve as a platform on which 
-future work can be accumulated and collaboration can be built.
+future work can be accumulated and collaboration can be built. More likely, it
+will inspire others to join the efforts to develop their own packages.
 
 # Bibliography {-}
 
