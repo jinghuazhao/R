@@ -1,11 +1,9 @@
 ---
 title: "Genetic Analysis Package"
 output:
-  rmarkdown::html_vignette:
-    mathjax:  default
-    fig_caption:  true
+  bookdown::html_document2:
     toc: true
-    section_numbering: true
+    toc_float: false
 author:
   - Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/.
 date: '`r Sys.Date()`'
@@ -669,9 +667,9 @@ data(OPG,package="gap.datasets")
 METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
 ```
 
-# Significance level for z ~ Normal(0,1)
+# Significance levels
 
-The schematic diagram is shown below.
+Our focus is on z ~ Normal(0,1), whose schematic diagram is shown below.
 
 ```{r normal, echo=FALSE, fig.cap="Normal(0,1) distribution", fig.height=5, fig.width=9}
 library(lattice)
@@ -847,6 +845,7 @@ We also need some established results of a ratio (R/S)[^1], i.e., the mean
 $$
 \begin{align}
 E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_S^2\mu_R}{\mu_S^3} \hspace{100cm} 
+(\#eq:mean_ratio)
 \end{align}
 $$
 
@@ -857,6 +856,7 @@ $$
 \mbox{Var}(R/S) \approx \frac{\mu_R^2}{\mu_S^2} \left[
                         \frac{\sigma_R^2}{\mu_R^2} -2\frac{\mbox{Cov}(R,S)}{\mu_R\;\mu_S}
                        +\frac{\sigma_S^2}{\mu_S^2} \right] \hspace{100cm}
+(\#eq:var_ratio)
 \end{align}
 $$
 
@@ -875,6 +875,7 @@ $$
 \mbox{PVE}_{\mbox{linear regression}} & = \frac{\mbox{Var}(b\mbox{x})}{\mbox{Var}(\mbox{y})} \hspace{100cm} \\
            & = \frac{\mbox{Var}(\mbox{x})b^2}{\mbox{Var}(\mbox{x})(b^2+N\mbox{Var}(b))} \\
            & = \frac{\mbox{z}^2}{\mbox{z}^2+N}
+(\#eq:pve_lr)
 \end{align}
 $$
 
@@ -883,6 +884,7 @@ On the other hand, for a simple linear regression $R^2\equiv r^2$ where $r$ is t
 $$
 \begin{align}
 \mbox{PVE}_{t-\mbox{statistic}} & = \frac{\chi^2}{\chi^2+N-2} \hspace{100cm}
+(\#eq:pve_t)
 \end{align}
 $$
 
@@ -918,6 +920,7 @@ $$
 \begin{align}
 b & = z/d \hspace{100cm} \\ 
 se & = 1/d
+(\#eq:b_se)
 \end{align}
 $$
 
@@ -1141,24 +1144,24 @@ snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 ```
 The commands above generates a file named ``snptest.sample.
 
-# Known bugs
+# Known bugs {-}
 
 Unaware of any bug. However, better memory management is expected. There are
 apparent issues with the Shiny interfaces for power/sample size calculation
 which produce less outputs for certain configurations than expected.
 
-# Summary
+# Summary {-}
 
 I believe by now the package should have given you a flavour of initiatives
 I have made so far in relation to how the project was envisaged. More importantly,
 it is clear that availability of the package will serve as a platform on which 
 future work can be accumulated and collaboration can be built.
 
-# Bibliography
+# Bibliography {-}
 
 <div id="refs"></div>
 
-# Appendix
+# Appendix {-}
 
 Assuming that you have already loaded the package via
 `library(gap)`, you can use `lsf.str("package:gap")` and 
