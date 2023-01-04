@@ -671,11 +671,11 @@ METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,dig
 
 # Significance level for z ~ Normal(0,1)
 
+We have the R function `z <- function(p) qnorm(p/2,lower.tail=FALSE)`.
+
 When a Normally distributed association statistic z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.
 
 ## log(p) and log10(p)
-
-First thing first, we therefore have the R function `z <- function(p) qnorm(p/2,lower.tail=FALSE)`.
 
 First thing first, here are the answers for log(p) and log10(p) given z,
 ```r
@@ -971,54 +971,9 @@ Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
 
 # Mendelian randomization
 
-First, we illustrate with `mr_forestplot()`.
-
-```{r tnfb, echo=FALSE}
-tnfb <- '
-              "multiple sclerosis"  0.69058600 0.059270400
-    "systemic lupus erythematosus"  0.76687500 0.079000500
-          "sclerosing cholangitis"  0.62671500 0.075954700
-   "juvenile idiopathic arthritis" -1.17577000 0.160293000
-                       "psoriasis"  0.00582586 0.000800016
-            "rheumatoid arthritis" -0.00378072 0.000625160
-      "inflammatory bowel disease" -0.14334200 0.025272500
-          "ankylosing spondylitis" -0.00316852 0.000626225
-                  "hypothyroidism" -0.00432054 0.000987324
-               "allergic rhinitis"  0.00393075 0.000926002
-          "IgA glomerulonephritis" -0.32696600 0.105262000
-                   "atopic eczema" -0.00204018 0.000678061
-'
-
-tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
-        setNames(c("outcome","Effect","StdErr")) %>%
-        mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
-```
-
-```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
-
-# default output
-mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              spacing=1.6,digits.TE=2,digits.se=2)
-# no summary level statistics
-mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
-              leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
-              sortvar=tnfb[["Effect"]],
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              backtransf=TRUE, spacing=1.6)
-# with P values
-mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
-              leftcols=c("studlab"), leftlabs=c("Outcome"),
-              plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
-              rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","P"),
-              digits=3, digits.pval=2, scientific.pval=TRUE,
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              addrow=TRUE, backtransf=TRUE, spacing=1.6)
-```
-
 The function `mr` was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
 
-```{r mr, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
+```{r mr, echo=FALSE, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
 mrdat <- '
  rs188743906  0.6804   0.1104  0.00177 0.01660        NA        NA
    rs2289779 -0.0788   0.0134  0.00104 0.00261 -0.007543 0.0092258
@@ -1063,6 +1018,51 @@ p <- ggplot2::ggplot(mrdat2,aes(y = SNP, x = y))+
      ggplot2::xlab("Effect size")+
      ggplot2::ylab("")
 p
+```
+
+Lastly, we illustrate MR results in forest plots with `mr_forestplot()`.
+
+```{r tnfb, echo=FALSE}
+tnfb <- '
+              "multiple sclerosis"  0.69058600 0.059270400
+    "systemic lupus erythematosus"  0.76687500 0.079000500
+          "sclerosing cholangitis"  0.62671500 0.075954700
+   "juvenile idiopathic arthritis" -1.17577000 0.160293000
+                       "psoriasis"  0.00582586 0.000800016
+            "rheumatoid arthritis" -0.00378072 0.000625160
+      "inflammatory bowel disease" -0.14334200 0.025272500
+          "ankylosing spondylitis" -0.00316852 0.000626225
+                  "hypothyroidism" -0.00432054 0.000987324
+               "allergic rhinitis"  0.00393075 0.000926002
+          "IgA glomerulonephritis" -0.32696600 0.105262000
+                   "atopic eczema" -0.00204018 0.000678061
+'
+
+tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
+        setNames(c("outcome","Effect","StdErr")) %>%
+        mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
+```
+
+```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+
+# default output
+mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+              spacing=1.6,digits.TE=2,digits.se=2)
+# no summary level statistics
+mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
+              leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
+              sortvar=tnfb[["Effect"]],
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+              backtransf=TRUE, spacing=1.6)
+# with P values
+mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
+              leftcols=c("studlab"), leftlabs=c("Outcome"),
+              plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
+              rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","P"),
+              digits=3, digits.pval=2, scientific.pval=TRUE,
+              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+              addrow=TRUE, backtransf=TRUE, spacing=1.6)
 ```
 
 # Miscellaneous functions
