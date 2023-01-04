@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/." />
 
-<meta name="date" content="2023-01-03" />
+<meta name="date" content="2023-01-04" />
 
 <title>Genetic Analysis Package</title>
 
@@ -1582,7 +1582,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Genetic Analysis Package</h1>
 <h4 class="author">Jing Hua Zhao, Department of Public Health and
 Primary Care, University of Cambridge, Cambridge, UK, <a href="https://jinghuazhao.github.io/" class="uri">https://jinghuazhao.github.io/</a>.</h4>
-<h4 class="date">2023-01-03</h4>
+<h4 class="date">2023-01-04</h4>
 
 
 <div id="TOC">
@@ -3410,87 +3410,98 @@ Mendelian randomization
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">sapply</span>(<span class="fu">c</span>(<span class="st">&quot;IVW&quot;</span>,<span class="st">&quot;EGGER&quot;</span>,<span class="st">&quot;WM&quot;</span>,<span class="st">&quot;PWM&quot;</span>), <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(gap<span class="sc">::</span><span class="fu">pvalue</span>(r[[<span class="fu">paste0</span>(<span class="st">&quot;b&quot;</span>,x)]]<span class="sc">/</span>r[[<span class="fu">paste0</span>(<span class="st">&quot;seb&quot;</span>,x)]])))</span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(f,<span class="at">as.is=</span><span class="cn">TRUE</span>)</span>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">top</span>(r)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(r,p),<span class="at">caption=</span><span class="st">&quot;Table 2. LIFR variant rs635634 and CAD/FEV1&quot;</span>,<span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
-<table style="width:100%;">
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>rp <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">data.frame</span>(r[<span class="sc">-</span><span class="dv">1</span>],p))</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(rp) <span class="ot">&lt;-</span> r[[<span class="dv">1</span>]]</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(rp,<span class="at">caption=</span><span class="st">&quot;Table 2. LIFR variant rs635634 and CAD/FEV1&quot;</span>,<span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<table>
 <caption>Table 2. LIFR variant rs635634 and CAD/FEV1</caption>
-<colgroup>
-<col width="9%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="7%" />
-<col width="7%" />
-<col width="9%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="3%" />
-<col width="5%" />
-<col width="2%" />
-<col width="3%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th align="left">IV</th>
-<th align="right">bIVW</th>
-<th align="right">sebIVW</th>
-<th align="right">CochQ</th>
-<th align="right">CochQp</th>
-<th align="right">bEGGER</th>
-<th align="right">sebEGGER</th>
-<th align="right">intEGGER</th>
-<th align="right">seintEGGER</th>
-<th align="right">bWM</th>
-<th align="right">sebWM</th>
-<th align="right">bPWM</th>
-<th align="right">sebPWM</th>
-<th align="right">IVW</th>
-<th align="right">EGGER</th>
-<th align="right">WM</th>
-<th align="right">PWM</th>
+<th align="left"></th>
+<th align="right">LIF.R.CAD</th>
+<th align="right">LIF.R.FEV1</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">LIF.R.CAD</td>
+<td align="left">bIVW</td>
 <td align="right">-0.187</td>
-<td align="right">0.050</td>
-<td align="right">2.116</td>
-<td align="right">0.953</td>
-<td align="right">-0.184</td>
-<td align="right">0.060</td>
-<td align="right">0.001</td>
-<td align="right">0.010</td>
-<td align="right">-0.247</td>
 <td align="right">0.045</td>
-<td align="right">-0.248</td>
-<td align="right">0.044</td>
-<td align="right">0</td>
-<td align="right">0.002</td>
-<td align="right">0</td>
-<td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">LIF.R.FEV1</td>
+<td align="left">sebIVW</td>
+<td align="right">0.050</td>
+<td align="right">0.012</td>
+</tr>
+<tr class="odd">
+<td align="left">CochQ</td>
+<td align="right">2.116</td>
+<td align="right">0.482</td>
+</tr>
+<tr class="even">
+<td align="left">CochQp</td>
+<td align="right">0.953</td>
+<td align="right">1.000</td>
+</tr>
+<tr class="odd">
+<td align="left">bEGGER</td>
+<td align="right">-0.184</td>
+<td align="right">0.049</td>
+</tr>
+<tr class="even">
+<td align="left">sebEGGER</td>
+<td align="right">0.060</td>
+<td align="right">0.015</td>
+</tr>
+<tr class="odd">
+<td align="left">intEGGER</td>
+<td align="right">0.001</td>
+<td align="right">0.001</td>
+</tr>
+<tr class="even">
+<td align="left">seintEGGER</td>
+<td align="right">0.010</td>
+<td align="right">0.002</td>
+</tr>
+<tr class="odd">
+<td align="left">bWM</td>
+<td align="right">-0.247</td>
+<td align="right">0.062</td>
+</tr>
+<tr class="even">
+<td align="left">sebWM</td>
 <td align="right">0.045</td>
 <td align="right">0.012</td>
-<td align="right">0.482</td>
-<td align="right">1.000</td>
-<td align="right">0.049</td>
-<td align="right">0.015</td>
-<td align="right">0.001</td>
-<td align="right">0.002</td>
-<td align="right">0.062</td>
-<td align="right">0.012</td>
+</tr>
+<tr class="odd">
+<td align="left">bPWM</td>
+<td align="right">-0.248</td>
 <td align="right">0.055</td>
+</tr>
+<tr class="even">
+<td align="left">sebPWM</td>
+<td align="right">0.044</td>
 <td align="right">0.014</td>
-<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">IVW</td>
+<td align="right">0.000</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">EGGER</td>
+<td align="right">0.002</td>
 <td align="right">0.001</td>
-<td align="right">0</td>
-<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">WM</td>
+<td align="right">0.000</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">PWM</td>
+<td align="right">0.000</td>
+<td align="right">0.000</td>
 </tr>
 </tbody>
 </table>
@@ -3905,10 +3916,10 @@ issuing the <code>lsf.str</code> command.</p>
 #&gt; whscore : function (allele, type)  
 #&gt; xy : function (x)
 #&gt;      Package LibPath                                                       Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpxYXU6q/Rinst3c27c2503f4ca&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpxYXU6q/Rinst3c27c2503f4ca&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpxYXU6q/Rinst3c27c2503f4ca&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
-#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpxYXU6q/Rinst3c27c2503f4ca&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpHVnn8r/Rinst18ae8398a21a0&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpHVnn8r/Rinst18ae8398a21a0&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpHVnn8r/Rinst18ae8398a21a0&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;
+#&gt; [4,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpHVnn8r/Rinst18ae8398a21a0&quot; &quot;mr&quot;   &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
