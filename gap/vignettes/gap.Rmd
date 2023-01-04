@@ -1,11 +1,15 @@
 ---
 title: "Genetic Analysis Package"
+subtitle "Jing Hua Zhao"
 output:
   bookdown::html_document2:
     toc: true
     toc_float: true
 author:
-  - Jing Hua Zhao, Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK, https://jinghuazhao.github.io/.
+  - Department of Public Health and Primary Care
+  - University of Cambridge
+  - Cambridge, UK
+  - https://jinghuazhao.github.io/.
 date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
@@ -294,7 +298,7 @@ names(p2) <-c("id","fid","mid","sex","aff","GABRB1","D4S1645")
 p3 <- data.frame(pid=10081,p2)
 ```
 
-```{r pedtodot, fig.cap="", fig.height=8, fig.width=7}
+```{r pedtodot, fig.cap="An example pedigree", fig.height=8, fig.width=7}
 library(gap)
 print(p3,row.names=FALSE)
 library(DOT)
@@ -1144,13 +1148,13 @@ snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 ```
 The commands above generates a file named ``snptest.sample.
 
-# Known bugs {-}
+# Known bugs
 
 Unaware of any bug. However, better memory management is expected. There are
 apparent issues with the Shiny interfaces for power/sample size calculation
 which produce less outputs for certain configurations than expected.
 
-# Summary {-}
+# Summary
 
 I believe by now the package should have given you a flavour of initiatives
 I have made so far in relation to how the project was envisaged. More importantly,
