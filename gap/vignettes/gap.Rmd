@@ -862,7 +862,7 @@ Finally, we need some facts about $\chi_1^2$, $\chi^2$ distribution of one degre
 
 We now have the following results.
 
-## The proportion of variants explained (PVE)
+## Proportion of variance explained (PVE)
 
 From above we have
 
