@@ -1,10 +1,11 @@
 ---
 title: "Genetic Analysis Package"
-subtitle "Jing Hua Zhao"
+subtitle: "Jing Hua Zhao"
 output:
   bookdown::html_document2:
     toc: true
     toc_float: true
+fontsize: 12pt
 author:
   - Department of Public Health and Primary Care
   - University of Cambridge
