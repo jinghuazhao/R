@@ -6,6 +6,8 @@ output:
     toc: true
     toc_float: true
 fontsize: 12pt
+lot: true
+lof: true
 author:
   - Department of Public Health and Primary Care
   - University of Cambridge
@@ -409,9 +411,8 @@ unlink(outfile)
 # Genetic analysis of complex diseases 1327
 g <- 4.5
 p <- 0.15
-cat("\nAlzheimer's:\n\n")
-data.frame(fbsize(g,p))
-table1
+alz <- data.frame(fbsize(g,p))
+knitr::kable(list(table1,alz),caption="Table 1. Power/Sample size of family-based designs (Alzheimer's disease)")
 ```
 
 ## Population-based design
@@ -446,7 +447,7 @@ for(i in 1:dim(models)[1])
    cat("\n",file=outfile,append=TRUE)
 } 
 table5 <- read.table(outfile,header=TRUE,sep="\t")
-table5
+knitr::kable(table5,caption="Table 2. Sample size of population-based design")
 ```
 
 ## Case-cohort design
@@ -499,7 +500,7 @@ for(pD in s_pD)
       }
    }
 }
-read.table(outfile,header=TRUE,sep="\t")
+knitr::kable(read.table(outfile,header=TRUE,sep="\t"),caption="Table 3. Sample size of case-cohort designs")
 unlink(outfile)
 ```
 
@@ -800,7 +801,7 @@ for (z in c(5,10,30,40,50,100,500,1000,2000,3000,5000))
   v <- rbind(v,vi)
 }
 names(v) <- c("z","P","log(P)","log10(P)")
-knitr::kable(v,caption="Table 1. z,P,log(P) and log10(P)")
+knitr::kable(v,caption="Table 4. z,P,log(P) and log10(P)")
 ```
 
 ## Application
@@ -995,7 +996,7 @@ mrdat <- '
 '
 mrdat <- setNames(as.data.frame(scan(file=textConnection(mrdat), what=list("",0,0,0,0,0,0))), 
          c("SNP", "b.LIF.R", "SE.LIF.R", "b.FEV1", "SE.FEV1", "b.CAD", "SE.CAD"))
-knitr::kable(mrdat,caption="Table 2. LIF.R and CAD/FEV1")
+knitr::kable(mrdat,caption="Table 5. LIF-R and CAD/FEV1")
 res <- mr(mrdat, "LIF.R", c("CAD","FEV1"), other_plots=TRUE)
 s <- res$r[-1,]
 colnames(s) <- res$r[1,]
