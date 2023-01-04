@@ -1786,81 +1786,81 @@ available.</p>
 <td>Mixed modeling with genetic relationship matrices</td>
 </tr>
 <tr class="odd">
-<td>mr</td>
-<td>Mendelian randomization analysis</td>
-</tr>
-<tr class="even">
 <td>hap</td>
 <td>Haplotype reconstruction</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>hap.em</td>
 <td>Gene counting for haplotype analysis</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>hap.score</td>
 <td>Score statistics for association of traits with haplotypes</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>htr</td>
 <td>Haplotype trend regression</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>hwe</td>
 <td>Hardy-Weinberg equilibrium test for a multiallelic marker</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>hwe.cc</td>
 <td>A likelihood ratio test of population Hardy-Weinberg
 equilibrium</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>hwe.hardy</td>
 <td>Hardy-Weinberg equilibrium test using MCMC</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>invnormal</td>
 <td>Inverse normal transformation</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>kin.morgan</td>
 <td>kinship matrix for simple pedigree</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>LD22</td>
 <td>LD statistics for two diallelic markers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>LDkl</td>
 <td>LD statistics for two multiallelic markers</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>lambda1000</td>
 <td>A standardized estimate of the genomic inflation scaling to</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td> </td>
 <td>a study of 1,000 cases and 1,000 controls</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>log10p</td>
 <td>log10(p) for a standard normal deviate</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>log10pvalue</td>
 <td>log10(p) for a P value including its scientific format</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>logp</td>
 <td>log(p) for a normal deviate</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>masize</td>
 <td>Sample size calculation for mediation analysis</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>mia</td>
 <td>multiple imputation analysis for hap</td>
+</tr>
+<tr class="odd">
+<td>mr</td>
+<td>Mendelian randomization analysis</td>
 </tr>
 <tr class="even">
 <td>mtdt</td>
@@ -3221,7 +3221,9 @@ of the models on heritability.</p>
 <div id="mendelian-randomization" class="section level1">
 <h1>Mendelian randomization</h1>
 <p>The function <code>mr</code> was originally developed to rework on
-data generated from GSMR, although it could be any harmonised data.</p>
+data generated from GSMR, although it could be any harmonised data. The
+following example is from analysis of a real data on LIF-R protein and
+CVD/FEV1.</p>
 <table style="width:100%;">
 <caption>Table 2. LIF.R and CAD/FEV1</caption>
 <colgroup>
@@ -3904,10 +3906,10 @@ issuing the <code>lsf.str</code> command.</p>
 #&gt; tscc : function (model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)  
 #&gt; whscore : function (allele, type)  
 #&gt; xy : function (x)
-#&gt;      Package LibPath                                                       Item   Title                       
-#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpSzT8yg/Rinst3e9fa43cf3ffa&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
-#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpSzT8yg/Rinst3e9fa43cf3ffa&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
-#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpSzT8yg/Rinst3e9fa43cf3ffa&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;</code></pre>
+#&gt;      Package LibPath                                                      Item   Title                       
+#&gt; [1,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpUycOQH/Rinst54ab3cd617e0&quot; &quot;hg18&quot; &quot;Internal functions for gap&quot;
+#&gt; [2,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpUycOQH/Rinst54ab3cd617e0&quot; &quot;hg19&quot; &quot;Internal functions for gap&quot;
+#&gt; [3,] &quot;gap&quot;   &quot;/rds/user/jhz22/hpc-work/work/RtmpUycOQH/Rinst54ab3cd617e0&quot; &quot;hg38&quot; &quot;Internal functions for gap&quot;</code></pre>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
