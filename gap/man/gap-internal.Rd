@@ -4,7 +4,6 @@
 \alias{hg19}
 \alias{hg38}
 \alias{lambda1000}
-\alias{mr}
 \alias{sun3d}
 \alias{HapDesign}
 \alias{HapFreqSE}
