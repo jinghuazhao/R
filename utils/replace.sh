@@ -2,6 +2,8 @@
 
 # to replace heavily compressed files with default to enable FireFox
 
+source utils/st.sh
+
 for f in jss.pdf # gap.examples.pdf rnews.pdf
 do
   cp work/${f} vignettes
