@@ -13,7 +13,6 @@ author:
   - University of Cambridge
   - Cambridge, UK
   - https://jinghuazhao.github.io/
-  - " "
 date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
@@ -78,7 +77,7 @@ Several other updates are worth mentioning:
 4.  **roxygen2** style documentation in companion with R code to allow for
     easier generation of .Rd files through devtools::document().
 
-It is likely these experiences will be shared with/useful for other colleagues
+It is hoped that these experiences will be shared with/useful for other colleagues
 in converting their work into R. I found occasionally it is useful to use
 specific functions without loading the whole package (i.e., `library(gap)`),
 e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
@@ -369,7 +368,7 @@ It now has an experimental work via Shiny from `inst/shinygap`.
 
 ## Family-based design
 
-The example involving family-based design is as follows,
+The example is as follows,
 
 ```{r}
 options(width=150)
@@ -415,7 +414,7 @@ knitr::kable(alz,caption="Power/Sample size of study on Alzheimer's disease")
 
 ## Population-based design
 
-The example involving population-based design is as follows,
+The example is as follows,
 
 ```{r}
 library(gap)
@@ -450,7 +449,7 @@ knitr::kable(table5,caption="Sample size of population-based design")
 
 ## Case-cohort design
 
-For case-cohort design, we obtain results for ARIC and EPIC studies.
+We obtain results for ARIC and EPIC studies.
 
 ```{r}
 library(gap)
@@ -504,7 +503,7 @@ unlink(outfile)
 
 # Graphics
 
-I now include some figures from the documentation that may be of interest.
+Some figures from the documentation may be of interest.
 
 ## Genome-wide association
 
@@ -609,7 +608,7 @@ chrmaxpos <- miamiplot2(gwas,gwas,name1="Batch 2",name2="Batch 1",z1="z",z2="z")
 labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO"),gwas,gwasZLab="z",chrmaxpos=chrmaxpos)
 ```
 
-We now illustrate with a truncated Manhattan plot,
+and a truncated Manhattan plot,
 
 ```r
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
@@ -699,9 +698,9 @@ xyplot(b ~ a,
 )
 ```
 
-We have the R function `z <- function(p) qnorm(p/2,lower.tail=FALSE)`.
+The associate R function is `z <- function(p) qnorm(p/2,lower.tail=FALSE)`.
 
-When a Normally distributed association statistic z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.
+When z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.
 
 ## log(p) and log10(p)
 
@@ -756,7 +755,7 @@ as.numeric(-log10(2*pnorm(mpfr(-abs(z),100),lower.tail=TRUE)))
 ```
 which actually yields exactly the same 86858901.
 
-If we go very far to have z=50000. then -log10(p)=542868107 but we have less luck with Rmpfr.
+If we go very far to have z=50,000. then -log10(p)=542868107 but we have less luck with Rmpfr.
 
 One may wonder the P value in this case, which is 6.6666145952e-542868108 or simply 6.67e-542868108.
 
@@ -861,7 +860,7 @@ We now have the following results.
 
 ## Proportion of variance explained
 
-From above we have
+We have
 
 $$
 \begin{align}
