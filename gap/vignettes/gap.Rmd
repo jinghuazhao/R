@@ -362,7 +362,7 @@ We see that in the second case, the result agrees with **kinship2**.
 
 I would like to highlight `fbsize`, `pbsize` and `ccsize` functions used
 for power/sample calculations in a genome-wide asssociatoin study as
-reported risch96, @risch97, @zhao07.
+reported @risch96, @risch97, @zhao07.
 
 It now has an experimental work via Shiny from `inst/shinygap`.
 
