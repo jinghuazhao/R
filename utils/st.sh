@@ -25,8 +25,6 @@ git add kinship
 git commit -m "mixed-effects Cox models, sparse matrices, and modeling data from large pedigrees"
 git add tdthap
 git commit -m "Transmission/disequilibrium tests for extended marker haplotypes"
-git add tests
-git commit -m "A test for pan"
 git add README.md
 git commit -m "README"
 git add utils
