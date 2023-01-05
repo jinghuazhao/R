@@ -17,7 +17,7 @@ date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
 nocite: |
-  @chow60, @devlin99, @elston75, @guo00, @guo92, @gholamic94, @hartung08, @hirotsu01, @miller97, @sham97, @sham98, @skol06, @@spielman96, @wacholder04, @wakefield07, @wcn92, @wang05, @zaykin02, @zhao99, @zhao02, @zhao04
+  @skol06
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
@@ -1063,13 +1063,17 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
 ```
 
-```{r tnfb_default, fig.cap="Forest plots based on MR results on TNFB (default)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+The default result,
+
+```{r, fig.cap="Forest plots for MR results on TNFB (default)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
               spacing=1.6,digits.TE=2,digits.se=2)
 ```
 
-```{r tnfb_noss, fig.cap="Forest plots based on MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+with no summary statistics,
+
+```{r, fig.cap="Forest plots for MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
               sortvar=tnfb[["Effect"]],
@@ -1077,7 +1081,9 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               backtransf=TRUE, spacing=1.6)
 ```
 
-```{r tnfb_p, fig.cap="Forest plots based on MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+and with P values.
+
+```{r, fig.cap="Forest plots for MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               leftcols=c("studlab"), leftlabs=c("Outcome"),
               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
@@ -1161,7 +1167,7 @@ This is a function to output sample file for SNPTEST.
 d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
 snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 ```
-The commands above generates a file named ``snptest.sample.
+The commands above generates a file named `snptest.sample`.
 
 # Known bugs
 
@@ -1171,11 +1177,10 @@ which produce less outputs for certain configurations than expected.
 
 # Summary
 
-I believe by now the package should have given you a flavor of initiatives that
-I have made so far in relation to how the project was envisaged. More importantly,
-it is clear that availability of the package will serve as a infrastructure with
-which future work can be accumulated and collaboration can be built. More likely,
-it will inspire others to join the efforts to develop their own packages.
+By now the package should have given you a flavor of the project. It is clear
+that availability of the package builds a infrastructure with which future
+work can be accumulated and collaboration can be built. It is also likely
+to inspire others to join the efforts to develop their own packages.
 
 # Bibliography {-}
 
