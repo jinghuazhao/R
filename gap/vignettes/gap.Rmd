@@ -17,7 +17,7 @@ date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
 nocite: |
-  @chow60, @devlin99, @elston75, @guo00, @guo92, @gholamic94, @hartung08, @hirotsu01, @miller97, risch96, @risch97, @sham97, @sham98, @skol06, @@spielman96, @wacholder04, @wakefield07, @wcn92, @wang05, @zaykin02, @zhao99, @zhao02, @zhao04
+  @chow60, @devlin99, @elston75, @guo00, @guo92, @gholamic94, @hartung08, @hirotsu01, @miller97, @sham97, @sham98, @skol06, @@spielman96, @wacholder04, @wakefield07, @wcn92, @wang05, @zaykin02, @zhao99, @zhao02, @zhao04
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
@@ -75,7 +75,7 @@ Several other updates are worth mentioning:
 3.  experimental implementation of a shiny App (`runshinygap`()).
 
 4.  **roxygen2** style documentation in companion with R code to allow for
-    easier generation of .Rd files through devtools::document().
+    easier generation of .Rd files and NAMESPACE through devtools::document().
 
 It is hoped that these experiences will be shared with/useful for other colleagues
 in converting their work into R. I found occasionally it is useful to use
@@ -362,7 +362,7 @@ We see that in the second case, the result agrees with **kinship2**.
 
 I would like to highlight `fbsize`, `pbsize` and `ccsize` functions used
 for power/sample calculations in a genome-wide asssociatoin study as
-reported @zhao07.
+reported risch96, @risch97, @zhao07.
 
 It now has an experimental work via Shiny from `inst/shinygap`.
 
@@ -370,7 +370,7 @@ It now has an experimental work via Shiny from `inst/shinygap`.
 
 The example is as follows,
 
-```{r}
+```{r fb}
 options(width=150)
 library(gap)
 models <- matrix(c(
@@ -404,8 +404,11 @@ dc <- c(3,5,6,8,10,11)
 table1[,dc] <- round(table1[,dc],2)
 unlink(outfile)
 knitr::kable(table1,caption="Power/Sample size of family-based designs")
-# APOE-4, Scott WK, Pericak-Vance, MA & Haines JL
-# Genetic analysis of complex diseases 1327
+```
+
+As for APOE4 and Alzheimer's @sph97
+
+```{r alz}
 g <- 4.5
 p <- 0.15
 alz <- data.frame(fbsize(g,p))
@@ -416,7 +419,7 @@ knitr::kable(alz,caption="Power/Sample size of study on Alzheimer's disease")
 
 The example is as follows,
 
-```{r}
+```{r pb}
 library(gap)
 kp <- c(0.01,0.05,0.10,0.2)
 models <- matrix(c(
@@ -1167,8 +1170,7 @@ it will inspire others to join the efforts to develop their own packages.
 
 # Appendix {-}
 
-Assuming that you have already loaded the package via
-`library(gap)`, you can use `lsf.str("package:gap")` and 
+After package loading via `library(gap)`, you can use `lsf.str("package:gap")` and
 `data(package="gap")` to generate a list of functions and a list
 of datasets, respectvely. If this looks odd to you, you might try 
 `search()` within `R` to examine what is available in your
