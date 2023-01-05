@@ -17,7 +17,7 @@ date: '`r Sys.Date()`'
 bibliography: gap.bib
 csl: nature-genetics.csl
 nocite: |
-  @skol06
+  @wcn92
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{gap}
@@ -1065,7 +1065,7 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
 
 The default result,
 
-```{r, fig.cap="Forest plots for MR results on TNFB (default)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+```{r tnfb_default, fig.cap="Forest plots for MR results on TNFB (default)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
               spacing=1.6,digits.TE=2,digits.se=2)
@@ -1073,7 +1073,7 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcom
 
 with no summary statistics,
 
-```{r, fig.cap="Forest plots for MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+```{r tnfb_noss, fig.cap="Forest plots for MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
               sortvar=tnfb[["Effect"]],
@@ -1083,7 +1083,7 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
 
 and with P values.
 
-```{r, fig.cap="Forest plots for MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+```{r tnfb_p, fig.cap="Forest plots for MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               leftcols=c("studlab"), leftlabs=c("Outcome"),
               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
@@ -1177,9 +1177,10 @@ less outputs for certain configurations than expected.
 
 # Summary
 
-By now the package should have given you a flavor of the project. It is clear
-that it builds a infrastructure to accumulate future work and to collaborate.
-It also serve to inspire others to join force and develop their own packages.
+By now the package should have given you a flavor of the project. It sets to
+build a infrastructure to keep up with the development of R system itself,
+collect elements from oning work. Over years it also serves to inspire others
+to join force and develop better alternatives.
 
 # Bibliography {-}
 
