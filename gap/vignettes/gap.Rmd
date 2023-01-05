@@ -1171,16 +1171,15 @@ The commands above generates a file named `snptest.sample`.
 
 # Known bugs
 
-Unaware of any bug. However, better memory management is expected. There are
-apparent issues with the Shiny interfaces for power/sample size calculation
-which produce less outputs for certain configurations than expected.
+Better memory management is desirable. There are apparent issues with
+the Shiny interfaces for power/sample size calculation which produce
+less outputs for certain configurations than expected.
 
 # Summary
 
 By now the package should have given you a flavor of the project. It is clear
-that availability of the package builds a infrastructure with which future
-work can be accumulated and collaboration can be built. It is also likely
-to inspire others to join the efforts to develop their own packages.
+that it builds a infrastructure to accumulate future work and to collaborate.
+It also serve to inspire others to join force and develop their own packages.
 
 # Bibliography {-}
 
