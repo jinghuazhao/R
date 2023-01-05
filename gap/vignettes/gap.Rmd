@@ -1063,19 +1063,21 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
 ```
 
-```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
-
-# default output
+```{r mr_forestplot_default, fig.cap="Forest plots based on MR results on TNFB (default)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
               spacing=1.6,digits.TE=2,digits.se=2)
-# no summary level statistics
+```
+
+```{r mr_forestplot_noss, fig.cap="Forest plots based on MR results on TNFB" (no summary statistics), fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
               sortvar=tnfb[["Effect"]],
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
               backtransf=TRUE, spacing=1.6)
-# with P values
+```
+
+```{r mr_forestplot_p, fig.cap="Forest plots based on MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               leftcols=c("studlab"), leftlabs=c("Outcome"),
               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
