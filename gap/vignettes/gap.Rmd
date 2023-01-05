@@ -316,8 +316,6 @@ always precede their children. In this regard, package **pedigree** can be
 used, and package **kinship2** can be used to produce pedigree diagram as with
 kinship matrix.
 
-## Pedigree diagram
-
 The pedigree diagram is as follows,
 
 ```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
@@ -327,8 +325,6 @@ library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
 plot(ped,cex=0.4)
 ```
-
-## Kinship calculation
 
 We then turn to the kinship calculation.
 
@@ -407,12 +403,12 @@ table1[,nc] <- ceiling(table1[,nc])
 dc <- c(3,5,6,8,10,11)
 table1[,dc] <- round(table1[,dc],2)
 unlink(outfile)
+knitr::kable(table1,caption="Power/Sample size of family-based designs")
 # APOE-4, Scott WK, Pericak-Vance, MA & Haines JL
 # Genetic analysis of complex diseases 1327
 g <- 4.5
 p <- 0.15
 alz <- data.frame(fbsize(g,p))
-knitr::kable(table1,caption="Power/Sample size of family-based designs")
 knitr::kable(alz,caption="Power/Sample size of study on Alzheimer's disease")
 ```
 
@@ -862,7 +858,7 @@ Finally, we need some facts about $\chi_1^2$, $\chi^2$ distribution of one degre
 
 We now have the following results.
 
-## Proportion of variance explained (PVE)
+## Proportion of variance explained
 
 From above we have
 
@@ -1159,11 +1155,11 @@ which produce less outputs for certain configurations than expected.
 
 # Summary
 
-I believe by now the package should have given you a flavour of initiatives
+I believe by now the package should have given you a flavor of initiatives that
 I have made so far in relation to how the project was envisaged. More importantly,
-it is clear that availability of the package will serve as a platform on which 
-future work can be accumulated and collaboration can be built. More likely, it
-will inspire others to join the efforts to develop their own packages.
+it is clear that availability of the package will serve as a infrastructure with
+which future work can be accumulated and collaboration can be built. More likely,
+it will inspire others to join the efforts to develop their own packages.
 
 # Bibliography {-}
 
