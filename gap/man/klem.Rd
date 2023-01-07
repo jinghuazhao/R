@@ -33,7 +33,7 @@ Haplotype frequency estimation using expectation-maximization algorithm based on
 # an example with known genotype counts 
 z <- klem(obs=1:9)
 # an example with imputed genotypes at SH2B1
-source(file.path(path.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
+source(file.path(find.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
 }
 
 }

@@ -239,7 +239,7 @@ LDkl<-function(n1=2,n2=2,h,n,optrho=2,verbose=FALSE)
 #' # an example with known genotype counts 
 #' z <- klem(obs=1:9)
 #' # an example with imputed genotypes at SH2B1
-#' source(file.path(path.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
+#' source(file.path(find.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
 #' }
 #'
 #' @author Jing Hua Zhao

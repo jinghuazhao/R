@@ -3,9 +3,6 @@
 \name{chow.test}
 \alias{chow.test}
 \title{Chow's test for heterogeneity in two regressions}
-\source{
-\url{http://aoki2.si.gunma-u.ac.jp/R/}
-}
 \usage{
 chow.test(y1, x1, y2, x2, x = NULL)
 }
@@ -83,6 +80,7 @@ y2<-dat2[,3]
 x1<-dat1[,1:2]
 x2<-dat2[,1:2]
 chow.test.r<-chow.test(y1,x1,y2,x2)
+# from http://aoki2.si.gunma-u.ac.jp/R/
 }
 
 }

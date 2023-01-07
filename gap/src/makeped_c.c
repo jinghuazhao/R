@@ -608,7 +608,7 @@ void save_loops(s_intg count)
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
-  ignore_int(fscanf(stdin,"%1s",&response));
+  ignore_int(fscanf(stdin,"%2s",&response));
 
   if ((response == 'y') || (response == 'Y')) {
     loop_file[0] = '\0';
@@ -1044,7 +1044,7 @@ void save_probands(s_intg count)
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
-  ignore_int(fscanf(stdin,"%1s",&response));
+  ignore_int(fscanf(stdin,"%2s",&response));
 
   if ((response == 'y') || (response == 'Y')) {
     proband_file[0] = '\0';
@@ -1405,7 +1405,7 @@ void get_probands(int *auto_proband,char **probandfile)
   else {
  
   Rprintf("\nDo you want to select all probands?           (y/n) -> ");
-  ignore_int(fscanf(stdin,"%1s",&response));
+  ignore_int(fscanf(stdin,"%2s",&response));
   if ((response == 'y') || (response == 'Y')) all_probands();
   else some_probands();
 }

@@ -294,7 +294,7 @@ void prog(double *x,int n,double *deltot,long *idum,double *A,int *delta)
     }
   }
   for (j=0;j<n;j++) deltot[j]=deltot[j]/ngib;
-
+  REprintf("%14.9f\n",r);
   return;
 }
 
@@ -766,4 +766,5 @@ void gcontrol_c(double *kdata, int *nkdata, double *zeta, double *kappa,
     deltot[j]=deltot[j]/(*ngib);
     REprintf("%14.9f %14.9f\n",x[j],deltot[j]);
   }
+  REprintf("%14.9f\n",r);
 }

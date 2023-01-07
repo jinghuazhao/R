@@ -1,5 +1,14 @@
 #' A function to prepare pedigrees in post-MAKEPED format
 #'
+#' @param pifile input filename.
+#' @param pofile output filename.
+#' @param auto.select no loops in pedigrees and probands are selected automatically? 0=no, 1=yes.
+#' @param with.loop input data with loops? 0=no, 1=yes.
+#' @param loop.file filename containing pedigree id and an individual id for each loop, set if with.loop=1.
+#' @param auto.proband probands are selected automatically? 0=no, 1=yes.
+#' @param proband.file filename containing pedigree id and proband id, set if auto.proband=0 (not implemented).
+#'
+#' @details
 #' Many computer programs for genetic data analysis requires pedigree data to be in the so-called
 #' ``post-MAKEPED'' format. This function performs this translation and allows for some
 #' inconsistences to be detected.
@@ -14,14 +23,6 @@
 #'
 #' The output file has extra information extracted from data above.
 #'
-#' @param pifile input filename.
-#' @param pofile output filename.
-#' @param auto.select no loops in pedigrees and probands are selected automatically? 0=no, 1=yes.
-#' @param with.loop input data with loops? 0=no, 1=yes.
-#' @param loop.file filename containing pedigree id and an individual id for each loop, set if with.loop=1.
-#' @param auto.proband probands are selected automatically? 0=no, 1=yes.
-#' @param proband.file filename containing pedigree id and proband id, set if auto.proband=0 (not implemented).
-#'
 #' Before invoking makeped, input file, loop file and proband file have to be prepared.
 #'
 #' By default, auto.select=1, so translation proceeds without considering loops and proband statuses.
@@ -30,16 +31,16 @@
 #' There may be several versions of makeped available, but their differences with this port should
 #' be minor.
 #'
-#' @source https://lab.rockefeller.edu/ott/
-#'
+#' @export
 #' @examples
 #' \dontrun{
 #' cwd <- getwd()
-#' cs.dir <- file.path(path.package("gap.datasets"),"tests","kinship")
+#' cs.dir <- file.path(find.package("gap.examples"),"tests","kinship")
 #' setwd(cs.dir)
 #' dir()
 #' makeped("ped7.pre","ped7.ped",0,1,"ped7.lop")
 #' setwd(cwd)
+#' # https://lab.rockefeller.edu/ott/
 #' }
 #'
 #' @note adapted from makeped.c by W Li and others.

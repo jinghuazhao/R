@@ -24,8 +24,6 @@
 #' @param x2 a matrix of independent variables.
 #' @param x a known matrix of independent variables.
 #'
-#' @source \url{http://aoki2.si.gunma-u.ac.jp/R/}
-#'
 #' @export
 #' @return The returned value is a vector containing (please use subscript to access them):
 #' \describe{
@@ -71,6 +69,7 @@
 #' x1<-dat1[,1:2]
 #' x2<-dat2[,1:2]
 #' chow.test.r<-chow.test(y1,x1,y2,x2)
+#' # from http://aoki2.si.gunma-u.ac.jp/R/
 #' }
 #'
 #' @author Shigenobu Aoki, Jing Hua Zhao
