@@ -703,7 +703,7 @@ xyplot(b ~ a,
 
 The associate R function is `z <- function(p) qnorm(p/2,lower.tail=FALSE)`.
 
-When z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.
+When z is very large, its corresponding p value is very small. A genomewide significance is declared at 0.05/1000000=5e-8 with Bonferroni correction assuming 1 million SNPs are tested. This short note describes how to get -log10(p), which can be used in a Q-Q plot and software such as DEPICT @pers15. The solution here is generic since z is also the square root of a chi-squared statistic, for instance.
 
 ## log(p) and log10(p)
 
@@ -1163,11 +1163,11 @@ snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 ```
 The commands above generates a file named `snptest.sample`.
 
-# Known bugs
+# Known issues
 
-Better memory management is desirable. There are apparent issues with
-the Shiny interfaces for power/sample size calculation which produce
-less outputs for certain configurations than expected.
+A lot of code optimization as wtih better memory management is desirable.
+There are apparent issues with the Shiny interfaces for power/sample size
+calculation which produce less outputs for certain configurations than expected.
 
 # Summary
 
