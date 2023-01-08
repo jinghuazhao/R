@@ -1,5 +1,9 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.4-1
+08-01-2023	Increase all 1s, 2s to 3s as in makeped_c.c/fscanf("%1s",&response)
+		Fix typo `constrast` in gap.Rmd
+
 Version 1.4
 07-01-2023	Suggest bookdown
 

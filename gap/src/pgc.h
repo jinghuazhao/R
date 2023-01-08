@@ -3,7 +3,7 @@
 
 #define MAX_LOC 30
 
-typedef enum {false=0,true} boolean;
+typedef enum {false=0,true=1} boolean;
 #define _swap_(a,b) __swap__(a,b)
 void __swap__(int *a,int *b) {int t;t=*a;*a=*b;*b=t;}
 struct individual
