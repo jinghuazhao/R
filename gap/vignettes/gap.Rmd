@@ -1016,7 +1016,7 @@ knitr::kable(rp, align="r", caption="LIFR variant rs635634 and CAD/FEV1")
 
 This is close to Ligthart et al. @ligthart18 as used one time at workplace which turns to overlap with TwoSampleMR @hemani18.
 
-## Constrast of effect sizes
+## Contrast of effect sizes
 
 Analysis has been done upon cis, trans, cis+trans (pan) pQTLs @folkersen20, which would be of interest to contrast their effect sizes as well,
 
