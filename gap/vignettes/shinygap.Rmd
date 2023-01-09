@@ -1,12 +1,21 @@
 ---
 title: Shiny for Genetic Analysis Package (gap) Designs
+subtitle: "Jing Hua Zhao"
 output:
-  html_document:
-    mathjax:  default
-    fig_caption:  true
+  bookdown::html_document2:
     toc: true
-    section_numbering: true
+    toc_float: true
+fontsize: 11pt
+lot: true
+lof: true
+author:
+  - Department of Public Health and Primary Care
+  - University of Cambridge
+  - Cambridge, UK
+  - https://jinghuazhao.github.io/
+date: '`r Sys.Date()`'
 bibliography: shinygap.bib
+csl: nature-genetics.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Shiny for Genetic Analysis Package (gap) Designs}
@@ -27,25 +36,25 @@ Alternatively, one can run the app from source using `gap/inst/shinygap`.
 
 To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider inputs provide upper bounds of parameters.
 
-## 1. Family-based study
+# Family-based study
 
 This is a call to `fbsize()`.
 
-## 2. Population-based study
+# Population-based study
 
 This is a call to `pbsize()`.
 
-## 3. Case-cohort study
+# Case-cohort study
 
 This is a call to `ccsize()` whose `power` argument indcates power (TRUE) or sample size (FALSE) calculation.
 
-## 4. Two-stage case-control design
+# Two-stage case-control design
 
 This is a call to tscc().
 
 ---
 
-# Appendix: Theory
+# Appendix: Theory {-}
 
 ## A. Family-based and population-based designs
 
@@ -78,4 +87,4 @@ $z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})$, $\,$
 $z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})$, $\,$
 $z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
 
-# References
+# References {-}
