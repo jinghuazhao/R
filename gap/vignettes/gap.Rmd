@@ -1172,7 +1172,7 @@ calculation which produce less outputs for certain configurations than expected.
 # Summary
 
 By now the package should have given you a flavor of the project. It sets to
-build a infrastructure to keep up with the development of R system itself,
+build a infrastructure to keep up with the development of R system itself and
 collect elements from oning work. Over years it also serves to inspire others
 to join force and develop better alternatives.
 

@@ -608,7 +608,7 @@ void save_loops(s_intg count)
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
-  ignore_int(fscanf(stdin,"%3s",&response));
+  ignore_int(fscanf(stdin,"%s",&response));
 
   if ((response == 'y') || (response == 'Y')) {
     loop_file[0] = '\0';
@@ -950,10 +950,10 @@ void get_loops(int *withloop, char **loopfile)
   s_byte response;
   Rprintf("\n");
   Rprintf("Does your pedigree file contain any loops?    (y/n) -> ");
-  ignore_int(fscanf(stdin,"%3s",&response));
+  ignore_int(fscanf(stdin,"%s",&response));
   if ((response == 'y') || (response == 'Y')) {
     Rprintf("\nDo you have a file of loop assignments?       (y/n) -> ");
-    ignore_int(fscanf(stdin,"%3s",&response));
+    ignore_int(fscanf(stdin,"%s",&response));
     if ((response == 'y') || (response == 'Y')) file_loops();
     else some_loops();
   }
@@ -1044,7 +1044,7 @@ void save_probands(s_intg count)
 
   Rprintf("\n\nDo you want these selections saved ");
   Rprintf("for later use?  (y/n) -> ");
-  ignore_int(fscanf(stdin,"%3s",&response));
+  ignore_int(fscanf(stdin,"%s",&response));
 
   if ((response == 'y') || (response == 'Y')) {
     proband_file[0] = '\0';
@@ -1388,7 +1388,7 @@ void get_probands(int *auto_proband,char **probandfile)
 #ifdef executable
   Rprintf("\n");
   Rprintf("Do you want probands selected automatically?   (y/n) -> ");
-  ignore_int(fscanf(stdin,"%3s",&response));
+  ignore_int(fscanf(stdin,"%s",&response));
 #else
   if (*auto_proband) response='y';
 #endif
@@ -1396,7 +1396,7 @@ void get_probands(int *auto_proband,char **probandfile)
   else {
 #ifdef executable
   Rprintf("\nDo you have a file of proband assignments?    (y/n) -> ");
-  ignore_int(fscanf(stdin,"%3s",&response));
+  ignore_int(fscanf(stdin,"%s",&response));
   if ((response == 'y') || (response == 'Y')) file_probands();
 #else
   response='y';
@@ -1405,7 +1405,7 @@ void get_probands(int *auto_proband,char **probandfile)
   else {
  
   Rprintf("\nDo you want to select all probands?           (y/n) -> ");
-  ignore_int(fscanf(stdin,"%3s",&response));
+  ignore_int(fscanf(stdin,"%s",&response));
   if ((response == 'y') || (response == 'Y')) all_probands();
   else some_probands();
 }
