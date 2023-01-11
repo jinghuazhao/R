@@ -8,3 +8,8 @@ twinan90/	Deprecated twinan90 files
 xls/		Original BFDP and FPRP function
 
 README.txt	This file
+
+I have moved .xls files to accompany `FPRP` and `BFDP` functions from gap as with a
+classic twin example for ACE model in **OpenMx**. The package is now available from
+CRAN. For these models it is actually simpler to use facilities as in package **mets**,
+which is now in suggests.
