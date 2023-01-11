@@ -232,16 +232,15 @@ are designed and written to deal with large number of genes.
 
 # Independent programs
 
-To facilitate comparisons and individual preferences, The source codes for 2LD, EHPLUS, 
-GENECOUNTING, HAP @zhao04, now hosted at GitHub, have enjoyed great popularity ahead of the
-genomewide association studies (GWAS) therefore are likely to be more familiar than their
-R couunterparts in `gap`. However, you need to follow their instructions to compile
+To facilitate comparisons and individual preferences, The source codes for EHPLUS @zhao00,
+2LD, GENECOUNTING, HAP @zhao04, now hosted at GitHub, have enjoyed great popularity ahead
+of the genomewide association studies (GWAS) therefore are likely to be more familiar than
+their R couunterparts in `gap`. However, you need to follow their instructions to compile
 for a particular computer system.
 
 I have kept the original `pedtodot.sh` by David Duffy which enables contrast with
-`pedtodot_verbatim()` and `pedtodot()` reported as application notes.
-
-I have also included `ms` code @hudson02, which is required by `read.ms.output`.
+`pedtodot_verbatim()` and `pedtodot()` reported as application notes. I have also included
+`ms` code @hudson02, which is required by `read.ms.output`.
 
 A final note is concerned about `twinan90`, which is now dropped from the package function
 list due to difficulty to keep up with the requirements by the `R` environment but
