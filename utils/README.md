@@ -48,8 +48,8 @@ pQTLtools is somewhat poorly mirrored here, [https://rdrr.io/github/jinghuazhao/
 
 The settings below are derived from the following links,
 
-* clang, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang)
-* gcc, [https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc](https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc)
+* clang, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang>
+* gcc, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc>
 
 Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
 
@@ -156,6 +156,35 @@ Execution halted
 ```
 
 It turns out package `meta` is missing from the package list, which removes the error after installation.
+
+It is known that some preparations are needed to compile PDF files, e.g., 
+
+```
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+LaTeX errors found:
+! LaTeX Error: File `inconsolata.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *>
+
+l.303 ^^M
+
+!  ==> Fatal error occurred, no output PDF file produced!
+* checking PDF version of manual without index ... OK
+* DONE
+
+Status: 1 WARNING, 1 NOTE
+See
+  ‘/home/jhz22/R/gap.examples.Rcheck/00check.log’
+for details.
+```
+
+On Cambridge University's CSD3 system, one only needs to use `module load texlive` first.
 
 ## html
 
