@@ -1,6 +1,6 @@
 Package: gap
 Version: 1.5
-Date: 2023-1-9
+Date: 2023-1-11
 Title: Genetic Analysis Package
 Authors@R: c(person("Jing Hua", "Zhao", role = c("aut", "cre"),
                     email = "jinghuazhao@hotmail.com",
@@ -18,7 +18,7 @@ Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm,
         R2jags, bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
         foreign, forestplot, genetics, grid, haplo.stats, htmlwidgets,
         jsonlite, kinship2, knitr, lattice, magic, manhattanly,
-        matrixStats, meta, metafor, mets, nlme, pedigree, pedigreemm,
+        matrixStats, meta, metafor, nlme, pedigree, pedigreemm,
         plotrix, readr, reshape, rmarkdown, rmeta, rms, survival
 VignetteBuilder: knitr
 Enhances: shiny

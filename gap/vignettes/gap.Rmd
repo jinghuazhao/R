@@ -55,7 +55,7 @@ improve them.
 
 With my recent work on genomewide association studies (GWASs) especially protein
 GWASs, I have added many functions such as `METAL_forestplot` which handles
-data from software METAL and `sentinels` which extracts sentinels from
+data from software METAL @willer10 and `sentinels` which extracts sentinels from
 GWAS summary statistics in a way that is very appealing to us compared to some
 other established software. At the meantime, the size of the package surpasses
 the limit as imposed by CRAN, thus the old good feature of `S` as with
@@ -233,7 +233,7 @@ are designed and written to deal with large number of genes.
 # Independent programs
 
 To facilitate comparisons and individual preferences, The source codes for 2LD, EHPLUS, 
-GENECOUNTING, HAP, now hosted at GitHub, have enjoyed great popularity ahead of the
+GENECOUNTING, HAP @zhao04, now hosted at GitHub, have enjoyed great popularity ahead of the
 genomewide association studies (GWAS) therefore are likely to be more familiar than their
 R couunterparts in `gap`. However, you need to follow their instructions to compile
 for a particular computer system.
@@ -241,11 +241,7 @@ for a particular computer system.
 I have kept the original `pedtodot.sh` by David Duffy which enables contrast with
 `pedtodot_verbatim()` and `pedtodot()` reported as application notes.
 
-I have also included `ms` code (which is required by `read.ms.output` and .xls files
-to accompany `read.ms.output` and `FPRP` and `BFDP` functions as with a classic twin
-example for ACE model in **OpenMx**. The package is now available from CRAN. For
-these models it is actually simpler to use facilities as in package **mets**, which
-is now in suggests.
+I have also included `ms` code (which is required by `read.ms.output`.
 
 A final category is `twinan90`, which is now dropped from the package function list
 due to difficulty to keep up with the requirements by the `R` environment but 
