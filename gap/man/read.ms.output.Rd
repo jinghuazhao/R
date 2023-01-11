@@ -65,7 +65,7 @@ msout3 <- read.ms.output(msout,FALSE)
 
 }
 \references{
-Hudson RR (2002) Generating samples under a Wright-Fisher neutral model. Bioinformatics 18:337-8,
+Hudson RR (2002) Generating samples under a Wright-Fisher neutral model. Bioinformatics 18:337-8.
 
 Press WH, SA Teukolsky, WT Vetterling, BP Flannery (1992). Numerical Recipes in C. Cambridge University Press, Cambridge.
 }

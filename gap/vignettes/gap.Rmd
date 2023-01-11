@@ -241,10 +241,10 @@ for a particular computer system.
 I have kept the original `pedtodot.sh` by David Duffy which enables contrast with
 `pedtodot_verbatim()` and `pedtodot()` reported as application notes.
 
-I have also included `ms` code (which is required by `read.ms.output`.
+I have also included `ms` code @hudson02, which is required by `read.ms.output`.
 
-A final category is `twinan90`, which is now dropped from the package function list
-due to difficulty to keep up with the requirements by the `R` environment but 
+A final note is concerned about `twinan90`, which is now dropped from the package function
+list due to difficulty to keep up with the requirements by the `R` environment but
 nevertheless you will still be able to compile and use otherwise from **gap.examples**.
 
 # Demos
