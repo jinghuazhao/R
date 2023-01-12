@@ -249,7 +249,7 @@ L395:
 
 void prog(double *x,int n,double *deltot,long *idum,double *A,int *delta)
 {
-  double xsumsq=0.,lambda,p,num,r,fun1,fun2,cc,dd,rsig,zeta,kappa,tau2,epsilon;
+  double xsumsq=0.,lambda,p,num,r=0,fun1,fun2,cc,dd,rsig,zeta,kappa,tau2,epsilon;
   int i,j,nu=0,df=0,ngib,burn;
 
   zeta=1000.;kappa=4.;tau2=1.;epsilon=.01;ngib=500;burn=50;
@@ -692,7 +692,7 @@ void gcontrol_c(double *kdata, int *nkdata, double *zeta, double *kappa,
               double *tau2, double *epsilon, int *ngib, int *burn, 
               int *idumR, double *deltot, double *x, double *A)
 {
-  double jnk[6], xsumsq=0.,lambda,p,num,r,fun1,fun2,cc,dd,rsig,*out;
+  double jnk[6], xsumsq=0.,lambda,p,num,r=0,fun1,fun2,cc,dd,rsig,*out;
   int    i,j,R,N,n=0,nu=0,*delta,df=0,o[3],e[3];
   long   idum=*idumR;
 

@@ -2,8 +2,9 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.5
 12-01-2023	Apply bookdown to shinygap.Rmd
-		Modify gap.Rmd
 		Suggests mets in gap.examples instead
+		Initialize r=0 at lines 252, 694
+		Modify gap.Rmd
 
 Version 1.4-2
 09-01-2023	Only use %s as in makeped_c.c/fscanf("%s",&response)
