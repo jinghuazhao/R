@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5
-11-01-2023	Apply bookdown to shinygap.Rmd
+12-01-2023	Apply bookdown to shinygap.Rmd
 		Modify gap.Rmd
 		Suggests mets in gap.examples instead
 

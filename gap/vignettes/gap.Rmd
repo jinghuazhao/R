@@ -535,7 +535,7 @@ abline(h=genomewideline, col="green")
 abline(h=0)
 ```
 
-The code below obtains a Manhattan plot with gene annotation,
+The code below obtains a Manhattan plot with gene annotation @kilpelainen11,
 
 ```{r mhtplot, fig.cap="A Manhattan plot with gene annotation", fig.height=7, fig.width=7, messages=FALSE, results="hide"}
 data <- with(mhtdata,cbind(chr,pos,p))
@@ -1013,7 +1013,7 @@ This is close to Ligthart et al. @ligthart18 as used one time at workplace which
 
 ## Contrast of effect sizes
 
-Analysis has been done upon cis, trans, cis+trans (pan) pQTLs @folkersen20, which would be of interest to contrast their effect sizes as well,
+It would be of interest to contrast their effect sizes in the analysis above as well,
 
 ```{r mr2, fig.cap="Combined forest plots for LIF.R, FEV1 and CAD", fig.height=7, fig.width=7}
 mr_names <- names(mrdat)
