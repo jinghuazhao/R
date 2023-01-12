@@ -330,9 +330,9 @@ while(fgets(line,1000,fp)
    {
      ++n;continue;
    }
-   if(!cc) p_t.affection=false;
-   else if(p_t.affection==true) ++cases;
-        else p_t.affection=false;
+   if(!cc) p_t.affection=0;
+   else if(p_t.affection==1) ++cases;
+        else p_t.affection=0;
    l=0;
    for(j=0;j<nloci;++j)
    {
@@ -577,9 +577,9 @@ while(fgets(line,1000,fp)
    {
      ++n;continue;
    }
-   if(!cc) p_t.affection=false;
-   else if(p_t.affection==true) ++cases;
-        else p_t.affection=false;
+   if(!cc) p_t.affection=0;
+   else if(p_t.affection==1) ++cases;
+        else p_t.affection=0;
    l=0;
    for(j=0;j<nloci;++j)
    {
@@ -813,9 +813,9 @@ while(fgets(line,1000,fp)
    {
      ++n;continue;
    }
-   if(!cc) p_t.affection=false;
-   else if(p_t.affection==true) ++cases;
-        else p_t.affection=false;
+   if(!cc) p_t.affection=0;
+   else if(p_t.affection==1) ++cases;
+        else p_t.affection=0;
    ++i;
    listi = (list)malloc(sizeof(struct newrec));
    if(!listi) error("%d",1);

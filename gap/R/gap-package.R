@@ -12,13 +12,13 @@
 #' @details
 #' \tabular{ll}{
 #' Package: \tab gap\cr
-#' Version: \tab 1.3\cr
+#' Version: \tab 1.5\cr
 #' Depends: \tab R(>= 2.1.0)\cr
 #' Imports: \tab dplyr, ggplot2, plotly \cr
-#' Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, \cr
+#' Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, bookdown, \cr
 #'           \tab calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot, \cr
 #'           \tab gap.datasets, ggplot2, grid, haplo.stats, htmlwidgets, kinship2, lattice, \cr
-#'           \tab magic, matrixStats, meta, metafor, mets, nlme, pedigree, pedigreemm,\cr
+#'           \tab magic, matrixStats, meta, metafor, nlme, pedigree, pedigreemm,\cr
 #'           \tab plotrix, qqman, regress, reshape, rmarkdown, rmeta, rms, survival \cr
 #' License: \tab GPL (>=2)\cr
 #' URL: \tab https://jinghuazhao.github.io/R\cr

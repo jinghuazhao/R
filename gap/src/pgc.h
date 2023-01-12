@@ -3,7 +3,6 @@
 
 #define MAX_LOC 30
 
-typedef enum {false=0,true=1} boolean;
 #define _swap_(a,b) __swap__(a,b)
 void __swap__(int *a,int *b) {int t;t=*a;*a=*b;*b=t;}
 struct individual
@@ -20,7 +19,7 @@ int a2g(int,int);
 int g2a(int,int*,int*,int*);
 int nloci,alleles[MAX_LOC],permute,npermute;
 double nall[MAX_LOC],np[MAX_LOC],nnp[MAX_LOC],position(int,int*,int),positionm(int,int*,int);
-int cc=false,sel[MAX_LOC],selp[MAX_LOC],isgenotype,iogenotype;
+int cc=0,sel[MAX_LOC],selp[MAX_LOC],isgenotype,iogenotype;
 int selected,selectn,selectp,selidx[MAX_LOC],selndx[MAX_LOC],selpdx[MAX_LOC];
 float freq,pen0,pen1,pen2;
 int sample_size,cases;
