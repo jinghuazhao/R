@@ -904,7 +904,7 @@ variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
 
 ## Effect size and standard error
 
-When $\mbox{Var}(\mbox{y})=1$, as in cis eQTLGen data, we have $b$ and its standard error (se) as follows,
+When $\mbox{Var}(\mbox{y})=1$, as in cis eQTLGen @vosa21 data, we have $b$ and its standard error (se) as follows,
 
 $$
 \begin{align}
@@ -955,6 +955,17 @@ get_sdy(0.6396966,23991,0.04490488,0.009504684)
 and indeed the eQTLGen data were standardized.
 
 # Fine-mapping
+
+We considered a region of interest (which could be approximately independent variants,
+e.g., $r2 \le 0.5$) using expressions that rely on effect sizes and their standard
+errors @graph21. More specifically, let Bayes factors (BF) for each variant in the
+meta-analysis be defined as $ln(BF) \propto 0.5 \beta^2/SE^2$, where $\beta$ and $SE$
+are the effect size and standard error from the meta-analysis, respectively. The
+posterior probability (PP) for being causal for a particular variant is obtained as
+$BF_i/\sum_{i=1}^TBF_i$, where $i$ indexes all variants considered in the region. We
+generated credible sets within a given region by ranking all variants by PPs in
+descending order and calculating the number of variants required to reach a cumulative
+probability of such as 99\%.
 
 The function `cs` obtains credible set.
 ```r
