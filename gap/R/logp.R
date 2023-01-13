@@ -3,7 +3,7 @@
 #' @md
 #' @param z normal deviate.
 #' @export
-#' @return log10(P)
+#' @return log(P)
 #' @examples
 #' logp(100)
 

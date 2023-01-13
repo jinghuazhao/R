@@ -2,6 +2,7 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-1
 13-01-2023	Add rationale for cs() as with @graham21 and @vosa21 citations in gap.Rmd
+		Fix logp.Rd
 
 Version 1.5
 12-01-2023	Apply bookdown to shinygap.Rmd
