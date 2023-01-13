@@ -962,10 +962,10 @@ errors @graham21. More specifically, let Bayes factor (BF) for each variant in t
 meta-analysis be defined as $ln(BF) \propto 0.5 \beta^2/SE^2$, where $\beta$ and $SE$
 are the effect size and standard error from the meta-analysis, respectively. The
 posterior probability (PP) for being causal for a particular variant is obtained as
-$BF_i/\sum_{i=1}^TBF_i$, where $i$ indexes all variants considered in the region. We
-generated credible sets within a given region by ranking all variants by PPs in
-descending order and calculating the number of variants required to reach a cumulative
-probability of such as 99\%.
+$BF_i/\sum_{i=1}^TBF_i$, where $i=1,\ldots,T$ indexes all variants considered in the
+region. We generated credible sets within a given region by ranking all variants by
+PPs in descending order and calculating the number of variants required to reach a
+cumulative probability of such as 99\%.
 
 The function `cs` obtains credible set.
 ```r
