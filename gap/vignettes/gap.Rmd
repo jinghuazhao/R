@@ -957,8 +957,8 @@ and indeed the eQTLGen data were standardized.
 # Fine-mapping
 
 We considered a region of interest (which could be approximately independent variants,
-e.g., $r2 \le 0.5$) using expressions that rely on effect sizes and their standard
-errors @graph21. More specifically, let Bayes factors (BF) for each variant in the
+e.g., $r^2 \le 0.5$) using expressions that rely on effect sizes and their standard
+errors @graham21. More specifically, let Bayes factor (BF) for each variant in the
 meta-analysis be defined as $ln(BF) \propto 0.5 \beta^2/SE^2$, where $\beta$ and $SE$
 are the effect size and standard error from the meta-analysis, respectively. The
 posterior probability (PP) for being causal for a particular variant is obtained as
