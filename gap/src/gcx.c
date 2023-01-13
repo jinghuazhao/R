@@ -42,11 +42,11 @@ static double d_sample,d_msample;
 static int hapall;
 static double *c,*h,*hs,*h0,*hm;
 static int idm[mxloc];
-   
+
 void *xmalloc(long);
 
 hnode *hrt=0;
-hnode *hitree(hnode*,long int,short*);
+hnode *hitree(hnode*,long int,short int []);
 void hrtree(hnode*);
 
 /*ordinary data*/
@@ -1206,7 +1206,7 @@ for(i=0;i<obscom;i++)
 fclose(fo);
 }
 
-hnode *hitree(hnode *r,long int id,short l[mxloc])
+hnode *hitree(hnode *r,long int id,short int l[mxloc])
 /*insert*/
 {
 int i;

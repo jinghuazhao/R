@@ -2,6 +2,8 @@ Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-1
 13-01-2023	Add rationale for cs() as with @graham21 and @vosa21 citations in gap.Rmd
+		gcx.c: 49, 1209, short * to short int []
+		hap.h:37, hap_c.c: 1001, char *
 		Fix logp.Rd
 
 Version 1.5

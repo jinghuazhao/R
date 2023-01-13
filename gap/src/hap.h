@@ -34,7 +34,7 @@ void hap_list(FILE *, long, CODE *, HAP**);
 long n_unique_haps(long n_hap, HAP **ho_list);
 void unique_haps(long n_hap, HAP **ho_list, HAP **unique);
 long check_hap(long n_hap, HAP **);
-int encode(char *, CODE *);
+int encode(char [], CODE *);
 int gt_read(int, char**, char**, int *, CODE *, HAP **, HAP **);
 int allele_code(int, CODE);
 void ranord(int, int*);
