@@ -23,8 +23,8 @@ mhtplot.trunc(
   cex.text = 0.7,
   mtext.line = 2,
   y.ax.space = 5,
-  y.brk1,
-  y.brk2,
+  y.brk1 = NULL,
+  y.brk2 = NULL,
   trunc.yaxis = TRUE,
   cex.axis = 1.2,
   delta = 0.05,
@@ -84,10 +84,10 @@ mhtplot.trunc(
 The plot is shown on or saved to the appropriate device.
 }
 \description{
-To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed. In the future, the function should allow for additional data for adjustment of labels, positions, and -log10(P) to resolve separation.
+To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
 }
 \details{
-The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for R will break down when p <= 1e-324.
+The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS. Optionally, the function also draws an ordinary Manhattan plot.
 }
 \examples{
 \dontrun{

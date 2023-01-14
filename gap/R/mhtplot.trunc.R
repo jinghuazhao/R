@@ -1,8 +1,8 @@
 #' Truncated Manhattan plot
 #'
-#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed. In the future, the function should allow for additional data for adjustment of labels, positions, and -log10(P) to resolve separation.
+#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
 #'
-#' The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS; for R will break down when p <= 1e-324.
+#' The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS. Optionally, the function also draws an ordinary Manhattan plot.
 #'
 #' @param x A data.frame.
 #' @param chr Chromosome.
@@ -69,7 +69,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
                            chrlabs = NULL, suggestiveline = -log10(1e-05),
                            genomewideline = -log10(5e-08), highlight = NULL,
                            annotatelog10P = NULL, annotateTop = FALSE, cex.mtext=1.5, cex.text=0.7,
-                           mtext.line = 2, y.ax.space = 5, y.brk1, y.brk2, trunc.yaxis=TRUE,
+                           mtext.line = 2, y.ax.space = 5, y.brk1=NULL, y.brk2=NULL, trunc.yaxis=TRUE,
                            cex.axis=1.2, delta=0.05, ...)
 {
   for (q in c("calibrate","plotrix")) {
@@ -87,7 +87,7 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   if (is.null(p) & !is.null(log10p)) log10P <- -as.numeric(x[[log10p]])
   if (is.null(p) & is.null(log10p) & !is.null(z)) log10P <- -log10p(as.numeric(x[[z]]))
   if(is.null(p) & is.null(log10p) & is.null(z)) stop("At least one of p, log10p, or z (priority given in that order) is needed")
-  if (y.brk2 <= y.brk1) stop("y.brk2 must be larger than y.brk1")
+  if (trunc.yaxis & !is.null(y.brk1) & !is.null(y.brk2)) if (y.brk2 <= y.brk1) stop("y.brk2 must be larger than y.brk1")
   if (!(snp %in% names(x))) warning(paste("No SNP column found. OK unless you're trying to highlight."))
   d <- data.frame(CHR = x[[chr]], BP = as.integer(x[[bp]]), log10P = log10P)
   d <- subset(d, !is.na(CHR) & !is.na(BP) & !is.na(log10P))
@@ -122,12 +122,13 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   xmax <- ceiling(max(with(d,pos)) * 1.03)
   xmin <- floor(max(with(d,pos)) * -0.03)
   max.y <- ceiling(max(with(d,log10P), na.rm=TRUE))
-  if (y.brk2 > max.y ){
+  if (trunc.yaxis & !is.null(y.brk2)) if (y.brk2 > max.y ){
       message(paste("max.y is", max.y))
       stop("User error: Upper breakpoint must be lower than maximum -log10(P-value)")
   }
-  offset <- y.brk2-y.brk1
-  if (trunc.yaxis) d <- within(d, {
+  if (!trunc.yaxis) offset <- 0
+  if (trunc.yaxis & !is.null(y.brk1) & !is.null(y.brk2)) if (y.brk2 <= y.brk1) offset <- y.brk2-y.brk1
+  if (trunc.yaxis & !is.null(y.brk1) & !is.null(y.brk2)) if (y.brk2 <= y.brk1) d <- within(d, {
     gapped <- log10P > y.brk1 & log10P < y.brk2
     above <- log10P > y.brk2
     log10P[gapped] <- NA
@@ -140,12 +141,12 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
   dotargs <- list(...)
   do.call("plot", c(NA, dotargs, def_args[!names(def_args) %in% names(dotargs)]))
   mtext(text = xlabel, side = 1, line = mtext.line, cex = cex.mtext, font=2)
-  mtext(text = expression(-log[10](italic(p))), side=2, line = mtext.line, cex = cex.mtext, font=2)
+  mtext(text = expression(-log[10](italic(P))), side=2, line = mtext.line, cex = cex.mtext, font=2)
   y.lab.tick.pos <- seq(from = 0, by = y.ax.space, to = ceiling(max.y) - offset + y.ax.space/3)
-  pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1)
-  y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
-  if (trunc.yaxis)
+  if (trunc.yaxis & !is.null(y.brk1) & !is.null(y.brk2))
   {
+    if (y.brk2 <= y.brk1) pre.brk.labs <- seq(from = 0, by = y.ax.space, to = y.brk1)
+    y.labels <- c(pre.brk.labs, seq(from=y.brk2, by=y.ax.space, length.out=length(y.lab.tick.pos)-length(pre.brk.labs)))
     axis(side=2, at=y.lab.tick.pos, labels=y.labels, cex.axis=cex.axis, las=1)
     plotrix::axis.break(axis = 2, breakpos = y.brk1, style = "slash")
   } else axis(side=2, las=1)
@@ -166,8 +167,8 @@ mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z
       icol = icol + 1
     }
   }
-  if (suggestiveline) abline(h = suggestiveline, col = "blue")
-  if (genomewideline) abline(h = genomewideline, col = "red")
+  if (!is.null(suggestiveline)) abline(h = suggestiveline, col = "blue")
+  if (!is.null(genomewideline)) abline(h = genomewideline, col = "red")
   if (!is.null(highlight)) {
     if (any(!(highlight %in% with(d,SNP)))) warning("You're trying to highlight SNPs that don't exist in your results.")
     d.highlight <- d[which(with(d,SNP) %in% highlight), ]
