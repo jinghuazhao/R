@@ -41,7 +41,7 @@ x <- hla[,3:8]
 
 # do not handle missing data
 y<-pgc(x,handle.miss=0,with.id=1)
-hla.gc<-genecounting(y$cdata,y$wt,handle.miss=0)
+hla.gc<-genecounting(y$cdata,y$wt)
 
 # handle missing but with multilocus genotype identifier
 pgc(x,handle.miss=1,with.id=1)
