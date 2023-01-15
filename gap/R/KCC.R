@@ -1,12 +1,15 @@
 #' Disease prevalences in cases and controls
 #'
-#' @param model Disease model (one of "multiplicative","additive","recessive","dominant","overdominant").
+#' @param model disease model (one of "multiplicative","additive","recessive","dominant","overdominant").
 #' @param GRR genotype relative risk.
 #' @param p1 disease allele frequency.
 #' @param K disease prevalence in the whole population.
 #'
-#' @details It is used by both tscc() and pbsize2().
-#'
+#' @details
+#' KCC calculates disease prevalences in cases and controls for a given genotype relative risk,
+#' allele frequency and prevalencen of the disease in the whole population. It is used by tscc
+#' and pbsize2.
+#' 
 #' @export
 #' @return A list of two elements,
 #' \describe{

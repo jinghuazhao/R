@@ -25,3 +25,7 @@ A data.frame with the following variables.
 \description{
 This function obtains information embedded in  unique identifiers.
 }
+\examples{
+# rs12075
+inv_chr_pos_a1_a2("chr1:159175354_A_G",prefix="chr",seps=c(":","_","_"))
+}

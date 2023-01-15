@@ -7,7 +7,7 @@
 KCC(model, GRR, p1, K)
 }
 \arguments{
-\item{model}{Disease model (one of "multiplicative","additive","recessive","dominant","overdominant").}
+\item{model}{disease model (one of "multiplicative","additive","recessive","dominant","overdominant").}
 
 \item{GRR}{genotype relative risk.}
 
@@ -28,5 +28,7 @@ A list of two elements,
 Disease prevalences in cases and controls
 }
 \details{
-It is used by both tscc() and pbsize2().
+KCC calculates disease prevalences in cases and controls for a given genotype relative risk,
+allele frequency and prevalencen of the disease in the whole population. It is used by tscc
+and pbsize2.
 }

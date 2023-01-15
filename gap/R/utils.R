@@ -1,3 +1,11 @@
+#' Allele recoding
+#'
+#' @param a1 first allele.
+#' @param a2 second allele.
+#' @param miss.val missing value.
+#'
+#' @export
+
 allele.recode <- function (a1, a2, miss.val = NA)
 {
     n <- length(a1)
@@ -20,6 +28,13 @@ allele.recode <- function (a1, a2, miss.val = NA)
     return(list(a1 = a1, a2 = a2, allele.label = allele.label))
 }
 
+#' Genotype recoding
+#'
+#' @param geno genotype.
+#' @param miss.val missing value.
+#'
+#' @export
+
 geno.recode <- function (geno, miss.val = 0)
 {
     n.loci <- ncol(geno)/2
@@ -33,6 +48,13 @@ geno.recode <- function (geno, miss.val = 0)
     }
     return(list(grec = grec, alist = alist))
 }
+
+#' Allele-to-genotype conversion
+#'
+#' @param a1 first allele.
+#' @param a2 second allele.
+#'
+#' @export
 
 a2g <- function(a1,a2)
 {
@@ -51,6 +73,12 @@ g2a.c <- function (g)
     l = g - u * (u - 1) / 2
     list (l=l,u=u)
 }
+
+#' Conversion of a genotype identifier to alleles
+#'
+#' @param g a genotype identifier.
+#'
+#' @export
 
 g2a <- function (g)
 {
@@ -246,7 +274,15 @@ VR <- function(v1,vv1,v2,vv2,c12)
   nv/dv
 }
 
-# R script to read the GRM binary file
+#' A function to read GRM binary files
+#'
+#' @param prefix file root.
+#' @param AllN a logical variable.
+#' @param size size.
+#'
+#' @details Modified from GCTA documentation
+#'
+#' @export
 
 ReadGRMBin <- function(prefix, AllN=FALSE, size=4)
 {
@@ -269,6 +305,16 @@ ReadGRMBin <- function(prefix, AllN=FALSE, size=4)
   invisible(list(grm=grm, id=id, N=N, GRM=GRM))
 }
 
+#' A function to write GRM binary file
+#'
+#' @param prefix file root.
+#' @param grm a GRM.
+#' @param N Sample size.
+#' @param id id.
+#' @param size size.
+#'
+#' @export
+
 WriteGRMBin <- function(prefix, grm, N, id, size=4)
 {
   BinFileName <- paste(prefix,".grm.bin",sep="")
@@ -282,6 +328,12 @@ WriteGRMBin <- function(prefix, grm, N, id, size=4)
   close(grm.N.bin)
   write.table(id,IDFileName,col.names=FALSE,quote=FALSE,row.names=FALSE,sep="\t")
 }
+
+
+#' A function to read GRM file
+#' @param prefix file root.
+#'
+#' @export
 
 ReadGRM <- function(prefix=51)
 {
@@ -301,6 +353,14 @@ ReadGRM <- function(prefix=51)
   GRM[lower.tri(GRM)] <- t(GRM)[lower.tri(GRM)]
   invisible(list(GRM=GRM,N=M,id=id,grm=grm))
 }
+
+#' A function to write GRM file
+#' @param prefix file root.
+#' @param id id.
+#' @param N sample size.
+#' @param GRM a GRM.
+#'
+#' @export
 
 WriteGRM <- function(prefix=51,id,N,GRM)
 {

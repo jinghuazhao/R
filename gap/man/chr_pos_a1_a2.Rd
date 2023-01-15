@@ -35,3 +35,7 @@ Identifier.
 \description{
 This function generates unique identifiers for variants
 }
+\examples{
+# rs12075
+chr_pos_a1_a2(1,159175354,"A","G",prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
+}

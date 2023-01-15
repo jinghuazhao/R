@@ -12,6 +12,9 @@
 #'
 #' @export
 #' @return Identifier.
+#' @examples
+#' # rs12075
+#' chr_pos_a1_a2(1,159175354,"A","G",prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 
 chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),uppercase=TRUE)
 {
@@ -42,6 +45,10 @@ chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),upperca
 #' \item{a1}{Allele 1.}
 #' \item{a2}{Allele 2.}
 #' }
+#'
+#' @examples
+#' # rs12075
+#' inv_chr_pos_a1_a2("chr1:159175354_A_G",prefix="chr",seps=c(":","_","_"))
 
 inv_chr_pos_a1_a2 <- function(chr_pos_a1_a2,prefix="chr",seps=c(":","_","_"))
 {
