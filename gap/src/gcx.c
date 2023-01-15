@@ -46,7 +46,7 @@ static int idm[mxloc];
 void *xmalloc(long);
 
 hnode *hrt=0;
-hnode *hitree(hnode*,long int,short int []);
+hnode *hitree(hnode*,long int,short int*);
 void hrtree(hnode*);
 
 /*ordinary data*/
@@ -1206,7 +1206,7 @@ for(i=0;i<obscom;i++)
 fclose(fo);
 }
 
-hnode *hitree(hnode *r,long int id,short int l[mxloc])
+hnode *hitree(hnode *r,long int id,short int *l)
 /*insert*/
 {
 int i;
