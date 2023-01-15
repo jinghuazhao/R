@@ -55,6 +55,8 @@ Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error
 
 Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `cairo-devel`, `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
 
+Note that some errors can only be seen through R CMD INSTALL.
+
 ### .R/Makevars
 
 ```bash
