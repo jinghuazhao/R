@@ -916,7 +916,7 @@ axis(1,at=c(2,(1:5)*100))
 legend(400,0.5,c("LR","t-statistic"),col=c("red","blue"),pch=c(19,20))
 ```
 
-It turns out that as the sample size increases, they approach 1 quickly from opposite directions after $N\sim 300$.
+It turns out that as the sample size increases, they approach 1 quickly from opposite directions after $N\approx 300$.
 
 ## Effect size and standard error
 
