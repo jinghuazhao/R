@@ -43,4 +43,4 @@ sudo make install
 
 ln -s ~/R-devel/bin/R ~/bin/R-devel
 ln -s ~/R-devel/bin/Rscript ~/bin/Rscript-devel
-Rscript-devel -e 'install.packages(c("shiny","V8),repos="https://cran.r-project.org")'
+Rscript-devel -e 'install.packages(c("shiny","V8"),repos="https://cran.r-project.org")'
