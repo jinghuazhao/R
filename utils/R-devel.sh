@@ -25,6 +25,8 @@ sudo dnf install lapack-devel
 sudo dnf install v8-devel
 sudo dnf install xorg-x11-fonts-100dpi
 sudo dnf install xorg-x11-fonts-75dpi
+
+cd ~
 export R_LIBS=$HOME/R-devel/library
 wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
 tar xvfz -
@@ -36,3 +38,9 @@ tar xfz -
 ./configure
 make
 sudo make install
+
+# symbolic links
+
+ln -s ~/R-devel/bin/R ~/bin/R-devel
+ln -s ~/R-devel/bin/Rscript ~/bin/Rscript-devel
+Rscript-devel -e 'install.packages(c("shiny","V8),repos="https://cran.r-project.org")'
