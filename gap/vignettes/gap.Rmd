@@ -912,7 +912,7 @@ $$
 \begin{align}
 b & = z/d \hspace{100cm} \\ 
 se & = 1/d
-(\#eq:b_se)
+(\#eq:bSE)
 \end{align}
 $$
 
