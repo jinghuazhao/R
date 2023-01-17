@@ -835,7 +835,7 @@ We also need some established results of a ratio (R/S)[^1], i.e., the mean
 $$
 \begin{align}
 E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_S^2\mu_R}{\mu_S^3} \hspace{100cm} 
-(\#eq:mean_ratio)
+(\#eq:meanRatio)
 \end{align}
 $$
 
@@ -846,7 +846,7 @@ $$
 \mbox{Var}(R/S) \approx \frac{\mu_R^2}{\mu_S^2} \left[
                         \frac{\sigma_R^2}{\mu_R^2} -2\frac{\mbox{Cov}(R,S)}{\mu_R\;\mu_S}
                        +\frac{\sigma_S^2}{\mu_S^2} \right] \hspace{100cm}
-(\#eq:var_ratio)
+(\#eq:varRatio)
 \end{align}
 $$
 
@@ -865,7 +865,7 @@ $$
 \mbox{PVE}_{\mbox{linear regression}} & = \frac{\mbox{Var}(b\mbox{x})}{\mbox{Var}(\mbox{y})} \hspace{100cm} \\
            & = \frac{\mbox{Var}(\mbox{x})b^2}{\mbox{Var}(\mbox{x})(b^2+N\mbox{Var}(b))} \\
            & = \frac{\mbox{z}^2}{\mbox{z}^2+N}
-(\#eq:pve_lr)
+(\#eq:pveLR)
 \end{align}
 $$
 
@@ -874,7 +874,7 @@ On the other hand, for a simple linear regression $R^2\equiv r^2$ where $r$ is t
 $$
 \begin{align}
 \mbox{PVE}_{t-\mbox{statistic}} & = \frac{\chi^2}{\chi^2+N-2} \hspace{100cm}
-(\#eq:pve_t)
+(\#eq:pvet)
 \end{align}
 $$
 
@@ -901,6 +901,8 @@ Characteristics          | Linear regression | $t$-statistic
 -------------------------|:-----------------:|:----------------------------------------------------------:
 estimate | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i}}$ | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i-2}}$
 variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
+
+Note that in particular variance based on the $t$-statistic only differs from the eestablished results @kotz06 by a scale factor of $(N-2)/(N+1)$.
 
 ## Effect size and standard error
 
