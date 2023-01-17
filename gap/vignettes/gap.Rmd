@@ -905,7 +905,7 @@ variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
 Therefore they differ from the asymptotic results @kotz06 by a scale factor of $(N-2)(N+1)/(N-1)^2$ and $(N-2)/(N+1)$ for
 linear regression and $t$-statistic, respectively.
 
-```{r pve, echo=FALSE, fig.caption="Scale factors as function of sample size (N)", fig.height=8, fig.width=8)
+```{r pve, echo=FALSE, fig.caption="Scale factors as function of sample size (N)", fig.height=8, fig.width=8}
 N <- 2:500
 LR <- (N-2)*(N+1)/(N-1)^2
 t <- (N-2)/(N+1)
