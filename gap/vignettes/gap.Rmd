@@ -905,7 +905,7 @@ variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
 Therefore they differ from the asymptotic results @kotz06 by ratios of $(N-2)(N+1)/(N-1)^2$ and $(N-2)/(N+1)$ for
 linear regression and $t$-statistic, respectively.
 
-```{r pve, echo=FALSE, fig.cap="R^2 and ratios as function of sample size (N)", fig.height=6, fig.width=14, messages=FALSE, warning=FALSE}
+```{r pve, echo=FALSE, fig.cap="Var($R^2$) and ratios as function of sample size (N)", fig.height=6, fig.width=14, messages=FALSE, warning=FALSE}
 oldpar <- par()
 par(mfrow=c(1,2))
 N <- 2:500
