@@ -665,7 +665,7 @@ It draws many forest plots given a list of variants, e.g.,
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=9, results="hide"}
 data(OPG,package="gap.datasets")
-METAL_forestplot(OPGtbl[4:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
+METAL_forestplot(OPGtbl[5:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
 ```
 
 # Significance
@@ -902,10 +902,10 @@ Characteristics          | Linear regression | $t$-statistic
 estimate | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i}}$ | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i-2}}$
 variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
 
-Therefore they differ from the asymptotic results @kotz06 by a scale factor of $(N-2)(N+1)/(N-1)^2$ and $(N-2)/(N+1)$ for
+Therefore they differ from the asymptotic results @kotz06 by ratios of $(N-2)(N+1)/(N-1)^2$ and $(N-2)/(N+1)$ for
 linear regression and $t$-statistic, respectively.
 
-```{r pve, echo=FALSE, fig.cap="Scale factors as function of sample size (N)", fig.height=6, fig.width=14, messages=FALSE, warning=FALSE}
+```{r pve, echo=FALSE, fig.cap="R^2 and ratios as function of sample size (N)", fig.height=6, fig.width=14, messages=FALSE, warning=FALSE}
 oldpar <- par()
 par(mfrow=c(1,2))
 N <- 2:500
