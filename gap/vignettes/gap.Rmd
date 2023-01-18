@@ -661,11 +661,11 @@ ESplot(rs12075)
 
 ## Forest plot
 
-It is possible to draw many forest plots given a list of variants; an example is given (only the first one here) here
+It draws many forest plots given a list of variants, e.g.,
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=9, results="hide"}
 data(OPG,package="gap.datasets")
-METAL_forestplot(OPGtbl[2:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
+METAL_forestplot(OPGtbl[4:6,],OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
 ```
 
 # Significance
