@@ -38,7 +38,7 @@ gfortran -c -fc-prototypes-external lmm.f
 ```
 as in package 'lmm'.
 
-* [st.sh](st.sh) is a batch file for GitHub.
+* [docs.sh](docs.sh) is a batch file for GitHub.
 
 * [suggests.R](suggests.R) is useful to install susggested packages.
 
