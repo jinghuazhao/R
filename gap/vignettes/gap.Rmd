@@ -710,7 +710,7 @@ logp <- function(z) log(2)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)
 # log10(p) for a standard normal deviate z based on log()
 log10p <- function(z) log(2, base=10)+pnorm(-abs(z), lower.tail=TRUE, log.p=TRUE)/log(10)
 ```
-Note `logp()` will be used for functions such as `qnorm()` as in R/gap function `cs()` whereas `log10p()` is more appropriate for Manhattan plot and used in R/gap `sentinels()`.
+Note `logp()` will be used for functions such as `qnorm()` as in function `cs()` whereas `log10p()` is more appropriate for Manhattan plot and used in `sentinels()`.
 
 ## Rationale
 
@@ -801,11 +801,11 @@ knitr::kable(v,caption="z,P,log(P) and log10(P)")
 
 ## Application
 
-The `mhtplot.trunc()` function in R/gap accepts three types of arguments:
+The `mhtplot.trunc()` function accepts three types of arguments:
 
-1. p. P values of association statistics, which could be very small.
-2. log10p. log10(P).
-3. z. normal statistics that could be very large.
+: p. P values of association statistics, which could be very small.
+: log10p. log10(P).
+: z. normal statistics that could be very large.
 
 In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme value,
 the y-axis allows for truncation leaving out a given range to highlight the largest.
