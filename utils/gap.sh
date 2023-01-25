@@ -5,7 +5,7 @@ module load gcc/6 geos-3.6.2-gcc-5.4.0-vejexvy pcre2-10.20-gcc-5.4.0-tcuhtrb tex
 cd ~/R
 Rscript -e 'setwd("gap");devtools::document()'
 
-export version=1.5-2
+export version=$(awk '/Version/{print $2}' ~/R/gap/DESCRIPTION)
 R CMD build --compact-vignettes=both --md5 --resave-data --log gap
 rm gap/src/*.so gap/src/*.o
 R CMD INSTALL --compact-docs --data-compress=xz gap_${version}.tar.gz
