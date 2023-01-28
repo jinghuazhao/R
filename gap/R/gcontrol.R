@@ -18,7 +18,6 @@
 #' associated with the disorder is given. The latter is not a p-value but any value
 #' greater than 0.5 (pout) suggests association. 
 #'
-#'
 #' @param data the data matrix.
 #' @param zeta program constant with default value 1000.
 #' @param kappa multiplier in prior for mean with default value 4.
@@ -39,8 +38,7 @@
 #' }
 #'
 #' @references
-#' Devlin B, Roeder K (1999) Genomic control for association studies. 
-#' Biometrics 55:997-1004
+#' \insertRef{devlin99}{gap}
 #'
 #' @examples
 #' \dontrun{

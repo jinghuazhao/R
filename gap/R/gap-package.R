@@ -154,6 +154,7 @@
 #' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
 #'
 #' @import dplyr gap.datasets
+#' @importFrom Rdpack reprompt
 #' @importFrom grDevices palette xy.coords
 #' @importFrom graphics abline arrows axis box boxplot
 #'             identify legend lines mtext par points

@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-24-01-2023	Revise gap.Rmd
+28-01-2023	Import and modify in accordance with Rdpack (>= 0.7)
+		Reorganize DESCRIPTION and revise gap.Rmd
 
 Version 1.5-1
 22-01-2023	Add rationale, @graham21 and @vosa21 for cs() together with minor changes in gap.Rmd

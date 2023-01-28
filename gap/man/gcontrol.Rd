@@ -77,8 +77,7 @@ gcontrol(test)
 }
 }
 \references{
-Devlin B, Roeder K (1999) Genomic control for association studies. 
-Biometrics 55:997-1004
+\insertRef{devlin99}{gap}
 }
 \author{
 Bobby Jones, Jing Hua Zhao

@@ -20,7 +20,7 @@ The returned value is a list containing:
 \description{
 The genetic index of familality is defined as the mean kinship between
 all pairs of individuals in a set multiplied by 100,000. Formally, it 
-is defined as 
+is defined in \insertCite{gholamic94;textual}{gap} as
 \deqn{100,000 \times \frac{2}{n(n-1)}\sum_{i=1}^{n-1}\sum_{j=i+1}^n k_{ij}}{100,000 x 2/[n(n-1)]\sum_(i=1)^(n-1)\sum_(j=i+1)^n k_(ij)}
 where \eqn{n} is the number of individuals in the set and \eqn{k_{ij}} is the
 kinship coefficient between individuals \eqn{i} and \eqn{j}.
@@ -67,9 +67,7 @@ gif(test,gifset=1:23)
 
 }
 \references{
-Gholami K, Thomas A (1994) A linear time algorithm for calculation of
-multiple pairwise kinship coefficients and genetic index of familiality.
-Comp Biomed Res 27:342-350
+\insertAllCited{}
 }
 \seealso{
 \code{\link[gap]{pfc}}
