@@ -156,8 +156,8 @@
 #'             read.delim read.table tail write.table
 #' @useDynLib gap
 #'
-#' @author Jing Hua Zhao in collaboration with other colleagues, and with
-#'         help from Kurt Hornik and Brian Ripley of the R core development team
+#' @author Jing Hua Zhao in collaboration with other colleagues and with
+#'         help from Kurt Hornik, Brian Ripley, Uwe Liggs and Achim Zeileis
 #'
 #' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
 #'
