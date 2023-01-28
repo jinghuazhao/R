@@ -10,21 +10,9 @@
 #' many projects hence also in line with the name (gap).
 #'
 #' @details
-#' \tabular{ll}{
-#' Package: \tab gap\cr
-#' Version: \tab 1.5-2\cr
-#' Depends: \tab R(>= 2.1.0)\cr
-#' Imports: \tab dplyr, ggplot2, plotly \cr
-#' Suggests: \tab BradleyTerry2, MASS, Matrix, MCMCglmm, R2jags, bdsmatrix, bookdown, \cr
-#'           \tab calibrate, circlize, coda, cowplot, coxme, dplyr, foreign, forestplot, \cr
-#'           \tab gap.datasets, ggplot2, grid, haplo.stats, htmlwidgets, kinship2, lattice, \cr
-#'           \tab magic, matrixStats, meta, metafor, nlme, pedigree, pedigreemm,\cr
-#'           \tab plotrix, qqman, regress, reshape, rmarkdown, rmeta, rms, survival \cr
-#' License: \tab GPL (>=2)\cr
-#' URL: \tab https://jinghuazhao.github.io/R\cr
-#' }
+#' We have incorporated functions for a wide range of problems. Nevertheless,
+#' this largely remains as a preliminary work to be consolidated in the near future.
 #'
-#' Index:
 #' \tabular{ll}{
 #' \cr
 #' \strong{ANALYSIS}\cr
@@ -142,16 +130,16 @@
 #' \cr
 #' }
 #'
-#' @details
-#' We have incorporated functions for a wide range of problems. Nevertheless,
-#' this largely remains as a preliminary work to be consolidated in the
-#' near future.
+#' @section Usage:
+#' Please check the vignettes for more on the package usage:
+#' - Genetic Analysis Package
+#' `vignette("gap")`
+#' - Shiny for Genetic Analysis Package (gap) Designs
+#' `vignette("shinygap")`
 #'
-#' @useDynLib gap
-#' @author Jing Hua Zhao in collaboration with other colleagues, and with
-#'         help from Kurt Hornik and Brian Ripley of the R core development team
-#' 
-#' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
+#' @docType package
+#' @name gap
+#' @aliases gap-package
 #'
 #' @import dplyr gap.datasets
 #' @importFrom Rdpack reprompt
@@ -166,6 +154,12 @@
 #'             runif sd var
 #' @importFrom utils data head packageDescription read.csv
 #'             read.delim read.table tail write.table
+#' @useDynLib gap
+#'
+#' @author Jing Hua Zhao in collaboration with other colleagues, and with
+#'         help from Kurt Hornik and Brian Ripley of the R core development team
+#'
+#' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
 #'
 #' @references
 #' Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.
