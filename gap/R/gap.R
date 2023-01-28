@@ -136,6 +136,8 @@
 #' `vignette("gap")`
 #' - Shiny for Genetic Analysis Package (gap) Designs
 #' `vignette("shinygap")`
+#' - JSS paper: Genetic Analysis Package
+#' `vignette("jss")`
 #'
 #' @docType package
 #' @name gap

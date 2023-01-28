@@ -144,6 +144,8 @@ Please check the vignettes for more on the package usage:
 `vignette("gap")`
 - Shiny for Genetic Analysis Package (gap) Designs
 `vignette("shinygap")`
+- JSS paper: Genetic Analysis Package
+`vignette("jss")`
 }
 
 \references{
