@@ -85,7 +85,7 @@ export _R_CHECK_SHLIB_OPENMP_FLAGS_ true
 
 export _R_CHECK_LIMIT_CORES_ true
 export _R_CHECK_LENGTH_1_CONDITION_ package:_R_CHECK_PACKAGE_NAME_,verbose
-#export _R_CHECK_LENGTH_1_LOGIC2_ "package:_R_CHECK_PACKAGE_NAME_,verbose"
+export _R_CHECK_LENGTH_1_LOGIC2_ "package:_R_CHECK_PACKAGE_NAME_,verbose"
 export _R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV_ true
 export _R_CHECK_COMPILATION_FLAGS_KNOWN_ "-Wno-deprecated-declarations -Wno-ignored-attributes -Wno-parentheses-Werror=format-security -Wp,-D_FORTIFY_SOURCE=2i -Werror=implicit-function-declaration"
 export _R_CHECK_AUTOCONF_ true
@@ -119,6 +119,23 @@ ln -sf R-devel/bin/R ${HOME}/bin/R-devel
 ```
 
 A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37.
+
+
+### R CMD build
+
+With these messages,
+
+```
+Warning in file(con, "w") :
+  cannot open file '/rds/user/jhz22/hpc-work/work/Rtmp8LqTOc/Rinst1d5421d9fa85a/00LOCK-accessibility/00new/accessibility/doc/index.html': No such file or directory
+Error in file(con, "w") : cannot open the connection
+ERROR: installing vignettes failed
+* removing ‘/rds/user/jhz22/hpc-work/work/Rtmp8LqTOc/Rinst1d5421d9fa85a/accessibility’
+      -----------------------------------
+ERROR: package installation failed
+```
+
+We need to remove inst/doc and build/ first.
 
 ### R CMD check
 
