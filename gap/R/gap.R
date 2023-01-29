@@ -131,11 +131,9 @@
 #'
 #' @section Usage:
 #' Vignettes on package usage:
-#' \itemize{
-#' \item Genetic Analysis Package. \code{vignette("gap")}.
-#' \item Shiny for Genetic Analysis Package (gap) Designs. \code{vignette("shinygap")}.
-#' \item JSS paper: Genetic Analysis Package. \code{vignette("jss")}.
-#' }
+#' - Genetic Analysis Package. `vignette("gap")`.
+#' - Shiny for Genetic Analysis Package (gap) Designs. `vignette("shinygap")`.
+#' - JSS paper: Genetic Analysis Package. `vignette("jss")`.
 #'
 #' @docType package
 #' @name gap
