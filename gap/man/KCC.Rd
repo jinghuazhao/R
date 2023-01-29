@@ -16,13 +16,11 @@ KCC(model, GRR, p1, K)
 \item{K}{disease prevalence in the whole population.}
 }
 \value{
-A list of two elements,
-\describe{
-\item{pprime}{prevlence in cases.}
-\item{p}{prevalence in controls.}
+A list of two elements:
+\itemize{
+\item pprime. prevlence in cases.
+\item p. prevalence in controls.
 }
-
-# 6-6-2018 MRC-Epid JHZ
 }
 \description{
 Disease prevalences in cases and controls

@@ -33,33 +33,33 @@ alleles for each subject.}
 \value{
 List with components:
 \describe{
- \item{converge}{Indicator of convergence of the EM algorithm
- (1=converged, 0 = failed).}
- \item{niter}{Number of iterations completed in the EM alogrithm.}
- \item{locus.info}{A list with  a  component for each locus.  Each
-  component is also a list, and  the  items of a locus-
-  specific list are the locus name and a vector for the
-  unique alleles for the locus.}
- \item{locus.label}{Vector of  labels  for  loci,  of  length  K  (see
-   definition of input values).}
- \item{haplotype}{Matrix of unique haplotypes. Each row represents a
-  unique  haplotype, and the number of columns is the number of loci.}
- \item{hap.prob}{Vector of mle's of haplotype probabilities.  The ith
-  element of hap.prob corresponds to the ith row of haplotype.}
- \item{lnlike}{Value of lnlike at last EM iteration (maximum lnlike if converged).}
- \item{indx.subj}{Vector for index of subjects, after  expanding  to
-  all possible  pairs  of  haplotypes  for  each person. If
-  indx=i, then i is the ith row of input matrix data. If the
-  ith subject has  n possible  pairs  of haplotypes that
-  correspond to their marker phenotype, then i is repeated n times.}
- \item{nreps}{Vector for the count of haplotype pairs that map to
-  each subject's marker genotypes.}
- \item{hap1code}{Vector of codes for each subject's first haplotype.
-  The values in hap1code are the row numbers of the unique
-  haplotypes in the returned matrix haplotype.}
- \item{hap2code}{Similar to hap1code, but for  each  subject's  second haplotype.}
- \item{post}{Vector of posterior probabilities of pairs of
-  haplotypes for a person, given thier marker phenotypes.}
+\item{converge}{Indicator of convergence of the EM algorithm
+(1=converged, 0 = failed).}
+\item{niter}{Number of iterations completed in the EM alogrithm.}
+\item{locus.info}{A list with  a  component for each locus.  Each
+component is also a list, and  the  items of a locus-
+specific list are the locus name and a vector for the
+unique alleles for the locus.}
+\item{locus.label}{Vector of  labels  for  loci,  of  length  K  (see
+definition of input values).}
+\item{haplotype}{Matrix of unique haplotypes. Each row represents a
+unique  haplotype, and the number of columns is the number of loci.}
+\item{hap.prob}{Vector of mle's of haplotype probabilities.  The ith
+element of hap.prob corresponds to the ith row of haplotype.}
+\item{lnlike}{Value of lnlike at last EM iteration (maximum lnlike if converged).}
+\item{indx.subj}{Vector for index of subjects, after  expanding  to
+all possible  pairs  of  haplotypes  for  each person. If
+indx=i, then i is the ith row of input matrix data. If the
+ith subject has  n possible  pairs  of haplotypes that
+correspond to their marker phenotype, then i is repeated n times.}
+\item{nreps}{Vector for the count of haplotype pairs that map to
+each subject's marker genotypes.}
+\item{hap1code}{Vector of codes for each subject's first haplotype.
+The values in hap1code are the row numbers of the unique
+haplotypes in the returned matrix haplotype.}
+\item{hap2code}{Similar to hap1code, but for  each  subject's  second haplotype.}
+\item{post}{Vector of posterior probabilities of pairs of
+haplotypes for a person, given thier marker phenotypes.}
 }
 }
 \description{

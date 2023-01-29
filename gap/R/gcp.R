@@ -13,14 +13,13 @@
 #' @param quietly a flag if TRUE will suppress the screen output.
 #'
 #' @export
-#' @return The returned value is a list containing (p.sim and ph when n.sim > 0):
-#' \describe{
-#' \item{x2obs}{the observed chi-squared statistic}
-#' \item{pobs}{the associated p value}
-#' \item{zobs}{the observed z value for individual haplotypes}
-#' \item{p.sim}{simulated p value for the global chi-squared statistic}
-#' \item{ph}{simulated p values for individual haplotypes}
-#' }
+#' @return
+#' The returned value is a list containing (p.sim and ph when n.sim > 0):
+#' - x2obs the observed chi-squared statistic.
+#' - pobs the associated p value.
+#' - zobs the observed z value for individual haplotypes.
+#' - p.sim simulated p value for the global chi-squared statistic.
+#' - ph simulated p values for individual haplotypes.
 #'
 #' @references
 #' Zhao JH, Curtis D, Sham PC (2000). Model-free analysis and permutation 

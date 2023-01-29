@@ -37,7 +37,7 @@ for "h2","c2","e2","vh","vc","ve".
 Heritability and variance estimation according to twin pair correlations.
 }
 \details{
-The example section shows how to obtain bootstrap 95\%CI.
+The example section shows how to obtain bootstrap 95\\%CI.
 }
 \examples{
 \dontrun{

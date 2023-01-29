@@ -11,15 +11,14 @@
 #' and pbsize2.
 #' 
 #' @export
-#' @return A list of two elements,
-#' \describe{
-#' \item{pprime}{prevlence in cases.}
-#' \item{p}{prevalence in controls.}
-#' }
+#' @return
+#' A list of two elements:
+#' - pprime. prevlence in cases.
+#' - p. prevalence in controls.
 #'
-#' # 6-6-2018 MRC-Epid JHZ
 
 KCC <- function(model,GRR,p1,K)
+# 6-6-2018 MRC-Epid JHZ
 {
    model.idx <- charmatch(model,c("multiplicative","additive","recessive","dominant","overdominant"))
    if(is.na(model.idx)) stop("Invalid model type")

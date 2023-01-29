@@ -34,12 +34,12 @@ gcp(
 }
 \value{
 The returned value is a list containing (p.sim and ph when n.sim > 0):
-\describe{
-\item{x2obs}{the observed chi-squared statistic}
-\item{pobs}{the associated p value}
-\item{zobs}{the observed z value for individual haplotypes}
-\item{p.sim}{simulated p value for the global chi-squared statistic}
-\item{ph}{simulated p values for individual haplotypes}
+\itemize{
+\item x2obs the observed chi-squared statistic.
+\item pobs the associated p value.
+\item zobs the observed z value for individual haplotypes.
+\item p.sim simulated p value for the global chi-squared statistic.
+\item ph simulated p values for individual haplotypes.
 }
 }
 \description{
@@ -62,10 +62,10 @@ hap.score(y,g,method="hap",miss.val="Z")
 
 }
 \references{
-Zhao JH, Curtis D, Sham PC (2000). Model-free analysis and permutation 
+Zhao JH, Curtis D, Sham PC (2000). Model-free analysis and permutation
 tests for allelic associations. Human Heredity 50(2): 133-139
 
-Zhao JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for linkage 
+Zhao JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for linkage
 disequilibrium analysis. Bioinformatics 20: 1325-1326
 
 Zhao JH, Qian WD Association analysis of unrelated individuals using

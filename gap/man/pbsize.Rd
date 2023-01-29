@@ -75,7 +75,7 @@ cat("\nPopulation-based result: Kp =",k, "Kq =",s, "n =",ceiling(n),"\n")
 }
 \references{
 Scott WK, Pericak-Vance MA, et al. (1997). Genetic analysis of complex diseases. Science 275: 1327.
-	
+
 Long AD, Grote MN, Langley CH (1997). Genetic analysis of complex traits. Science 275: 1328.
 
 Rosner B (2000). Fundamentals of Biostatistics, 5th Edition, Duxbury.

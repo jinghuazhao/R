@@ -16,7 +16,7 @@ comp.score(
 \item{ibddata}{The output file from GENEHUNTER using command "dump ibd". The default file name is \eqn{ibd_dist.out}.}
 
 \item{phenotype}{The file of pedigree structure and trait value.
-The default file name is "pheno.dat". Columns (no headings) are: 
+The default file name is "pheno.dat". Columns (no headings) are:
 family ID, person ID, father ID, mother ID, gender, trait value,
 where Family ID and person ID must be numbers, not characters.
 Use character "NA" for missing phenotypes.}
@@ -38,15 +38,14 @@ Other reasonable decompositions are possible.
 }
 \details{
 This program has the following improvement over "score.r":
-
-  1. It works with selected nuclear families
-
-  2. Trait data on parents (one parent or two parents), if available,
-     are utilized.
-
-  3. Besides a statistic assuming no locus-specific dominance effect,
-     it also computes a statistic that allows for such effect.
-     It computes two statistics instead of one.  
+\enumerate{
+\item It works with selected nuclear families
+\item Trait data on parents (one parent or two parents), if available,
+are utilized.
+\item Besides a statistic assuming no locus-specific dominance effect,
+it also computes a statistic that allows for such effect.
+It computes two statistics instead of one.
+}
 
 Function "merge" is used to merge the IBD data for a pair with the
 transformed trait data (i.e., \eqn{w_kw_l}).
@@ -72,7 +71,7 @@ setwd(cwd)
 
 }
 \references{
-Kruglyak L, Daly MJ, Reeve-Daly MP, Lander ES (1996) Parametric and Nonparametric 
+Kruglyak L, Daly MJ, Reeve-Daly MP, Lander ES (1996) Parametric and Nonparametric
 linkage analysis: a unified multipoint approach. Am J Hum Genet 58:1347-1363
 
 Kruglyak L, Lander ES (1998) Faster multipoint linkage analysis using Fourier transforms

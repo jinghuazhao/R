@@ -14,12 +14,12 @@ pfc(famdata, enum = 0)
 \value{
 The returned value is a list containing (tailp,sump,nenum are only available if enum=1:
 \describe{
-  \item{p}{the probabitly of familial clustering}
-  \item{stat}{the deviances, chi-squares based on binomial and hypergeometric distributions, 
- the degrees of freedom should take into account the number of marginals used}
-  \item{tailp}{the exact statistical significance}
-  \item{sump}{sum of the probabilities used for error checking}
-  \item{nenum}{the total number of tables enumerated}
+\item{p}{the probabitly of familial clustering}
+\item{stat}{the deviances, chi-squares based on binomial and hypergeometric distributions,
+the degrees of freedom should take into account the number of marginals used}
+\item{tailp}{the exact statistical significance}
+\item{sump}{sum of the probabilities used for error checking}
+\item{nenum}{the total number of tables enumerated}
 }
 }
 \description{

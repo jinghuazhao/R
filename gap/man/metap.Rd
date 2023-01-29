@@ -19,11 +19,11 @@ metap(data, N, verbose = "Y", prefixp = "p", prefixn = "n")
 }
 \value{
 \describe{
- \item{x2}{Fisher's chi-squared statistics.}
- \item{p}{P values from Fisher's method according to chi-squared distribution with 2*N degree(s) of freedom.}
- \item{z}{Combined z value.}
- \item{p1}{One-sided p value.}
- \item{p2}{Two-sided p value.}
+\item{x2}{Fisher's chi-squared statistics.}
+\item{p}{P values from Fisher's method according to chi-squared distribution with 2*N degree(s) of freedom.}
+\item{z}{Combined z value.}
+\item{p1}{One-sided p value.}
+\item{p2}{Two-sided p value.}
 }
 }
 \description{

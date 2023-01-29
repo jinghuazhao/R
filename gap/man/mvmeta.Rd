@@ -14,14 +14,14 @@ mvmeta(b, V)
 \value{
 The returned value is a list containing:
 \describe{
- \item{d}{the compact parameter estimates}
- \item{Psi}{the compact covariance-covariance matrix}
- \item{X}{the design matrix}
- \item{beta}{the pooled parameter estimates}
- \item{cov.beta}{the pooled variance-covariance matrix}
- \item{X2}{the Chi-squared statistic for heterogeneity}
- \item{df}{the degrees(s) of freedom}
- \item{p}{the p value}
+\item{d}{the compact parameter estimates}
+\item{Psi}{the compact covariance-covariance matrix}
+\item{X}{the design matrix}
+\item{beta}{the pooled parameter estimates}
+\item{cov.beta}{the pooled variance-covariance matrix}
+\item{X2}{the Chi-squared statistic for heterogeneity}
+\item{df}{the degrees(s) of freedom}
+\item{p}{the p value}
 }
 }
 \description{

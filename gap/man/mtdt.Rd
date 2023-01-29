@@ -14,12 +14,12 @@ mtdt(x, n.sim = 0)
 \value{
 It returned list contains the following components:
 \describe{
-  \item{SE}{Spielman-Ewens Chi-square from the observed data}
-  \item{ST}{Stuart or score Statistic from the observed data}
-  \item{pSE}{the simulated p value}
-  \item{sSE}{standard error of the simulated p value}
-  \item{pST}{the simulated p value}
-  \item{sST}{standard error of the simulated p value}
+\item{SE}{Spielman-Ewens Chi-square from the observed data}
+\item{ST}{Stuart or score Statistic from the observed data}
+\item{pSE}{the simulated p value}
+\item{sSE}{standard error of the simulated p value}
+\item{pST}{the simulated p value}
+\item{sST}{standard error of the simulated p value}
 }
 }
 \description{
@@ -52,17 +52,17 @@ mtdt(x)
 
 }
 \references{
-Miller MB (1997) Genomic scanning and the transmission/disequilibrium test: 
+Miller MB (1997) Genomic scanning and the transmission/disequilibrium test:
 analysis of error rates. Genet. Epidemiol. 14:851-856
 
-Sham PC (1997) Transmission/disequilibrium tests for multiallelic loci. 
+Sham PC (1997) Transmission/disequilibrium tests for multiallelic loci.
 Am. J. Hum. Genet. 61:774-778
 
 Spielman RS, Ewens WJ (1996) The TDT and other family-based tests for
 linkage disequilibrium and association. Am. J. Hum. Genet. 59:983-989
 
-Zhao JH, Sham PC, Curtis D (1999) A program for the Monte Carlo evaluation 
-of significance of the extended transmission/disequilibrium test. 
+Zhao JH, Sham PC, Curtis D (1999) A program for the Monte Carlo evaluation
+of significance of the extended transmission/disequilibrium test.
 Am. J. Hum. Genet. 64:1484-1485
 }
 \seealso{

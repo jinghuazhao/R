@@ -18,13 +18,13 @@ hwe(data, data.type = "allele", yates.correct = FALSE, miss.val = 0)
 \value{
 The returned value is a list containing:
 \describe{
- \item{allele.freq}{Frequencies of alleles}
- \item{x2}{Pearson \eqn{\chi^2}{chi-square}}
- \item{p.x2}{p value for \eqn{\chi^2}{chi-square}}
- \item{lrt}{Log-likelihood ratio test statistic}
- \item{p.lrt}{p value for lrt}
- \item{df}{Degree(s) of freedom}
- \item{rho}{\eqn{\sqrt{\chi^2/N}}{sqrt{chi-square/N}} the contingency table coefficient}
+\item{allele.freq}{Frequencies of alleles}
+\item{x2}{Pearson \eqn{\chi^2}{chi-square}}
+\item{p.x2}{p value for \eqn{\chi^2}{chi-square}}
+\item{lrt}{Log-likelihood ratio test statistic}
+\item{p.lrt}{p value for lrt}
+\item{df}{Degree(s) of freedom}
+\item{rho}{\eqn{\sqrt{\chi^2/N}}{sqrt{chi-square/N}} the contingency table coefficient}
 }
 }
 \description{

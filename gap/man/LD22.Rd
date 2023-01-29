@@ -24,7 +24,7 @@ The returned value is a list containing:
 \item{VarDprime}{the variance of Dprime}
 \item{x2}{the Chi-squared statistic}
 \item{lor}{the log(OR) statistic}
-\item{vlor}{the var[log(OR)] statistic}
+\item{vlor}{the var\link{log(OR)} statistic}
 }
 }
 \description{
@@ -50,12 +50,12 @@ t <- LD22(h,n)
 }
 \references{
 Zabetian CP, Buxbaum SG, Elston RC, Kohnke MD, Anderson GM, Gelernter J, Cubells JF.
-The structure of linkage disequilibrium at the DBH locus strongly influences the 
+The structure of linkage disequilibrium at the DBH locus strongly influences the
 magnitude of association between diallelic markers and plasma dopamine beta-hydroxylase activity
-Am J Hum Genet 72: 1389-1400 
+Am J Hum Genet 72: 1389-1400
 
 Zapata C, Alvarez G, Carollo C (1997) Approximate variance of the standardized
- measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
+measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
 }
 \seealso{
 \code{\link[gap]{LDkl}}

@@ -13,21 +13,21 @@ genecounting(data, weight = NULL, loci = NULL, control = gc.control())
 
 \item{loci}{an array containing number of alleles at each locus.}
 
-\item{control}{is a function with the following arguments: 
-     \enumerate{
-     \item xdata. a flag indicating if the data involves X chromosome, if so, the
-first column of data indicates sex of each subject: 1=male, 2=female. The marker 
+\item{control}{is a function with the following arguments:
+\enumerate{
+\item xdata. a flag indicating if the data involves X chromosome, if so, the
+first column of data indicates sex of each subject: 1=male, 2=female. The marker
 data are no different from the autosomal version for females, but for males, two copies
 of the single allele present at a given locus.
-     \item convll. set convergence criteria according to log-likelihood, if its value set to 1
-     \item handle.miss. to handle missing data, if its value set to 1
-     \item eps. the actual convergence criteria, with default value 1e-5
-     \item tol. tolerance for genotype probabilities with default value 1e-8
-     \item maxit. maximum number of iterations, with default value 50
-     \item pl. criteria for trimming haplotypes according to posterior probabilities
-     \item assignment. filename containing haplotype assignment
-     \item verbose. If TRUE, yields print out from the C routine
-     }}
+\item convll. set convergence criteria according to log-likelihood, if its value set to 1
+\item handle.miss. to handle missing data, if its value set to 1
+\item eps. the actual convergence criteria, with default value 1e-5
+\item tol. tolerance for genotype probabilities with default value 1e-8
+\item maxit. maximum number of iterations, with default value 50
+\item pl. criteria for trimming haplotypes according to posterior probabilities
+\item assignment. filename containing haplotype assignment
+\item verbose. If TRUE, yields print out from the C routine
+}}
 }
 \value{
 The returned value is a list containing:

@@ -25,7 +25,7 @@ The returned value is a list containing:
 \description{
 This function converts linear regression coefficients of phenotype on
 single nucleotide polymorphisms (SNPs) into Pearson correlation coefficients
-with their variance-covariance matrix. It is useful as a preliminary step 
+with their variance-covariance matrix. It is useful as a preliminary step
 for meta-analyze SNP-trait associations at a given region. Between-SNP
 correlations (e.g., from HapMap) are required as auxiliary information.
 }

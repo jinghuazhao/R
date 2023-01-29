@@ -18,12 +18,12 @@ mtdt2(x, verbose = TRUE, n.sim = NULL, ...)
 \value{
 It returned list contains the following components:
 \describe{
- \item{c2b}{A data frame in four-column format showing transmitted vs nontransmitted counts.}
- \item{BTm}{A fitted Bradley-Terry model object.}
- \item{X2}{Allele-wise, genotype-wise and goodness-of-fit Chi-squared statistics.}
- \item{df}{Degrees of freedom.}
- \item{p}{P value.}
- \item{pn}{Monte Carlo p values when n.sim is specified.}
+\item{c2b}{A data frame in four-column format showing transmitted vs nontransmitted counts.}
+\item{BTm}{A fitted Bradley-Terry model object.}
+\item{X2}{Allele-wise, genotype-wise and goodness-of-fit Chi-squared statistics.}
+\item{df}{Degrees of freedom.}
+\item{p}{P value.}
+\item{pn}{Monte Carlo p values when n.sim is specified.}
 }
 }
 \description{

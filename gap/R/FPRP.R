@@ -1,5 +1,12 @@
 #' False-positive report probability
 #'
+#' @param a parameter value at which the power is to be evaluated.
+#' @param b the variance for a, or the uppoer point of a 95%CI if logscale=FALSE.
+#' @param pi0 the prior probabiility that \eqn{H_0}{H0} is true.
+#' @param ORlist a vector of ORs that is most likely.
+#' @param logscale FALSE=a,b in orginal scale, TRUE=a, b in log scale.
+#'
+#' @details
 #' The function calculates the false positive report probability (FPRP), the probability of no true
 #' association beteween a genetic variant and disease given a statistically significant finding,
 #' which depends not only on the observed P value but also on both the prior probability that the
@@ -13,9 +20,8 @@
 #' H_0|H_0=TRUE)=\alpha}, \eqn{P(T>z_\alpha|H_0=FALSE)=P(rejecting\ H_0|H_A=TRUE)=1-\beta}. The joint
 #' probability of test and truth of hypothesis can be expressed by \eqn{\alpha}, \eqn{\beta} and \eqn{\pi}.
 #'
+#' Joint probability of significance of test and truth of hypothesis
 #' \tabular{llll}{
-#' %\multicolumn{4}{c}{Joint probability of significance of test and truth of hypothesis}\cr
-#' %\tab \multicolumn{2}{c}{significance of test} \\ \cline{2-3}
 #' Truth of \eqn{H_A} \tab significant \tab nonsignificant \tab Total\cr 
 #' TRUE \tab \eqn{(1-\beta)\pi} \tab \eqn{\beta\pi} \tab \eqn{\pi}\cr
 #' FALSE \tab \eqn{\alpha (1-\pi)} \tab \eqn{(1-\alpha)(1-\pi)} \tab \eqn{1-\pi}\cr
@@ -26,20 +32,14 @@
 #' \alpha(1-\pi)/[\alpha(1-\pi)+(1-\beta)\pi]=\{1+\pi/(1-\pi)][(1-\beta)/\alpha]\}^{-1}}
 #' and similarly \eqn{FNRP=\{1+[(1-\alpha)/\beta][(1-\pi)/\pi]\}^{-1}}.
 #'
-#' @param a parameter value at which the power is to be evaluated.
-#' @param b the variance for a, or the uppoer point of a 95\%CI if logscale=FALSE.
-#' @param pi0 the prior probabiility that \eqn{H_0}{H0} is true.
-#' @param ORlist a vector of ORs that is most likely.
-#' @param logscale FALSE=a,b in orginal scale, TRUE=a, b in log scale.
-#'
 #' @export
-#' @return The returned value is a list with compoents,
-#' \describe{
-#' \item{p}{p value corresponding to a,b}
-#' \item{power}{the power corresponding to the vector of ORs}
-#' \item{FPRP}{False-positive report probability}
-#' \item{FNRP}{False-negative report probability}
-#' }
+#' @return
+#' The returned value is a list with compoents,
+#' p p value corresponding to a,b.
+#' power the power corresponding to the vector of ORs.
+#' FPRP False-positive report probability.
+#' FNRP False-negative report probability.
+#' 
 #' @references
 #' Wacholder S, Chanock S, Garcia-Closas M, El ghomli L, Rothman N. (2004) Assessing the probability that a positive
 #' report is false: an approach for molecular epidemiology studies. J Natl Cancer Inst 96:434-442

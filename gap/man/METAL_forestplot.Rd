@@ -29,9 +29,9 @@ involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A
 }
 \details{
 The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
-a `MarkerName` variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the `tbl` argument has variables
-`A1` and `A2` as produced by METAL while the `all` argument has `EFFECT_ALLELE` and `REFERENCE_ALLELE` as with a `study` variable
-indicating study name. Another variable common the `tbl` and `all` is `prot` variable as the function was developed in a protein
+a \code{MarkerName} variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the \code{tbl} argument has variables
+\code{A1} and \code{A2} as produced by METAL while the \code{all} argument has \code{EFFECT_ALLELE} and \code{REFERENCE_ALLELE} as with a \code{study} variable
+indicating study name. Another variable common the \code{tbl} and \code{all} is \code{prot} variable as the function was developed in a protein
 based meta-analysis. From these all information is in place for generation of a list of Forest plots through a batch run.
 
 CUSTOMVARIABLE N\cr
@@ -47,7 +47,7 @@ WEIGHTLABEL N
 
 }
 \references{
-Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf, 
+Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf,
 https://CRAN.R-project.org/package=meta.
 
 Willer CJ, Li Y, Abecasis GR. (2010). METAL: fast and efficient meta-analysis of genomewideassociation scans. Bioinformations. 26:2190-1,

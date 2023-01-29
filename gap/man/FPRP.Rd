@@ -19,32 +19,31 @@ FPRP(a, b, pi0, ORlist, logscale = FALSE)
 }
 \value{
 The returned value is a list with compoents,
-\describe{
-\item{p}{p value corresponding to a,b}
-\item{power}{the power corresponding to the vector of ORs}
-\item{FPRP}{False-positive report probability}
-\item{FNRP}{False-negative report probability}
-}
+p p value corresponding to a,b.
+power the power corresponding to the vector of ORs.
+FPRP False-positive report probability.
+FNRP False-negative report probability.
 }
 \description{
+False-positive report probability
+}
+\details{
 The function calculates the false positive report probability (FPRP), the probability of no true
 association beteween a genetic variant and disease given a statistically significant finding,
 which depends not only on the observed P value but also on both the prior probability that the
 assocition is real and the statistical power of the test. An associate result is the
 false negative reported probability (FNRP).  See example for the recommended steps.
-}
-\details{
+
 The FPRP and FNRP are derived as follows. Let \eqn{H_0}=null hypothesis (no association),
-\eqn{H_A}=alternative hypothesis (association). Since classic frequentist theory considers 
+\eqn{H_A}=alternative hypothesis (association). Since classic frequentist theory considers
 they are fixed, one has to resort to Bayesian framework by introduing prior,
 \eqn{\pi=P(H_0=TRUE)=P(association)}. Let \eqn{T}=test statistic, and \eqn{P(T>z_\alpha|H_0=TRUE)=P(rejecting\ 
 H_0|H_0=TRUE)=\alpha}, \eqn{P(T>z_\alpha|H_0=FALSE)=P(rejecting\ H_0|H_A=TRUE)=1-\beta}. The joint
 probability of test and truth of hypothesis can be expressed by \eqn{\alpha}, \eqn{\beta} and \eqn{\pi}.
 
+Joint probability of significance of test and truth of hypothesis
 \tabular{llll}{
-%\multicolumn{4}{c}{Joint probability of significance of test and truth of hypothesis}\cr
-%\tab \multicolumn{2}{c}{significance of test} \\ \cline{2-3}
-Truth of \eqn{H_A} \tab significant \tab nonsignificant \tab Total\cr 
+Truth of \eqn{H_A} \tab significant \tab nonsignificant \tab Total\cr
 TRUE \tab \eqn{(1-\beta)\pi} \tab \eqn{\beta\pi} \tab \eqn{\pi}\cr
 FALSE \tab \eqn{\alpha (1-\pi)} \tab \eqn{(1-\alpha)(1-\pi)} \tab \eqn{1-\pi}\cr
 Total \tab \eqn{(1-\beta)\pi+\alpha (1-\pi)} \tab \eqn{\beta\pi+(1-\alpha)(1-\pi)} \tab 1\cr

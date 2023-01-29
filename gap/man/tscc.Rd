@@ -29,39 +29,41 @@ tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)
 }
 \value{
 The returned value is a list containing a copy of the input plus output as follows,
-\describe{
- \item{model}{any in c("multiplicative","additive","dominant","recessive").}
- \item{GRR}{genotype relative risk.}
- \item{p1}{the estimated risk allele frequency in cases.}
- \item{pprime}{expected risk allele frequency in cases.}
- \item{p}{expected risk allele frequency in controls.}
- \item{n1}{total number of cases.}
- \item{n2}{total number of controls.}
- \item{M}{total number of markers.}
- \item{alpha.genome}{false positive rate at genome level.}
- \item{pi.samples}{sample\% to be genotyped at stage 1.}
- \item{pi.markers}{markers\% to be selected (also used as the false positive rate at stage 1).}
- \item{K}{the population prevalence.}
- \item{C}{threshoulds for no stage, stage 1, stage 2, joint analysis.}
- \item{power}{power corresponding to C.}
+\itemize{
+\item model any in c("multiplicative","additive","dominant","recessive").
+\item GRR genotype relative risk.
+\item p1 the estimated risk allele frequency in cases.
+\item pprime expected risk allele frequency in cases.
+\item p expected risk allele frequency in controls.
+\item n1 total number of cases.
+\item n2 total number of controls.
+\item M total number of markers.
+\item alpha.genome false positive rate at genome level.
+\item pi.samples sample\% to be genotyped at stage 1.
+\item pi.markers markers\% to be selected (also used as the false positive rate at stage 1).
+\item K the population prevalence.
+\item C threshoulds for no stage, stage 1, stage 2, joint analysis.
+\item power power corresponding to C.
 }
 }
 \description{
-This function gives power estimates for two-stage case-control design for genetic association.
+Power calculation for two-stage case-control design
 }
 \details{
+This function gives power estimates for two-stage case-control design for genetic association.
+
 The false positive rates are calculated as follows,
 
 \deqn{P(|z1|>C1)P(|z2|>C2,sign(z1)=sign(z2))} and \deqn{P(|z1|>C1)P(|zj|>Cj||z1|>C1)}
 for replication-based and joint analyses, respectively; where C1, C2, and Cj
-are threshoulds at stages 1, 2 replication and joint analysis, 
+are threshoulds at stages 1, 2 replication and joint analysis,
 
 \deqn{z1 = z(p1,p2,n1,n2,pi.samples)}
 \deqn{z2 = z(p1,p2,n1,n2,1-pi.samples)}
 \deqn{zj = sqrt(pi.samples)*z1+sqrt(1-pi.samples)*z2}
 }
 \note{
-solve.skol is adapted from CaTS.
+\code{solve.skol} is adapted from CaTS.
 }
 \examples{
 \dontrun{

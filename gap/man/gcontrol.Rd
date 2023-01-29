@@ -50,8 +50,8 @@ The Bayesian genomic control statistics with the following parameters,
 \tabular{ll}{
 n \tab number of loci under consideration \cr
 lambdahat \tab median(of the n trend statistics)/0.46 \cr
-  \tab Prior for noncentrality parameter Ai is \cr
-  \tab Normal(sqrt(lambdahat)kappa,lambdahat*tau2) \cr
+\tab Prior for noncentrality parameter Ai is \cr
+\tab Normal(sqrt(lambdahat)kappa,lambdahat*tau2) \cr
 kappa \tab multiplier in prior above, set at 1.6 * sqrt(log(n)) \cr
 tau2  \tab multiplier in prior above \cr
 epsilon \tab prior probability a marker is associated, set at 10/n \cr
@@ -64,9 +64,9 @@ associated with the disorder is given. The latter is not a p-value but any value
 greater than 0.5 (pout) suggests association.
 }
 \note{
-Adapted from gcontrol by Bobby Jones and Kathryn Roeder, 
-use -Dexecutable for standalone program, function getnum in the original 
-code needs \%*s to skip id string
+Adapted from gcontrol by Bobby Jones and Kathryn Roeder,
+use -Dexecutable for standalone program, function getnum in the original
+code needs \\%*s to skip id string
 }
 \examples{
 \dontrun{

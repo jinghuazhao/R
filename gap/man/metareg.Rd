@@ -23,18 +23,18 @@ by prefixes in the function argument.}
 \value{
 The returned value is a data frame with the following variables:
 \describe{
-  \item{p_f}{P value (fixed effects model)}
-  \item{p_r}{P value (random effects model)}
-  \item{beta_f}{regression coefficient}
-  \item{beta_r}{regression coefficient}
-  \item{se_f}{standard error}
-  \item{se_r}{standard error}
-  \item{z_f}{z value}
-  \item{z_r}{z value}
-  \item{p_heter}{heterogeneity test p value}
-  \item{i2}{\eqn{I^2}{I^2} statistic}
-  \item{k}{No of tests used}
-  \item{eps}{smallest double-precision number}
+\item{p_f}{P value (fixed effects model)}
+\item{p_r}{P value (random effects model)}
+\item{beta_f}{regression coefficient}
+\item{beta_r}{regression coefficient}
+\item{se_f}{standard error}
+\item{se_r}{standard error}
+\item{z_f}{z value}
+\item{z_r}{z value}
+\item{p_heter}{heterogeneity test p value}
+\item{i2}{\eqn{I^2}{I^2} statistic}
+\item{k}{No of tests used}
+\item{eps}{smallest double-precision number}
 }
 }
 \description{
@@ -42,13 +42,13 @@ Given \eqn{k=n} studies with \eqn{b_1, ..., b_N} being \eqn{\beta}'s and
 \eqn{se_1, ..., se_N} standard errors from regression, the fixed effects
 model uses inverse variance weighting such that \eqn{w_1=1/se_1^2}, ...,
 \eqn{w_N=1/se_N^2} and the combined \eqn{\beta} as the weighted average,
-\eqn{\beta_f=(b_1*w_1+...+b_N*w_N)/w}, with \eqn{w=w_1+...+w_N} 
+\eqn{\beta_f=(b_1*w_1+...+b_N*w_N)/w}, with \eqn{w=w_1+...+w_N}
 being the total weight, the se for this estimate is \eqn{se_f=\sqrt{1/w}}.
 A normal z-statistic is obtained as \eqn{z_f=\beta_f/se_f}, and the
 corresponding p value \eqn{p_f=2*pnorm(-abs(z_f))}. For the random effects
 model, denote \eqn{q_w=w_1*(b_1-\beta_f)^2+...+w_N*(b_N-\beta_f)^2}
 and \eqn{dl=max(0,(q_w-(k-1))/(w-(w_1^2+...+w_N^2)/w))}, corrected
-weights are obtained such that \eqn{{w_1}_c=1/(1/w_1+dl)}, ..., 
+weights are obtained such that \eqn{{w_1}_c=1/(1/w_1+dl)}, ...,
 \eqn{{w_N}_c=1/(1/w_N+dl)}, totaling \eqn{w_c={w_1}_c+...+{w_N}_c}.
 The combined \eqn{\beta} and se are then \eqn{\beta_r=(b_1*{w_1}_c+...+b_N*{w_N}_c)/w_c}
 and \eqn{se_r=\sqrt(1/w_c)}{se_r=sqrt(1/wc)}, leading to a z-statistic

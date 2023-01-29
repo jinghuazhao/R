@@ -19,16 +19,17 @@ BFDP(a, b, pi1, W, logscale = FALSE)
 }
 \value{
 The returned value is a list with the following components:
-\describe{
-\item{PH0}{probability given a,b)}
-\item{PH1}{probability given a,b,W)}
-\item{BF}{Bayes factor, \eqn{P_{H_0}/P_{H_1}}{PH0/PH1}}
-\item{BFDP}{Bayesian false-discovery probability}
-\item{ABF}{approxmiate Bayes factor}
-\item{ABFDP}{approximate Bayesian false-discovery probability}
-}
+PH0. probability given a,b).
+PH1. probability given a,b,W).
+BF. Bayes factor, \eqn{P_{H_0}/P_{H_1}}{PH0/PH1}.
+BFDP. Bayesian false-discovery probability.
+ABF. approxmiate Bayes factor.
+ABFDP. approximate Bayesian false-discovery probability.
 }
 \description{
+Bayesian false-discovery probability
+}
+\details{
 This function calculates BFDP, the approximate \eqn{P(H_0|\hat\theta)}{Pr( H0 | thetahat )},
 given an estiamte of the log relative risk, \eqn{\hat\theta}{thetahat}, the variance of
 this estimate, \eqn{V}, the prior variance, \eqn{W}, and the prior probability of

@@ -17,7 +17,7 @@ pedtodot(
 )
 }
 \arguments{
-\item{pedfile}{a pedigree file in GAS or LINKAGE format, note if 
+\item{pedfile}{a pedigree file in GAS or LINKAGE format, note if
 individual's ID is character then it is necessary to specify as.is=T
 in the read.table command.}
 
@@ -25,7 +25,7 @@ in the read.table command.}
 
 \item{sink}{a logical variable indicating if .dot file(s) are created.}
 
-\item{page}{a string indicating the page size, e.g, A4, A5, B5, Legal, Letter, 
+\item{page}{a string indicating the page size, e.g, A4, A5, B5, Legal, Letter,
 Executive, "x,y", where x, y is the customized page size.}
 
 \item{url}{Unified Resource Locator (URL) associated with the diagram(s).}
@@ -49,18 +49,18 @@ for each pedigree to be used by dot in graphviz, which is a flexible package
 for graphics freely available.
 }
 \details{
-Note that a single PostScript (PDF) file can be obtainaed by dot, fdp, 
+Note that a single PostScript (PDF) file can be obtainaed by dot, fdp,
 or neato.
 
-dot -Tps <dot file> -o <ps file>  
+dot -Tps \if{html}{\out{<dot file>}} -o \if{html}{\out{<ps file>}}
 
 or
 
-fdp -Tps <dot file> -o <ps file>  
+fdp -Tps \if{html}{\out{<dot file>}} -o \if{html}{\out{<ps file>}}
 
 or
 
-neato -Tps <dot file> -o <ps file>
+neato -Tps \if{html}{\out{<dot file>}} -o \if{html}{\out{<ps file>}}
 
 See relevant documentations for other formats.
 
@@ -70,20 +70,19 @@ examples at the end of this document.
 Under Cygwin/Linux/Unix, the PostScript file can be converted to Portable
 Document Format (PDF) default to Acrobat.
 
-ps2pdf <ps file>
+ps2pdf \if{html}{\out{<ps file>}}
 
 Use ps2pdf12, ps2pdf13, or ps2pdf14 for appropriate versions of Acrobat
-according to information given on the headline of <ps file>.
+according to information given on the headline of \if{html}{\out{<ps file>}}.
 
 Under Linux, you can also visualize the .dot file directly via command,
 
-dotty <dot file> &
-
+dotty \if{html}{\out{<dot file>}} &
 
 We can extract the code below (or within pedtodot.Rd) to pedtodot and then
-use command: 
+use command:
 
-sh pedtodot <pedigree file>
+sh pedtodot \if{html}{\out{<pedigree file>}}
 }
 \note{
 This is based on the gawk script program pedtodot by David Duffy with minor changes.

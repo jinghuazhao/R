@@ -18,12 +18,12 @@ qtlClassifier(geneSNP, SNPPos, genePos, radius)
 \value{
 It returns a geneSNP-prefixed data.frame with the following columns,
 \describe{
-  \item{geneChrom}{gene chromosome}
-  \item{geneStart}{gene start}
-  \item{geneEnd}{gene end}
-  \item{SNPChrom}{pQTL chromosome}
-  \item{SNPPos}{pQTL position}
-  \item{Type}{cis/trans labels}
+\item{geneChrom}{gene chromosome}
+\item{geneStart}{gene start}
+\item{geneEnd}{gene end}
+\item{SNPChrom}{pQTL chromosome}
+\item{SNPPos}{pQTL position}
+\item{Type}{cis/trans labels}
 }
 }
 \description{

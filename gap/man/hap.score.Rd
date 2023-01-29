@@ -53,24 +53,24 @@ hap.score(
 \value{
 List with the following components:
 \describe{
-  \item{score.global}{Global statistic to test association of trait with haplotypes that have frequencies >= skip.haplo.}
-  \item{df}{Degrees of freedom for score.global.}
-  \item{score.global.p}{P-value of score.global based on chi-square distribution, with degrees of freedom equal to df.}
-  \item{score.global.p.sim}{P-value of score.global based on simulations (set equal to NA when n.sim=0).}
-  \item{score.haplo}{Vector of score statistics for individual haplotypes that have frequencies >= skip.haplo.}
-  \item{score.haplo.p}{Vector of p-values for score.haplo, based on a chi-square distribution with 1 df.}
-  \item{score.haplo.p.sim}{Vector of p-values for score.haplo, based on  simulations (set equal to NA when n.sim=0).}
-  \item{score.max.p.sim}{P-value  of  maximum  score.haplo, based on simulations (set equal to NA when n.sim=0).}
-  \item{haplotype}{Matrix of hapoltypes  analyzed.  The ith row of haplotype corresponds to the ith item of score.haplo, score.haplo.p, and score.haplo.p.sim.}
-  \item{hap.prob}{Vector of haplotype probabilies, corresponding to the haplotypes in the matrix haplotype.}
-  \item{locus.label}{Vector of labels for loci, of length K (same as input argument).}
-  \item{n.sim}{Number of simulations.}
-  \item{n.val.global}{Number of valid simulated global statistics.}
-  \item{n.val.haplo}{Number of valid simulated score statistics (score.haplo) for individual haplotypes.}
+\item{score.global}{Global statistic to test association of trait with haplotypes that have frequencies >= skip.haplo.}
+\item{df}{Degrees of freedom for score.global.}
+\item{score.global.p}{P-value of score.global based on chi-square distribution, with degrees of freedom equal to df.}
+\item{score.global.p.sim}{P-value of score.global based on simulations (set equal to NA when n.sim=0).}
+\item{score.haplo}{Vector of score statistics for individual haplotypes that have frequencies >= skip.haplo.}
+\item{score.haplo.p}{Vector of p-values for score.haplo, based on a chi-square distribution with 1 df.}
+\item{score.haplo.p.sim}{Vector of p-values for score.haplo, based on  simulations (set equal to NA when n.sim=0).}
+\item{score.max.p.sim}{P-value  of  maximum  score.haplo, based on simulations (set equal to NA when n.sim=0).}
+\item{haplotype}{Matrix of hapoltypes  analyzed.  The ith row of haplotype corresponds to the ith item of score.haplo, score.haplo.p, and score.haplo.p.sim.}
+\item{hap.prob}{Vector of haplotype probabilies, corresponding to the haplotypes in the matrix haplotype.}
+\item{locus.label}{Vector of labels for loci, of length K (same as input argument).}
+\item{n.sim}{Number of simulations.}
+\item{n.val.global}{Number of valid simulated global statistics.}
+\item{n.val.haplo}{Number of valid simulated score statistics (score.haplo) for individual haplotypes.}
 }
 }
 \description{
-Compute score statistics to evaluate the association of a trait with haplotypes, when linkage phase is unknown and diploid marker 
+Compute score statistics to evaluate the association of a trait with haplotypes, when linkage phase is unknown and diploid marker
 phenotypes are observed among unrelated subjects. For now, only autosomal loci are considered. This package haplo.score
 which this function is based is greatly acknowledged.
 }

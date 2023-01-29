@@ -1,27 +1,27 @@
 #' Bayesian false-discovery probability
 #'
-#' This function calculates BFDP, the approximate \eqn{P(H_0|\hat\theta)}{Pr( H0 | thetahat )},
-#' given an estiamte of the log relative risk, \eqn{\hat\theta}{thetahat}, the variance of
-#' this estimate, \eqn{V}, the prior variance, \eqn{W}, and the prior probability of
-#' a non-null association. When logscale=TRUE, the function accepts an estimate of the relative
-#' risk, \eqn{\hat{RR}}{RRhat}, and the upper point of a 95\% confidence interval \eqn{RR_{hi}}{RRhi}.
-#'
 #' @param a parameter value at which the power is to be evaluated.
-#' @param b the variance for a, or the uppoer point (\eqn{RR_{hi}}{RRhi}) of a 95\%CI if logscale=FALSE.
+#' @param b the variance for a, or the uppoer point (\eqn{RR_{hi}}{RRhi}) of a 95%CI if logscale=FALSE.
 #' @param pi1 the prior probabiility of a non-null association.
 #' @param W the prior variance.
 #' @param logscale FALSE=the orginal scale, TRUE=the log scale.
 #'
+#' @details
+#' This function calculates BFDP, the approximate \eqn{P(H_0|\hat\theta)}{Pr( H0 | thetahat )},
+#' given an estiamte of the log relative risk, \eqn{\hat\theta}{thetahat}, the variance of
+#' this estimate, \eqn{V}, the prior variance, \eqn{W}, and the prior probability of
+#' a non-null association. When logscale=TRUE, the function accepts an estimate of the relative
+#' risk, \eqn{\hat{RR}}{RRhat}, and the upper point of a 95% confidence interval \eqn{RR_{hi}}{RRhi}.
+#'
 #' @export
-#' @return The returned value is a list with the following components:
-#' \describe{
-#' \item{PH0}{probability given a,b)}
-#' \item{PH1}{probability given a,b,W)}
-#' \item{BF}{Bayes factor, \eqn{P_{H_0}/P_{H_1}}{PH0/PH1}}
-#' \item{BFDP}{Bayesian false-discovery probability}
-#' \item{ABF}{approxmiate Bayes factor}
-#' \item{ABFDP}{approximate Bayesian false-discovery probability}
-#' }
+#' @return
+#' The returned value is a list with the following components:
+#' PH0. probability given a,b).
+#' PH1. probability given a,b,W).
+#' BF. Bayes factor, \eqn{P_{H_0}/P_{H_1}}{PH0/PH1}.
+#' BFDP. Bayesian false-discovery probability.
+#' ABF. approxmiate Bayes factor.
+#' ABFDP. approximate Bayesian false-discovery probability.
 #'
 #' @references
 #' Wakefield J (2007) Bayesian measure of the probability of false discovery in genetic epidemiology studies.

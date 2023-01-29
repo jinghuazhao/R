@@ -26,8 +26,8 @@ grid2d(
 \value{
 A list with two variables.
 \describe{
-  \item{n}{Number of chromosomes.}
-  \item{CM}{Cumulative lengths starting from 0.}
+\item{n}{Number of chromosomes.}
+\item{CM}{Cumulative lengths starting from 0.}
 }
 }
 \description{

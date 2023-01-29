@@ -7,8 +7,8 @@
 \alias{gap-package}
 \title{Genetic analysis package}
 \description{
-As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18.
-\doi{10.18637/jss.v023.i08}], it is designed as an integrated package for genetic data
+As first reported \link{Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18. \doi{10.18637/jss.v023.i08}},
+it is designed as an integrated package for genetic data
 analysis of both population and family data. Currently, it contains functions for
 sample size calculations of both population-based and family-based designs, probability
 of familial disease aggregation, kinship calculation, statistics in linkage analysis,
@@ -50,7 +50,7 @@ kin.morgan        \tab      kinship matrix for simple pedigree\cr
 LD22              \tab      LD statistics for two diallelic markers\cr
 LDkl              \tab      LD statistics for two multiallelic markers\cr
 lambda1000        \tab      A standardized estimate of the genomic inflation scaling to\cr
-                  \tab      a study of 1,000 cases and 1,000 controls\cr
+\tab      a study of 1,000 cases and 1,000 controls\cr
 log10p            \tab      log10(p) for a standard normal deviate\cr
 log10pvalue       \tab      log10(p) for a P value including its scientific format\cr
 logp              \tab      log(p) for a normal deviate\cr
@@ -60,7 +60,7 @@ mia               \tab      multiple imputation analysis for hap\cr
 mr                \tab      Mendelian randomization analysis\cr
 mtdt              \tab      Transmission/disequilibrium test of a multiallelic marker\cr
 mtdt2             \tab      Transmission/disequilibrium test of a multiallelic marker\cr
-                  \tab      by Bradley-Terry model\cr
+\tab      by Bradley-Terry model\cr
 mvmeta            \tab      Multivariate meta-analysis based on generalized least squares\cr
 pbsize            \tab      Power for population-based association design\cr
 pbsize2           \tab      Power for case-control association design\cr
@@ -111,18 +111,18 @@ chr_pos_a1_a2     \tab      Form SNPID from chromosome, posistion and alleles\cr
 cis.vs.trans.classification \tab a cis/trans classifier\cr
 comp.score        \tab      score statistics for testing genetic linkage of quantitative trait\cr
 GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\cr
-                  \tab      WriteGRMBin, WriteGRMSAS\cr
-                  \tab      handle genomic relationship matrix involving other software\cr
+\tab      WriteGRMBin, WriteGRMSAS\cr
+\tab      handle genomic relationship matrix involving other software\cr
 get_b_se          \tab      Get b and se from AF, n, and z\cr
 get_pve_se        \tab      Get pve and its standard error from n, z\cr
 get_sdy           \tab      Get sd(y) from AF, n, b, se\cr
 h2G               \tab      A utility function for heritability\cr
 h2GE              \tab      A utility function for heritability involving gene-environment interaction\cr
 h2l               \tab      A utility function for converting observed heritability to its counterpart\cr
-                  \tab      under liability threshold model\cr
+\tab      under liability threshold model\cr
 h2_mzdz           \tab      Heritability estimation according to twin correlations\cr
 klem              \tab      Haplotype frequency estimation based on a genotype table\cr
-                  \tab      of two multiallelic markers\cr
+\tab      of two multiallelic markers\cr
 makeped           \tab      A function to prepare pedigrees in post-MAKEPED format\cr
 metap             \tab      Meta-analysis of p values\cr
 metareg           \tab      Fixed and random effects model for meta-analysis\cr
@@ -160,8 +160,8 @@ Useful links:
 }
 \author{
 Jing Hua Zhao in collaboration with other colleagues and with
-        help from Kurt Hornik, Brian Ripley, Uwe Liggs and Achim Zeileis
+help from Kurt Hornik, Brian Ripley, Uwe Liggs and Achim Zeileis
 
-maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
+maitained by Jing Hua Zhao \href{mailto:jinghuazhao@hotmail.com}{jinghuazhao@hotmail.com}
 }
 \keyword{internal}

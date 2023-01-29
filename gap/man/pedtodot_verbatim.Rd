@@ -23,8 +23,8 @@ Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and 
 call dot/neato to make pedigree drawing.
 }
 \details{
-This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to `pedtodot` which was largely a mirror.
-To check independently, try `xsel -i < <(cat pedtodot_verbatim.R)` or `cat pedtodot_verbatim.R | xsel -i` and paste into an R session.
+This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to \code{pedtodot} which was largely a mirror.
+To check independently, try \verb{xsel -i < <(cat pedtodot_verbatim.R)} or \verb{cat pedtodot_verbatim.R | xsel -i} and paste into an R session.
 }
 \note{
 Adapted from Bash/awk script by David Duffy

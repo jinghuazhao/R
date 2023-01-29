@@ -38,7 +38,7 @@ The returned value is a list containing:
 Haplotype reconstruction using sorting and trimming algorithms.
 }
 \details{
-The package can hanlde much larger number of multiallelic loci. 
+The package can hanlde much larger number of multiallelic loci.
 For large sample size with relatively small number of multiallelic
 loci, genecounting should be used.
 }

@@ -36,7 +36,7 @@ The returned value is a list storing the results.
 \item{times}{vectors of time to most recent ancester (TMRCA) and total tree lengths}
 \item{positions}{positions of polymorphic sites on a scale of (0,1)}
 \item{gametes}{a list of haplotype arrays}
-\item{probs}{the probability of the specified number of segregating sites 
+\item{probs}{the probability of the specified number of segregating sites
 given the genealogical history of the sample and the value to -t option}
 }}
 }
