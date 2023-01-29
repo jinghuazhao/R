@@ -24,7 +24,7 @@ License: GPL (>= 2)
 URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 2.10), gap.datasets
-Imports: dplyr, ggplot2, plotly, Rdpack
+Imports: dplyr, ggplot2, plotly
 Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm,
           R2jags, bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
           foreign, forestplot, genetics, grid, haplo.stats, htmlwidgets,
