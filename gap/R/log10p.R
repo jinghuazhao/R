@@ -1,9 +1,9 @@
 #' log10(p) for a normal deviate z
 #'
-#' @md
 #' @param z normal deviate.
 #' @export
-#' @return log10(P)
+#' @return
+#' `log10(P)`
 #' @examples
 #' log10p(100)
 #' @author James Peters

@@ -21,6 +21,9 @@ pbsize(kp, gamma = 4.5, p = 0.15, alpha = 5e-08, beta = 0.2)
 The returned value is scaler containing the required sample size.
 }
 \description{
+Power for population-based association design
+}
+\details{
 This function implements Long et al. (1997) statistics for population-based association
 design. This is based on a contingency table test and accurate level of significance can be
 obtained by Fisher's exact test.

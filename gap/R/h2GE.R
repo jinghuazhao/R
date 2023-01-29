@@ -1,6 +1,5 @@
 #' Heritability and its variance when there is an environment component
 #'
-#' @md
 #' @param V Variance estimates.
 #' @param VCOV Variance-covariance matrix.
 #' @param verbose Detailed output.

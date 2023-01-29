@@ -1,11 +1,11 @@
 #' log10(p) for a P value including its scientific format
 #'
-#' @md
 #' @param p value.
 #' @param base base part in scientific format.
 #' @param exponent exponent part in scientific format.
 #' @export
-#' @return log10(P)
+#' @return
+#' `log10(P)`
 #' @examples
 #' log10pvalue(1e-323)
 #' log10pvalue(base=1,exponent=-323)

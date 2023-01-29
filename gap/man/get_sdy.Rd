@@ -23,6 +23,9 @@ get_sdy(f, n, b, se, method = "mean", ...)
 sd(y).
 }
 \description{
+Get sd(y) from AF, n, b, se
+}
+\details{
 This function obtains standard error of a continuous outcome.
 }
 \examples{

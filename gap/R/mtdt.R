@@ -1,23 +1,21 @@
 #' Transmission/disequilibrium test of a multiallelic marker
 #'
-#' This function calculates transmission-disequilibrium statistics involving multiallelic marker.
-#'
-#' Inside the function are tril and triu used to obtain lower and upper triangular matrices.
-#'
 #' @param x the data table.
 #' @param n.sim the number of simulations.
+#'
+#' @details
+#' This function calculates transmission-disequilibrium statistics involving multiallelic marker.
+#' Inside the function are tril and triu used to obtain lower and upper triangular matrices.
 #'
 #' @export
 #' @return
 #' It returned list contains the following components:
-#' \describe{
-#'   \item{SE}{Spielman-Ewens Chi-square from the observed data}
-#'   \item{ST}{Stuart or score Statistic from the observed data}
-#'   \item{pSE}{the simulated p value}
-#'   \item{sSE}{standard error of the simulated p value}
-#'   \item{pST}{the simulated p value}
-#'   \item{sST}{standard error of the simulated p value}
-#' }
+#' - SE Spielman-Ewens Chi-square from the observed data.
+#' - ST Stuart or score Statistic from the observed data.
+#' - pSE the simulated p value.
+#' - sSE standard error of the simulated p value.
+#' - pST the simulated p value.
+#' - sST standard error of the simulated p value.
 #'
 #' @references
 #' Miller MB (1997) Genomic scanning and the transmission/disequilibrium test: 

@@ -1,8 +1,5 @@
 #' Permutation tests using GENECOUNTING
 #'
-#' This function is a R port of the GENECOUNTING/PERMUTE program which
-#' generates EHPLUS-type statistics including z-tests for individual haplotypes
-#'
 #' @param y A column of 0/1 indicating cases and controls.
 #' @param cc analysis indicator, 0 = marker-marker, 1 = case-control.
 #' @param g the multilocus genotype data.
@@ -11,6 +8,10 @@
 #' @param n.sim the number of permutations.
 #' @param locus.label label of each locus.
 #' @param quietly a flag if TRUE will suppress the screen output.
+#'
+#' @details
+#' This function is a R port of the GENECOUNTING/PERMUTE program which
+#' generates EHPLUS-type statistics including z-tests for individual haplotypes
 #'
 #' @export
 #' @return

@@ -1,5 +1,12 @@
 #' Chow's test for heterogeneity in two regressions
 #'
+#' @param y1 a vector of dependent variable.
+#' @param x1 a matrix of independent variables.
+#' @param y2 a vector of dependent variable.
+#' @param x2 a matrix of independent variables.
+#' @param x a known matrix of independent variables.
+#'
+#' @details
 #' Chow's test is for differences between two or more regressions.  Assuming that
 #' errors in regressions 1 and 2 are normally distributed with zero mean and
 #' homoscedastic variance, and they are independent of each other, the test of
@@ -18,20 +25,12 @@
 #' In the case of haplotype trend regression, haplotype frequencies from combined
 #' data are known, so can be directly used.
 #'
-#' @param y1 a vector of dependent variable.
-#' @param x1 a matrix of independent variables.
-#' @param y2 a vector of dependent variable.
-#' @param x2 a matrix of independent variables.
-#' @param x a known matrix of independent variables.
-#'
 #' @export
 #' @return The returned value is a vector containing (please use subscript to access them):
-#' \describe{
-#' \item{F}{the F statistic}
-#' \item{df1}{the numerator degree(s) of freedom}
-#' \item{df2}{the denominator degree(s) of freedom}
-#' \item{p}{the p value for the F test}
-#' }
+#' - F the F statistic.
+#' - df1 the numerator degree(s) of freedom.
+#' - df2 the denominator degree(s) of freedom.
+#' - p the p value for the F test.
 #'
 #' @references
 #' Chow GC (1960). Tests of equality between sets of coefficients in two linear regression. Econometrica 28:591-605

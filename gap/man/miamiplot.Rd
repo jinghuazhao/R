@@ -75,6 +75,9 @@ miamiplot(
 None.
 }
 \description{
+Miami plot
+}
+\details{
 The function allows for contrast of genomewide P values from two GWASs. It is conceptually simpler than at the first sight since it involves only one set of chromosomal positions.
 }
 \examples{

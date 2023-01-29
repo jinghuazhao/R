@@ -33,6 +33,9 @@ pbsize2(
 The returned value is the power for the specified design.
 }
 \description{
+Power for case-control association design
+}
+\details{
 This is a revised version of \code{\link[gap]{pbsize}} which is appropriate for
 a case-control design under a range of disease models. Essentially, for given sample
 size(s), a proportion of which (fc) being cases, the function calculates power estimate
@@ -40,8 +43,7 @@ for a given type I error (alpha), genotype relative risk (gamma), frequency of t
 risk allele (p), the prevalence of disease in the population (kp) and optionally a
 disease model (model). A major difference would be the consideration of case/control
 ascertainment in \code{\link[gap]{pbsize}}.
-}
-\details{
+
 Internally, the function obtains a baseline risk to make the disease model consistent
 with Kp as in \code{\link[gap]{tscc}} and should produce accurate power estimate. Note it
 provides power estimates for given sample size(s) only.

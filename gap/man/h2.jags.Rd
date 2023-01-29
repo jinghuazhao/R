@@ -36,7 +36,7 @@ h2.jags(
 The returned value is a fitted model from jags().
 }
 \description{
-Heritability estimation based on genomic relationship matrix using JAGS.
+Heritability estimation based on genomic relationship matrix using JAGS
 }
 \details{
 This function performs Bayesian heritability estimation using genomic relationship matrix.

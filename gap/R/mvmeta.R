@@ -1,26 +1,25 @@
 #' Multivariate meta-analysis based on generalized least squares
 #'
+#' @param b the parameter estimates.
+#' @param V the triangular variance-covariance matrix.
+#'
+#' @details
 #' This function accepts a data matrix of parameter estimates and their variance-covariance matrix
 #' from individual studies and obtain a generalized least squares (GLS) estimate and heterogeneity statistic.
 #'
 #' For instance, this would be appropriate for combining linear correlation coefficients of single
 #' nucleotide polymorphisms (SNPs) for a given region.
 #'
-#' @param b the parameter estimates.
-#' @param V the triangular variance-covariance matrix.
-#'
 #' @export
 #' @return The returned value is a list containing:
-#' \describe{
-#'  \item{d}{the compact parameter estimates}
-#'  \item{Psi}{the compact covariance-covariance matrix}
-#'  \item{X}{the design matrix}
-#'  \item{beta}{the pooled parameter estimates}
-#'  \item{cov.beta}{the pooled variance-covariance matrix}
-#'  \item{X2}{the Chi-squared statistic for heterogeneity}
-#'  \item{df}{the degrees(s) of freedom}
-#'  \item{p}{the p value}
-#' }
+#' - d the compact parameter estimates.
+#' - Psi the compact covariance-covariance matrix.
+#' - X the design matrix.
+#' - beta the pooled parameter estimates.
+#' - cov.beta the pooled variance-covariance matrix.
+#' - X2 the Chi-squared statistic for heterogeneity.
+#' - df the degrees(s) of freedom.
+#' - p the p value.
 #'
 #' @references
 #' Hartung J, Knapp G, Sinha BK. Statistical Meta-analysis with Applications, Wiley 2008.

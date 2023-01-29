@@ -17,12 +17,15 @@ b2r(b, s, rho, n)
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{r}{the vector of correlation coefficients}
-\item{V}{the variance-covariance matrix of correlations}
+\itemize{
+\item r the vector of correlation coefficients.
+\item V the variance-covariance matrix of correlations.
 }
 }
 \description{
+Obtain correlation coefficients and their variance-covariances
+}
+\details{
 This function converts linear regression coefficients of phenotype on
 single nucleotide polymorphisms (SNPs) into Pearson correlation coefficients
 with their variance-covariance matrix. It is useful as a preliminary step

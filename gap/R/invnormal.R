@@ -1,9 +1,9 @@
 #' Inverse normal transformation
 #'
-#' @md
 #' @param x Data with missing values.
 #' @export
-#' @return Transformed value.
+#' @return
+#' Transformed value.
 #' @examples
 #' x <- 1:10
 #' z <- invnormal(x)

@@ -77,9 +77,11 @@ function in the \code{MASS} package. Specifying \code{line = "none"} suppresses 
 \code{NULL}. These functions are used only for their side effect (to make a graph).
 }
 \description{
-Plots empirical quantiles of a variable against theoretical quantiles of a comparison distribution.
+Quantile-comparison plots
 }
 \details{
+Plots empirical quantiles of a variable against theoretical quantiles of a comparison distribution.
+
 Draws theoretical quantile-comparison plots for variables and for studentized residuals
 from a linear model. A comparison line is drawn on the plot either through the quartiles
 of the two distributions, or by robust regression.

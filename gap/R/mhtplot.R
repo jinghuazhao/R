@@ -1,39 +1,37 @@
 #' Manhattan plot
 #'
+#' @param data a data frame with three columns representing chromosome, position and p values.
+#' @param control A control function named mht.control() with the following arguments:
+#' - type a flag with value "p" or "l" indicating if points or lines are to be drawn.
+#' - usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE.
+#' - logscale a flag to indicate if p value is to be log-transformed with default value TRUE.
+#' - base the base of the logarithm with default value 10.
+#' - cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL.
+#' - colors the color for different chromosome(s), and random if unspecified with default values NULL.
+#' - labels labels for the ticks on x-axis with default value NULL.
+#' - srt degree to which labels are rotated with default value of 45.
+#' - gap gap between chromosomes with default value NULL.
+#' - cex cex for the data points.
+#' - yline Margin line position.
+#' - xline Margin line position.
+#' @param hcontrol A control function named hmht.control() with the following arguments:
+#' - data. chunk of data to be highlighted with default value NULL.
+#' - colors. colors for annotated genes.
+#' - yoffset. offset above the data point showing most significant p value with default value 0.5.
+#' - cex shrinkage factor for data points with default value 1.5.
+#' - boxed if the label for the highlited region with default value FALSE.
+#' @param ... other options in compatible with the R plot function.
+#'
+#' @details
 #' To generate Manhattan plot, e.g., of genomewide significance (p values) and
 #' a random variable that is uniformly distributed. By default, a log10-transformation is applied.
 #' Note that with real chromosomal positions, it is also appropriate to plot and some but not all chromosomes.
 #'
 #' It is possible to specify options such as xlab and ylim when the plot is requested for data in other context.
-#' @md
-#' @param data a data frame with three columns representing chromosome, position and p values
-#' @param control A control function named mht.control() with the following arguments,
-#' \itemize{
-#'    \item type a flag with value "p" or "l" indicating if points or lines are to be drawn.
-#'    \item usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE
-#'    \item logscale a flag to indicate if p value is to be log-transformed with default value TRUE
-#'    \item base the base of the logarithm with default value 10
-#'    \item cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL
-#'    \item colors the color for different chromosome(s), and random if unspecified with default values NULL
-#'    \item labels labels for the ticks on x-axis with default value NULL
-#'    \item srt degree to which labels are rotated with default value of 45
-#'    \item gap gap between chromosomes with default value NULL
-#'    \item cex cex for the data points
-#'    \item yline Margin line position
-#'    \item xline Margin line position
-#' }
-#' @param hcontrol A control function named hmht.control() with the following arguments,
-#' \itemize{
-#'    \item data. chunk of data to be highlighted with default value NULL
-#'    \item colors. colors for annotated genes
-#'    \item yoffset. offset above the data point showing most significant p value with default value 0.5
-#'    \item cex shrinkage factor for data points with default value 1.5
-#'    \item boxed if the label for the highlited region with default value FALSE
-#' }
-#' @param ... other options in compatible with the R plot function.
 #'
 #' @export
-#' @return The plot is shown on or saved to the appropriate device.
+#' @return
+#' The plot is shown on or saved to the appropriate device.
 #' @seealso \code{\link[gap]{qqunif}}
 #' @examples
 #' \dontrun{

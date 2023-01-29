@@ -2,25 +2,25 @@
 
 #' Meta-analysis of p values
 #'
-#' This function is the method of meta-analysis used in the Genetic Investigation
-#' of ANThropometric Traits (GIANT) consortium, which is based on normal approximation
-#' of p values and weighted by sample sizes from individual studies.
-#'
 #' @param data data frame.
 #' @param N Number of studies.
 #' @param verbose Control of detailed output.
 #' @param prefixp Prefix of p value, with default value "p".
 #' @param prefixn Preifx of sample size, with default value "n".
 #'
+#' @details
+#' This function is the method of meta-analysis used in the Genetic Investigation
+#' of ANThropometric Traits (GIANT) consortium, which is based on normal approximation
+#' of p values and weighted by sample sizes from individual studies.
+#'
 #' @export
 #' @return
-#' \describe{
-#'  \item{x2}{Fisher's chi-squared statistics.}
-#'  \item{p}{P values from Fisher's method according to chi-squared distribution with 2*N degree(s) of freedom.}
-#'  \item{z}{Combined z value.}
-#'  \item{p1}{One-sided p value.}
-#'  \item{p2}{Two-sided p value.}
-#' }
+#' - x2 Fisher's chi-squared statistics.
+#' - p P values from Fisher's method according to chi-squared distribution with 2*N degree(s) of freedom.
+#' - z Combined z value.
+#' - p1 One-sided p value.
+#' - p2 Two-sided p value.
+#'
 #' @examples
 #' \dontrun{
 #' s <- data.frame(p1=0.1^rep(8:2,each=7,times=1),n1=rep(32000,49),

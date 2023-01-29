@@ -17,5 +17,8 @@ get_pve_se(n, z, correction = TRUE)
 pve and its se.
 }
 \description{
+Get pve and its standard error from n, z
+}
+\details{
 This function obtains proportion of explained variance of a continuous outcome.
 }

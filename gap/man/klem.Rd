@@ -19,10 +19,10 @@ Modified from 2ld.c.}
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{h}{haplotype Frequencies.}
-\item{l0}{log-likelihood under linkage equilibrium.}
-\item{l1}{log-likelihood under linkage disequilibrium.}
+\itemize{
+\item h haplotype Frequencies.
+\item l0 log-likelihood under linkage equilibrium.
+\item l1 log-likelihood under linkage disequilibrium.
 }
 }
 \description{

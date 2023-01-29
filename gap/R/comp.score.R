@@ -102,6 +102,11 @@ score <- function(chrom.pos, pair.data, ibd)
 
 #' score statistics for testing genetic linkage of quantitative trait
 #'
+#' @param mean (population) mean of the trait, with a default value of 0.
+#' @param var (population) variance of the trait, with a default value of 1.
+#' @param h2 heritability of the trait, with a default value of 0.3.
+#'
+#' @details
 #' The function empirically estimate the variance of the score functions.
 #' The variance-covariance matrix consists of two parts: the additive
 #' part and the part for the individual-specific environmental effect.
@@ -127,12 +132,10 @@ score <- function(chrom.pos, pair.data, ibd)
 #' family ID, person ID, father ID, mother ID, gender, trait value,
 #' where Family ID and person ID must be numbers, not characters.
 #' Use character "NA" for missing phenotypes.
-#' @param mean (population) mean of the trait, with a default value of 0.
-#' @param var (population) variance of the trait, with a default value of 1.
-#' @param h2 heritability of the trait, with a default value of 0.3.
 #'
 #' @export
-#' @return a matrix with each row containing the location and the statistics and their p-values.
+#' @return
+#' a matrix with each row containing the location and the statistics and their p-values.
 #'
 #' @references
 #' Kruglyak L, Daly MJ, Reeve-Daly MP, Lander ES (1996) Parametric and Nonparametric 

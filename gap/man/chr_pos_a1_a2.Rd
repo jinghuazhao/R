@@ -33,6 +33,9 @@ chr_pos_a1_a2(
 Identifier.
 }
 \description{
+SNP id by chr:pos+a1/a2
+}
+\details{
 This function generates unique identifiers for variants
 }
 \examples{

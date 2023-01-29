@@ -21,6 +21,9 @@ mr(data, X, Y, alpha = 0.05, other_plots = FALSE)
 The result and plots.
 }
 \description{
+Mendelian randomization analysis
+}
+\details{
 The function initially intends to rework on GSMR outputs, but it would be appropriate for general use.
 }
 \examples{

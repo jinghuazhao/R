@@ -21,18 +21,20 @@ hwe.cc(model, case, ctrl, k0, initial1, initial2)
 }
 \value{
 The returned value is a list with the following components.
-\describe{
-\item{Cox}{statistics under a general model}
-\item{t2par}{under the null hypothesis}
-\item{t3par}{under the alternative hypothesis}
-\item{lrt.stat}{the log-likelihood ratio statistic}
-\item{pval}{the corresponding p value}
+\itemize{
+\item Cox statistics under a general model.
+\item t2par under the null hypothesis.
+\item t3par under the alternative hypothesis.
+\item lrt.stat the log-likelihood ratio statistic.
+\item pval the corresponding p value.
 }
 }
 \description{
 A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
 }
 \details{
+A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
+
 This is a collection of utility functions. The null hypothesis declares that the proportions of
 genotypes are according to Hardy-Weinberg law, while under the alternative hypothesis, the expected
 genotype counts are according to the probabilities that particular genotypes are obtained conditional
@@ -43,7 +45,6 @@ model is built on baseline genotype \eqn{\alpha}{alpha}, \eqn{\alpha\beta}{alpha
 }
 \examples{
 \dontrun{
-
 ### Saba Sile, email of Jan 26, 2007, data always in order of GG AG AA, p=Pr(G),
 ### q=1-p=Pr(A)
 case=c(155,27,4)

@@ -1,13 +1,13 @@
 #' Hardy-Weinberg equlibrium test for a multiallelic marker
 #'
-#' Hardy-Weinberg equilibrium test.
-#'
 #' @param data A rectangular data containing the genotype, or an array of genotype counts.
 #' @param data.type An option taking values "allele", "genotype", "count"  if data is alleles, genotype or genotype count.
 #' @param yates.correct A flag indicating if Yates' correction is used for Pearson \eqn{\chi^2}{chi-squared} statistic.
 #' @param miss.val A list of missing values.
 #'
 #' @details
+#' Hardy-Weinberg equilibrium test.
+#'
 #' This function obtains Hardy-Weinberg equilibrium test statistics. It can
 #' handle data coded as allele numbers (default), genotype identifiers (by
 #' setting data.type="genotype") and counts corresponding to individual genotypes
@@ -17,16 +17,15 @@
 #' For highly polymorphic markers when asymptotic results do not hold, please resort to hwe.hardy.
 #'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#'  \item{allele.freq}{Frequencies of alleles}
-#'  \item{x2}{Pearson \eqn{\chi^2}{chi-square}}
-#'  \item{p.x2}{p value for \eqn{\chi^2}{chi-square}}
-#'  \item{lrt}{Log-likelihood ratio test statistic}
-#'  \item{p.lrt}{p value for lrt}
-#'  \item{df}{Degree(s) of freedom}
-#'  \item{rho}{\eqn{\sqrt{\chi^2/N}}{sqrt{chi-square/N}} the contingency table coefficient}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - allele.freq Frequencies of alleles.
+#' - x2 Pearson \eqn{\chi^2}{chi-square}.
+#' - p.x2 p value for \eqn{\chi^2}{chi-square}.
+#' - lrt Log-likelihood ratio test statistic.
+#' - p.lrt p value for lrt.
+#' - df Degree(s) of freedom.
+#' - rho \eqn{\sqrt{\chi^2/N}}{sqrt{chi-square/N}} the contingency table coefficient.
 #'
 #' @seealso \code{\link[gap]{hwe.hardy}} 
 #'

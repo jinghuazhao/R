@@ -66,6 +66,9 @@ miamiplot2(
 In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for \code{\link[gap]{labelManhattan}})
 }
 \description{
+Miami Plot
+}
+\details{
 Creates a Miami plot to compare results from two genome-wide association analyses.
 }
 \note{

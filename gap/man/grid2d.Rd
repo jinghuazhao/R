@@ -24,10 +24,10 @@ grid2d(
 \item{ylab}{Y-axis title.}
 }
 \value{
-A list with two variables.
-\describe{
-\item{n}{Number of chromosomes.}
-\item{CM}{Cumulative lengths starting from 0.}
+A list with two variables:
+\itemize{
+\item n Number of chromosomes.
+\item CM Cumulative lengths starting from 0.
 }
 }
 \description{

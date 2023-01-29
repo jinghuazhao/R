@@ -15,6 +15,9 @@ whscore(allele, type)
 The returned value is the value of score statistic.
 }
 \description{
+Whittemore-Halpern scores for allele-sharing
+}
+\details{
 Allele sharing score statistics.
 }
 \note{

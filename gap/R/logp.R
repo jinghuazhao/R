@@ -1,9 +1,9 @@
 #' log(p) for a normal deviate z
 #'
-#' @md
 #' @param z normal deviate.
 #' @export
-#' @return log(P)
+#' @return
+#' `log(P)`
 #' @examples
 #' logp(100)
 

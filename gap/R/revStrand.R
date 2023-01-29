@@ -1,9 +1,10 @@
 #' Allele on the reverse strand
 #'
+#' @param allele Allele to reverse.
+#'
+#' @details
 #' The function obtains allele on the reverse strand.
 #'
-#' @md
-#' @param allele Allele to reverse.
 #' @export
 #' @return Allele on the reverse strand.
 #' @examples

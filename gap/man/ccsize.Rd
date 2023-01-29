@@ -29,13 +29,15 @@ ccsize(n, q, pD, p1, theta, alpha, beta = 0.2, power = FALSE, verbose = FALSE)
 The returned value is a value indicating the power or required sample size.
 }
 \description{
+Power and sample size for case-cohort design
+}
+\details{
 The power of the test is according to
 \deqn{\Phi\left(Z_\alpha+m^{1/2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)}{Phi(Z_alpha+m^0.5*theta*sqrt(p_1p_2p_D/q+(1-q)p_D))}
 where \eqn{\alpha}{alpha} is the significance level, \eqn{\theta}{theta} is the log-hazard ratio for two groups, \eqn{p_j}{p_j},
 j=1, 2, are the proportion of the two groups in the population. \eqn{m} is the total number of subjects in the subcohort,
 \eqn{p_D} is the proportion of the failures in the full cohort, and \eqn{q} is the sampling fraction of the subcohort.
-}
-\details{
+
 Alternatively, the sample size required for the subcohort is \deqn{m=nBp_D/(n-B(1-p_D))}{m=nBp_D/(n-B(1-p_D))}
 where \eqn{B=(Z_{1-\alpha}+Z_\beta)^2/(\theta^2p_1p_2p_D)}{B=(Z_{1-alpha}+Z_beta)^2/(theta^2p_1p_2p_D))}, and \eqn{n} is the size of cohort.
 

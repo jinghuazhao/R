@@ -33,11 +33,13 @@ asplot(
 \item{pch}{Plotting character for the SNPs to be highlighted, e.g., 21 and 23 refer to circle and diamond.}
 }
 \description{
+Regional association plot
+}
+\details{
 This function obtains regional association plot for a particular locus, based on
 the information about recombinatino rates, linkage disequilibria between the
 SNP of interest and neighbouring ones, and single-point association tests p values.
-}
-\details{
+
 Note that the best p value is not necessarily within locus in the original design.
 }
 \examples{

@@ -1,10 +1,5 @@
 #' Q-Q plot for uniformly distributed random variable
 #'
-#' This function produces Q-Q plot for a random variable following uniform distribution with or
-#' without using log-scale. Note that the log-scale is by default for type "exp", which is a plot based on
-#' exponential order statistics. This appears to be more appropriate than the commonly used procedure whereby
-#' the expected value of uniform order statistics is directly log-transformed.
-#'
 #' @param u a vector of uniformly distributed random variables.
 #' @param type string option to specify distribution: "unif"=uniform, "exp"=exponential.
 #' @param logscale to use logscale.
@@ -15,13 +10,18 @@
 #' @param alpha 1-confidence level, e.g., 0.05.
 #' @param ... other options as appropriae for the qqplot function.
 #'
+#' @details
+#' This function produces Q-Q plot for a random variable following uniform distribution with or
+#' without using log-scale. Note that the log-scale is by default for type "exp", which is a plot based on
+#' exponential order statistics. This appears to be more appropriate than the commonly used procedure whereby
+#' the expected value of uniform order statistics is directly log-transformed.
+#'
 #' @export
 #' @return
 #' The returned value is a list with components of a qqplot:
-#' \describe{
-#' \item{x}{expected value for uniform order statistics or its -log(,base) counterpart}
-#' \item{y}{observed value or its -log(,base) counterpart}
-#' }
+#' - x expected value for uniform order statistics or its -log(,base) counterpart.
+#' - y observed value or its -log(,base) counterpart.
+#'
 #' @references
 #' Balakrishnan N, Nevzorov VB. A Primer on Statistical Distributions. Wiley 2003.
 #'

@@ -1,6 +1,5 @@
 #' A utility to generate SNPTEST sample file
 #'
-#' @md
 #' @param data Data to be used.
 #' @param sample_file Output filename.
 #' @param ID_1 ID_1 as in the sample file.
@@ -10,7 +9,8 @@
 #' @param D Discrete variables.
 #' @param P Phenotypic variables.
 #' @export
-#' @return Output file in SNPTEST's sample format.
+#' @return
+#' Output file in SNPTEST's sample format.
 #' @examples
 #' \dontrun{
 #' d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)

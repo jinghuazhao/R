@@ -31,12 +31,14 @@ Use character "NA" for missing phenotypes.}
 a matrix with each row containing the location and the statistics and their p-values.
 }
 \description{
+score statistics for testing genetic linkage of quantitative trait
+}
+\details{
 The function empirically estimate the variance of the score functions.
 The variance-covariance matrix consists of two parts: the additive
 part and the part for the individual-specific environmental effect.
 Other reasonable decompositions are possible.
-}
-\details{
+
 This program has the following improvement over "score.r":
 \enumerate{
 \item It works with selected nuclear families

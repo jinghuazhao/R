@@ -1,21 +1,20 @@
 #' Probability of familial clustering of disease
 #'
-#' To calculate probability of familial clustering of disease using Monte Carlo simulation.
-#'
-#'
 #' @param famdata collective information of sib size, number of affected sibs and their frequencies.
 #' @param n.sim number of simulations in a single Monte Carlo run.
 #' @param n.loop total number of Monte Carlo runs.
 #'
+#' @details
+#' To calculate probability of familial clustering of disease using Monte Carlo simulation.
+#'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#'  \item{n.sim}{a copy of the number of simulations in a single Monte Carlo run.}
-#'  \item{n.loop}{the total number of Monte Carlo runs.}
-#'  \item{p}{the observed p value.}
-#'  \item{tailpl}{accumulated probabilities at the lower tails.}
-#'  \item{tailpu}{simulated p values.}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - n.sim a copy of the number of simulations in a single Monte Carlo run.
+#' - n.loop the total number of Monte Carlo runs.
+#' - p the observed p value.
+#' - tailpl accumulated probabilities at the lower tails.
+#' - tailpu simulated p values.
 #'
 #' @references
 #' Yu C and D Zelterman (2001) Exact inference for family disease clusters. Commun Stat -- Theory

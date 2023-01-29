@@ -1,24 +1,23 @@
 #' Transmission/disequilibrium test of a multiallelic marker by Bradley-Terry model
 #'
-#' This function calculates transmission-disequilibrium statistics involving
-#' multiallelic marker according to Bradley-Terry model.
-#'
 #' @param x the data table.
 #' @param verbose To print out test statistics if TRUE.
 #' @param n.sim Number of simulations.
 #' @param ... other options compatible with the BTm function.
 #'
+#' @details
+#' This function calculates transmission-disequilibrium statistics involving
+#' multiallelic marker according to Bradley-Terry model.
+#'
 #' @export
 #' @return
 #' It returned list contains the following components:
-#' \describe{
-#'  \item{c2b}{A data frame in four-column format showing transmitted vs nontransmitted counts.}
-#'  \item{BTm}{A fitted Bradley-Terry model object.}
-#'  \item{X2}{Allele-wise, genotype-wise and goodness-of-fit Chi-squared statistics.}
-#'  \item{df}{Degrees of freedom.}
-#'  \item{p}{P value.}
-#'  \item{pn}{Monte Carlo p values when n.sim is specified.}
-#' }
+#' - c2b A data frame in four-column format showing transmitted vs nontransmitted counts.
+#' - BTm A fitted Bradley-Terry model object.
+#' - X2 Allele-wise, genotype-wise and goodness-of-fit Chi-squared statistics.
+#' - df Degrees of freedom.
+#' - p P value.
+#' - pn Monte Carlo p values when n.sim is specified.
 #'
 #' @references
 #' Firth, D. (2005). Bradley-terry models in R. Journal of Statistical Software 12(1):1-12

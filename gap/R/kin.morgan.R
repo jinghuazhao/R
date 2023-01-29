@@ -1,16 +1,16 @@
 #' kinship matrix for simple pedigree
 #'
-#' kinship matrix according to Morgan v2.1.
-#'
 #' @param ped individual's id, father's id and mother's id.
 #' @param verbose an option to print out the original pedigree.
 #'
+#' @details
+#' kinship matrix according to Morgan v2.1.
+#'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{kin}{the kinship matrix in vector form}
-#' \item{kin.matrix}{the kinship matrix}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - kin the kinship matrix in vector form.
+#' - kin.matrix the kinship matrix.
 #'
 #' @references
 #' Morgan V2.1 \url{https://sites.stat.washington.edu/thompson/Genepi/MORGAN/Morgan.shtml}

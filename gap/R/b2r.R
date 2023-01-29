@@ -14,23 +14,23 @@ covfun <- function(r,n)
 
 #' Obtain correlation coefficients and their variance-covariances
 #'
+#' @param b the vector of linear regression coefficients.
+#' @param s the corresponding vector of standard errors.
+#' @param rho triangular array of between-SNP correlation.
+#' @param n the sample size.
+#'
+#' @details
 #' This function converts linear regression coefficients of phenotype on
 #' single nucleotide polymorphisms (SNPs) into Pearson correlation coefficients
 #' with their variance-covariance matrix. It is useful as a preliminary step 
 #' for meta-analyze SNP-trait associations at a given region. Between-SNP
 #' correlations (e.g., from HapMap) are required as auxiliary information.
 #'
-#' @param b the vector of linear regression coefficients.
-#' @param s the corresponding vector of standard errors.
-#' @param rho triangular array of between-SNP correlation.
-#' @param n the sample size.
-#'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{r}{the vector of correlation coefficients}
-#' \item{V}{the variance-covariance matrix of correlations}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - r the vector of correlation coefficients.
+#' - V the variance-covariance matrix of correlations.
 #'
 #' @references
 #' Becker BJ (2004). Multivariate meta-analysis. in Tinsley HEA,

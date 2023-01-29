@@ -11,15 +11,18 @@ bt(x)
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{y}{A column of 1}
-\item{count}{the frequency count/weight}
-\item{allele}{the design matrix}
-\item{bt.glm}{a glm.fit object}
-\item{etdt.dat}{a data table that can be used by ETDT}
+\itemize{
+\item y A column of 1.
+\item count the frequency count/weight.
+\item allele the design matrix.
+\item bt.glm a glm.fit object.
+\item etdt.dat a data table that can be used by ETDT.
 }
 }
 \description{
+Bradley-Terry model for contingency table
+}
+\details{
 This function calculates statistics under Bradley-Terry model.
 }
 \note{

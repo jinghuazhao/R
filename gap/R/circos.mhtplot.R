@@ -1,10 +1,11 @@
 #' circos Manhattan plot with gene annotation
 #'
-#' The function generates circos Manhattan plot with gene annotation.
-#'
-#' @md
 #' @param data Data to be used.
 #' @param glist A gene list.
+#'
+#' @details
+#' The function generates circos Manhattan plot with gene annotation.
+#'
 #' @export
 #' @return
 #' None.

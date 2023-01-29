@@ -1,8 +1,5 @@
 #' 2D QTL plot
 #'
-#' This function is both used as its own for a 2d plot and/or generate data for a plotly counterpart.
-#'
-#' @md
 #' @param d Data to be used.
 #' @param chrlen lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param snp_name variant name.
@@ -21,6 +18,9 @@
 #' @param cex.points Data point extension factor.
 #' @param xlab X-axis title.
 #' @param ylab Y-axis title.
+#'
+#' @details
+#' This function is both used as its own for a 2d plot and/or generate data for a plotly counterpart.
 #'
 #' @export
 #' @return positional information.

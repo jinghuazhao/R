@@ -1,21 +1,20 @@
 #' Statistics for 2 by K table
 #'
-#' This function calculates one-to-others and maximum accumulated chi-squared
-#' statistics for a 2 by K contingency table.
-#'
 #' @param y1 a vector containing the first row of a 2 by K contingency table.
 #' @param y2 a vector containing the second row of a 2 by K contingency table.
+#'
+#' @details
+#' This function calculates one-to-others and maximum accumulated chi-squared
+#' statistics for a 2 by K contingency table.
 #'
 #' @export
 #' @return
 #' The returned value is a list containing:
-#' \describe{
-#' \item{x2a}{the one-to-other chisquare.}
-#' \item{x2b}{the maximum accumulated chisquare.}
-#' \item{col1}{the column index for x2a.}
-#' \item{col2}{the column index for x2b.}
-#' \item{p}{the corresponding p value.}
-#' }
+#' - x2a the one-to-other chisquare.
+#' - x2b the maximum accumulated chisquare.
+#' - col1 the column index for x2a.
+#' - col2 the column index for x2b.
+#' - p the corresponding p value.
 #'
 #' @references
 #' Hirotsu C, Aoki S, Inada T, Kitao Y (2001) An exact test for the association 

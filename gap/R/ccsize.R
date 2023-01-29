@@ -1,5 +1,16 @@
 #' Power and sample size for case-cohort design
 #'
+#' @param n the total number of subjects in the cohort.
+#' @param q the sampling fraction of the subcohort.
+#' @param pD the proportion of the failures in the full cohort.
+#' @param p1 proportions of the two groups (p2=1-p1).
+#' @param theta log-hazard ratio for two groups.
+#' @param alpha type I error -- significant level.
+#' @param beta type II error.
+#' @param power if specified, the power for which sample size is calculated.
+#' @param verbose error messages are explicitly printed out.
+#'
+#' @details
 #' The power of the test is according to 
 #' \deqn{\Phi\left(Z_\alpha+m^{1/2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)}{Phi(Z_alpha+m^0.5*theta*sqrt(p_1p_2p_D/q+(1-q)p_D))}
 #' where \eqn{\alpha}{alpha} is the significance level, \eqn{\theta}{theta} is the log-hazard ratio for two groups, \eqn{p_j}{p_j}, 
@@ -11,18 +22,9 @@
 #'
 #' When infeaisble configurations are specified, a sample size of -999 is returned.
 #'
-#' @param n the total number of subjects in the cohort.
-#' @param q the sampling fraction of the subcohort.
-#' @param pD the proportion of the failures in the full cohort.
-#' @param p1 proportions of the two groups (p2=1-p1).
-#' @param theta log-hazard ratio for two groups.
-#' @param alpha type I error -- significant level.
-#' @param beta type II error.
-#' @param power if specified, the power for which sample size is calculated.
-#' @param verbose error messages are explicitly printed out.
-#'
 #' @export
-#' @return The returned value is a value indicating the power or required sample size.
+#' @return
+#' The returned value is a value indicating the power or required sample size.
 #'
 #' @references
 #' Cai J, Zeng D. Sample size/power calculation for case-cohort studies.

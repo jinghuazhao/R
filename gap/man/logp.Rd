@@ -10,7 +10,7 @@ logp(z)
 \item{z}{normal deviate.}
 }
 \value{
-log(P)
+\code{log(P)}
 }
 \description{
 log(p) for a normal deviate z

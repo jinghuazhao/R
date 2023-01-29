@@ -1,14 +1,5 @@
 #' Sample size for family-based linkage and association design
 #'
-#' This function implements Risch and Merikangas (1996) statistics 
-#' evaluating power for family-based linkage (affected sib pairs, ASP) and
-#' association design. They are potentially useful in the prospect of
-#' genome-wide association studies.
-#'
-#' The function calls auxiliary functions sn() and strlen; sn() 
-#' contains the necessary thresholds for power calculation while
-#' strlen() evaluates length of a string (generic).
-#'
 #' @param gamma genotype relative risk assuming multiplicative model.
 #' @param p frequency of disease allele.
 #' @param alpha Type I error rates for ASP linkage, TDT and ASP-TDT.
@@ -16,18 +7,26 @@
 #' @param debug verbose output.
 #' @param error 0=use the correct formula,1=the original paper.
 #'
-#' @export
-#' @return The returned value is a list containing:
+#' @details
+#' This function implements Risch and Merikangas (1996) statistics 
+#' evaluating power for family-based linkage (affected sib pairs, ASP) and
+#' association design. They are potentially useful in the prospect of
+#' genome-wide association studies.
 #'
-#' \describe{
-#'   \item{gamma}{input gamma.}
-#'   \item{p}{input p.}
-#'   \item{n1}{sample size for ASP.}
-#'   \item{n2}{sample size for TDT.}
-#'   \item{n3}{sample size for ASP-TDT.}
-#'   \item{lambdao}{lambda o.}
-#'   \item{lambdas}{lambda s.}
-#' }
+#' The function calls auxiliary functions sn() and strlen; `sn()`
+#' contains the necessary thresholds for power calculation while
+#' `strlen()` evaluates length of a string (generic).
+#'
+#' @export
+#' @return
+#' The returned value is a list containing:
+#' - gamma input gamma.
+#' - p input p.
+#' - n1 sample size for ASP.
+#' - n2 sample size for TDT.
+#' - n3 sample size for ASP-TDT.
+#' - lambdao lambda o.
+#' - lambdas lambda s.
 #'
 #' @references
 #'

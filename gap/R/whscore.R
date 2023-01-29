@@ -1,9 +1,10 @@
 #' Whittemore-Halpern scores for allele-sharing
 #'
-#' Allele sharing score statistics.
-#'
 #' @param allele a matrix of alleles of affected pedigree members.
 #' @param type 0 = pairs, 1 = all.
+#'
+#' @details
+#' Allele sharing score statistics.
 #'
 #' @export
 #' @return The returned value is the value of score statistic.

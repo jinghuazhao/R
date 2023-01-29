@@ -1,24 +1,23 @@
 #' Preparing weight for GENECOUNTING
 #'
-#' This function is a R port of the GENECOUNTING/PREPARE program which takes
-#' an array of genotyep data and collapses individuals with the same multilocus
-#' genotype. This function can also be used to prepare for the genotype table in testing
-#' Hardy-Weinberg equilibrium.
-#'
 #' @param data the multilocus genotype data for a set of individuals.
 #' @param handle.miss a flag to indicate if missing data is kept, 0 = no, 1 = yes.
 #' @param is.genotype a flag to indicate if the data is already in the form of genotype identifiers.
 #' @param with.id a flag to indicate if the unique multilocus genotype identifier is generated.
 #'
+#' @details
+#' This function is a R port of the GENECOUNTING/PREPARE program which takes
+#' an array of genotyep data and collapses individuals with the same multilocus
+#' genotype. This function can also be used to prepare for the genotype table in testing
+#' Hardy-Weinberg equilibrium.
+#'
 #' @export
 #' @return
 #' The returned value is a list containing:
-#' \describe{
-#' \item{cdata}{the collapsed genotype data}
-#' \item{wt}{the frequency weight}
-#' \item{obscom}{the observed number of combinations or genotypes}
-#' \item{idsave}{optional, available only if with.id = 1}
-#' }
+#' - cdata the collapsed genotype data.
+#' - wt the frequency weight.
+#' - obscom the observed number of combinations or genotypes.
+#' - idsave optional, available only if with.id = 1.
 #'
 #' @references
 #' Zhao JH, Sham PC (2003). Generic number system and haplotype analysis. Comp Prog Meth Biomed 70:1-9

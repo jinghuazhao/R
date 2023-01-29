@@ -1,5 +1,15 @@
 #' Fixed and random effects model for meta-analysis
 #'
+#' @param data Data frame to be used.
+#' @param N Number of studies.
+#' @param verbose A control for screen output.
+#' @param prefixb Prefix of estimate; default value is "b".
+#' @param prefixse Prefix of standard error; default value is "se".
+#' The function accepts a wide format data with estimates as \eqn{b1,...,bN}
+#' and standard errors as \eqn{se1,...,seN}. More generally, they can be specified
+#' by prefixes in the function argument.
+#'
+#' @details
 #' Given \eqn{k=n} studies with \eqn{b_1, ..., b_N} being \eqn{\beta}'s and
 #' \eqn{se_1, ..., se_N} standard errors from regression, the fixed effects
 #' model uses inverse variance weighting such that \eqn{w_1=1/se_1^2}, ...,
@@ -17,32 +27,21 @@
 #' \eqn{z_r=\beta_r/se_r} and a p-value \eqn{p_r=2*pnorm(-abs(z_r))}. Moreover, a
 #' p-value testing for heterogeneity is \eqn{p_{heter}=pchisq(q_w,k-1,lower.tail=FALSE)}.
 #'
-#' @param data Data frame to be used.
-#' @param N Number of studies.
-#' @param verbose A control for screen output.
-#' @param prefixb Prefix of estimate; default value is "b".
-#' @param prefixse Prefix of standard error; default value is "se".
-#' The function accepts a wide format data with estimates as \eqn{b1,...,bN}
-#' and standard errors as \eqn{se1,...,seN}. More generally, they can be specified
-#' by prefixes in the function argument.
-#'
 #' @export
 #' @return
 #' The returned value is a data frame with the following variables:
-#' \describe{
-#'   \item{p_f}{P value (fixed effects model)}
-#'   \item{p_r}{P value (random effects model)}
-#'   \item{beta_f}{regression coefficient}
-#'   \item{beta_r}{regression coefficient}
-#'   \item{se_f}{standard error}
-#'   \item{se_r}{standard error}
-#'   \item{z_f}{z value}
-#'   \item{z_r}{z value}
-#'   \item{p_heter}{heterogeneity test p value}
-#'   \item{i2}{\eqn{I^2}{I^2} statistic}
-#'   \item{k}{No of tests used}
-#'   \item{eps}{smallest double-precision number}
-#' }
+#' - p_f P value (fixed effects model).
+#' - p_r P value (random effects model).
+#' - beta_f regression coefficient.
+#' - beta_r regression coefficient.
+#' - se_f standard error.
+#' - se_r standard error.
+#' - z_f z value.
+#' - z_r z value.
+#' - p_heter heterogeneity test p value.
+#' - i2 \eqn{I^2}{I^2} statistic.
+#' - k No of tests used.
+#' - eps smallest double-precision number.
 #'
 #' @references
 #' JPT Higgins, SG Thompson, JJ Deeks, DG Altman. Measuring inconsistency in meta-analyses. BMJ 327:557-60

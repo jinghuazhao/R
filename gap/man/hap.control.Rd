@@ -72,7 +72,7 @@ hap.control(
 \item{assignfile}{a file for haplotype assignment.}
 }
 \value{
-a list containing the parameter specifications to the function.
+A list containing the parameter specifications to the function.
 }
 \description{
 Control for haplotype reconstruction

@@ -1,11 +1,12 @@
 #' Get pve and its standard error from n, z
 #'
-#' This function obtains proportion of explained variance of a continuous outcome.
-#'
-#' @md
 #' @param n Sample size.
 #' @param z z-statistic, i.e., b/se when they are available instead.
 #' @param correction if TRUE an correction based on t-statistic is applied.
+#'
+#' @details
+#' This function obtains proportion of explained variance of a continuous outcome.
+#'
 #' @export
 #' @return pve and its se.
 

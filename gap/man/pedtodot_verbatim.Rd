@@ -11,18 +11,20 @@ pedtodot_verbatim(f, run = FALSE, toDOT = FALSE, ...)
 
 \item{run}{A flag to run dot/neato on the generated .dot file(s).}
 
-\item{toDOT}{A flag to generate script for DOT::dot().}
+\item{toDOT}{A flag to generate script for \code{DOT::dot()}.}
 
-\item{...}{Other flag(s) for DOT::dot().}
+\item{...}{Other flag(s) for \code{DOT::dot()}.}
 }
 \value{
 No value is returned but outputs in .dot, .pdf, and .svg.
 }
 \description{
-Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and optionally
-call dot/neato to make pedigree drawing.
+Pedigree-drawing with graphviz
 }
 \details{
+Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and optionally
+call dot/neato to make pedigree drawing.
+
 This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to \code{pedtodot} which was largely a mirror.
 To check independently, try \verb{xsel -i < <(cat pedtodot_verbatim.R)} or \verb{cat pedtodot_verbatim.R | xsel -i} and paste into an R session.
 }

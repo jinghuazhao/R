@@ -17,19 +17,21 @@ gcontrol2(p, col = palette()[4], lcol = palette()[2], ...)
 }
 \value{
 A list containing:
-\describe{
-\item{x}{the expected \eqn{\chi^2}{chi-squared} statistics}
-\item{y}{the observed \eqn{\chi^2}{chi-squared} statistics}
-\item{lambda}{the inflation factor}
+\itemize{
+\item x the expected \eqn{\chi^2}{chi-squared} statistics.
+\item y the observed \eqn{\chi^2}{chi-squared} statistics.
+\item lambda the inflation factor.
 }
 }
 \description{
+genomic control based on p values
+}
+\details{
 The function obtains 1-df \eqn{\chi^2}{chi-squared} statistics (observed) according
 to a vector of p values, and the inflation factor (lambda) according
 to medians of the observed and expected statistics. The latter is based
 on the empirical distribution function (EDF) of 1-df \eqn{\chi^2}{chi-squared} statstics.
-}
-\details{
+
 It would be appropriate for genetic association analysis as of 1-df Armitage trend test
 for case-control data; for 1-df additive model with continuous outcome one has to
 consider the compatibility with p values based on z-/t- statistics.

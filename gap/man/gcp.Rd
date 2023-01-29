@@ -43,6 +43,9 @@ The returned value is a list containing (p.sim and ph when n.sim > 0):
 }
 }
 \description{
+Permutation tests using GENECOUNTING
+}
+\details{
 This function is a R port of the GENECOUNTING/PERMUTE program which
 generates EHPLUS-type statistics including z-tests for individual haplotypes
 }

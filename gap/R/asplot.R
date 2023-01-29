@@ -1,11 +1,5 @@
 #' Regional association plot
 #'
-#' This function obtains regional association plot for a particular locus, based on
-#' the information about recombinatino rates, linkage disequilibria between the
-#' SNP of interest and neighbouring ones, and single-point association tests p values.
-#'
-#' Note that the best p value is not necessarily within locus in the original design.
-#'
 #' @param locus Data frame with columns c("CHR", "POS", "NAME", "PVAL", "RSQR") containing association results.
 #' @param map Genetic map, i.e, c("POS","THETA","DIST").
 #' @param genes Gene annotation with columns c("START", "STOP", "STRAND", "GENE").
@@ -14,6 +8,13 @@
 #' @param sf scale factors for p values and recombination rates, smaller values are necessary for gene dense regions.
 #' @param logpmax Maximum value for -log10(p).
 #' @param pch Plotting character for the SNPs to be highlighted, e.g., 21 and 23 refer to circle and diamond.
+#'
+#' @details
+#' This function obtains regional association plot for a particular locus, based on
+#' the information about recombinatino rates, linkage disequilibria between the
+#' SNP of interest and neighbouring ones, and single-point association tests p values.
+#'
+#' Note that the best p value is not necessarily within locus in the original design.
 #'
 #' @export
 #' @references

@@ -1,13 +1,13 @@
 #' Heritability under the liability threshold model
 #'
-#' @md
 #' @param K Disease prevalence.
 #' @param P Phenotypeic variance.
 #' @param h2 Heritability estimate.
 #' @param se Standard error.
 #' @param verbose Detailed output.
 #' @export
-#' @return A list of the input heritability estimate/standard error and their counterpart under liability threshold model, the normal deviate..
+#' @return
+#' A list of the input heritability estimate/standard error and their counterpart under liability threshold model, the normal deviate..
 
 h2l <- function(K=0.05,P=0.5,h2,se,verbose=TRUE)
 {

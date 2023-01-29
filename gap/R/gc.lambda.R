@@ -1,6 +1,5 @@
 #' Estionmation of the genomic control inflation statistic (lambda)
 #'
-#' @md
 #' @param p A vector of p values.
 #' @export
 #' @return Estimate of inflation factor.

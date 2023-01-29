@@ -17,14 +17,17 @@ pgc(data, handle.miss = 1, is.genotype = 0, with.id = 0)
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{cdata}{the collapsed genotype data}
-\item{wt}{the frequency weight}
-\item{obscom}{the observed number of combinations or genotypes}
-\item{idsave}{optional, available only if with.id = 1}
+\itemize{
+\item cdata the collapsed genotype data.
+\item wt the frequency weight.
+\item obscom the observed number of combinations or genotypes.
+\item idsave optional, available only if with.id = 1.
 }
 }
 \description{
+Preparing weight for GENECOUNTING
+}
+\details{
 This function is a R port of the GENECOUNTING/PREPARE program which takes
 an array of genotyep data and collapses individuals with the same multilocus
 genotype. This function can also be used to prepare for the genotype table in testing

@@ -1,9 +1,5 @@
 #' Sentinel identification from GWAS summary statistics
 #'
-#' This function accepts an object containing GWAS summary statistics for
-#' signal identification as defined by flanking regions. As the associate P value
-#' could be extremely small, the effect size and its standard error are used.
-#'
 #' @param p an object containing GWAS summary statistics.
 #' @param pid a phenotype (e.g., protein) name in pGWAS.
 #' @param st row number as in p.
@@ -18,6 +14,10 @@
 #' @param sep field delimitor.
 #'
 #' @details
+#' This function accepts an object containing GWAS summary statistics for
+#' signal identification as defined by flanking regions. As the associate P value
+#' could be extremely small, the effect size and its standard error are used.
+#'
 #' A distance-based approach was consequently used and reframed as an algorithm here. It takes as input signals multiple correlated variants in 
 #' particular region(s) which reach genomewide significance and output three types of sentinels in a region-based manner. For a given protein and a 
 #' chromosome, the algorithm proceeds as follows:

@@ -28,6 +28,9 @@ Currently it does not return any value except screen output; the results can be 
 command or via modifying the C/R codes.
 }
 \description{
+Means and variances under 1- and 2- locus (biallelic) QTL model
+}
+\details{
 Function muvar() gives means and variances under 1-locus and 2-locus QTL model (simple);
 in the latter case it gives results from different avenues. This function is included for
 experimental purpose and yet to be generalized.

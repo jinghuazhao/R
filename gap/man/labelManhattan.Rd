@@ -48,7 +48,10 @@ labelManhattan(
 Adds annotation to existing Manhattan or Miami plot
 }
 \description{
-Adds labels beside specified points on a Manhattan or Miami plot. Ideal for adding locus names to peaks. Currently only designed to work with \code{\link[gap]{miamiplot2}}.
+Annotate Manhattan or Miami Plot
+}
+\details{
+Add labels beside specified points on a Manhattan or Miami plot. Ideal for adding locus names to peaks. Currently only designed to work with \code{\link[gap]{miamiplot2}}.
 }
 \note{
 Extended to handle extreme P values.

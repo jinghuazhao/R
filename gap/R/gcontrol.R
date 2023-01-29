@@ -1,5 +1,15 @@
 #' genomic control
 #'
+#' @param data the data matrix.
+#' @param zeta program constant with default value 1000.
+#' @param kappa multiplier in prior for mean with default value 4.
+#' @param tau2 multiplier in prior for variance with default value 1.
+#' @param epsilon prior probability of marker association with default value 0.01.
+#' @param ngib number of Gibbs steps, with default value 500.
+#' @param burn number of burn-ins with default value 50.
+#' @param idum seed for pseudorandom number sequence.
+#'
+#' @details
 #' The Bayesian genomic control statistics with the following parameters,
 #'
 #' \tabular{ll}{
@@ -18,24 +28,13 @@
 #' associated with the disorder is given. The latter is not a p-value but any value
 #' greater than 0.5 (pout) suggests association. 
 #'
-#' @param data the data matrix.
-#' @param zeta program constant with default value 1000.
-#' @param kappa multiplier in prior for mean with default value 4.
-#' @param tau2 multiplier in prior for variance with default value 1.
-#' @param epsilon prior probability of marker association with default value 0.01.
-#' @param ngib number of Gibbs steps, with default value 500.
-#' @param burn number of burn-ins with default value 50.
-#' @param idum seed for pseudorandom number sequence.
-#'
 #' @source \url{https://www.cmu.edu/dietrich/statistics-datascience/index.html}
 #'
 #' @export
 #' @return The returned value is a list containing:
-#' \describe{
-#' \item{deltot}{the probability of being an outlier}
-#' \item{x2}{the \eqn{\chi^2}{chi-squared} statistic}
-#' \item{A}{the A vector}
-#' }
+#' - deltot the probability of being an outlier.
+#' - x2 the \eqn{\chi^2}{chi-squared} statistic.
+#' - A the A vector.
 #'
 #' @references
 #' \insertRef{devlin99}{gap}

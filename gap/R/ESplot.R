@@ -1,12 +1,12 @@
 #' Effect-size plot
 #'
-#' The function accepts parameter estimates and their standard errors for a range of models.
-#'
-#' @md
 #' @param ESdat A data frame consisting of model id, parameter estimates and standard errors.
 #' @param alpha Type-I error rate used to construct 100(1-alpha) confidence interval.
 #' @param fontsize size of font.
 #' 
+#' @details
+#' The function accepts parameter estimates and their standard errors for a range of models.
+#'
 #' @export
 #' @return A high resolution plot object.
 #'

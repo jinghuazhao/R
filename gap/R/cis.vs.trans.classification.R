@@ -1,13 +1,16 @@
 #' A cis/trans classifier
 #'
-#' The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
-#' @md
 #' @param hits Data to be used, which contains prot, Chr, bp, id and/or other information such as SNPid.
 #' @param panel Panel data.
 #' @param id Identifier.
 #' @param radius The flanking distance for variants.
+#'
+#' @details
+#' The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
+#'
 #' @export
-#' @return The cis/trans classification.
+#' @return
+#' The cis/trans classification.
 #' @examples
 #' cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
 #' \dontrun{
@@ -74,8 +77,8 @@ cis.vs.trans.classification <- function(hits, panel, id, radius=1e6)
 
     if (length(same.inds)>0) cis[same.inds] <- bp[same.inds] > cis.start[same.inds] & bp[same.inds] < cis.end[same.inds]
     cis.trans <- rep(NA, N)
-    cis.trans[cis==TRUE] <- "cis"
-    cis.trans[cis==FALSE] <- "trans"
+    cis.trans[cis] <- "cis"
+    cis.trans[!cis] <- "trans"
   })
 
 # split by protein

@@ -1,20 +1,18 @@
 #' Haplotype trend regression
 #'
-#' Haplotype trend regression (with permutation)
-#'
-#' @md
 #' @param y a vector of phenotype.
 #' @param x a haplotype table.
 #' @param n.sim the number of permutations.
 #'
-#' @return The returned value is a list containing:
+#' @details
+#' Haplotype trend regression (with permutation)
 #'
-#' \itemize{
-#'   \item{f}{the F statistic for overall association}
-#'   \item{p}{the p value for overall association}
-#'   \item{fv}{the F statistics for individual haplotypes}
-#'   \item{pi}{the p values for individual haplotypes}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - f the F statistic for overall association.
+#' - p the p value for overall association.
+#' - fv the F statistics for individual haplotypes.
+#' - pi the p values for individual haplotypes.
 #' 
 #' @references
 #' Zaykin DV, Westfall PH, Young SS, Karnoub MA, Wagner MJ, Ehm MG (2002) Testing association of statistically inferred haplotypes with 

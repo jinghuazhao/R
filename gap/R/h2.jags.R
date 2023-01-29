@@ -1,7 +1,5 @@
 #' Heritability estimation based on genomic relationship matrix using JAGS
 #'
-#' Heritability estimation based on genomic relationship matrix using JAGS.
-#'
 #' @param y outcome vector.
 #' @param x covariate matrix.
 #' @param G genomic relationship matrix.
@@ -15,7 +13,8 @@
 #' This function performs Bayesian heritability estimation using genomic relationship matrix.
 #'
 #' @export
-#' @return The returned value is a fitted model from jags().
+#' @return
+#' The returned value is a fitted model from jags().
 #'
 #' @references
 #' Zhao JH, Luan JA, Congdon P (2018). Bayesian linear mixed models with polygenic effects. J Stat Soft 85(6):1-27, \doi{10.18637/jss.v085.i06}.

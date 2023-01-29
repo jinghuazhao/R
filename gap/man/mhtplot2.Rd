@@ -9,29 +9,29 @@ mhtplot2(data, control = mht.control(), hcontrol = hmht.control(), ...)
 \arguments{
 \item{data}{a data frame with three columns representing chromosome, position and p values.}
 
-\item{control}{A control function named mht.control() with the following arguments.
+\item{control}{A control function named mht.control() with the following arguments:
 \itemize{
 \item type a flag with value "p" or "l" indicating if points or lines are to be drawn.
-\item usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE
-\item logscale a flag to indicate if p value is to be log-transformed with default value TRUE
-\item base the base of the logarithm with default value 10
-\item cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL
-\item colors the color for different chromosome(s), and random if unspecified with default values NULL
-\item labels labels for the ticks on x-axis with default value NULL
-\item srt degree to which labels are rotated with default value of 45
-\item gap gap between chromosomes with default value NULL
-\item cex cex for the data points
-\item yline Margin line position
-\item xline Margin line position
+\item usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE.
+\item logscale a flag to indicate if p value is to be log-transformed with default value TRUE.
+\item base the base of the logarithm with default value 10.
+\item cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL.
+\item colors the color for different chromosome(s), and random if unspecified with default values NULL.
+\item labels labels for the ticks on x-axis with default value NULL.
+\item srt degree to which labels are rotated with default value of 45.
+\item gap gap between chromosomes with default value NULL.
+\item cex cex for the data points.
+\item yline Margin line position.
+\item xline Margin line position.
 }}
 
-\item{hcontrol}{A control function named hmht.control() with the following arguments.
+\item{hcontrol}{A control function named hmht.control() with the following arguments:
 \itemize{
-\item data chunk of data to be highlighted with default value NULL
-\item colors colors for annotated genes
-\item yoffset offset above the data point showing most significant p value with default value 0.5
-\item cex shrinkage factor for data points with default value 1.5
-\item boxed if the label for the highlited region with default value FALSE
+\item data chunk of data to be highlighted with default value NULL.
+\item colors colors for annotated genes.
+\item yoffset offset above the data point showing most significant p value with default value 0.5.
+\item cex shrinkage factor for data points with default value 1.5.
+\item boxed if the label for the highlited region with default value FALSE.
 }}
 
 \item{...}{other options in compatible with the R plot function.}
@@ -40,11 +40,13 @@ mhtplot2(data, control = mht.control(), hcontrol = hmht.control(), ...)
 The plot is shown on or saved to the appropriate device.
 }
 \description{
+Manhattan plot with annotations
+}
+\details{
 To generate Manhattan plot with annotations. The function is generic and for instance could be used for genomewide
 p values or any random variable that is uniformly distributed. By default, a log10-transformation is applied.
 Note that with real chromosomal positions, it is also appropriate to plot and some but not all chromosomes.
-}
-\details{
+
 It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other
 context.
 

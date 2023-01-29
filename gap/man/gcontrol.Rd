@@ -37,16 +37,18 @@ gcontrol(
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{deltot}{the probability of being an outlier}
-\item{x2}{the \eqn{\chi^2}{chi-squared} statistic}
-\item{A}{the A vector}
+\itemize{
+\item deltot the probability of being an outlier.
+\item x2 the \eqn{\chi^2}{chi-squared} statistic.
+\item A the A vector.
 }
 }
 \description{
-The Bayesian genomic control statistics with the following parameters,
+genomic control
 }
 \details{
+The Bayesian genomic control statistics with the following parameters,
+
 \tabular{ll}{
 n \tab number of loci under consideration \cr
 lambdahat \tab median(of the n trend statistics)/0.46 \cr

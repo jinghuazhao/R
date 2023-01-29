@@ -28,27 +28,28 @@ fbsize(
 }
 \value{
 The returned value is a list containing:
-
-\describe{
-\item{gamma}{input gamma.}
-\item{p}{input p.}
-\item{n1}{sample size for ASP.}
-\item{n2}{sample size for TDT.}
-\item{n3}{sample size for ASP-TDT.}
-\item{lambdao}{lambda o.}
-\item{lambdas}{lambda s.}
+\itemize{
+\item gamma input gamma.
+\item p input p.
+\item n1 sample size for ASP.
+\item n2 sample size for TDT.
+\item n3 sample size for ASP-TDT.
+\item lambdao lambda o.
+\item lambdas lambda s.
 }
 }
 \description{
+Sample size for family-based linkage and association design
+}
+\details{
 This function implements Risch and Merikangas (1996) statistics
 evaluating power for family-based linkage (affected sib pairs, ASP) and
 association design. They are potentially useful in the prospect of
 genome-wide association studies.
-}
-\details{
-The function calls auxiliary functions sn() and strlen; sn()
+
+The function calls auxiliary functions sn() and strlen; \code{sn()}
 contains the necessary thresholds for power calculation while
-strlen() evaluates length of a string (generic).
+\code{strlen()} evaluates length of a string (generic).
 }
 \note{
 extracted from rm.c.

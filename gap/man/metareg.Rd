@@ -22,22 +22,25 @@ by prefixes in the function argument.}
 }
 \value{
 The returned value is a data frame with the following variables:
-\describe{
-\item{p_f}{P value (fixed effects model)}
-\item{p_r}{P value (random effects model)}
-\item{beta_f}{regression coefficient}
-\item{beta_r}{regression coefficient}
-\item{se_f}{standard error}
-\item{se_r}{standard error}
-\item{z_f}{z value}
-\item{z_r}{z value}
-\item{p_heter}{heterogeneity test p value}
-\item{i2}{\eqn{I^2}{I^2} statistic}
-\item{k}{No of tests used}
-\item{eps}{smallest double-precision number}
+\itemize{
+\item p_f P value (fixed effects model).
+\item p_r P value (random effects model).
+\item beta_f regression coefficient.
+\item beta_r regression coefficient.
+\item se_f standard error.
+\item se_r standard error.
+\item z_f z value.
+\item z_r z value.
+\item p_heter heterogeneity test p value.
+\item i2 \eqn{I^2}{I^2} statistic.
+\item k No of tests used.
+\item eps smallest double-precision number.
 }
 }
 \description{
+Fixed and random effects model for meta-analysis
+}
+\details{
 Given \eqn{k=n} studies with \eqn{b_1, ..., b_N} being \eqn{\beta}'s and
 \eqn{se_1, ..., se_N} standard errors from regression, the fixed effects
 model uses inverse variance weighting such that \eqn{w_1=1/se_1^2}, ...,

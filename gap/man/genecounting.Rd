@@ -14,7 +14,7 @@ genecounting(data, weight = NULL, loci = NULL, control = gc.control())
 \item{loci}{an array containing number of alleles at each locus.}
 
 \item{control}{is a function with the following arguments:
-\enumerate{
+\itemize{
 \item xdata. a flag indicating if the data involves X chromosome, if so, the
 first column of data indicates sex of each subject: 1=male, 2=female. The marker
 data are no different from the autosomal version for females, but for males, two copies
@@ -31,25 +31,28 @@ of the single allele present at a given locus.
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{h}{haplotype frequency estimates under linkage disequilibrium (LD)}
-\item{h0}{haplotype frequency estimates under linkage equilibrium (no LD)}
-\item{prob}{genotype probability estimates}
-\item{l0}{log-likelihood under linkage equilibrium}
-\item{l1}{log-likelihood under linkage disequilibrium}
-\item{hapid}{unique haplotype identifier (defunct, see gc.em)}
-\item{npusr}{number of parameters according user-given alleles}
-\item{npdat}{number of parameters according to observed}
-\item{htrtable}{design matrix for haplotype trend regression (defunct, see gc.em)}
-\item{iter}{number of iterations used in gene counting}
-\item{converge}{a flag indicating convergence status of gene counting}
-\item{di0}{haplotype diversity under no LD, defined as \eqn{1-\sum (h_0^2)}{1-sum (h0^2)}}
-\item{di1}{haplotype diversity under LD, defined as \eqn{1-\sum (h^2))}{1-sum (h^2)}}
-\item{resid}{residuals in terms of frequency weights = o - e}
+\itemize{
+\item h haplotype frequency estimates under linkage disequilibrium (LD).
+\item h0 haplotype frequency estimates under linkage equilibrium (no LD).
+\item prob genotype probability estimates.
+\item l0 log-likelihood under linkage equilibrium.
+\item l1 log-likelihood under linkage disequilibrium.
+\item hapid unique haplotype identifier (defunct, see \code{gc.em}).
+\item npusr number of parameters according user-given alleles.
+\item npdat number of parameters according to observed.
+\item htrtable design matrix for haplotype trend regression (defunct, see \code{gc.em}).
+\item iter number of iterations used in gene counting.
+\item converge a flag indicating convergence status of gene counting.
+\item di0 haplotype diversity under no LD, defined as \eqn{1-\sum (h_0^2)}{1-sum (h0^2)}.
+\item di1 haplotype diversity under LD, defined as \eqn{1-\sum (h^2))}{1-sum (h^2)}.
+\item resid residuals in terms of frequency weights = o - e.
 }
 }
 \description{
-Gene counting for haplotype analysis with missing data
+Gene counting for haplotype analysis
+}
+\details{
+Gene counting for haplotype analysis with missing data.
 }
 \note{
 adapted from GENECOUNTING.

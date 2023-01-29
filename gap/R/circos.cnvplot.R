@@ -1,9 +1,10 @@
 #' circos plot of CNVs.
 #'
+#' @param data CNV data containing chromosome, start, end and freq.
+#'
+#' @details
 #' The function plots frequency of CNVs.
 #'
-#' @md
-#' @param data CNV data containing chromosome, start, end and freq.
 #' @export
 #' @return None.
 #' @examples

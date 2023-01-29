@@ -1,12 +1,13 @@
 #' circos plot of cis/trans classification
 #'
-#' The function implements a circos plot at the early stage of SCALLOP-INF meta-analysis.
-#'
-#' @md
 #' @param hits A text file as input data with varibles named "CHR","BP","SNP","prot".
 #' @param panel Protein panel with prot(ein), uniprot (id) and "chr","start","end","gene".
 #' @param id Identifier.
 #' @param radius The flanking distance as cis.
+#'
+#' @details
+#' The function implements a circos plot at the early stage of SCALLOP-INF meta-analysis.
+#'
 #' @export
 #' @return None.
 #' @examples

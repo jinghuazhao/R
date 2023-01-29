@@ -13,19 +13,20 @@ mtdt(x, n.sim = 0)
 }
 \value{
 It returned list contains the following components:
-\describe{
-\item{SE}{Spielman-Ewens Chi-square from the observed data}
-\item{ST}{Stuart or score Statistic from the observed data}
-\item{pSE}{the simulated p value}
-\item{sSE}{standard error of the simulated p value}
-\item{pST}{the simulated p value}
-\item{sST}{standard error of the simulated p value}
+\itemize{
+\item SE Spielman-Ewens Chi-square from the observed data.
+\item ST Stuart or score Statistic from the observed data.
+\item pSE the simulated p value.
+\item sSE standard error of the simulated p value.
+\item pST the simulated p value.
+\item sST standard error of the simulated p value.
 }
 }
 \description{
-This function calculates transmission-disequilibrium statistics involving multiallelic marker.
+Transmission/disequilibrium test of a multiallelic marker
 }
 \details{
+This function calculates transmission-disequilibrium statistics involving multiallelic marker.
 Inside the function are tril and triu used to obtain lower and upper triangular matrices.
 }
 \examples{

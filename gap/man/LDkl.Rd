@@ -21,26 +21,26 @@ LDkl(n1 = 2, n2 = 2, h, n, optrho = 2, verbose = FALSE)
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{n1}{the number of alleles at marker 1}
-\item{n2}{the number of alleles at marker 2}
-\item{h}{the haplotype frequency vector}
-\item{n}{the number of haplotypes}
-\item{Dp}{D'}
-\item{VarDp}{variance of D'}
-\item{Dijtable}{table of Dij}
-\item{VarDijtable}{table of variances for Dij}
-\item{Dmaxtable}{table of Dmax}
-\item{Dijptable}{table of Dij'}
-\item{VarDijptable}{table of variances for Dij'}
-\item{X2table}{table of Chi-squares (based on Dij)}
-\item{ptable}{table of p values}
-\item{x2}{the Chi-squared statistic}
-\item{seX2}{the standard error of x2/n}
-\item{rho}{the measure of association}
-\item{seR}{the standard error of rho}
-\item{optrho}{the method for calculating rho}
-\item{klinfo}{the Kullback-Leibler information}
+\itemize{
+\item n1 the number of alleles at marker 1.
+\item n2 the number of alleles at marker 2.
+\item h the haplotype frequency vector.
+\item n the number of haplotypes.
+\item Dp D'.
+\item VarDp variance of D'.
+\item Dijtable table of Dij.
+\item VarDijtable table of variances for Dij.
+\item Dmaxtable table of Dmax.
+\item Dijptable table of Dij'.
+\item VarDijptable table of variances for Dij'.
+\item X2table table of Chi-squares (based on Dij).
+\item ptable table of p values.
+\item x2 the Chi-squared statistic.
+\item seX2 the standard error of x2/n.
+\item rho the measure of association.
+\item seR the standard error of rho.
+\item optrho the method for calculating rho.
+\item klinfo the Kullback-Leibler information.
 }
 }
 \description{

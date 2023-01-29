@@ -33,16 +33,18 @@ mr.boot = function(bXG, sebXG, bYG, sebYG, w, n.boot=1000, method="median")
 
 #' Mendelian randomization analysis
 #' 
-#' The function initially intends to rework on GSMR outputs, but it would be appropriate for general use.
-#' 
-#' @md
 #' @param data Data to be used.
 #' @param X Exposure.
 #' @param Y Outcome.
 #' @param alpha type I error rate for confidence intervals.
 #' @param other_plots To add funnel and forest plots.
+#'
+#' @details
+#' The function initially intends to rework on GSMR outputs, but it would be appropriate for general use.
+#' 
 #' @export
-#' @return The result and plots.
+#' @return
+#' The result and plots.
 #' @examples
 #' library(ggplot2)
 #' library(gap)

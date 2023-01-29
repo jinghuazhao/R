@@ -37,6 +37,9 @@ The returned value are z-test and significance level for significant testing or 
 given fold change of the default sample size.
 }
 \description{
+Test/Power calculation for mediating effect
+}
+\details{
 This function tests for or obtains power of mediating effect based on estimates of
 two regression coefficients and their standard errors. Note that for binary outcome
 or mediator, one should use log-odds ratio and its standard error.

@@ -13,22 +13,22 @@ LD22(h, n)
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{h}{the original haplotype frequency vector}
-\item{n}{the number of haplotypes}
-\item{D}{the linkage disequilibrium parameter}
-\item{VarD}{the variance of D}
-\item{Dmax}{the maximum of D}
-\item{VarDmax}{the variance of Dmax}
-\item{Dprime}{the scaled disequilibrium parameter}
-\item{VarDprime}{the variance of Dprime}
-\item{x2}{the Chi-squared statistic}
-\item{lor}{the log(OR) statistic}
-\item{vlor}{the var(log(OR)) statistic}
+\itemize{
+\item h the original haplotype frequency vector.
+\item n the number of haplotypes.
+\item D the linkage disequilibrium parameter.
+\item VarD the variance of D.
+\item Dmax the maximum of D.
+\item VarDmax the variance of Dmax.
+\item Dprime the scaled disequilibrium parameter.
+\item VarDprime the variance of Dprime.
+\item x2 the Chi-squared statistic.
+\item lor the log(OR) statistic.
+\item vlor the var(log(OR)) statistic.
 }
 }
 \description{
-LD statistics for two SNPs.
+LD statistics for two diallelic markers
 }
 \details{
 It is possible to perform permutation test of \eqn{r^2} by re-ordering the genotype through

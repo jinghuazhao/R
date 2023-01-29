@@ -19,6 +19,9 @@ cis.vs.trans.classification(hits, panel, id, radius = 1e+06)
 The cis/trans classification.
 }
 \description{
+A cis/trans classifier
+}
+\details{
 The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
 }
 \examples{

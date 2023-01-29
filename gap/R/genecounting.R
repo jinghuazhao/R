@@ -8,48 +8,45 @@ gc.control <- function(xdata=FALSE, convll=1,handle.miss=0,eps=0.000001,
 
 #' Gene counting for haplotype analysis
 #'
-#' Gene counting for haplotype analysis with missing data
-#'
 #' @param data genotype table.
 #' @param weight a column of frequency weights.
 #' @param loci an array containing number of alleles at each locus.
 #' @param control is a function with the following arguments: 
-#'      \enumerate{
-#'      \item xdata. a flag indicating if the data involves X chromosome, if so, the
-#'first column of data indicates sex of each subject: 1=male, 2=female. The marker 
-#'data are no different from the autosomal version for females, but for males, two copies
-#'of the single allele present at a given locus.
-#'      \item convll. set convergence criteria according to log-likelihood, if its value set to 1
-#'      \item handle.miss. to handle missing data, if its value set to 1
-#'      \item eps. the actual convergence criteria, with default value 1e-5
-#'      \item tol. tolerance for genotype probabilities with default value 1e-8
-#'      \item maxit. maximum number of iterations, with default value 50
-#'      \item pl. criteria for trimming haplotypes according to posterior probabilities
-#'      \item assignment. filename containing haplotype assignment
-#'      \item verbose. If TRUE, yields print out from the C routine
-#'      }
+#' - xdata. a flag indicating if the data involves X chromosome, if so, the
+#' first column of data indicates sex of each subject: 1=male, 2=female. The marker 
+#' data are no different from the autosomal version for females, but for males, two copies
+#' of the single allele present at a given locus.
+#' - convll. set convergence criteria according to log-likelihood, if its value set to 1
+#' - handle.miss. to handle missing data, if its value set to 1
+#' - eps. the actual convergence criteria, with default value 1e-5
+#' - tol. tolerance for genotype probabilities with default value 1e-8
+#' - maxit. maximum number of iterations, with default value 50
+#' - pl. criteria for trimming haplotypes according to posterior probabilities
+#' - assignment. filename containing haplotype assignment
+#' - verbose. If TRUE, yields print out from the C routine
+#'
+#' @details
+#' Gene counting for haplotype analysis with missing data.
 #'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{h}{haplotype frequency estimates under linkage disequilibrium (LD)}
-#' \item{h0}{haplotype frequency estimates under linkage equilibrium (no LD)}
-#' \item{prob}{genotype probability estimates}
-#' \item{l0}{log-likelihood under linkage equilibrium}
-#' \item{l1}{log-likelihood under linkage disequilibrium}
-#' \item{hapid}{unique haplotype identifier (defunct, see gc.em)}
-#' \item{npusr}{number of parameters according user-given alleles}
-#' \item{npdat}{number of parameters according to observed}
-#' \item{htrtable}{design matrix for haplotype trend regression (defunct, see gc.em)}
-#' \item{iter}{number of iterations used in gene counting}
-#' \item{converge}{a flag indicating convergence status of gene counting}
-#' \item{di0}{haplotype diversity under no LD, defined as \eqn{1-\sum (h_0^2)}{1-sum (h0^2)}}
-#' \item{di1}{haplotype diversity under LD, defined as \eqn{1-\sum (h^2))}{1-sum (h^2)}}
-#' \item{resid}{residuals in terms of frequency weights = o - e}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - h haplotype frequency estimates under linkage disequilibrium (LD).
+#' - h0 haplotype frequency estimates under linkage equilibrium (no LD).
+#' - prob genotype probability estimates.
+#' - l0 log-likelihood under linkage equilibrium.
+#' - l1 log-likelihood under linkage disequilibrium.
+#' - hapid unique haplotype identifier (defunct, see `gc.em`).
+#' - npusr number of parameters according user-given alleles.
+#' - npdat number of parameters according to observed.
+#' - htrtable design matrix for haplotype trend regression (defunct, see `gc.em`).
+#' - iter number of iterations used in gene counting.
+#' - converge a flag indicating convergence status of gene counting.
+#' - di0 haplotype diversity under no LD, defined as \eqn{1-\sum (h_0^2)}{1-sum (h0^2)}.
+#' - di1 haplotype diversity under LD, defined as \eqn{1-\sum (h^2))}{1-sum (h^2)}.
+#' - resid residuals in terms of frequency weights = o - e.
 #'
 #' @references
-#'
 #' Zhao, J. H., Lissarrague, S., Essioux, L. and P. C. Sham (2002).
 #' GENECOUNTING: haplotype analysis with missing genotypes.
 #' Bioinformatics 18(12):1694-1695

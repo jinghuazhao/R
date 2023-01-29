@@ -28,16 +28,18 @@ hap(
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{l1}{log-likelihood assuming linkage disequilibrium}
-\item{converge}{convergence status, 0=failed, 1=succeeded}
-\item{niter}{number of iterations}
+\itemize{
+\item l1 log-likelihood assuming linkage disequilibrium.
+\item converge convergence status, 0=failed, 1=succeeded.
+\item niter number of iterations.
 }
 }
 \description{
-Haplotype reconstruction using sorting and trimming algorithms.
+Haplotype reconstruction
 }
 \details{
+Haplotype reconstruction using sorting and trimming algorithms.
+
 The package can hanlde much larger number of multiallelic loci.
 For large sample size with relatively small number of multiallelic
 loci, genecounting should be used.

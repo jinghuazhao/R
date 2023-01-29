@@ -1,23 +1,22 @@
 #' A QTL cis/trans classifier
 #'
-#' The function obtains QTL (simply called SNP here) cis/trans classification based on gene positions.
-#'
 #' @param geneSNP data.frame with columns on gene, SNP and biomarker (e.g., expression, protein).
 #' @param SNPPos data.frame containing SNP, chromosome and position.
 #' @param genePos data.frame containing gene, chromosome, start and end positions.
 #' @param radius flanking distance.
 #'
+#' @details
+#' The function obtains QTL (simply called SNP here) cis/trans classification based on gene positions.
+#'
 #' @export
 #' @return
-#' It returns a geneSNP-prefixed data.frame with the following columns,
-#' \describe{
-#'   \item{geneChrom}{gene chromosome}
-#'   \item{geneStart}{gene start}
-#'   \item{geneEnd}{gene end}
-#'   \item{SNPChrom}{pQTL chromosome}
-#'   \item{SNPPos}{pQTL position}
-#'   \item{Type}{cis/trans labels}
-#' }
+#' It returns a geneSNP-prefixed data.frame with the following columns:
+#' - geneChrom gene chromosome.
+#' - geneStart gene start.
+#' - geneEnd gene end.
+#' - SNPChrom pQTL chromosome.
+#' - SNPPos pQTL position.
+#' - Type cis/trans labels.
 #'
 #' @examples
 #' \dontrun{

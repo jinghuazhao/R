@@ -24,27 +24,30 @@ read.ms.output(
 
 \item{outfile}{to save the haplotypes in a tab-delimited ASCII file.}
 
-\item{outfileonly}{to reset gametes to NA when nsam/nreps is very large and is useful with outfile.
-
-The returned value is a list storing the results.
-\describe{
-\item{call}{system call to ms}
-\item{seed}{random number seed to ms}
-\item{nsam}{number of copies of the locus in each sample}
-\item{nreps}{the number of independent samples to generate}
-\item{segsites}{a vector of the numbers of segregating sites}
-\item{times}{vectors of time to most recent ancester (TMRCA) and total tree lengths}
-\item{positions}{positions of polymorphic sites on a scale of (0,1)}
-\item{gametes}{a list of haplotype arrays}
-\item{probs}{the probability of the specified number of segregating sites
-given the genealogical history of the sample and the value to -t option}
-}}
+\item{outfileonly}{to reset gametes to NA when nsam/nreps is very large and is useful with outfile.}
+}
+\value{
+The returned value is a list storing the results:
+\itemize{
+\item call system call to ms.
+\item seed random number seed to ms.
+\item nsam number of copies of the locus in each sample.
+\item nreps the number of independent samples to generate.
+\item segsites a vector of the numbers of segregating sites.
+\item times vectors of time to most recent ancester (TMRCA) and total tree lengths.
+\item positions positions of polymorphic sites on a scale of (0,1).
+\item gametes a list of haplotype arrays.
+\item probs the probability of the specified number of segregating sites
+given the genealogical history of the sample and the value to -t option.
+}
 }
 \description{
-This function reads in the output of the program ms, a program to generate
-samples under a variety of neutral models.
+A utility function to read ms output
 }
 \details{
+This function reads in the output of the program ms, a program to generate
+samples under a variety of neutral models.
+
 The argument indicates either a file name or a vector of character strings,
 one string for each line of the output of ms. As with the second case, it
 is appropriate with system(,intern=TRUE), see example below.

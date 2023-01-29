@@ -1,12 +1,5 @@
 #' A utility function to read ms output
 #'
-#' This function reads in the output of the program ms, a program to generate
-#' samples under a variety of neutral models.
-#'
-#' The argument indicates either a file name or a vector of character strings,
-#' one string for each line of the output of ms. As with the second case, it
-#' is appropriate with system(,intern=TRUE), see example below.
-#'
 #' @param msout an ms output.
 #' @param is.file a flag indicating ms output as a system file or an R object.
 #' @param xpose a flag to obtain the tranposed format as it is (when TRUE).
@@ -14,21 +7,28 @@
 #' @param outfile to save the haplotypes in a tab-delimited ASCII file.
 #' @param outfileonly to reset gametes to NA when nsam/nreps is very large and is useful with outfile.
 #'
-#' The returned value is a list storing the results.
-#' \describe{
-#' \item{call}{system call to ms}
-#' \item{seed}{random number seed to ms}
-#' \item{nsam}{number of copies of the locus in each sample}
-#' \item{nreps}{the number of independent samples to generate}
-#' \item{segsites}{a vector of the numbers of segregating sites}
-#' \item{times}{vectors of time to most recent ancester (TMRCA) and total tree lengths}
-#' \item{positions}{positions of polymorphic sites on a scale of (0,1)}
-#' \item{gametes}{a list of haplotype arrays}
-#' \item{probs}{the probability of the specified number of segregating sites 
-#' given the genealogical history of the sample and the value to -t option}
-#' }
+#' @details
+#' This function reads in the output of the program ms, a program to generate
+#' samples under a variety of neutral models.
+#'
+#' The argument indicates either a file name or a vector of character strings,
+#' one string for each line of the output of ms. As with the second case, it
+#' is appropriate with system(,intern=TRUE), see example below.
 #'
 #' @export
+#' @return
+#' The returned value is a list storing the results:
+#' - call system call to ms.
+#' - seed random number seed to ms.
+#' - nsam number of copies of the locus in each sample.
+#' - nreps the number of independent samples to generate.
+#' - segsites a vector of the numbers of segregating sites.
+#' - times vectors of time to most recent ancester (TMRCA) and total tree lengths.
+#' - positions positions of polymorphic sites on a scale of (0,1).
+#' - gametes a list of haplotype arrays.
+#' - probs the probability of the specified number of segregating sites 
+#' given the genealogical history of the sample and the value to -t option.
+#'
 #' @references
 #' Hudson RR (2002) Generating samples under a Wright-Fisher neutral model. Bioinformatics 18:337-8.
 #'

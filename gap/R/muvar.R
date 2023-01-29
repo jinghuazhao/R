@@ -1,14 +1,15 @@
 #' Means and variances under 1- and 2- locus (biallelic) QTL model
 #'
-#' Function muvar() gives means and variances under 1-locus and 2-locus QTL model (simple); 
-#' in the latter case it gives results from different avenues. This function is included for
-#' experimental purpose and yet to be generalized.
-#'
 #' @param n.loci number of loci, 1=single locus, 2=two loci.
 #' @param y1 the genotypic means of aa, Aa and AA.
 #' @param p1 the frequency of the lower allele, or the that for the first locus under a 2-locus model.
 #' @param y12 the genotypic means of aa, Aa and AA at the first locus and bb, Bb and BB at the second locus.
 #' @param p2 the frequency of the lower allele at the second locus.
+#'
+#' @details
+#' Function muvar() gives means and variances under 1-locus and 2-locus QTL model (simple); 
+#' in the latter case it gives results from different avenues. This function is included for
+#' experimental purpose and yet to be generalized.
 #'
 #' @export
 #' @return Currently it does not return any value except screen output; the results can be kept via R's sink()

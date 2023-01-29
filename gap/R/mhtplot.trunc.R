@@ -1,9 +1,5 @@
 #' Truncated Manhattan plot
 #'
-#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
-#'
-#' The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS. Optionally, the function also draws an ordinary Manhattan plot.
-#'
 #' @param x A data.frame.
 #' @param chr Chromosome.
 #' @param bp Position.
@@ -28,7 +24,14 @@
 #' @param cex.axis extension factor for x-, y-axis.
 #' @param delta a value to enable column(s) of red points.
 #' @param ... other options.
-#' @return The plot is shown on or saved to the appropriate device.
+#'
+#' @details
+#' To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
+#'
+#' The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS. Optionally, the function also draws an ordinary Manhattan plot.
+#'
+#' @return
+#' The plot is shown on or saved to the appropriate device.
 #' @examples
 #' \dontrun{
 #' options(width=120)

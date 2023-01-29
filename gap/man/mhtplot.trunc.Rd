@@ -84,9 +84,11 @@ mhtplot.trunc(
 The plot is shown on or saved to the appropriate device.
 }
 \description{
-To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
+Truncated Manhattan plot
 }
 \details{
+To generate truncated Manhattan plot, e.g., of genomewide significance (P values) or a random variable that is uniformly distributed.
+
 The rationale of this function is to extend mhtplot() to handle extremely small p values as often seen from a protein GWAS. Optionally, the function also draws an ordinary Manhattan plot.
 }
 \examples{

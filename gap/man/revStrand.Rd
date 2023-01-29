@@ -13,6 +13,9 @@ revStrand(allele)
 Allele on the reverse strand.
 }
 \description{
+Allele on the reverse strand
+}
+\details{
 The function obtains allele on the reverse strand.
 }
 \examples{

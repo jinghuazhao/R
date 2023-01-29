@@ -15,15 +15,17 @@ htr(y, x, n.sim = 0)
 }
 \value{
 The returned value is a list containing:
-
 \itemize{
-\item{f}{the F statistic for overall association}
-\item{p}{the p value for overall association}
-\item{fv}{the F statistics for individual haplotypes}
-\item{pi}{the p values for individual haplotypes}
+\item f the F statistic for overall association.
+\item p the p value for overall association.
+\item fv the F statistics for individual haplotypes.
+\item pi the p values for individual haplotypes.
 }
 }
 \description{
+Haplotype trend regression
+}
+\details{
 Haplotype trend regression (with permutation)
 }
 \note{

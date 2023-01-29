@@ -1,7 +1,5 @@
 #' Hardy-Weinberg equlibrium test for a multiallelic marker using JAGS
 #'
-#' Hardy-Weinberg equilibrium test.
-#'
 #' @param k number of alleles.
 #' @param n a vector of k(k+1)/2 genotype counts.
 #' @param delta initial parameter values.
@@ -12,6 +10,8 @@
 #' @param ... parameters passed to jags, e.g., n.chains, n.burnin, n.iter.
 #'
 #' @details
+#' Hardy-Weinberg equilibrium test.
+#'
 #' This function performs Bayesian Hardy-Weinberg equilibrium test, which mirrors \code{\link[gap]{hwe.hardy}},
 #' another implementation for highly polymorphic markers when asymptotic results do not hold.
 #'

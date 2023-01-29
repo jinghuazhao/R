@@ -15,15 +15,18 @@ pfc.sim(famdata, n.sim = 1e+06, n.loop = 1)
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{n.sim}{a copy of the number of simulations in a single Monte Carlo run.}
-\item{n.loop}{the total number of Monte Carlo runs.}
-\item{p}{the observed p value.}
-\item{tailpl}{accumulated probabilities at the lower tails.}
-\item{tailpu}{simulated p values.}
+\itemize{
+\item n.sim a copy of the number of simulations in a single Monte Carlo run.
+\item n.loop the total number of Monte Carlo runs.
+\item p the observed p value.
+\item tailpl accumulated probabilities at the lower tails.
+\item tailpu simulated p values.
 }
 }
 \description{
+Probability of familial clustering of disease
+}
+\details{
 To calculate probability of familial clustering of disease using Monte Carlo simulation.
 }
 \note{

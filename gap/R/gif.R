@@ -1,5 +1,9 @@
 #' Kinship coefficient and genetic index of familiality
 #'
+#' @param data the trio data of a pedigree.
+#' @param gifset a subgroup of pedigree members.
+#'
+#' @details
 #' The genetic index of familality is defined as the mean kinship between
 #' all pairs of individuals in a set multiplied by 100,000. Formally, it 
 #' is defined in \insertCite{gholamic94;textual}{gap} as
@@ -9,14 +13,10 @@
 #'
 #' The scaling is purely for convenience of presentation.
 #'
-#' @param data the trio data of a pedigree.
-#' @param gifset a subgroup of pedigree members.
-#'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{gifval}{the genetic index of familiarity.}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - gifval the genetic index of familiarity.
 #'
 #' @references
 #' \insertAllCited{}

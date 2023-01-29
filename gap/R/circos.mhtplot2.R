@@ -1,12 +1,13 @@
 #' Another circos Manhattan plot
 #'
-#' This is adapted from work for a recent publication. It enables a y-axis to the -log10(P) for association statistics
-#'
 #' @param dat Data to be plotted with variables chr, pos, log10p.
 #' @param labs Data on labels.
 #' @param species Genome build.
 #' @param ticks Tick positions.
 #' @param y Starting position of y-axis label.
+#'
+#' @details
+#' This is adapted from work for a recent publication. It enables a y-axis to the -log10(P) for association statistics
 #'
 #' @export
 #' @return

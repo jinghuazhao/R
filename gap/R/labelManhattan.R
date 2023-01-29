@@ -1,7 +1,5 @@
 #' Annotate Manhattan or Miami Plot
 #'
-#' Adds labels beside specified points on a Manhattan or Miami plot. Ideal for adding locus names to peaks. Currently only designed to work with \code{\link[gap]{miamiplot2}}.
-#'
 #' @param chr A vector of chromosomes for the markers to be labelled.
 #' @param pos A vector of positions on the chromosome for the markers to be labelled. These must correspond to markers in the GWAS dataset used to make the manhattan plot.
 #' @param name A vector of labels to be added next to the points specified by \env{chr} and \env{pos}.
@@ -16,7 +14,11 @@
 #' @param miamiBottom If \samp{TRUE}, labels will be plotted on the lower region of a Miami plot. If \samp{FALSE}, labels will be plotted on the upper region. Defaults to \samp{FALSE}.
 #' @export
 #'
-#' @return Adds annotation to existing Manhattan or Miami plot
+#' @details
+#' Add labels beside specified points on a Manhattan or Miami plot. Ideal for adding locus names to peaks. Currently only designed to work with \code{\link[gap]{miamiplot2}}.
+#'
+#' @return
+#' Adds annotation to existing Manhattan or Miami plot
 #'
 #' @author Jonathan Marten
 #' @note Extended to handle extreme P values.

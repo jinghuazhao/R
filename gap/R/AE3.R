@@ -1,8 +1,5 @@
 #' AE model using nuclear family trios
 #'
-#' This function is adapted from example 7.1 of Rabe-Hesketh et al. (2008). It
-#' also procides heritability estimate and confidence intervals.
-#'
 #' @param model a linear mixed model formula, see example below.
 #' @param random random effect, see exampe below.
 #' @param data data to be analyzed.
@@ -10,14 +7,16 @@
 #' @param n.sim number of simulations.
 #' @param verbose a flag for printing out results.
 #'
+#' @details
+#' This function is adapted from example 7.1 of Rabe-Hesketh et al. (2008). It
+#' also procides heritability estimate and confidence intervals.
+#'
 #' @export
 #' @return
 #' The returned value is a list containing:
-#' \describe{
-#'   \item{lme.result}{the linear mixed model result.}
-#'   \item{h2}{the heritability estimate.}
-#'   \item{CL}{confidence intervals.}
-#' }
+#' - lme.result the linear mixed model result.
+#' - h2 the heritability estimate.
+#' - CL confidence intervals.
 #'
 #' @references
 #' Rabe-Hesketh S, Skrondal A, Gjessing HK. Biometrical modeling of twin and family data using standard mixed model 

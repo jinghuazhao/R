@@ -30,19 +30,19 @@ toETDT <- function(a)
 
 #' Bradley-Terry model for contingency table
 #'
-#' This function calculates statistics under Bradley-Terry model. 
-#'
 #' @param x the data table.
 #'
+#' @details
+#' This function calculates statistics under Bradley-Terry model. 
+#'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{y}{A column of 1}
-#' \item{count}{the frequency count/weight}
-#' \item{allele}{the design matrix}
-#' \item{bt.glm}{a glm.fit object}
-#' \item{etdt.dat}{a data table that can be used by ETDT}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - y A column of 1.
+#' - count the frequency count/weight.
+#' - allele the design matrix.
+#' - bt.glm a glm.fit object.
+#' - etdt.dat a data table that can be used by ETDT.
 #'
 #' @references
 #' Bradley RA, Terry ME (1952) Rank analysis of incomplete block designs I. 

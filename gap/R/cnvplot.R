@@ -1,8 +1,10 @@
 #' genomewide plot of CNVs
 #'
-#' The function generates a plot containing genomewide copy number variants (CNV) chr, start, end, freq(uencies).
-#' @md
 #' @param data Data to be used.
+#'
+#' @details
+#' The function generates a plot containing genomewide copy number variants (CNV) chr, start, end, freq(uencies).
+#'
 #' @export
 #' @return None.
 #' @examples

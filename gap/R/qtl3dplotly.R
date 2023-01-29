@@ -1,6 +1,5 @@
 #' 3D QTL plot
 #'
-#' @md
 #' @param d Data in qtl2d() format.
 #' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param zmax Maximum value (e.g., -log10p) to truncate, above which they would be set to this value.

@@ -1,7 +1,5 @@
 #' Miami Plot
 #'
-#' Creates a Miami plot to compare results from two genome-wide association analyses.
-#'
 #' @param gwas1 The first of two GWAS datasets to plot, in the upper region.
 #' @param gwas2 The second of two GWAS datasets to plot, in the lower region.
 #' @param name1 The name of the first dataset, plotted above the upper plot region. Defaults to \samp{"GWAS 1"}.
@@ -20,9 +18,13 @@
 #' @param topcols A vector of two colours to plot alternating chromosomes in for the upper plot. Defaults to green3 and darkgreen.
 #' @param botcols A vector of two colours to plot alternating chromosomes in for the lower plot. Defaults to royalblue1 and navy.
 #' @param yAxisInterval The interval between tick marks on the y-axis. Defaults to 5, 2 may be more suitable for plots with larger minimum p-values.
-#' @export
 #'
-#' @return In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for \code{\link[gap]{labelManhattan}})
+#' @details
+#' Creates a Miami plot to compare results from two genome-wide association analyses.
+#'
+#' @export
+#' @return
+#' In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for \code{\link[gap]{labelManhattan}})
 #'
 #' @author Jonathan Marten
 #' @note Extended to handle extreme P values.

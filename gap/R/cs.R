@@ -1,13 +1,14 @@
 #' Credible set
 #'
-#' The function implements credible set as in fine-mapping.
-#'
-#' @md
 #' @param tbl Input data.
 #' @param b Effect size.
 #' @param se Standard error.
 #' @param log_p if not NULL it will be used to derive z-statistic
 #' @param cutoff Threshold for inclusion.
+#'
+#' @details
+#' The function implements credible set as in fine-mapping.
+#'
 #' @export
 #' @return Credible set.
 #' @examples

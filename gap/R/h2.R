@@ -9,8 +9,6 @@ k <- function(r,N,adjust=TRUE)
 
 #' Heritability estimation according to twin correlations
 #'
-#' Heritability and variance estimation according to twin pair correlations.
-#'
 #' @param mzDat a data frame for monzygotic twins (MZ).
 #' @param dzDat a data frame for dizygotic twins (DZ).
 #' @param rmz correlation for MZ twins.
@@ -19,7 +17,9 @@ k <- function(r,N,adjust=TRUE)
 #' @param ndz sample size for DZ twins.
 #' @param selV names of variables for twin and cotwin.
 #'
-#' @details The example section shows how to obtain bootstrap 95\%CI.
+#' @details
+#' The example section shows how to obtain bootstrap 95%CI.
+#' Heritability and variance estimation according to twin pair correlations.
 #'
 #' @export
 #' @return

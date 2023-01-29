@@ -15,6 +15,9 @@ circos.mhtplot(data, glist)
 None.
 }
 \description{
+circos Manhattan plot with gene annotation
+}
+\details{
 The function generates circos Manhattan plot with gene annotation.
 }
 \examples{

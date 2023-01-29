@@ -13,8 +13,10 @@ runshinygap(...)
 These are design specific.
 }
 \description{
-This function starts the interactive 'shinygap' shiny web application that allows for flexible model specification.
+Start shinygap
 }
 \details{
+This function starts the interactive 'shinygap' shiny web application that allows for flexible model specification.
+
 The 'shiny' based web application allows for flexible model specification for the implemented study designs.
 }

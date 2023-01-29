@@ -1,32 +1,29 @@
 #' LD statistics for two diallelic markers
 #'
-#' LD statistics for two SNPs.
+#' @param h a vector of haplotype frequencies.
+#' @param n number of haplotypes.
 #'
+#' @details
 #' It is possible to perform permutation test of \eqn{r^2} by re-ordering the genotype through
 #' R's sample function, obtaining the haplotype frequencies by \code{\link[gap]{gc.em}}
 #' or \code{\link[gap]{genecounting}}, supplying the estimated haplotype frequencies to
 #' the current function and record x2, and comparing the observed x2 and that from the
 #' replicates.
 #'
-#' @param h a vector of haplotype frequencies.
-#' @param n number of haplotypes.
-#'
 #' @export
 #' @return
 #' The returned value is a list containing:
-#' \describe{
-#' \item{h}{the original haplotype frequency vector}
-#' \item{n}{the number of haplotypes}
-#' \item{D}{the linkage disequilibrium parameter}
-#' \item{VarD}{the variance of D}
-#' \item{Dmax}{the maximum of D}
-#' \item{VarDmax}{the variance of Dmax}
-#' \item{Dprime}{the scaled disequilibrium parameter}
-#' \item{VarDprime}{the variance of Dprime}
-#' \item{x2}{the Chi-squared statistic}
-#' \item{lor}{the log(OR) statistic}
-#' \item{vlor}{the var(log(OR)) statistic}
-#' }
+#' - h the original haplotype frequency vector.
+#' - n the number of haplotypes.
+#' - D the linkage disequilibrium parameter.
+#' - VarD the variance of D.
+#' - Dmax the maximum of D.
+#' - VarDmax the variance of Dmax.
+#' - Dprime the scaled disequilibrium parameter.
+#' - VarDprime the variance of Dprime.
+#' - x2 the Chi-squared statistic.
+#' - lor the log(OR) statistic.
+#' - vlor the var(log(OR)) statistic.
 #'
 #' @references
 #' Zabetian CP, Buxbaum SG, Elston RC, Kohnke MD, Anderson GM, Gelernter J, Cubells JF.
@@ -81,28 +78,27 @@ LD22<-function(h,n)
 #' @param verbose detailed output of individual statistics.
 #'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{n1}{the number of alleles at marker 1}
-#' \item{n2}{the number of alleles at marker 2}
-#' \item{h}{the haplotype frequency vector}
-#' \item{n}{the number of haplotypes}
-#' \item{Dp}{D'}
-#' \item{VarDp}{variance of D'}
-#' \item{Dijtable}{table of Dij}
-#' \item{VarDijtable}{table of variances for Dij}
-#' \item{Dmaxtable}{table of Dmax}
-#' \item{Dijptable}{table of Dij'}
-#' \item{VarDijptable}{table of variances for Dij'}
-#' \item{X2table}{table of Chi-squares (based on Dij)}
-#' \item{ptable}{table of p values}
-#' \item{x2}{the Chi-squared statistic}
-#' \item{seX2}{the standard error of x2/n}
-#' \item{rho}{the measure of association}
-#' \item{seR}{the standard error of rho}
-#' \item{optrho}{the method for calculating rho}
-#' \item{klinfo}{the Kullback-Leibler information}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - n1 the number of alleles at marker 1.
+#' - n2 the number of alleles at marker 2.
+#' - h the haplotype frequency vector.
+#' - n the number of haplotypes.
+#' - Dp D'.
+#' - VarDp variance of D'.
+#' - Dijtable table of Dij.
+#' - VarDijtable table of variances for Dij.
+#' - Dmaxtable table of Dmax.
+#' - Dijptable table of Dij'.
+#' - VarDijptable table of variances for Dij'.
+#' - X2table table of Chi-squares (based on Dij).
+#' - ptable table of p values.
+#' - x2 the Chi-squared statistic.
+#' - seX2 the standard error of x2/n.
+#' - rho the measure of association.
+#' - seR the standard error of rho.
+#' - optrho the method for calculating rho.
+#' - klinfo the Kullback-Leibler information.
 #'
 #' @references
 #' Bishop YMM, Fienberg SE, Holland PW (1975) Discrete Multivariate Analysis
@@ -226,11 +222,9 @@ LDkl<-function(n1=2,n2=2,h,n,optrho=2,verbose=FALSE)
 #' @export
 #' @return
 #' The returned value is a list containing:
-#' \describe{
-#'  \item{h}{haplotype Frequencies.}
-#'  \item{l0}{log-likelihood under linkage equilibrium.}
-#'  \item{l1}{log-likelihood under linkage disequilibrium.}
-#' }
+#' - h haplotype Frequencies.
+#' - l0 log-likelihood under linkage equilibrium.
+#' - l1 log-likelihood under linkage disequilibrium.
 #'
 #' @seealso{\code{\link[gap]{genecounting}}}
 #'

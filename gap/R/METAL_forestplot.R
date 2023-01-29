@@ -1,9 +1,5 @@
 #' forest plot as R/meta's forest for METAL outputs
 #' 
-#' This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
-#' for forest plot. It also takes a SNPID-rsid mapping (rsid) as contributing studies often
-#' involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A1_A2 (A1<=A2).
-#'
 #' @param tbl Meta-anslysis summary statistics.
 #' @param all statistics from all contributing studies.
 #' @param rsid SNPID-rsid mapping file.
@@ -12,6 +8,10 @@
 #' @param ... Additional arguments to meta::forest.
 #'
 #' @details
+#' This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
+#' for forest plot. It also takes a SNPID-rsid mapping (rsid) as contributing studies often
+#' involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A1_A2 (A1<=A2).
+#'
 #' The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
 #' a `MarkerName` variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the `tbl` argument has variables
 #' `A1` and `A2` as produced by METAL while the `all` argument has `EFFECT_ALLELE` and `REFERENCE_ALLELE` as with a `study` variable

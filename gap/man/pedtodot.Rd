@@ -44,11 +44,13 @@ For each pedigree, the function generates a .dot file to be used by dot. The
 collection of all pedigrees (*.dot) can also be put together.
 }
 \description{
+Converting pedigree(s) to dot file(s)
+}
+\details{
 This function converts GAS or LINKAGE formatted pedigree(s) into .dot file
 for each pedigree to be used by dot in graphviz, which is a flexible package
 for graphics freely available.
-}
-\details{
+
 Note that a single PostScript (PDF) file can be obtainaed by dot, fdp,
 or neato.
 

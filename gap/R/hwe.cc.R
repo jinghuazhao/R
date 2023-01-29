@@ -546,8 +546,6 @@ DevHaGdominant.est <- function(case,ctl,k0,initial) {
 
 #' A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
 #'
-#' A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
-#'
 #' @param model model specification, dominant, recessive.
 #' @param case a vector of genotype counts in cases.
 #' @param ctrl a vector of genotype counts in controls.
@@ -556,6 +554,8 @@ DevHaGdominant.est <- function(case,ctl,k0,initial) {
 #' @param initial2 initial values for logit(p) and log(gamma).
 #'
 #' @details
+#' A likelihood ratio test of population Hardy-Weinberg equilibrium for case-control studies
+#'
 #' This is a collection of utility functions. The null hypothesis declares that the proportions of
 #' genotypes are according to Hardy-Weinberg law, while under the alternative hypothesis, the expected
 #' genotype counts are according to the probabilities that particular genotypes are obtained conditional
@@ -567,13 +567,11 @@ DevHaGdominant.est <- function(case,ctl,k0,initial) {
 #' @export
 #' @return
 #' The returned value is a list with the following components.
-#' \describe{
-#' \item{Cox}{statistics under a general model}
-#' \item{t2par}{under the null hypothesis}
-#' \item{t3par}{under the alternative hypothesis}
-#' \item{lrt.stat}{the log-likelihood ratio statistic}
-#' \item{pval}{the corresponding p value}
-#' }
+#' - Cox statistics under a general model.
+#' - t2par under the null hypothesis.
+#' - t3par under the alternative hypothesis.
+#' - lrt.stat the log-likelihood ratio statistic.
+#' - pval the corresponding p value.
 #'
 #' @references
 #' Yu C, Zhang S, Zhou C, Sile S. A likelihood ratio test of population Hardy-Weinberg equilibrium
@@ -583,7 +581,6 @@ DevHaGdominant.est <- function(case,ctl,k0,initial) {
 #'
 #' @examples
 #' \dontrun{
-#'
 #' ### Saba Sile, email of Jan 26, 2007, data always in order of GG AG AA, p=Pr(G),
 #' ### q=1-p=Pr(A)
 #' case=c(155,27,4)

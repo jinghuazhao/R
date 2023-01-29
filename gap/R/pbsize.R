@@ -1,14 +1,15 @@
 #' Power for population-based association design
 #'
-#' This function implements Long et al. (1997) statistics for population-based association
-#' design. This is based on a contingency table test and accurate level of significance can be
-#' obtained by Fisher's exact test.
-#'
 #' @param kp population disease prevalence.
 #' @param gamma genotype relative risk assuming multiplicative model.
 #' @param p frequency of disease allele.
 #' @param alpha type I error rate.
 #' @param beta type II error rate.
+#'
+#' @details
+#' This function implements Long et al. (1997) statistics for population-based association
+#' design. This is based on a contingency table test and accurate level of significance can be
+#' obtained by Fisher's exact test.
 #'
 #' @export
 #' @return The returned value is scaler containing the required sample size.

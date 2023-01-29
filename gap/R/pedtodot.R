@@ -1,5 +1,20 @@
 #' Converting pedigree(s) to dot file(s)
 #'
+#' @param pedfile a pedigree file in GAS or LINKAGE format, note if 
+#' individual's ID is character then it is necessary to specify as.is=T
+#' in the read.table command.
+#' @param makeped a logical variable indicating if the pedigree file is post-makeped.
+#' @param sink a logical variable indicating if .dot file(s) are created.
+#' @param page a string indicating the page size, e.g, A4, A5, B5, Legal, Letter, 
+#' Executive, "x,y", where x, y is the customized page size.
+#' @param url Unified Resource Locator (URL) associated with the diagram(s).
+#' @param height the height of node(s).
+#' @param width the width of node(s).
+#' @param rotate if set to 90, the diagram is in landscape.
+#' @param dir direction of edges, i.e., "none", "forward","back","both". This will be useful
+#' if the diagram is viewed by lneato.
+#'
+#' @details
 #' This function converts GAS or LINKAGE formatted pedigree(s) into .dot file
 #' for each pedigree to be used by dot in graphviz, which is a flexible package
 #' for graphics freely available.
@@ -34,21 +49,6 @@
 #'
 #' dotty <dot file> &
 #'
-#' @param pedfile a pedigree file in GAS or LINKAGE format, note if 
-#' individual's ID is character then it is necessary to specify as.is=T
-#' in the read.table command.
-#' @param makeped a logical variable indicating if the pedigree file is post-makeped.
-#' @param sink a logical variable indicating if .dot file(s) are created.
-#' @param page a string indicating the page size, e.g, A4, A5, B5, Legal, Letter, 
-#' Executive, "x,y", where x, y is the customized page size.
-#' @param url Unified Resource Locator (URL) associated with the diagram(s).
-#' @param height the height of node(s).
-#' @param width the width of node(s).
-#' @param rotate if set to 90, the diagram is in landscape.
-#' @param dir direction of edges, i.e., "none", "forward","back","both". This will be useful
-#' if the diagram is viewed by lneato.
-#'
-#' @details
 #' We can extract the code below (or within pedtodot.Rd) to pedtodot and then
 #' use command: 
 #'

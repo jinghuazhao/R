@@ -1,20 +1,20 @@
 #' Probability of familial clustering of disease
 #'
-#' To calculate exact probability of familial clustering of disease
-#'
 #' @param famdata collective information of sib size, number of affected sibs and their frequencies.
 #' @param enum a switch taking value 1 if all possible tables are to be enumerated.
 #'
+#' @details
+#' To calculate exact probability of familial clustering of disease
+#'
 #' @export
-#' @return The returned value is a list containing (tailp,sump,nenum are only available if enum=1:
-#' \describe{
-#'   \item{p}{the probabitly of familial clustering}
-#'   \item{stat}{the deviances, chi-squares based on binomial and hypergeometric distributions, 
-#'  the degrees of freedom should take into account the number of marginals used}
-#'   \item{tailp}{the exact statistical significance}
-#'   \item{sump}{sum of the probabilities used for error checking}
-#'   \item{nenum}{the total number of tables enumerated}
-#' }
+#' @return
+#' The returned value is a list containing (tailp,sump,nenum are only available if enum=1:
+#' - p the probabitly of familial clustering.
+#' - stat the deviances, chi-squares based on binomial and hypergeometric distributions, 
+#'  the degrees of freedom should take into account the number of marginals used.
+#' - tailp the exact statistical significance.
+#' - sump sum of the probabilities used for error checking.
+#' - nenum the total number of tables enumerated.
 #'
 #' @references
 #' Yu C, Zelterman D (2001) Exact inference for family disease clusters. Commun Stat -- Theory

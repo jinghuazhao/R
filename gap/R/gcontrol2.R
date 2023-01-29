@@ -1,5 +1,11 @@
 #' genomic control based on p values
 #'
+#' @param p a vector of observed p values.
+#' @param col colour for points in the Q-Q plot.
+#' @param lcol colour for the diagonal line in the Q-Q plot.
+#' @param ... other options for plot.
+#'
+#' @details
 #' The function obtains 1-df \eqn{\chi^2}{chi-squared} statistics (observed) according
 #' to a vector of p values, and the inflation factor (lambda) according
 #' to medians of the observed and expected statistics. The latter is based
@@ -9,18 +15,11 @@
 #' for case-control data; for 1-df additive model with continuous outcome one has to
 #' consider the compatibility with p values based on z-/t- statistics.
 #'
-#' @param p a vector of observed p values.
-#' @param col colour for points in the Q-Q plot.
-#' @param lcol colour for the diagonal line in the Q-Q plot.
-#' @param ... other options for plot.
-#'
 #' @export
 #' @return A list containing:
-#' \describe{
-#' \item{x}{the expected \eqn{\chi^2}{chi-squared} statistics}
-#' \item{y}{the observed \eqn{\chi^2}{chi-squared} statistics}
-#' \item{lambda}{the inflation factor}
-#' }
+#' - x the expected \eqn{\chi^2}{chi-squared} statistics.
+#' - y the observed \eqn{\chi^2}{chi-squared} statistics.
+#' - lambda the inflation factor.
 #'
 #' @references
 #' Devlin B, Roeder K (1999) Genomic control for association studies. 

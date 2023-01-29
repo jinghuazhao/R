@@ -66,6 +66,9 @@ qtl2dplot(
 positional information.
 }
 \description{
+2D QTL plot
+}
+\details{
 This function is both used as its own for a 2d plot and/or generate data for a plotly counterpart.
 }
 \examples{

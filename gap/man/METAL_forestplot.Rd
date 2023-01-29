@@ -23,11 +23,13 @@ METAL_forestplot(tbl, all, rsid, package = "meta", split = FALSE, ...)
 It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
 }
 \description{
+forest plot as R/meta's forest for METAL outputs
+}
+\details{
 This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
 for forest plot. It also takes a SNPID-rsid mapping (rsid) as contributing studies often
 involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A1_A2 (A1<=A2).
-}
-\details{
+
 The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
 a \code{MarkerName} variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the \code{tbl} argument has variables
 \code{A1} and \code{A2} as produced by METAL while the \code{all} argument has \code{EFFECT_ALLELE} and \code{REFERENCE_ALLELE} as with a \code{study} variable

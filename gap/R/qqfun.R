@@ -1,8 +1,5 @@
 #' Quantile-comparison plots
 #'
-#' Plots empirical quantiles of a variable against theoretical quantiles of a comparison distribution.
-#'
-#' @md
 #' @param x vector of numeric values.
 #' @param distribution root name of comparison distribution -- e.g., \code{norm} for the
 #'    normal distribution; \code{t} for the t-distribution.
@@ -34,6 +31,8 @@
 #' @param \dots arguments such as \code{df} to be passed to the appropriate quantile function.
 #'
 #' @details
+#' Plots empirical quantiles of a variable against theoretical quantiles of a comparison distribution.
+#'
 #' Draws theoretical quantile-comparison plots for variables and for studentized residuals
 #' from a linear model. A comparison line is drawn on the plot either through the quartiles
 #' of the two distributions, or by robust regression. 

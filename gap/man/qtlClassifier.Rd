@@ -16,17 +16,20 @@ qtlClassifier(geneSNP, SNPPos, genePos, radius)
 \item{radius}{flanking distance.}
 }
 \value{
-It returns a geneSNP-prefixed data.frame with the following columns,
-\describe{
-\item{geneChrom}{gene chromosome}
-\item{geneStart}{gene start}
-\item{geneEnd}{gene end}
-\item{SNPChrom}{pQTL chromosome}
-\item{SNPPos}{pQTL position}
-\item{Type}{cis/trans labels}
+It returns a geneSNP-prefixed data.frame with the following columns:
+\itemize{
+\item geneChrom gene chromosome.
+\item geneStart gene start.
+\item geneEnd gene end.
+\item SNPChrom pQTL chromosome.
+\item SNPPos pQTL position.
+\item Type cis/trans labels.
 }
 }
 \description{
+A QTL cis/trans classifier
+}
+\details{
 The function obtains QTL (simply called SNP here) cis/trans classification based on gene positions.
 }
 \note{

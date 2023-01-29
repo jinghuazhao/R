@@ -17,6 +17,9 @@ ESplot(ESdat, alpha = 0.05, fontsize = 12)
 A high resolution plot object.
 }
 \description{
+Effect-size plot
+}
+\details{
 The function accepts parameter estimates and their standard errors for a range of models.
 }
 \examples{

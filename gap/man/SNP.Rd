@@ -43,12 +43,12 @@ model. snp.HWE is from Abecasis's website and yet to be adapted for
 chromosome X.
 }
 \details{
-snp.ES provides effect size estimates based on the linear regression coefficient and standard error.
+\code{snp.ES} provides effect size estimates based on the linear regression coefficient and standard error.
 For logistic regression, we can have similar idea for log(OR) and log(SE(OR)).
 
-snp.HWE gives an exact Hardy-Weinberg Equilibrium (HWE) test and it return -1 in the case of misspecification of genotype counts.
+\code{snp.HWE} gives an exact Hardy-Weinberg Equilibrium (HWE) test and it return -1 in the case of misspecification of genotype counts.
 
-snp.PAR calculates the the population attributable risk (PAR) for a particular SNP.
+\code{snp.PAR} calculates the the population attributable risk (PAR) for a particular SNP.
 Internally, it calls for an internal function PARn, given a
 set of frequencies and associate relative risks (RR). Other
 2x2 table statistics familiar to epidemiologists can be added when

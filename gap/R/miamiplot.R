@@ -1,8 +1,5 @@
 #' Miami plot
 #'
-#' The function allows for contrast of genomewide P values from two GWASs. It is conceptually simpler than at the first sight since it involves only one set of chromosomal positions.
-#'
-#' @md
 #' @param x Input data.
 #' @param chr Chromsome.
 #' @param bp Position.
@@ -24,6 +21,10 @@
 #' @param ltys lty.
 #' @param main Main title.
 #' @param ... Additional options.
+#'
+#' @details
+#' The function allows for contrast of genomewide P values from two GWASs. It is conceptually simpler than at the first sight since it involves only one set of chromosomal positions.
+#'
 #' @export
 #' @return None.
 #' @examples

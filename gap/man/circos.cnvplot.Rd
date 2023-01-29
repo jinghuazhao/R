@@ -13,6 +13,9 @@ circos.cnvplot(data)
 None.
 }
 \description{
+circos plot of CNVs.
+}
+\details{
 The function plots frequency of CNVs.
 }
 \examples{

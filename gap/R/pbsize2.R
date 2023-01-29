@@ -9,6 +9,15 @@ x2 <- function(p1,p2,n1,n2)
 
 #' Power for case-control association design
 #'
+#' @param N The sample size.
+#' @param fc The proportion of cases in the sample.
+#' @param alpha Type I error rate.
+#' @param gamma The genotype relative risk (GRR).
+#' @param p Frequency of the risk allele.
+#' @param kp The prevalence of disease in the population.
+#' @param model Disease model, i.e., "multiplicative","additive","dominant","recessive","overdominant".
+#'
+#' @details
 #' This is a revised version of \code{\link[gap]{pbsize}} which is appropriate for
 #' a case-control design under a range of disease models. Essentially, for given sample
 #' size(s), a proportion of which (fc) being cases, the function calculates power estimate
@@ -21,16 +30,9 @@ x2 <- function(p1,p2,n1,n2)
 #' with Kp as in \code{\link[gap]{tscc}} and should produce accurate power estimate. Note it
 #' provides power estimates for given sample size(s) only.
 #'
-#' @param N The sample size.
-#' @param fc The proportion of cases in the sample.
-#' @param alpha Type I error rate.
-#' @param gamma The genotype relative risk (GRR).
-#' @param p Frequency of the risk allele.
-#' @param kp The prevalence of disease in the population.
-#' @param model Disease model, i.e., "multiplicative","additive","dominant","recessive","overdominant".
-#'
 #' @export
-#' @return The returned value is the power for the specified design.
+#' @return
+#' The returned value is the power for the specified design.
 #'
 #' @seealso The design follows that of \code{\link[gap]{pbsize}}.
 #'

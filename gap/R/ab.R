@@ -1,9 +1,5 @@
 #' Test/Power calculation for mediating effect
 #'
-#' This function tests for or obtains power of mediating effect based on estimates of
-#' two regression coefficients and their standard errors. Note that for binary outcome
-#' or mediator, one should use log-odds ratio and its standard error.
-#'
 #' @param type string option: "test", "power".
 #' @param n default sample size to be used for power calculation.
 #' @param a regression coefficient from indepdendent variable to mediator.
@@ -12,6 +8,11 @@
 #' @param sb SE(b).
 #' @param alpha size of siginficance test for power calculation.
 #' @param fold fold change for power calculation, as appropriate for a range of sample sizes.
+#'
+#' @details
+#' This function tests for or obtains power of mediating effect based on estimates of
+#' two regression coefficients and their standard errors. Note that for binary outcome
+#' or mediator, one should use log-odds ratio and its standard error.
 #'
 #' @export
 #' @return The returned value are z-test and significance level for significant testing or sample size/power for a

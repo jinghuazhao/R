@@ -1,6 +1,5 @@
 #' 2D QTL plotly
 #'
-#' @md
 #' @param d Data in qtl2dplot() format.
 #' @param chrlen Lengths of chromosomes for specific build: hg18, hg19, hg38.
 #' @param qtl.id QTL id.

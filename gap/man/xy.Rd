@@ -13,5 +13,8 @@ xy(x)
 As indicated.
 }
 \description{
+Conversion of chromosome names to strings
+}
+\details{
 This function converts x=1:24 to 1:22, X, Y
 }

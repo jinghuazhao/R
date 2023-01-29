@@ -1,7 +1,5 @@
 #' Haplotype reconstruction
 #'
-#' Haplotype reconstruction using sorting and trimming algorithms.
-#'
 #' @param id a column of subject id.
 #' @param data genotype table.
 #' @param nloci number of loci.
@@ -10,20 +8,20 @@
 #' @param control is a call to hap.control().
 #'
 #' @details
+#' Haplotype reconstruction using sorting and trimming algorithms.
+#'
 #' The package can hanlde much larger number of multiallelic loci. 
 #' For large sample size with relatively small number of multiallelic
 #' loci, genecounting should be used.
 #'
 #' @export
-#' @return The returned value is a list containing:
-#' \describe{
-#' \item{l1}{log-likelihood assuming linkage disequilibrium}
-#' \item{converge}{convergence status, 0=failed, 1=succeeded}
-#' \item{niter}{number of iterations}
-#' }
+#' @return
+#' The returned value is a list containing:
+#' - l1 log-likelihood assuming linkage disequilibrium.
+#' - converge convergence status, 0=failed, 1=succeeded.
+#' - niter number of iterations.
 #'
 #' @references
-#'
 #' Clayton DG (2001) SNPHAP. https://github.com/chr1swallace/snphap.
 #'
 #' Zhao JH and W Qian (2003) Association analysis of unrelated individuals

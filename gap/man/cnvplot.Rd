@@ -13,6 +13,9 @@ cnvplot(data)
 None.
 }
 \description{
+genomewide plot of CNVs
+}
+\details{
 The function generates a plot containing genomewide copy number variants (CNV) chr, start, end, freq(uencies).
 }
 \examples{

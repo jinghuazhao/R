@@ -2,12 +2,12 @@
 #'
 #' The function obtains effect size and its standard error.
 #'
-#' @md
 #' @param f Allele frequency.
 #' @param n Sample size.
 #' @param z z-statistics.
 #' @export
-#' @return b and se.
+#' @return
+#' b and se.
 #' @examples
 #' \dontrun{
 #'   library(dplyr)

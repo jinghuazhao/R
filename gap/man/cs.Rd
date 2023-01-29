@@ -21,6 +21,9 @@ cs(tbl, b = "Effect", se = "StdErr", log_p = NULL, cutoff = 0.95)
 Credible set.
 }
 \description{
+Credible set
+}
+\details{
 The function implements credible set as in fine-mapping.
 }
 \examples{

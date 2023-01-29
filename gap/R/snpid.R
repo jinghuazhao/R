@@ -1,7 +1,5 @@
 #' SNP id by chr:pos+a1/a2
 #'
-#' This function generates unique identifiers for variants
-#'
 #' @param chr Chromosome.
 #' @param pos Position.
 #' @param a1 Allele 1.
@@ -9,6 +7,9 @@
 #' @param prefix Prefix of the identifier.
 #' @param seps Delimiters.
 #' @param uppercase A flag to return in upper case.
+#'
+#' @details
+#' This function generates unique identifiers for variants
 #'
 #' @export
 #' @return Identifier.
@@ -38,13 +39,12 @@ chr_pos_a1_a2 <- function(chr,pos,a1,a2,prefix="chr",seps=c(":","_","_"),upperca
 #' @param seps Delimiters of fields.
 #'
 #' @export
-#' @return A data.frame with the following variables.
-#' \describe{
-#' \item{chr}{Chromosome.}
-#' \item{pos}{Position.}
-#' \item{a1}{Allele 1.}
-#' \item{a2}{Allele 2.}
-#' }
+#' @return
+#' A data.frame with the following variables:
+#' - chr Chromosome.
+#' - pos Position.
+#' - a1 Allele 1.
+#' - a2 Allele 2.
 #'
 #' @examples
 #' # rs12075

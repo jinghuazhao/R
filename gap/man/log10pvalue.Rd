@@ -14,7 +14,7 @@ log10pvalue(p = NULL, base = NULL, exponent = NULL)
 \item{exponent}{exponent part in scientific format.}
 }
 \value{
-log10(P)
+\code{log10(P)}
 }
 \description{
 log10(p) for a P value including its scientific format

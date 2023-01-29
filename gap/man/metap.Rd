@@ -18,15 +18,18 @@ metap(data, N, verbose = "Y", prefixp = "p", prefixn = "n")
 \item{prefixn}{Preifx of sample size, with default value "n".}
 }
 \value{
-\describe{
-\item{x2}{Fisher's chi-squared statistics.}
-\item{p}{P values from Fisher's method according to chi-squared distribution with 2*N degree(s) of freedom.}
-\item{z}{Combined z value.}
-\item{p1}{One-sided p value.}
-\item{p2}{Two-sided p value.}
+\itemize{
+\item x2 Fisher's chi-squared statistics.
+\item p P values from Fisher's method according to chi-squared distribution with 2*N degree(s) of freedom.
+\item z Combined z value.
+\item p1 One-sided p value.
+\item p2 Two-sided p value.
 }
 }
 \description{
+Meta-analysis of p values
+}
+\details{
 This function is the method of meta-analysis used in the Genetic Investigation
 of ANThropometric Traits (GIANT) consortium, which is based on normal approximation
 of p values and weighted by sample sizes from individual studies.

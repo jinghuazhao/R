@@ -21,15 +21,18 @@ size of a chunk and burn-in steps, as integer.}
 }
 \value{
 The returned value is a list containing:
-\describe{
-\item{method}{Hardy-Weinberg equilibrium test using MCMC}
-\item{data.name}{name of used data if \code{x} is given}
-\item{p.value}{Monte Carlo p value}
-\item{p.value.se}{standard error of Monte Carlo p value}
-\item{switches}{percentage of switches (partial, full and altogether)}
+\itemize{
+\item method Hardy-Weinberg equilibrium test using MCMC.
+\item data.name name of used data if \code{x} is given.
+\item p.value Monte Carlo p value.
+\item p.value.se standard error of Monte Carlo p value.
+\item switches percentage of switches (partial, full and altogether).
 }
 }
 \description{
+Hardy-Weinberg equilibrium test using MCMC
+}
+\details{
 Hardy-Weinberg equilibrium test by MCMC
 }
 \note{

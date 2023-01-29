@@ -1,14 +1,15 @@
 #' Get sd(y) from AF, n, b, se
 #'
-#' This function obtains standard error of a continuous outcome.
-#'
-#' @md
 #' @param f Allele frequency.
 #' @param n Sample size.
 #' @param b effect size.
 #' @param se standard error.
 #' @param method method of averaging: "mean" or "median".
 #' @param ... argument(s) passed to method
+#'
+#' @details
+#' This function obtains standard error of a continuous outcome.
+#'
 #' @export
 #' @return sd(y).
 #' @examples

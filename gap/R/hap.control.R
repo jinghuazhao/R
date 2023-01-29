@@ -23,7 +23,8 @@
 #' @param assignfile a file for haplotype assignment.
 #'
 #' @export
-#' @return a list containing the parameter specifications to the function.
+#' @return
+#' A list containing the parameter specifications to the function.
 
 hap.control <- function(mb=0,pr=0,po=0.001,to=0.001,th=1,maxit=100,n=0,
       ss=0,rs=0,rp=0,ro=0,rv=0,sd=0,mm=0,mi=0,mc=50,ds=0.1,de=0,q=0,

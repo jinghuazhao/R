@@ -1,8 +1,9 @@
 #' Conversion of chromosome names to strings
 #'
-#' This function converts x=1:24 to 1:22, X, Y
-#'
 #' @param x (alpha)numeric value indicating chromosome.
+#'
+#' @details
+#' This function converts x=1:24 to 1:22, X, Y
 #'
 #' @export
 #' @return As indicated.
@@ -31,11 +32,10 @@ ixy <- function(x) if (x=="X") 23 else if (x=="Y") 24 else x
 #' @param ylab Y-axis title.
 #'
 #' @export
-#' @return A list with two variables.
-#' \describe{
-#'   \item{n}{Number of chromosomes.}
-#'   \item{CM}{Cumulative lengths starting from 0.}
-#' }
+#' @return
+#' A list with two variables:
+#' - n Number of chromosomes.
+#' - CM Cumulative lengths starting from 0.
 
 grid2d <- function(chrlen, plot=TRUE, cex.labels=0.6, xlab="QTL position", ylab="Gene position")
 {

@@ -34,10 +34,11 @@ The returned value is a matrix containing heritability and their variance estima
 for "h2","c2","e2","vh","vc","ve".
 }
 \description{
-Heritability and variance estimation according to twin pair correlations.
+Heritability estimation according to twin correlations
 }
 \details{
-The example section shows how to obtain bootstrap 95\\%CI.
+The example section shows how to obtain bootstrap 95\%CI.
+Heritability and variance estimation according to twin pair correlations.
 }
 \examples{
 \dontrun{

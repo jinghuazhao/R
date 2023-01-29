@@ -1,14 +1,14 @@
 #' Pedigree-drawing with graphviz
 #'
+#' @param f A data.frame containing pedigrees, each with pedigree id, individual id, father id, mother id, sex and affection status.
+#' @param run A flag to run dot/neato on the generated .dot file(s).
+#' @param toDOT A flag to generate script for `DOT::dot()`.
+#' @param ... Other flag(s) for `DOT::dot()`.
+#'
+#' @details
 #' Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and optionally
 #' call dot/neato to make pedigree drawing.
 #'
-#' @param f A data.frame containing pedigrees, each with pedigree id, individual id, father id, mother id, sex and affection status.
-#' @param run A flag to run dot/neato on the generated .dot file(s).
-#' @param toDOT A flag to generate script for DOT::dot().
-#' @param ... Other flag(s) for DOT::dot().
-#'
-#' @details
 #' This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to `pedtodot` which was largely a mirror.
 #' To check independently, try `xsel -i < <(cat pedtodot_verbatim.R)` or `cat pedtodot_verbatim.R | xsel -i` and paste into an R session.
 #'

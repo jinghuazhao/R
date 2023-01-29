@@ -14,12 +14,12 @@ inv_chr_pos_a1_a2(chr_pos_a1_a2, prefix = "chr", seps = c(":", "_", "_"))
 \item{seps}{Delimiters of fields.}
 }
 \value{
-A data.frame with the following variables.
-\describe{
-\item{chr}{Chromosome.}
-\item{pos}{Position.}
-\item{a1}{Allele 1.}
-\item{a2}{Allele 2.}
+A data.frame with the following variables:
+\itemize{
+\item chr Chromosome.
+\item pos Position.
+\item a1 Allele 1.
+\item a2 Allele 2.
 }
 }
 \description{
