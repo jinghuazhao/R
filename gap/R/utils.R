@@ -456,6 +456,18 @@ ReadGRMPCA <- function(prefix)
 lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 
+#' 3D Manhattan plot according to Sun, et al. (2018).
+#'
+#' @aliases{sun3d}
+#' @section Usage:
+#' sun3d(xyz="INF1.merge.cis.vs.trans",
+#'       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
+#'       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
+#'       prefix=c("Sentinel","CHR","POS","CHR","POS","Gene","Target","-log10(p)"),
+#'       postfix="\u003c/br>",
+#'       json.file="d3.json",pretty=TRUE)
+#' @noRd
+
 sun3d <- function(xyz="INF1.merge.cis.vs.trans",
                       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
                       xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
@@ -577,3 +589,30 @@ makeContent.textboxtree <- function(x)
   rr <- grid::roundrectGrob(width=1.5*grid::grobWidth(t), height=1.5*grid::grobHeight(t), name="box")
   grid::setChildren(x, grid::gList(t, rr))
 }
+
+#' @title hg18 information
+#' @description GRCh36 information
+#' @docType data
+#' @keywords datasets internal
+#' @format A vector containing lengths of chromosomes.
+#' @details generated from GRCh.R.
+
+"hg18"
+
+#' @title hg19 information
+#' @description GRCh37 information
+#' @docType data
+#' @keywords datasets internal
+#' @format A vector containing lengths of chromosomes.
+#' @details generated from GRCh.R.
+
+"hg19"
+
+#' @title hg38 information
+#' @description GRCh38 information
+#' @docType data
+#' @keywords datasets internal
+#' @format A vector containing lengths of chromosomes.
+#' @details generated from GRCh.R.
+
+"hg38"

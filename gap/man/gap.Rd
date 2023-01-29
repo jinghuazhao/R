@@ -7,8 +7,7 @@
 \alias{gap-package}
 \title{Genetic analysis package}
 \description{
-As first reported Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18. \doi{10.18637/jss.v023.i08},
-it is designed as an integrated package for genetic data
+As first reported, it is designed as an integrated package for genetic data
 analysis of both population and family data. Currently, it contains functions for
 sample size calculations of both population-based and family-based designs, probability
 of familial disease aggregation, kinship calculation, statistics in linkage analysis,
@@ -148,7 +147,7 @@ Vignettes on package usage:
 }
 
 \references{
-Zhao JH, gap: genetic analysis package. Journal of Statistical Software 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.
+Zhao JH, gap: genetic analysis package. J Stat Soft 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.
 }
 \seealso{
 Useful links:
