@@ -143,7 +143,6 @@
 #' @aliases gap-package
 #'
 #' @import dplyr gap.datasets
-#' @importFrom Rdpack reprompt
 #' @importFrom grDevices palette xy.coords
 #' @importFrom graphics abline arrows axis box boxplot
 #'             identify legend lines mtext par points
@@ -155,6 +154,8 @@
 #'             runif sd var
 #' @importFrom utils data head packageDescription read.csv
 #'             read.delim read.table tail write.table
+#'             globalVariables
+#' @importFrom Rdpack reprompt
 #' @useDynLib gap
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues and with
