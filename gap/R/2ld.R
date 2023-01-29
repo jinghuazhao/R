@@ -25,7 +25,7 @@
 #' \item{VarDprime}{the variance of Dprime}
 #' \item{x2}{the Chi-squared statistic}
 #' \item{lor}{the log(OR) statistic}
-#' \item{vlor}{the var[log(OR)] statistic}
+#' \item{vlor}{the var(log(OR)) statistic}
 #' }
 #'
 #' @references

@@ -1,6 +1,6 @@
 #' Genetic analysis package
 #'
-#' As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18. \doi{10.18637/jss.v023.i08}],
+#' As first reported Zhao, J. H. 2007. "gap: Genetic Analysis Package". JSS 23(8):1-18. \doi{10.18637/jss.v023.i08},
 #' it is designed as an integrated package for genetic data
 #' analysis of both population and family data. Currently, it contains functions for
 #' sample size calculations of both population-based and family-based designs, probability
