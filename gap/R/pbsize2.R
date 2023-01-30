@@ -1,3 +1,6 @@
+#' A simple chi-squared test of two proportions
+#' @noRd
+
 # 3-3-2008 MRC-Epid JHZ
 
 x2 <- function(p1,p2,n1,n2)

@@ -1,4 +1,9 @@
-# This function fits a Bradley-Terry Model to a squared contingency table
+#' A function used to experiment with ETDT
+#'
+#' @details
+#' It fits a Bradley-Terry Model to a squared contingency table
+#' @noRd
+
 # JH Zhao 5/1/2004, 12/3/2005
 
 # This generates format as required by ETDT

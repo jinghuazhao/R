@@ -1,3 +1,6 @@
+#' A normal z-test of two proportions
+#' @noRd
+
 # 1-3-2008, MRC-Epid, JHZ
 
 z <- function(p1,p2,n1,n2,r)
@@ -6,6 +9,9 @@ z <- function(p1,p2,n1,n2,r)
    z.var <- p1*(1-p1)/n1+p2*(1-p2)/n2
    invisible(z.mean/sqrt(z.var/(2*r)))
 }
+
+#' A function used by tscc
+#' @noRd
 
 solve_skol <- function(rootfun,target,lo,hi,e)
 {

@@ -1,3 +1,6 @@
+#' RLE plot
+#' @noRd
+
 makeRLEplot <- function(E, log2.data=TRUE, groups=NULL, col.group=NULL,
                         showTitle=FALSE, title="Relative log expression (RLE) plot",...){
   

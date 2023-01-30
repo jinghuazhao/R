@@ -1,3 +1,11 @@
+#' `HapDesign` and `HapFreqSE` both accept a \code{\link[haplo.stats]{haplo.em}} object to derieve a design/dosage
+#' matrix and standard error of haplotype frequency estimates. The former is appropriate for haplotype trend
+#' regression (HTR), e.g., within the generalized linear model (GLM) framework to be equivllant to a formal
+#' approach as implemented in the package haplo.stats and hap.score. However, they are expected to be compatible
+#' with objects from gc.em() \code{\link[gap]{gc.em}} and \code{\link[gap]{hap.em}}. The two functions are
+#' included as courtesy of Prof Andrea Foulkes from the useR!2008 tutorial.
+#' @noRd
+
 ##########################################################################
 # Description: This function creates a design matrix with i,j
 # element equal to the conditional expectation

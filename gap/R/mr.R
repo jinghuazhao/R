@@ -1,5 +1,8 @@
-# Adapted from code by Felix Day 16/9/2015
-# with reference from Bowden J, et al. (2015). 44(2):512-525.
+#' A function for obtaining weighted median with interpolation
+#' @author Adapted code by Felix Day 16/9/2015
+#' @references
+#' Bowden J, et al. (2015). 44(2):512-525.
+#' @noRd
 
 weighted.median <- function(x, w)
 {

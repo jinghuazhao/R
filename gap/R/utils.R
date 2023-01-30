@@ -65,6 +65,9 @@ a2g <- function(a1,a2)
 
 }
 
+#' C version of g2c
+#' @noRd
+
 g2a.c <- function (g)
 {
     d <- 1 + 8 * (g - 1)
@@ -105,6 +108,11 @@ is.miss <- function(data,data.int,miss.val=0)
    }
    return (id)  
 }
+
+#' Recovers of the allele indices for a given haplotype ID in a multiallelic system
+#' @section Usage:
+#' revhap(loci,hapid)
+#' @noRd
 
 # adapted from gcp.c on 24/9/2004
 
@@ -161,6 +169,9 @@ revhap.i <- function(loci,hapid)
 
 }
 
+#' as a2g
+#' @noRd
+
 gcode <- function(a1,a2) {
 
   i <- ifelse(a1 < a2,a2,a1)
@@ -169,6 +180,9 @@ gcode <- function(a1,a2) {
   return(genocode)
 
 }
+
+#' Recovery of alleles from genotype(s)
+#' @noRd
 
 ungcode <- function(g) {
 
@@ -192,9 +206,13 @@ grec2g <- function (h, n, t)
   invisible(hh)
 }
 
+#' an experimental function for PLEM format
+#' @noRd
+
 # a simple scheme to represent SNPs
 # similar to a2g() and not unlike Mike Weale's Matlab function
 # 10-2-2005 JHZ
+
 m2plem <- function(a1,a2)
 {
   a <- vector("numeric")
@@ -213,6 +231,9 @@ m2plem <- function(a1,a2)
   }
   invisible(a)
 }
+
+#' PLEM format
+#' @noRd
 
 plem2m <- function(a)
 {
@@ -236,6 +257,9 @@ plem2m <- function(a)
   }
   invisible(list(a1,a2))
 }
+
+#' A function to combine imputation results
+#' @noRd
 
 micombine <- function (est, std.err, confidence = 0.95)
 {
@@ -266,6 +290,9 @@ micombine <- function (est, std.err, confidence = 0.95)
         lower = low, upper = up, r = rem, fminf = fminf)
     result
 }
+
+#' Calculating variance of a ratio
+#' @noRd
 
 VR <- function(v1,vv1,v2,vv2,c12)
 {
@@ -328,7 +355,6 @@ WriteGRMBin <- function(prefix, grm, N, id, size=4)
   close(grm.N.bin)
   write.table(id,IDFileName,col.names=FALSE,quote=FALSE,row.names=FALSE,sep="\t")
 }
-
 
 #' A function to read GRM file
 #' @param prefix file root.
