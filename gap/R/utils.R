@@ -616,32 +616,24 @@ makeContent.textboxtree <- function(x)
   grid::setChildren(x, grid::gList(t, rr))
 }
 
-#' @title
-#' hg18 information
-#' @description GRCh36 information
+#' @title Chromosomal lengths for build 36
+#' @description Data are used in other functions.
 #' @docType data
 #' @keywords datasets internal
 #' @format A vector containing lengths of chromosomes.
 #' @details generated from GRCh.R.
+#' @rdname hg18
 
 "hg18"
 
-#' @title
-#' hg19 information
-#' @description GRCh37 information
-#' @docType data
-#' @keywords datasets internal
-#' @format A vector containing lengths of chromosomes.
-#' @details generated from GRCh.R.
+#' @title Chromosomal lengths for build 37
+#' @description Data are used in other functions.
+#' @rdname hg19
 
 "hg19"
 
-#' @title
-#' hg38 information
-#' @description GRCh38 information
-#' @docType data
-#' @keywords datasets internal
-#' @format A vector containing lengths of chromosomes.
-#' @details generated from GRCh.R.
+#' @title Chromosomal lengths for build 38
+#' @description Data are used in other functions.
+#' @rdname hg38
 
 "hg38"

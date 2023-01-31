@@ -1,43 +1,30 @@
-#' Functions for single nucleotide polymorphisms (SNPs)
+#' Functions for single nucleotide polymorphisms
 #'
-#' Eventually, this will be a set of functions specifically for single
-#' nucleotide polymorphisms (SNPs), which are biallelic markers. This
-#' is particularly relevant to the genomewide association studies (GWAS)
+#' These are a set of functions specifically for single nucleotide
+#' polymorphisms (SNPs), which are biallelic markers. This is
+#' particularly relevant to the genomewide association studies (GWAS)
 #' using GeneChips and in line with the classic generalised single-locus
-#' model. snp.HWE is from Abecasis's website and yet to be adapted for 
+#' model. snpHWE is from Abecasis's website and yet to be adapted for
 #' chromosome X.
 #'
-#' `snp.ES` provides effect size estimates based on the linear regression coefficient and standard error.
-#' For logistic regression, we can have similar idea for log(OR) and log(SE(OR)).
+#' `snpHWE` gives an exact Hardy-Weinberg Equilibrium (HWE) test and it return -1 in the case of misspecification of genotype counts.
 #'
-#' `snp.HWE` gives an exact Hardy-Weinberg Equilibrium (HWE) test and it return -1 in the case of misspecification of genotype counts.
-#'
-#' `snp.PAR` calculates the the population attributable risk (PAR) for a particular SNP.
+#' `snpPAR` calculates the the population attributable risk (PAR) for a particular SNP.
 #' Internally, it calls for an internal function PARn, given a 
 #' set of frequencies and associate relative risks (RR). Other
 #' 2x2 table statistics familiar to epidemiologists can be added when
 #' necessary.
 #'
+#' `snpPVE` provides proportion of variance explained (PVE) estimate based on the linear regression coefficient and standard error.
+#' For logistic regression, we can have similar idea for log(OR) and log(SE(OR)).
+#'
 #' @author Jing Hua Zhao, Shengxu Li
 #' @keywords utilities
-
-#' @param beta Regression coefficient.
-#' @param SE Standard error for beta.
-#' @param N Sample size.
-#' @rdname SNP
-
-snp.ES <- function(beta,SE,N)
-{
-   if (SE<=0) stop("Incorrect input of SE(beta)")
-   t <- beta/SE
-   df <- N - 2
-   t^2/(t^2+df)
-}
 
 #' @param g Observed genotype vector.
 #' @rdname SNP
 
-snp.HWE <- function(g)
+snpHWE <- function(g)
 {
    obs_hom1 <- g[1]
    obs_hets <- g[2]
@@ -100,13 +87,26 @@ PARn <- function(p,RRlist)
    1 - 1/(p%*%RRlist)
 }
 
+#' @param beta Regression coefficient.
+#' @param se Standard error for beta.
+#' @param N Sample size.
+#' @rdname SNP
+
+snpPVE <- function(beta,se,N)
+{
+   if (se<=0) stop("Incorrect input of SE(beta)")
+   t <- beta/se
+   df <- N - 2
+   t^2/(t^2+df)
+}
+
 #' @param unit Unit to exponentiate for homozygote.
 #' @param MAF Minar allele frequency.
 #' @param RR Relative risk.
 #'
 #' @rdname SNP
 
-snp.PAR <- function(RR,MAF,unit=2)
+snpPAR <- function(RR,MAF,unit=2)
 {
    RR2 <- RR^unit
    RRlist <- c(1,RR,RR2)
@@ -116,4 +116,5 @@ snp.PAR <- function(RR,MAF,unit=2)
    PARn(pq,RRlist)
 }
 
+#' 31-1-2013 rename snp.ES as snpPVE
 #' 9-3-2008 MRC-Epid JHZ

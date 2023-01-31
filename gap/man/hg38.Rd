@@ -3,18 +3,14 @@
 \docType{data}
 \name{hg38}
 \alias{hg38}
-\title{hg38 information}
+\title{Chromosomal lengths for build 38}
 \format{
-A vector containing lengths of chromosomes.
+An object of class \code{numeric} of length 24.
 }
 \usage{
 hg38
 }
 \description{
-GRCh38 information
-}
-\details{
-generated from GRCh.R.
+Data are used in other functions.
 }
 \keyword{datasets}
-\keyword{internal}

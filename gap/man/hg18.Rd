@@ -3,7 +3,7 @@
 \docType{data}
 \name{hg18}
 \alias{hg18}
-\title{hg18 information}
+\title{Chromosomal lengths for build 36}
 \format{
 A vector containing lengths of chromosomes.
 }
@@ -11,7 +11,7 @@ A vector containing lengths of chromosomes.
 hg18
 }
 \description{
-GRCh36 information
+Data are used in other functions.
 }
 \details{
 generated from GRCh.R.
