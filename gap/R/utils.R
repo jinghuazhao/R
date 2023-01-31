@@ -616,7 +616,8 @@ makeContent.textboxtree <- function(x)
   grid::setChildren(x, grid::gList(t, rr))
 }
 
-#' @title hg18 information
+#' @title
+#' hg18 information
 #' @description GRCh36 information
 #' @docType data
 #' @keywords datasets internal
@@ -625,7 +626,8 @@ makeContent.textboxtree <- function(x)
 
 "hg18"
 
-#' @title hg19 information
+#' @title
+#' hg19 information
 #' @description GRCh37 information
 #' @docType data
 #' @keywords datasets internal
@@ -634,7 +636,8 @@ makeContent.textboxtree <- function(x)
 
 "hg19"
 
-#' @title hg38 information
+#' @title
+#' hg38 information
 #' @description GRCh38 information
 #' @docType data
 #' @keywords datasets internal
