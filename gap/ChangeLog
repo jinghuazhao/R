@@ -1,9 +1,9 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-31-01-2023	Rename SNP functions
+01-02-2023	Rename SNP functions
 		Reorganize DESCRIPTION, adding Roxygen: list(markdown = TRUE), and document in Markdown
-		Import and modify in accordance with Rdpack
+		Import and amend in line with Rdpack
 		Refine gap.Rmd
 
 Version 1.5-1

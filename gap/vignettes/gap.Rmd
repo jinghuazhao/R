@@ -1003,6 +1003,9 @@ z <- cs(tbl)
 l <- cs(tbl,log_p="logp")
 ```
 
+Note in particular that the implementation intends to avoid the naive summation in
+scenarios such as proteogenomic analysis containing exceptionally large terms.
+
 # Polygenic modeling
 
 In line with the recent surge of interest in the polygenic models, a separate

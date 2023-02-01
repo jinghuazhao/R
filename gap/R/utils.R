@@ -628,12 +628,14 @@ makeContent.textboxtree <- function(x)
 
 #' @title Chromosomal lengths for build 37
 #' @description Data are used in other functions.
+#' @format A vector containing lengths of chromosomes.
 #' @rdname hg19
 
 "hg19"
 
 #' @title Chromosomal lengths for build 38
 #' @description Data are used in other functions.
+#' @format A vector containing lengths of chromosomes.
 #' @rdname hg38
 
 "hg38"

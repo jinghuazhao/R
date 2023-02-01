@@ -5,7 +5,7 @@
 \alias{hg19}
 \title{Chromosomal lengths for build 37}
 \format{
-An object of class \code{numeric} of length 24.
+A vector containing lengths of chromosomes.
 }
 \usage{
 hg19
