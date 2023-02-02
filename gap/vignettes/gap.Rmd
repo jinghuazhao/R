@@ -1004,7 +1004,7 @@ l <- cs(tbl,log_p="logp")
 ```
 
 Note in particular that the implementation intends to avoid the naive summation in
-scenarios such as proteogenomic analysis containing exceptionally large terms.
+scenarios such as proteogenomic analysis containing exceptionally large BFs.
 
 # Polygenic modeling
 
