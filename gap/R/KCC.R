@@ -13,8 +13,8 @@
 #' @export
 #' @return
 #' A list of two elements:
-#' - pprime. prevlence in cases.
-#' - p. prevalence in controls.
+#' - pprime prevlence in cases.
+#' - p prevalence in controls.
 #'
 
 KCC <- function(model,GRR,p1,K)

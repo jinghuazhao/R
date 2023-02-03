@@ -79,7 +79,7 @@ pi.samples <- 0.2
 pi.markers <- 0.1
 
 options(echo=FALSE)
-cat("sample\\%,marker\\%,GRR,(thresholds x 4)(power estimates x 4)","\n")
+cat("sample\%,marker\%,GRR,(thresholds x 4)(power estimates x 4)","\n")
 for(GRR in c(1.3,1.35,1.40))
 {
    cat("\n")
@@ -92,7 +92,7 @@ for(GRR in c(1.3,1.35,1.40))
         x <- tscc("multiplicative",GRR,p1,n1,n2,M,alpha.genome,
                   pi.samples,pi.markers,K)
         l <- c(pi.samples,pi.markers,GRR,x$C,x$power)
-        l <- sprintf("\\%.2f \\%.2f \\%.2f, \\%.2f \\%.2f \\%.2f \\%.2f, \\%.2f \\%.2f \\%.2f \\%.2f",
+        l <- sprintf("\%.2f \%.2f \%.2f, \%.2f \%.2f \%.2f \%.2f, \%.2f \%.2f \%.2f \%.2f",
                      l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10],l[11])
         cat(l,"\n")
       }

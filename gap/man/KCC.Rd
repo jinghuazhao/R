@@ -18,8 +18,8 @@ KCC(model, GRR, p1, K)
 \value{
 A list of two elements:
 \itemize{
-\item pprime. prevlence in cases.
-\item p. prevalence in controls.
+\item pprime prevlence in cases.
+\item p prevalence in controls.
 }
 }
 \description{

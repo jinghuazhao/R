@@ -36,48 +36,31 @@ The returned value is the power for the specified design.
 Power for case-control association design
 }
 \details{
-This is a revised version of \code{\link[gap]{pbsize}} which is appropriate for
-a case-control design under a range of disease models. Essentially, for given sample
-size(s), a proportion of which (fc) being cases, the function calculates power estimate
-for a given type I error (alpha), genotype relative risk (gamma), frequency of the
-risk allele (p), the prevalence of disease in the population (kp) and optionally a
-disease model (model). A major difference would be the consideration of case/control
+This extends \code{\link[gap]{pbsize}} from a multiplicative model for a case-control
+design under a range of disease models. Essentially, for given sample sizes(s), a
+proportion of which (fc) being cases, the function calculates power estimate for a
+given type I error (alpha), genotype relative risk (gamma), frequency of the risk
+allele (p), the prevalence of disease in the population (kp) and optionally a disease
+model (model). A major difference would be the consideration of case/control
 ascertainment in \code{\link[gap]{pbsize}}.
 
 Internally, the function obtains a baseline risk to make the disease model consistent
-with Kp as in \code{\link[gap]{tscc}} and should produce accurate power estimate. Note it
+with Kp as in \code{\link[gap]{tscc}} and should produce accurate power estimate. It
 provides power estimates for given sample size(s) only.
-}
-\note{
-Why is the comparison with power.casectrl so bad?
 }
 \examples{
 \dontrun{
-# single calc
+# single calculation
 m <- c("multiplicative","recessive","dominant","additive","overdominant")
 for(i in 1:5) print(pbsize2(N=50,alpha=5e-2,gamma=1.1,p=0.1,kp=0.1, model=m[i]))
 
-# for a range of sample sizes
-pbsize2(p=0.1, N=c(25,50,100,200,500), gamma=1.1, kp=.1, alpha=5e-2, model='r')
+# a range of sample sizes
+pbsize2(p=0.1, N=c(25,50,100,200,500), gamma=1.2, kp=.1, alpha=5e-2, model='r')
   
-# create a power table
-f <- function(p)     
-  pbsize2(p=p, N=seq(100,1000,by=100), gamma=1.1, kp=.1, alpha=5e-2, model='recessive')
-m <- sapply( X=seq(0.1,0.9, by=0.1), f)
-colnames(m) <- seq(0.1,0.9, by=0.1)
-rownames(m) <- seq(100,1000,by=100)
-print(round(m,2))
-
-library(genetics)
-m <- c("multiplicative","recessive","dominant","partialrecessive")
-for(i in 1:4) print(power.casectrl(p=0.1, N=50, gamma=1.1, kp=.1, alpha=5e-2,
-    minh=m[i]))
-power.casectrl(p=0.1, N=c(25,50,100,200,500), gamma=1.1, kp=.1, alpha=5e-2,
-    minh='r')
-f <- function(p)
-  power.casectrl(p=p, N=seq(100,1000,by=100), gamma=1.1, kp=.1, alpha=5e-2,
-    minh='recessive')
-m <- sapply( X=seq(0.1,0.9, by=0.1), f)
+# a power table
+m <- sapply(seq(0.1,0.9, by=0.1),
+            function(x) pbsize2(p=x, N=seq(100,1000,by=100),
+                        gamma=1.2, kp=.1, alpha=5e-2, model='recessive'))
 colnames(m) <- seq(0.1,0.9, by=0.1)
 rownames(m) <- seq(100,1000,by=100)
 print(round(m,2))
@@ -86,8 +69,5 @@ print(round(m,2))
 }
 \seealso{
 The design follows that of \code{\link[gap]{pbsize}}.
-}
-\author{
-Jing Hua Zhao
 }
 \keyword{misc}
