@@ -107,6 +107,7 @@ ab                \tab      Test/Power calculation for mediating effect\cr
 b2r               \tab      Obtain correlation coefficients and their variance-covariances\cr
 chow.test         \tab      Chow's test for heterogeneity in two regressions\cr
 chr_pos_a1_a2     \tab      Form SNPID from chromosome, posistion and alleles\cr
+ci2bse            \tab      Effect size and standard error from confience interval and P value\cr
 cis.vs.trans.classification \tab a cis/trans classifier\cr
 comp.score        \tab      score statistics for testing genetic linkage of quantitative trait\cr
 GRM functions     \tab      ReadGRM, ReadGRMBin, ReadGRMPLINK, ReadGRMPCA, WriteGRM,\cr

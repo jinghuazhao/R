@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-03-02-2023	Drop genetics/GeneticsDesign reference in pbsize2() and backslash in tscc() \%
+11-02-2023	Add ci2bse eventually to deal with PhenoScanner/GWAS Catalog lookups
+		Drop genetics/GeneticsDesign reference in pbsize2() and backslash in tscc() \%
 		Rename SNP functions and document hg18/19/38
 		Reorganize DESCRIPTION, adding Roxygen: list(markdown = TRUE), and document in Markdown
 		Import and amend in line with Rdpack

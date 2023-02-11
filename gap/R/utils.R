@@ -639,3 +639,44 @@ makeContent.textboxtree <- function(x)
 #' @rdname hg38
 
 "hg38"
+
+#' Effect size and standard error from confience interval and P value
+#' @param ci confidence interval.
+#' @param p P value.
+#' @param or a flag indicating the confidence interval is based on OR.
+#' @param alpha significane level of ci.
+#'
+#' @details
+#' The confidence interval actually contains aliased information so we
+#' - use the upper limit only.
+#' - add -/0/+ for sign(b).
+#' @export
+#' @return
+#' Based on confidence interval of OR, the function provides a list containing estimates
+#' - b effect size (log(OR))
+#' - se standard error
+#' - direction `sign` of b.
+#'
+#' @examples
+#' # rs3784099 and breast cancer recurrence/mortality (PMID22232737)
+#' bse <- ci2bse("1.28-1.72",1e-7)
+#' print(bse)
+#' # Vectors of CIs and Ps
+#' ci2 <- c("1.28-1.72","1.25-1.64")
+#' p2 <- c(1e-7,3e-7)
+#' bse <- ci2bse(ci2,p2)
+#' print(bse)
+
+ci2bse <- function(ci,p,or=TRUE,alpha=0.05)
+{
+  ci <- as.numeric(unlist(strsplit(ci,"-")))
+# l <- ci[1]
+  u <- ci[2]
+  z <- abs(qnorm(p/2))
+  d <- abs(qnorm(alpha/2))
+  if (or) u <- log(u)
+  se <- u/(z+d)
+  b <- u-d*se
+  direction <- sapply(b,function(x) {if(sign(x)==-1) "-" else if(sign(x)==0) "0" else "+"})
+  invisible(list(b=b,se=se,direction=direction))
+}
