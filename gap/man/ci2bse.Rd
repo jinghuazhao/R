@@ -2,45 +2,43 @@
 % Please edit documentation in R/utils.R
 \name{ci2bse}
 \alias{ci2bse}
-\title{Effect size and standard error from CI and P value}
+\title{Effect size and standard error from CI}
 \usage{
-ci2bse(ci, p, or = TRUE, alpha = 0.05)
+ci2bse(ci, or = TRUE, alpha = 0.05)
 }
 \arguments{
 \item{ci}{confidence interval (CI).}
 
-\item{p}{P value.}
-
 \item{or}{a flag indicating the confidence interval is based on OR.}
 
-\item{alpha}{significane level of ci.}
+\item{alpha}{Type 1 error.}
 }
 \value{
 Based on CI, the function provides a list containing estimates
 \itemize{
 \item b effect size (log(OR))
 \item se standard error
-\item direction a decrease/increase (-/+) based on \code{sign} of b as in PhenoScanner.
+\item direction a decrease/increase (-/+).
 }
 }
 \description{
-Effect size and standard error from CI and P value
+Effect size and standard error from CI
 }
 \details{
-The confidence limits actually contain aliased information so we
+Let
 \itemize{
-\item use the upper limit only.
-\item work also on odds ratio (OR).
-\item add -/0/+ for sign(b).
+\item \eqn{z \sim N(0,1)} with cutoff point \eqn{z_\alpha}
+\item \eqn{CI=b-z_\alpha se-b+z_\alpha se\equiv L-U}
+We have \eqn{U+L=2 b}, \eqn{U-L=2 z_\alpha se} so \eqn{b=(U+L)/2}, \eqn{se=(U-L)/2/z_\alpha} and for OR \eqn{U\equiv\log(U)}, \eqn{L\equiv\log(L)}.
+Additionally \code{sign(b)}=-1, 0, 1, is labelled "-", "0", "+", respectively as in PhenoScanner.
 }
 }
 \examples{
 # rs3784099 and breast cancer recurrence/mortality
-bse <- ci2bse("1.28-1.72",1e-7)
+bse <- ci2bse("1.28-1.72")
 print(bse)
 # Vector input
 ci2 <- c("1.28-1.72","1.25-1.64")
-p2 <- c(1e-7,3e-7)
-bse <- ci2bse(ci2,p2)
+bse <- ci2bse(ci2)
 print(bse)
 }

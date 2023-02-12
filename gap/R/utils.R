@@ -640,45 +640,48 @@ makeContent.textboxtree <- function(x)
 
 "hg38"
 
-#' Effect size and standard error from CI and P value
+#' Effect size and standard error from confidence interval
 #'
 #' @param ci confidence interval (CI).
-#' @param p P value.
 #' @param or a flag indicating the confidence interval is based on OR.
-#' @param alpha significane level of ci.
+#' @param alpha Type 1 error.
 #'
 #' @details
-#' The confidence limits actually contain aliased information so we
-#' - use the upper limit only.
-#' - work also on odds ratio (OR).
-#' - add -/0/+ for sign(b).
+#' Let
+#' - \eqn{z \sim N(0,1)} with cutoff point \eqn{z_\alpha}
+#' - \eqn{CI=b-z_\alpha se-b+z_\alpha se\equiv L-U}
+#' We have \eqn{U+L=2 b}, \eqn{U-L=2 z_\alpha se} so \eqn{b=(U+L)/2}, \eqn{se=(U-L)/2/z_\alpha} and for OR \eqn{U\equiv\log(U)}, \eqn{L\equiv\log(L)}.
+#' Additionally, `sign(b)`=-1, 0, 1, is labelled "-", "0", "+", respectively as in PhenoScanner.
 #'
 #' @export
 #' @return
 #' Based on CI, the function provides a list containing estimates
 #' - b effect size (log(OR))
 #' - se standard error
-#' - direction a decrease/increase (-/+) based on `sign` of b as in PhenoScanner.
+#' - direction a decrease/increase (-/+).
 #'
 #' @examples
 #' # rs3784099 and breast cancer recurrence/mortality
-#' bse <- ci2bse("1.28-1.72",1e-7)
+#' bse <- ci2bse("1.28-1.72")
 #' print(bse)
 #' # Vector input
 #' ci2 <- c("1.28-1.72","1.25-1.64")
-#' p2 <- c(1e-7,3e-7)
-#' bse <- ci2bse(ci2,p2)
+#' bse <- ci2bse(ci2)
 #' print(bse)
 
-ci2bse <- function(ci,p,or=TRUE,alpha=0.05)
+ci2bse <- function(ci,or=TRUE,alpha=0.05)
 {
-  ci <- as.numeric(unlist(strsplit(ci,"-")))
-  u <- ci[2]
-  z <- abs(qnorm(p/2))
+  lci <- strsplit(ci,"-")
+  l <- as.numeric(lapply(lci,"[",1))
+  u <- as.numeric(lapply(lci,"[",2))
   d <- abs(qnorm(alpha/2))
-  if (or) u <- log(u)
-  se <- u/(z+d)
-  b <- u-d*se
+  if (!or) {
+     se <- (u-l)/2/d
+     b <- (l+u)/2
+  } else {
+     se <- (log(u)-log(l))/2/d
+     b <- (log(l)+log(u))/2
+  }
   direction <- sapply(b,function(x) {if(sign(x)==-1) "-" else if(sign(x)==0) "0" else "+"})
   invisible(list(b=b,se=se,direction=direction))
 }

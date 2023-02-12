@@ -170,7 +170,7 @@ b2r               |      Obtain correlation coefficients and their variance-cova
 chow.test         |      Chow's test for heterogeneity in two regressions
 chr\_pos\_a1\_a2  |      Form SNPID from chromosome, posistion and alleles
 cis.vs.trans.classification | a cis/trans classifier
-ci2bse            |      Effect size and standard error from CI and P value
+ci2bse            |      Effect size and standard error from confidence interval
 comp.score        |      score statistics for testing genetic linkage of quantitative trait
 GRM functions     |      ReadGRM, ReadGRMBin, ReadGRMPLINK,
 &nbsp;            |      ReadGRMPCA, WriteGRM,
@@ -1142,12 +1142,11 @@ inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 Here is the documentation example on rs3784099 and breast cancer @shu12.
 
 ```{r}
-bse <- ci2bse("1.28-1.72",1e-7)
+bse <- ci2bse("1.28-1.72")
 print(bse)
 # Vector input
 ci2 <- c("1.28-1.72","1.25-1.64")
-p2 <- c(1e-7,3e-7)
-bse <- ci2bse(ci2,p2)
+bse <- ci2bse(ci2)
 print(bse)
 ```
 
