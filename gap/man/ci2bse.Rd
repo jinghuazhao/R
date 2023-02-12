@@ -2,42 +2,43 @@
 % Please edit documentation in R/utils.R
 \name{ci2bse}
 \alias{ci2bse}
-\title{Effect size and standard error from confience interval and P value}
+\title{Effect size and standard error from CI and P value}
 \usage{
 ci2bse(ci, p, or = TRUE, alpha = 0.05)
 }
 \arguments{
-\item{ci}{confidence interval.}
+\item{ci}{confidence interval (CI).}
 
 \item{p}{P value.}
 
 \item{or}{a flag indicating the confidence interval is based on OR.}
 
-\item{alpha}{confidence level.}
+\item{alpha}{significane level of ci.}
 }
 \value{
-Based on confidence interval of OR, the function provides a list containing estimates
+Based on CI, the function provides a list containing estimates
 \itemize{
 \item b effect size (log(OR))
 \item se standard error
-\item direction \code{sign} of b.
+\item direction a decrease/increase (-/+) based on \code{sign} of b as in PhenoScanner.
 }
 }
 \description{
-Effect size and standard error from confience interval and P value
+Effect size and standard error from CI and P value
 }
 \details{
-The confidence interval actually contains aliased information so we
+The confidence limits actually contain aliased information so we
 \itemize{
 \item use the upper limit only.
+\item work also on odds ratio (OR).
 \item add -/0/+ for sign(b).
 }
 }
 \examples{
-# rs3784099 and breast cancer recurrence/mortality (PMID22232737)
+# rs3784099 and breast cancer recurrence/mortality
 bse <- ci2bse("1.28-1.72",1e-7)
 print(bse)
-# Vectors of CIs and Ps
+# Vector input
 ci2 <- c("1.28-1.72","1.25-1.64")
 p2 <- c(1e-7,3e-7)
 bse <- ci2bse(ci2,p2)
