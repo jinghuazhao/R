@@ -2,12 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{ci2bse}
 \alias{ci2bse}
-\title{Effect size and standard error from CI}
+\title{Effect size and standard error from confidence interval}
 \usage{
 ci2bse(ci, or = TRUE, alpha = 0.05)
 }
 \arguments{
-\item{ci}{confidence interval (CI).}
+\item{ci}{confidence interval (CI). The delimiter between lower and upper limit is either a hyphen (-) or en dash (\enc{–}{-}).}
 
 \item{or}{a flag indicating the confidence interval is based on OR.}
 
@@ -22,16 +22,25 @@ Based on CI, the function provides a list containing estimates
 }
 }
 \description{
-Effect size and standard error from CI
+Effect size and standard error from confidence interval
 }
 \details{
-Let
-\itemize{
-\item \eqn{z \sim N(0,1)} with cutoff point \eqn{z_\alpha}
-\item \eqn{CI=b-z_\alpha se-b+z_\alpha se\equiv L-U}
-We have \eqn{U+L=2 b}, \eqn{U-L=2 z_\alpha se} so \eqn{b=(U+L)/2}, \eqn{se=(U-L)/2/z_\alpha} and for OR \eqn{U\equiv\log(U)}, \eqn{L\equiv\log(L)}.
-Additionally \code{sign(b)}=-1, 0, 1, is labelled "-", "0", "+", respectively as in PhenoScanner.
-}
+Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, the confidence limits L, U, then
+\deqn{
+\begin{aligned}
+L & = b - z_\alpha se \cr
+U & = b + z_\alpha se
+\end{aligned}
+}{L = b - z_alpha se, U = b + z_alpha se}
+\eqn{\Rightarrow}{==>} \eqn{U + L = 2 b}, \eqn{U - L=2 z_\alpha se}{U - L = 2 z_alpha se},
+\deqn{
+\begin{aligned}
+b & = (U + L)/2 \cr
+se & = (U - L)/2/z_\alpha
+\end{aligned}
+}{b = (U + L)/2, se = (U - L)/2/z_alpha}
+for OR, \eqn{L\equiv\log(L)}{L ==> log(L)}, \eqn{U\equiv\log(U)}{U ==> log(U)}.
+Additionally, \code{sign(b)}=-1, 0, 1, is labelled "-", "0", "+", respectively as in PhenoScanner.
 }
 \examples{
 # rs3784099 and breast cancer recurrence/mortality
