@@ -4,12 +4,12 @@
 \alias{ci2ms}
 \title{Effect size and standard error from confidence interval}
 \usage{
-ci2ms(ci, is.or = TRUE, alpha = 0.05)
+ci2ms(ci, logscale = TRUE, alpha = 0.05)
 }
 \arguments{
 \item{ci}{confidence interval (CI). The delimiter between lower and upper limit is either a hyphen (-) or en dash (\enc{–}{-}).}
 
-\item{is.or}{a flag indicating the confidence interval is based on odds ratio (OR).}
+\item{logscale}{a flag indicating the confidence interval is based on a log-scale.}
 
 \item{alpha}{Type 1 error.}
 }
@@ -26,7 +26,7 @@ Effect size and standard error from confidence interval
 }
 \details{
 Effect size is a measure of strength of the relationship between two variables in a population or parameter estimate of that population.
-Without loss of generality, denote \code{m} and \code{s} to be the mean and standard deviation of a sample from \eqn{N(\mu,\sigma^2)}{N(mu,sigma^2}
+Without loss of generality, denote \code{m} and \code{s} to be the mean and standard deviation of a sample from \eqn{N(\mu,\sigma^2)}{N(mu,sigma^2})
 which it follows. Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then confidence limits L, U in a CI are
 defined as follows,
 \deqn{
@@ -42,8 +42,8 @@ m & = (U + L)/2 \cr
 s & = (U - L)/2/z_\alpha
 \end{aligned}
 }{m = (U + L)/2, s = (U - L)/2/z_alpha}
-Effect size in epidemiological studies on a binary outcome is typically reported as OR, or hazard ratio as in a logistic regression
-or Cox model, \eqn{L\equiv\log(L)}{L ==> log(L)}, \eqn{U\equiv\log(U)}{U ==> log(U)}.
+Effect size in epidemiological studies on a binary outcome is typically reported as odds ratio from a logistic regression
+or hazard ratio from a Cox regression, \eqn{L\equiv\log(L)}{L ==> log(L)}, \eqn{U\equiv\log(U)}{U ==> log(U)}.
 }
 \examples{
 # rs3784099 and breast cancer recurrence/mortality
