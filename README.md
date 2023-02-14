@@ -10,6 +10,7 @@ Shown below are links to packages I have maintained[^1], with individual files t
 --------|---------------------------------------------|---------|---------------------|---------------------------------------------
 **gap** | [https://cran.r-project.org/package=gap](https://cran.r-project.org/package=gap) | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^3]   | [https://github.com/cran/gap](https://github.com/cran/gap) | [https://rdrr.io/cran/gap/](https://rdrr.io/cran/gap/)
  &nbsp; | &nbsp; | [jss](https://jinghuazhao.github.io/R/vignettes/jss.pdf)
+ &nbsp; | &nbsp; | [manual](https://jinghuazhao.github.io/R/vignettes/gap-manual.pdf)
  &nbsp; | &nbsp; | [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html)
 **gap.datasets** | [https://cran.r-project.org/package=gap.datasets](https://cran.r-project.org/package=gap.datasets) | &nbsp; | [https://github.com/cran/gap.datasets](https://github.com/cran/gap.datasets) | [https://rdrr.io/cran/gap.datasets/](https://rdrr.io/cran/gap.datasets/)
 **gap.examples** | &nbsp; | [gap.examples](https://jinghuazhao.github.io/R/vignettes/gap.examples.pdf)
