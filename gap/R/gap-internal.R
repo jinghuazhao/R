@@ -1,3 +1,11 @@
+allDuplicated <- function(x)
+{
+  front <- duplicated(x)
+  back <- duplicated(x, fromLast = TRUE)
+  all_dup <- front | back
+  return(all_dup)
+}
+
 #' C version of g2c
 #' @noRd
 
@@ -27,10 +35,12 @@ is.miss <- function(data,data.int,miss.val=0)
    return (id)  
 }
 
-#' Recovers of the allele indices for a given haplotype ID in a multiallelic system
+#' Allele indices for a given haplotype ID in a multiallelic system
 #' @section Usage:
 #' revhap(loci,hapid)
 #' @noRd
+#'
+#' @keywords internal
 
 # adapted from gcp.c on 24/9/2004
 
@@ -205,18 +215,8 @@ micombine <- function (est, std.err, confidence = 0.95)
     pval <- 2 * (1 - pt(abs(qbar/sqrt(tm)), nu))
     fminf <- (rem + 2/(nu + 3))/(rem + 1)
     result <- list(est = qbar, std.err = sqrt(tm), df = nu, signif = pval,
-        lower = low, upper = up, r = rem, fminf = fminf)
+                   lower = low, upper = up, r = rem, fminf = fminf)
     result
-}
-
-#' Calculating variance of a ratio
-#' @noRd
-
-VR <- function(v1,vv1,v2,vv2,c12)
-{
-  nv <- v2^2*vv1 + v1^2*vv2 - 2*v1*v2*c12
-  dv <- v2^4
-  nv/dv
 }
 
 ReadGRMPLINK <- function(prefix,diag=1)
@@ -288,12 +288,23 @@ ReadGRMPCA <- function(prefix)
   invisible(list(N=N,posGRM=posGRM,negGRM=negGRM,id=id))
 }
 
+#' Variance of a ratio
+#' @noRd
+#'
+#' @keywords internal
+
+VR <- function(v1,vv1,v2,vv2,c12)
+{
+  nv <- v2^2*vv1 + v1^2*vv2 - 2*v1*v2*c12
+  dv <- v2^4
+  nv/dv
+}
+
 lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 
 #' 3D Manhattan plot according to Sun, et al. (2018).
 #'
-#' @aliases{sun3d}
 #' @section Usage:
 #' sun3d(xyz="INF1.merge.cis.vs.trans",
 #'       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
@@ -302,6 +313,8 @@ lambda1000 <- function(lambda, ncases, ncontrols)
 #'       postfix="\u003c/br>",
 #'       json.file="d3.json",pretty=TRUE)
 #' @noRd
+#'
+#' @keywords internal
 
 sun3d <- function(xyz="INF1.merge.cis.vs.trans",
                       cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
@@ -403,14 +416,6 @@ sun3d <- function(xyz="INF1.merge.cis.vs.trans",
 # https://plot.ly/r/reference/#scatter3d
 # sed -i 's|<\\/br>|\\u003c/br>|g' d3.json
 # plotly::toRGB( c('#BF382A', '#0C4B8E')) ==> "rgba(191,56,42,1)" "rgba(12,75,142,1)"
-
-allDuplicated <- function(x)
-{
-  front <- duplicated(x)
-  back <- duplicated(x, fromLast = TRUE)
-  all_dup <- front | back
-  return(all_dup)
-}
 
 textbox <- function(label, name=NULL, gp=NULL, vp=NULL)
 {

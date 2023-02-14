@@ -192,7 +192,7 @@ WriteGRM <- function(prefix=51,id,N,GRM)
 #' @title Chromosomal lengths for build 36
 #' @description Data are used in other functions.
 #' @docType data
-#' @keywords datasets internal
+#' @keywords datasets
 #' @format A vector containing lengths of chromosomes.
 #' @details generated from GRCh.R.
 #' @rdname hg18
@@ -221,9 +221,8 @@ WriteGRM <- function(prefix=51,id,N,GRM)
 #'
 #' @details
 #' Effect size is a measure of strength of the relationship between two variables in a population or parameter estimate of that population.
-#' Without loss of generality, denote `m` and `s` to be the mean and standard deviation of a sample from \eqn{N(\mu,\sigma^2)}{N(mu,sigma^2})
-#' which it follows. Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then confidence limits L, U in a CI are
-#' defined as follows,
+#' Without loss of generality, denote `m` and `s` to be the mean and standard deviation of a sample from \eqn{N(\mu,\sigma^2)}{N(mu,sigma^2}).
+#' Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then confidence limits L, U in a CI are defined as follows,
 #' \deqn{
 #' \begin{aligned}
 #' L & = m - z_\alpha s \cr

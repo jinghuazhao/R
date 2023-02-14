@@ -17,4 +17,3 @@ Data are used in other functions.
 generated from GRCh.R.
 }
 \keyword{datasets}
-\keyword{internal}
