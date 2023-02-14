@@ -647,52 +647,55 @@ makeContent.textboxtree <- function(x)
 #' @param alpha Type 1 error.
 #'
 #' @details
-#' Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then the CI is defined by confidence limits L, U as follows,
+#' Effect size is a measure of strength of the relationship between two variables in a population or parameter estimate of that population.
+#' Without loss of generality, denote `m` and `s` to be the mean and standard deviation of a sample from \eqn{N(\mu,\sigma^2)}{N(mu,sigma^2}
+#' which it follows. Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then confidence limits L, U in a CI are
+#' defined as follows,
 #' \deqn{
 #' \begin{aligned}
-#' L & = b - z_\alpha se \cr
-#' U & = b + z_\alpha se
+#' L & = m - z_\alpha s \cr
+#' U & = m + z_\alpha s
 #' \end{aligned}
-#' }{L = b - z_alpha se, U = b + z_alpha se}
-#' \eqn{\Rightarrow}{==>} \eqn{U + L = 2 b}, \eqn{U - L=2 z_\alpha se}{U - L = 2 z_alpha se}. Consequently,
+#' }{L = m - z_alpha s, U = m + z_alpha s}
+#' \eqn{\Rightarrow}{==>} \eqn{U + L = 2 m}, \eqn{U - L=2 z_\alpha s}{U - L = 2 z_alpha s}. Consequently,
 #' \deqn{
 #' \begin{aligned}
-#' b & = (U + L)/2 \cr
-#' se & = (U - L)/2/z_\alpha
+#' m & = (U + L)/2 \cr
+#' s & = (U - L)/2/z_\alpha
 #' \end{aligned}
-#' }{b = (U + L)/2, se = (U - L)/2/z_alpha}
-#' for OR, \eqn{L\equiv\log(L)}{L ==> log(L)}, \eqn{U\equiv\log(U)}{U ==> log(U)}.
-#' Additionally, `sign(b)`=-1, 0, 1, is labelled "-", "0", "+", respectively as in PhenoScanner.
+#' }{m = (U + L)/2, s = (U - L)/2/z_alpha}
+#' Effect size in epidemiological studies on a binary outcome is typically reported as OR, or hazard ratio as in a logistic regression
+#' or Cox model, \eqn{L\equiv\log(L)}{L ==> log(L)}, \eqn{U\equiv\log(U)}{U ==> log(U)}.
 #'
 #' @export
 #' @return
 #' Based on CI, the function provides a list containing estimates
-#' - b effect size (log(OR))
-#' - se standard error
-#' - direction a decrease/increase (-/+).
+#' - m effect size (log(OR))
+#' - s standard error
+#' - direction a decrease/increase (-/+) sign such that `sign(m)`=-1, 0, 1, is labelled "-", "0", "+", respectively as in PhenoScanner.
 #'
 #' @examples
 #' # rs3784099 and breast cancer recurrence/mortality
-#' bse <- ci2bse("1.28-1.72")
-#' print(bse)
+#' ms <- ci2ms("1.28-1.72")
+#' print(ms)
 #' # Vector input
 #' ci2 <- c("1.28-1.72","1.25-1.64")
-#' bse <- ci2bse(ci2)
-#' print(bse)
+#' ms2 <- ci2ms(ci2)
+#' print(ms2)
 
-ci2bse <- function(ci,is.or=TRUE,alpha=0.05)
+ci2ms <- function(ci,is.or=TRUE,alpha=0.05)
 {
   lci <- strsplit(gsub("\u2013","-",ci),"-")
   l <- as.numeric(lapply(lci,"[",1))
   u <- as.numeric(lapply(lci,"[",2))
   d <- abs(qnorm(alpha/2))
   if (!is.or) {
-     se <- (u-l)/2/d
-     b <- (l+u)/2
+     s <- (u-l)/2/d
+     m <- (l+u)/2
   } else {
-     se <- (log(u)-log(l))/2/d
-     b <- (log(l)+log(u))/2
+     s <- (log(u)-log(l))/2/d
+     m <- (log(l)+log(u))/2
   }
-  direction <- sapply(b,function(x) {if(sign(x)==-1) "-" else if(sign(x)==0) "0" else "+"})
-  invisible(list(b=b,se=se,direction=direction))
+  direction <- sapply(m,function(x) {if(sign(x)==-1) "-" else if(sign(x)==0) "0" else "+"})
+  invisible(list(m=m,s=s,direction=direction))
 }
