@@ -23,7 +23,7 @@ Kinship coefficient and genetic index of familiality
 \details{
 The genetic index of familality is defined as the mean kinship between
 all pairs of individuals in a set multiplied by 100,000. Formally, it
-is defined in \insertCite{gholamic94;textual}{gap} as
+is defined in \insertCite{gholamic94}{gap} as
 \deqn{100,000 \times \frac{2}{n(n-1)}\sum_{i=1}^{n-1}\sum_{j=i+1}^n k_{ij}}{100,000 x 2/[n(n-1)]\sum_(i=1)^(n-1)\sum_(j=i+1)^n k_(ij)}
 where \eqn{n} is the number of individuals in the set and \eqn{k_{ij}} is the
 kinship coefficient between individuals \eqn{i} and \eqn{j}.
