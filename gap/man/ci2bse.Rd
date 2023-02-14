@@ -4,12 +4,12 @@
 \alias{ci2bse}
 \title{Effect size and standard error from confidence interval}
 \usage{
-ci2bse(ci, or = TRUE, alpha = 0.05)
+ci2bse(ci, is.or = TRUE, alpha = 0.05)
 }
 \arguments{
 \item{ci}{confidence interval (CI). The delimiter between lower and upper limit is either a hyphen (-) or en dash (\enc{–}{-}).}
 
-\item{or}{a flag indicating the confidence interval is based on odds ratio (OR).}
+\item{is.or}{a flag indicating the confidence interval is based on odds ratio (OR).}
 
 \item{alpha}{Type 1 error.}
 }

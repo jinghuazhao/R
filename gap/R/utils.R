@@ -643,7 +643,7 @@ makeContent.textboxtree <- function(x)
 #' Effect size and standard error from confidence interval
 #'
 #' @param ci confidence interval (CI). The delimiter between lower and upper limit is either a hyphen (-) or en dash (\enc{–}{-}).
-#' @param or a flag indicating the confidence interval is based on odds ratio (OR).
+#' @param is.or a flag indicating the confidence interval is based on odds ratio (OR).
 #' @param alpha Type 1 error.
 #'
 #' @details
@@ -680,13 +680,13 @@ makeContent.textboxtree <- function(x)
 #' bse <- ci2bse(ci2)
 #' print(bse)
 
-ci2bse <- function(ci,or=TRUE,alpha=0.05)
+ci2bse <- function(ci,is.or=TRUE,alpha=0.05)
 {
   lci <- strsplit(gsub("\u2013","-",ci),"-")
   l <- as.numeric(lapply(lci,"[",1))
   u <- as.numeric(lapply(lci,"[",2))
   d <- abs(qnorm(alpha/2))
-  if (!or) {
+  if (!is.or) {
      se <- (u-l)/2/d
      b <- (l+u)/2
   } else {
