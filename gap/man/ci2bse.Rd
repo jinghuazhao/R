@@ -9,7 +9,7 @@ ci2bse(ci, or = TRUE, alpha = 0.05)
 \arguments{
 \item{ci}{confidence interval (CI). The delimiter between lower and upper limit is either a hyphen (-) or en dash (\enc{–}{-}).}
 
-\item{or}{a flag indicating the confidence interval is based on OR.}
+\item{or}{a flag indicating the confidence interval is based on odds ratio (OR).}
 
 \item{alpha}{Type 1 error.}
 }
@@ -25,14 +25,14 @@ Based on CI, the function provides a list containing estimates
 Effect size and standard error from confidence interval
 }
 \details{
-Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, the confidence limits L, U, then
+Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then the CI is defined by confidence limits L, U as follows,
 \deqn{
 \begin{aligned}
 L & = b - z_\alpha se \cr
 U & = b + z_\alpha se
 \end{aligned}
 }{L = b - z_alpha se, U = b + z_alpha se}
-\eqn{\Rightarrow}{==>} \eqn{U + L = 2 b}, \eqn{U - L=2 z_\alpha se}{U - L = 2 z_alpha se},
+\eqn{\Rightarrow}{==>} \eqn{U + L = 2 b}, \eqn{U - L=2 z_\alpha se}{U - L = 2 z_alpha se}. Consequently,
 \deqn{
 \begin{aligned}
 b & = (U + L)/2 \cr

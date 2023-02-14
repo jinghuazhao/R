@@ -2,7 +2,7 @@ Type: Package
 Package: gap
 Title: Genetic Analysis Package
 Version: 1.5-2
-Date: 2023-2-13
+Date: 2023-2-14
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -25,22 +25,21 @@ URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 2.10), gap.datasets
 Imports: dplyr, ggplot2, plotly, Rdpack
-Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm,
-          R2jags, bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
+Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags,
+          bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
           foreign, forestplot, genetics, grid, haplo.stats, htmlwidgets,
           jsonlite, kinship2, knitr, lattice, magic, manhattanly,
           matrixStats, meta, metafor, nlme, pedigree, pedigreemm,
           plotrix, readr, reshape, rmarkdown, rmeta, rms, survival
 Enhances: shiny
-VignetteBuilder: knitr
-RdMacros: Rdpack
-Encoding: UTF-8
-RoxygenNote: 7.2.3
-Roxygen: list(markdown = TRUE)
 LazyData: Yes
 LazyLoad: Yes
 NeedsCompilation: yes
-Packaged: 2022-06-16 14:41:31 UTC; jhz22
+Encoding: UTF-8
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+RdMacros: Rdpack
 Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-0003-4930-3582),
   Kurt Hornik [ctb],
   Brian Ripley [ctb],
@@ -49,3 +48,4 @@ Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Repository: CRAN
 Date/Publication: 2017-04-19 11:10:23 UTC
+Packaged: 2022-06-16 14:41:31 UTC; jhz22
