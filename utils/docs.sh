@@ -1,7 +1,8 @@
-# 2-1-2023 JHZ
+# 14-2-2023 JHZ
 
 for f in gap.html jss.pdf shinygap.html; do cp ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
 cp ~/hpc-work/R/pQTLdata/doc/pQTLdata.html ~/R/vignettes/
+cp ~/R/gap.Rechk/gap-manual.pdf ~/R/vignettes
 
 git add .github
 git commit -m ".github"
