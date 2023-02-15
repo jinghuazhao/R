@@ -73,7 +73,7 @@ Preacher KJ, Leonardelli GJ. Calculation for the Sobel Test-An interactive calcu
 https://quantpsy.org/sobel/sobel.htm
 }
 \seealso{
-\code{\link[gap]{ccsize}}
+\code{\link{ccsize}}
 }
 \author{
 Jing Hua Zhao

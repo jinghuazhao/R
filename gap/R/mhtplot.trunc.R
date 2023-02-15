@@ -64,7 +64,7 @@
 #' }
 #' @author James Peters, Jing Hua Zhao
 #' @keywords hplot.
-#' @seealso \code{\link[gap]{mhtplot}}.
+#' @seealso [`mhtplot`].
 #' @export
 
 mhtplot.trunc <- function (x, chr = "CHR", bp = "BP", p = NULL, log10p = NULL, z = NULL, snp = "SNP",

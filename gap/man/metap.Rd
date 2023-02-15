@@ -79,7 +79,7 @@ persp(q,q,t2)
 
 }
 \seealso{
-\code{\link[gap]{metareg}}
+\code{\link{metareg}}
 }
 \author{
 Jing Hua Zhao

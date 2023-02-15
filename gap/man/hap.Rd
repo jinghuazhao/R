@@ -72,6 +72,6 @@ Zhao JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for linkage
 disequilibrium analysis. Bioinformatics 20: 1325-1326
 }
 \seealso{
-\code{\link[gap]{genecounting}}
+\code{\link{genecounting}}
 }
 \keyword{models}

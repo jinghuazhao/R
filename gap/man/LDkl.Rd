@@ -85,7 +85,7 @@ Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
 linkage disequilibrium analysis. Bioinformatics 20:1325-1326
 }
 \seealso{
-\code{\link[gap]{LD22}}
+\code{\link{LD22}}
 }
 \author{
 Jing Hua Zhao

@@ -41,7 +41,7 @@ covfun <- function(r,n)
 #'
 #' Elston RC (1975). On the correlation between correlations. Biometrika 62:133-40
 #'
-#' @seealso \code{\link[gap]{mvmeta}}, \code{\link[gap]{LD22}}
+#' @seealso [`mvmeta`], [`LD22`]
 #'
 #' @examples
 #' \dontrun{

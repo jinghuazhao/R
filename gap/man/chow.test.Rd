@@ -90,7 +90,7 @@ chow.test.r<-chow.test(y1,x1,y2,x2)
 Chow GC (1960). Tests of equality between sets of coefficients in two linear regression. Econometrica 28:591-605
 }
 \seealso{
-\code{\link[gap]{htr}}
+\code{\link{htr}}
 }
 \author{
 Shigenobu Aoki, Jing Hua Zhao

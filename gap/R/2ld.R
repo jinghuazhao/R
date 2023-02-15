@@ -5,8 +5,8 @@
 #'
 #' @details
 #' It is possible to perform permutation test of \eqn{r^2} by re-ordering the genotype through
-#' R's sample function, obtaining the haplotype frequencies by \code{\link[gap]{gc.em}}
-#' or \code{\link[gap]{genecounting}}, supplying the estimated haplotype frequencies to
+#' R's sample function, obtaining the haplotype frequencies by [`gc.em`]
+#' or [`genecounting`], supplying the estimated haplotype frequencies to
 #' the current function and record x2, and comparing the observed x2 and that from the
 #' replicates.
 #'
@@ -34,7 +34,7 @@
 #' Zapata C, Alvarez G, Carollo C (1997) Approximate variance of the standardized
 #'  measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
 #'
-#' @seealso \code{\link[gap]{LDkl}}
+#' @seealso [`LDkl`]
 #'
 #' @examples
 #' \dontrun{
@@ -113,7 +113,7 @@ LD22<-function(h,n)
 #' Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
 #' linkage disequilibrium analysis. Bioinformatics 20:1325-1326
 #'
-#' @seealso \code{\link[gap]{LD22}}
+#' @seealso [`LD22`]
 #'
 #' @examples
 #' \dontrun{
@@ -226,7 +226,7 @@ LDkl<-function(n1=2,n2=2,h,n,optrho=2,verbose=FALSE)
 #' - l0 log-likelihood under linkage equilibrium.
 #' - l1 log-likelihood under linkage disequilibrium.
 #'
-#' @seealso{\code{\link[gap]{genecounting}}}
+#' @seealso [`genecounting`]
 #'
 #' @examples
 #' \dontrun{

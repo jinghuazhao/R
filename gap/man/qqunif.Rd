@@ -71,7 +71,7 @@ Casella G, Berger RL. Statistical Inference, Second Edition. Duxbury 2002.
 Davison AC. Statistical Models. Cambridge University Press 2003.
 }
 \seealso{
-\code{\link[gap]{qqfun}}
+\code{\link{qqfun}}
 }
 \author{
 Jing Hua Zhao

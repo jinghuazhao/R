@@ -36,16 +36,16 @@ The returned value is the power for the specified design.
 Power for case-control association design
 }
 \details{
-This extends \code{\link[gap]{pbsize}} from a multiplicative model for a case-control
+This extends \code{\link{pbsize}} from a multiplicative model for a case-control
 design under a range of disease models. Essentially, for given sample sizes(s), a
 proportion of which (fc) being cases, the function calculates power estimate for a
 given type I error (alpha), genotype relative risk (gamma), frequency of the risk
 allele (p), the prevalence of disease in the population (kp) and optionally a disease
 model (model). A major difference would be the consideration of case/control
-ascertainment in \code{\link[gap]{pbsize}}.
+ascertainment in \code{\link{pbsize}}.
 
 Internally, the function obtains a baseline risk to make the disease model consistent
-with Kp as in \code{\link[gap]{tscc}} and should produce accurate power estimate. It
+with Kp as in \code{\link{tscc}} and should produce accurate power estimate. It
 provides power estimates for given sample size(s) only.
 }
 \examples{
@@ -68,6 +68,6 @@ print(round(m,2))
 
 }
 \seealso{
-The design follows that of \code{\link[gap]{pbsize}}.
+The design follows that of \code{\link{pbsize}}.
 }
 \keyword{misc}

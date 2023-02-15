@@ -32,7 +32,7 @@
 #' @export
 #' @return
 #' The plot is shown on or saved to the appropriate device.
-#' @seealso \code{\link[gap]{qqunif}}
+#' @seealso [`qqunif`]
 #' @examples
 #' \dontrun{
 #' # foo example

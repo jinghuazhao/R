@@ -15,7 +15,7 @@
 #' @references
 #' Morgan V2.1 \url{https://sites.stat.washington.edu/thompson/Genepi/MORGAN/Morgan.shtml}
 #'
-#' @seealso \code{\link[gap]{gif}}
+#' @seealso [`gif`]
 #'
 #' @examples
 #' \dontrun{

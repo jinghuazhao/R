@@ -104,7 +104,7 @@ Wacholder S, Chanock S, Garcia-Closas M, El ghomli L, Rothman N. (2004) Assessin
 report is false: an approach for molecular epidemiology studies. J Natl Cancer Inst 96:434-442
 }
 \seealso{
-\code{\link[gap]{BFDP}}
+\link{BFDP}
 }
 \author{
 Jing Hua Zhao

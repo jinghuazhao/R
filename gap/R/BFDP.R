@@ -27,7 +27,7 @@
 #' Wakefield J (2007) Bayesian measure of the probability of false discovery in genetic epidemiology studies.
 #' Am J Hum Genet 81:208-227
 #'
-#' @seealso \code{\link[gap]{FPRP}}
+#' @seealso [`FPRP`]
 #'
 #' @examples
 #' \dontrun{

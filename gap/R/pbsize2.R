@@ -20,23 +20,23 @@ x2 <- function(p1,p2,n1,n2)
 #' @param model Disease model, i.e., "multiplicative","additive","dominant","recessive","overdominant".
 #'
 #' @details
-#' This extends \code{\link[gap]{pbsize}} from a multiplicative model for a case-control
+#' This extends [`pbsize`] from a multiplicative model for a case-control
 #' design under a range of disease models. Essentially, for given sample sizes(s), a
 #' proportion of which (fc) being cases, the function calculates power estimate for a
 #' given type I error (alpha), genotype relative risk (gamma), frequency of the risk
 #' allele (p), the prevalence of disease in the population (kp) and optionally a disease
 #' model (model). A major difference would be the consideration of case/control
-#' ascertainment in \code{\link[gap]{pbsize}}.
+#' ascertainment in [`pbsize`].
 #'
 #' Internally, the function obtains a baseline risk to make the disease model consistent
-#' with Kp as in \code{\link[gap]{tscc}} and should produce accurate power estimate. It
+#' with Kp as in [`tscc`] and should produce accurate power estimate. It
 #' provides power estimates for given sample size(s) only.
 #'
 #' @export
 #' @return
 #' The returned value is the power for the specified design.
 #'
-#' @seealso The design follows that of \code{\link[gap]{pbsize}}.
+#' @seealso The design follows that of [`pbsize`].
 #'
 #' @examples
 #' \dontrun{

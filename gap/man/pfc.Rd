@@ -69,7 +69,7 @@ Yu C, Zelterman D (2002) Statistical inference for familial disease clusters. Bi
 58:481-491
 }
 \seealso{
-\code{\link[gap]{kin.morgan}}
+\code{\link{kin.morgan}}
 }
 \author{
 Dani Zelterman, Jing Hua Zhao

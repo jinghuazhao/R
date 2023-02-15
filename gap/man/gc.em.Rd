@@ -31,7 +31,7 @@ alleles for each subject.}
 
 \item{miss.val}{missing value.}
 
-\item{control}{a function, see \code{\link[gap]{genecounting}}.}
+\item{control}{a function, see \link{genecounting}.}
 }
 \value{
 List with components:
@@ -91,7 +91,7 @@ Zhao, J. H. and P. C. Sham (2003). Generic number systems and haplotype
 analysis. Comp Meth Prog Biomed 70: 1-9
 }
 \seealso{
-\code{\link[gap]{genecounting}}, \code{\link[gap]{LDkl}}
+\code{\link{genecounting}}, \code{\link{LDkl}}
 }
 \author{
 Jing Hua Zhao

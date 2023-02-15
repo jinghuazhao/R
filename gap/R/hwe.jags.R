@@ -12,7 +12,7 @@
 #' @details
 #' Hardy-Weinberg equilibrium test.
 #'
-#' This function performs Bayesian Hardy-Weinberg equilibrium test, which mirrors \code{\link[gap]{hwe.hardy}},
+#' This function performs Bayesian Hardy-Weinberg equilibrium test, which mirrors [hwe.hardy],
 #' another implementation for highly polymorphic markers when asymptotic results do not hold.
 #'
 #' @export
@@ -21,7 +21,7 @@
 #' @references
 #' Wakefield J (2010). Bayesian methods for examining Hardy-Weinberg equilibrium. Biometrics 66:257-265
 #'
-#' @seealso \code{\link[gap]{hwe.hardy}} 
+#' @seealso [`hwe.hardy`]
 #'
 #' @examples
 #' \dontrun{

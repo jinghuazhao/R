@@ -97,7 +97,7 @@ Wakefield J (2007) Bayesian measure of the probability of false discovery in gen
 Am J Hum Genet 81:208-227
 }
 \seealso{
-\code{\link[gap]{FPRP}}
+\code{\link{FPRP}}
 }
 \author{
 Jon Wakefield, Jing Hua Zhao

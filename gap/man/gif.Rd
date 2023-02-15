@@ -72,7 +72,7 @@ gif(test,gifset=1:23)
 \insertAllCited{}
 }
 \seealso{
-\code{\link[gap]{pfc}}
+\code{\link{pfc}}
 }
 \author{
 Alun Thomas, Jing Hua Zhao

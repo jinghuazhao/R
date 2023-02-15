@@ -27,7 +27,7 @@
 #'
 #' Clayton DG (2001) SNPHAP. https://github.com/chr1swallace/snphap.
 #'
-#' @seealso \code{\link[gap]{hap}}
+#' @seealso [`hap`]
 #'
 #' @examples
 #' \dontrun{

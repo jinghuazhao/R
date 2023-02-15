@@ -50,7 +50,7 @@ Note that with real chromosomal positions, it is also appropriate to plot and so
 It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other
 context.
 
-To maintain back compatibility options as in \code{\link[gap]{mhtplot}} are used. The positions of the horizontal
+To maintain back compatibility options as in \code{\link{mhtplot}} are used. The positions of the horizontal
 labels are now in the middle rather than at the beginning of their bands in the plot.
 }
 \examples{

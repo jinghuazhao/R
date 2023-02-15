@@ -23,7 +23,7 @@
 #' Yu C, Zelterman D (2002) Statistical inference for familial disease clusters. Biometrics
 #' 58:481-491
 #'
-#' @seealso \code{\link[gap]{kin.morgan}}
+#' @seealso [`kin.morgan`]
 #'
 #' @examples
 #' \dontrun{

@@ -123,7 +123,7 @@ dev.off()
 }
 }
 \seealso{
-\code{\link[gap]{mhtplot}}.
+\code{\link{mhtplot}}.
 }
 \author{
 James Peters, Jing Hua Zhao

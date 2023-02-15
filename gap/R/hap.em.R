@@ -43,7 +43,7 @@
 #' - post Vector of posterior probabilities of pairs of
 #'   haplotypes for a person, given thier marker phenotypes.
 #'
-#' @seealso \code{\link[gap]{hap}}, \code{\link[gap]{LDkl}}
+#' @seealso [`hap`], [`LDkl`]
 #'
 #' @examples
 #' \dontrun{

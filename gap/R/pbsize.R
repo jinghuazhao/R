@@ -23,7 +23,7 @@
 #'
 #' Armitage P, Colton T (2005). Encyclopedia of Biostatistics, 2nd Edition, Wiley.
 #'
-#' @seealso \code{\link[gap]{fbsize}}
+#' @seealso [`fbsize`]
 #'
 #' @examples
 #' kp <- c(0.01,0.05,0.10,0.2)

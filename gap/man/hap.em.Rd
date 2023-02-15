@@ -77,7 +77,7 @@ hap.em(id=1:length(hla[,1]),data=hla[,3:8],locus.label=c("DQR","DQA","DQB"))
 
 }
 \seealso{
-\code{\link[gap]{hap}}, \code{\link[gap]{LDkl}}
+\code{\link{hap}}, \code{\link{LDkl}}
 }
 \author{
 Jing Hua Zhao

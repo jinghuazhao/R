@@ -14,7 +14,7 @@
 #' (by setting data.type="count") which requires that genotype counts for all n(n+1) possible genotypes,
 #' with n being the number of alleles.
 #'
-#' For highly polymorphic markers when asymptotic results do not hold, please resort to hwe.hardy.
+#' For highly polymorphic markers when asymptotic results do not hold, please resort to [`hwe.hardy`].
 #'
 #' @export
 #' @return
@@ -27,7 +27,7 @@
 #' - df Degree(s) of freedom.
 #' - rho \eqn{\sqrt{\chi^2/N}}{sqrt{chi-square/N}} the contingency table coefficient.
 #'
-#' @seealso \code{\link[gap]{hwe.hardy}} 
+#' @seealso [hwe.hardy]
 #'
 #' @examples
 #' \dontrun{

@@ -102,7 +102,7 @@ Guo, S.-W. and E. A. Thompson (1992) Performing the exact test of
 Hardy-Weinberg proportion for multiple alleles. Biometrics. 48:361--372.
 }
 \seealso{
-\code{\link[gap]{hwe}}, \code{\link[genetics]{HWE.test}}, \code{\link[genetics]{genotype}}
+\code{\link{hwe}}, \code{\link[genetics:HWE.test]{genetics::HWE.test}}, \code{\link[genetics:genotype]{genetics::genotype}}
 }
 \author{
 Sun-Wei Guo, Jing Hua Zhao, Gregor Gorjanc

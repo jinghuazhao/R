@@ -86,7 +86,7 @@ Rosner B (2000). Fundamentals of Biostatistics, 5th Edition, Duxbury.
 Armitage P, Colton T (2005). Encyclopedia of Biostatistics, 2nd Edition, Wiley.
 }
 \seealso{
-\code{\link[gap]{fbsize}}
+\code{\link{fbsize}}
 }
 \author{
 Jing Hua Zhao

@@ -11,19 +11,19 @@
 #' @param labels vector of point labels for interactive point identification,
 #'    or \code{FALSE} for no labels.
 #' @param las if \code{0}, ticks labels are drawn parallel to the
-#'    axis; set to \code{1} for horizontal labels (see \code{\link[graphics]{par}}).
+#'    axis; set to \code{1} for horizontal labels (see [`graphics::par`]).
 #' @param col color for points; the default is the \emph{fourth} entry
-#'    in the current color palette (see \code{\link[grDevices]{palette}}
-#'    and \code{\link[graphics]{par}}).
+#'    in the current color palette (see [`grDevices::palette`]
+#'    and [`graphics::par`]).
 #' @param lcol color for lines; the default is the \emph{second} entry as above.
 #' @param xlim the x limits (x1, x2) of the plot. Note that x1 > x2 is allowed and leads to a reversed axis.
 #' @param ylim the y limits of the plot.
 #' @param pch plotting character for points; default is \code{1} 
-#'    (a circle, see \code{\link[graphics]{par}}).
+#'    (a circle, see [`graphics::par`]).
 #' @param bg background color of points.
 #' @param cex factor for expanding the size of plotted symbols; the default is
 #'    \code{.4}.
-#' @param lwd line width; default is \code{1} (see \code{\link[graphics]{par}}).
+#' @param lwd line width; default is \code{1} (see [`graphics::par`]).
 #'    Confidence envelopes are drawn at half this line width.
 #' @param line \code{"quartiles"} to pass a line through the quartile-pairs, or
 #'    \code{"robust"} for a robust-regression line; the latter uses the \code{rlm}
@@ -55,7 +55,7 @@
 #' The American Statistician 62:45-53
 #'
 #' @author John Fox, Jing Hua Zhao
-#' @seealso{\code{\link[stats]{qqnorm}}, \code{\link[gap]{qqunif}}, \code{\link[gap]{gcontrol2}}}
+#' @seealso [`stats::qqnorm`], [`qqunif`], [`gcontrol2`]
 #'
 #' @examples
 #' \dontrun{

@@ -22,7 +22,7 @@
 #' @references
 #' Zhao JH, Sham PC (2003). Generic number system and haplotype analysis. Comp Prog Meth Biomed 70:1-9
 #'
-#' @seealso \code{\link[gap]{genecounting}},\code{\link[gap]{hwe.hardy}}
+#' @seealso [`genecounting`], [`hwe.hardy`]
 #'
 #' @examples
 #' \dontrun{

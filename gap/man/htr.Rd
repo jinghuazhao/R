@@ -72,7 +72,7 @@ Xie R, Stram DO (2005). Asymptotic equivalence between two score tests for haplo
 Genet. Epidemiol. 29:186-170
 }
 \seealso{
-\code{\link[gap]{hap.score}}
+\code{\link{hap.score}}
 }
 \author{
 Dimitri Zaykin, Jing Hua Zhao

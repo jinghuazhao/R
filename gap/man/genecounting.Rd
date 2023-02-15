@@ -100,7 +100,7 @@ Zhao, J. H. (2004). 2LD, GENECOUNTING and HAP: Computer programs for linkage
 disequilibrium analysis. Bioinformatics, 20, 1325-1326
 }
 \seealso{
-\code{\link[gap]{gc.em}}, \code{\link[gap]{LDkl}}
+\code{\link{gc.em}}, \code{\link{LDkl}}
 }
 \author{
 Jing Hua Zhao

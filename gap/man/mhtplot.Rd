@@ -121,7 +121,7 @@ miamiplot(test,chr="chr",bp="pos",p="p",pr="pr")
 }
 }
 \seealso{
-\code{\link[gap]{qqunif}}
+\code{\link{qqunif}}
 }
 \author{
 Jing Hua Zhao

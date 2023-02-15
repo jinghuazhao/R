@@ -32,7 +32,7 @@
 #' of significance of the extended transmission/disequilibrium test.
 #' Am. J. Hum. Genet. 64:1484-1485
 #'
-#' @seealso \code{\link[gap]{mtdt}}
+#' @seealso [`mtdt`]
 #'
 #' @examples
 #' \dontrun{

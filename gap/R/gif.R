@@ -20,7 +20,7 @@
 #' @references
 #' \insertAllCited{}
 #'
-#' @seealso `\link[gap]{pfc}`
+#' @seealso [`pfc`]
 #'
 #' @examples
 #' \dontrun{

@@ -63,7 +63,7 @@ miamiplot2(
 \item{yAxisInterval}{The interval between tick marks on the y-axis. Defaults to 5, 2 may be more suitable for plots with larger minimum p-values.}
 }
 \value{
-In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for \code{\link[gap]{labelManhattan}})
+In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for \code{\link{labelManhattan}})
 }
 \description{
 Miami Plot

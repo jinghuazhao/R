@@ -7,7 +7,8 @@
 #' Allele sharing score statistics.
 #'
 #' @export
-#' @return The returned value is the value of score statistic.
+#' @return
+#' The returned value is the value of score statistic.
 #'
 #' @references
 #' Kruglyak L, Daly MJ, Reeve-Daly MP, Lander ES (1996) Parametric and Nonparametric

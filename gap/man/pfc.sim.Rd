@@ -75,7 +75,7 @@ Yu C and D Zelterman (2001) Exact inference for family disease clusters. Commun 
 Meth 30:2293-2305
 }
 \seealso{
-\code{\link[gap]{pfc}}
+\code{\link{pfc}}
 }
 \author{
 Chang Yu, Dani Zelterman

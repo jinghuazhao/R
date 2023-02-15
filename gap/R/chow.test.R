@@ -35,7 +35,7 @@
 #' @references
 #' Chow GC (1960). Tests of equality between sets of coefficients in two linear regression. Econometrica 28:591-605
 #'
-#' @seealso \code{\link[gap]{htr}}
+#' @seealso [`htr`]
 #'
 #' @examples
 #' \dontrun{

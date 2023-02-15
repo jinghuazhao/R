@@ -94,7 +94,7 @@ mvmeta(b,V)
 Hartung J, Knapp G, Sinha BK. Statistical Meta-analysis with Applications, Wiley 2008.
 }
 \seealso{
-\code{\link[gap]{metareg}}
+\code{\link{metareg}}
 }
 \author{
 Jing Hua Zhao

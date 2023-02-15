@@ -32,8 +32,8 @@ LD statistics for two diallelic markers
 }
 \details{
 It is possible to perform permutation test of \eqn{r^2} by re-ordering the genotype through
-R's sample function, obtaining the haplotype frequencies by \code{\link[gap]{gc.em}}
-or \code{\link[gap]{genecounting}}, supplying the estimated haplotype frequencies to
+R's sample function, obtaining the haplotype frequencies by \code{\link{gc.em}}
+or \code{\link{genecounting}}, supplying the estimated haplotype frequencies to
 the current function and record x2, and comparing the observed x2 and that from the
 replicates.
 }
@@ -58,7 +58,7 @@ Zapata C, Alvarez G, Carollo C (1997) Approximate variance of the standardized
 measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
 }
 \seealso{
-\code{\link[gap]{LDkl}}
+\code{\link{LDkl}}
 }
 \author{
 Jing Hua Zhao

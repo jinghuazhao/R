@@ -38,7 +38,7 @@ normal distribution; \code{t} for the t-distribution.}
 \item{main}{label for plot.}
 
 \item{las}{if \code{0}, ticks labels are drawn parallel to the
-axis; set to \code{1} for horizontal labels (see \code{\link[graphics]{par}}).}
+axis; set to \code{1} for horizontal labels (see \code{\link[graphics:par]{graphics::par}}).}
 
 \item{envelope}{confidence level for point-wise confidence envelope, or
 \code{FALSE} for no envelope.}
@@ -47,8 +47,8 @@ axis; set to \code{1} for horizontal labels (see \code{\link[graphics]{par}}).}
 or \code{FALSE} for no labels.}
 
 \item{col}{color for points; the default is the \emph{fourth} entry
-in the current color palette (see \code{\link[grDevices]{palette}}
-and \code{\link[graphics]{par}}).}
+in the current color palette (see \code{\link[grDevices:palette]{grDevices::palette}}
+and \code{\link[graphics:par]{graphics::par}}).}
 
 \item{lcol}{color for lines; the default is the \emph{second} entry as above.}
 
@@ -56,11 +56,11 @@ and \code{\link[graphics]{par}}).}
 
 \item{ylim}{the y limits of the plot.}
 
-\item{lwd}{line width; default is \code{1} (see \code{\link[graphics]{par}}).
+\item{lwd}{line width; default is \code{1} (see \code{\link[graphics:par]{graphics::par}}).
 Confidence envelopes are drawn at half this line width.}
 
 \item{pch}{plotting character for points; default is \code{1}
-(a circle, see \code{\link[graphics]{par}}).}
+(a circle, see \code{\link[graphics:par]{graphics::par}}).}
 
 \item{bg}{background color of points.}
 
@@ -116,7 +116,7 @@ Leemis, L. M., J. T. Mcqueston (2008) \emph{Univariate distribution relationship
 The American Statistician 62:45-53
 }
 \seealso{
-{\code{\link[stats]{qqnorm}}, \code{\link[gap]{qqunif}}, \code{\link[gap]{gcontrol2}}}
+\code{\link[stats:qqnorm]{stats::qqnorm}}, \code{\link{qqunif}}, \code{\link{gcontrol2}}
 }
 \author{
 John Fox, Jing Hua Zhao

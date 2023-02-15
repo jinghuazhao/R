@@ -24,7 +24,7 @@
 #' @references
 #' Hartung J, Knapp G, Sinha BK. Statistical Meta-analysis with Applications, Wiley 2008.
 #'
-#' @seealso \code{\link[gap]{metareg}}
+#' @seealso [`metareg`]
 #'
 #' @examples
 #' \dontrun{

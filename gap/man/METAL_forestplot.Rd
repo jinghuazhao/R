@@ -55,9 +55,6 @@ https://CRAN.R-project.org/package=meta.
 Willer CJ, Li Y, Abecasis GR. (2010). METAL: fast and efficient meta-analysis of genomewideassociation scans. Bioinformations. 26:2190-1,
 https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
 }
-\seealso{
-\code{\link[gap]{METAL_forestplot}}
-}
 \author{
 Jing Hua Zhao
 }

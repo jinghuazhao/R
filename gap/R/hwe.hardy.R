@@ -29,7 +29,7 @@
 #' Guo, S.-W. and E. A. Thompson (1992) Performing the exact test of
 #' Hardy-Weinberg proportion for multiple alleles. Biometrics. 48:361--372.
 #'
-#' @seealso \code{\link[gap]{hwe}}, \code{\link[genetics]{HWE.test}}, \code{\link[genetics]{genotype}}
+#' @seealso [`hwe`], [`genetics::HWE.test`], [`genetics::genotype`]
 #'
 #' @examples
 #' \dontrun{
@@ -88,7 +88,7 @@
 #'
 #' keywords htest
 
-hwe.hardy<-function(a, alleles=3, seed=3000, sample=c(1000, 1000, 5000)) {
+hwe.hardy <- function(a, alleles=3, seed=3000, sample=c(1000, 1000, 5000)) {
 #   require(genetics)
 #    if (!missing(x)) {
 #        if (!is.genotype(x)) {

@@ -106,7 +106,7 @@ Scott, W. K., M. A. Pericak-Vance, et al. (1997). Genetic analysis of
 complex diseases. Science 275: 1327.
 }
 \seealso{
-\code{\link[gap]{pbsize}}
+\code{\link{pbsize}}
 }
 \author{
 Jing Hua Zhao

@@ -24,7 +24,7 @@
 #'
 #' @export
 #' @return
-#' In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for \code{\link[gap]{labelManhattan}})
+#' In addition to creading a Miami plot, the function returns a data frame containing x coordinates for chromosome start positions (required for [`labelManhattan`])
 #'
 #' @author Jonathan Marten
 #' @note Extended to handle extreme P values.

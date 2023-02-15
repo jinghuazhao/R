@@ -40,6 +40,6 @@ Score tests for association of traits with haplotypes when
 linkage phase is ambiguous. Amer J Hum Genet 70:425-34
 }
 \seealso{
-{\code{\link[gap]{hap.score}}}
+\code{\link{hap.score}}
 }
 \keyword{print}

@@ -5,7 +5,7 @@
 #' @param maxiter Maximum number of iterations of EM.
 #' @param handle.miss a flag for handling missing genotype data, 0=no, 1=yes.
 #' @param miss.val missing value.
-#' @param control a function, see \code{\link[gap]{genecounting}}.
+#' @param control a function, see [genecounting].
 #'
 #' @details
 #' Gene counting for haplotype analysis with missing data, adapted for hap.score
@@ -56,7 +56,7 @@
 #' Zhao, J. H. and P. C. Sham (2003). Generic number systems and haplotype
 #' analysis. Comp Meth Prog Biomed 70: 1-9
 #'
-#' @seealso \code{\link[gap]{genecounting}}, \code{\link[gap]{LDkl}}
+#' @seealso [`genecounting`], [`LDkl`]
 #'
 #' @examples
 #' \dontrun{

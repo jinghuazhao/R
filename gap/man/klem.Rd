@@ -38,7 +38,7 @@ source(file.path(find.package("gap"),"scripts","SH2B1.R"),echo=TRUE)
 
 }
 \seealso{
-{\code{\link[gap]{genecounting}}}
+\code{\link{genecounting}}
 }
 \author{
 Jing Hua Zhao

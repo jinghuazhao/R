@@ -79,5 +79,5 @@ using polymorphic genetic markers. RSS 2003, Hassalt, Belgium
 Clayton DG (2001) SNPHAP. https://github.com/chr1swallace/snphap.
 }
 \seealso{
-\code{\link[gap]{hap}}
+\code{\link{hap}}
 }

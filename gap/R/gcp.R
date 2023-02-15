@@ -33,7 +33,7 @@
 #' polymorphic genetic markers -- methods, implementation and application, Royal
 #' Statistical Society 2003, Hassallt-Diepenbeek, Belgium.
 #'
-#' @seealso \code{\link[gap]{genecounting}}
+#' @seealso [`genecounting`]
 #'
 #' @examples
 #' \dontrun{

@@ -190,7 +190,7 @@ getb0 <- function(p, X, b1, b2)
 #' Vittinghoff E, Sen S, McCulloch CE. Sample size calculations for evaluating mediation. Stat Med 2009; 
 #' 28:541-57.
 #'
-#' @seealso \code{\link[gap]{ab}}
+#' @seealso [`ab`]
 #'
 #' @examples
 #' \dontrun{

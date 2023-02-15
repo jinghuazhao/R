@@ -31,7 +31,7 @@
 #' Preacher KJ, Leonardelli GJ. Calculation for the Sobel Test-An interactive calculation tool for mediation tests
 #' https://quantpsy.org/sobel/sobel.htm
 #'
-#' @seealso \code{\link[gap]{ccsize}}
+#' @seealso [`ccsize`]
 #'
 #' @examples
 #' \dontrun{

@@ -159,7 +159,7 @@ Cai J, Zeng D. Sample size/power calculation for case-cohort studies.
 Biometrics 2004, 60:1015-1024
 }
 \seealso{
-\code{\link[gap]{pbsize}}
+\code{\link{pbsize}}
 }
 \author{
 Jing Hua Zhao

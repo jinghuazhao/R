@@ -67,7 +67,7 @@ of significance of the extended transmission/disequilibrium test.
 Am. J. Hum. Genet. 64:1484-1485
 }
 \seealso{
-{\code{\link[gap]{bt}}}
+\code{\link{bt}}
 }
 \author{
 Mike Miller, Jing Hua Zhao

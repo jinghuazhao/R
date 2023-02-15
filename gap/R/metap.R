@@ -64,7 +64,7 @@
 #' persp(q,q,t2)
 #' }
 #'
-#' @seealso \code{\link[gap]{metareg}}
+#' @seealso [`metareg`]
 #'
 #' @author Jing Hua Zhao
 #' @keywords htest

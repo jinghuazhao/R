@@ -70,7 +70,7 @@ Yu C, Zhang S, Zhou C, Sile S. A likelihood ratio test of population Hardy-Weinb
 for case-control studies. Genetic Epidemiology 33:275-280, 2009
 }
 \seealso{
-\code{\link[gap]{hwe}}
+\code{\link{hwe}}
 }
 \author{
 Chang Yu, Li Wang, Jing Hua Zhao

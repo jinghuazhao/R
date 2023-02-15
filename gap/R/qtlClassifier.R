@@ -40,7 +40,7 @@
 #' }
 #'
 #' @note This is adapted from iBMQ/eqtlClassifier as an xQTL (x=e, p, me, ...) classifier.
-#' @seealso{\code{\link[gap]{cis.vs.trans.classification}}}
+#' @seealso [`cis.vs.trans.classification`]
 
 qtlClassifier <- function (geneSNP, SNPPos, genePos, radius)
 {

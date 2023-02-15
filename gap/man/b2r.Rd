@@ -52,7 +52,7 @@ Casella G, Berger RL (2002). Statistical Inference, 2nd Edition, Duxbury.
 Elston RC (1975). On the correlation between correlations. Biometrika 62:133-40
 }
 \seealso{
-\code{\link[gap]{mvmeta}}, \code{\link[gap]{LD22}}
+\code{\link{mvmeta}}, \code{\link{LD22}}
 }
 \author{
 Jing Hua Zhao

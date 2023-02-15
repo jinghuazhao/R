@@ -21,7 +21,7 @@
 #' Xie R, Stram DO (2005). Asymptotic equivalence between two score tests for haplotype-specific risk in general linear models.
 #' Genet. Epidemiol. 29:186-170
 #'
-#' @seealso \code{\link[gap]{hap.score}}
+#' @seealso [`hap.score`]
 #'
 #' @examples
 #' \dontrun{

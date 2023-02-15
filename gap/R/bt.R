@@ -56,7 +56,7 @@ toETDT <- function(a)
 #' Sham PC, Curtis D (1995) An extended transmission/disequilibrium 
 #' test (TDT) for multi-allelic marker loci. Ann. Hum. Genet. 59:323-336
 #'
-#' @seealso \code{\link[gap]{mtdt}}
+#' @seealso [`mtdt`]
 #'
 #' @examples
 #' \dontrun{

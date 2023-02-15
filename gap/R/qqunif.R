@@ -29,7 +29,7 @@
 #'
 #' Davison AC. Statistical Models. Cambridge University Press 2003.
 #'
-#' @seealso \code{\link[gap]{qqfun}}
+#' @seealso [`qqfun`]
 #'
 #' @examples
 #' \dontrun{

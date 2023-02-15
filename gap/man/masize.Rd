@@ -215,6 +215,6 @@ Vittinghoff E, Sen S, McCulloch CE. Sample size calculations for evaluating medi
 28:541-57.
 }
 \seealso{
-\code{\link[gap]{ab}}
+\code{\link{ab}}
 }
 \keyword{misc}

@@ -75,9 +75,10 @@
 #'
 #' @keywords models regression
 
-hap.score<-function(y, geno, trait.type="gaussian",
-                    offset = NA, x.adj = NA, skip.haplo=.005,
-                    locus.label=NA, miss.val=0, n.sim=0, method="gc", id=NA, handle.miss=0, mloci=NA, sexid=NA)
+hap.score <- function(y, geno, trait.type="gaussian",
+                      offset = NA, x.adj = NA, skip.haplo=.005,
+                      locus.label=NA, miss.val=0, n.sim=0, method="gc", id=NA,
+                      handle.miss=0, mloci=NA, sexid=NA)
 {
   trait.int <- charmatch(trait.type, c("gaussian", "binomial", "poisson", "ordinal"))
   if(is.na(trait.int)) stop("Invalid trait type")
@@ -410,7 +411,7 @@ return(list(u.score=u.score, v.score=v.score))
 #' Score tests for association of traits with haplotypes when
 #' linkage phase is ambiguous. Amer J Hum Genet 70:425-34
 #'
-#' @seealso{\code{\link[gap]{hap.score}}}
+#' @seealso [`hap.score`]
 #'
 #' @examples
 #' \dontrun{
@@ -451,7 +452,7 @@ plot.hap.score <- function(x, ...){
 #' Score tests for association of traits with haplotypes when
 #' linkage phase is ambiguous. Amer J Hum Genet 70:425-34
 #'
-#' @seealso{\code{\link[gap]{hap.score}}}
+#' @seealso [`hap.score`]
 #'
 #' @examples
 #' \dontrun{

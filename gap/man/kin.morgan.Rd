@@ -55,7 +55,7 @@ kin.morgan(werner[,1:3])
 Morgan V2.1 \url{https://sites.stat.washington.edu/thompson/Genepi/MORGAN/Morgan.shtml}
 }
 \seealso{
-\code{\link[gap]{gif}}
+\code{\link{gif}}
 }
 \author{
 Morgan development team, Jing Hua Zhao
