@@ -37,8 +37,8 @@ U & = m + z_\alpha s
 \eqn{\Rightarrow}{==>} \eqn{U + L = 2 m}, \eqn{U - L=2 z_\alpha s}{U - L = 2 z_alpha s}. Consequently,
 \deqn{
 \begin{aligned}
-m & = \frac{(U + L)}{2} \cr
-s & = \frac{(U - L)}{2 z_\alpha}
+m & = \frac{U + L}{2} \cr
+s & = \frac{U - L}{2 z_\alpha}
 \end{aligned}
 }{m = (U + L)/2, s = (U - L)/(2 z_alpha)}
 Effect size in epidemiological studies on a binary outcome is typically reported as odds ratio from a logistic regression

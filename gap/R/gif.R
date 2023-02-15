@@ -13,7 +13,6 @@
 #'
 #' The scaling is purely for convenience of presentation.
 #'
-#' @export
 #' @return
 #' The returned value is a list containing:
 #' - gifval the genetic index of familiarity.
@@ -21,7 +20,7 @@
 #' @references
 #' \insertAllCited{}
 #'
-#' @seealso \code{\link[gap]{pfc}}
+#' @seealso `\link[gap]{pfc}`
 #'
 #' @examples
 #' \dontrun{
@@ -59,6 +58,7 @@
 #' @author Alun Thomas, Jing Hua Zhao
 #' @note Adapted from gif.c, testable with -Dexecutable as standalone program, 
 #' which can be use for any pair of indidivuals
+#' @export
 #' @keywords datagen
 
 gif <- function(data,gifset)

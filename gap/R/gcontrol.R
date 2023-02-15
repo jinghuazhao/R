@@ -30,7 +30,6 @@
 #'
 #' @source \url{https://www.cmu.edu/dietrich/statistics-datascience/index.html}
 #'
-#' @export
 #' @return The returned value is a list containing:
 #' - deltot the probability of being an outlier.
 #' - x2 the \eqn{\chi^2}{chi-squared} statistic.
@@ -51,6 +50,7 @@
 #' @note Adapted from gcontrol by Bobby Jones and Kathryn Roeder, 
 #' use -Dexecutable for standalone program, function getnum in the original 
 #' code needs \%*s to skip id string
+#' @export
 #' @keywords models
 
 gcontrol<-function(data,zeta=1000,kappa=4,tau2=1,epsilon=0.01,ngib=500,burn=50,idum=2348)
