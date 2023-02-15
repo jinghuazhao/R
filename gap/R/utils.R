@@ -232,10 +232,10 @@ WriteGRM <- function(prefix=51,id,N,GRM)
 #' \eqn{\Rightarrow}{==>} \eqn{U + L = 2 m}, \eqn{U - L=2 z_\alpha s}{U - L = 2 z_alpha s}. Consequently,
 #' \deqn{
 #' \begin{aligned}
-#' m & = (U + L)/2 \cr
-#' s & = (U - L)/2/z_\alpha
+#' m & = \frac{(U + L)}{2} \cr
+#' s & = \frac{(U - L)}{2 z_\alpha}
 #' \end{aligned}
-#' }{m = (U + L)/2, s = (U - L)/2/z_alpha}
+#' }{m = (U + L)/2, s = (U - L)/(2 z_alpha)}
 #' Effect size in epidemiological studies on a binary outcome is typically reported as odds ratio from a logistic regression
 #' or hazard ratio from a Cox regression, \eqn{L\equiv\log(L)}{L ==> log(L)}, \eqn{U\equiv\log(U)}{U ==> log(U)}.
 #'
