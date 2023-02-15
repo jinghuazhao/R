@@ -27,7 +27,7 @@ Effect size and standard error from confidence interval
 \details{
 Effect size is a measure of strength of the relationship between two variables in a population or parameter estimate of that population.
 Without loss of generality, denote \code{m} and \code{s} to be the mean and standard deviation of a sample from \eqn{N(\mu,\sigma^2)}{N(mu,sigma^2}).
-Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, then confidence limits L, U in a CI are defined as follows,
+Let \eqn{z \sim N(0,1)}{z ~ N(0,1)} with cutoff point \eqn{z_\alpha}{z_alpha}, confidence limits \code{L}, \code{U} in a CI are defined as follows,
 \deqn{
 \begin{aligned}
 L & = m - z_\alpha s \cr
