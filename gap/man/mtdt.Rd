@@ -53,18 +53,10 @@ mtdt(x)
 
 }
 \references{
-Miller MB (1997) Genomic scanning and the transmission/disequilibrium test:
-analysis of error rates. Genet. Epidemiol. 14:851-856
-
-Sham PC (1997) Transmission/disequilibrium tests for multiallelic loci.
-Am. J. Hum. Genet. 61:774-778
-
-Spielman RS, Ewens WJ (1996) The TDT and other family-based tests for
-linkage disequilibrium and association. Am. J. Hum. Genet. 59:983-989
-
-Zhao JH, Sham PC, Curtis D (1999) A program for the Monte Carlo evaluation
-of significance of the extended transmission/disequilibrium test.
-Am. J. Hum. Genet. 64:1484-1485
+\insertRef{miller97}{gap}
+\insertRef{sham97}{gap}
+\insertRef{spielman96}{gap}
+\insertRef{zhao99}{gap}
 }
 \seealso{
 \code{\link{bt}}

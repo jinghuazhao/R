@@ -100,11 +100,10 @@ z
 
 }
 \references{
-Wacholder S, Chanock S, Garcia-Closas M, El ghomli L, Rothman N. (2004) Assessing the probability that a positive
-report is false: an approach for molecular epidemiology studies. J Natl Cancer Inst 96:434-442
+\insertRef{wacholder04}{gap}
 }
 \seealso{
-\link{BFDP}
+\code{\link{BFDP}}
 }
 \author{
 Jing Hua Zhao

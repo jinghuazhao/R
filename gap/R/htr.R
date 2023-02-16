@@ -15,8 +15,7 @@
 #' - pi the p values for individual haplotypes.
 #' 
 #' @references
-#' Zaykin DV, Westfall PH, Young SS, Karnoub MA, Wagner MJ, Ehm MG (2002) Testing association of statistically inferred haplotypes with 
-#' discrete and continuous traits in samples of unrelated individuals. Hum. Hered. 53:79-91
+#' \insertRef{zaykin02}{gap}
 #'
 #' Xie R, Stram DO (2005). Asymptotic equivalence between two score tests for haplotype-specific risk in general linear models.
 #' Genet. Epidemiol. 29:186-170

@@ -55,7 +55,8 @@
 #' sh pedtodot <pedigree file>
 #'
 #' @export
-#' @return For each pedigree, the function generates a .dot file to be used by dot. The
+#' @return
+#' For each pedigree, the function generates a .dot file to be used by dot. The
 #' collection of all pedigrees (*.dot) can also be put together.
 #' 
 #' @seealso package sem in CRAN and Rgraphviz in BioConductor \url{https://www.bioconductor.org/}.

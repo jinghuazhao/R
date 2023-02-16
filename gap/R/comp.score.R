@@ -144,8 +144,7 @@ score <- function(chrom.pos, pair.data, ibd)
 #' Kruglyak L, Lander ES (1998) Faster multipoint linkage analysis using Fourier transforms
 #' J Comp Bio 1998 5:1-7
 #'
-#' Wang K (2005) A likelihood approach for quantitative-trait-locus mapping with
-#' selected pedigrees. Biometrics 61:465-473
+#' \insertRef{wang05}{gap}
 #'
 #' @examples
 #' \dontrun{

@@ -93,8 +93,7 @@ z
 }
 }
 \references{
-Wakefield J (2007) Bayesian measure of the probability of false discovery in genetic epidemiology studies.
-Am J Hum Genet 81:208-227
+\insertRef{wakefield07}{gap}
 }
 \seealso{
 \code{\link{FPRP}}

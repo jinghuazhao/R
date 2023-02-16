@@ -63,9 +63,7 @@ test (TDT) for multi-allelic marker loci. Ann. Hum. Genet. 59:323-336
 Turner H, Firth D (2010) Bradley-Terry models in R: The BradleyTerry2 package.
 https://cran.r-project.org/web/packages/BradleyTerry2/vignettes/BradleyTerry.pdf.
 
-Zhao JH, Sham PC, Curtis D (1999) A program for the Monte Carlo evaluation
-of significance of the extended transmission/disequilibrium test.
-Am. J. Hum. Genet. 64:1484-1485
+\insertRef{zhao99}{gap}
 }
 \seealso{
 \code{\link{mtdt}}

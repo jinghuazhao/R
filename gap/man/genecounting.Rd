@@ -89,9 +89,7 @@ mao.gc$npdat
 }
 }
 \references{
-Zhao, J. H., Lissarrague, S., Essioux, L. and P. C. Sham (2002).
-GENECOUNTING: haplotype analysis with missing genotypes.
-Bioinformatics 18(12):1694-1695
+\insertRef{zhao02}{gap}
 
 Zhao, J. H. and P. C. Sham (2003). Generic number systems and haplotype
 analysis. Comp Meth Prog Biomed 70: 1-9

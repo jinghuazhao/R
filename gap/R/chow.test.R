@@ -33,7 +33,7 @@
 #' - p the p value for the F test.
 #'
 #' @references
-#' Chow GC (1960). Tests of equality between sets of coefficients in two linear regression. Econometrica 28:591-605
+#' \insertRef{chow60}{gap}
 #'
 #' @seealso [`htr`]
 #'

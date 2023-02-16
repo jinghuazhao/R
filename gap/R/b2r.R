@@ -39,7 +39,7 @@ covfun <- function(r,n)
 #'
 #' Casella G, Berger RL (2002). Statistical Inference, 2nd Edition, Duxbury.
 #'
-#' Elston RC (1975). On the correlation between correlations. Biometrika 62:133-40
+#' \insertRef{elston75}{gap}
 #'
 #' @seealso [`mvmeta`], [`LD22`]
 #'

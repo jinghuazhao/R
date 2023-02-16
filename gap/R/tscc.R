@@ -82,9 +82,7 @@ solve_skol <- function(rootfun,target,lo,hi,e)
 #' - power power corresponding to C.
 #'
 #' @references
-#' Skol AD, Scott LJ, Abecasis GR, Boehkne M (2006).
-#' Joint analysis in more efficient than replication-based aalysis for two-stage
-#' genome-wide association studies. Nature Genetics 38:209-213
+#' \insertRef{skol06}{gap}
 #'
 #' @examples
 #' \dontrun{

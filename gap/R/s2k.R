@@ -17,9 +17,7 @@
 #' - p the corresponding p value.
 #'
 #' @references
-#' Hirotsu C, Aoki S, Inada T, Kitao Y (2001) An exact test for the association 
-#' between the disease and alleles at highly polymorphic loci with particular interest 
-#' in the haplotype analysis. Biometrics 57:769-778
+#' \insertRef{hirotsu01}{gap}
 #'
 #' @examples
 #' \dontrun{

@@ -22,7 +22,7 @@
 #' - p the p value.
 #'
 #' @references
-#' Hartung J, Knapp G, Sinha BK. Statistical Meta-analysis with Applications, Wiley 2008.
+#' \insertRef{hartung08}{gap}
 #'
 #' @seealso [`metareg`]
 #'

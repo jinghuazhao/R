@@ -49,7 +49,7 @@ Mathematical Modeling (Chapter 17, pp499-525). Academic Press.
 
 Casella G, Berger RL (2002). Statistical Inference, 2nd Edition, Duxbury.
 
-Elston RC (1975). On the correlation between correlations. Biometrika 62:133-40
+\insertRef{elston75}{gap}
 }
 \seealso{
 \code{\link{mvmeta}}, \code{\link{LD22}}

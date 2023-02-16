@@ -26,8 +26,7 @@
 #' @source https://sites.stat.washington.edu/thompson/Genepi/pangaea.shtml
 #'
 #' @references
-#' Guo, S.-W. and E. A. Thompson (1992) Performing the exact test of
-#' Hardy-Weinberg proportion for multiple alleles. Biometrics. 48:361--372.
+#' \insertRef{guo92}{gap}
 #'
 #' @seealso [`hwe`], [`genetics::HWE.test`], [`genetics::genotype`]
 #'

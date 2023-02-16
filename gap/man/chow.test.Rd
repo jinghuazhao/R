@@ -87,7 +87,7 @@ chow.test.r<-chow.test(y1,x1,y2,x2)
 
 }
 \references{
-Chow GC (1960). Tests of equality between sets of coefficients in two linear regression. Econometrica 28:591-605
+\insertRef{chow60}{gap}
 }
 \seealso{
 \code{\link{htr}}
