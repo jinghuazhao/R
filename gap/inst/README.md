@@ -1,9 +1,9 @@
 
-The following items are available from the package root directory upon installation.
+The data/ and demo/ directories are with the package root; the following
+items are available from the there upon installation.
 
 Name           | Description
 ---------------|----------------------------------------------
-BFDP/          | BFDP codes
 CITATION       | Citation information
 JAGS/          | JAGS script
 REFERENCES.bib | BibTeX bibilgraphy for Rd
