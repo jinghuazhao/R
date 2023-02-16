@@ -1,6 +1,6 @@
 
 The data/ and demo/ directories are with the package root; the following
-items are available from the there upon installation.
+items are available from there upon installation.
 
 Name           | Description
 ---------------|----------------------------------------------
