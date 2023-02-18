@@ -1,4 +1,4 @@
-NeRiT
+NeRiT*
 gap.datasets_*
 gap.examples_*
 gap_*
@@ -6,6 +6,7 @@ gap/inst/shinygap/.Rhistory
 gap-00build.log
 lmm_*
 pan_*
+pQTLdata*
 pQTLtools*
 tdthap_*
 *.Rcheck
