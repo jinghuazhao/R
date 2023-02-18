@@ -55,7 +55,7 @@ xx <- mtdt2(x,refcat="12")
 
 }
 \references{
-Firth, D. (2005). Bradley-terry models in R. Journal of Statistical Software 12(1):1-12
+\insertRef{firth05}{gap}
 
 \insertRef{sham95}{gap}
 

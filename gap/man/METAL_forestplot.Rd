@@ -52,8 +52,7 @@ WEIGHTLABEL N
 Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf,
 https://CRAN.R-project.org/package=meta.
 
-Willer CJ, Li Y, Abecasis GR. (2010). METAL: fast and efficient meta-analysis of genomewideassociation scans. Bioinformations. 26:2190-1,
-https://github.com/statgen/METAL, https://genome.sph.umich.edu/wiki/METAL.
+\insertRef{willer10}{gap}
 }
 \author{
 Jing Hua Zhao
