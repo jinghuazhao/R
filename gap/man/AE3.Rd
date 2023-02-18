@@ -46,8 +46,7 @@ AE3(bwt ~ male + first + midage + highage + birthyr,
 
 }
 \references{
-Rabe-Hesketh S, Skrondal A, Gjessing HK. Biometrical modeling of twin and family data using standard mixed model
-software. Biometrics 2008, 64:280-288
+\insertRef{rh08}{gap}
 }
 \author{
 Jing Hua Zhao

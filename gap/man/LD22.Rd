@@ -49,13 +49,8 @@ t <- LD22(h,n)
 
 }
 \references{
-Zabetian CP, Buxbaum SG, Elston RC, Kohnke MD, Anderson GM, Gelernter J, Cubells JF.
-The structure of linkage disequilibrium at the DBH locus strongly influences the
-magnitude of association between diallelic markers and plasma dopamine beta-hydroxylase activity
-Am J Hum Genet 72: 1389-1400
-
-Zapata C, Alvarez G, Carollo C (1997) Approximate variance of the standardized
-measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
+\insertRef{zabetian03}{gap}
+\insertRef{zapata97}{gap}
 }
 \seealso{
 \code{\link{LDkl}}

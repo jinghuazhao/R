@@ -44,7 +44,7 @@
 #' - eps smallest double-precision number.
 #'
 #' @references
-#' JPT Higgins, SG Thompson, JJ Deeks, DG Altman. Measuring inconsistency in meta-analyses. BMJ 327:557-60
+#' \insertRef{higgins03}{gap}
 #'
 #' @examples
 #' \dontrun{

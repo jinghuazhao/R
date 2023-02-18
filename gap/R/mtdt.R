@@ -19,7 +19,7 @@
 #'
 #' @references
 #' \insertRef{miller97}{gap}
-#' \insertRef{sham97}{gap}
+#' \insertRef{sham95}{gap}
 #' \insertRef{spielman96}{gap}
 #' \insertRef{zhao99}{gap}
 #'

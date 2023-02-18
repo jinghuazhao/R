@@ -72,7 +72,7 @@ print(metareg(abc2,3))
 
 }
 \references{
-JPT Higgins, SG Thompson, JJ Deeks, DG Altman. Measuring inconsistency in meta-analyses. BMJ 327:557-60
+\insertRef{higgins03}{gap}
 }
 \author{
 Shengxu Li, Jing Hua Zhao

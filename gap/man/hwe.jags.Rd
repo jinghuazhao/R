@@ -113,7 +113,7 @@ hwe.jags.ABO.results
 
 }
 \references{
-Wakefield J (2010). Bayesian methods for examining Hardy-Weinberg equilibrium. Biometrics 66:257-265
+\insertRef{wakefield10}{gap}
 }
 \seealso{
 \code{\link{hwe.hardy}}

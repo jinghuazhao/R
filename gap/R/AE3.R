@@ -19,8 +19,7 @@
 #' - CL confidence intervals.
 #'
 #' @references
-#' Rabe-Hesketh S, Skrondal A, Gjessing HK. Biometrical modeling of twin and family data using standard mixed model 
-#' software. Biometrics 2008, 64:280-288
+#' \insertRef{rh08}{gap}
 #'
 #' @examples
 #' \dontrun{

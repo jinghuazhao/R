@@ -17,7 +17,7 @@
 #' The returned value is a fitted model from jags().
 #'
 #' @references
-#' Zhao JH, Luan JA, Congdon P (2018). Bayesian linear mixed models with polygenic effects. J Stat Soft 85(6):1-27, \doi{10.18637/jss.v085.i06}.
+#' \insertRef{zhao18}{gap}
 #'
 #' @examples
 #' \dontrun{

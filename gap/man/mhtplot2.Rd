@@ -92,8 +92,7 @@ par(opar)
 }
 }
 \references{
-den Hoed M, et al. (2013). Heart rate-associated loci and their effects on cardiac conduction and rhythm disorders.
-Nat Genet 45:621-631.
+\insertRef{denhoed13}{gap}
 }
 \author{
 Jing Hua Zhao

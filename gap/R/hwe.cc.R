@@ -574,8 +574,7 @@ DevHaGdominant.est <- function(case,ctl,k0,initial) {
 #' - pval the corresponding p value.
 #'
 #' @references
-#' Yu C, Zhang S, Zhou C, Sile S. A likelihood ratio test of population Hardy-Weinberg equilibrium
-#' for case-control studies. Genetic Epidemiology 33:275-280, 2009
+#' \insertRef{yu09}{gap}
 #'
 #' @seealso [`hwe`]
 #'

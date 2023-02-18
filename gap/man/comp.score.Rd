@@ -73,12 +73,8 @@ setwd(cwd)
 
 }
 \references{
-Kruglyak L, Daly MJ, Reeve-Daly MP, Lander ES (1996) Parametric and Nonparametric
-linkage analysis: a unified multipoint approach. Am J Hum Genet 58:1347-1363
-
-Kruglyak L, Lander ES (1998) Faster multipoint linkage analysis using Fourier transforms
-J Comp Bio 1998 5:1-7
-
+\insertRef{kruglyak96}{gap}
+\insertRef{kruglyak98}{gap}
 \insertRef{wang05}{gap}
 }
 \author{

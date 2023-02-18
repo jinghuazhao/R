@@ -30,7 +30,7 @@
 #' given the genealogical history of the sample and the value to -t option.
 #'
 #' @references
-#' Hudson RR (2002) Generating samples under a Wright-Fisher neutral model. Bioinformatics 18:337-8.
+#' \insertRef{hudson02}{gap}
 #'
 #' Press WH, SA Teukolsky, WT Vetterling, BP Flannery (1992). Numerical Recipes in C. Cambridge University Press, Cambridge.
 #'

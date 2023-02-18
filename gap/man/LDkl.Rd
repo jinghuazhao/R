@@ -77,9 +77,7 @@ Bishop YMM, Fienberg SE, Holland PW (1975) Discrete Multivariate Analysis
 
 Cramer H (1946) Mathematical Methods of Statistics. Princeton Univ. Press
 
-Zapata C, Carollo C, Rodriquez S (2001) Sampleing variance and distribution
-of the D' measure of overall gametic disequilibrium between multiallelic loci.
-Ann. Hum. Genet. 65: 395-406
+\insertRef{zapata01}{gap}
 
 Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
 linkage disequilibrium analysis. Bioinformatics 20:1325-1326

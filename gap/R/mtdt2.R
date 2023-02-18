@@ -22,8 +22,7 @@
 #' @references
 #' Firth, D. (2005). Bradley-terry models in R. Journal of Statistical Software 12(1):1-12
 #'
-#' Sham PC, Curtis D (1995) An extended transmission/disequilibrium
-#' test (TDT) for multi-allelic marker loci. Ann. Hum. Genet. 59:323-336
+#' \insertRef{sham95}{gap}
 #'
 #' Turner H, Firth D (2010) Bradley-Terry models in R: The BradleyTerry2 package.
 #' https://cran.r-project.org/web/packages/BradleyTerry2/vignettes/BradleyTerry.pdf.

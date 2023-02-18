@@ -19,7 +19,7 @@
 #' @return The returned value is a fitted model from jags().
 #'
 #' @references
-#' Wakefield J (2010). Bayesian methods for examining Hardy-Weinberg equilibrium. Biometrics 66:257-265
+#' \insertRef{wakefield10}{gap}
 #'
 #' @seealso [`hwe.hardy`]
 #'

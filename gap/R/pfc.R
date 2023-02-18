@@ -17,11 +17,8 @@
 #' - nenum the total number of tables enumerated.
 #'
 #' @references
-#' Yu C, Zelterman D (2001) Exact inference for family disease clusters. Commun Stat -- Theory
-#' Meth 30:2293-2305
-#'
-#' Yu C, Zelterman D (2002) Statistical inference for familial disease clusters. Biometrics
-#' 58:481-491
+#' \insertRef{yu01}{gap}
+#' \insertRef{yu02}{gap}
 #'
 #' @seealso [`kin.morgan`]
 #'

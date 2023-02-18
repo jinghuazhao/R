@@ -92,8 +92,7 @@ asplot(locus,CDKNmap,genes)
 
 }
 \references{
-DGI. Whole-genome association analysis identifies novel loci for type 2 diabetes and triglyceride levels.
-Science 2007;316(5829):1331-6
+\insertRef{saxena07}{gap}
 }
 \author{
 {Paul de Bakker, Jing Hua Zhao, Shengxu Li}

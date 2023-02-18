@@ -26,13 +26,8 @@
 #' - vlor the var(log(OR)) statistic.
 #'
 #' @references
-#' Zabetian CP, Buxbaum SG, Elston RC, Kohnke MD, Anderson GM, Gelernter J, Cubells JF.
-#' The structure of linkage disequilibrium at the DBH locus strongly influences the 
-#' magnitude of association between diallelic markers and plasma dopamine beta-hydroxylase activity
-#' Am J Hum Genet 72: 1389-1400 
-#'
-#' Zapata C, Alvarez G, Carollo C (1997) Approximate variance of the standardized
-#'  measure of gametic disequilibrium D'. Am. J. Hum. Genet. 61:771-774
+#' \insertRef{zabetian03}{gap}
+#' \insertRef{zapata97}{gap}
 #'
 #' @seealso [`LDkl`]
 #'
@@ -106,9 +101,7 @@ LD22<-function(h,n)
 #'
 #' Cramer H (1946) Mathematical Methods of Statistics. Princeton Univ. Press
 #'
-#' Zapata C, Carollo C, Rodriquez S (2001) Sampleing variance and distribution
-#' of the D' measure of overall gametic disequilibrium between multiallelic loci.
-#' Ann. Hum. Genet. 65: 395-406
+#' \insertRef{zapata01}{gap}
 #'
 #' Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
 #' linkage disequilibrium analysis. Bioinformatics 20:1325-1326

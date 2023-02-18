@@ -17,8 +17,7 @@
 #' - tailpu simulated p values.
 #'
 #' @references
-#' Yu C and D Zelterman (2001) Exact inference for family disease clusters. Commun Stat -- Theory
-#' Meth 30:2293-2305
+#' \insertRef{yu01}{gap}
 #'
 #' @seealso [`pfc`]
 #'

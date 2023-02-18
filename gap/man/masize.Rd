@@ -205,14 +205,9 @@ masize("cox5",c(opts, ns=50000))
 
 }
 \references{
-Hsieh FY, Bloch DA, Larsen MD. A simple method of sample size calculation for linear and logistic regression. Stat
-Med 1998; 17:1623-34.
-
-Schmoor C, Sauerbrer W, Schumacher M. Sample size considerations for the evaluation of prognostic factors in survival
-analysis. Stat Med 2000; 19:441-52.
-
-Vittinghoff E, Sen S, McCulloch CE. Sample size calculations for evaluating mediation. Stat Med 2009;
-28:541-57.
+\insertRef{hsieh98}{gap}
+\insertRef{schmoor00}{gap}
+\insertRef{vittinghoff09}{gap}
 }
 \seealso{
 \code{\link{ab}}

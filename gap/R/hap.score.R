@@ -41,9 +41,7 @@
 #' @details This is a version which substitutes haplo.em.
 #'
 #' @references
-#' Schaid DJ, Rowland CM, Tines DE, Jacobson RM,  Poland  GA (2002)
-#' Score tests for association of traits with haplotypes when
-#' linkage phase is ambiguous. Amer J Hum Genet 70:425-34
+#' \insertRef{schaid02}{gap}
 #'
 #' @examples
 #' \dontrun{

@@ -109,8 +109,7 @@ model1.3 <- MCMCglmm(Peak_Freq ~ WEIGTHT, random = ~ animal,
 
 }
 \references{
-Hadfield JD (2010). MCMC Methods for multi-response generalized linear mixed models:
-The MCMCglmm R Package, J Stat Soft 33(2):1-22, https://www.jstatsoft.org/article/view/v033i02.
+\insertRef{hadfield10}{gap}
 }
 \author{
 Jing Hua Zhao
