@@ -139,7 +139,9 @@ score <- function(chrom.pos, pair.data, ibd)
 #'
 #' @references
 #' \insertRef{kruglyak96}{gap}
+#'
 #' \insertRef{kruglyak98}{gap}
+#'
 #' \insertRef{wang05}{gap}
 #'
 #' @examples

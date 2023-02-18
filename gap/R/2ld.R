@@ -27,6 +27,7 @@
 #'
 #' @references
 #' \insertRef{zabetian03}{gap}
+#'
 #' \insertRef{zapata97}{gap}
 #'
 #' @seealso [`LDkl`]
@@ -103,8 +104,7 @@ LD22<-function(h,n)
 #'
 #' \insertRef{zapata01}{gap}
 #'
-#' Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
-#' linkage disequilibrium analysis. Bioinformatics 20:1325-1326
+#' \insertRef{zhao04}{gap}
 #'
 #' @seealso [`LD22`]
 #'

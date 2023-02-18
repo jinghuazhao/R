@@ -20,7 +20,7 @@
 #' - idsave optional, available only if with.id = 1.
 #'
 #' @references
-#' Zhao JH, Sham PC (2003). Generic number system and haplotype analysis. Comp Prog Meth Biomed 70:1-9
+#' \insertRef{zhao03}{gap}
 #'
 #' @seealso [`genecounting`], [`hwe.hardy`]
 #'

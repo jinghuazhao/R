@@ -55,7 +55,7 @@ pgc(x,handle.miss=1,with.id=0)
 
 }
 \references{
-Zhao JH, Sham PC (2003). Generic number system and haplotype analysis. Comp Prog Meth Biomed 70:1-9
+\insertRef{zhao03}{gap}
 }
 \seealso{
 \code{\link{genecounting}}, \code{\link{hwe.hardy}}

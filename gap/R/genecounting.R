@@ -49,11 +49,9 @@ gc.control <- function(xdata=FALSE, convll=1,handle.miss=0,eps=0.000001,
 #' @references
 #' \insertRef{zhao02}{gap}
 #'
-#' Zhao, J. H. and P. C. Sham (2003). Generic number systems and haplotype
-#' analysis. Comp Meth Prog Biomed 70: 1-9
+#' \insertRef{zhao03}{gap}
 #'
-#' Zhao, J. H. (2004). 2LD, GENECOUNTING and HAP: Computer programs for linkage
-#' disequilibrium analysis. Bioinformatics, 20, 1325-1326 
+#' \insertRef{zhao04}{gap}
 #'
 #' @seealso [`gc.em`], [`LDkl`]
 #'

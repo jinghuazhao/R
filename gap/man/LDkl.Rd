@@ -79,8 +79,7 @@ Cramer H (1946) Mathematical Methods of Statistics. Princeton Univ. Press
 
 \insertRef{zapata01}{gap}
 
-Zhao, JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for
-linkage disequilibrium analysis. Bioinformatics 20:1325-1326
+\insertRef{zhao04}{gap}
 }
 \seealso{
 \code{\link{LD22}}

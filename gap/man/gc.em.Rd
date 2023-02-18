@@ -85,8 +85,7 @@ gc.em(hla[,3:8],locus.label=c("DQR","DQA","DQB"),control=gc.control(assignment="
 \references{
 \insertRef{zhao02}{gap}
 
-Zhao, J. H. and P. C. Sham (2003). Generic number systems and haplotype
-analysis. Comp Meth Prog Biomed 70: 1-9
+\insertRef{zhao03}{gap}
 }
 \seealso{
 \code{\link{genecounting}}, \code{\link{LDkl}}

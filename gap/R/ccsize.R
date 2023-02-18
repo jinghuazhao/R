@@ -27,8 +27,7 @@
 #' The returned value is a value indicating the power or required sample size.
 #'
 #' @references
-#' Cai J, Zeng D. Sample size/power calculation for case-cohort studies.
-#' Biometrics 2004, 60:1015-1024
+#' \insertRef{cai04}{gap}
 #'
 #' @seealso [`pbsize`]
 #'

@@ -14,7 +14,7 @@ author:
   - Cambridge, UK
   - https://jinghuazhao.github.io/
 date: '`r Sys.Date()`'
-bibliography: shinygap.bib
+bibliography: '`r system.file("REFERENCES.bib", package="gap")`'
 csl: nature-genetics.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}

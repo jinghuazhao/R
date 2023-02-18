@@ -206,7 +206,9 @@ masize("cox5",c(opts, ns=50000))
 }
 \references{
 \insertRef{hsieh98}{gap}
+
 \insertRef{schmoor00}{gap}
+
 \insertRef{vittinghoff09}{gap}
 }
 \seealso{

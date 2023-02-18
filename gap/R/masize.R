@@ -182,7 +182,9 @@ getb0 <- function(p, X, b1, b2)
 #'
 #' @references
 #' \insertRef{hsieh98}{gap}
+#'
 #' \insertRef{schmoor00}{gap}
+#'
 #' \insertRef{vittinghoff09}{gap}
 #'
 #' @seealso [`ab`]

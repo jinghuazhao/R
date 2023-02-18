@@ -74,7 +74,9 @@ setwd(cwd)
 }
 \references{
 \insertRef{kruglyak96}{gap}
+
 \insertRef{kruglyak98}{gap}
+
 \insertRef{wang05}{gap}
 }
 \author{

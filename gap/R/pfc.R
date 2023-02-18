@@ -18,6 +18,7 @@
 #'
 #' @references
 #' \insertRef{yu01}{gap}
+#'
 #' \insertRef{yu02}{gap}
 #'
 #' @seealso [`kin.morgan`]

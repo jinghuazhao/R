@@ -65,15 +65,13 @@ hap.score(y,g,method="hap",miss.val="Z")
 
 }
 \references{
-Zhao JH, Curtis D, Sham PC (2000). Model-free analysis and permutation
-tests for allelic associations. Human Heredity 50(2): 133-139
+\insertRef{zhao00}{gap}
 
-Zhao JH (2004). 2LD, GENECOUNTING and HAP: Computer programs for linkage
-disequilibrium analysis. Bioinformatics 20: 1325-1326
+\insertRef{zhao04}{gap}
 
-Zhao JH, Qian WD Association analysis of unrelated individuals using
+Zhao JH, Qian WD (2003) Association analysis of unrelated individuals using
 polymorphic genetic markers -- methods, implementation and application, Royal
-Statistical Society 2003, Hassallt-Diepenbeek, Belgium.
+Statistical Society, Hassallt-Diepenbeek, Belgium.
 }
 \seealso{
 \code{\link{genecounting}}

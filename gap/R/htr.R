@@ -16,6 +16,7 @@
 #' 
 #' @references
 #' \insertRef{zaykin02}{gap}
+#'
 #' \insertRef{xie05}{gap}
 #'
 #' @seealso [`hap.score`]

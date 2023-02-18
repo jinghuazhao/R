@@ -12,7 +12,9 @@
 #'
 #' @references
 #' \insertRef{kruglyak96}{gap}
+#'
 #' \insertRef{wh94a}{gap}
+#'
 #' \insertRef{wh94b}{gap}
 #'
 #' @examples
