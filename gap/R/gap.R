@@ -162,7 +162,7 @@
 #' maitained by Jing Hua Zhao <jinghuazhao@hotmail.com>
 #'
 #' @references
-#' Zhao JH, gap: genetic analysis package. J Stat Soft 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.
+#' \insertRef{zhao07}{gap}
 #'
 #' @keywords internal
 

@@ -148,7 +148,7 @@ Vignettes on package usage:
 }
 
 \references{
-Zhao JH, gap: genetic analysis package. J Stat Soft 2007, 23(8):1-18, \doi{10.18637/jss.v023.i08}.
+\insertRef{zhao07}{gap}
 }
 \seealso{
 Useful links:
