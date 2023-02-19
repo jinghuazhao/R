@@ -44,7 +44,7 @@ immediate benefit would be something complementary to other packages currently
 available from CRAN, e.g. **genetics**, **hwde**, etc. I hope eventually this will
 be part of a bigger effort to fulfill most of the requirements foreseen by many @guo00,
 within the portable environment of R for data management, analysis, graphics and
-object-oriented programming. My view has been outlined more formally[@zhao6a; @zhao06b]
+object-oriented programming. My view has been outlined more formally[@zhao06a; @zhao06b]
 in relation to other package systems and also on package **kinship** [@zhao05; @zhao06c].
 
 The number of functions are quite limited and experimental, but I already feel
