@@ -5,7 +5,7 @@ Version 1.5-2
 		Drop genetics/GeneticsDesign reference in pbsize2() and backslash (\%) in tscc()
 		Rename SNP functions and document hg18/19/38
 		Reorganize DESCRIPTION, adding Roxygen: list(markdown = TRUE), and document in Markdown
-		Import/amend in line with Rdpack/Remove INDEX to suppress error message/more \insertRef
+		Import/amend in line with Rdpack/Remove INDEX to suppress error message/ and \insertRef
 		Refine gap.Rmd
 
 Version 1.5-1

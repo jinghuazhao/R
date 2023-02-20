@@ -74,7 +74,7 @@ function in the \code{MASS} package. Specifying \code{line = "none"} suppresses 
 \item{\dots}{arguments such as \code{df} to be passed to the appropriate quantile function.}
 }
 \value{
-\code{NULL}. These functions are used only for their side effect (to make a graph).
+These functions are used only for their side effect (to make a graph).
 }
 \description{
 Quantile-comparison plots
@@ -110,10 +110,9 @@ qqfun(-log10(p),dist="exp",rate=alpha,pch=21)
 
 }
 \references{
-Davison, A. C. (2003)  \emph{Statistical Models.} Cambridge University Press.
+\insertRef{davison03}{gap}
 
-Leemis, L. M., J. T. Mcqueston (2008) \emph{Univariate distribution relationships.}
-The American Statistician 62:45-53
+\insertRef{leemis08}{gap}
 }
 \seealso{
 \code{\link[stats:qqnorm]{stats::qqnorm}}, \code{\link{qqunif}}, \code{\link{gcontrol2}}

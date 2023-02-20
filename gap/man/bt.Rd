@@ -58,11 +58,9 @@ summary(bt.ex$bt.glm)
 
 }
 \references{
-Bradley RA, Terry ME (1952) Rank analysis of incomplete block designs I.
-the method of paired comparisons. Biometrika 39:324--345
+\insertRef{bradley52}{gap}
 
-Sham PC, Curtis D (1995) An extended transmission/disequilibrium
-test (TDT) for multi-allelic marker loci. Ann. Hum. Genet. 59:323-336
+\insertRef{sham95}{gap}
 }
 \seealso{
 \code{\link{mtdt}}

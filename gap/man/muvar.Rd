@@ -49,7 +49,7 @@ muvar(n.loci=2,y12=c(1,1,1,1,1,0,0,0,0),p1=0.99,p2=0.9)
 
 }
 \references{
-Sham P (1998). Statistics in Human Genetics. Arnold
+\insertRef{sham97}{gap}
 }
 \author{
 Jing Hua Zhao

@@ -46,13 +46,13 @@
 #' sophisticated function is qqmath of package lattice.
 #'
 #' @export
-#' @return \code{NULL}. These functions are used only for their side effect (to make a graph).
+#' @return
+#' These functions are used only for their side effect (to make a graph).
 #'
 #' @references
-#' Davison, A. C. (2003)  \emph{Statistical Models.} Cambridge University Press.
+#' \insertRef{davison03}{gap}
 #'
-#' Leemis, L. M., J. T. Mcqueston (2008) \emph{Univariate distribution relationships.}
-#' The American Statistician 62:45-53
+#' \insertRef{leemis08}{gap}
 #'
 #' @author John Fox, Jing Hua Zhao
 #' @seealso [`stats::qqnorm`], [`qqunif`], [`gcontrol2`]

@@ -16,7 +16,7 @@
 #' command or via modifying the C/R codes.
 #'
 #' @references
-#' Sham P (1998). Statistics in Human Genetics. Arnold
+#' \insertRef{sham97}{gap}
 #'
 #' @examples
 #' \dontrun{

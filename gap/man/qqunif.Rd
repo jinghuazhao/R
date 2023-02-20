@@ -64,11 +64,11 @@ legend("topleft",sprintf("GC.lambda=\\%.4f",gc.lambda(u_obs)))
 
 }
 \references{
-Balakrishnan N, Nevzorov VB. A Primer on Statistical Distributions. Wiley 2003.
+\insertRef{balakrishnan03}{gap}
 
-Casella G, Berger RL. Statistical Inference, Second Edition. Duxbury 2002.
+\insertRef{casella02}{gap}
 
-Davison AC. Statistical Models. Cambridge University Press 2003.
+\insertRef{davison03}{gap}
 }
 \seealso{
 \code{\link{qqfun}}

@@ -33,11 +33,9 @@ covfun <- function(r,n)
 #' - V the variance-covariance matrix of correlations.
 #'
 #' @references
-#' Becker BJ (2004). Multivariate meta-analysis. in Tinsley HEA,
-#' Brown SD (Ed.) Handbook of Applied Multivariate Statistics and
-#' Mathematical Modeling (Chapter 17, pp499-525). Academic Press.
+#' \insertRef{becker00}{gap}
 #'
-#' Casella G, Berger RL (2002). Statistical Inference, 2nd Edition, Duxbury.
+#' \insertRef{casella02}{gap}
 #'
 #' \insertRef{elston75}{gap}
 #'
