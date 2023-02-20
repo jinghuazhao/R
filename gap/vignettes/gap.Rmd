@@ -199,9 +199,10 @@ snptest\_sample   |      A utility to generate SNPTEST sample file
 whscore           |      Whittemore-Halpern scores for allele-sharing
 weighted.median   |      Weighted median with interpolation
 
-Assuming proper installation, you will be able to obtain the list by typing
-`library(help=gap)` or view the list within a web browser via 
-`help.start()`. See Appendix on how to obtain a full list of functions.
+After installation, you will be able to obtain the list by typing `library(help=gap)`
+for a list in alphabetical order, or `?gap::gap` one ordered by category, or view the
+list within a web browser via `help.start()`. A full list of functions is provided in
+the Appendix.
 
 This file can be viewed with command `vignette("gap", package="gap")`.
 
