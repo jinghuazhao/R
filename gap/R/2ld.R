@@ -97,10 +97,9 @@ LD22<-function(h,n)
 #' - klinfo the Kullback-Leibler information.
 #'
 #' @references
-#' Bishop YMM, Fienberg SE, Holland PW (1975) Discrete Multivariate Analysis
-#' -- Theory and Practice, The MIT press
+#' \insertRef{bishop75}{gap}
 #'
-#' Cramer H (1946) Mathematical Methods of Statistics. Princeton Univ. Press
+#' \insertRef{cramer46}{gap}
 #'
 #' \insertRef{zapata01}{gap}
 #'
