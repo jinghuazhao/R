@@ -22,12 +22,8 @@
 #' @references
 #' \insertRef{firth05}{gap}
 #'
-#' \insertRef{sham95}{gap}
-#'
 #' Turner H, Firth D (2010) Bradley-Terry models in R: The BradleyTerry2 package.
 #' https://cran.r-project.org/web/packages/BradleyTerry2/vignettes/BradleyTerry.pdf.
-#'
-#' \insertRef{zhao99}{gap}
 #'
 #' @seealso [`mtdt`]
 #'

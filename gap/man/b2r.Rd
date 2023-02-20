@@ -43,11 +43,11 @@ bs <- b2r(b,s,r,n)
 
 }
 \references{
+\insertRef{elston75}{gap}
+
 \insertRef{becker00}{gap}
 
 \insertRef{casella02}{gap}
-
-\insertRef{elston75}{gap}
 }
 \seealso{
 \code{\link{mvmeta}}, \code{\link{LD22}}

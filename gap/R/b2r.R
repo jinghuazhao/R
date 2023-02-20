@@ -33,11 +33,11 @@ covfun <- function(r,n)
 #' - V the variance-covariance matrix of correlations.
 #'
 #' @references
+#' \insertRef{elston75}{gap}
+#'
 #' \insertRef{becker00}{gap}
 #'
 #' \insertRef{casella02}{gap}
-#'
-#' \insertRef{elston75}{gap}
 #'
 #' @seealso [`mvmeta`], [`LD22`]
 #'
