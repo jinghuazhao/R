@@ -54,16 +54,11 @@ toETDT <- function(a)
 #'
 #' \insertRef{sham95}{gap}
 #'
+#' \insertRef{copeman95}{gap}
 #' @seealso [`mtdt`]
 #'
 #' @examples
 #' \dontrun{
-#' # Copeman JB, Cucca F, Hearne CM, Cornall RJ, Reed PW, 
-#' # Ronningen KS, Undlien DE, Nistico L, Buzzetti R, Tosi R, et al.
-#' # (1995) Linkage disequilibrium mapping of a type 1 
-#' # diabetes susceptibility gene (IDDM7) to chromosome 2q31-q33. 
-#' # Nat Genet 9: 80-5
-#'
 #' x <- matrix(c(0,0, 0, 2, 0,0, 0, 0, 0, 0, 0, 0,
 #'               0,0, 1, 3, 0,0, 0, 2, 3, 0, 0, 0,
 #'               2,3,26,35, 7,0, 2,10,11, 3, 4, 1,
