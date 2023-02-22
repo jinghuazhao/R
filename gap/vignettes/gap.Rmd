@@ -200,9 +200,8 @@ whscore           |      Whittemore-Halpern scores for allele-sharing
 weighted.median   |      Weighted median with interpolation
 
 After installation, you will be able to obtain the list by typing `library(help=gap)`
-for a list in alphabetical order, or `?gap::gap` one ordered by category, or view the
-list within a web browser via `help.start()`. A full list of functions is provided in
-the Appendix.
+in alphabetical order, or `?gap::gap` one ordered by category, or view it within a
+web browser via `help.start()`. A full list of functions is provided in the Appendix.
 
 This file can be viewed with command `vignette("gap", package="gap")`.
 
@@ -217,7 +216,6 @@ association testing.
 
 It is notable that multilocus data are handled differently from that in **hwde** and
 elegant definitions of basic genetic data can be found in the **genetics** package.
-
 Incidentally, I found my C mixed-radixed sorting routine @zhao03 is much faster
 than R's internal function.
 
