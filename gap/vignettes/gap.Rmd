@@ -64,18 +64,20 @@ the limit as imposed by CRAN, thus the old good feature of `S` as with
 packages; they do deserve a glimpse however for some general ideas. A separate
 initiative has been made in the **pQTLtools** package.
 
-Several other updates are worth mentioning: 
+Several technical updates are worth mentioning:
 
-1.  use of markdown and then bookdown from the noweb/Sweave format which
-    allows for Citation Style Language (CSL) (https://citationstyles.org/)
-    to format the bibliography.
+1. use of **rmarkdown** and then **bookdown** from the noweb/Sweave format
+   which allows for Citation Style Language (CSL) (https://citationstyles.org/)
+   to format the bibliography. In so doing, multiple figures generated from a
+   code section are embedded.
 
-2.  multiple figures generated from a code section to be embedded.
+2. experimental implementation of a shiny App (`runshinygap`()).
 
-3.  experimental implementation of a shiny App (`runshinygap`()).
+3. **roxygen2** style documentation in companion with R code to allow for
+   easier generation of .Rd files and NAMESPACE through `devtools::document()`
 
-4.  **roxygen2** style documentation in companion with R code to allow for
-    easier generation of .Rd files and NAMESPACE through devtools::document().
+4. **Rdpack** which unifies BibTeX citations throughout the package though CSL
+   is yet supported in .Rd files.
 
 It is hoped that these experiences will be shared with/useful for other colleagues
 in converting their work into R. I found occasionally it is useful to use
