@@ -77,7 +77,7 @@ Several technical updates are worth mentioning:
    easier generation of .Rd files and NAMESPACE through `devtools::document()`
 
 4. **Rdpack** which unifies BibTeX citations throughout the package though CSL
-   is yet supported in .Rd files.
+   is not yet supported in .Rd files.
 
 It is hoped that these experiences will be shared with/useful for other colleagues
 in converting their work into R. I found occasionally it is useful to use
