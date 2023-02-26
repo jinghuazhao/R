@@ -68,8 +68,7 @@ Several technical updates are worth mentioning:
 
 1. use of **rmarkdown** and then **bookdown** from the noweb/Sweave format
    which allows for Citation Style Language (CSL) (https://citationstyles.org/)
-   to format the bibliography. In so doing, multiple figures generated from a
-   code section are embedded.
+   to format the bibliography, and multiple figures generated from a code section.
 
 2. experimental implementation of a shiny App (`runshinygap`()).
 
