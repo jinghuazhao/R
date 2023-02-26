@@ -1013,7 +1013,7 @@ In line with the recent surge of interest in the polygenic models, a separate
 vignette is available through `vignette("h2",package="gap.examples")` demonstrating
 aspect of the models on heritability.
 
-Brief documentations are available for functions `h2G`, `h2GE` and `h2l`.
+Functions `h2G`, `h2GE` and `h2l` are briefly documented. Functions `h2.jags` and `hwe.jags` are also available.
 
 # Mendelian randomization
 
