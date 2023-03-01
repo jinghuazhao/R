@@ -40,45 +40,41 @@ knitr::opts_chunk$set(
 
 This package was initiated to integrate some C/Fortran/SAS programs I have written 
 or used over the years. As such, it would rather be a long-term project, but an
-immediate benefit would be something complementary to other packages currently
+immediate benefit is something complementary to other packages currently
 available from CRAN, e.g. **genetics**, **hwde**, etc. I hope eventually this will
-be part of a bigger effort to fulfill most of the requirements foreseen by many @guo00,
+be part of a bigger effort to fulfil most of the requirements foreseen by many @guo00,
 within the portable environment of R for data management, analysis, graphics and
-object-oriented programming. My view has been outlined more formally[@zhao06a; @zhao06b]
+object-oriented programming. My view has been outlined more formally [@zhao06a; @zhao06b]
 in relation to other package systems and also on package **kinship** [@zhao05; @zhao06c].
 
-The number of functions are quite limited and experimental, but I already feel
-the enormous advantage by shifting to R and would like sooner rather than later
-to share my work with others. I will not claim this work as exclusively done by
-me, but would like to invite others to join me and enlarge the collections and
-improve them.
+The number of functions are quite limited and experimental, but I feel the
+enormous advantage by shifting to R and would like to my work with others as it is
+available, which I will not claim this work as exclusively done by myself,
+but would like to invite others to join me and enlarge the collections and improve them.
 
-With my recent work on genomewide association studies (GWASs) especially protein
-GWASs, I have added many functions such as `METAL_forestplot` which handles
-data from software METAL @willer10 and `sentinels` which extracts sentinels from
-GWAS summary statistics in a way that is very appealing to us compared to some
-other established software. At the meantime, the size of the package surpasses
-the limit as imposed by CRAN, thus the old good feature of `S` as with
-`R` that value both code and data alike has to suffer slightly in that
-**gap.datasets** and **gap.examples** are spun off as two separate
+With recent work on genomewide association studies (GWASs) especially protein GWASs, I
+have added many functions such as `METAL_forestplot` which handles data from software
+METAL @willer10 and `sentinels` which extracts sentinels from GWAS summary statistics
+in a way that is very appealing to us compared to some other established software.
+Meanwhile, the size of the package surpasses the limit as imposed by CRAN, thus the
+old good feature of `S` as with `R` that value both code and data alike has to suffer
+slightly in that **gap.datasets** and **gap.examples** are spun off as two separate
 packages; they do deserve a glimpse however for some general ideas. A separate
 initiative has been made in the **pQTLtools** package.
 
-Several technical updates are worth mentioning:
+Recent technical updates are worth mentioning:
 
-1. use of **rmarkdown** and then **bookdown** from the noweb/Sweave format
-   which allows for Citation Style Language (CSL) (https://citationstyles.org/)
-   to format the bibliography, and multiple figures generated from a code section.
+1. Documentaion via **roxygen2** from R code to allow for easier generation of
+   the .Rd files and NAMESPACE through `devtools::document()`
 
-2. experimental implementation of a shiny App (`runshinygap`()).
+2. vignettes through noweb/Sweave as well as **rmarkdown** and **bookdown** which
+   format references in Citation Style Language (CSL) (https://citationstyles.org/),
+   and embed multiple figures generated from a code chunk. **Rdpack** now unifies
+   BibTeX citations throughout the package though CSL is not yet fully supported.
 
-3. **roxygen2** style documentation in companion with R code to allow for
-   easier generation of .Rd files and NAMESPACE through `devtools::document()`
+3. an experimental shiny App (`runshinygap`()).
 
-4. **Rdpack** which unifies BibTeX citations throughout the package though CSL
-   is not yet supported in .Rd files.
-
-It is hoped that these experiences will be shared with/useful for other colleagues
+These experiences will hopefully be shared with/useful for other colleagues
 in converting their work into R. I found occasionally it is useful to use
 specific functions without loading the whole package (i.e., `library(gap)`),
 e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
