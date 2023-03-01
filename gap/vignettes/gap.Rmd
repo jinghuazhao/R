@@ -64,13 +64,13 @@ initiative has been made in the **pQTLtools** package.
 
 Recent technical updates are worth mentioning:
 
-1. Documentaion via **roxygen2** from R code to allow for easier generation of
-   the .Rd files and NAMESPACE through `devtools::document()`
+1. Documentaion from R code via **roxygen2** and `devtools::document()`to allow
+   for easier generation of  the .Rd files and NAMESPACE.
 
-2. vignettes through noweb/Sweave as well as **rmarkdown** and **bookdown** which
-   format references in Citation Style Language (CSL) (https://citationstyles.org/),
-   and embed multiple figures generated from a code chunk. **Rdpack** now unifies
-   BibTeX citations throughout the package though CSL is not yet fully supported.
+2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** which
+   allows for Citation Style Language (CSL) (https://citationstyles.org/), and
+   multiple figures generated from a code chunk. **Rdpack** now unifies BiTeX
+   citations though CSL is not yet supported for the .Rd files.
 
 3. an experimental shiny App (`runshinygap`()).
 
