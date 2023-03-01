@@ -69,7 +69,7 @@ Recent technical updates are worth mentioning:
 
 2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** which
    allows for Citation Style Language (CSL) (https://citationstyles.org/), and
-   multiple figures generated from a code chunk. **Rdpack** now unifies BiTeX
+   multiple figures generated from a code chunk. **Rdpack** now unifies BibTeX
    citations though CSL is not yet supported for the .Rd files.
 
 3. an experimental shiny App (`runshinygap`()).
