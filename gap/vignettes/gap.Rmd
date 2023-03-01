@@ -40,16 +40,15 @@ knitr::opts_chunk$set(
 
 This package was initiated to integrate some C/Fortran/SAS programs I have written 
 or used over the years. As such, it would rather be a long-term project, but an
-immediate benefit is something complementary to other packages currently
-available from CRAN, e.g. **genetics**, **hwde**, etc. I hope eventually this will
-be part of a bigger effort to fulfil most of the requirements foreseen by many @guo00,
+immediate benefit is something complementary to other packages currently available
+from CRAN, e.g. **genetics**, **hwde**, etc. I hope eventually this will be part
+of a bigger effort to fulfil most of the requirements foreseen by many @guo00,
 within the portable environment of R for data management, analysis, graphics and
 object-oriented programming. My view has been outlined more formally [@zhao06a; @zhao06b]
 in relation to other package systems and also on package **kinship** [@zhao05; @zhao06c].
 
-The number of functions are quite limited and experimental, but I feel the
-enormous advantage by shifting to R and would like to my work with others as it is
-available, which I will not claim this work as exclusively done by myself,
+I feel the enormous advantage by shifting to R and would like to my work with others
+as it is available, which I will not claim this work as exclusively done by myself,
 but would like to invite others to join me and enlarge the collections and improve them.
 
 With recent work on genomewide association studies (GWASs) especially protein GWASs, I
@@ -62,22 +61,21 @@ slightly in that **gap.datasets** and **gap.examples** are spun off as two separ
 packages; they do deserve a glimpse however for some general ideas. A separate
 initiative has been made in the **pQTLtools** package.
 
-Recent technical updates are worth mentioning:
+Notable recent technical updates include:
 
-1. Documentaion from R code via **roxygen2** and `devtools::document()`to allow
-   for easier generation of  the .Rd files and NAMESPACE.
+1. Documentaion from R code via **roxygen2** and **devtools** to allow for easier
+   generation of the .Rd files and NAMESPACE.
 
-2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** which
-   allows for Citation Style Language (CSL) (https://citationstyles.org/), and
-   multiple figures generated from a code chunk. **Rdpack** now unifies BibTeX
-   citations though CSL is not yet supported for the .Rd files.
+2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** that allows
+   or Citation Style Language (CSL) (https://citationstyles.org/), and multiple
+   figures generated from a code chunk. **Rdpack** now enables BibTeX citations in
+   the .Rd files where CSL is not yet supported.
 
 3. an experimental shiny App (`runshinygap`()).
 
-These experiences will hopefully be shared with/useful for other colleagues
-in converting their work into R. I found occasionally it is useful to use
-specific functions without loading the whole package (i.e., `library(gap)`),
-e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
+These experiences can be useful for others in their package development. I found it
+occasionally useful to use specific functions without loading the whole package,
+i.e., `library(gap)`: e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
 
 # Implementation
 
@@ -199,27 +197,24 @@ weighted.median   |      Weighted median with interpolation
 After installation, you will be able to obtain the list by typing `library(help=gap)`
 in alphabetical order, or `?gap::gap` ordered by category, or view it within a web
 browser via `help.start()`. A full list of functions is provided in the Appendix.
-
-This file can be viewed with command `vignette("gap", package="gap")`.
-
-You can cut and paste examples at end of each function's documentation.
+This file can be viewed with command `vignette("gap", package="gap")`. You can cut
+and paste examples at end of each function's documentation.
 
 Both `genecounting` and `hap` are able to handle SNPs and multiallelic
 markers, with the former be flexible enough to include features such as X-linked data
 and the later being able to handle large number of SNPs. But they are unable to
-recode allele labels automatically, so functions `gc.em` and `hap.em`
-are in `haplo.em` format and used by a modified function `hap.score` in
-association testing.
+recode allele labels automatically, so functions `gc.em` and `hap.em` are in
+`haplo.em` format and used by a modified function `hap.score` in association testing.
 
 It is notable that multilocus data are handled differently from that in **hwde** and
 elegant definitions of basic genetic data can be found in the **genetics** package.
-Incidentally, I found my C mixed-radixed sorting routine @zhao03 is much faster
-than R's internal function.
+Incidentally, I found my C mixed-radixed sorting routine @zhao03 is much faster than
+R's internal function.
 
-With exceptions such as function `pfc` which is very computer-intensive, most
-functions in the package can easily be adapted for analysis of large datasets involving
-either SNPs or multiallelic markers. Some are utility functions, e.g. `muvar`
-and `whscore`, which will be part of the other analysis routines in the future.
+With exceptions such as function `pfc` which is very computer-intensive, most functions
+in the package can easily be adapted for analysis of large datasets involving either
+SNPs or multiallelic markers. Some are utility functions, e.g. `muvar` and `whscore`,
+which will be part of the other analysis routines in the future.
 
 The benefit with R compared to standalone programs is that for users, all functions have
 unified format. For developers, it is able to incorporate their C/C++ programs more
@@ -240,8 +235,8 @@ I have kept the original `pedtodot.sh` by David Duffy which enables contrast wit
 `ms` code @hudson02, which is required by `read.ms.output`.
 
 A final note is concerned about `twinan90`, which is now dropped from the package function
-list due to difficulty to keep up with the requirements by the `R` environment but
-nevertheless you will still be able to compile and use otherwise from **gap.examples**.
+list due to difficulty to keep up with the requirements by the `R` environment nevertheless
+you will still be able to compile and use otherwise from **gap.examples**.
 
 # Demos
 
