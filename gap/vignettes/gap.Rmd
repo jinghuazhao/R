@@ -66,19 +66,19 @@ Notable recent technical updates include:
    generation of the .Rd files and NAMESPACE.
 
 2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** that allows
-   or Citation Style Language (CSL) (https://citationstyles.org/), and multiple
+   for Citation Style Language (CSL) (https://citationstyles.org/), and multiple
    figures generated from a code chunk. **Rdpack** now enables BibTeX citations in
-   the .Rd files where CSL is not yet supported.
+   the .Rd files.
 
 3. an experimental shiny App (`runshinygap`()).
 
 These experiences can be useful for others in their package development. I found it
-occasionally useful to use specific functions without loading the whole package,
-i.e., `library(gap)`: e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
+useful to use specific functions without loading the whole package, i.e., `library(gap)`,
+e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
 
 # Implementation
 
-The following list shows the functions currently available.
+The currently available functions are shown below,
 
 Name              |      Description
 ------------------|------------------------------------------------------------------
@@ -223,15 +223,14 @@ are designed and written to deal with large number of genes.
 
 # Independent programs
 
-To facilitate comparisons and individual preferences, The source codes for EHPLUS @zhao00,
+To facilitate comparisons and individual preferences, the source codes for EHPLUS @zhao00,
 2LD, GENECOUNTING, HAP @zhao04, now hosted at GitHub, have enjoyed great popularity ahead
-of the genomewide association studies (GWAS) therefore are likely to be more familiar than
-their R couunterparts in `gap`. However, you need to follow their instructions to compile
-for a particular computer system.
+of GWASs therefore are likely to be more familiar than their R counterparts in `gap` but
+you need to follow their instructions to compile for a particular computer system.
 
 I have kept the original `pedtodot.sh` by David Duffy which enables contrast with
 `pedtodot_verbatim()` and `pedtodot()` reported as application notes. I have also included
-`ms` code @hudson02, which is required by `read.ms.output`.
+`ms` code @hudson02 to couple with `read.ms.output`.
 
 A final note is concerned about `twinan90`, which is now dropped from the package function
 list due to difficulty to keep up with the requirements by the `R` environment nevertheless
@@ -246,7 +245,7 @@ library(gap)
 demo(gap)
 ```
 
-See examples of haplotype analysis there -- additional examples are given below.
+See examples of haplotype analysis there.
 
 # Pedigrees and kinship
 
