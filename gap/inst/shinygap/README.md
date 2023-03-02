@@ -88,9 +88,9 @@ $z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})$, $\,$
 $z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
 
 # References {-}
-Zhao, J. H. [[gap]{.nocase}: Genetic analysis
-package](https://doi.org/10.18637/jss.v023.i08). *Journal of Statistical
-Software* **23**, 1--18 (2007).
+Zhao, J. H. [gap: Genetic analysis
+package](https://doi.org/10.18637/jss.v023.i08).
+*Journal of Statistical Software* **23**, 1--18 (2007).
 
 Cai, J. & Zeng, D. [Sample size/power calculation for case-cohort
 studies](https://doi.org/10.1111/j.0006-341X.2004.00257.x). *Biometrics*
