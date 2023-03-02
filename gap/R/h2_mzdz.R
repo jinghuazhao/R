@@ -74,7 +74,6 @@ k <- function(r,N,adjust=TRUE)
 #' ACE_CI(mzm,dzm,n.sim,selV=selVars,verbose=FALSE)
 #' ACE_CI(mzw,dzw,n.sim,selV=selVars,verbose=FALSE)
 #' }
-#' @author Jing Hua Zhao
 #' @keywords htest
 
 h2_mzdz <- function(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,selV=NULL)

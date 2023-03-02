@@ -89,7 +89,4 @@ ACE_CI(mzw,dzw,n.sim,selV=selVars,verbose=FALSE)
 \references{
 \insertRef{keeping95}{gap}
 }
-\author{
-Jing Hua Zhao
-}
 \keyword{htest}
