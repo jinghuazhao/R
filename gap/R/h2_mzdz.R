@@ -20,6 +20,7 @@ k <- function(r,N,adjust=TRUE)
 #' @details
 #' The example section shows how to obtain bootstrap 95%CI.
 #' Heritability and variance estimation according to twin pair correlations.
+#' See \doi{doi.org/10.1038/s41562-023-01530-y} for additional information.
 #'
 #' @export
 #' @return
@@ -27,14 +28,14 @@ k <- function(r,N,adjust=TRUE)
 #' for "h2","c2","e2","vh","vc","ve".
 #'
 #' @references
-#' Keeping ES. Introduction to Statistical Inference, Dover Pulications, Inc. 1995
+#' \insertRef{keeping95}{gap}
 #'
 #' @examples
 #' \dontrun{
 #'
 #' ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
 #' {
-#' ACEr_twinData <- h2(mzDat=mzData,dzDat=dzData,selV=selV)
+#' ACEr_twinData <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
 #' print(ACEr_twinData)
 #'
 #' nmz <- dim(mzData)[1]
