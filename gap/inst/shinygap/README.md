@@ -32,7 +32,7 @@ library(shiny)
 runApp()
 ```
 
-Alternatively, one can run the app from source using `gap/inst/shinygap`.
+Alternatively, one can run the app from source using `gap/inst/shinygap`. In fact, these are conveniently wrapped up as `runshinygap()` function.
 
 To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider inputs provide upper bounds of parameters.
 
