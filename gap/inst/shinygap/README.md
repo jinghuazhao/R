@@ -54,15 +54,15 @@ This is a call to tscc().
 
 ---
 
-# Appendix: Theory {-}
+# Appendix: Theory
 
-## A. Family-based and population-based designs {-}
+## A. Family-based and population-based designs
 
 See the R/gap package vignette jss or @zhao07.
 
-## B. Case-cohort design {-}
+## B. Case-cohort design
 
-### B.1 Power {-}
+### B.1 Power
 
 Following @cai04, we have
 $$\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)$$
@@ -72,11 +72,11 @@ two groups, $p_j, j = 1, 2$, are the proportion of the two groups
 in the population ($p_1 + p_2 = 1$), $\tilde{n}$ is the total number of subjects in the subcohort, $p_D$ is the proportion of the failures in
 the full cohort, and $q$ is the sampling fraction of the subcohort.
 
-### B.2 Sample size {-}
+### B.2 Sample size
 
 $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\theta^2p_1p_2p_D}$ and $n$ is the whole cohort size.
 
-## C. Two-stage case-control design {-}
+## C. Two-stage case-control design
 
 In the notation of @skol06,
 
@@ -87,7 +87,7 @@ $z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})$, $\,$
 $z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})$, $\,$
 $z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
 
-# References {-}
+# References
 Zhao, J. H. [gap: Genetic analysis
 package](https://doi.org/10.18637/jss.v023.i08).
 *Journal of Statistical Software* **23**, 1--18 (2007).
