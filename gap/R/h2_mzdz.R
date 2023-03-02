@@ -25,7 +25,7 @@ k <- function(r,N,adjust=TRUE)
 #' @export
 #' @return
 #' The returned value is a matrix containing heritability and their variance estimations
-#' for "h2","c2","e2","vh","vc","ve".
+#' for h2, c2, e2, vh, vc, ve.
 #'
 #' @references
 #' \insertRef{keeping95}{gap}

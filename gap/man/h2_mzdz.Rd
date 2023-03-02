@@ -31,7 +31,7 @@ h2_mzdz(
 }
 \value{
 The returned value is a matrix containing heritability and their variance estimations
-for "h2","c2","e2","vh","vc","ve".
+for h2, c2, e2, vh, vc, ve.
 }
 \description{
 Heritability estimation according to twin correlations
