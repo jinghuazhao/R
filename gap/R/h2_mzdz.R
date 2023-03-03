@@ -36,7 +36,7 @@
 #' {
 #'   ACE_obs <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
 #'   cat("\n\nheritability according to correlations\n\n")
-#'   print(ACE_obs)
+#'   print(format(ACE_obs,digits=3),row.names=FALSE)
 #'   nmz <- nrow(mzData)
 #'   ndz <- nrow(dzData)
 #'   r <- data.frame()
