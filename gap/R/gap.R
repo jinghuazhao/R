@@ -146,8 +146,8 @@
 #'             identify legend lines mtext par points
 #'             segments text title
 #' @importFrom stats as.formula coef coefficients cor
-#'             dnorm glm integrate lm median nlm
-#'             pchisq pf pnorm ppoints pt qchisq qnorm
+#'             complete.cases dnorm glm integrate lm median
+#'             nlm pchisq pf pnorm ppoints pt qchisq qnorm
 #'             qqplot qt quantile rbinom rexp rnorm
 #'             runif sd var
 #' @importFrom utils data head packageDescription read.csv

@@ -30,15 +30,15 @@ h2_mzdz(
 \item{selV}{names of variables for twin and cotwin.}
 }
 \value{
-A data.frame containing heritability and their variance estimations
-for h2, c2, e2, vh, vc, ve.
+A data.frame containing heritability and variance estimates
+for h2, c2, e2, vh2, vc2, ve2.
 }
 \description{
 Heritability estimation according to twin correlations
 }
 \details{
 Given MZ/DZ data or their correlations and sample sizes, it
-obtains bootstrap confidence interval under ACE models as in \insertCite{elks12}{gap}.
+obtains bootstrap confidence interval under ACE models \insertCite{elks12}{gap}.
 See \doi{10.1038/s41562-023-01530-y} for additional information.
 }
 \examples{
@@ -55,7 +55,6 @@ dzw <- as.data.frame(rmvnorm(243, c(21.72,21.72),
                      matrix(3.12^2*c(1, 0.33, 0.33, 1), 2)))
 selVars <- c('bmi1','bmi2')
 names(mzm) <- names(dzm) <- names(mzw) <- names(dzw) <- selVars
-n.sim <- 500
 ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
 {
   ACEr_twinData <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
@@ -78,10 +77,10 @@ ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
   m <- apply(r,2,mean,na.rm=TRUE)
   s <- apply(r,2,sd,na.rm=TRUE)
   allr <- data.frame(mean=m,sd=s,lcl=m-1.96*s,ucl=m+1.96*s)
-  print(allr)
+  print(format(allr,digits=3))
 }
-ACE_CI(mzm,dzm,n.sim,selV=selVars,verbose=FALSE)
-ACE_CI(mzw,dzw,n.sim,selV=selVars,verbose=FALSE)
+ACE_CI(mzm,dzm,n.sim=500,selV=selVars,verbose=FALSE)
+ACE_CI(mzw,dzw,n.sim=500,selV=selVars,verbose=FALSE)
 }
 }
 \references{

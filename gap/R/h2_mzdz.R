@@ -1,12 +1,3 @@
-k <- function(r,N,adjust=TRUE)
-{
-  r2 <- r^2
-  n <- N-1
-  k1 <- ifelse(adjust,r-r*(1-r2)/2/n,r)
-  k2 <- (1-r2)^2/n*(1+11*r2/2/n)
-  invisible(c(k1,k2))
-}
-
 #' Heritability estimation according to twin correlations
 #'
 #' @param mzDat a data frame for monzygotic twins (MZ).
@@ -19,13 +10,13 @@ k <- function(r,N,adjust=TRUE)
 #'
 #' @details
 #' Given MZ/DZ data or their correlations and sample sizes, it
-#' obtains bootstrap confidence interval under ACE models as in \insertCite{elks12}{gap}.
+#' obtains bootstrap confidence interval under ACE models \insertCite{elks12}{gap}.
 #' See \doi{10.1038/s41562-023-01530-y} for additional information.
 #'
 #' @export
 #' @return
-#' A data.frame containing heritability and their variance estimations
-#' for h2, c2, e2, vh, vc, ve.
+#' A data.frame containing heritability and variance estimates
+#' for h2, c2, e2, vh2, vc2, ve2.
 #'
 #' @references
 #' \insertAllCited{}
@@ -36,6 +27,7 @@ k <- function(r,N,adjust=TRUE)
 #' \dontrun{
 #' library(mvtnorm)
 #' set.seed(12345)
+#  # simulated BMI data for men and women
 #' mzm <- as.data.frame(rmvnorm(195, c(22.75,22.75),
 #'                      matrix(2.66^2*c(1, 0.67, 0.67, 1), 2)))
 #' dzm <- as.data.frame(rmvnorm(130, c(23.44,23.44),
@@ -46,7 +38,6 @@ k <- function(r,N,adjust=TRUE)
 #'                      matrix(3.12^2*c(1, 0.33, 0.33, 1), 2)))
 #' selVars <- c('bmi1','bmi2')
 #' names(mzm) <- names(dzm) <- names(mzw) <- names(dzw) <- selVars
-#' n.sim <- 500
 #' ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
 #' {
 #'   ACEr_twinData <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
@@ -69,10 +60,10 @@ k <- function(r,N,adjust=TRUE)
 #'   m <- apply(r,2,mean,na.rm=TRUE)
 #'   s <- apply(r,2,sd,na.rm=TRUE)
 #'   allr <- data.frame(mean=m,sd=s,lcl=m-1.96*s,ucl=m+1.96*s)
-#'   print(allr)
+#'   print(format(allr,digits=3))
 #' }
-#' ACE_CI(mzm,dzm,n.sim,selV=selVars,verbose=FALSE)
-#' ACE_CI(mzw,dzw,n.sim,selV=selVars,verbose=FALSE)
+#' ACE_CI(mzm,dzm,n.sim=500,selV=selVars,verbose=FALSE)
+#' ACE_CI(mzw,dzw,n.sim=500,selV=selVars,verbose=FALSE)
 #' }
 #' @keywords htest
 
@@ -80,8 +71,8 @@ h2_mzdz <- function(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,se
 {
   if(!is.null(mzDat))
   {
-    r1 <- cor(mzDat[selV[1]],mzDat[selV[2]], use="complete")
-    n1 <- length(!is.na(c(mzDat[selV[1]],mzDat[selV[2]])))
+    r1 <- cor(mzDat[selV[[1]]],mzDat[[selV[2]]], use="complete")
+    n1 <- nrow(mzDat[stats::complete.cases(mzDat),])
   } else {
     if(is.null(rmz)|is.null(nmz)) stop("Either raw data or correlation/sample size is neeeded")
     r1 <- rmz
@@ -89,25 +80,21 @@ h2_mzdz <- function(mzDat=NULL,dzDat=NULL,rmz=NULL,rdz=NULL,nmz=NULL,ndz=NULL,se
   }
   if(!is.null(dzDat))
   {
-    r2 <- cor(dzDat[selV[1]],dzDat[selV[2]], use="complete")
-    n2 <- length(!is.na(c(dzDat[selV[1]],dzDat[selV[2]])))
+    r2 <- cor(dzDat[[selV[1]]],dzDat[[selV[2]]], use="complete")
+    n2 <- nrow(dzDat[selV][stats::complete.cases(dzDat),])
   } else {
     if(is.null(rdz)|is.null(ndz)) stop("Either raw data or correlation/sample size is neeeded")
     r2 <- rdz
     n2 <- ndz
   }
-  kmz <- k(r1,n1)
-  k1mz <- kmz[1]
-  k2mz <- kmz[2]
-  kdz <- k(r2,n2)
-  k1dz <- kdz[1]
-  k2dz <- kdz[2]
-  h2 <- 2 * (k1mz - k1dz)
-  vh <- 4 * (k2mz + k2dz)
-  c2 <- 2 * k1dz - k1mz
-  vc <- 4 * k2dz + k2mz
-  e2 <- 1 - k1mz
-  ve <- k2mz
-  ACEr_est <- data.frame(h2,c2,e2,vh,vc,ve)
+  h2 <- 2 * (r1 - r2)
+  c2 <- 2 * r2 - r1
+  e2 <- 1 - r1
+  vmz <- 1 / (n1 - 1)
+  vdz <- 1 / (n2 - 1)
+  vh2 <- 4 * (vmz + vdz)
+  vc2 <- 4 * vdz + vmz
+  ve2 <- vmz
+  ACEr_est <- data.frame(h2,c2,e2,vh2,vc2,ve2)
   invisible(ACEr_est)
 }
