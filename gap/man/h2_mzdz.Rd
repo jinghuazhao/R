@@ -30,14 +30,14 @@ h2_mzdz(
 \item{selV}{names of variables for twin and cotwin.}
 }
 \value{
-A data.frame containing variables h2, c2, e2, vh2, vc2, ve2.
+A data.frame with variables h2, c2, e2, vh2, vc2, ve2.
 }
 \description{
 Heritability estimation according to twin correlations
 }
 \details{
 Given MZ/DZ data or their correlations and sample sizes, it obtains
-heritability and variance estimates under an ACE model, e.g.,
+heritability and variance estimates under an ACE model as in
 \doi{10.1038/s41562-023-01530-y} and \insertCite{keeping95;textual}{gap}.
 }
 \examples{
@@ -56,10 +56,11 @@ selVars <- c('bmi1','bmi2')
 names(mzm) <- names(dzm) <- names(mzw) <- names(dzw) <- selVars
 ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
 {
-  ACEr_twinData <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
-  print(ACEr_twinData)
-  nmz <- dim(mzData)[1]
-  ndz <- dim(dzData)[1]
+  ACE_obs <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
+  cat("\n\nheritability according to correlations\n\n")
+  print(ACE_obs)
+  nmz <- nrow(mzData)
+  ndz <- nrow(dzData)
   r <- data.frame()
   for(i in 1:n.sim)
   {
@@ -68,11 +69,10 @@ ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
     sampled_dz <- sample(1:ndz, replace=TRUE)
     mzDat <- mzData[sampled_mz,]
     dzDat <- dzData[sampled_dz,]
-    ACEr_i <- h2_mzdz(mzDat=mzDat,dzDat=dzDat,selV=selV)
-    if (verbose) print(ACEr_i)
-    r <- rbind(r,ACEr_i)
+    ACE_i <- h2_mzdz(mzDat=mzDat,dzDat=dzDat,selV=selV)
+    if (verbose) print(ACE_i)
+    r <- rbind(r,ACE_i)
   }
-  cat("\n\nheritability according to correlations\n\n")
   m <- apply(r,2,mean,na.rm=TRUE)
   s <- apply(r,2,sd,na.rm=TRUE)
   allr <- data.frame(mean=m,sd=s,lcl=m-1.96*s,ucl=m+1.96*s)
