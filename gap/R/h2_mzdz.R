@@ -11,7 +11,7 @@
 #' @details
 #' Given MZ/DZ data or their correlations and sample sizes, it obtains
 #' heritability and variance estimates under an ACE model, e.g.,
-#' \doi{10.1038/s41562-023-01530-y} and \insertCite{keeping95}{gap}.
+#' \doi{10.1038/s41562-023-01530-y} and \insertCite{keeping95;textual}{gap}.
 #'
 #' @export
 #' @return
