@@ -30,48 +30,21 @@ h2_mzdz(
 \item{selV}{names of variables for twin and cotwin.}
 }
 \value{
-The returned value is a matrix containing heritability and their variance estimations
+A data.frame containing heritability and their variance estimations
 for h2, c2, e2, vh, vc, ve.
 }
 \description{
 Heritability estimation according to twin correlations
 }
 \details{
-The example section shows how to obtain bootstrap 95\%CI.
-Heritability and variance estimation according to twin pair correlations.
+Given MZ/DZ data or their correlations and sample sizes, it
+obtains bootstrap confidence interval under ACE models as in \insertCite{elks12}{gap}.
 See \doi{10.1038/s41562-023-01530-y} for additional information.
 }
 \examples{
 \dontrun{
-ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
-{
-ACEr_twinData <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
-print(ACEr_twinData)
-nmz <- dim(mzData)[1]
-ndz <- dim(dzData)[1]
-a <- ar <- vector()
-set.seed(12345)
-for(i in 1:n.sim)
-{
-  cat("\rRunning # ",i,"/", n.sim,"\r",sep="")
-  sampled_mz <- sample(1:nmz, replace=TRUE)
-  sampled_dz <- sample(1:ndz, replace=TRUE)
-  mzDat <- mzData[sampled_mz,]
-  dzDat <- dzData[sampled_dz,]
-  ACEr_i <- h2_mzdz(mzDat=mzDat,dzDat=dzDat,selV=selV)
-  if (verbose) print(ACEr_i)
-  ar <- rbind(ar,ACEr_i)
-}
-cat("\n\nheritability according to correlations\n\n")
-ar <- as.data.frame(ar)
-m <- mean(ar,na.rm=TRUE)
-s <- sd(ar,na.rm=TRUE)
-allr <- data.frame(mean=m,sd=s,lcl=m-1.96*s,ucl=m+1.96*s)
-print(allr)
-}
-
 library(mvtnorm)
-n.sim <- 500
+set.seed(12345)
 mzm <- as.data.frame(rmvnorm(195, c(22.75,22.75),
                      matrix(2.66^2*c(1, 0.67, 0.67, 1), 2)))
 dzm <- as.data.frame(rmvnorm(130, c(23.44,23.44),
@@ -82,11 +55,38 @@ dzw <- as.data.frame(rmvnorm(243, c(21.72,21.72),
                      matrix(3.12^2*c(1, 0.33, 0.33, 1), 2)))
 selVars <- c('bmi1','bmi2')
 names(mzm) <- names(dzm) <- names(mzw) <- names(dzw) <- selVars
+n.sim <- 500
+ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
+{
+  ACEr_twinData <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
+  print(ACEr_twinData)
+  nmz <- dim(mzData)[1]
+  ndz <- dim(dzData)[1]
+  r <- data.frame()
+  for(i in 1:n.sim)
+  {
+    cat("\rRunning # ",i,"/", n.sim,"\r",sep="")
+    sampled_mz <- sample(1:nmz, replace=TRUE)
+    sampled_dz <- sample(1:ndz, replace=TRUE)
+    mzDat <- mzData[sampled_mz,]
+    dzDat <- dzData[sampled_dz,]
+    ACEr_i <- h2_mzdz(mzDat=mzDat,dzDat=dzDat,selV=selV)
+    if (verbose) print(ACEr_i)
+    r <- rbind(r,ACEr_i)
+  }
+  cat("\n\nheritability according to correlations\n\n")
+  m <- apply(r,2,mean,na.rm=TRUE)
+  s <- apply(r,2,sd,na.rm=TRUE)
+  allr <- data.frame(mean=m,sd=s,lcl=m-1.96*s,ucl=m+1.96*s)
+  print(allr)
+}
 ACE_CI(mzm,dzm,n.sim,selV=selVars,verbose=FALSE)
 ACE_CI(mzw,dzw,n.sim,selV=selVars,verbose=FALSE)
 }
 }
 \references{
+\insertAllCited{}
+
 \insertRef{keeping95}{gap}
 }
 \keyword{htest}
