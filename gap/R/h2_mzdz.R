@@ -10,7 +10,7 @@
 #'
 #' @details
 #' Given MZ/DZ data or their correlations and sample sizes, it
-#' obtains bootstrap confidence interval under ACE models \insertCite{elks12}{gap}.
+#' obtains heritability estimates under an ACE model \insertCite{elks12}{gap}.
 #' See \doi{10.1038/s41562-023-01530-y} for additional information.
 #'
 #' @export
@@ -27,7 +27,7 @@
 #' \dontrun{
 #' library(mvtnorm)
 #' set.seed(12345)
-#  # simulated BMI data for men and women
+#  # simulated BMI data for men and women with bootstap
 #' mzm <- as.data.frame(rmvnorm(195, c(22.75,22.75),
 #'                      matrix(2.66^2*c(1, 0.67, 0.67, 1), 2)))
 #' dzm <- as.data.frame(rmvnorm(130, c(23.44,23.44),
