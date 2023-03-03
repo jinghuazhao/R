@@ -9,14 +9,13 @@
 #' @param selV names of variables for twin and cotwin.
 #'
 #' @details
-#' Given MZ/DZ data or their correlations and sample sizes, it
-#' obtains heritability estimates under an ACE model \insertCite{elks12}{gap}.
+#' Given MZ/DZ data or their correlations and sample sizes, it obtains
+#' heritability and variance estimates under an ACE model \insertCite{elks12}{gap}.
 #' See \doi{10.1038/s41562-023-01530-y} for additional information.
 #'
 #' @export
 #' @return
-#' A data.frame containing heritability and variance estimates
-#' for h2, c2, e2, vh2, vc2, ve2.
+#' A data.frame containing variables h2, c2, e2, vh2, vc2, ve2.
 #'
 #' @references
 #' \insertAllCited{}
