@@ -37,8 +37,8 @@ Heritability estimation according to twin correlations
 }
 \details{
 Given MZ/DZ data or their correlations and sample sizes, it obtains
-heritability and variance estimates under an ACE model \insertCite{elks12}{gap}.
-See \doi{10.1038/s41562-023-01530-y} for additional information.
+heritability and variance estimates under an ACE model, e.g.,
+\doi{10.1038/s41562-023-01530-y} and \insertCite{keeping95}{gap}.
 }
 \examples{
 \dontrun{
@@ -81,10 +81,11 @@ ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
 ACE_CI(mzm,dzm,n.sim=500,selV=selVars,verbose=FALSE)
 ACE_CI(mzw,dzw,n.sim=500,selV=selVars,verbose=FALSE)
 }
+
 }
 \references{
-\insertAllCited{}
+\insertRef{elks12}{gap}
 
-\insertRef{keeping95}{gap}
+\insertAllCited{}
 }
 \keyword{htest}
