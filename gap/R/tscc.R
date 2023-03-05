@@ -1,8 +1,6 @@
 #' A normal z-test of two proportions
 #' @noRd
 
-# 1-3-2008, MRC-Epid, JHZ
-
 z <- function(p1,p2,n1,n2,r)
 {
    z.mean <- p1-p2
