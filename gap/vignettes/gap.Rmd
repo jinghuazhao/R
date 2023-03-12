@@ -62,7 +62,7 @@ initiative has been made in the **pQTLtools** package.
 
 Notable recent technical updates include:
 
-1. Documentaion from R code via **roxygen2** and **devtools** to allow for easier
+1. documentaion from R code via **roxygen2** and **devtools** to allow for easier
    generation of the .Rd files and NAMESPACE.
 
 2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** that allows
@@ -1004,7 +1004,7 @@ the models on heritability. Utility Functions `h2G`, `h2GE` and `h2l` are briefl
 documented. Functions `h2.jags` and `hwe.jags` are also available. The function
 `h2_mzdz` can be used for heritability estimation based on monozygotic (MZ) and
 dizygotic (DZ) twin correlations under the additive genetics, and shared environment
-(ACE) model.
+(ACE) model, e.g., \doi{10.1038/s41562-023-01530-y}.
 
 # Mendelian randomization
 
