@@ -1004,7 +1004,7 @@ the models on heritability. Utility Functions `h2G`, `h2GE` and `h2l` are briefl
 documented. Functions `h2.jags` and `hwe.jags` are also available. The function
 `h2_mzdz` can be used for heritability estimation based on monozygotic (MZ) and
 dizygotic (DZ) twin correlations under the additive genetics, and shared environment
-(ACE) model, e.g., \url{https://doi.org/10.1038/s41562-023-01530-y}.
+(ACE) model, e.g., [10.1038/s41562-023-01530-y](https://doi.org/10.1038/s41562-023-01530-y).
 
 # Mendelian randomization
 
