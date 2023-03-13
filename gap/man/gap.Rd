@@ -7,7 +7,7 @@
 \alias{gap-package}
 \title{Genetic analysis package}
 \description{
-As first reported, it is designed as an integrated package for genetic data
+As is first reported, it is designed as an integrated package for genetic data
 analysis of both population and family data. Currently, it contains functions for
 sample size calculations of both population-based and family-based designs, probability
 of familial disease aggregation, kinship calculation, statistics in linkage analysis,
@@ -16,8 +16,7 @@ without environmental covariates. Over years, the package has been developed in-
 many projects hence also in line with the name (gap).
 }
 \details{
-We have incorporated functions for a wide range of problems. Nevertheless,
-this largely remains as a preliminary work to be consolidated in the near future.
+We have incorporated functions for a wide range of problems as shown below.
 
 \tabular{ll}{
 \cr
