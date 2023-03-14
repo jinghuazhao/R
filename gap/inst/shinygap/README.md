@@ -78,14 +78,24 @@ $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\the
 
 ## C. Two-stage case-control design
 
-In the notation of @skol06,
+We implement it in function \texttt{tscc} whose format is
+```
+tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)
+```
+which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
+estimated risk allele frequency in cases ($p_1$), total number of cases ($n_1$) total number of controls ($n_2$), total number of
+markers ($M$), the false positive rate at genome level ($\alpha_\mathit{genome}$), the proportion of markers to be selected
+($\pi_\mathit{markers}$, also used as the false positive rate at stage 1) and the population prevalence ($K$).
 
-$$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$$ and $$P(|z_1|>C_1)P(|z_j|>C_j\,|\,|z_1|>C_1)$$
-for replication-based and joint analyses, respectively; where $C_1$, $C_2$, and $C_j$
-are threshoulds at stages 1, 2 replication and joint analysis,
-$z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})$, $\,$
-$z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})$, $\,$
-$z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}$.
+Tests of allele frequency differences between cases and controls in a two-stage design and is described here @skol06. The
+usual test of proportions can be written as
+$$z(p_1,p_2,n_1,n_2,\pi_{samples})=(p_1-p_2)/\sqrt{p_1(1-p_1)/(2n_1\pi_{sample})+p_2(1-p_2)/(2n_2\pi_{sample})}$$
+where $p_1$ and $p_2$ are the allele frequencies, $n_1$ and $n_2$ are the sample sizes, $\pi_{samples}$ is the proportion of samples
+to be genotyped at stage 1. The test statistics for stage 1, for stage 2 as replication and for stages 1 and 2 in a joint analysis
+are then $z_1 = z(\hat p_1,\hat p_2,n_1,n_2,\pi_{samples})$, $z_2 = z(\hat p_1,\hat p_2,n_1,n_2,1-\pi_{samples})$,
+$z_j = \sqrt{\pi_{samples}}z_1+\sqrt{1-\pi_{samples}}z_2$, respectively.
+Let $C_1$, $C_2$, and $C_j$ be the thresholds for these statistics, the false positive rates according to
+$P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$ and $P(|z_1|>C_1)P(|z_j|>C_j||z_1|>C_1)$ for replication-based and joint analyses, respectively.
 
 # References
 Zhao, J. H. [gap: Genetic analysis
