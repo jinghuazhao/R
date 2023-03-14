@@ -14,7 +14,7 @@
 <meta name="author" content="Cambridge, UK" />
 <meta name="author" content="https://jinghuazhao.github.io/" />
 
-<meta name="date" content="2023-03-13" />
+<meta name="date" content="2023-03-14" />
 
 <title>Shiny for Genetic Analysis Package (gap) Designs</title>
 
@@ -1521,7 +1521,7 @@ div.tocify {
 <h4 class="author">University of Cambridge</h4>
 <h4 class="author">Cambridge, UK</h4>
 <h4 class="author"><a href="https://jinghuazhao.github.io/" class="uri">https://jinghuazhao.github.io/</a></h4>
-<h4 class="date">2023-03-13</h4>
+<h4 class="date">2023-03-14</h4>
 
 </div>
 
@@ -1574,13 +1574,22 @@ the full cohort, and <span class="math inline">\(q\)</span> is the sampling frac
 </div>
 <div id="c.-two-stage-case-control-design" class="section level2 unnumbered">
 <h2>C. Two-stage case-control design</h2>
-<p>In the notation of<span class="citation"><sup>3</sup></span>,</p>
-<p><span class="math display">\[P(|z_1|&gt;C_1)P(|z_2|&gt;C_2,sign(z_1)=sign(z_2))\]</span> and <span class="math display">\[P(|z_1|&gt;C_1)P(|z_j|&gt;C_j\,|\,|z_1|&gt;C_1)\]</span>
-for replication-based and joint analyses, respectively; where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(C_j\)</span>
-are threshoulds at stages 1, 2 replication and joint analysis,
-<span class="math inline">\(z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})\)</span>, <span class="math inline">\(\,\)</span>
-<span class="math inline">\(z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})\)</span>, <span class="math inline">\(\,\)</span>
-<span class="math inline">\(z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}\)</span>.</p>
+<p>We implement it in function whose format is</p>
+<pre><code>tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)</code></pre>
+<p>which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
+estimated risk allele frequency in cases (<span class="math inline">\(p_1\)</span>), total number of cases (<span class="math inline">\(n_1\)</span>) total number of controls (<span class="math inline">\(n_2\)</span>), total number of
+markers (<span class="math inline">\(M\)</span>), the false positive rate at genome level (<span class="math inline">\(\alpha_\mathit{genome}\)</span>), the proportion of markers to be selected
+(<span class="math inline">\(\pi_\mathit{markers}\)</span>, also used as the false positive rate at stage 1) and the population prevalence (<span class="math inline">\(K\)</span>).</p>
+<p>Tests of allele frequency differences between cases and controls in a two-stage design and is described here<span class="citation"><sup>3</sup></span>. The
+usual test of proportions can be written as
+<span class="math display">\[z(p_1,p_2,n_1,n_2,\pi_{samples})=(p_1-p_2)/\sqrt{p_1(1-p_1)/(2n_1\pi_{sample})+p_2(1-p_2)/(2n_2\pi_{sample})}\]</span>
+where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> are the allele frequencies, <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes, <span class="math inline">\(\pi_{samples}\)</span> is the proportion of samples
+to be genotyped at stage 1. The test statistics for stage 1, for stage 2 as replication and for stages 1 and 2 in a joint analysis
+are then <span class="math inline">\(z_1 = z(\hat p_1,\hat p_2,n_1,n_2,\pi_{samples})\)</span>, <span class="math inline">\(z_2 = z(\hat p_1,\hat p_2,n_1,n_2,1-\pi_{samples})\)</span>,
+<span class="math inline">\(z_j = \sqrt{\pi_{samples}}z_1+\sqrt{1-\pi_{samples}}z_2\)</span>, respectively.
+Let <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(C_j\)</span> be the thresholds for these statistics,
+The false positive rates according to <span class="math inline">\(P(|z_1|&gt;C_1)P(|z_2|&gt;C_2,sign(z_1)=sign(z_2))\)</span> and
+<span class="math inline">\(P(|z_1|&gt;C_1)P(|z_j|&gt;C_j||z_1|&gt;C_1)\)</span> for replication-based and joint analyses, respectively.</p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
