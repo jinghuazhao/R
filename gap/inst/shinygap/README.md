@@ -94,7 +94,7 @@ where $p_1$ and $p_2$ are the allele frequencies, $n_1$ and $n_2$ are the sample
 to be genotyped at stage 1. The test statistics for stage 1, for stage 2 as replication and for stages 1 and 2 in a joint analysis
 are then $z_1 = z(\hat p_1,\hat p_2,n_1,n_2,\pi_{samples})$, $z_2 = z(\hat p_1,\hat p_2,n_1,n_2,1-\pi_{samples})$,
 $z_j = \sqrt{\pi_{samples}}z_1+\sqrt{1-\pi_{samples}}z_2$, respectively.
-Let $C_1$, $C_2$, and $C_j$ be the thresholds for these statistics, the false positive rates according to
+Let $C_1$, $C_2$, and $C_j$ be the thresholds for these statistics, the false positive rates can be obtained according to
 $P(|z_1|>C_1)P(|z_2|>C_2,sign(z_1)=sign(z_2))$ and $P(|z_1|>C_1)P(|z_j|>C_j||z_1|>C_1)$ for replication-based and joint analyses, respectively.
 
 # References
