@@ -89,7 +89,7 @@ markers ($M$), the false positive rate at genome level ($\alpha_\mathit{genome}$
 
 Tests of allele frequency differences between cases and controls in a two-stage design and is described here @skol06. The
 usual test of proportions can be written as
-$$z(p_1,p_2,n_1,n_2,\pi_{samples})=(p_1-p_2)/\sqrt{p_1(1-p_1)/(2n_1\pi_{sample})+p_2(1-p_2)/(2n_2\pi_{sample})}$$
+$$z(p_1,p_2,n_1,n_2,\pi_{samples})=\frac{p_1-p_2}{\sqrt{\frac{p_1(1-p_1)}{2n_1\pi_{sample}}+\frac{p_2(1-p_2)}{2n_2\pi_{sample}}}}$$
 where $p_1$ and $p_2$ are the allele frequencies, $n_1$ and $n_2$ are the sample sizes, $\pi_{samples}$ is the proportion of samples
 to be genotyped at stage 1. The test statistics for stage 1, for stage 2 as replication and for stages 1 and 2 in a joint analysis
 are then $z_1 = z(\hat p_1,\hat p_2,n_1,n_2,\pi_{samples})$, $z_2 = z(\hat p_1,\hat p_2,n_1,n_2,1-\pi_{samples})$,
