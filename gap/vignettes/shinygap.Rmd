@@ -64,7 +64,7 @@ This is detailed in the package vignettes gap, <https://cran.r-project.org/web/p
 
 ### B.1 Power {-}
 
-Following @cai04, we have
+We have @cai04,
 $$\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)$$
 
 where $\alpha$ is the significance level, $\theta$ is the log-hazard ratio for
