@@ -58,7 +58,7 @@ This is a call to tscc().
 
 ## A. Family-based and population-based designs
 
-See the R/gap package vignette jss or @zhao07.
+This is detailed in the package vignettes gap, <https://cran.r-project.org/web/packages/gap/vignettes/gap.html>, or jss, Zhao (2007).
 
 ## B. Case-cohort design
 
