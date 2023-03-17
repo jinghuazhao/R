@@ -1547,7 +1547,12 @@ runApp()</code></pre>
 </div>
 <div id="two-stage-case-control-design" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Two-stage case-control design</h1>
-<p>This is a call to tscc().</p>
+<p>We implement it in function whose format is</p>
+<pre><code>tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)</code></pre>
+<p>which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
+estimated risk allele frequency in cases (<span class="math inline">\(p_1\)</span>), total number of cases (<span class="math inline">\(n_1\)</span>) total number of controls (<span class="math inline">\(n_2\)</span>), total number of
+markers (<span class="math inline">\(M\)</span>), the false positive rate at genome level (<span class="math inline">\(\alpha_\mathit{genome}\)</span>), the proportion of markers to be selected
+(<span class="math inline">\(\pi_\mathit{markers}\)</span>, also used as the false positive rate at stage 1) and the population prevalence (<span class="math inline">\(K\)</span>).</p>
 <hr />
 </div>
 <div id="appendix-theory" class="section level1 unnumbered">
@@ -1574,13 +1579,8 @@ the full cohort, and <span class="math inline">\(q\)</span> is the sampling frac
 </div>
 <div id="c.-two-stage-case-control-design" class="section level2 unnumbered">
 <h2>C. Two-stage case-control design</h2>
-<p>Tests of allele frequency differences between cases and controls in a two-stage design are described here<span class="citation"><sup>3</sup></span>. We implement it in function whose format is</p>
-<pre><code>tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)</code></pre>
-<p>which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
-estimated risk allele frequency in cases (<span class="math inline">\(p_1\)</span>), total number of cases (<span class="math inline">\(n_1\)</span>) total number of controls (<span class="math inline">\(n_2\)</span>), total number of
-markers (<span class="math inline">\(M\)</span>), the false positive rate at genome level (<span class="math inline">\(\alpha_\mathit{genome}\)</span>), the proportion of markers to be selected
-(<span class="math inline">\(\pi_\mathit{markers}\)</span>, also used as the false positive rate at stage 1) and the population prevalence (<span class="math inline">\(K\)</span>).</p>
-<p>The usual test of proportions can be written as
+<p>Tests of allele frequency differences between cases and controls in a two-stage design are described here<span class="citation"><sup>3</sup></span>.
+The usual test of proportions can be written as
 <span class="math display">\[z(p_1,p_2,n_1,n_2,\pi_{samples})=\frac{p_1-p_2}{\sqrt{\frac{p_1(1-p_1)}{2n_1\pi_{sample}}+\frac{p_2(1-p_2)}{2n_2\pi_{sample}}}}\]</span>
 where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> are the allele frequencies, <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes, <span class="math inline">\(\pi_{samples}\)</span> is the proportion of samples
 to be genotyped at stage 1. The test statistics for stage 1, for stage 2 as replication and for stages 1 and 2 in a joint analysis
