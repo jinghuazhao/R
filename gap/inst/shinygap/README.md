@@ -50,7 +50,14 @@ This is a call to `ccsize()` whose `power` argument indcates power (TRUE) or sam
 
 # Two-stage case-control design
 
-This is a call to tscc().
+We implement it in function \texttt{tscc} whose format is
+```
+tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)
+```
+which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
+estimated risk allele frequency in cases ($p_1$), total number of cases ($n_1$) total number of controls ($n_2$), total number of
+markers ($M$), the false positive rate at genome level ($\alpha_\mathit{genome}$), the proportion of markers to be selected
+($\pi_\mathit{markers}$, also used as the false positive rate at stage 1) and the population prevalence ($K$).
 
 ---
 
@@ -79,15 +86,7 @@ $$\tilde{n}=\frac{nBp_D}{n-B(1-p_D)}$$ where $B=\frac{Z_{1-\alpha}+Z_\beta}{\the
 
 ## C. Two-stage case-control design
 
-Tests of allele frequency differences between cases and controls in a two-stage design are described here @skol06. We implement it in function \texttt{tscc} whose format is
-```
-tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)
-```
-which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
-estimated risk allele frequency in cases ($p_1$), total number of cases ($n_1$) total number of controls ($n_2$), total number of
-markers ($M$), the false positive rate at genome level ($\alpha_\mathit{genome}$), the proportion of markers to be selected
-($\pi_\mathit{markers}$, also used as the false positive rate at stage 1) and the population prevalence ($K$).
-
+Tests of allele frequency differences between cases and controls in a two-stage design are described here @skol06.
 The usual test of proportions can be written as
 $$z(p_1,p_2,n_1,n_2,\pi_{samples})=\frac{p_1-p_2}{\sqrt{\frac{p_1(1-p_1)}{2n_1\pi_{sample}}+\frac{p_2(1-p_2)}{2n_2\pi_{sample}}}}$$
 where $p_1$ and $p_2$ are the allele frequencies, $n_1$ and $n_2$ are the sample sizes, $\pi_{samples}$ is the proportion of samples
