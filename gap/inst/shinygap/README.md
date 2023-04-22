@@ -69,7 +69,7 @@ This is detailed in the package vignettes gap, <https://cran.r-project.org/web/p
 
 ## B. Case-cohort design
 
-Our implemention is with respect to two aspects, Cai & Zeng (2004),
+Our implemention is with respect to two aspects, Cai & Zeng (2004).
 
 ### B.1 Power
 
