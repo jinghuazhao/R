@@ -33,14 +33,54 @@ tar xvfz -
 cd R-devel
 ./configure
 make
-wget -qO- https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.3.1.tar.gz | \
-tar xfz -
-./configure
-make
-sudo make install
 
 # symbolic links
 
 ln -s ~/R-devel/bin/R ~/bin/R-devel
 ln -s ~/R-devel/bin/Rscript ~/bin/Rscript-devel
 Rscript-devel -e 'install.packages(c("shiny","V8"),repos="https://cran.r-project.org")'
+
+# JAGS
+
+export version=4.3.2
+wget -qO- https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-${version}.tar.gz | \
+tar xfz -
+cd JAGS-${version}
+./configure
+make
+sudo make install
+
+# Added packages from transferred R-devel/library
+
+cat <<'EOL' | xargs -l -I {} zip -d library.zip R-devel/library/{}
+base/
+boot/
+class/
+cluster/
+codetools/
+compiler/
+datasets/
+foreign/
+graphics/
+grDevices/
+grid/
+KernSmooth/
+lattice/
+MASS/
+Matrix/
+methods/
+mgcv/
+nlme/
+nnet/
+parallel/
+rpart/
+spatial/
+splines/
+stats/
+stats4/
+survival/
+tcltk/
+tools/
+translations/
+utils/
+EOL
