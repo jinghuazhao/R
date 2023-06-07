@@ -14,7 +14,7 @@
 <meta name="author" content="Cambridge, UK" />
 <meta name="author" content="https://jinghuazhao.github.io/" />
 
-<meta name="date" content="2023-01-22" />
+<meta name="date" content="2023-06-07" />
 
 <title>Shiny for Genetic Analysis Package (gap) Designs</title>
 
@@ -1521,7 +1521,7 @@ div.tocify {
 <h4 class="author">University of Cambridge</h4>
 <h4 class="author">Cambridge, UK</h4>
 <h4 class="author"><a href="https://jinghuazhao.github.io/" class="uri">https://jinghuazhao.github.io/</a></h4>
-<h4 class="date">2023-01-22</h4>
+<h4 class="date">2023-06-07</h4>
 
 </div>
 
@@ -1531,7 +1531,7 @@ div.tocify {
 <pre class="r"><code>setwd(file.path(find.package(&quot;gap&quot;),&quot;shinygap&quot;))
 library(shiny)
 runApp()</code></pre>
-<p>Alternatively, one can run the app from source using <code>gap/inst/shinygap</code>.</p>
+<p>Alternatively, one can run the app from source using <code>gap/inst/shinygap</code>. In fact, these are conveniently wrapped up as <code>runshinygap()</code> function.</p>
 <p>To set the default parameters, some compromises need to be made, e.g., Kp=[1e-5, 0.4], MAF=[1e-3, 0.8], alpha=[1e-8, 0.05], beta=[0.01, 0.4]. The slider inputs provide upper bounds of parameters.</p>
 <div id="family-based-study" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Family-based study</h1>
@@ -1547,22 +1547,27 @@ runApp()</code></pre>
 </div>
 <div id="two-stage-case-control-design" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Two-stage case-control design</h1>
-<p>This is a call to tscc().</p>
+<p>We implement it in function whose format is</p>
+<pre><code>tscc(model, GRR, p1, n1, n2, M, alpha.genome, pi.samples, pi.markers, K)</code></pre>
+<p>which requires specification of disease model (multiplicative, additive, dominant, recessive), genotypic relative risk (GRR), the
+estimated risk allele frequency in cases (<span class="math inline">\(p_1\)</span>), total number of cases (<span class="math inline">\(n_1\)</span>) total number of controls (<span class="math inline">\(n_2\)</span>), total number of
+markers (<span class="math inline">\(M\)</span>), the false positive rate at genome level (<span class="math inline">\(\alpha_\mathit{genome}\)</span>), the proportion of markers to be selected
+(<span class="math inline">\(\pi_\mathit{markers}\)</span>, also used as the false positive rate at stage 1) and the population prevalence (<span class="math inline">\(K\)</span>).</p>
 <hr />
 </div>
 <div id="appendix-theory" class="section level1 unnumbered">
 <h1>Appendix: Theory</h1>
 <div id="a.-family-based-and-population-based-designs" class="section level2 unnumbered">
 <h2>A. Family-based and population-based designs</h2>
-<p>See the R/gap package vignette jss or<span class="citation"><sup>1</sup></span>.</p>
+<p>This is detailed in the package vignettes gap, <a href="https://cran.r-project.org/web/packages/gap/vignettes/gap.html" class="uri">https://cran.r-project.org/web/packages/gap/vignettes/gap.html</a>, or jss<span class="citation"><sup>1</sup></span>.</p>
 </div>
 <div id="b.-case-cohort-design" class="section level2 unnumbered">
 <h2>B. Case-cohort design</h2>
+<p>Our implemention is with respect to two aspects<span class="citation"><sup>2</sup></span>.</p>
 <div id="b.1-power" class="section level3 unnumbered">
 <h3>B.1 Power</h3>
-<p>Following<span class="citation"><sup>2</sup></span>, we have
-<span class="math display">\[\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)\]</span></p>
-<p>where <span class="math inline">\(\alpha\)</span> is the significance level, <span class="math inline">\(\theta\)</span> is the log-hazard ratio for
+<p><span class="math display">\[\Phi\left(Z_\alpha+\tilde{n}^\frac{1}{2}\theta\sqrt{\frac{p_1p_2p_D}{q+(1-q)p_D}}\right)\]</span>
+where <span class="math inline">\(\alpha\)</span> is the significance level, <span class="math inline">\(\theta\)</span> is the log-hazard ratio for
 two groups, <span class="math inline">\(p_j, j = 1, 2\)</span>, are the proportion of the two groups
 in the population (<span class="math inline">\(p_1 + p_2 = 1\)</span>), <span class="math inline">\(\tilde{n}\)</span> is the total number of subjects in the subcohort, <span class="math inline">\(p_D\)</span> is the proportion of the failures in
 the full cohort, and <span class="math inline">\(q\)</span> is the sampling fraction of the subcohort.</p>
@@ -1574,13 +1579,15 @@ the full cohort, and <span class="math inline">\(q\)</span> is the sampling frac
 </div>
 <div id="c.-two-stage-case-control-design" class="section level2 unnumbered">
 <h2>C. Two-stage case-control design</h2>
-<p>In the notation of<span class="citation"><sup>3</sup></span>,</p>
-<p><span class="math display">\[P(|z_1|&gt;C_1)P(|z_2|&gt;C_2,sign(z_1)=sign(z_2))\]</span> and <span class="math display">\[P(|z_1|&gt;C_1)P(|z_j|&gt;C_j\,|\,|z_1|&gt;C_1)\]</span>
-for replication-based and joint analyses, respectively; where <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(C_j\)</span>
-are threshoulds at stages 1, 2 replication and joint analysis,
-<span class="math inline">\(z_1 = z(p_1,p_2,n_1,n_2,\pi_{samples})\)</span>, <span class="math inline">\(\,\)</span>
-<span class="math inline">\(z_2 = z(p_1,p_2,n_1,n_2,1-\pi_{samples})\)</span>, <span class="math inline">\(\,\)</span>
-<span class="math inline">\(z_j = z_1 \sqrt{\pi_{samples}}+z_2\sqrt{1-\pi_{samples}}\)</span>.</p>
+<p>Tests of allele frequency differences between cases and controls in a two-stage design are described here<span class="citation"><sup>3</sup></span>.
+The usual test of proportions can be written as
+<span class="math display">\[z(p_1,p_2,n_1,n_2,\pi_{samples})=\frac{p_1-p_2}{\sqrt{\frac{p_1(1-p_1)}{2n_1\pi_{sample}}+\frac{p_2(1-p_2)}{2n_2\pi_{sample}}}}\]</span>
+where <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span> are the allele frequencies, <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes, <span class="math inline">\(\pi_{samples}\)</span> is the proportion of samples
+to be genotyped at stage 1. The test statistics for stage 1, for stage 2 as replication and for stages 1 and 2 in a joint analysis
+are then <span class="math inline">\(z_1 = z(\hat p_1,\hat p_2,n_1,n_2,\pi_{samples})\)</span>, <span class="math inline">\(z_2 = z(\hat p_1,\hat p_2,n_1,n_2,1-\pi_{samples})\)</span>,
+<span class="math inline">\(z_j = \sqrt{\pi_{samples}}z_1+\sqrt{1-\pi_{samples}}z_2\)</span>, respectively.
+Let <span class="math inline">\(C_1\)</span>, <span class="math inline">\(C_2\)</span>, and <span class="math inline">\(C_j\)</span> be the thresholds for these statistics, the false positive rates can be obtained according to
+<span class="math inline">\(P(|z_1|&gt;C_1)P(|z_2|&gt;C_2,sign(z_1)=sign(z_2))\)</span> and <span class="math inline">\(P(|z_1|&gt;C_1)P(|z_j|&gt;C_j||z_1|&gt;C_1)\)</span> for replication-based and joint analyses, respectively.</p>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
@@ -1590,10 +1597,10 @@ are threshoulds at stages 1, 2 replication and joint analysis,
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">Zhao, J. H. <a href="https://doi.org/10.18637/jss.v023.i08"><span class="nocase">gap</span>: Genetic analysis package</a>. <em>Journal of Statistical Software</em> <strong>23</strong>, 1–18 (2007).</div>
 </div>
 <div id="ref-cai04" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Cai, J. &amp; Zeng, D. Sample size/power calculation for case–cohort studies. <em>Biometrics</em> <strong>60</strong>, 1015–1024 (2004).</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Cai, J. &amp; Zeng, D. <a href="https://doi.org/10.1111/j.0006-341X.2004.00257.x">Sample size/power calculation for case-cohort studies</a>. <em>Biometrics</em> <strong>60</strong>, 1015–24 (2004).</div>
 </div>
 <div id="ref-skol06" class="csl-entry">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Skol, A. D., Scott, L. J., Abecasis, G. R. &amp; Boehnke, M. Joint analysis is more efficient than replication-based analysis for two-stage genome-wide association studies. <em>Nat Genet</em> <strong>38</strong>, 209–13 (2006).</div>
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Skol, A. D., Scott, L. J., Abecasis, G. R. &amp; Boehnke, M. <a href="https://doi.org/10.1038/ng1706">Joint analysis is more efficient than replication-based analysis for two-stage genome-wide association studies</a>. <em>Nat Genet</em> <strong>38</strong>, 209–13 (2006).</div>
 </div>
 </div>
 </div>
