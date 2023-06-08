@@ -19,19 +19,19 @@
 #' for each pedigree to be used by dot in graphviz, which is a flexible package
 #' for graphics freely available.
 #'
-#' Note that a single PostScript (PDF) file can be obtainaed by dot, fdp, 
-#' or neato.
-#'
-#' dot -Tps <dot file> -o <ps file>  
-#'
+#' Note that a single PostScript (PDF) file can be obtainaed by `dot`, `fdp`,
+#' or `neato`.
+#' ```
+#' dot -Tps <dot file> -o <ps file>
+#' ```
 #' or
-#'
-#' fdp -Tps <dot file> -o <ps file>  
-#'
+#' ```
+#' fdp -Tps <dot file> -o <ps file>
+#' ```
 #' or
-#'
+#' ```
 #' neato -Tps <dot file> -o <ps file>
-#'
+#' ```
 #' See relevant documentations for other formats.
 #'
 #' To preserve the original order of pedigree(s) in the data, you can examine the
@@ -39,21 +39,21 @@
 #'
 #' Under Cygwin/Linux/Unix, the PostScript file can be converted to Portable
 #' Document Format (PDF) default to Acrobat.
-#'
+#' ```
 #' ps2pdf <ps file>
-#'
-#' Use ps2pdf12, ps2pdf13, or ps2pdf14 for appropriate versions of Acrobat
-#' according to information given on the headline of <ps file>.
+#' ```
+#' Use `ps2pdf12`, `ps2pdf13`, or `ps2pdf14` for appropriate versions of Acrobat
+#' according to information given on the headline of `<ps file>`.
 #'
 #' Under Linux, you can also visualize the .dot file directly via command,
-#'
+#' ```
 #' dotty <dot file> &
-#'
-#' We can extract the code below (or within pedtodot.Rd) to pedtodot and then
+#' ```
+#' We can extract the code below (or within `pedtodot.Rd`) to pedtodot and then
 #' use command: 
-#'
+#' ```
 #' sh pedtodot <pedigree file>
-#'
+#' ```
 #' @export
 #' @return
 #' For each pedigree, the function generates a .dot file to be used by dot. The

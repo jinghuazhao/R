@@ -51,18 +51,21 @@ This function converts GAS or LINKAGE formatted pedigree(s) into .dot file
 for each pedigree to be used by dot in graphviz, which is a flexible package
 for graphics freely available.
 
-Note that a single PostScript (PDF) file can be obtainaed by dot, fdp,
-or neato.
+Note that a single PostScript (PDF) file can be obtainaed by \code{dot}, \code{fdp},
+or \code{neato}.
 
-dot -Tps \if{html}{\out{<dot file>}} -o \if{html}{\out{<ps file>}}
-
-or
-
-fdp -Tps \if{html}{\out{<dot file>}} -o \if{html}{\out{<ps file>}}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{dot -Tps <dot file> -o <ps file>
+}\if{html}{\out{</div>}}
 
 or
 
-neato -Tps \if{html}{\out{<dot file>}} -o \if{html}{\out{<ps file>}}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{fdp -Tps <dot file> -o <ps file>
+}\if{html}{\out{</div>}}
+
+or
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{neato -Tps <dot file> -o <ps file>
+}\if{html}{\out{</div>}}
 
 See relevant documentations for other formats.
 
@@ -72,19 +75,22 @@ examples at the end of this document.
 Under Cygwin/Linux/Unix, the PostScript file can be converted to Portable
 Document Format (PDF) default to Acrobat.
 
-ps2pdf \if{html}{\out{<ps file>}}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ps2pdf <ps file>
+}\if{html}{\out{</div>}}
 
-Use ps2pdf12, ps2pdf13, or ps2pdf14 for appropriate versions of Acrobat
-according to information given on the headline of \if{html}{\out{<ps file>}}.
+Use \code{ps2pdf12}, \code{ps2pdf13}, or \code{ps2pdf14} for appropriate versions of Acrobat
+according to information given on the headline of \verb{<ps file>}.
 
 Under Linux, you can also visualize the .dot file directly via command,
 
-dotty \if{html}{\out{<dot file>}} &
+\if{html}{\out{<div class="sourceCode">}}\preformatted{dotty <dot file> &
+}\if{html}{\out{</div>}}
 
-We can extract the code below (or within pedtodot.Rd) to pedtodot and then
+We can extract the code below (or within \code{pedtodot.Rd}) to pedtodot and then
 use command:
 
-sh pedtodot \if{html}{\out{<pedigree file>}}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{sh pedtodot <pedigree file>
+}\if{html}{\out{</div>}}
 }
 \note{
 This is based on the gawk script program pedtodot by David Duffy with minor changes.
