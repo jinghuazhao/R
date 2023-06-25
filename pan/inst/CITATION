@@ -3,16 +3,11 @@ citHeader("To cite package 'pan' in publications use:")
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
-citEntry(entry="Manual",
+bibentry(bibtype="Manual",
          title = "pan: Multiple imputation for multivariate panel or clustered data",
-         author = personList(as.person("Jing Hua Zhao"),
-                             as.person("Joseph L. Schafer")),
+         author = c(as.person("Jing Hua Zhao"), as.person("Joseph L. Schafer")),
          year = year,
          note = vers,
 
-         textVersion =
-         paste("Jing Hua Zhao, Joseph L. Schafer (",
-               year,
-               "). pan: Multiple imputation for multivariate panel or clustered data",
-               vers, ".", sep=""))
+         textVersion = paste("Jing Hua Zhao and Joseph L. Schafer (", year, "). pan: Multiple imputation for multivariate panel or clustered data", vers, ".", sep=""))
 

@@ -1,3 +1,8 @@
+Version 1.8
+
+2023-06-25	Replace 13 dfloat with dble in pan.f as suggested by Prof Brian Ripley from CRAN
+		Revise CITATION according to check --as-cran
+
 Version 1.7
 
 2022-12-03	Refine pan.bd.Rd

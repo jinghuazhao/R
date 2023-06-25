@@ -1,6 +1,6 @@
 Package: pan
-Version: 1.7
-Date: 2022-12-3
+Version: 1.8
+Date: 2023-6-25
 Title:  Multiple Imputation for Multivariate Panel or Clustered Data
 Author: Original by Joseph L. Schafer 
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>

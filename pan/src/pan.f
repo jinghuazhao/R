@@ -909,7 +909,7 @@ C calculates initial estimate of psi given sig.
       do 120 l=1,r
          do 110 i=1,q
             do 105 j=i,q
-               psi(i,j,l)=psi(i,j,l)/dfloat(m)
+               psi(i,j,l)=psi(i,j,l)/dble(m)
                if(i.ne.j) psi(j,i,l)=psi(i,j,l)
  105        continue
  110     continue
@@ -936,7 +936,7 @@ C calculates initial estimate of psi given sig.
  100  continue
       do 110 i=1,r*q
          do 105 j=i,r*q
-            psi(i,j)=psi(i,j)/dfloat(m)
+            psi(i,j)=psi(i,j)/dble(m)
             if(i.ne.j) psi(j,i)=psi(i,j)
  105     continue
  110  continue
@@ -1118,7 +1118,7 @@ C calculates (1/nstar)*sum of t(eps_i)%*%eps_i
  100  continue
       do 110 i=1,r
          do 108 j=i,r
-            sigma(i,j)=sigma(i,j)/dfloat(nstar)
+            sigma(i,j)=sigma(i,j)/dble(nstar)
             if(i.ne.j) sigma(j,i)=sigma(i,j)
  108     continue
  110  continue
@@ -1188,11 +1188,11 @@ C unconditional mean imputation for variables in y
          do 100 i=1,ntot
             if(patt(i).ne.0) then
                rij=rmat(patt(i),j)
-               sum=sum+dfloat(rij)*y(i,j)
+               sum=sum+dble(rij)*y(i,j)
                denom=denom+rij
             endif
  100     continue
-         mean=sum/dfloat(denom)
+         mean=sum/dble(denom)
          do 150 i=1,ntot
             if(patt(i).ne.0) then
                if(rmat(patt(i),j).eq.0) y(i,j)=mean
@@ -1372,7 +1372,7 @@ C get psi
       call mm(q,q,wkq1,psi)
       do 600 i=1,q
          do 550 j=i,q
-            psi(i,j)=psi(i,j)*sigma2*dfloat(m)
+            psi(i,j)=psi(i,j)*sigma2*dble(m)
             if(i.ne.j) then
                psi(j,i)=psi(i,j)
             endif
@@ -1497,7 +1497,7 @@ C get sigma2
  210        continue
          endif
  300  continue
-      sigma2=sigma2/dfloat(ntot)
+      sigma2=sigma2/dble(ntot)
       return
       end
 C***********************************************************************
@@ -1570,8 +1570,8 @@ C set sflag=1 if starting values supplied
      /        pcol,pred,p,xcol,y,xtw,xtwx,xtwy,xtwxinv,beta,iflag)
          call mkdel(ntot,pcol,pred,p,xcol,y,beta,delta)
          call mksig23(ntot,delta,m,sigma2,nmax,occ,ist,ifin,w)
-         ll=-dble(.5)*dfloat(ntot)*dlog(sigma2)+dfloat(m)*ldxi+ldsig
-         ll=ll-dble(.5)*dfloat(ntot)
+         ll=-dble(.5)*dble(ntot)*dlog(sigma2)+dfloat(m)*ldxi+ldsig
+         ll=ll-dble(.5)*dble(ntot)
          llk(iter)=ll
          c1=0
          do 30 i=1,p
@@ -1647,8 +1647,8 @@ C  -.5*logdet(psi) is in ldpsi, and +.5*sum(logdet(sig_i)) is in ldsig.
             ll=ll+sum*delta(i)
  300     continue
  900  continue
-      ll=-dble(.5)*ll-dble(.5)*dfloat(ntot)*dlog(sigma2)
-      ll=ll+dfloat(m)*ldpsi+ldsig
+      ll=-dble(.5)*ll-dble(.5)*dble(ntot)*dlog(sigma2)
+      ll=ll+dble(m)*ldpsi+ldsig
       return
       end
 C***********************************************************************
@@ -1756,7 +1756,7 @@ C calculates new estimate of xi from b, sig, and sigma2
  100  continue
       do 110 i=1,q
          do 105 j=i,q
-            xi(i,j)=xi(i,j)/dfloat(m)
+            xi(i,j)=xi(i,j)/dble(m)
  105     continue
  110  continue
       return
@@ -1959,7 +1959,7 @@ C for ECME-3
             sigma2=sigma2+sum*delta(i)
  300     continue
  900  continue
-      sigma2=sigma2/dfloat(ntot)
+      sigma2=sigma2/dble(ntot)
       return
       end
 C***********************************************************************
