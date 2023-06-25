@@ -1,12 +1,13 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-14-03-2023	Add ci2ms() for PhenoScanner/GWAS Catalog lookup and refine h2_mzdz()
+25-03-2023	Add ci2ms() for PhenoScanner/GWAS Catalog lookup and refine h2_mzdz()
 		Drop genetics/GeneticsDesign reference in pbsize2() and backslash (\%) in tscc()
 		Rename SNP functions and document hg18/19/38
 		Reorganize DESCRIPTION, adding Roxygen: list(markdown = TRUE), and document in Markdown
 		Import/amend in line with Rdpack/Remove INDEX to suppress error message/ and \insertRef
 		Refine gap.Rmd and shinygap.Rmd
+		Revise CITATION for the new style
 
 Version 1.5-1
 22-01-2023	Add rationale, @graham21 and @vosa21 for cs() together with minor changes in gap.Rmd

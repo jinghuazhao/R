@@ -3,9 +3,9 @@ citHeader("To cite package 'gap' in publications use:")
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
-citEntry(entry="Manual",
+bibentry(bibtype="Manual",
          title = "gap: Genetic Analysis Package",
-         author = personList(as.person("J. H. Zhao")),
+         author = c(as.person("J. H. Zhao")),
          year = year,
          note = vers,
          url = "https://CRAN.R-project.org/package=gap",
@@ -17,9 +17,9 @@ citEntry(entry="Manual",
                vers, ", ",
                "https://CRAN.R-project.org/package=gap", sep=""))
 
-citEntry(entry="Article",
+bibentry(bibtype="Article",
          title = "gap: Genetic Analysis Package",
-         author = personList(as.person("J. H. Zhao")),
+         author = c(as.person("J. H. Zhao")),
 	 journal = "Journal of Statistical Software",
          volume   = "23",
          number   = "8",
