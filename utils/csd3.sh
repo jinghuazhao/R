@@ -4,7 +4,7 @@ module load gcc/6 geos-3.6.2-gcc-5.4.0-vejexvy gettext-0.19.8.1-gcc-5.4.0-5iqkv5
 export prefix=/rds-d4/user/$USER/hpc-work
 export prefix=~/rds/public_databases/software
 cd ${prefix}
-export version=4.3.0
+export version=4.3.1
 IFS=\. read major minor1 minor2 <<<${version}
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
 tar xvfz -
