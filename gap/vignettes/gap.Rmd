@@ -1094,7 +1094,7 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
 ```{r, fig.cap="Forest plots for MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14, leftlabs=c("Outcome","b","SE"),
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              spacing=1.6,digits.TE=2,digits.se=2,xlab="Effect size")
+              spacing=1.6,digits.TE=2,digits.se=2,xlab="Effect size",type.study="square",col.inside="black",col.square="white")
 ```
 
 ```{r, fig.cap="Forest plots for MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
@@ -1102,7 +1102,7 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
               sortvar=tnfb[["Effect"]],
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              backtransf=TRUE, spacing=1.6)
+              backtransf=TRUE, spacing=1.6,type.study="square",col.inside="black",col.square="white")
 ```
 
 ```{r, fig.cap="Forest plots for MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
@@ -1112,7 +1112,7 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","P"),
               digits=3, digits.pval=2, scientific.pval=TRUE,
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              addrow=TRUE, backtransf=TRUE, spacing=1.6)
+              addrow=TRUE, backtransf=TRUE, spacing=1.6,type.study="square",col.inside="black",col.square="white")
 ```
 
 # Miscellaneous functions
