@@ -2,20 +2,22 @@
 % Please edit documentation in R/gc.lambda.R
 \name{gc.lambda}
 \alias{gc.lambda}
-\title{Estionmation of the genomic control inflation statistic (lambda)}
+\title{Estimation of the genomic control inflation statistic (lambda)}
 \usage{
-gc.lambda(p, logscale = FALSE)
+gc.lambda(x, logscale = FALSE, z = FALSE)
 }
 \arguments{
-\item{p}{A vector of p values.}
+\item{x}{A real vector (p or z).}
 
-\item{logscale}{A logical variable for \code{log.p}}
+\item{logscale}{A logical variable such that x as -log10(p).}
+
+\item{z}{A flag to indicate x as a vector of z values.}
 }
 \value{
 Estimate of inflation factor.
 }
 \description{
-Estionmation of the genomic control inflation statistic (lambda)
+Estimation of the genomic control inflation statistic (lambda)
 }
 \examples{
 set.seed(12345)
@@ -23,4 +25,6 @@ p <- runif(100)
 gc.lambda(p)
 lp <- -log10(p)
 gc.lambda(lp,logscale=TRUE)
+z <- qnorm(p/2)
+gc.lambda(z,z=TRUE)
 }
