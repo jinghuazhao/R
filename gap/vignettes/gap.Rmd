@@ -596,11 +596,11 @@ chrmaxpos <- miamiplot2(gwas,gwas,name1="Batch 2",name2="Batch 1",z1="z",z2="z")
 labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO"),gwas,gwasZLab="z",chrmaxpos=chrmaxpos)
 ```
 
-and a truncated Manhattan plot,
+and a truncated Manhattan plot, noting that only data points with -log10(P)>=2 are shown,
 
 ```r
 par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-mhtplot.trunc(IL.12B, chr="Chromosome", bp="Position", z="Z",
+mhtplot.trunc(filter(IL.12B,log10P>=2), chr="Chromosome", bp="Position", z="Z",
    snp="MarkerName",
    suggestiveline=FALSE, genomewideline=-log10(5e-10),
    cex.mtext=1.2, cex.text=0.7,

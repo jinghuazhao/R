@@ -4,10 +4,12 @@
 \alias{gc.lambda}
 \title{Estionmation of the genomic control inflation statistic (lambda)}
 \usage{
-gc.lambda(p)
+gc.lambda(p, logscale = FALSE)
 }
 \arguments{
 \item{p}{A vector of p values.}
+
+\item{logscale}{A logical variable for \code{log.p}}
 }
 \value{
 Estimate of inflation factor.
@@ -18,5 +20,7 @@ Estionmation of the genomic control inflation statistic (lambda)
 \examples{
 set.seed(12345)
 p <- runif(100)
-lambda <- gc.lambda(p)
+gc.lambda(p)
+lp <- -log10(p)
+gc.lambda(lp,logscale=TRUE)
 }
