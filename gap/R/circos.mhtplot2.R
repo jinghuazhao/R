@@ -29,6 +29,7 @@
 #'         summarize() %>%
 #'         mutate(cols="blue") %>%
 #'         select(chr,start,end,gene,cols)
+#' labs[2,"cols"] <- "red"
 #' circos.mhtplot2(dat,labs,ticks=0:2*10)
 #' # https://www.rapidtables.com/web/color/RGB_Color.html
 #' }
@@ -48,7 +49,8 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
                                  connection_height = circlize::convert_height(8, "mm"),
                                  line_col = labs[["cols"]],
                                  col = labs[["cols"]])
-  circlize::circos.track(ylim = c(0, 1), panel.fun = function(x, y) {
+  circlize::circos.track(ylim = c(0, 1),
+               panel.fun = function(x, y) {
                  chr  = substring(circlize::CELL_META$sector.index, 4)
                  xlim = circlize::CELL_META$xlim
                  ylim = circlize::CELL_META$ylim
@@ -56,9 +58,16 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
                  circlize::circos.text(mean(xlim), mean(ylim), chr, cex = 0.4, col = "black", facing = "inside", niceFacing = TRUE)
                },
                track.height = 0.03,  bg.border = NA)
+  circlize::circos.track(ylim=c(0,1), track.height=0.05, bg.border=NA,
+               panel.fun=function(x, y) {
+                 chr=gsub("chr", "", circlize::CELL_META$sector.index)
+                 xlim=circlize::CELL_META$xlim
+                 ylim=circlize::CELL_META$ylim
+                 circlize::circos.genomicAxis(h="top", direction="inside", labels.cex=0.25, major.at=seq(0,1e10,5e7))
+               })
   circlize::circos.genomicTrackPlotRegion(dat, numeric.column = 4, panel.fun = function(region, value,  ...)
                  circlize::circos.genomicPoints(region, value, pch = 16, col = "magenta", cex = 0.3),
-                                                track.height = 0.6, bg.border = NA, bg.col = "lightgrey", ylim = c(0, 30))
+                                                track.height = 0.55, bg.border = NA, bg.col = "white", ylim = c(0, 30))
   circlize::circos.yaxis(side = "left", at = ticks, labels = ticks,
               sector.index = circlize::get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3,
               tick.length = 0.5*(circlize::convert_x(1, "mm", circlize::CELL_META$sector.index,circlize::CELL_META$track.index)))

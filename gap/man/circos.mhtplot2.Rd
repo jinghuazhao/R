@@ -42,6 +42,7 @@ labs <- subset(testdat,gene \%in\% glist) \%>\%
         summarize() \%>\%
         mutate(cols="blue") \%>\%
         select(chr,start,end,gene,cols)
+labs[2,"cols"] <- "red"
 circos.mhtplot2(dat,labs,ticks=0:2*10)
 # https://www.rapidtables.com/web/color/RGB_Color.html
 }
