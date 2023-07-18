@@ -23,20 +23,18 @@
 # Note when `logscale=TRUE` one assumes a -log10(p) is assumed
 
 gc.lambda <- function(x, logscale=FALSE, z=FALSE) {
+  v <- x[!is.na(x)]
+  n <- length(v)
   if (z) {
-     v <- x[!is.na(x)]
-     n <- length(v)
      obs <- v^2
      exp <- qchisq(log(1:n/n),1,lower.tail=FALSE,log.p=TRUE)
   } else {
-    p <- x[!is.na(x)]
-    n <- length(p)
     if (!logscale)
     {
-      obs <- qchisq(p,1,lower.tail=FALSE)
+      obs <- qchisq(v,1,lower.tail=FALSE)
       exp <- qchisq(1:n/n,1,lower.tail=FALSE)
     } else {
-      obs <- qchisq(-log(10)*p,1,lower.tail=FALSE,log.p=TRUE)
+      obs <- qchisq(-log(10)*v,1,lower.tail=FALSE,log.p=TRUE)
       exp <- qchisq(log(1:n/n),1,lower.tail=FALSE,log.p=TRUE)
     }
   }
