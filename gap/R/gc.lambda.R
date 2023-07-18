@@ -19,8 +19,7 @@
 # obs <- median(chisq)
 # exp <- qchisq(0.5, 1) # 0.4549364
 # lambda <- obs/exp
-# see also estlambda from GenABEL and qq.chisq from snpStats
-# Note when `logscale=TRUE` one assumes a -log10(p) is assumed
+# see also GenABEL::estlambda and snpStats::qq.chisq
 
 gc.lambda <- function(x, logscale=FALSE, z=FALSE) {
   v <- x[!is.na(x)]
