@@ -801,7 +801,7 @@ The `mhtplot.trunc()` function accepts three types of arguments:
 In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme value,
 the y-axis allows for truncation leaving out a given range to highlight the largest.
 
-A plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-analysis/BMI/](https://jinghuazhao.github.io/Omics-analysis/BMI/).
+See the IL-12B example above.
 
 # Linear regression
 
