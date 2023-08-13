@@ -84,7 +84,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
        if (package=="meta")
        {
          requireNamespace("meta")
-         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,method.tau.ci="")
+         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,method.tau="DL",method.tau.ci="")
          meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
          requireNamespace("grid")
          grid::grid.text(title,0.5,0.9)
