@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-13-08-2023	Change method.tau in METAL_forestplot() from REML to DL to ensure convergence
+13-08-2023	Employ `settings.meta(method.tau="DL")` in examples for METAL_forestplot()
 		Extend gc.lambda() for -log10(P) and drop -log10(P)<2 for IL-12B plot in gap.Rmd
 		Amend circos.mhtplot2() with an addtional track
 		Add ci2ms() for PhenoScanner/GWAS Catalog lookup and refine h2_mzdz()
