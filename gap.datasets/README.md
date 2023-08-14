@@ -1,7 +1,8 @@
 # Datasets Used in 'gap' Package
 
 ## Version 0.0.6
-03-12-2022	Revise meyer example
+14-08-2023	Remove non-established pQTLs in OPG
+		Revise meyer example
 
 ## Version 0.0.5
 09-05-2022	Revise OPG example

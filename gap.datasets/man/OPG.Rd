@@ -20,6 +20,6 @@ head(OPGrsid)
 }
 \source{SCALLOP consortium}
 \references{
-pending to give.
+The SCALLOP paper.
 }
 \keyword{datasets}

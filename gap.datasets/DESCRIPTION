@@ -1,6 +1,6 @@
 Package: gap.datasets
 Version: 0.0.6
-Date: 2022-12-3
+Date: 2023-8-14
 Title: Datasets for 'gap'
 Authors@R: c(person("Jing Hua", "Zhao", role = c("aut", "cre"),
                     email="jinghuazhao@hotmail.com"),
