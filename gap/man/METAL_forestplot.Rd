@@ -42,8 +42,8 @@ WEIGHTLABEL N
 }
 \examples{
 \dontrun{
- require(gap.datasets)
- data(OPG)
+ data(OPG, package="gap.datasets")
+ settings.meta(method.tau="DL")
  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2)
 }
 
