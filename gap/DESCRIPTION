@@ -27,10 +27,10 @@ Depends: R (>= 2.10), gap.datasets
 Imports: dplyr, ggplot2, plotly, Rdpack
 Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags,
           bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
-          foreign, forestplot, genetics, grid, haplo.stats, htmlwidgets,
-          jsonlite, kinship2, knitr, lattice, magic, manhattanly,
-          matrixStats, meta, metafor, nlme, pedigree, pedigreemm,
-          plotrix, readr, reshape, rmarkdown, rmeta, rms, survival
+          foreign, genetics, grid, haplo.stats, htmlwidgets, jsonlite,
+          kinship2, knitr, lattice, magic, manhattanly, matrixStats, meta,
+          metafor, nlme, pedigree, pedigreemm, plotrix, readr, plotrix,
+          readr, reshape, rmarkdown, rms, survival
 Enhances: shiny
 LazyData: Yes
 LazyLoad: Yes

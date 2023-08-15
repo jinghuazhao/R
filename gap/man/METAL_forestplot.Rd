@@ -4,7 +4,15 @@
 \alias{METAL_forestplot}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
-METAL_forestplot(tbl, all, rsid, package = "meta", split = FALSE, ...)
+METAL_forestplot(
+  tbl,
+  all,
+  rsid,
+  package = "meta",
+  random = TRUE,
+  split = FALSE,
+  ...
+)
 }
 \arguments{
 \item{tbl}{Meta-anslysis summary statistics.}
@@ -14,6 +22,8 @@ METAL_forestplot(tbl, all, rsid, package = "meta", split = FALSE, ...)
 \item{rsid}{SNPID-rsid mapping file.}
 
 \item{package}{style of plot as in meta, rmeta or forestplot.}
+
+\item{random}{a flag to switch on/off random effect model.}
 
 \item{split}{when TRUE, individual prot-MarkerName.pdf will be generated.}
 
