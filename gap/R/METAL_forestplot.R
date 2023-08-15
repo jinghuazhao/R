@@ -45,6 +45,8 @@ METAL_forestplot <- function(tbl,all,rsid,random=TRUE,split=FALSE,...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
+  requireNamespace("meta")
+  requireNamespace("grid")
   dplyr_rsid <- function(df,rsid)
   {
     d <- dplyr::left_join(df,rsid)
@@ -77,15 +79,10 @@ METAL_forestplot <- function(tbl,all,rsid,random=TRUE,split=FALSE,...)
        BETA <- BETA * c
        title <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
        if (split) pdf(paste0(p,"-",m,".pdf"))
-       if (package=="meta")
-       {
-         requireNamespace("meta")
-         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,random=random,method.tau.ci="")
-         meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
-         requireNamespace("grid")
-         grid::grid.text(title,0.5,0.9)
-         with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
-       }
+       mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,random=random,method.tau.ci="")
+       meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
+       grid::grid.text(title,0.5,0.9)
+       with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
        if (split) dev.off()
      })
   }
