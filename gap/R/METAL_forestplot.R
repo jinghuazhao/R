@@ -5,6 +5,7 @@
 #' @param rsid SNPID-rsid mapping file.
 #' @param package style of plot as in meta, rmeta or forestplot.
 #' @param split when TRUE, individual prot-MarkerName.pdf will be generated.
+#' @param random a flag for enable/disable random effect model.
 #' @param ... Additional arguments to meta::forest.
 #'
 #' @details
@@ -41,7 +42,7 @@
 #' @author Jing Hua Zhao
 #' @keywords hplot distribution
 
-METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
+METAL_forestplot <- function(tbl,all,rsid,package="meta",random=TRUE,split=FALSE,...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
@@ -84,7 +85,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",split=FALSE,...)
        if (package=="meta")
        {
          requireNamespace("meta")
-         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,method.tau.ci="")
+         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,method.tau.ci="",random=random)
          meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
          requireNamespace("grid")
          grid::grid.text(title,0.5,0.9)
