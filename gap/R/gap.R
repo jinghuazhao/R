@@ -140,7 +140,7 @@
 #' @aliases gap-package
 #'
 #' @import dplyr gap.datasets
-#' @importFrom grDevices palette xy.coords
+#' @importFrom grDevices dev.off palette pdf xy.coords
 #' @importFrom graphics abline arrows axis box boxplot
 #'             identify legend lines mtext par points
 #'             segments text title

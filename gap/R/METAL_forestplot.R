@@ -3,9 +3,11 @@
 #' @param tbl Meta-anslysis summary statistics.
 #' @param all statistics from all contributing studies.
 #' @param rsid SNPID-rsid mapping file.
+#' @param package "meta" or "metafor" package.
+#' @param method an explcit flag for fixed/random effects model.
 #' @param random a flag for fixed/random effects model.
 #' @param split when TRUE, individual prot-MarkerName.pdf will be generated.
-#' @param ... Additional arguments to meta::forest.
+#' @param ... Additional arguments to `meta::forest` or `metafor::forest`.
 #'
 #' @details
 #' This functions takes a meta-data from METAL (tbl) and data from contributing studies (all)
@@ -41,7 +43,7 @@
 #' @author Jing Hua Zhao
 #' @keywords hplot distribution
 
-METAL_forestplot <- function(tbl,all,rsid,random=TRUE,split=FALSE,...)
+METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",random=TRUE,split=FALSE,...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
@@ -64,8 +66,7 @@ METAL_forestplot <- function(tbl,all,rsid,random=TRUE,split=FALSE,...)
      A1 <- toupper(tbl[i,"Allele1"])
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
-     with(subset(all,prot==p & MarkerName==m), {
-       print(subset(all,prot==p & MarkerName==m))
+     sall <- within(subset(all,prot==p & MarkerName==m), {
        e <- toupper(EFFECT_ALLELE)
        r <- toupper(REFERENCE_ALLELE)
        a1 <- e
@@ -75,14 +76,25 @@ METAL_forestplot <- function(tbl,all,rsid,random=TRUE,split=FALSE,...)
        a1[j] <- r[j]
        a2[j] <- e[j]
        c[j] <- -1
-       print(cbind(A1,A2,EFFECT_ALLELE,REFERENCE_ALLELE,a1,a2,format(BETA,digits=3),format(BETA*c,digits=3)))
        BETA <- BETA * c
-       title <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
+     })
+     TITLE <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
+     with(sall, {
+       print(cbind(A1,A2,EFFECT_ALLELE,REFERENCE_ALLELE,a1,a2,format(BETA,digits=3),format(BETA*c,digits=3)))
        if (split) pdf(paste0(p,"-",m,".pdf"))
-       mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=title,random=random,method.tau.ci="")
-       meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
-       grid::grid.text(title,0.5,0.9)
-       with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q, "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
+       if (package=="meta")
+       {
+         meta::settings.meta(method.tau=method)
+         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=TITLE,random=random,method.tau.ci="")
+         meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
+         grid::grid.text(TITLE,0.5,0.9)
+         with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q,
+                     "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
+       } else {
+         d <- metafor::escalc(measure="MN",yi=BETA,sei=SE)
+         r <- metafor::rma(yi,vi,data=d,method=method,slab=study)
+         metafor::forest(r, header=c(TITLE,"Effect (95%CI)"), ...)
+       }
        if (split) dev.off()
      })
   }

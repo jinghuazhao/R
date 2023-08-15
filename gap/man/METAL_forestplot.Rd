@@ -4,7 +4,16 @@
 \alias{METAL_forestplot}
 \title{forest plot as R/meta's forest for METAL outputs}
 \usage{
-METAL_forestplot(tbl, all, rsid, random = TRUE, split = FALSE, ...)
+METAL_forestplot(
+  tbl,
+  all,
+  rsid,
+  package = "meta",
+  method = "REML",
+  random = TRUE,
+  split = FALSE,
+  ...
+)
 }
 \arguments{
 \item{tbl}{Meta-anslysis summary statistics.}
@@ -13,11 +22,15 @@ METAL_forestplot(tbl, all, rsid, random = TRUE, split = FALSE, ...)
 
 \item{rsid}{SNPID-rsid mapping file.}
 
+\item{package}{"meta" or "metafor" package.}
+
+\item{method}{an explcit flag for fixed/random effects model.}
+
 \item{random}{a flag for fixed/random effects model.}
 
 \item{split}{when TRUE, individual prot-MarkerName.pdf will be generated.}
 
-\item{...}{Additional arguments to meta::forest.}
+\item{...}{Additional arguments to \code{meta::forest} or \code{metafor::forest}.}
 }
 \value{
 It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
