@@ -56,7 +56,8 @@ WEIGHTLABEL N
  data(OPG, package="gap.datasets")
  meta::settings.meta(method.tau="DL")
  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2)
- METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect")
+ METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",
+                  showweights=TRUE)
 }
 
 }
