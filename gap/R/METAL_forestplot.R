@@ -13,11 +13,12 @@
 #' for forest plot. It also takes a SNPID-rsid mapping (rsid) as contributing studies often
 #' involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A1_A2 (A1<=A2).
 #'
-#' The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
+#' The study-specific and total sample sizes (`N`) can be customised from METAL commands. By default, the input triplets each contain
 #' a `MarkerName` variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the `tbl` argument has variables
 #' `A1` and `A2` as produced by METAL while the `all` argument has `EFFECT_ALLELE` and `REFERENCE_ALLELE` as with a `study` variable
 #' indicating study name. Another variable common the `tbl` and `all` is `prot` variable as the function was developed in a protein
-#' based meta-analysis. From these all information is in place for generation of a list of forest plots through a batch run.
+#' based meta-analysis. As noted above, the documentation example also has variable `N`.
+#' From these all information is in place for generation of a list of forest plots through a batch run.
 #'
 #' CUSTOMVARIABLE N\cr
 #' LABEL N as N\cr
@@ -36,8 +37,9 @@
 #' @examples
 #' \dontrun{
 #'  data(OPG, package="gap.datasets")
-#'  settings.meta(method.tau="DL")
+#'  meta::settings.meta(method.tau="DL")
 #'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2)
+#'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",model="FE",xlab="Effect")
 #' }
 #'
 #' @author Jing Hua Zhao
@@ -91,7 +93,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
                      "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
        } else {
          d <- metafor::escalc(measure="MN",yi=BETA,sei=SE)
-         r <- metafor::rma(yi,vi,data=d,method=method,slab=study)
+         r <- metafor::rma(yi,vi,data=d,method=method,slab=paste0(study," (",N,")"))
          metafor::forest(r, header=c(TITLE,"Effect (95%CI)"), ...)
        }
        if (split) dev.off()

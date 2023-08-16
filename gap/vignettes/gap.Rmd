@@ -138,7 +138,7 @@ circos.mhtplot    |      circos Manhattan plot with gene annotation
 circos.mhtplot2   |      Another circos Manhattan plot
 cnvplot           |      genomewide plot of CNVs
 labelManhattan    |      Annotate Manhattan or Miami Plot
-METAL\_forestplot |      forest plot as R/meta's forest for METAL outputs
+METAL_forestplot  |      forest plot as R/meta's forest for METAL outputs
 makeRLEplot       |      make relative log expression plot
 mhtplot           |      Manhattan plot
 mhtplot2          |      Manhattan plot with annotations
@@ -654,11 +654,11 @@ ESplot(rs12075)
 
 It draws many forest plots given a list of variants, e.g.,
 
-```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=9, results="hide"}
+```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=9, results="hide", warning=FALSE}
 data(OPG,package="gap.datasets")
 meta::settings.meta(method.tau="DL")
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2)
-METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",model="FE")
+METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",model="FE",xlab="Effect")
 ```
 
 # Significance

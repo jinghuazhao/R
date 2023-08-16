@@ -40,11 +40,12 @@ This functions takes a meta-data from METAL (tbl) and data from contributing stu
 for forest plot. It also takes a SNPID-rsid mapping (rsid) as contributing studies often
 involve discrepancies in rsid so it is appropriate to use SNPID, i.e., chr:pos_A1_A2 (A1<=A2).
 
-The study-specific and total sample sizes (N) can be customised from METAL commands. By default, the input triplets each contain
+The study-specific and total sample sizes (\code{N}) can be customised from METAL commands. By default, the input triplets each contain
 a \code{MarkerName} variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the \code{tbl} argument has variables
 \code{A1} and \code{A2} as produced by METAL while the \code{all} argument has \code{EFFECT_ALLELE} and \code{REFERENCE_ALLELE} as with a \code{study} variable
 indicating study name. Another variable common the \code{tbl} and \code{all} is \code{prot} variable as the function was developed in a protein
-based meta-analysis. From these all information is in place for generation of a list of forest plots through a batch run.
+based meta-analysis. As noted above, the documentation example also has variable \code{N}.
+From these all information is in place for generation of a list of forest plots through a batch run.
 
 CUSTOMVARIABLE N\cr
 LABEL N as N\cr
@@ -53,8 +54,9 @@ WEIGHTLABEL N
 \examples{
 \dontrun{
  data(OPG, package="gap.datasets")
- settings.meta(method.tau="DL")
+ meta::settings.meta(method.tau="DL")
  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2)
+ METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",model="FE",xlab="Effect")
 }
 
 }
