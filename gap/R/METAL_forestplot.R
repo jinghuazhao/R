@@ -66,8 +66,8 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
      A1 <- toupper(tbl[i,"Allele1"])
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
-     sall <- subset(all,prot==p & MarkerName==m)
      TITLE <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
+     sall <- subset(all,prot==p & MarkerName==m)
      with(sall, {
        e <- toupper(EFFECT_ALLELE)
        r <- toupper(REFERENCE_ALLELE)
