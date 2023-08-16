@@ -5,7 +5,6 @@
 #' @param rsid SNPID-rsid mapping file.
 #' @param package "meta" or "metafor" package.
 #' @param method an explcit flag for fixed/random effects model.
-#' @param random a flag for fixed/random effects model.
 #' @param split when TRUE, individual prot-MarkerName.pdf will be generated.
 #' @param ... Additional arguments to `meta::forest` or `metafor::forest`.
 #'
@@ -18,14 +17,15 @@
 #' a `MarkerName` variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the `tbl` argument has variables
 #' `A1` and `A2` as produced by METAL while the `all` argument has `EFFECT_ALLELE` and `REFERENCE_ALLELE` as with a `study` variable
 #' indicating study name. Another variable common the `tbl` and `all` is `prot` variable as the function was developed in a protein
-#' based meta-analysis. From these all information is in place for generation of a list of Forest plots through a batch run.
+#' based meta-analysis. From these all information is in place for generation of a list of forest plots through a batch run.
 #'
 #' CUSTOMVARIABLE N\cr
 #' LABEL N as N\cr
 #' WEIGHTLABEL N
 #'
 #' @export
-#' @return It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
+#' @return
+#' It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
 #'
 #' @references
 #' Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf, 
@@ -43,7 +43,7 @@
 #' @author Jing Hua Zhao
 #' @keywords hplot distribution
 
-METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",random=TRUE,split=FALSE,...)
+METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FALSE,...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
@@ -66,7 +66,9 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",random=TR
      A1 <- toupper(tbl[i,"Allele1"])
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
-     sall <- within(subset(all,prot==p & MarkerName==m), {
+     sall <- subset(all,prot==p & MarkerName==m)
+     TITLE <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
+     with(sall, {
        e <- toupper(EFFECT_ALLELE)
        r <- toupper(REFERENCE_ALLELE)
        a1 <- e
@@ -77,15 +79,12 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",random=TR
        a2[j] <- e[j]
        c[j] <- -1
        BETA <- BETA * c
-     })
-     TITLE <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
-     with(sall, {
        print(cbind(A1,A2,EFFECT_ALLELE,REFERENCE_ALLELE,a1,a2,format(BETA,digits=3),format(BETA*c,digits=3)))
        if (split) pdf(paste0(p,"-",m,".pdf"))
        if (package=="meta")
        {
          meta::settings.meta(method.tau=method)
-         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=TITLE,random=random,method.tau.ci="")
+         mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=TITLE,method.tau.ci="")
          meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
          grid::grid.text(TITLE,0.5,0.9)
          with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q,

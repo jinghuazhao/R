@@ -10,7 +10,6 @@ METAL_forestplot(
   rsid,
   package = "meta",
   method = "REML",
-  random = TRUE,
   split = FALSE,
   ...
 )
@@ -25,8 +24,6 @@ METAL_forestplot(
 \item{package}{"meta" or "metafor" package.}
 
 \item{method}{an explcit flag for fixed/random effects model.}
-
-\item{random}{a flag for fixed/random effects model.}
 
 \item{split}{when TRUE, individual prot-MarkerName.pdf will be generated.}
 
@@ -47,7 +44,7 @@ The study-specific and total sample sizes (N) can be customised from METAL comma
 a \code{MarkerName} variable which is the unique SNP identifier (e.g., chr:pos:a1:a2) and the \code{tbl} argument has variables
 \code{A1} and \code{A2} as produced by METAL while the \code{all} argument has \code{EFFECT_ALLELE} and \code{REFERENCE_ALLELE} as with a \code{study} variable
 indicating study name. Another variable common the \code{tbl} and \code{all} is \code{prot} variable as the function was developed in a protein
-based meta-analysis. From these all information is in place for generation of a list of Forest plots through a batch run.
+based meta-analysis. From these all information is in place for generation of a list of forest plots through a batch run.
 
 CUSTOMVARIABLE N\cr
 LABEL N as N\cr
