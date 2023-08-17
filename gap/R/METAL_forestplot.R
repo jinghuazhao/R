@@ -50,8 +50,9 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
-  requireNamespace("meta")
   requireNamespace("grid")
+  requireNamespace("meta")
+  requireNamespace("metafor")
   dplyr_rsid <- function(df,rsid)
   {
     d <- dplyr::left_join(df,rsid)
@@ -95,7 +96,8 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
        } else {
          d <- metafor::escalc(measure="MN",yi=BETA,sei=SE)
          r <- metafor::rma(yi,vi,data=d,method=method,slab=paste0(study," (",N,")"))
-         metafor::forest(r, header=c(TITLE,"Effect (95%CI)"), ...)
+         rt <- "Effect (95%CI)"
+         metafor::forest(r, header=c(TITLE, ifelse(list(...)$showweights,paste("Weight",rt), rt)),...)
        }
        if (split) dev.off()
      })
