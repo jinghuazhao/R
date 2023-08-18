@@ -41,7 +41,7 @@
 #'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2,
 #'                   col.inside="black",col.square="black")
 #'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",
-#'                   showweights=TRUE)
+#'                   showweights=TRUE,weightposition=0.25)
 #' }
 #'
 #' @author Jing Hua Zhao
@@ -97,8 +97,9 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
        } else {
          d <- metafor::escalc(measure="MN",yi=BETA,sei=SE)
          r <- metafor::rma(yi,vi,data=d,method=method,slab=paste0(study," (",N,")"))
-         rt <- "Effect (95%CI)"
-         metafor::forest(r, header=c(TITLE, ifelse(list(...)$showweights,paste("Weight",rt,sep="\t"), rt)),...)
+         h <- c(TITLE,"Effect (95%CI)")
+         metafor::forest(r, header=h,...)
+         if (list(...)$showweights) text(list(...)$weightpos, r$k+2, "Weight", cex=1, font=2)
        }
        if (split) dev.off()
      })

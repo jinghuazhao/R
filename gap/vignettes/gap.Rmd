@@ -658,7 +658,7 @@ It draws many forest plots given a list of variants, e.g.,
 data(OPG,package="gap.datasets")
 meta::settings.meta(method.tau="DL")
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2,col.inside="black",col.square="black")
-METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",showweights=TRUE)
+METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",showweights=TRUE,weightposition=0.25)
 ```
 
 # Significance
