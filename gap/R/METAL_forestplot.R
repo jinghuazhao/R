@@ -29,8 +29,7 @@
 #' It will generate a forest plot specified by pdf for direction-adjusted effect sizes.
 #'
 #' @references
-#' Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf, 
-#' https://CRAN.R-project.org/package=meta.
+#' \insertRef{schwarzer07}{gap}
 #'
 #' \insertRef{willer10}{gap}
 #'
@@ -39,7 +38,7 @@
 #'  data(OPG, package="gap.datasets")
 #'  meta::settings.meta(method.tau="DL")
 #'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2,
-#'                   col.inside="black",col.square="black")
+#'                   col.diamond="black",col.inside="black",col.square="black")
 #'  METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",
 #'                   showweights=TRUE)
 #' }
@@ -93,7 +92,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
          meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
          grid::grid.text(TITLE,0.5,0.9)
          with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q,
-                     "I2 =", I2, "lower.I2 =", lower.I2, "upper.I2 =", upper.I2, "\n"))
+                     "I2 =", I2, "[", lower.I2, ",", upper.I2, "]\n"))
        } else {
          d <- metafor::escalc(measure="MN",yi=BETA,sei=SE)
          r <- metafor::rma(yi,vi,data=d,method=method,slab=paste0(study," (",N,")"))

@@ -56,15 +56,14 @@ WEIGHTLABEL N
  data(OPG, package="gap.datasets")
  meta::settings.meta(method.tau="DL")
  METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5,digits.TE=2,digits.se=2,
-                  col.inside="black",col.square="black")
+                  col.diamond="black",col.inside="black",col.square="black")
  METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",
                   showweights=TRUE)
 }
 
 }
 \references{
-Scharzer G. (2007). meta: An R package for meta-analysis. R News, 7:40-5, https://cran.r-project.org/doc/Rnews/Rnews_2007-3.pdf,
-https://CRAN.R-project.org/package=meta.
+\insertRef{schwarzer07}{gap}
 
 \insertRef{willer10}{gap}
 }
