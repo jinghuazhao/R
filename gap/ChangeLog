@@ -1,8 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-17-08-2023	On METAL_forestplot():
-		1. Add `settings.meta(method.tau="DL")` examples
+18-08-2023	On METAL_forestplot():
+		1. Revise examples
 		2. Accommodate `metafor` for EE/FE models
 		Extend gc.lambda() for -log10(P) and drop -log10(P)<2 for IL-12B plot in gap.Rmd
 		Amend circos.mhtplot2() with an addtional track

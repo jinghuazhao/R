@@ -98,7 +98,7 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
          d <- metafor::escalc(measure="MN",yi=BETA,sei=SE)
          r <- metafor::rma(yi,vi,data=d,method=method,slab=paste0(study," (",N,")"))
          rt <- "Effect (95%CI)"
-         metafor::forest(r, header=c(TITLE, ifelse(list(...)$showweights,paste("Weight",rt), rt)),...)
+         metafor::forest(r, header=c(TITLE, ifelse(list(...)$showweights,paste("Weight",rt,sep="\t"), rt)),...)
        }
        if (split) dev.off()
      })
