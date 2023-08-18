@@ -148,7 +148,7 @@
 #'             complete.cases dnorm glm integrate lm median
 #'             nlm pchisq pf pnorm ppoints pt qchisq qnorm
 #'             qqplot qt quantile rbinom rexp rnorm
-#'             runif sd var
+#'             runif sd setNames var
 #' @importFrom utils data head packageDescription read.csv
 #'             read.delim read.table tail write.table
 #'             globalVariables

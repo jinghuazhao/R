@@ -25,9 +25,10 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
      }
   }
   requireNamespace("circlize")
+  requireNamespace("dplyr")
   clumped <- read.table(hits,as.is=TRUE,header=TRUE)
-  hits <- merge(clumped[c("CHR","BP","SNP","prot")],panel[c("prot","uniprot")],by="prot")
-  names(hits) <- c("prot","Chr","bp","SNP","uniprot")
+  hits <- merge(clumped[c("CHR","BP","SNP","prot")],panel[c("prot","uniprot")],by="prot") %>%
+          setNames(c("prot","Chr","bp","SNP","uniprot"))
   cvt <- cis.vs.trans.classification(hits,panel,id,radius)
   with(cvt,summary(data))
   circlize::circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
@@ -35,7 +36,7 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
   ann <- panel[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
-  circlize::circos.genomicLabels(ann,labels.column = 4, side="inside")
+  circlize::circos.genomicLabels(ann,labels.column = 4, cex=1, font=4, side="inside")
   b1 <- with(cvt,data)[c("Chr","bp")]
   b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
   names(b1) <- c("chr","end","start")
