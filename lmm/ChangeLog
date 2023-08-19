@@ -1,3 +1,7 @@
+Version 1.4
+
+2023-08-18	Replace dfloat with dble
+
 Version 1.3
 
 2020-07-05	Apply 'gfortran -c -fc-prototypes-external lmm.f' to extract C prototype

@@ -392,8 +392,8 @@ C********* start of main iteration *****************
             msg=5
             goto 999
          endif
-         aprime=abc(1)+trdx+dfloat(ntot)*sigma2
-         bprime=sngl(abc(2)+dfloat(ntot-p)+abc(3)*dfloat(q))
+         aprime=abc(1)+trdx+dble(ntot)*sigma2
+         bprime=sngl(abc(2)+dble(ntot-p)+abc(3)*dble(q))
          sigma2=aprime/dble(2.*gamm(bprime/2.))
          call drbeta(p,beta,xtwx,osigma2)
          call mkdel(ntot,pcol,pred,p,xcol,y,beta,delta)
@@ -440,7 +440,7 @@ C     *** the log-density on the eta scale ************************
          sum=sum+wkg(i)**2
  5    continue
       tmp = dble(1.)+sum/df
-      logdens= (-(df+dfloat(g+1))/dble(2.))*dlog(tmp)
+      logdens= (-(df+dble(g+1))/dble(2.))*dlog(tmp)
 C     **** premultiply wkg by wkgg ***********************
       do 15 i=0,g
          sum=dble(0.)
@@ -451,7 +451,7 @@ C     **** premultiply wkg by wkgg ***********************
  15   continue
 C     *** finish off the candidate value in wkg ***********
       do 20 i=0,g
-         wkg(i)=wkg(i)*dsqrt((df+dfloat(g+1))/chsq) + estarhat(i)
+         wkg(i)=wkg(i)*dsqrt((df+dble(g+1))/chsq) + estarhat(i)
  20   continue
 C     *** store the candidate values in sigma2 and xi while ***
 C     ***** calculating the Jacobian **************************
@@ -524,8 +524,8 @@ C     **** calculate quadratic form *****************
          sum=sum+wkg(i)**2
  20   continue
 C     ********* calculate density on etastar scale **********
-      tmp = dble(1.)+sum/(df+dfloat(g+1))
-      logdens= (-(df+dfloat(g+1))/dble(2.))*dlog(tmp)
+      tmp = dble(1.)+sum/(df+dble(g+1))
+      logdens= (-(df+dble(g+1))/dble(2.))*dlog(tmp)
 C     ******** add in the log-Jacobian **********************
       sum=-dlog(sigma2)
       do 25 i=1,q
@@ -629,8 +629,8 @@ C********* start of main iteration *****************
             msg=5
             goto 999
          endif
-         s2hat= (abc(1) + s2hat*dfloat(ntot) + trdx)/
-     /        (abc(2)+dfloat(ntot-p-2)+abc(3)*dfloat(q))
+         s2hat= (abc(1) + s2hat*dble(ntot) + trdx)/
+     /        (abc(2)+dble(ntot-p-2)+abc(3)*dble(q))
 C        *** evaluate log-posterior at current parameters *********
 C        *** note that xtwx contains the square root of xtwxinv ***
 C        ***** first we get its log-determinant *******************
@@ -638,9 +638,9 @@ C        ***** first we get its log-determinant *******************
          do 65 i=1,p
             ldxtwx=ldxtwx+dlog(xtwx(i,i))
  65      continue
-         lp = -dble(.5)*(dfloat(ntot-p-2)+abc(2)+abc(3)*dfloat(q))
+         lp = -dble(.5)*(dble(ntot-p-2)+abc(2)+abc(3)*dble(q))
      /        *(dlog(sigma2) + s2hat/sigma2)
-     /        + (dfloat(m-q-1)+abc(3))*ldxi + ldu 
+     /        + (dble(m-q-1)+abc(3))*ldxi + ldu 
      /        + ldxtwx
 C        *** evaluate approximate density at current parameters *****
          call appxdens(q,xi,sigma2,g,wkg,wkgg2,df,gmax,estarhat,
@@ -684,8 +684,8 @@ C        ***** keep the Metropolis candidate ************************
             endif
          endif
 C        *** finish out the Gibbs cycle *****************************
-         aprime=s2hat*(abc(2)+dfloat(ntot-p-2)+abc(3)*dfloat(q))
-         bprime=sngl(abc(2)+dfloat(ntot-p)+abc(3)*dfloat(q))
+         aprime=s2hat*(abc(2)+dble(ntot-p-2)+abc(3)*dble(q))
+         bprime=sngl(abc(2)+dble(ntot-p)+abc(3)*dble(q))
          s2gibbs=aprime/dble(2.*gamm(bprime/2.))
          call drbeta(p,beta,xtwx,sigma2)
          call mkdel(ntot,pcol,pred,p,xcol,y,beta,delta)
@@ -862,7 +862,7 @@ C        *** accumulate rest of wkgg ********************
  700     continue
         continue
  800  continue
-      wkgg(0,0)=dfloat(ntot-p)*(sigma2**2)/dble(2.)
+      wkgg(0,0)=dble(ntot-p)*(sigma2**2)/dble(2.)
       gi=0
       do 825 i=1,q
          do 824 j=i,q
@@ -1109,7 +1109,7 @@ C        *** calculate beta, delta_i, and sigma2ecme ***********
             msg=5
             goto 999
          endif
-         sig2ecme=sig2ecme*dfloat(ntot)/dfloat(ntot-p)
+         sig2ecme=sig2ecme*dble(ntot)/dble(ntot-p)
 C        *** evaluate loglikelihood ************************
 C        *** note that xtwx contains the square root of xtwxinv ***
 C        ***** first we get its log-determinant *******************
@@ -1117,9 +1117,9 @@ C        ***** first we get its log-determinant *******************
          do 15 i=1,p
             ldxtwx=ldxtwx+dlog(xtwx(i,i))
  15      continue
-         ll = -.5*dfloat(ntot-p)*dlog(osigma2)
-     /        + dfloat(m)*ldxi + ldu + ldxtwx
-     /        -.5*dfloat(ntot-p)*sig2ecme/osigma2
+         ll = -.5*dble(ntot-p)*dlog(osigma2)
+     /        + dble(m)*ldxi + ldu + ldxtwx
+     /        -.5*dble(ntot-p)*sig2ecme/osigma2
          llvec(iter)=ll
          if(iter.gt.1) then
 C           *** if loglikelihood has gone down, replace the scoring ****
@@ -1336,7 +1336,7 @@ C        *** accumulate rest of wkgg ********************
 C     *** finish computing xiecme **************
       do 302 i=1,q
          do 301 j=i,q
-            xiecme(i,j)=xiecme(i,j)/dfloat(m)
+            xiecme(i,j)=xiecme(i,j)/dble(m)
             if(i.ne.j) xiecme(j,i)=xiecme(i,j)
  301     continue
  302  continue
@@ -1354,7 +1354,7 @@ C     *** put the inverse of oxi into wkqq1 ****
       call bkslv(q,q,wkqq2)
       call mm(q,q,wkqq2,wkqq1)
 C     ************ finish off wkgg ***********************
-      wkgg(0,0)=dfloat(ntot-p)/dble(2.)
+      wkgg(0,0)=dble(ntot-p)/dble(2.)
       gi=0
       do 325 i=1,q
          do 324 j=i,q
@@ -1402,17 +1402,17 @@ C     **** compute wkg *******************************
             endif
  343     continue
  344  continue
-      wkg(0)=dfloat(ntot-p)*dble(.5)*(dble(1.)-sig2ecme/osigma2)
+      wkg(0)=dble(ntot-p)*dble(.5)*(dble(1.)-sig2ecme/osigma2)
      /     - wkgg(0,0)*dlog(osigma2) + sum
       gi=0
       do 352 i=1,q
          do 351 j=i,q
             gi=gi+1
             if(i.eq.j) then
-               wkg(gi)=dfloat(m)*dble(.5)*(oxi(i,i)-xiecme(i,i))
+               wkg(gi)=dble(m)*dble(.5)*(oxi(i,i)-xiecme(i,i))
      /              *wkqq1(i,i) - wkgg(0,gi)*dlog(osigma2)
             else
-               wkg(gi)=dfloat(m)*(oxi(i,j)-xiecme(i,j))
+               wkg(gi)=dble(m)*(oxi(i,j)-xiecme(i,j))
      /              - wkgg(0,gi)*dlog(osigma2)
             endif
             gj=0
@@ -1472,7 +1472,7 @@ C     *** step-halving is used here if xi is not pos.def. ****
  430  continue
       call chfce(q,q,wkqq2,err)
       if(err.eq.1) then
-         deflate=deflate/dfloat(2)
+         deflate=deflate/dble(2)
          goto 425
       endif
       sigma2=dexp(-tau)
@@ -1629,12 +1629,12 @@ C        *** accumulate rest of wkgg ********************
 C     *** finish computing xiecme **************
       do 302 i=1,q
          do 301 j=i,q
-            xiecme(i,j)=xiecme(i,j)/dfloat(m)
+            xiecme(i,j)=xiecme(i,j)/dble(m)
             if(i.ne.j) xiecme(j,i)=xiecme(i,j)
  301     continue
  302  continue
 C     ************ finish off wkgg ***********************
-      wkgg(0,0)=dfloat(ntot-p)*(osigma2**2)/dble(2.)
+      wkgg(0,0)=dble(ntot-p)*(osigma2**2)/dble(2.)
       gi=0
       do 325 i=1,q
          do 324 j=i,q
@@ -1669,16 +1669,16 @@ C     **** compute wkg *******************************
             sum=sum+wkgg(0,gi)*wkqq1(i,j)
  343     continue
  344  continue
-      wkg(0)=dfloat(ntot-p)*(osigma2-sig2ecme/dble(2.))+sum
+      wkg(0)=dble(ntot-p)*(osigma2-sig2ecme/dble(2.))+sum
       gi=0
       do 352 i=1,q
          do 351 j=i,q
             gi=gi+1
             if(i.eq.j) then
-               wkg(gi)=dfloat(m)*(oxi(i,i)-xiecme(i,i))/dfloat(2)
+               wkg(gi)=dble(m)*(oxi(i,i)-xiecme(i,i))/dble(2)
      /              + wkgg(0,gi)/osigma2
             else
-               wkg(gi)=dfloat(m)*(oxi(i,j)-xiecme(i,j))
+               wkg(gi)=dble(m)*(oxi(i,j)-xiecme(i,j))
      /              + wkgg(0,gi)/osigma2
             endif
             gj=0
@@ -1731,7 +1731,7 @@ C     ****** or if sigma2 is negative *************************
  430  continue
       call chfce(q,q,wkqq2,err)
       if((err.eq.1).or.(tau.le.dble(0))) then
-         deflate=deflate/dfloat(2)
+         deflate=deflate/dble(2)
          goto 425
       endif
       sigma2=dble(1.)/tau
@@ -1896,16 +1896,16 @@ C        *** calculate beta and sigma2 *******************
             msg=5
             goto 999
          endif
-         sigma2=sigma2*dfloat(ntot)/dfloat(ntot-p)
+         sigma2=sigma2*dble(ntot)/dble(ntot-p)
 C        *** evaluate loglikelihood ************************
 C        *** note that xtwx contains the square root of xtwxinv ***
          ldxtwx=dble(0.)
          do 15 i=1,p
             ldxtwx=ldxtwx+dlog(xtwx(i,i))
  15      continue
-         ll = -dble(.5)*dfloat(ntot-p)*dlog(osigma2)
-     /        + dfloat(m)*ldxi + ldu + ldxtwx
-     /        -.5*dfloat(ntot-p)*sigma2/osigma2
+         ll = -dble(.5)*dble(ntot-p)*dlog(osigma2)
+     /        + dble(m)*ldxi + ldu + ldxtwx
+     /        -.5*dble(ntot-p)*sigma2/osigma2
          llvec(iter)=ll
 C        *** calculate b_i, A_i, and xi ********************
          call mkb(q,nmax,m,wkqnm,ntot,delta,b,occ,ist,ifin)
@@ -2005,7 +2005,7 @@ C calculates new estimate of xi from b, u, a, and sigma2
  100  continue
       do 110 i=1,q
          do 105 j=i,q
-            xi(i,j)=xi(i,j)/dfloat(m)
+            xi(i,j)=xi(i,j)/dble(m)
             if(i.ne.j) xi(j,i)=xi(i,j)
  105     continue
  110  continue
@@ -2221,7 +2221,7 @@ C now perform unit-level regressions where possible
       endif
       do 350 i=1,q
          do 330 j=i,q
-            xi(i,j)=xi(i,j)/(dfloat(mstar)*sigma2)
+            xi(i,j)=xi(i,j)/(dble(mstar)*sigma2)
             if(i.ne.j) xi(j,i)=xi(i,j)
  330     continue
  350  continue
@@ -2290,7 +2290,7 @@ C If iflag=1 then weights in w are ignored and OLS is used.
  350        continue
          endif
  400  continue
-      sigma2=sigma2/dfloat(ntot)
+      sigma2=sigma2/dble(ntot)
  999  continue
       return
       end
@@ -2746,8 +2746,8 @@ C        *** calculate beta, delta_i, and sigma2ecme ***********
             msg=5
             goto 999
          endif
-         sig2ecme= (abc(1) + sig2ecme*dfloat(ntot) + trdx)/
-     /        (abc(2)+dfloat(ntot-p-2)+abc(3)*dfloat(q))
+         sig2ecme= (abc(1) + sig2ecme*dble(ntot) + trdx)/
+     /        (abc(2)+dble(ntot-p-2)+abc(3)*dble(q))
 C        *** evaluate log-posterior ******************************
 C        *** note that xtwx contains the square root of xtwxinv ***
 C        ***** first we get its log-determinant *******************
@@ -2755,9 +2755,9 @@ C        ***** first we get its log-determinant *******************
          do 15 i=1,p
             ldxtwx=ldxtwx+dlog(xtwx(i,i))
  15      continue
-         ll = -.5*(dfloat(ntot-p-2)+abc(2)+abc(3)*dfloat(q))
-     /        *dlog(osigma2) + (dfloat(m-q-1)+abc(3))*ldxi + ldu 
-     /        + ldxtwx -.5*(dfloat(ntot-p-2)+abc(2)+abc(3)*dfloat(q))
+         ll = -.5*(dble(ntot-p-2)+abc(2)+abc(3)*dble(q))
+     /        *dlog(osigma2) + (dble(m-q-1)+abc(3))*ldxi + ldu 
+     /        + ldxtwx -.5*(dble(ntot-p-2)+abc(2)+abc(3)*dble(q))
      /        *sig2ecme/osigma2
          llvec(iter)=ll
          if(iter.gt.1) then
@@ -2892,18 +2892,18 @@ C     *** initialize the workspaces wkg and wkgg *******
                   if(i.eq.j) then
                      if(ii.eq.jj) then
                         wkgg(gi,gj)=trahah(q,oxi,i,ii)*
-     /                       (abc(3)-dfloat(q+1))
+     /                       (abc(3)-dble(q+1))
                      else
                         wkgg(gi,gj)=trahaj(q,oxi,i,ii,jj)*
-     /                       (abc(3)-dfloat(q+1))
+     /                       (abc(3)-dble(q+1))
                      endif
                   else
                      if(ii.eq.jj) then
                         wkgg(gi,gj)=trahaj(q,oxi,ii,i,j)*
-     /                       (abc(3)-dfloat(q+1))
+     /                       (abc(3)-dble(q+1))
                      else
                         wkgg(gi,gj)=trajaj(q,oxi,i,j,ii,jj)*
-     /                       (abc(3)-dfloat(q+1))
+     /                       (abc(3)-dble(q+1))
                      endif
                   endif
  17            continue
@@ -3012,7 +3012,7 @@ C        *** accumulate rest of wkgg ********************
 C     *** finish computing xiecme **************
       do 302 i=1,q
          do 301 j=i,q
-            xiecme(i,j)=xiecme(i,j)/(dfloat(m-q-1)+abc(3))
+            xiecme(i,j)=xiecme(i,j)/(dble(m-q-1)+abc(3))
             if(i.ne.j) xiecme(j,i)=xiecme(i,j)
  301     continue
  302  continue
@@ -3030,7 +3030,7 @@ C     *** put the inverse of oxi into wkqq1 ****
       call bkslv(q,q,wkqq2)
       call mm(q,q,wkqq2,wkqq1)
 C     ************ finish off wkgg ***********************
-      wkgg(0,0)=(abc(2)+dfloat(ntot-p-2)+abc(3)*dfloat(q))/dble(2.)
+      wkgg(0,0)=(abc(2)+dble(ntot-p-2)+abc(3)*dble(q))/dble(2.)
       gi=0
       do 325 i=1,q
          do 324 j=i,q
@@ -3078,7 +3078,7 @@ C     **** compute wkg *******************************
             endif
  343     continue
  344  continue
-      wkg(0)=(dfloat(ntot-p-2)+abc(2)+abc(3)*dfloat(q))
+      wkg(0)=(dble(ntot-p-2)+abc(2)+abc(3)*dble(q))
      /     *dble(.5)*(dble(1.)-sig2ecme/osigma2)
      /     - wkgg(0,0)*dlog(osigma2) + sum
       gi=0
@@ -3086,10 +3086,10 @@ C     **** compute wkg *******************************
          do 351 j=i,q
             gi=gi+1
             if(i.eq.j) then
-               wkg(gi)=(abc(3)+dfloat(m-q-1))*dble(.5)*(oxi(i,i)
+               wkg(gi)=(abc(3)+dble(m-q-1))*dble(.5)*(oxi(i,i)
      /              -xiecme(i,i))*wkqq1(i,i)-wkgg(0,gi)*dlog(osigma2)
             else
-               wkg(gi)=(abc(3)+dfloat(m-q-1))*(oxi(i,j)-xiecme(i,j))
+               wkg(gi)=(abc(3)+dble(m-q-1))*(oxi(i,j)-xiecme(i,j))
      /              - wkgg(0,gi)*dlog(osigma2)
             endif
             gj=0
@@ -3149,7 +3149,7 @@ C     *** step-halving is used here if wkg is not pos.def. ****
  430  continue
       call chfce(q,q,wkqq2,err)
       if(err.eq.1) then
-         deflate=deflate/dfloat(2)
+         deflate=deflate/dble(2)
          goto 425
       endif
       sigma2=dexp(-tau)
@@ -3343,12 +3343,12 @@ C        *** accumulate rest of wkgg ********************
 C     *** finish computing xiecme **************
       do 302 i=1,q
          do 301 j=i,q
-            xiecme(i,j)=xiecme(i,j)/(dfloat(m)+abc(3)-dfloat(q+1))
+            xiecme(i,j)=xiecme(i,j)/(dble(m)+abc(3)-dble(q+1))
             if(i.ne.j) xiecme(j,i)=xiecme(i,j)
  301     continue
  302  continue
 C     ************ finish off wkgg ***********************
-      wkgg(0,0)=(dfloat(ntot-p-2)+abc(2)+abc(3)*dfloat(q))
+      wkgg(0,0)=(dble(ntot-p-2)+abc(2)+abc(3)*dble(q))
      /     *(osigma2**2)/dble(2.)
       gi=0
       do 325 i=1,q
@@ -3384,17 +3384,17 @@ C     **** compute wkg *******************************
             sum=sum+wkgg(0,gi)*wkqq1(i,j)
  343     continue
  344  continue
-      wkg(0)=(dfloat(ntot-p-2)+abc(2)+abc(3)*dfloat(q))
+      wkg(0)=(dble(ntot-p-2)+abc(2)+abc(3)*dble(q))
      /     *(osigma2-sig2ecme/dble(2.))+sum
       gi=0
       do 352 i=1,q
          do 351 j=i,q
             gi=gi+1
             if(i.eq.j) then
-               wkg(gi)=(abc(3)+dfloat(m-q-1))*(oxi(i,i)-xiecme(i,i))
-     /              /dfloat(2) + wkgg(0,gi)/osigma2
+               wkg(gi)=(abc(3)+dble(m-q-1))*(oxi(i,i)-xiecme(i,i))
+     /              /dble(2) + wkgg(0,gi)/osigma2
             else
-               wkg(gi)=(abc(3)+dfloat(m-q-1))*(oxi(i,j)-xiecme(i,j))
+               wkg(gi)=(abc(3)+dble(m-q-1))*(oxi(i,j)-xiecme(i,j))
      /              + wkgg(0,gi)/osigma2
             endif
             gj=0
@@ -3447,7 +3447,7 @@ C     ****** or if sigma2 is negative *************************
  430  continue
       call chfce(q,q,wkqq2,err)
       if((err.eq.1).or.(tau.le.dble(0))) then
-         deflate=deflate/dfloat(2)
+         deflate=deflate/dble(2)
          goto 425
       endif
       sigma2=dble(1.)/tau
@@ -3533,9 +3533,9 @@ C        *** calculate beta, delta_i, and sigma2 ********************
             goto 999
          endif
 C        *** find current loglikelihood *****************************
-         ll = - dble(.5)*dfloat(ntot)*dlog(osigma2)
-     /        + dfloat(m)*ldxi + ldu 
-     /        - dble(.5)*dfloat(ntot)*sig2ecme/osigma2
+         ll = - dble(.5)*dble(ntot)*dlog(osigma2)
+     /        + dble(m)*ldxi + ldu 
+     /        - dble(.5)*dble(ntot)*sig2ecme/osigma2
          llvec(iter)=ll
          if(iter.gt.1) then
 C        *** if loglikelihood has gone down, replace the scoring ****
@@ -3706,7 +3706,7 @@ C        *** now we're ready to accumulate wkgg ***********
 C     *** finish off xiecme ***************************
       do 302 i=1,q
          do 301 j=i,q
-            xiecme(i,j)=xiecme(i,j)/dfloat(m)
+            xiecme(i,j)=xiecme(i,j)/dble(m)
             if(i.ne.j) xiecme(j,i)=xiecme(i,j)
  301     continue
  302  continue
@@ -3724,7 +3724,7 @@ C     *** put the inverse of oxi into wkqq1 ****
       call bkslv(q,q,wkqq2)
       call mm(q,q,wkqq2,wkqq1)
 C     *** finish off wkgg ****************************
-      wkgg(0,0)=dfloat(ntot)/dble(2.)
+      wkgg(0,0)=dble(ntot)/dble(2.)
       gi=0
       do 310 i=1,q
          do 309 j=i,q
@@ -3772,17 +3772,17 @@ C     **** compute wkg *******************************
             endif
  343     continue
  344  continue
-      wkg(0)=dfloat(ntot)*dble(.5)*(dble(1.)-sig2ecme/osigma2)
+      wkg(0)=dble(ntot)*dble(.5)*(dble(1.)-sig2ecme/osigma2)
      /     - wkgg(0,0)*dlog(osigma2) + sum
       gi=0
       do 352 i=1,q
          do 351 j=i,q
             gi=gi+1
             if(i.eq.j) then
-               wkg(gi)=dfloat(m)*dble(.5)*(oxi(i,i)-xiecme(i,i))
+               wkg(gi)=dble(m)*dble(.5)*(oxi(i,i)-xiecme(i,i))
      /              *wkqq1(i,i) - wkgg(0,gi)*dlog(osigma2)
             else
-               wkg(gi)=dfloat(m)*(oxi(i,j)-xiecme(i,j))
+               wkg(gi)=dble(m)*(oxi(i,j)-xiecme(i,j))
      /              - wkgg(0,gi)*dlog(osigma2)
             endif
             gj=0
@@ -3843,7 +3843,7 @@ C     ****** or if sigma2 is negative *************************
  430  continue
       call chfce(q,q,wkqq2,err)
       if(err.eq.1) then
-         deflate=deflate/dfloat(2)
+         deflate=deflate/dble(2)
          goto 425
       endif
       sigma2=dexp(-tau)
@@ -3955,17 +3955,17 @@ C        *** now we're ready to accumulate wkgg ***********
 C     *** finish off xiecme ***************************
       do 305 i=1,q
          do 304 j=i,q
-            xiecme(i,j)=xiecme(i,j)/dfloat(m)
+            xiecme(i,j)=xiecme(i,j)/dble(m)
             if(i.ne.j) xiecme(j,i)=xiecme(i,j)
  304     continue
  305  continue
 C     *** finish off wkgg ****************************
-      wkgg(0,0)=dfloat(ntot)*(osigma2**2)/dfloat(2)
+      wkgg(0,0)=dble(ntot)*(osigma2**2)/dble(2)
       do 310 i=1,g
-         wkgg(0,i)=wkgg(0,i)*osigma2/dfloat(2)
+         wkgg(0,i)=wkgg(0,i)*osigma2/dble(2)
          wkgg(i,0)=wkgg(0,i)
          do 309 j=i,g
-            wkgg(i,j)=wkgg(i,j)/dfloat(2)
+            wkgg(i,j)=wkgg(i,j)/dble(2)
             if(j.ne.i) wkgg(j,i)=wkgg(i,j)
  309     continue
  310  continue
@@ -3991,16 +3991,16 @@ C     **** compute wkg *******************************
             sum=sum+wkgg(0,gi)*wkqq1(i,j)
  313     continue
  314  continue
-      wkg(0)=dfloat(ntot)*(osigma2-sig2ecme/dfloat(2))+sum
+      wkg(0)=dble(ntot)*(osigma2-sig2ecme/dble(2))+sum
       gi=0
       do 322 i=1,q
          do 321 j=i,q
             gi=gi+1
             if(i.eq.j) then
-               wkg(gi)=dfloat(m)*(oxi(i,i)-xiecme(i,i))/dfloat(2)
+               wkg(gi)=dble(m)*(oxi(i,i)-xiecme(i,i))/dble(2)
      /              + wkgg(0,gi)/osigma2
             else
-               wkg(gi)=dfloat(m)*(oxi(i,j)-xiecme(i,j))
+               wkg(gi)=dble(m)*(oxi(i,j)-xiecme(i,j))
      /              + wkgg(0,gi)/osigma2
             endif
             gj=0
@@ -4053,7 +4053,7 @@ C     ****** or if sigma2 is negative *************************
  430  continue
       call chfce(q,q,wkqq2,err)
       if((err.eq.1).or.(tau.le.dble(0))) then
-         deflate=deflate/dfloat(2)
+         deflate=deflate/dble(2)
          goto 425
       endif
       sigma2=dble(1.)/tau
@@ -4177,8 +4177,8 @@ C********* start of main iteration *****************
          endif
          call mkb(q,nmax,m,wkqnm,ntot,delta,b,occ,ist,ifin)
          call mkxi(q,m,b,u,xi,osigma2)
-         ll = - dble(.5)*dfloat(ntot)*dlog(osigma2)
-     /        + dfloat(m)*ldxi + ldu -.5*dfloat(ntot)*sigma2/osigma2
+         ll = - dble(.5)*dble(ntot)*dlog(osigma2)
+     /        + dble(m)*ldxi + ldu -.5*dble(ntot)*sigma2/osigma2
          llvec(iter)=ll
          c1=0
          do 30 i=1,p
@@ -4224,7 +4224,7 @@ C For ECME-ML: calculates new estimate of xi from b, u, and sigma2
  100  continue
       do 110 i=1,q
          do 105 j=i,q
-            xi(i,j)=xi(i,j)/(dfloat(m)*sigma2)
+            xi(i,j)=xi(i,j)/(dble(m)*sigma2)
             if(i.ne.j) xi(j,i)=xi(i,j)
  105     continue
  110  continue
