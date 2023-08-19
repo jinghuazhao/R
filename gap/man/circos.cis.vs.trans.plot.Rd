@@ -26,6 +26,6 @@ The function implements a circos plot at the early stage of SCALLOP-INF meta-ana
 }
 \examples{
 \dontrun{
-  circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
+  circos.cis.vs.trans.plot(hits="INF1.merge", panel=inf1, id="uniprot")
 }
 }

@@ -12,13 +12,13 @@
 #' @return None.
 #' @examples
 #' \dontrun{
-#'   circos.cis.vs.trans.plot(hits="INF1.clumped", panel=inf1, id="uniprot")
+#'   circos.cis.vs.trans.plot(hits="INF1.merge", panel=inf1, id="uniprot")
 #' }
 
 circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
 {
   bp <- NA
-  for(p in c("circlize")) {
+  for(p in c("circlize","dplyr")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))
         warning(paste("circos.cis.vs.trans.plot needs package `", p, "' to be fully functional; please install", sep=""))
@@ -31,12 +31,13 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
           setNames(c("prot","Chr","bp","SNP","uniprot"))
   cvt <- cis.vs.trans.classification(hits,panel,id,radius)
   with(cvt,summary(data))
+  circlize::circos.clear()
   circlize::circos.par(start.degree = 90, track.height = 0.1, cell.padding = c(0, 0, 0, 0))
   circlize::circos.initializeWithIdeogram(species="hg19", track.height = 0.05, ideogram.height = 0.06)
   ann <- panel[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
-  circlize::circos.genomicLabels(ann,labels.column = 4, cex=1, font=4, side="inside")
+  circlize::circos.genomicLabels(ann,labels.column = 4, cex=0.8, font=4, side="inside")
   b1 <- with(cvt,data)[c("Chr","bp")]
   b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
   names(b1) <- c("chr","end","start")
@@ -47,5 +48,4 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
   colors[with(cvt,data)["cis.trans"]=="cis"] <- 10
   colors[with(cvt,data)["cis.trans"]=="trans"] <- 12
   circlize::circos.genomicLink(b1, b2, col = colors, border = colors, directional=1, lwd = 1.6)
-  circlize::circos.clear()
 }
