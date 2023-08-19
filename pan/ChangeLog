@@ -1,5 +1,9 @@
 Version 1.8
 
+2023-08-19	Fix on remaining dfloat
+
+Version 1.8
+
 2023-06-25	Replace 13 dfloat with dble in pan.f as suggested by Prof Brian Ripley from CRAN
 		Revise CITATION according to check --as-cran
 

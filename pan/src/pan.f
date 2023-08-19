@@ -1570,7 +1570,7 @@ C set sflag=1 if starting values supplied
      /        pcol,pred,p,xcol,y,xtw,xtwx,xtwy,xtwxinv,beta,iflag)
          call mkdel(ntot,pcol,pred,p,xcol,y,beta,delta)
          call mksig23(ntot,delta,m,sigma2,nmax,occ,ist,ifin,w)
-         ll=-dble(.5)*dble(ntot)*dlog(sigma2)+dfloat(m)*ldxi+ldsig
+         ll=-dble(.5)*dble(ntot)*dlog(sigma2)+dble(m)*ldxi+ldsig
          ll=ll-dble(.5)*dble(ntot)
          llk(iter)=ll
          c1=0
