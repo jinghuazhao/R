@@ -31,7 +31,8 @@
 #' labelManhattan(geneLabels$chr,geneLabel$pos,geneLabel$geneName,gwas1,chrmaxpos=chrmaxpos)
 #' }
 
-labelManhattan <- function(chr,pos,name,gwas,gwasChrLab="chr",gwasPosLab="pos",gwasPLab="p",gwasZLab="NULL",chrmaxpos,textPos=4,angle=0,miamiBottom=FALSE)
+labelManhattan <- function(chr,pos,name,gwas,gwasChrLab="chr",gwasPosLab="pos",gwasPLab="p",gwasZLab="NULL",
+                           chrmaxpos,textPos=4,angle=0,miamiBottom=FALSE)
 {
    # Identify which columns of input files correspond to each value
    posCol 	<- which(names(gwas)%in%gwasPosLab)
@@ -87,5 +88,5 @@ labelManhattan <- function(chr,pos,name,gwas,gwasChrLab="chr",gwasPosLab="pos",g
       ypos <- -ypos
    }
    # Add labels
-   text(x=xpos, y=ypos, pos=textPos, labels=name, cex=1, srt=angle)
+   text(x=xpos, y=ypos, pos=textPos, labels=name, cex=1, font=3, srt=angle)
 }
