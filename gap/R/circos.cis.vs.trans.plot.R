@@ -37,7 +37,7 @@ circos.cis.vs.trans.plot <- function(hits, panel, id, radius=1e6)
   ann <- panel[c("chr","start","end","gene")]
   ann <- within(ann, {chr=paste0("chr",chr);start=start-radius;end <- end+radius})
   ann[with(ann,start<0),"start"] <- 0
-  circlize::circos.genomicLabels(ann,labels.column = 4, cex=0.8, font=4, side="inside")
+  circlize::circos.genomicLabels(ann,labels.column = 4, cex=0.8, font=3, side="inside")
   b1 <- with(cvt,data)[c("Chr","bp")]
   b1 <- within(b1,{Chr=paste0("chr",Chr);start=bp-1})
   names(b1) <- c("chr","end","start")

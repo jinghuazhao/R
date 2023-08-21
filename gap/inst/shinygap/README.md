@@ -65,7 +65,7 @@ markers ($M$), the false positive rate at genome level ($\alpha_\mathit{genome}$
 
 ## A. Family-based and population-based designs
 
-This is detailed in the package vignettes gap, <https://cran.r-project.org/package=gap/vignettes/gap.html>, or jss, Zhao (2007).
+This is detailed in the package vignettes gap, <https://cran.r-project.org/web/packages/gap/vignettes/gap.html>, or jss, Zhao (2007).
 
 ## B. Case-cohort design
 
