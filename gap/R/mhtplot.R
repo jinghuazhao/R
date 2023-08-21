@@ -213,7 +213,7 @@ mhtplot <- function(data, control=mht.control(), hcontrol=hmht.control(), ...) {
              l2 <- hu-l+1
              col.chr[l1:l2] <- hcolors[j]
              if (hboxed) textbox(hchrs[k], name="tbt", vp=grid::viewport(x = CM[chr][l1]/max(CM), y = (max(y[l1:l2]) +  hyoffs)/max(y)))
-             else text(CM[chr][l1],max(y[l1:l2]+hyoffs),hchrs[k],cex=1)
+             else text(CM[chr][l1],max(y[l1:l2]+hyoffs),hchrs[k],cex=1,font=3)
              points(CM[l+(l1:l2)],y[l1:l2],col=col.chr[l1:l2],cex=pcex,...)
              j <- j+1
           }
