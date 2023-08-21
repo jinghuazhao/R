@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.5-2
-21-08-2023	On METAL_forestplot():
+21-08-2023	circos.mhtplot(2): to italicise gene labels
+		On METAL_forestplot():
 		1. Revise examples, 2. Accommodate `metafor` for EE/FE models, 3. \insertRef{}
 		Extend gc.lambda() for -log10(P) and drop -log10(P)<2 for IL-12B plot in gap.Rmd
 		Amend circos.mhtplot2() with an addtional track
