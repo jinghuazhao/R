@@ -27,6 +27,7 @@ bt                \tab      Bradley-Terry model for contingency table\cr
 ccsize            \tab      Power and sample size for case-cohort design\cr
 cs                \tab      Credibel set\cr
 fbsize            \tab      Sample size for family-based linkage and association design\cr
+find_qtls         \tab      Distance-based signal identification\cr
 gc.em             \tab      Gene counting for haplotype analysis\cr
 gcontrol          \tab      genomic control\cr
 gcontrol2         \tab      genomic control based on p values\cr
@@ -159,7 +160,7 @@ Useful links:
 }
 \author{
 Jing Hua Zhao in collaboration with other colleagues and with
-help from Kurt Hornik, Brian Ripley, Uwe Liggs and Achim Zeileis
+help from Kurt Hornik, Brian Ripley, Uwe Ligges and Achim Zeileis
 
 maitained by Jing Hua Zhao \href{mailto:jinghuazhao@hotmail.com}{jinghuazhao@hotmail.com}
 }

@@ -1,15 +1,15 @@
 Type: Package
 Package: gap
 Title: Genetic Analysis Package
-Version: 1.5-2
-Date: 2023-8-21
+Version: 1.6
+Date: 2023-9-19
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
            comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")),
     person("Kurt", "Hornik", role = "ctb"),
     person("Brian", "Ripley", role = "ctb"),
-    person("Uwe", "Liggs", role = "ctb"),
+    person("Uwe", "Ligges", role = "ctb"),
     person("Achim", "Zeileis", role = "ctb")
   )
 Description: As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package". J Stat Soft 23(8):1-18.
@@ -23,14 +23,14 @@ Description: As first reported [Zhao, J. H. 2007. "gap: Genetic Analysis Package
 License: GPL (>= 2)
 URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
-Depends: R (>= 2.10), gap.datasets
+Depends: R (>= 2.10), gap.datasets (>= 0.0.6)
 Imports: dplyr, ggplot2, plotly, Rdpack
 Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags,
           bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
           foreign, genetics, grid, haplo.stats, htmlwidgets, jsonlite,
           kinship2, knitr, lattice, magic, manhattanly, matrixStats, meta,
           metafor, nlme, pedigree, pedigreemm, plotrix, readr, reshape,
-          rmarkdown, rms, survival
+          rmarkdown, rms, survival, valr
 Enhances: shiny
 LazyData: Yes
 LazyLoad: Yes
@@ -43,7 +43,7 @@ RdMacros: Rdpack
 Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-0003-4930-3582),
   Kurt Hornik [ctb],
   Brian Ripley [ctb],
-  Uwe Liggs [ctb],
+  Uwe Ligges [ctb],
   Achim Zeileis [ctb]
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Repository: CRAN

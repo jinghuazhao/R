@@ -52,7 +52,7 @@ but would like to invite others to join me and enlarge the collections and impro
 
 With recent work on genomewide association studies (GWASs) especially protein GWASs, I
 have added many functions such as `METAL_forestplot` which handles data from software
-METAL @willer10 and `sentinels` which extracts sentinels from GWAS summary statistics
+METAL @willer10 and `find_qtls` which extracts sentinels from GWAS summary statistics
 in a way that is very appealing to us compared to some other established software.
 Meanwhile, the size of the package surpasses the limit as imposed by CRAN, thus the
 old good feature of `S` as with `R` that value both code and data alike has to suffer
@@ -88,6 +88,7 @@ bt                |      Bradley-Terry model for contingency table
 ccsize            |      Power and sample size for case-cohort design
 cs                |      Credibel set
 fbsize            |      Sample size for family-based linkage and association design
+find_qtls         |      Distance-based signal identification
 gc.em             |      Gene counting for haplotype analysis
 gcontrol          |      genomic control
 gcontrol2         |      genomic control based on p values
