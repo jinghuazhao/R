@@ -39,14 +39,13 @@ find_qtls <- function(d, Chromosome="Chromosome",Position="Position",
   for (q in c("dplyr","valr")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
         if (!requireNamespace(q, quietly = TRUE))
-        warning(paste("mhtplot.trunc needs package `", q, "' to be fully functional; please install", sep=""))
+        warning(paste("find_qtls needs package `", q, "' to be fully functional; please install", sep=""))
      }
   }
   chrom <- start.gene <- end.gene <- geneStart <- geneEnd <- mlog10p <- NULL
-  p <- d %>%
-       dplyr::transmute(chrom=paste0("chr",d[[Chromosome]]),start=d[[Position]],end=d[[Position]],
-                        rsid=d[[MarkerName]],a1=d[[Allele1]],a2=d[[Allele2]],
-                        EAF=d[[EAF]],b=d[[Effect]],SE=d[[StdErr]],mlog10p=-d[[log10P]],n=d[[N]])
+  p <- data.frame(chrom=paste0("chr",d[[Chromosome]]),start=d[[Position]],end=d[[Position]],
+                  rsid=d[[MarkerName]],a1=d[[Allele1]],a2=d[[Allele2]],
+                  EAF=d[[EAF]],b=d[[Effect]],SE=d[[StdErr]],mlog10p=-d[[log10P]],n=d[[N]])
   m <- valr::bed_merge(p,max_dist=radius)
   i <- valr::bed_intersect(p,m,suffix = c("", ".gene")) %>%
        dplyr::rename(geneStart=start.gene,geneEnd=end.gene)
