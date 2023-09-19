@@ -16,7 +16,9 @@ find_qtls(
   StdErr = "StdErr",
   log10P = "log10P",
   N = "N",
-  radius = 1e+06
+  radius = 1e+06,
+  collapse.hla = TRUE,
+  build = "hg19"
 )
 }
 \arguments{
@@ -43,6 +45,10 @@ find_qtls(
 \item{N}{sample size.}
 
 \item{radius}{a flanking distance.}
+
+\item{collapse.hla}{a flag to collapse signals in the HLA region.}
+
+\item{build}{genome build to define the HLA region.}
 }
 \value{
 The function lists QTLs and meta-information.
@@ -52,7 +58,10 @@ Distance-based signal identification
 }
 \details{
 This function implements an iterative merging algorithm to identify signals.
-The setup follows output from METAL.
+The setup follows output from METAL. When collapse.hla=TRUE, a single most
+significant signal in the HLA region is chosen. The Immunogenomics paper gives
+GRCh37: chr6:28477797-33448354 (6p22.1-21.3),
+GRCh38: chr6:28510020-33480577.
 }
 \examples{
 \dontrun{
