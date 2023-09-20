@@ -977,7 +977,7 @@ get_sdy(0.6396966,23991,0.04490488,0.009504684)
 
 and indeed the eQTLGen data were standardized.
 
-# Signal identification and Fine-mapping
+# Signal identification and fine-mapping
 
 A distance-based signal identification based on GWAS summary statistics is implemented
 in `find_qtls` function; to avoid the overhead of data-loading it works on a preselected
