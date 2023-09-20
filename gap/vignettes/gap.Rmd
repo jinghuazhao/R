@@ -977,11 +977,15 @@ get_sdy(0.6396966,23991,0.04490488,0.009504684)
 
 and indeed the eQTLGen data were standardized.
 
-# Signal identification and fine-mapping
+# QTL signals
+
+## Identification
 
 A distance-based signal identification based on GWAS summary statistics is implemented
 in `find_qtls` function; to avoid the overhead of data-loading it works on a preselected
 list of variants from a GWAS and in this case a METAL output file.
+
+## Fine-mapping
 
 We considered a region of interest (which could be approximately independent variants,
 e.g., $r^2 \le 0.5$) using expressions that rely on effect sizes and their standard
