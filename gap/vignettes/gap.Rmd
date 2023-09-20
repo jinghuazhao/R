@@ -981,9 +981,10 @@ and indeed the eQTLGen data were standardized.
 
 ## Identification
 
-A distance-based signal identification based on GWAS summary statistics is implemented
-in `find_qtls` function; to avoid the overhead of data-loading it works on a preselected
-list of variants from a GWAS and in this case a METAL output file.
+Following an earlier implementation called `sentinels`, a distance-based signal
+identification based on GWAS summary statistics is avaialable from `find_qtls`
+function; to avoid the overhead of data-loading it works on a preselected list
+of variants from a GWAS and in this case a METAL output file.
 
 ## Fine-mapping
 
