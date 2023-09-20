@@ -977,7 +977,7 @@ get_sdy(0.6396966,23991,0.04490488,0.009504684)
 
 and indeed the eQTLGen data were standardized.
 
-# QTL signals
+# Sentinels of association
 
 ## Identification
 
