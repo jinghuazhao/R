@@ -60,8 +60,8 @@ Distance-based signal identification
 This function implements an iterative merging algorithm to identify signals.
 The setup follows output from METAL. When collapse.hla=TRUE, a single most
 significant signal in the HLA region is chosen. The Immunogenomics paper gives
-GRCh37: chr6:28477797-33448354 (6p22.1-21.3),
-GRCh38: chr6:28510020-33480577.
+hg19/GRCh37: chr6:28477797-33448354 (6p22.1-21.3),
+hg38/GRCh38: chr6:28510020-33480577.
 }
 \examples{
 \dontrun{
