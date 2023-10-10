@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-19-09-2023	Add find_qtls, suggesting valr
+10-10-2023	Add find_qtls --> qtlFinder, suggesting valr
 
 Version 1.5-3
 25-08-2023	Depends: R (>= 2.10), gap.datasets (>= 0.0.6) as suggested by Uwe Ligges

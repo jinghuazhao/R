@@ -2,7 +2,7 @@ Type: Package
 Package: gap
 Title: Genetic Analysis Package
 Version: 1.6
-Date: 2023-9-20
+Date: 2023-10-10
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",

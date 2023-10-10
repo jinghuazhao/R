@@ -52,7 +52,7 @@ but would like to invite others to join me and enlarge the collections and impro
 
 With recent work on genomewide association studies (GWASs) especially protein GWASs, I
 have added many functions such as `METAL_forestplot` which handles data from software
-METAL @willer10 and `find_qtls` which extracts sentinels from GWAS summary statistics
+METAL @willer10 and `qtlFinder` which extracts sentinels from GWAS summary statistics
 in a way that is very appealing to us compared to some other established software.
 Meanwhile, the size of the package surpasses the limit as imposed by CRAN, thus the
 old good feature of `S` as with `R` that value both code and data alike has to suffer
@@ -88,7 +88,6 @@ bt                |      Bradley-Terry model for contingency table
 ccsize            |      Power and sample size for case-cohort design
 cs                |      Credibel set
 fbsize            |      Sample size for family-based linkage and association design
-find_qtls         |      Distance-based signal identification
 gc.em             |      Gene counting for haplotype analysis
 gcontrol          |      genomic control
 gcontrol2         |      genomic control based on p values
@@ -187,6 +186,7 @@ metareg           |      Fixed and random effects model for meta-analysis
 muvar             |      Means and variances under 1- and 2- locus (diallelic) QTL model
 pvalue            |      P value for a normal deviate
 qtlClassifier     |      A QTL cis/trans classifier
+qtlFinder         |      Distance-based signal identification
 read.ms.output    |      A utility function to read ms output
 revStrand         |      Allele on the reverse strand
 runshinygap       |      Start shinygap
@@ -982,7 +982,7 @@ and indeed the eQTLGen data were standardized.
 ## Identification
 
 Following an earlier implementation called `sentinels`, a distance-based signal
-identification based on GWAS summary statistics is avaialable from `find_qtls`
+identification based on GWAS summary statistics is avaialable from `qtlFinder`
 function; to avoid the overhead of data-loading it works on a preselected list
 of variants from a GWAS and in this case a METAL output file.
 

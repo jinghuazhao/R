@@ -32,10 +32,10 @@
 #'             "Effect","StdErr","log10P","Direction",
 #'             "HetISq","HetChiSq","HetDf","logHetP","N")
 #'   d <- read.table(f,col.names=varlist,check.names=FALSE)
-#'   find_qtls(d)
+#'   qtlFinder(d)
 #' }
 
-find_qtls <- function(d, Chromosome="Chromosome",Position="Position",
+qtlFinder <- function(d, Chromosome="Chromosome",Position="Position",
                          MarkerName="MarkerName",Allele1="Allele1",Allele2="Allele2",
                          EAF="Freq1",
                          Effect="Effect",StdErr="StdErr",log10P="log10P",
@@ -44,7 +44,7 @@ find_qtls <- function(d, Chromosome="Chromosome",Position="Position",
   for (q in c("dplyr","valr")) {
      if (length(grep(paste("^package:", q, "$", sep=""), search())) == 0) {
         if (!requireNamespace(q, quietly = TRUE))
-        warning(paste("find_qtls needs package `", q, "' to be fully functional; please install", sep=""))
+        warning(paste("qtlFinder needs package `", q, "' to be fully functional; please install", sep=""))
      }
   }
   chrom <- start.gene <- end.gene <- geneStart <- geneEnd <- mlog10p <- hla_qtls <- other_qtls <- pQTLs <- NULL

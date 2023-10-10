@@ -27,7 +27,6 @@ bt                \tab      Bradley-Terry model for contingency table\cr
 ccsize            \tab      Power and sample size for case-cohort design\cr
 cs                \tab      Credibel set\cr
 fbsize            \tab      Sample size for family-based linkage and association design\cr
-find_qtls         \tab      Distance-based signal identification\cr
 gc.em             \tab      Gene counting for haplotype analysis\cr
 gcontrol          \tab      genomic control\cr
 gcontrol2         \tab      genomic control based on p values\cr
@@ -128,6 +127,7 @@ metap             \tab      Meta-analysis of p values\cr
 metareg           \tab      Fixed and random effects model for meta-analysis\cr
 muvar             \tab      Means and variances under 1- and 2- locus (diallelic) QTL model\cr
 qtlClassifier     \tab      A QTL cis/trans classifier\cr
+qtlFinder         \tab      Distance-based signal identification\cr
 read.ms.output    \tab      A utility function to read ms output\cr
 revStrand         \tab      Allele on the reverse strand\cr
 runshinygap       \tab      Start shinygap\cr
