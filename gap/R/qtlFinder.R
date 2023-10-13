@@ -50,7 +50,8 @@ qtlFinder <- function(d, Chromosome="Chromosome",Position="Position",
   chrom <- start.region <- end.region <- regionStart <- regionEnd <- mlog10p <- hla_qtls <- other_qtls <- pQTLs <- NULL
   p <- data.frame(chrom=paste0("chr",d[[Chromosome]]),start=d[[Position]],end=d[[Position]],
                   rsid=d[[MarkerName]],a1=d[[Allele1]],a2=d[[Allele2]],
-                  EAF=d[[EAF]],b=d[[Effect]],SE=d[[StdErr]],mlog10p=-d[[log10P]],n=d[[N]])
+                  EAF=d[[EAF]],b=d[[Effect]],SE=d[[StdErr]],mlog10p=-d[[log10P]],n=d[[N]]) %>%
+       valr::bed_sort()
   m <- valr::bed_merge(p,max_dist=radius)
   i <- valr::bed_intersect(p,m,suffix = c("", ".region")) %>%
        dplyr::rename(regionStart=start.region,regionEnd=end.region)
@@ -59,7 +60,7 @@ qtlFinder <- function(d, Chromosome="Chromosome",Position="Position",
     if (!collapse.hla)
        pQTLs <- i %>%
                 dplyr::group_by(chrom,regionStart,regionEnd) %>%
-                dplyr::slice_max(mlog10p)
+                dplyr::slice(which.max(mlog10p))
     else
     {
       if (build=="hg19") {startHLA <- 28477797; endHLA <- 33448354} else {startHLA <- 28510020; endHLA <- 33480577}
@@ -68,13 +69,13 @@ qtlFinder <- function(d, Chromosome="Chromosome",Position="Position",
       hasOther <- dplyr::filter(i,!hla)
       if (nrow(hasHLA)>0) hla_qtls <- hasHLA %>%
                                       dplyr::group_by(chrom,regionStart,regionEnd) %>%
-                                      dplyr::slice_max(mlog10p)
+                                      dplyr::slice(which.max(mlog10p))
       if (nrow(hasOther)>0) other_qtls <- hasOther %>%
                                           dplyr::group_by(chrom,regionStart,regionEnd) %>%
-                                          dplyr::slice_max(mlog10p) %>%
+                                          dplyr::slice(which.max(mlog10p)) %>%
                                           bind_rows(hla_qtls)
       pQTLs <- bind_rows(hla_qtls,other_qtls)
     }
   }
-  pQTLs
+  pQTLs %>% group_by(chrom,regionStart,regionEnd) %>% dplyr::slice(which.max(mlog10p))
 }
