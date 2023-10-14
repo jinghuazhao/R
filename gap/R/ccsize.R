@@ -141,7 +141,7 @@
 #' @note Programmed for EPIC study.
 #' keywords misc
 
-ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)
+ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=TRUE,verbose=FALSE)
 {
    p2 <- 1 - p1
    if (power)
