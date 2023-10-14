@@ -4,7 +4,7 @@
 \alias{ccsize}
 \title{Power and sample size for case-cohort design}
 \usage{
-ccsize(n, q, pD, p1, theta, alpha, beta = 0.2, power = FALSE, verbose = FALSE)
+ccsize(n, q, pD, p1, theta, alpha, beta = 0.2, power = TRUE, verbose = FALSE)
 }
 \arguments{
 \item{n}{the total number of subjects in the cohort.}
