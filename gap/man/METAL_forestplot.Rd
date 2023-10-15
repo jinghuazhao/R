@@ -8,6 +8,7 @@ METAL_forestplot(
   tbl,
   all,
   rsid,
+  flag = "",
   package = "meta",
   method = "REML",
   split = FALSE,
@@ -20,6 +21,8 @@ METAL_forestplot(
 \item{all}{statistics from all contributing studies.}
 
 \item{rsid}{SNPID-rsid mapping file.}
+
+\item{flag}{a variable in tbl such as cis/trans type.}
 
 \item{package}{"meta" or "metafor" package.}
 

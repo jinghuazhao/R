@@ -3,6 +3,7 @@
 #' @param tbl Meta-anslysis summary statistics.
 #' @param all statistics from all contributing studies.
 #' @param rsid SNPID-rsid mapping file.
+#' @param flag a variable in tbl such as cis/trans type.
 #' @param package "meta" or "metafor" package.
 #' @param method an explcit flag for fixed/random effects model.
 #' @param split when TRUE, individual prot-MarkerName.pdf will be generated.
@@ -46,7 +47,7 @@
 #' @author Jing Hua Zhao
 #' @keywords hplot distribution
 
-METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FALSE,...)
+METAL_forestplot <- function(tbl,all,rsid,flag="",package="meta",method="REML",split=FALSE,...)
 {
   prot <- MarkerName <- NA
   requireNamespace("dplyr")
@@ -70,7 +71,8 @@ METAL_forestplot <- function(tbl,all,rsid,package="meta",method="REML",split=FAL
      A1 <- toupper(tbl[i,"Allele1"])
      A2 <- toupper(tbl[i,"Allele2"])
      print(paste0(i,"-",p,":",m))
-     TITLE <- sprintf("%s [%s (%s) (%s/%s) N=%.0f]",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"])
+     f <- ifelse(flag=="","",paste0("(",tbl[i,flag],")"))
+     TITLE <- sprintf("%s [%s (%s) (%s/%s) N=%.0f] %s",p,m,t[i,"rsid"],A1,A2,tbl[i,"N"],f)
      sall <- subset(all,prot==p & MarkerName==m)
      with(sall, {
        e <- toupper(EFFECT_ALLELE)
