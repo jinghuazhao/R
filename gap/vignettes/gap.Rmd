@@ -456,7 +456,7 @@ for(i in 1:3)
 {
   q <- s_nb[i]/n
   power <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta,TRUE)
-  ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta)
+  ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta,FALSE)
   cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",
       signif(power,3),"\t",ssize,"\n",
       file=outfile,append=TRUE)
@@ -479,7 +479,7 @@ for(pD in s_pD)
    {
       for(hr in s_hr)
       {
-         ssize <- ccsize(n,q,pD,p1,log(hr),alpha,beta)
+         ssize <- ccsize(n,q,pD,p1,log(hr),alpha,beta,FALSE)
          if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
                           ssize,"\n",
                           file=outfile,append=TRUE)

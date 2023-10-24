@@ -1,8 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-15-10-2023	Add find_qtls --> qtlFinder, suggesting valr
-		Reset ccsize(power=TRUE) due to D. Hill
+24-10-2023	Add find_qtls --> qtlFinder, suggesting valr
+		Reset ccsize(power=TRUE) due to D. Hill + revise vignette / shinygap/global.R
 		Add Type= to METAL_forestplot()
 
 Version 1.5-3

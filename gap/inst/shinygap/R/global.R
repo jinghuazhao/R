@@ -107,7 +107,7 @@ pbsize <- function (kp, g=4.5, p=0.15, alpha=5e-8, beta=0.2)
   n
 }
 
-ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=FALSE,verbose=FALSE)
+ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=TRUE,verbose=FALSE)
 {
    p2 <- 1 - p1
    if (power)
