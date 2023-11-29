@@ -122,8 +122,8 @@ overflow:
 */
 
 void hap_read(int *n, int *ped, int *id, int *father, int *mother,
-	      int *if_qt, double *qt, 
-	      int *m, int *f_tr, int *f_un, int *m_tr, int *m_un, 
+	      int *if_qt, double *qt,
+	      int *m, int *f_tr, int *f_un, int *m_tr, int *m_un,
 	      char **ifname) {
   FILE *infile;
   int locus, mm, nn, i, ij, fr, n_read;
@@ -177,16 +177,16 @@ end_of_file:
 
 /* ============================ General ================================*/
 
-/* 
+/*
    Break linkage-style pedfile data into a list of nuclear families
    Note that elements of mother and father arrays are set to zero when
-   subjects are placed as children (one can't be a child in more than one 
-   family). Arrays are (long) ints because the function might be called 
-   originally from R or S. 
+   subjects are placed as children (one can't be a child in more than one
+   family). Arrays are (long) ints because the function might be called
+   originally from R or S.
 */
 
 Family *nuclear(int n, int *ped, int *mem, int *father, int *mother,
-		int *sex, int *aff_status, double *qt, 
+		int *sex, int *aff_status, double *qt,
 		int m, int *markers) {
   int person, j, pj, twom, placed, prev_placed;
   int p_ped, p_fat, p_mot, p_mem;
@@ -205,14 +205,14 @@ Family *nuclear(int n, int *ped, int *mem, int *father, int *mother,
       p_fat = father[person];
       p_mot = mother[person];
       /* If person is an offspring ... */
-      if (p_fat && p_mot) { 
+      if (p_fat && p_mot) {
 	/* See if this person is a child of an existing family */
 	for (f2add=(Family *) 0, f=res; f; f= f->next) {
-	  if ((p_ped==f->pedigree) && (p_fat==f->father_id) && 
+	  if ((p_ped==f->pedigree) && (p_fat==f->father_id) &&
 	      (p_mot==f->mother_id)) {
 	    f2add = f;
 	    break;
-	  } 
+	  }
 	}
 	/* If not, create new family record */
 	if (!f2add) {
@@ -221,9 +221,9 @@ Family *nuclear(int n, int *ped, int *mem, int *father, int *mother,
 	  f2add->pedigree = p_ped;
 	  f2add->father_id = p_fat;
 	  f2add->mother_id = p_mot;
-	  if (res) 
+	  if (res)
 	    f_last->next = f2add;
-	  else 
+	  else
 	    res = f2add;
 	  f_last = f2add;
 	}
@@ -240,7 +240,7 @@ Family *nuclear(int n, int *ped, int *mem, int *father, int *mother,
 	child->affected = aff_status[person];
 	child->qt = qt? qt[person]: 0.0;
 	child->sex = sex? sex[person]: 0;
-	for (pj=person, j=0; j<twom; j++, pj+=n) 
+	for (pj=person, j=0; j<twom; j++, pj+=n)
 	  child->markers[j] = markers[pj];
 	father[person] = mother[person] = 0;
 	placed++; /* Person placed as an offspring */
@@ -255,7 +255,7 @@ Family *nuclear(int n, int *ped, int *mem, int *father, int *mother,
 	    }
 	    else {
 	      f->check++;
-	      for (pj=person, j=0; j<twom; j++, pj+=n) 
+	      for (pj=person, j=0; j<twom; j++, pj+=n)
 		f->father[j] = markers[pj];
 	    }
 	  }
@@ -266,7 +266,7 @@ Family *nuclear(int n, int *ped, int *mem, int *father, int *mother,
 	    }
 	    else {
 	      f->check+=2;
-	      for (pj=person, j=0; j<twom; j++, pj+=n) 
+	      for (pj=person, j=0; j<twom; j++, pj+=n)
 		f->mother[j] = markers[pj];
 	    }
 	  }
@@ -280,7 +280,7 @@ overflow:
   return NULL;
 }
 
-/* 
+/*
    Write a list of transmitted and untransmitted htypes for affected children
    Return number of records written
 */
@@ -324,7 +324,7 @@ int hap_write(Family *first, int m, int if_qt, FILE *stream) {
 	else {
 	  for (ia=0; ia<twom; ia++) haps[ia] = 0;
 	}
-	fwrite(haps, sizeof(int), twom, stream); 
+	fwrite(haps, sizeof(int), twom, stream);
 	/* Maternal haplotypes, transmitted and untransmitted */
 	if (ch->m_tr) {
 	  for (ia=locus=0; locus<m; locus++, ia+=2) {
@@ -347,7 +347,7 @@ int hap_write(Family *first, int m, int if_qt, FILE *stream) {
 	else {
 	  for (ia=0; ia<twom; ia++) haps[ia] = 0;
 	}
-	fwrite(haps, sizeof(int), twom, stream); 
+	fwrite(haps, sizeof(int), twom, stream);
       }
     }
   }
@@ -355,13 +355,13 @@ int hap_write(Family *first, int m, int if_qt, FILE *stream) {
   return i;
 }
 
-/* 
-   Compute inheritance vectors for all children in the sibship 
+/*
+   Compute inheritance vectors for all children in the sibship
    Returns n if error/ex-paternity for n-th sib, 0 otherwise
 */
 
 int inheritance(Family *f, int m) {
-  int ierror, locus, ia1, ia2,  
+  int ierror, locus, ia1, ia2,
     f1, f2, m1, m2, i11, i12, i21, i22, ni;
   int *ch;
   Offspring *child;
@@ -403,13 +403,13 @@ int inheritance(Family *f, int m) {
 	}
 	/* else if there are two possibilities, one component might be */
 	else if (ni==2) {
-	  if (i11 && i12) 
+	  if (i11 && i12)
 	    child->ivec_f[locus] = 1;
-	  else if (i21 && i22) 
+	  else if (i21 && i22)
 	    child->ivec_f[locus] = 2;
-	  else if (i11 && i21) 
+	  else if (i11 && i21)
 	    child->ivec_m[locus] = 1;
-	  else if (i12 && i22) 
+	  else if (i12 && i22)
 	    child->ivec_m[locus] = 2;
 	}
       }
@@ -421,8 +421,8 @@ int inheritance(Family *f, int m) {
 /*
   Compute parental haplotypes and transmission
   Return 1 if uninformative, -L if recombination at locus L, 0 if successful
-  If resolve_homozygous is True, we resolve the phase of the parental 
-  haplotype arbitrarily (since it makes no difference), but transmission 
+  If resolve_homozygous is True, we resolve the phase of the parental
+  haplotype arbitrarily (since it makes no difference), but transmission
   remains unresolved.
 */
 
@@ -438,7 +438,7 @@ int haplotype(Family *f, int m, int resolve_homozygous) {
   for (locus=0; locus<m; locus++) ph_f[locus] = ph_m[locus] = 0;
 
   /* On first pass, set phase vectors to most complete inheritance vectors */
-  
+
   for (max_f=max_m=0, child = f->children; child; child = child->next) {
     iv_f = child->ivec_f;
     iv_m = child->ivec_m;
@@ -457,8 +457,8 @@ int haplotype(Family *f, int m, int resolve_homozygous) {
   }
   if (!max_f && !max_m) return 1;
 
-  /* 
-     Repeatedly cycle through children until resolution not improved 
+  /*
+     Repeatedly cycle through children until resolution not improved
      max_f, max_m are number of loci resolved in the last pass
      nin_f, nin_m are the numbers resolved the time before
   */
@@ -500,10 +500,10 @@ int haplotype(Family *f, int m, int resolve_homozygous) {
   return 0;
 }
 
-/* 
-   Impute missing parental data when possible 
+/*
+   Impute missing parental data when possible
    return 1 if error/ex-paternity, 0 otherwise
-   If use_affected is true, we use all offspring to fill in parental 
+   If use_affected is true, we use all offspring to fill in parental
    alleles. Otherwise we use only unaffected and unknown offspring.
 */
 
@@ -532,8 +532,8 @@ int impute_parent(Family *f, int m, int use_affected) {
   return 0;
 }
 
-/* 
-   Expand family into multiple copies, one copy for each offspring affected 
+/*
+   Expand family into multiple copies, one copy for each offspring affected
    These will be consecutive as the extra records are inserted in the list
    between f and f->next. Returns pointer to the last family created.
 */
@@ -595,9 +595,9 @@ Family *new_family(int m) {
   twom = 2*m;
   res->check = 0;
   res->pedigree = res->father_id = res->mother_id = 0;
-  for (locus = 0; locus<m; locus++) 
+  for (locus = 0; locus<m; locus++)
     res->phase_f[locus] = res->phase_m[locus] = 0;
-  for (ia=0; ia<twom; ia++) 
+  for (ia=0; ia<twom; ia++)
     res->father[ia] = res->mother[ia] = 0;
   res->children = (Offspring *) 0;
   res->next = (Family *) 0;
@@ -610,8 +610,8 @@ void use_only_first(Family *f) {
   Offspring *child;
   int reset;
   for (reset=0, child=f->children; child; child=child->next) {
-    if (child->affected==2) { 
-      if (reset) { 
+    if (child->affected==2) {
+      if (reset) {
 	child->affected = 0;
       }
       else {
@@ -642,9 +642,9 @@ Family *copy_family(Family *f, int m) {
   for (previous=(Offspring *) 0, child=f->children; child; child=child->next){
     twin = copy_child(child, m);
     if (!twin) return (Family *) 0;
-    if (previous) 
+    if (previous)
       previous->next = twin;
-    else 
+    else
       res->children = twin;
     previous = twin;
   }
@@ -683,9 +683,9 @@ Offspring *new_child(int m) {
   if (!res->ivec_m) return (Offspring *) 0;
   /* Initialization */
   twom = 2*m;
-  for (locus=0; locus<m; locus++) 
+  for (locus=0; locus<m; locus++)
     res->ivec_f[locus] = res->ivec_m[locus] = 0;
-  for (ia=0; ia<twom; ia++) 
+  for (ia=0; ia<twom; ia++)
     res->markers[ia] = 0;
   res->id = res->affected = res->f_tr = res->m_tr = res->sex = 0;
   res->qt = 0.0;
@@ -725,13 +725,13 @@ void del_child(Offspring *child) {
 void show_family(Family *f) {
   Offspring *child;
   if (f) {
-    REprintf(" %d: %d + %d / ", 
+    REprintf(" %d: %d + %d / ",
 	    f->pedigree, f->father_id, f->mother_id);
     for (child=f->children; child; child=child->next) {
       REprintf(" %d", child->id);
-      if (child->affected==2) 
+      if (child->affected==2)
 	REprintf("*");
-      if (child->next) 
+      if (child->next)
 	REprintf(",");
     }
     REprintf("\n");
@@ -753,10 +753,10 @@ void print_family(Family *f, int m, FILE *stream) {
   if (child)
     fprintf(stream, ">\n");
   else
-    fprintf(stream, "\n"); 
+    fprintf(stream, "\n");
   fprintf(stream, "%8d Ph %8d Ph", f->father_id, f->mother_id);
   for (i=0, child=f->children; child && i<4; child=child->next, i++) {
-    if (child->affected==2) 
+    if (child->affected==2)
       fprintf(stream, "   %8d*Iv", child->id);
     else
       fprintf(stream, "   %8d Iv", child->id);
@@ -768,7 +768,7 @@ void print_family(Family *f, int m, FILE *stream) {
 	    f->father[ia1], f->father[ia2], f->phase_f[j],
 	    f->mother[ia1], f->mother[ia2], f->phase_m[j]);
     for (i=0, child=f->children; child && i<4; child=child->next, i++) {
-      fprintf(stream, "%7d%4d%2d%1d", 
+      fprintf(stream, "%7d%4d%2d%1d",
 	      child->markers[ia1], child->markers[ia2],
 	      child->ivec_f[j], child->ivec_m[j] );
     }
@@ -776,14 +776,14 @@ void print_family(Family *f, int m, FILE *stream) {
   }
   /* Print haplotype transmission */
   fprintf(stream,"Haplotype transmission:");
-  for (i=0, child=f->children; child && i<4; child=child->next, i++) 
+  for (i=0, child=f->children; child && i<4; child=child->next, i++)
     fprintf(stream, "            %d%d", child->f_tr, child->m_tr);
   fprintf(stream, "\n");
 }
 
 /* Print a warning to stderr */
 
-void warn(char *message, Family *f) {
+void warn(const char *message, Family *f) {
   REprintf(message);
   REprintf(": ");
   show_family(f);
@@ -820,7 +820,7 @@ int count_offspring(Family *first, int affected_only) {
 /* ============================ Local functions =============================*/
 
 
-/* 
+/*
    Which allele is inherited from parent. Returns:
    0:  Neither
    1:  First
@@ -854,13 +854,13 @@ int poss_tr(int allele_f, int allele_m, int o_gtype[2]) {
 }
 
 /*
-  Given a parental phase vector and an inheritance vector, determines the 
+  Given a parental phase vector and an inheritance vector, determines the
   transmission. Returns
   0: if transmission is ambiguous
   1: if in-phase haplotype transmitted,
   2: if out-of-phase haplotype transmitted
   -L:if recombination at locus L
-  If 1 or 2 is returned and parental phase vector contains ambiguities 
+  If 1 or 2 is returned and parental phase vector contains ambiguities
   (zero entries), then complete them where possible.
   If phase vector is empty and inheritance vector is not, returns 1 and sets
   phase vector = inheritance vector.
@@ -875,7 +875,7 @@ int trans(int phase[], int inhvec[], int m) {
     if (phase[locus] && inhvec[locus]) {
       /* If already resolved, check for recombination */
       if (resolved) {
-	if (in_ph && (phase[locus]!=inhvec[locus])) return -(1+locus); 
+	if (in_ph && (phase[locus]!=inhvec[locus])) return -(1+locus);
       }
       /* else resolve phase */
       else {
@@ -884,7 +884,7 @@ int trans(int phase[], int inhvec[], int m) {
       }
     }
   }
-  /* If empty phase vector and non-empty inheritance vector, 
+  /* If empty phase vector and non-empty inheritance vector,
      resolve as in-phase */
   if (nph==0 && nin>0) {
     for (locus=0; locus<m; locus++) {
@@ -903,7 +903,7 @@ int trans(int phase[], int inhvec[], int m) {
   return 2;
 }
 
-/* 
+/*
    Fill in alleles in unknown parental genotype given child genotype and
    known parental genotype. Returns 1 if error/ex-paternity
 */
@@ -939,7 +939,7 @@ int fill_in(int child[2], int unknown[2], int known[2]) {
     if (!*(unknown+1)) {
       *(unknown+1) = which;
     }
-    else if (*(unknown+1) != which) { 
+    else if (*(unknown+1) != which) {
       return 1;
     }
   }

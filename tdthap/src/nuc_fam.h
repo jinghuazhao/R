@@ -45,7 +45,7 @@ Offspring *copy_child(Offspring *child, int m);  /* Copy offspring object */
 void del_child(Offspring *child); /* Delete an offspring object */
 void show_family(Family *f); /* Summary of family to file */
 void print_family(Family *f, int m, FILE *stream); /* Print data */
-void warn(char *message, Family *f); /* Warning to stderr */
+void warn(const char *message, Family *f); /* Warning to stderr */
 int inheritance(Family *f, int m); /* Compute inheritance vectors */
 int haplotype(Family *f, int m, int resolve_homozygous); 
                                   /* Resolve haplotypes and transmission */
