@@ -30,7 +30,7 @@ double tdt_similarity(int *a, int *b) {
   double s;
   int i;
   /* Haplotypes must have focal locus in common */
-  if (a[focus_sav-1] != b[focus_sav-1]) return(0.0); 
+  if (a[focus_sav-1] != b[focus_sav-1]) return(0.0);
   /* Find beginning of common area */
   for (i=focus_sav-2; i>=0 && a[i]==b[i]; i--) {}
   i++;

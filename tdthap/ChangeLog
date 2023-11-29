@@ -1,6 +1,6 @@
 v1.3
 
-2023-11-29	Remove many trailing blanks and recast message for warn() in nuc_fam.c
+2023-11-29	rm trailing blanks in C/add format to REprintf() in nuc_fam.c based on CRAN check/Kurt
 
 v1.2
 

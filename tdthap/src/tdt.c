@@ -14,25 +14,25 @@ void asran_seed(int, int, int);
   tr:     The transmitted haplotypes (numbered 1...nhap)
   un:     The untransmitted haplotypes (numbered 1...nhap)
   nsamp:  The number of Monte Carlo samples
-  funct:  If non-zero, use the similarity function. Otherwise do the 
+  funct:  If non-zero, use the similarity function. Otherwise do the
           coventional Pearsonian test
   keep:   If non-zero, Monte Carlo values of test statistic are kept in full
   seeds:  Three integer seeds for random number generator
   res:    Result vector. First value is realised statistic and subsequent
-          values are Monte Carlo values if keep is T, or the proportion 
+          values are Monte Carlo values if keep is T, or the proportion
           exceeding the observed value if keep is F
 */
 
 
-int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un, 
+int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
 	     int *nsamp, int *funct, int *keep, int *seeds, double *res) {
   /*FILE *scratch_file;*/
-  int nh, nt, nl, nmc, i, j, ij, nnz=0, inz; 
+  int nh, nt, nl, nmc, i, j, ij, nnz=0, inz;
   int a, b, c, *hmat, *ha, *hb;
   char *ch, **h;
   double *score, s, test, obst=0.0;
   double tdt_similarity(int *, int *);
-  /* Structure type to hold non-zero similarities */ 
+  /* Structure type to hold non-zero similarities */
   typedef struct s_tag {
     int row;
     int col;
@@ -49,8 +49,8 @@ int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
   c = seeds[2];
   asran_seed(a, b, c);
   score = (double *) calloc(nh, sizeof(double));
-  /* 
-     If using a similarity function, calculate all the non-zero ones ... 
+  /*
+     If using a similarity function, calculate all the non-zero ones ...
   */
   if (*funct) {
     /* Count loci */
@@ -76,13 +76,13 @@ int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
 	  nnz ++;
 	  s_this = (similar *) malloc(sizeof(similar));
 	  if (!s_this) goto noroom;
-	  s_this->row = a; 
+	  s_this->row = a;
 	  s_this->col = b;
 	  s_this->similarity = s;
 	  s_this->next = (similar *) 0;
-	  if (s_last) 
+	  if (s_last)
 	    s_last->next = s_this;
-	  else 
+	  else
 	    s_list = s_this;
 	  s_last = s_this;
 	}
@@ -90,8 +90,8 @@ int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
     }
     free(hmat);
   }
-  /* 
-     Otherwise each haplotype is similar to itself only ... 
+  /*
+     Otherwise each haplotype is similar to itself only ...
   */
   else {
     /* Calculate total number of occurrences of each haplotype */
@@ -109,22 +109,22 @@ int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
 	s_this->row = s_this->col = a;
 	s_this->similarity = 1.0/score[a];
 	s_this->next = (similar *) 0;
-	if (s_last) 
+	if (s_last)
 	  s_last->next = s_this;
-	else 
+	else
 	  s_list = s_this;
 	s_last = s_this;
       }
     }
   }
-  /* 
-     This loop does the test; the first time for real 
+  /*
+     This loop does the test; the first time for real
   */
   for (ij=j=0; j<=nmc; j++) {
     /* Calculate score vector  */
     for (a=0; a<nh; a++) score[a] = 0.0;
     for (i=0; i<nt; i++) {
-      a = tr[i]-1; /* Remember C indexing! */ 
+      a = tr[i]-1; /* Remember C indexing! */
       b = un[i]-1;
       /* In Monte Carlo passes, swap transmitted and untransmitted haplotypes*/
       if (j && asran()>0.5) {
@@ -141,7 +141,7 @@ int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
       b = s_this->col;
       s = s_this->similarity;
       test += score[a]*score[b]*s;
-      if (a!=b) 
+      if (a!=b)
 	test += score[b]*score[a]*s;
     }
     /* First time through loop is the observed value */
@@ -156,7 +156,7 @@ int tdt_quad(int *nhap, int *ntran, char **haps, int *tr, int *un,
   res[0] = obst;
   if (!*keep) res[1] = (double) ij / (double) nmc;
   goto      tidyup;
-  
+
   /* Insufficient dynamic memory */
 
 noroom:
@@ -165,20 +165,20 @@ noroom:
   goto tidyup;
 
   /* Return dynamic storage space */
-  
+
 tidyup:
   for (inz = 0, s_this=s_list; inz<nnz && s_this; inz++) {
     s_last = s_this;
     s_this = s_this->next;
     free(s_last);
-  } 
+  }
   if (score) free(score);
   return 0;
 
 }
 
 /* Applied Statistics random number generator */
-  
+
 static int ix, iy, iz;
 
 void asran_seed(int i1, int i2, int i3)

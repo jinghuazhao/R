@@ -783,8 +783,8 @@ void print_family(Family *f, int m, FILE *stream) {
 
 /* Print a warning to stderr */
 
-void warn(const char *message, Family *f) {
-  REprintf(message);
+void warn(char *message, Family *f) {
+  REprintf("%s\n",message);
   REprintf(": ");
   show_family(f);
 }
