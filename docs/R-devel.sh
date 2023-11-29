@@ -5,6 +5,7 @@ sudo dnf install R-devel
 sudo dnf install gcc-c++
 sudo dnf install gcc-gfortran
 sudo dnf install pcre-devel
+sudo dnf install pcre2-devel
 sudo dnf install java-1.8.0-openjdk-devel
 sudo dnf install readline-devel
 sudo dnf install libcurl-devel
@@ -17,6 +18,7 @@ sudo dnf install pandoc
 sudo dnf install qpdf
 sudo dnf install texlive-collection-latex
 sudo dnf install texlive-collection-fontsextra
+sudo dnf install texinfo
 sudo dnf install texinfo-tex
 sudo dnf install texlive-collection-fontsrecommended
 sudo dnf install texlive-collection-latexrecommended
@@ -46,7 +48,7 @@ export version=4.3.2
 wget -qO- https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-${version}.tar.gz | \
 tar xfz -
 cd JAGS-${version}
-./configure
+./configure --without-recommended-packages
 make
 sudo make install
 
