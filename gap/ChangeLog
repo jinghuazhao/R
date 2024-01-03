@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-03-01-2024	Set font=2/4 in circos.mhtplot2() ticks to 0:2*2.5 in gap.Rmd
+03-01-2024	Set font=2/4 for yaxis/genes in circos.mhtplot2()
 		Add find_qtls --> qtlFinder, suggesting valr
 		Reset ccsize(power=TRUE) due to D. Hill + revise vignette / shinygap/global.R
 		Add Type= to METAL_forestplot()

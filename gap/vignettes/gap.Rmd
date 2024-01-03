@@ -570,13 +570,12 @@ labs <- subset(testdat,gene %in% glist) %>%
         mutate(cols="blue") %>%
         select(chr,start,end,gene,cols)
 labs[2,"cols"] <- "red"
-circos.mhtplot2(dat,labs,ticks=0:2*2.5)
+circos.mhtplot2(dat,labs,ticks=0:2*10)
 ```
 
 As a side note, the data is used by `manhattanly`.
 
 ```r
-#too slowly to show here.
 #{r mhttest, fig.cap="Manhattanly plot", fig.height=8, fig.width=8, plotly=TRUE}
 library(manhattanly)
 mhttest <- manhattanly(mhtdata, chr = "chr", bp = "pos",
