@@ -45,7 +45,7 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
                         cell.padding = c(0.001, 0.01, 0.01, 0.001))
   circlize::circos.initializeWithIdeogram(plotType = NULL, species = species, chromosome.index = chr.index)
   circlize::circos.genomicLabels(labs, labels=labs[["gene"]], side = "outside",
-                                 cex = 0.7, font = 3, line_lwd = 0.7, padding=0.5,
+                                 cex = 0.7, font = 4, line_lwd = 0.7, padding=0.5,
                                  connection_height = circlize::convert_height(8, "mm"),
                                  line_col = labs[["cols"]],
                                  col = labs[["cols"]])
@@ -72,7 +72,7 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
               sector.index = circlize::get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3,
               tick.length = 0.5*(circlize::convert_x(1, "mm", circlize::CELL_META$sector.index,circlize::CELL_META$track.index)))
   circlize::circos.genomicText(data.frame(start=1,end=1),sector.index=circlize::get.all.sector.index()[1],
-                               labels = "-log10(P)", h = "bottom", cex = 0.6, y = y, adj = c(0.2, 1.5), facing = "clockwise")
+                               labels = "-log10(P)", h = "bottom", cex = 0.6, font = 2, y = y, adj = c(0.2, 1.5), facing = "clockwise")
 # circlize::circos.genomicTrackPlotRegion(QTLs, panel.fun = function(region, value,  ...)
 #                        circlize::circos.genomicPoints(region, value, pch = 19, col = "red", cex = 0.3),
 #                                                       track.height = 0.2, bg.border = NA, bg.col = "#A6E1F4", ylim = c(-30, 0))
