@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-module load gcc/6 geos-3.6.2-gcc-5.4.0-vejexvy pcre2-10.20-gcc-5.4.0-tcuhtrb texlive
+module load gcc/9 geos-3.6.2-gcc-5.4.0-vejexvy pcre2-10.20-gcc-5.4.0-tcuhtrb texlive
 
 cd ~/R
 Rscript -e 'setwd("gap");devtools::document()'
