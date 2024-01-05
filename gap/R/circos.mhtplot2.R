@@ -67,18 +67,10 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
                })
   circlize::circos.genomicTrackPlotRegion(dat, numeric.column = 4, panel.fun = function(region, value,  ...)
                  circlize::circos.genomicPoints(region, value, pch = 16, col = "magenta", cex = 0.3),
-                                                track.height = 0.55, bg.border = NA, bg.col = "white", ylim = c(0, 30))
+                                                track.height = 0.55, bg.border = NA, bg.col = "white", ylim = c(0, y))
   circlize::circos.yaxis(side = "left", at = ticks, labels = ticks,
               sector.index = circlize::get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3,
               tick.length = 0.5*(circlize::convert_x(1, "mm", circlize::CELL_META$sector.index,circlize::CELL_META$track.index)))
   circlize::circos.genomicText(data.frame(start=1,end=1),sector.index=circlize::get.all.sector.index()[1],
-                               labels = "-log10(P)", h = "bottom", cex = 0.6, font = 2, y = y, adj = c(0.2, 1.5), facing = "clockwise")
-# circlize::circos.genomicTrackPlotRegion(QTLs, panel.fun = function(region, value,  ...)
-#                        circlize::circos.genomicPoints(region, value, pch = 19, col = "red", cex = 0.3),
-#                                                       track.height = 0.2, bg.border = NA, bg.col = "#A6E1F4", ylim = c(-30, 0))
-# circlize::circos.yaxis(side = "left", at = c(-30,-15,0), labels = c(-30,-15,0), sector.index = get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3)
-# circlize::circos.genomicLabels(QTL_labels, labels.column = 5, side = "outside", cex = 0.4, line_lwd = 0.8,
-#                        connection_height = convert_height(1, "mm"),
-#                        line_col = as.numeric(factor(labs[[6]])), col = as.numeric(factor(labs[[6]])), facing = "reverse.clockwise")
-# title("A circos plot of druggability")
+                               labels = "-log10(P)", h = "bottom", cex = 0.6, font = 2, y = 2/3 * y, adj = c(0.2, 1.5), facing = "clockwise")
 }
