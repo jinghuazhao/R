@@ -4,7 +4,7 @@
 #' @param labs Data on labels.
 #' @param species Genome build.
 #' @param ticks Tick positions.
-#' @param y Starting position of y-axis label.
+#' @param ymax maximum value for y-axis.
 #'
 #' @details
 #' This is adapted from work for a recent publication. It enables a y-axis to the -log10(P) for association statistics
@@ -30,11 +30,11 @@
 #'         mutate(cols="blue") %>%
 #'         select(chr,start,end,gene,cols)
 #' labs[2,"cols"] <- "red"
-#' circos.mhtplot2(dat,labs,ticks=0:2*10)
+#' circos.mhtplot2(dat,labs,ticks=0:3*5,ymax=15)
 #' # https://www.rapidtables.com/web/color/RGB_Color.html
 #' }
 
-circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
+circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,ymax=30)
 {
   requireNamespace("circlize")
   circlize::circos.clear()
@@ -67,10 +67,10 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,y=20)
                })
   circlize::circos.genomicTrackPlotRegion(dat, numeric.column = 4, panel.fun = function(region, value,  ...)
                  circlize::circos.genomicPoints(region, value, pch = 16, col = "magenta", cex = 0.3),
-                                                track.height = 0.55, bg.border = NA, bg.col = "white", ylim = c(0, y))
+                                                track.height = 0.55, bg.border = NA, bg.col = "white", ylim = c(0, ymax))
   circlize::circos.yaxis(side = "left", at = ticks, labels = ticks,
               sector.index = circlize::get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3,
               tick.length = 0.5*(circlize::convert_x(1, "mm", circlize::CELL_META$sector.index,circlize::CELL_META$track.index)))
   circlize::circos.genomicText(data.frame(start=1,end=1),sector.index=circlize::get.all.sector.index()[1],
-                               labels = "-log10(P)", h = "bottom", cex = 0.6, font = 2, y = 2/3 * y, adj = c(0.2, 1.5), facing = "clockwise")
+                               labels = "-log10(P)", h = "bottom", cex = 0.6, font = 2, y = 2/3 * ymax, adj = c(0.2, 1.5), facing = "clockwise")
 }
