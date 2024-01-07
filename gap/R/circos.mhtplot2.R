@@ -30,7 +30,8 @@
 #'         mutate(cols="blue") %>%
 #'         select(chr,start,end,gene,cols)
 #' labs[2,"cols"] <- "red"
-#' circos.mhtplot2(dat,labs,ticks=0:3*5,ymax=max(ticks))
+#' ticks <- 0:3*5
+#' circos.mhtplot2(dat,labs,ticks=ticks,ymax=max(ticks))
 #' # https://www.rapidtables.com/web/color/RGB_Color.html
 #' }
 
