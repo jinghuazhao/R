@@ -30,7 +30,7 @@
 #'         mutate(cols="blue") %>%
 #'         select(chr,start,end,gene,cols)
 #' labs[2,"cols"] <- "red"
-#' circos.mhtplot2(dat,labs,ticks=0:3*5,ymax=15)
+#' circos.mhtplot2(dat,labs,ticks=0:3*5,ymax=max(ticks))
 #' # https://www.rapidtables.com/web/color/RGB_Color.html
 #' }
 
@@ -67,7 +67,7 @@ circos.mhtplot2 <- function(dat,labs,species="hg18",ticks=0:3*10,ymax=30)
                })
   circlize::circos.genomicTrackPlotRegion(dat, numeric.column = 4, panel.fun = function(region, value,  ...)
                  circlize::circos.genomicPoints(region, value, pch = 16, col = "magenta", cex = 0.3),
-                                                track.height = 0.55, bg.border = NA, bg.col = "white", ylim = c(0, ymax))
+                                                track.height = 0.55, bg.border = 1, bg.col = "white", ylim = c(0, ymax))
   circlize::circos.yaxis(side = "left", at = ticks, labels = ticks,
               sector.index = circlize::get.all.sector.index()[1], labels.cex = 0.3, lwd = 0.3,
               tick.length = 0.5*(circlize::convert_x(1, "mm", circlize::CELL_META$sector.index,circlize::CELL_META$track.index)))
