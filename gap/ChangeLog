@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-07-01-2024	Set font=2/4 for yaxis/genes and amendment in circos.mhtplot2()
+06-02-2024	Replace looping with sapply in generation of the z-p lookup table
+		Set font=2/4 for yaxis/genes and amendment in circos.mhtplot2()
 		Add find_qtls --> qtlFinder, suggesting valr
 		Reset ccsize(power=TRUE) due to D. Hill + revise vignette / shinygap/global.R
 		Add Type= to METAL_forestplot()

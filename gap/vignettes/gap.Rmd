@@ -785,14 +785,10 @@ One can also derive logpvalue for natural base (e) similarly.
 We end with a quick look-up table
 ```{r}
 require(gap)
-v <- data.frame()
-for (z in c(5,10,30,40,50,100,500,1000,2000,3000,5000))
-{
-  vi <- c(z,pvalue(z),logp(z),log10p(z))
-  v <- rbind(v,vi)
-}
-names(v) <- c("z","P","log(P)","log10(P)")
-knitr::kable(v,caption="z,P,log(P) and log10(P)")
+zlist <- c(5,10,30,40,50,100,500,1000,2000,3000,5000)
+zp <- sapply(zlist,function(z) {c(z,pvalue(z),logp(z),log10p(z))})
+rownames(zp) <- c("z","P","log(P)","log10(P)")
+knitr::kable(t(zp),caption="z, P, log(P) and log10(P)")
 ```
 
 ## Application
