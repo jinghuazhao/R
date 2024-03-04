@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-06-02-2024	Replace looping with sapply in generation of the z-p lookup table
+04-03-2024	Replace looping with sapply() for the z-p lookup table / citation in gap.Rmd
 		Set font=2/4 for yaxis/genes and amendment in circos.mhtplot2()
 		Add find_qtls --> qtlFinder, suggesting valr
 		Reset ccsize(power=TRUE) due to D. Hill + revise vignette / shinygap/global.R

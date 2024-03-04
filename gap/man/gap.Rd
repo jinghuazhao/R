@@ -3,7 +3,6 @@
 \docType{package}
 \name{gap}
 \alias{gap}
-\alias{_PACKAGE}
 \alias{gap-package}
 \title{Genetic analysis package}
 \description{
