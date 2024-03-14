@@ -1,5 +1,6 @@
-# 20-2-2023 JHZ
+# 14-3-2024 JHZ
 
+cp -p ~/R/gap/ChangeLog ~/R/vignettes
 for f in gap.html jss.pdf shinygap.html; do cp -p ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
 cp -p ~/hpc-work/R/pQTLdata/doc/pQTLdata.html ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
