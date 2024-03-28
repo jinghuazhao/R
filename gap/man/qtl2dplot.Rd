@@ -76,5 +76,22 @@ This function is both used as its own for a 2d plot and/or generate data for a p
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 r <- qtl2dplot(d)
+# A qtlClaaifier/qtl2dplot coupling example:
+ucsc_modified <- bind_rows(ucsc,APOC,AMY,C4B,HIST,HBA)
+pqtls <- select(merged,prot,SNP,log.P.) \%>\%
+         mutate(log10p=-log.P.) \%>\%
+         left_join(caprion_modified) \%>\%
+         select(Gene,SNP,prot,log10p)
+posSNP <- select(merged,SNP,Chr,bp)
+cis.vs.trans <- qtlClassifier(pqtls,posSNP,ucsc_modified,1e6) \%>\%
+                mutate(geneChrom=as.integer(geneChrom),
+                       cis=if_else(Type=="cis",TRUE,FALSE))
+head(cis.vs.trans)
+qtl2dplot(cis.vs.trans,chrlen=gap::hg19,
+          snp_name="SNP",snp_chr="SNPChrom",snp_pos="SNPPos",
+          gene_chr="geneChrom",gene_start="geneStart",gene_end="geneEnd",
+          trait="prot",gene="Gene",
+          TSS=TRUE,cis="cis",plot=TRUE,cex.labels=0.6,cex.points=0.6,
+          xlab="pQTL position",ylab="Gene position")
 }
 }
