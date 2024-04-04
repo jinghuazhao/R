@@ -5,6 +5,10 @@ for f in gap.html jss.pdf shinygap.html; do cp -p ~/hpc-work/R/gap/doc/${f} ~/R/
 cp -p ~/hpc-work/R/pQTLdata/doc/pQTLdata.html ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
+if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
+   module load ceuadmin/openssh/9.7p1-icelake
+fi
+
 git add .github
 git commit -m ".github"
 git add .gitignore
