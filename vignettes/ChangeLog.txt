@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-28-03-2024	Add qtlClassifer/qtl2dplot coupling example
+05-04-2024	Add qtlClassifer/qtl2dplot coupling example
 		sed -i '/ISSN/d' inst/REFERENCE.bib
 		Replace looping with sapply() for the z-p lookup table / citation in gap.Rmd
 		Set font=2/4 for yaxis/genes and amendment in circos.mhtplot2()
