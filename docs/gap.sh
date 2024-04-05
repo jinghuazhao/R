@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 
-module load gcc/9 geos-3.6.2-gcc-5.4.0-vejexvy pcre2-10.20-gcc-5.4.0-tcuhtrb texlive
+if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
+   module load ceuadmin/R/4.3.3-icelake
+else
+   module load ceuadmin/R
+fi
 
 cd ~/R
 Rscript -e 'setwd("gap");devtools::document()'
