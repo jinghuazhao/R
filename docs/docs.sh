@@ -6,7 +6,9 @@ cp -p ~/hpc-work/R/pQTLdata/doc/pQTLdata.html ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
-   module load ceuadmin/openssh/9.7p1-icelake
+   module load ceuadmin/R/4.3.3-icelake
+else
+   module load ceuadmin/R
 fi
 
 git add .github
