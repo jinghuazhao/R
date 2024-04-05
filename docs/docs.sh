@@ -6,9 +6,8 @@ cp -p ~/hpc-work/R/pQTLdata/doc/pQTLdata.html ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
-   module load ceuadmin/R/4.3.3-icelake
-else
-   module load ceuadmin/R
+   echo icelake
+   module load ceuadmin/openssh/9.7p1-icelake
 fi
 
 git add .github
@@ -19,7 +18,7 @@ git add CGR CGR_1.0-5.tar.gz
 git commit -m "Classic Genetics in R"
 git add kinship_1.1.4.tar.gz kinship_1.1.4.zip
 git commit -m "kinship source (.tar.gz) and Windows (.zip) packages"
-git add gap gap.enl
+git add gap gap.enl gap.Data
 git commit -m "genetic analysis package"
 git add gap.datasets
 git commit -m "Datasets for 'gap'"
