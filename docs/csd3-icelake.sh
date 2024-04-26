@@ -6,14 +6,14 @@ module load image-magick-7.0.5-9-gcc-5.4.0-d4lemcc libpng/1.6.37/intel/jfrl6z6c 
 module load ceuadmin/json-c/0.17-20230812-icelake
 module load ceuadmin/glpk/4.57 ceuadmin/icu/70.1 ceuadmin/nettle/2.7.1 ceuadmin/openssl/3.2.1-icelake
 
-export version=4.3.3
+export version=4.4.0
 IFS=\. read major minor1 minor2 <<<${version}
-export prefix=/rds/project/jmmh2/rds-jmmh2-public_databases/software/R-${version}-icelake
-mkdir -p ${prefix} && cd ${prefix}
-wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
-tar xvfz - -C ${prefix}
+export prefix=/rds/project/jmmh2/rds-jmmh2-public_databases/software
+export R_LIBS=${prefix}/R-icelake
 cd ${prefix}
-./configure --prefix=${prefix} \
-            --with-pcre2 \
-            --enable-R-shlib
+mkdir R-${version}-icelake
+wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
+tar xvfz - -C R-${version}-icelake --strip-components=1
+cd R-${version}-icelake
+./configure --prefix=${prefix}/R-${version}-icelake --with-pcre2 --enable-R-shlib
 make
