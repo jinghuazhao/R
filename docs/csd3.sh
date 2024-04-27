@@ -12,7 +12,7 @@ IFS=\. read major minor1 minor2 <<<${version}
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
 tar xvfz -
 cd R-${version}
-./configure --prefix=${prefix} --with-pcre2 --enable-R-shlib
+./configure --prefix=${prefix}/R-${version} --with-pcre2 --enable-R-shlib
 make
 make install
 Rscript -e 'update.packages(checkBuilt=TRUE,ask=FALSE)'

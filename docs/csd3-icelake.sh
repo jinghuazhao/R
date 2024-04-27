@@ -17,3 +17,4 @@ tar xvfz - -C R-${version}-icelake --strip-components=1
 cd R-${version}-icelake
 ./configure --prefix=${prefix}/R-${version}-icelake --with-pcre2 --enable-R-shlib
 make
+make install

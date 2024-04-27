@@ -15,3 +15,4 @@ tar xvfz - -C R-${version}-gcc11 --strip-components=1
 cd R-${version}-gcc11
 ./configure --prefix=${prefix}/R-${version}-gcc11 --with-pcre2 --enable-R-shlib
 make
+make install
