@@ -231,4 +231,4 @@ Three batch files have been created,
 - `csd3-gcc11.sh` CentOS 7, gcc/11
 - `csd3-icelake.sh` CentOS 8.
 
-Except `csd3-icelake.sh`, here is difficulty to install R directly to $CEUADMIN/R so symbolic links are used instead.
+Except `csd3-icelake.sh`, there is difficulty to install R directly to $CEUADMIN/R so symbolic links are used instead.
