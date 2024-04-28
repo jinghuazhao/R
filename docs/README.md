@@ -222,3 +222,11 @@ export version=4.2.2
 IFS=\. read major minor1 minor2 <<<${version}
 echo ${major}.${minor1}.${minor2}
 ```
+
+## CentOS 7/8
+
+Three batch files have been created,
+
+- `csd3.sh` CentOS 7, gcc/6
+- `csd3-gcc11.sh` CentOS 7, gcc/11
+- `csd3-icelake.sh` CentOS 8.
