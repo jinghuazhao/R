@@ -13,7 +13,6 @@ mkdir R-${version}-gcc11
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
 tar xvfz - -C R-${version}-gcc11 --strip-components=1
 cd R-${version}-gcc11
-export prefix=/usr/local/Cluster-Apps/ceuadmin/R
 ./configure --prefix=${prefix}/${version}-gcc11 --with-pcre2 --enable-R-shlib
 make
 make install

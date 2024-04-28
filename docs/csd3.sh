@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-module load gcc/6 geos-3.6.2-gcc-5.4.0-vejexvy gettext-0.19.8.1-gcc-5.4.0-5iqkv5z pcre2-10.20-gcc-5.4.0-tcuhtrb texlive
+module load gcc/9 geos-3.6.2-gcc-5.4.0-vejexvy gettext-0.19.8.1-gcc-5.4.0-5iqkv5z pcre2-10.20-gcc-5.4.0-tcuhtrb texlive
 module load image-magick-7.0.5-9-gcc-5.4.0-d4lemcc
 module load ceuadmin/glpk/4.57 ceuadmin/icu/70.1
 
@@ -12,7 +12,6 @@ IFS=\. read major minor1 minor2 <<<${version}
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
 tar xvfz -
 cd R-${version}
-export prefix=/usr/local/Cluster-Apps/ceuadmin/R
 ./configure --prefix=${prefix}/${version} --with-pcre2 --enable-R-shlib
 make
 make install
