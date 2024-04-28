@@ -14,7 +14,8 @@ mkdir R-${version}-icelake
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
 tar xvfz - -C R-${version}-icelake --strip-components=1
 cd R-${version}-icelake
-./configure --prefix=${prefix}/R-${version}-icelake --with-pcre2 --enable-R-shlib
+export prefix=/usr/local/Cluster-Apps/ceuadmin/R
+./configure --prefix=${prefix}/${version}-icelake --with-pcre2 --enable-R-shlib
 make
 make install
 
