@@ -57,6 +57,12 @@ Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by
 
 Note that some errors can only be seen through R CMD INSTALL.
 
+### .Rprofile
+
+```
+options(repos = c(CRAN="https://cran.r-project.org"))
+```
+
 ### .R/Makevars
 
 ```bash

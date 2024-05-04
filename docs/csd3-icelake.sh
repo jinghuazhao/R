@@ -13,8 +13,9 @@ export dest=${version}-icelake
 export R_LIBS=${rds}/R-icelake
 cd ${prefix}
 mkdir ${dest}
+umask 022
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
-tar xvfz - -C ${dest} --strip-components=1
+tar --no-same-owner xfz - -C ${dest} --strip-components=1
 cd ${dest}
 ./configure --prefix=${prefix}/${dest} --with-pcre2 --enable-R-shlib
 make
