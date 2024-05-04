@@ -7,17 +7,17 @@ module load ceuadmin/nettle/2.7.1 texlive
 
 export version=4.4.0
 IFS=\. read major minor1 minor2 <<<${version}
-export prefix=/rds/project/jmmh2/rds-jmmh2-public_databases/software
-export R_LIBS=${prefix}/R-icelake
+export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
+export prefix=$CEUADMIN/R
+export dest=${version}-icelake
+export R_LIBS=${rds}/R-icelake
 cd ${prefix}
-mkdir R-${version}-icelake
+mkdir ${dest}
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
-tar xvfz - -C R-${version}-icelake --strip-components=1
-cd R-${version}-icelake
-export prefix=/usr/local/Cluster-Apps/ceuadmin/R
-./configure --prefix=${prefix}/${version}-icelake --with-pcre2 --enable-R-shlib
+tar xvfz - -C ${dest} --strip-components=1
+cd ${dest}
+./configure --prefix=${prefix}/${dest} --with-pcre2 --enable-R-shlib
 make
-make install
 
 function legacy()
 {
