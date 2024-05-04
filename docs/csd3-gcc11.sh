@@ -15,7 +15,7 @@ cd ${prefix}
 mkdir ${dest}
 umask 022
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
-tar --no-same-owner xfz - -C ${dest} --strip-components=1
+tar xfz - --no-same-owner -C ${dest} --strip-components=1
 cd ${dest}
 ./configure --prefix=${prefix}/${dest} --with-pcre2 --enable-R-shlib
 make
