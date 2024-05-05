@@ -5,6 +5,8 @@ module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/g
 module load ceuadmin/json-c/0.17-20230812-icelake
 module load ceuadmin/nettle/2.7.1 texlive
 
+module unload gcc/6
+
 export version=4.4.0
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software

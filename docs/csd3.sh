@@ -5,6 +5,8 @@ module load image-magick-7.0.5-9-gcc-5.4.0-d4lemcc
 module load ceuadmin/brotli/1.0.9 ceuadmin/glpk/4.57 ceuadmin/icu/70.1 ceuadmin/jq/1.6 protobuf-3.4.0-gcc-5.4.0-zkpendv
 module load ceuadmin/NLopt/2.7.1
 
+module unload gcc/6
+
 export version=4.4.0
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
