@@ -21,4 +21,3 @@ tar xfz - --no-same-owner -C ${dest} --strip-components=1
 cd ${dest}
 ./configure --prefix=${prefix}/${dest} --with-pcre2 --enable-R-shlib
 make
-make install

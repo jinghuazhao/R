@@ -2,7 +2,7 @@
 
 module load curl/7.79.0/gcc/75dxv7ac gettext/0.21/gcc/qnrcglqo libiconv/1.16/intel/64iicvbf
 module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/gcc/bumlt4j6
-module load ceuadmin/json-c/0.17-20230812-icelake
+module load ceuadmin/json-c/0.17-20230812-icelake ceuadmin/krb5/1.21.2-icelake
 module load ceuadmin/nettle/2.7.1 texlive
 
 module unload gcc/6
@@ -21,7 +21,6 @@ tar xfz - --no-same-owner -C ${dest} --strip-components=1
 cd ${dest}
 ./configure --prefix=${prefix}/${dest} --with-pcre2 --enable-R-shlib
 make
-make install
 
 function legacy()
 {
