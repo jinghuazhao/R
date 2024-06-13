@@ -6,6 +6,12 @@
 
 Shown below are links to packages I have maintained[^1], with individual files to be found from [https://github.com/jinghuazhao/R](https://github.com/jinghuazhao/R).
 
+See also [gap](https://www.rdocumentation.org/packages/gap/),
+ [gap.datasets](https://www.rdocumentation.org/packages/gap.datasets),
+ [lmm](https://www.rdocumentation.org/packages/lmm),
+ [pan](https://www.rdocumentation.org/packages/pan).
+ [tdthap](https://www.rdocumentation.org/packages/tdthap).
+
 **Packages**[^2] | [CRAN](http://cran.r-project.org) | Vignette | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|---------|---------------------|---------------------------------------------
 **gap** | [https://cran.r-project.org/package=gap](https://cran.r-project.org/package=gap) | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^3]   | [https://github.com/cran/gap](https://github.com/cran/gap) | [https://rdrr.io/cran/gap/](https://rdrr.io/cran/gap/)
