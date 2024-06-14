@@ -6,7 +6,7 @@
 
 Shown below are links to packages I have maintained[^1], with individual files to be found from [https://github.com/jinghuazhao/R](https://github.com/jinghuazhao/R).
 
-See also [gap](https://www.rdocumentation.org/packages/gap/),
+See also documentation reformatted by datacamp, <https://www.rdocumentation.org/>: [gap](https://www.rdocumentation.org/packages/gap/),
  [gap.datasets](https://www.rdocumentation.org/packages/gap.datasets),
  [lmm](https://www.rdocumentation.org/packages/lmm),
  [pan](https://www.rdocumentation.org/packages/pan).
