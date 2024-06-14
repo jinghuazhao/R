@@ -18,6 +18,10 @@ LazyLoad: Yes
 License: GPL (>= 2)
 URL: https://jinghuazhao.github.io/R/
 NeedsCompilation: no
-Packaged: 2019-05-27 19:04:29 UTC; jhz22
+Packaged: 2023-08-19 19:19:17 UTC; jhz22
 Depends: R (>= 2.10)
 RoxygenNote: 7.1.2
+Author: Jing Hua Zhao [aut, cre],
+  Swetlana Herbrandt [ctb]
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
+Built: R 4.4.0; ; 2024-05-14 15:37:18 UTC; unix
