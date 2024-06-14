@@ -1,11 +1,15 @@
 #!/usr/bin/bash
 
-module load gcc/6 geos-3.6.2-gcc-5.4.0-vejexvy gettext-0.19.8.1-gcc-5.4.0-5iqkv5z pcre2-10.20-gcc-5.4.0-tcuhtrb texlive
+module load gcc/6
+module load curl-7.63.0-gcc-5.4.0-4uswlql geos-3.6.2-gcc-5.4.0-vejexvy gettext-0.19.8.1-gcc-5.4.0-5iqkv5z
 module load image-magick-7.0.5-9-gcc-5.4.0-d4lemcc
-module load ceuadmin/brotli/1.0.9 ceuadmin/glpk/4.57 ceuadmin/icu/70.1 ceuadmin/jq/1.6 protobuf-3.4.0-gcc-5.4.0-zkpendv
-module load ceuadmin/NLopt/2.7.1
+module load mono/5.0.1.1 netcdf/4.4.1
+module load pcre2-10.20-gcc-5.4.0-tcuhtrb protobuf-3.4.0-gcc-5.4.0-zkpendv texlive
+module load ceuadmin/brotli/1.0.9 ceuadmin/icu/70.1 ceuadmin/jq/1.6
+module load ceuadmin/glpk/4.57 ceuadmin/NLopt/2.7.1
+module load ceuadmin/readline/8.0 ceuadmin/rtmpdump/2.3
 
-export version=4.4.0
+export version=4.4.1
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
 export prefix=$CEUADMIN/R
@@ -19,7 +23,7 @@ tar xfz - --no-same-owner -C ${dest} --strip-components=1
 cd ${dest}
 ./configure --prefix=${prefix}/${dest} --with-pcre2 --enable-R-shlib
 make
-Rscript -e 'update.packages(checkBuilt=TRUE,ask=FALSE)'
+bin/Rscript -e 'update.packages(checkBuilt=TRUE,ask=FALSE)'
 
 function pre_4.3.3()
 {
