@@ -16,7 +16,6 @@
 #define MSEED 161803398
 #define MZ 0
 #define FAC (1.0/MBIG)
-/*#define PI 3.14159265*/
 
 int getnum(FILE *, double *);
 double poz(double);
@@ -300,7 +299,7 @@ void prog(double *x,int n,double *deltot,long *idum,double *A,int *delta)
 
 double dnorm(double x)
 {
-  return(exp(-.5*x*x)/sqrt(2.*PI));
+  return(exp(-.5*x*x)/sqrt(2.*M_PI));
 }
 
 double rchisq(int ia, long *idum)
