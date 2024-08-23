@@ -85,4 +85,5 @@ tcltk/
 tools/
 translations/
 utils/
+valr/
 EOL

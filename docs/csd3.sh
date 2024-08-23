@@ -5,7 +5,7 @@ module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/g
 module load texlive
 module load libdeflate/1.10/gcc/6ij3yqv2
 module load ceuadmin/json-c/0.17-20230812-icelake ceuadmin/krb5/1.21.2-icelake
-module load ceuadmin/nettle/3.9-icelake
+module load ceuadmin/nettle/3.9-icelake ceuadmin/qpdf/11.9.1
 
 module unload gcc/6
 
@@ -15,7 +15,7 @@ export rds=/rds/project/rds-4o5vpvAowP0/software
 export prefix=$CEUADMIN/R
 export dest=${version}-icelake
 umask 022
-cd ${rds}
+cd ${prefix}
 mkdir ${dest}
 wget -qO- https://cran.r-project.org/src/base/R-${major}/R-${version}.tar.gz | \
 tar xfz - --no-same-owner -C ${dest} --strip-components=1
