@@ -10,6 +10,7 @@ sudo dnf install java-1.8.0-openjdk-devel
 sudo dnf install readline-devel
 sudo dnf install libcurl-devel
 sudo dnf install libjpeg-turbo-devel
+sudo dnf install libpng-devel
 sudo dnf install libX11-devel
 sudo dnf install libXt-devel
 sudo dnf install bzip2-devel
@@ -76,6 +77,7 @@ nlme/
 nnet/
 parallel/
 rpart/
+shiny/
 spatial/
 splines/
 stats/
