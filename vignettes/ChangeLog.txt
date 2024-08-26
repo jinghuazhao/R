@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.6
-23-08-2024	Replace PI with M_PI in gcontrol_c.c
+26-08-2024	Replace PI with M_PI in gcontrol_c.c
 		Add qtlClassifer/qtl2dplot coupling example
 		sed -i '/ISSN/d' inst/REFERENCE.bib
 		Replace looping with sapply() for the z-p lookup table / citation in gap.Rmd
