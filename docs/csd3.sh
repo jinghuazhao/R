@@ -1,13 +1,20 @@
 #!/usr/bin/bash
 
-module load curl/7.79.0/gcc/75dxv7ac gettext/0.21/gcc/qnrcglqo libiconv/1.16/intel/64iicvbf
-module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/gcc/bumlt4j6
-module load texlive
-module load libdeflate/1.10/gcc/6ij3yqv2
-module load ceuadmin/json-c/0.17-20230812-icelake ceuadmin/krb5/1.21.2-icelake
-module load ceuadmin/nettle/3.9-icelake ceuadmin/qpdf/11.9.1
+# 11/9/2024 onwards
 
-module unload gcc/6
+module load pcre2/10.36/gcc/sya23vzi texlive/2015
+
+function my_load()
+{
+  module load curl/7.79.0/gcc/75dxv7ac gettext/0.21/gcc/qnrcglqo libiconv/1.16/intel/64iicvbf
+  module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/gcc/bumlt4j6
+  module load texlive
+  module load libdeflate/1.10/gcc/6ij3yqv2
+  module load ceuadmin/json-c/0.17-20230812-icelake ceuadmin/krb5/1.21.2-icelake
+  module load ceuadmin/nettle/3.9-icelake ceuadmin/qpdf/11.9.1
+
+  module unload gcc/6
+}
 
 export version=4.4.1
 IFS=\. read major minor1 minor2 <<<${version}
