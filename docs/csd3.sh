@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
-# 11/9/2024 onwards
+# 23/9/2024 onwards
 
-module load pcre2/10.36/gcc/sya23vzi texlive/2015
+module load hdf5/1.12.1 icu4c/67.1/gcc/maavowaj libpng/1.6.37/intel/jfrl6z6c
+module load mono/5.0.1.1  netcdf/4.4.1 nlopt-2.4.2-gcc-5.4.0-dux2fmz pcre2/10.36/gcc/sya23vzi texlive/2015
+module load ceuadmin/libsodium ceuadmin/rust
 
 function my_load()
 {
