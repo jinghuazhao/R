@@ -1,5 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.7
+31-01-2025	Add code to h2.jags.R to produce trace/density plot
+
 Version 1.6
 26-08-2024	Replace PI with M_PI in gcontrol_c.c
 		Add qtlClassifer/qtl2dplot coupling example

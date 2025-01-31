@@ -64,6 +64,10 @@ y <- with(meyer,y)
 x <- with(meyer,cbind(g1,g2))
 ex <- h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014)
 print(ex)
+require(coda)
+ex.mcmc <- as.mcmc(ex)
+traceplot(ex.mcmc)
+densplot(ex.mcmc)
 }
 
 }
