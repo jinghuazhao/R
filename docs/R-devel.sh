@@ -89,3 +89,17 @@ translations/
 utils/
 valr/
 EOL
+
+# Copy back packages from ~/Downloads/library
+
+cd R-devel
+ls -l library | \
+awk '{print $NF}' | \
+grep -f - -v <(ll ~/Downloads/library/|awk '{print $NF}') | \
+parallel -C' ' 'mv ~/Downloads/library/{} library'
+
+# rjags
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export R_HOME=$HOME/R-devel
+R-devel CMD INSTALL --configure-args='--enable-rpath' rjags
