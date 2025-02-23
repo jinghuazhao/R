@@ -49,7 +49,7 @@ export version=4.3.2
 wget -qO- https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-${version}.tar.gz | \
 tar xfz -
 cd JAGS-${version}
-./configure --without-recommended-packages
+./configure
 make
 sudo make install
 
