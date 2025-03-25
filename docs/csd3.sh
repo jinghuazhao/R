@@ -2,7 +2,7 @@
 
 # 31/10/2024 onwards
 module load hdf5/1.12.1 icu4c/67.1/gcc/maavowaj libpng/1.6.37/intel/jfrl6z6c
-module load mono/5.0.1.1 netcdf/4.4.1 nlopt-2.4.2-gcc-5.4.0-dux2fmz
+module load mono/5.0.1.1 netcdf/4.4.1
 module load pcre2/10.36/gcc/sya23vzi texlive/2015
 module load jags-4.3.0-gcc-5.4.0-4z5shby
 module load ceuadmin/libsodium ceuadmin/rust ceuadmin/libiconv/1.17
