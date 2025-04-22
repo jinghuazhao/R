@@ -2,9 +2,10 @@
 
 # 31/10/2024 onwards
 module load curl/7.83.0/gcc/ozlrq5hx
+module load ceuadmin/libgit2
 module load hdf5/1.12.1 icu4c/67.1/gcc/maavowaj libpng/1.6.37/intel/jfrl6z6c
 module load mono/5.0.1.1 netcdf/4.4.1
-module load pcre2/10.36/gcc/sya23vzi texlive/2015
+module load pcre2/10.36/gcc/sya23vzi texlive/2015 ceuadmin/tiff/4.6.0
 module load jags-4.3.0-gcc-5.4.0-4z5shby
 module load ceuadmin/libsodium ceuadmin/rust ceuadmin/libiconv/1.17 ceuadmin/NLopt/2.7.1
 module load rstudio/2024.04.2+764
