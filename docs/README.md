@@ -237,4 +237,15 @@ Three batch files have been created,
 - `csd3-gcc11.sh` CentOS 7, gcc/11
 - `csd3-icelake.sh` CentOS 8.
 
+
+but after decommissioning CentOS 7, they are default to `csd3.sh` and `csd3-gcc.sh`.
+
 Except `csd3-icelake.sh`, there is difficulty to install R directly to $CEUADMIN/R so symbolic links are used instead.
+
+## Updated packages
+
+This command counts packages updated from `blockmodeling`.
+
+```bash
+ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
+```
