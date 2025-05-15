@@ -248,4 +248,5 @@ This command counts packages updated from `blockmodeling`.
 
 ```bash
 ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
+ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
 ```
