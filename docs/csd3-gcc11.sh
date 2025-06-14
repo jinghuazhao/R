@@ -7,7 +7,7 @@ module load image-magick-7.0.5-9-gcc-5.4.0-d4lemcc libpng/1.6.37/gcc/bkdpz5q4 pr
 module load ceuadmin/brotli/1.1.0 ceuadmin/glpk/4.57 ceuadmin/icu/70.1 ceuadmin/jq/1.6 ceuadmin/NLopt/2.7.1
 module load curl/7.79.0/gcc/75dxv7ac ceuadmin/libiconv/1.17
 
-export version=4.5.0
+export version=4.5.1
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
 export prefix=${CEUADMIN}/R
