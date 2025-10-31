@@ -25,7 +25,7 @@ function my_load()
   module unload gcc/6
 }
 
-export version=4.5.1
+export version=4.5.2
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/rds-4o5vpvAowP0/software
 export prefix=$CEUADMIN/R
