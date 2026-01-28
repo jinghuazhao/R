@@ -234,7 +234,8 @@ echo ${major}.${minor1}.${minor2}
 Three batch files have been created,
 
 - `csd3.sh` CentOS 7, gcc/6
-- `csd3-gcc11.sh` CentOS 7, gcc/11
+- `csd3-gcc11.sh` CentOS 7/8, gcc/11
+- `csd3-gcc12.sh` CentOS 8, gcc/12
 - `csd3-icelake.sh` CentOS 8.
 
 
