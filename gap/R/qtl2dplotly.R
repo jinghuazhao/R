@@ -26,8 +26,10 @@
 qtl2dplotly <- function(d, chrlen=gap::hg19, qtl.id="SNPid:", qtl.prefix="QTL:", qtl.gene="Gene:", target.type="Protein",
                         TSS=FALSE, xlab="QTL position", ylab="Gene position",...)
 {
-  n <- CM <- snpid <- pos_qtl <- pos_gene <- target_gene <- lp <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- value <- cistrans <- y <- NA
+  n <- CM <- snpid <- pos_qtl <- pos_gene <- target_gene <- lp <- NA
+  t2d_id <- id <- chr1 <- pos1 <- chr2 <- pos2 <- target <- gene <- value <- cistrans <- y <- NA
   t2d <- qtl2dplot(d, chrlen, TSS=TSS, plot=FALSE, ...)
+  names(t2d$data)[names(t2d$data) == "id"] <- "t2d_id"
   n <- with(t2d, n)
   CM <- with(t2d, CM)
   tkvals <- tktxts <- vector()
@@ -36,7 +38,7 @@ qtl2dplotly <- function(d, chrlen=gap::hg19, qtl.id="SNPid:", qtl.prefix="QTL:",
        tktxts[x] <- xy(x)
   }
   t2d_pos <- with(t2d, data) %>%
-             dplyr::mutate(snpid=paste(qtl.id,id),
+             dplyr::mutate(snpid=paste(qtl.id,t2d_id),
                            pos_qtl=paste0(qtl.prefix,chr1,":",pos1),
                            pos_gene=paste0(qtl.gene,chr2,":",pos2),
                            target_gene=paste0(target.type, " (gene): ", target, " (", gene, ")"),

@@ -1,8 +1,8 @@
 Type: Package
 Package: gap
 Title: Genetic Analysis Package
-Version: 1.7
-Date: 2025-1-31
+Version: 1.9
+Date: 2026-2-5
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -28,8 +28,8 @@ Imports: dplyr, ggplot2, plotly, Rdpack
 Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags,
           bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
           foreign, genetics, grid, haplo.stats, htmlwidgets, jsonlite,
-          kinship2, knitr, lattice, magic, manhattanly, matrixStats, meta,
-          metafor, nlme, pedigree, pedigreemm, plotrix, readr, reshape,
+          kinship2, knitr, lattice, magic, matrixStats, meta, metafor,
+          nlme, pedigree, pedigreemm, plotrix, ragg, readr, reshape,
           rmarkdown, rms, survival, valr
 Enhances: shiny
 LazyData: Yes
@@ -38,7 +38,7 @@ NeedsCompilation: yes
 Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 RdMacros: Rdpack
 Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-0003-4930-3582),
   Kurt Hornik [ctb],

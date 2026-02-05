@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
   fig.path = "./",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "ragg_png")
 ```
 
 # Introduction
