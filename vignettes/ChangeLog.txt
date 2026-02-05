@@ -1,6 +1,17 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.9
+05-02-2026	Rename two URL-am's with DOIs and drop the rest
+
+Version 1.8
+05-02-2026	Amend asplot()
+		Move vignettes/jss* to https://github.com/jinghuazhao/tests/gap/jss/
+		Suggests ragg and amend gap.Rmd
+
 Version 1.7
+04-02-2026      Fix qtl[2|3]dplotly id global bindings as notified by R#8 (Davis Vaughan) & Kurt Hornik
+		Drop CRAN-archived manhattanly from Suggests
+		Modify URL for kin.morgan()
 31-01-2025	Add code to h2.jags.R to produce trace/density plot
 
 Version 1.6
