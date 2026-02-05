@@ -124,7 +124,7 @@ make
 ln -sf R-devel/bin/R ${HOME}/bin/R-devel
 ```
 
-A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37.
+A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37 & 41.
 
 
 ### R CMD build

@@ -13,6 +13,7 @@ sudo dnf install harfbuzz-devel
 sudo dnf install java-1.8.0-openjdk-devel
 sudo dnf install lapack-devel
 sudo dnf install libcurl-devel
+sudo yum install libdeflate-devel
 sudo dnf install libjpeg-turbo-devel
 sudo dnf install libjpeg-devel
 sudo dnf install libpng-devel
@@ -49,17 +50,13 @@ export R_LIBS=$HOME/R-devel/library
 wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
 tar xvfz -
 cd R-devel
-./configure
+sudo dnf install tcl tcl-devel tk tk-devel
 make
-
-# symbolic links
-
 ln -s ~/R-devel/bin/R ~/bin/R-devel
 ln -s ~/R-devel/bin/Rscript ~/bin/Rscript-devel
 Rscript-devel -e 'install.packages(c("shiny","V8"),repos="https://cran.r-project.org")'
 
 # JAGS
-
 export version=4.3.2
 wget -qO- https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-${version}.tar.gz | \
 tar xfz -
@@ -67,6 +64,12 @@ cd JAGS-${version}
 ./configure
 make
 sudo make install
+
+# JAVA_HOME
+export JAVAC=$(readlink -f $(which javac))
+echo $JAVAC | sed 's|/bin/javac||'
+export INCLUDE=$JAVA_HOME/include:$JAVA_HOME/include/linux:$INCLUDE
+export PATH=$JAVA_HOME/bin:$PATH
 
 # Added packages from transferred R-devel/library
 
@@ -106,7 +109,6 @@ valr/
 EOL
 
 # Copy back packages from ~/Downloads/library
-
 cd R-devel
 ls -l library | \
 awk '{print $NF}' | \
