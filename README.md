@@ -15,7 +15,7 @@ See also documentation reformatted by datacamp, <https://www.rdocumentation.org/
 **Packages**[^2] | [CRAN](http://cran.r-project.org) | Vignette | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|---------|---------------------|---------------------------------------------
 **gap** | [https://cran.r-project.org/package=gap](https://cran.r-project.org/package=gap) | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^3]   | [https://github.com/cran/gap](https://github.com/cran/gap) | [https://rdrr.io/cran/gap/](https://rdrr.io/cran/gap/)
- &nbsp; | &nbsp; | [jss](https://cran.r-project.org/web/packages/gap/vignettes/jss.pdf)
+ &nbsp; | &nbsp; | [jss](https://doi.org/10.18637/jss.v023.i08)
  &nbsp; | &nbsp; | [manual](https://jinghuazhao.github.io/R/vignettes/gap-manual.pdf)
  &nbsp; | &nbsp; | [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html)
 **gap.datasets** | [https://cran.r-project.org/package=gap.datasets](https://cran.r-project.org/package=gap.datasets) | &nbsp; | [https://github.com/cran/gap.datasets](https://github.com/cran/gap.datasets) | [https://rdrr.io/cran/gap.datasets/](https://rdrr.io/cran/gap.datasets/)
