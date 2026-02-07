@@ -47,6 +47,12 @@ sudo dnf install xorg-x11-fonts-75dpi
 sudo dnf install xz-devel
 # sudo dnf install java-1.8.0-openjdk-devel
 
+# JAVA_HOME
+export JAVAC=$(readlink -f $(which javac))
+echo $JAVAC | sed 's|/bin/javac||'
+export INCLUDE=$JAVA_HOME/include:$JAVA_HOME/include/linux:$INCLUDE
+export PATH=$JAVA_HOME/bin:$PATH
+
 cd ~
 export R_LIBS=$HOME/R-devel/library
 wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
@@ -67,15 +73,15 @@ cd JAGS-${version}
 make
 sudo make install
 
-# JAVA_HOME
-export JAVAC=$(readlink -f $(which javac))
-echo $JAVAC | sed 's|/bin/javac||'
-export INCLUDE=$JAVA_HOME/include:$JAVA_HOME/include/linux:$INCLUDE
-export PATH=$JAVA_HOME/bin:$PATH
+# rjags
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export R_HOME=$HOME/R-devel
+R-devel CMD INSTALL --configure-args='--enable-rpath' rjags
 
-# Added packages from transferred library
+# library.zip
 
-cat <<'EOL' | xargs -l -I {} zip -d library.zip library/{}*
+## Drop recommended packages
+cat <<'EOL' | xargs -l -I {} zip -d library.zip {}*
 base/
 boot/
 class/
@@ -108,15 +114,7 @@ translations/
 utils/
 EOL
 
-# Copy back packages from ~/Downloads/library
-cd R-devel
-ls -l library | \
-awk '{print $NF}' | \
-grep -f - -v <(ll ~/Downloads/library/|awk '{print $NF}') | \
-parallel -C' ' 'mv ~/Downloads/library/{} library'
+## Add installed packages
 
-# rjags
-
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-export R_HOME=$HOME/R-devel
-R-devel CMD INSTALL --configure-args='--enable-rpath' rjags
+cd R-devel/library
+unzip ~/D/R/library
