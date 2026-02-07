@@ -10,7 +10,7 @@ sudo dnf install fribidi-devel
 sudo dnf install gcc-c++
 sudo dnf install gcc-gfortran
 sudo dnf install harfbuzz-devel
-sudo dnf install java-1.8.0-openjdk-devel
+sudo dnf install java-21-openjdk-devel
 sudo dnf install lapack-devel
 sudo dnf install libcurl-devel
 sudo yum install libdeflate-devel
@@ -33,6 +33,7 @@ sudo dnf install qpdf
 sudo dnf install texlive
 sudo dnf install fontconfig-devel
 sudo dnf install readline-devel
+sudo dnf install tcl tcl-devel tk tk-devel
 sudo dnf install texlive-collection-latex
 sudo dnf install texlive-collection-fontsextra
 sudo dnf install texinfo
@@ -44,13 +45,14 @@ sudo dnf install v8-devel
 sudo dnf install xorg-x11-fonts-100dpi
 sudo dnf install xorg-x11-fonts-75dpi
 sudo dnf install xz-devel
+# sudo dnf install java-1.8.0-openjdk-devel
 
 cd ~
 export R_LIBS=$HOME/R-devel/library
 wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
 tar xvfz -
 cd R-devel
-sudo dnf install tcl tcl-devel tk tk-devel
+./configure
 make
 ln -s ~/R-devel/bin/R ~/bin/R-devel
 ln -s ~/R-devel/bin/Rscript ~/bin/Rscript-devel
@@ -95,7 +97,6 @@ nlme/
 nnet/
 parallel/
 rpart/
-shiny/
 spatial/
 splines/
 stats/
@@ -105,7 +106,6 @@ tcltk/
 tools/
 translations/
 utils/
-valr/
 EOL
 
 # Copy back packages from ~/Downloads/library
