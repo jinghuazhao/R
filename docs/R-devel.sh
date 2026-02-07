@@ -73,9 +73,9 @@ echo $JAVAC | sed 's|/bin/javac||'
 export INCLUDE=$JAVA_HOME/include:$JAVA_HOME/include/linux:$INCLUDE
 export PATH=$JAVA_HOME/bin:$PATH
 
-# Added packages from transferred R-devel/library
+# Added packages from transferred library
 
-cat <<'EOL' | xargs -l -I {} zip -d library.zip R-devel/library/{}
+cat <<'EOL' | xargs -l -I {} zip -d library.zip library/{}*
 base/
 boot/
 class/
