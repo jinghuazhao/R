@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+# VirtualBox
+
+sudo dnf update
+sudo dnf install gcc kernel-devel kernel-headers dkms make bzip2 perl
+
 sudo dnf install R
 sudo dnf install R-devel
 sudo dnf install bzip2-devel
@@ -118,3 +123,40 @@ EOL
 
 cd R-devel/library
 unzip ~/D/R/library
+
+# ASAN
+
+sudo dnf builddep R
+sudo dnf install clang llvm gcc-c++ make texinfo
+sudo dnf install llvm-symbolizer
+svn checkout https://svn.r-project.org/R/trunk R-devel
+cd R-devel
+gfortran -print-file-name=libgfortran.so
+gfortran -print-file-name=libquadmath.so
+CC=clang \
+CXX=clang++ \
+FC=gfortran \
+F77=gfortran \
+FLIBS="-lgfortran -lquadmath" \
+CFLAGS="-O1 -g -fsanitize=address,undefined" \
+CXXFLAGS="-O1 -g -fsanitize=address,undefined" \
+FFLAGS="-O1 -g" \
+FCFLAGS="-O1 -g" \
+LDFLAGS="-fsanitize=address,undefined" \
+./configure \
+  --prefix=$HOME/R-devel-asan \
+  --enable-memory-profiling \
+  --disable-java
+export PATH="$HOME/R-devel-asan/bin:$PATH"
+R --version
+
+set -euo pipefail
+
+# 1) Ensure ASAN runtime matches CRAN strictness
+export ASAN_OPTIONS="detect_leaks=1:check_initialization_order=1:strict_init_order=1:halt_on_error=1"
+export UBSAN_OPTIONS="halt_on_error=1"
+export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
+
+PKG_TARBALL=gap_1.10.tar.gz
+echo "Running R CMD check --as-cran under ASAN..."
+R CMD check "$PKG_TARBALL" --as-cran
