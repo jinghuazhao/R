@@ -15,7 +15,7 @@ extern void hap_c(void *, void *, void *, void *, void *, void *, void *, void *
 extern void hwe_hardy(void *, void *, void *, void *, void *, void *, void *);
 extern void kbyl(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void kbylem(void *, void *, void *, void *, void *, void *);
-extern void kin_morgan(void *, void *, void *, void *);
+extern void kin_morgan(void *, void *, void *, double *);
 extern void makeped_c(void *, void *, void *, void *, void *, void *, void *);
 extern void mia_c(void *, void *, void *, void *, void *, void *, void *, void *);
 extern void onelocus(void *, void *);

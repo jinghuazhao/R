@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.10
-08-02-2026	Switch back from buggy ragg_png to png with option(bitmapType = "cairo")
+09-02-2026	Fix kin.morgan() via Fedora 43 ASAN, https://github.com/jinghuazhao/R/blob/master/docs/R-devel.sh
+		Switch back from buggy ragg_png to png with option(bitmapType = "cairo")
 
 Version 1.9
 05-02-2026	Rename two URL-am's with DOIs and drop the rest

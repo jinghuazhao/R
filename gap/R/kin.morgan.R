@@ -78,7 +78,7 @@ kin.morgan<-function(ped,verbose=FALSE)
       print(t(rbind(peddata,pedindex)))
    }
    z<-.C("kin_morgan",data=as.integer(peddata),pedsize=as.integer(pedsize),
-         pedinex=as.integer(pedindex),kin=as.double(array(kin)),PACKAGE="gap")
+         pedindex=as.integer(pedindex),kin=as.double(length(kin)),PACKAGE="gap")
    kin.matrix=v2k(z$kin)
    colnames(kin.matrix) <- rownames(kin.matrix) <- id
    list(kin=z$kin,kin.matrix=kin.matrix)
