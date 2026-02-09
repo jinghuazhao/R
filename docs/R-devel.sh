@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 # VirtualBox
-
 sudo dnf update
 sudo dnf install gcc kernel-devel kernel-headers dkms make bzip2 perl
 
@@ -52,7 +51,7 @@ sudo dnf install xorg-x11-fonts-75dpi
 sudo dnf install xz-devel
 # sudo dnf install java-1.8.0-openjdk-devel
 
-# JAVA_HOME
+# JAVA
 export JAVAC=$(readlink -f $(which javac))
 echo $JAVAC | sed 's|/bin/javac||'
 export INCLUDE=$JAVA_HOME/include:$JAVA_HOME/include/linux:$INCLUDE
@@ -63,7 +62,7 @@ export R_LIBS=$HOME/R-devel/library
 wget -qO- https://stat.ethz.ch/R/daily/R-devel.tar.gz | \
 tar xvfz -
 cd R-devel
-./configure
+./configure --enable-R-shlib
 make
 ln -s ~/R-devel/bin/R ~/bin/R-devel
 ln -s ~/R-devel/bin/Rscript ~/bin/Rscript-devel
@@ -77,14 +76,12 @@ cd JAGS-${version}
 ./configure
 make
 sudo make install
-
-# rjags
+## rjags
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 export R_HOME=$HOME/R-devel
 R-devel CMD INSTALL --configure-args='--enable-rpath' rjags
 
 # library.zip
-
 ## Drop recommended packages
 cat <<'EOL' | xargs -l -I {} zip -d library.zip {}*
 base/
@@ -120,35 +117,97 @@ utils/
 EOL
 
 ## Add installed packages
-
 cd R-devel/library
 unzip ~/D/R/library
 
-# ASAN
-
+# CRAN-ASAN
 sudo dnf builddep R
-sudo dnf install clang llvm gcc-c++ make texinfo
+sudo dnf install clang flang llvm gcc-c++ make texinfo
 sudo dnf install llvm-symbolizer
 svn checkout https://svn.r-project.org/R/trunk R-devel
 cd R-devel
+
+## GCC
+export CC=gcc
+export CXX=g++
+export FC=gfortran
+export F77=gfortran
+
+export CFLAGS="-O2 -g"
+export CXXFLAGS="-O2 -g"
+export FFLAGS="-O2 -g"
+export FCFLAGS="-O2 -g"
+
+unset LDFLAGS
+unset FLIBS
+
+./configure \
+  --prefix=$HOME/R-devel-gcc \
+  --enable-memory-profiling \
+  --disable-java
+make -j1
+make install
+export R_LIBS=$HOME/R-devel-gcc:$HOME/R-devel/library
+export PATH=$HOME/R-devel-gcc/bin:$PATH
+R CMD check gap_1.10.tar.gz --as-cran
+
+## LLVM -- toolchain research?
+export CC=clang
+export CXX=clang++
+export FC=flang
+export F77=flang
+
+export CFLAGS="-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer"
+export CXXFLAGS="-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer"
+export FFLAGS="-O1 -g"
+export FCFLAGS="-O1 -g"
+export LDFLAGS="-fsanitize=address,undefined"
+
+unset FLIBS
+
+./configure \
+  --prefix=$HOME/R-devel-llvm \
+  --enable-memory-profiling \
+  --disable-java
+make -j1
+make install
+export R_LIBS=$HOME/R-devel-llvm:$HOME/R-devel/library
+export PATH=$HOME/R-devel-llvm/bin:$PATH
+ASAN_OPTIONS=detect_leaks=0 \
+UBSAN_OPTIONS=print_stacktrace=1 \
+R CMD check gap_1.10.tar.gz \
+  --no-manual
+
+## ASAN (CRAN-style clang + gfortran)
 gfortran -print-file-name=libgfortran.so
 gfortran -print-file-name=libquadmath.so
-CC=clang \
-CXX=clang++ \
-FC=gfortran \
-F77=gfortran \
-FLIBS="-lgfortran -lquadmath" \
-CFLAGS="-O1 -g -fsanitize=address,undefined" \
-CXXFLAGS="-O1 -g -fsanitize=address,undefined" \
-FFLAGS="-O1 -g" \
-FCFLAGS="-O1 -g" \
-LDFLAGS="-fsanitize=address,undefined" \
+export CC=clang
+export CXX=clang++
+export FC=gfortran
+export F77=gfortran
+export FLIBS="-lgfortran -lquadmath"
+export CFLAGS="-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer"
+export CXXFLAGS="-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer"
+export FFLAGS="-O1 -g"
+export FCFLAGS="-O1 -g"
+export LDFLAGS="-fsanitize=address,undefined"
 ./configure \
   --prefix=$HOME/R-devel-asan \
   --enable-memory-profiling \
   --disable-java
+make -j1
+make install
+export LD_LIBRARY_PATH=$(dirname $(gfortran -print-file-name=libgfortran.so)):$LD_LIBRARY_PATH
+export R_LIBS=$HOME/R-devel-asan/library:$HOME/R-devel/library
 export PATH="$HOME/R-devel-asan/bin:$PATH"
+export R_ENVIRON_USER=
+export R_PROFILE_USER=
 R --version
+ASAN_OPTIONS=detect_leaks=0:alloc_dealloc_mismatch=0 \
+UBSAN_OPTIONS=print_stacktrace=1 \
+R CMD check gap_1.10.tar.gz \
+  --as-cran \
+  --no-manual
 
 set -euo pipefail
 
