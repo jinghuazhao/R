@@ -9,6 +9,7 @@ sudo dnf install R-devel
 sudo dnf install bzip2-devel
 sudo dnf install cairo-devel
 sudo dnf install cmake
+sudo dnf install fontconfig-devel
 sudo dnf install freetype-devel
 sudo dnf install fribidi-devel
 sudo dnf install gcc-c++
@@ -34,14 +35,13 @@ sudo dnf install pandoc
 sudo dnf install pcre-devel
 sudo dnf install pcre2-devel
 sudo dnf install qpdf
-sudo dnf install texlive
-sudo dnf install fontconfig-devel
 sudo dnf install readline-devel
 sudo dnf install tcl tcl-devel tk tk-devel
-sudo dnf install texlive-collection-latex
-sudo dnf install texlive-collection-fontsextra
 sudo dnf install texinfo
 sudo dnf install texinfo-tex
+sudo dnf install texlive
+sudo dnf install texlive-collection-latex
+sudo dnf install texlive-collection-fontsextra
 sudo dnf install texlive-collection-fontsrecommended
 sudo dnf install texlive-collection-latexrecommended
 sudo dnf install tidy
@@ -49,7 +49,6 @@ sudo dnf install v8-devel
 sudo dnf install xorg-x11-fonts-100dpi
 sudo dnf install xorg-x11-fonts-75dpi
 sudo dnf install xz-devel
-# sudo dnf install java-1.8.0-openjdk-devel
 
 # JAVA
 export JAVAC=$(readlink -f $(which javac))
@@ -149,7 +148,9 @@ make -j1
 make install
 export R_LIBS=$HOME/R-devel-gcc:$HOME/R-devel/library
 export PATH=$HOME/R-devel-gcc/bin:$PATH
-R CMD check gap_1.10.tar.gz --as-cran
+
+PKG_TARBALL=gap_1.11.tar.gz
+R CMD check $PKG_TARBALL --as-cran
 
 ## LLVM -- toolchain research?
 export CC=clang
@@ -175,7 +176,7 @@ export R_LIBS=$HOME/R-devel-llvm:$HOME/R-devel/library
 export PATH=$HOME/R-devel-llvm/bin:$PATH
 ASAN_OPTIONS=detect_leaks=0 \
 UBSAN_OPTIONS=print_stacktrace=1 \
-R CMD check gap_1.10.tar.gz \
+R CMD check $PKG_TARBALL \
   --no-manual
 
 ## ASAN (CRAN-style clang + gfortran)
@@ -205,17 +206,12 @@ export R_PROFILE_USER=
 R --version
 ASAN_OPTIONS=detect_leaks=0:alloc_dealloc_mismatch=0 \
 UBSAN_OPTIONS=print_stacktrace=1 \
-R CMD check gap_1.10.tar.gz \
+R CMD check $PKG_TARBALL \
   --as-cran \
   --no-manual
 
 set -euo pipefail
-
-# 1) Ensure ASAN runtime matches CRAN strictness
 export ASAN_OPTIONS="detect_leaks=1:check_initialization_order=1:strict_init_order=1:halt_on_error=1"
 export UBSAN_OPTIONS="halt_on_error=1"
 export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
-
-PKG_TARBALL=gap_1.10.tar.gz
-echo "Running R CMD check --as-cran under ASAN..."
 R CMD check "$PKG_TARBALL" --as-cran
