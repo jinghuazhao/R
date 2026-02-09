@@ -305,7 +305,6 @@ kinship matrix.
 The pedigree diagram is as follows,
 
 ```{r lukas, fig.cap="A pedigree diagram", fig.height=8, fig.width=7}
-# pedigree diagram
 data(lukas, package="gap.datasets")
 library(kinship2)
 ped <- with(lukas,pedigree(id,father,mother,sex))
@@ -314,9 +313,9 @@ plot(ped,cex=0.4)
 
 We then turn to the kinship calculation.
 
-```{r}
+```r
 # unordered individuals
-gk1 <- kin.morgan(lukas[,1:3])
+gk1 <- kin.morgan(as.matrix(lukas[,1:3]))
 write.table(gk1$kin.matrix,"gap_1.txt",quote=FALSE)
 
 library(kinship2)
@@ -342,7 +341,14 @@ z <- gk2$kin.matrix-kk2
 sum(abs(z))
 ```
 
-We see that in the second case, the result agrees with **kinship2**.
+We see that in the first case,
+
+```
+> sum(abs(d))
+[1] 2.443634
+```
+
+but in the second case, the result agrees with **kinship2**.
 
 # Study designs
 
