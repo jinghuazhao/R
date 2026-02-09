@@ -78,7 +78,7 @@ static double p[maxalleles],q[maxalleles];
 static double sample_size,z1,z2;
 static int Dmaxij[maxalleles*maxalleles];
 
-int kbylem(double *,int *,int *,double *,double *,double *);
+void kbylem(double *,int *,int *,double *,double *,double *);
 void abp(int,int,double*,double*,double*,double*);
 
 void kbyl(int *nalleles1, int *nalleles2, double *h, double *haplotypes,
@@ -362,7 +362,7 @@ default:;
  19/02/2001 fix bug on k1,k2
  */
 
-int kbylem(double *obs,int *nalleles1,int *nalleles2,double *Rh,double *l0,double *l1)
+void kbylem(double *obs,int *nalleles1,int *nalleles2,double *Rh,double *l0,double *l1)
 {
 int g2,iter,i,j,k,l,j1,j2,k1,k2,ik,jl,il,jk;
 double o12,pobs,e1,e2,r1,r2;
@@ -447,8 +447,6 @@ do {
   }
   if(iter==0) *l0=*l1;
 } while(iter++<15);
-
-return 0;
 }
 
 /*
