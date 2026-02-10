@@ -31,17 +31,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   dev = "png"
 )
-if (identical(Sys.getenv("NOT_CRAN"), "true")) {
-  # Prevent double-rendering inside knitr
-  rmarkdown::render(
-    input = knitr::current_input(),
-    output_format = bookdown::html_document2(
-      toc = TRUE,
-      toc_float = TRUE
-    )
-  )
-  knitr::knit_exit()
-}
 ```
 
 # Introduction
