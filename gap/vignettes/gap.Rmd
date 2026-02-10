@@ -2,12 +2,8 @@
 title: "Genetic Analysis Package"
 subtitle: "Jing Hua Zhao"
 output:
-  bookdown::html_document2:
+  rmarkdown::html_vignette:
     toc: true
-    toc_float: true
-fontsize: 11pt
-lot: true
-lof: true
 author:
   - Department of Public Health and Primary Care
   - University of Cambridge
@@ -33,7 +29,19 @@ knitr::opts_chunk$set(
   fig.path = "./",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "png"
+)
+if (identical(Sys.getenv("NOT_CRAN"), "true")) {
+  # Prevent double-rendering inside knitr
+  rmarkdown::render(
+    input = knitr::current_input(),
+    output_format = bookdown::html_document2(
+      toc = TRUE,
+      toc_float = TRUE
+    )
+  )
+  knitr::knit_exit()
+}
 ```
 
 # Introduction
