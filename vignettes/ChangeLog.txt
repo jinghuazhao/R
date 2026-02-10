@@ -1,8 +1,11 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.12
+10-02-2026	Disable bookdown::html_document2 on CRAN (beyond its limit) in gap.Rmd
+		Drop ragg from Suggests
+
 Version 1.11
 09-02-2026	Amend gap.Rmd
-		Drop ragg from Suggests
 		Rework on C codes including package_native_routine_registration_skeleton.c
 
 Version 1.10
