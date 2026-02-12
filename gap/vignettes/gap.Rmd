@@ -4,6 +4,7 @@ subtitle: "Jing Hua Zhao"
 output:
   bookdown::html_document2:
     toc: true
+    toc_float: true
 author:
   - Department of Public Health and Primary Care
   - University of Cambridge
