@@ -2,7 +2,7 @@
 title: "Genetic Analysis Package"
 subtitle: "Jing Hua Zhao"
 output:
-  rmarkdown::html_vignette:
+  bookdown::html_document2
     toc: true
 author:
   - Department of Public Health and Primary Care
