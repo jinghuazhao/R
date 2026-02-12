@@ -7,7 +7,7 @@
 kin.morgan(ped, verbose = FALSE)
 }
 \arguments{
-\item{ped}{individual's id, father's id and mother's id.}
+\item{ped}{A matrix with columns on individual's id, father's id and mother's id.}
 
 \item{verbose}{an option to print out the original pedigree.}
 }

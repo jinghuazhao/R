@@ -1,6 +1,6 @@
 #' kinship matrix for simple pedigree
 #'
-#' @param ped individual's id, father's id and mother's id.
+#' @param ped A matrix with columns on individual's id, father's id and mother's id.
 #' @param verbose an option to print out the original pedigree.
 #'
 #' @details
