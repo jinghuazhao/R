@@ -149,7 +149,7 @@ make install
 export R_LIBS=$HOME/R-devel-gcc:$HOME/R-devel/library
 export PATH=$HOME/R-devel-gcc/bin:$PATH
 
-PKG_TARBALL=gap_1.11.tar.gz
+export PKG_TARBALL=gap_1.14.tar.gz
 R CMD check $PKG_TARBALL --as-cran
 
 ## LLVM -- toolchain research?
