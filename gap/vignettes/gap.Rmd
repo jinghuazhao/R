@@ -325,9 +325,9 @@ sum(abs(d))
 
 # order individuals so that parents precede their children
 library(pedigree)
-op <- orderPed(lukas[1:3])
+op <- orderPed(lukas)
 olukas <- lukas[order(op),]
-gk2 <- kin.morgan(as.matrix(olukas))
+gk2 <- kin.morgan(as.matrix(olukas[1:3]))
 
 write.table(olukas,"olukas.csv",quote=FALSE)
 write.table(gk2$kin.matrix,"gap_2.txt",quote=FALSE)
