@@ -1,6 +1,41 @@
 #!/usr/bin/bash
 
+export PKG_TARBALL=gap_1.14.tar.gz
+
+function asan_gcc()
+# gcc
+{
+export R_LIBS=$HOME/R-devel-gcc:$HOME/R-devel/library
+export PATH=$HOME/R-devel-gcc/bin:$PATH
+R CMD check $PKG_TARBALL --as-cran
+}
+
+function asan_llvm()
+{
+# llvm
+export R_LIBS=$HOME/R-devel-llvm:$HOME/R-devel/library
+export PATH=$HOME/R-devel-llvm/bin:$PATH
+ASAN_OPTIONS=detect_leaks=0 \
+UBSAN_OPTIONS=print_stacktrace=1 \
+R CMD check $PKG_TARBALL \
+  --no-manual
+}
+
+function asan()
+# asan
+{
+set -euo pipefail
+export ASAN_OPTIONS="detect_leaks=1:check_initialization_order=1:strict_init_order=1:halt_on_error=1"
+export UBSAN_OPTIONS="halt_on_error=1"
+export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
+R CMD check "$PKG_TARBALL" --as-cran
+}
+
+asan
+
+function seutp()
 # VirtualBox
+{
 sudo dnf update
 sudo dnf install gcc kernel-devel kernel-headers dkms make bzip2 perl
 
@@ -146,11 +181,6 @@ unset FLIBS
   --disable-java
 make -j1
 make install
-export R_LIBS=$HOME/R-devel-gcc:$HOME/R-devel/library
-export PATH=$HOME/R-devel-gcc/bin:$PATH
-
-export PKG_TARBALL=gap_1.14.tar.gz
-R CMD check $PKG_TARBALL --as-cran
 
 ## LLVM -- toolchain research?
 export CC=clang
@@ -172,12 +202,6 @@ unset FLIBS
   --disable-java
 make -j1
 make install
-export R_LIBS=$HOME/R-devel-llvm:$HOME/R-devel/library
-export PATH=$HOME/R-devel-llvm/bin:$PATH
-ASAN_OPTIONS=detect_leaks=0 \
-UBSAN_OPTIONS=print_stacktrace=1 \
-R CMD check $PKG_TARBALL \
-  --no-manual
 
 ## ASAN (CRAN-style clang + gfortran)
 gfortran -print-file-name=libgfortran.so
@@ -209,9 +233,4 @@ UBSAN_OPTIONS=print_stacktrace=1 \
 R CMD check $PKG_TARBALL \
   --as-cran \
   --no-manual
-
-set -euo pipefail
-export ASAN_OPTIONS="detect_leaks=1:check_initialization_order=1:strict_init_order=1:halt_on_error=1"
-export UBSAN_OPTIONS="halt_on_error=1"
-export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
-R CMD check "$PKG_TARBALL" --as-cran
+}
