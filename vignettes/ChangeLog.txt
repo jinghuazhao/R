@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.14
-12-02-2026	Fix the sticky kin.morgan() call from gap.Rmd
+13-02-2026	Fix the sticky kin.morgan() call from gap.Rmd
 		Restore bookdown::html_document2 as it renders well ac CRAN.
 
 Version 1.13
