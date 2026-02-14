@@ -5,7 +5,7 @@ export PKG_TARBALL=gap_1.14.tar.gz
 function asan_gcc()
 # gcc
 {
-export R_LIBS=$HOME/R-devel-gcc:$HOME/R-devel/library
+export R_LIBS=$HOME/R-devel-gcc/library:$HOME/R-devel/library
 export PATH=$HOME/R-devel-gcc/bin:$PATH
 R CMD check $PKG_TARBALL --as-cran
 }
@@ -13,7 +13,7 @@ R CMD check $PKG_TARBALL --as-cran
 function asan_llvm()
 {
 # llvm
-export R_LIBS=$HOME/R-devel-llvm:$HOME/R-devel/library
+export R_LIBS=$HOME/R-devel-llvm/library:$HOME/R-devel/library
 export PATH=$HOME/R-devel-llvm/bin:$PATH
 ASAN_OPTIONS=detect_leaks=0 \
 UBSAN_OPTIONS=print_stacktrace=1 \
