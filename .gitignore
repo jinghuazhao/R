@@ -1,5 +1,6 @@
 .Rbuildignore
 NeRiT*
+gaawr2*
 gaawr2_*
 gap.datasets_*
 gap.examples_*
