@@ -311,7 +311,7 @@ plot(ped,cex=0.4)
 
 We then turn to the kinship calculation.
 
-```{r}
+```r
 # unordered individuals
 gk1 <- kin.morgan(as.matrix(lukas[1:3]))
 write.table(gk1$kin.matrix,"gap_1.txt",quote=FALSE)
