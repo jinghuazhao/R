@@ -42,7 +42,7 @@ as in package 'lmm'.
 
 * [suggests.R](suggests.R) is useful to install susggested packages.
 
-pQTLtools is somewhat poorly mirrored here, [https://rdrr.io/github/jinghuazhao/pQTLtools/](https://rdrr.io/github/jinghuazhao/pQTLtools/).
+pQTLtools is somewhat poorly mirrored here, <https://rdrr.io/github/jinghuazhao/pQTLtools/>.
 
 ## clang / gcc errror messages
 

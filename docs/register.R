@@ -1,4 +1,4 @@
-#!/rds/user/jhz22/hpc-work/bin/Rscript --vanilla
+#!/usr/local/Cluster-Apps/ceuadmin/R/latest/bin/Rscript --vanilla
 
 library(tools)
 pkg <- commandArgs(trailingOnly = TRUE)
