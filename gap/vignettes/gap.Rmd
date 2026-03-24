@@ -6,7 +6,6 @@ output:
     toc: true
     toc_float: true
 author:
-  - Department of Public Health and Primary Care
   - University of Cambridge
   - Cambridge, UK
   - https://jinghuazhao.github.io/
