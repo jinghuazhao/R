@@ -9,7 +9,6 @@ fontsize: 11pt
 lot: true
 lof: true
 author:
-  - Department of Public Health and Primary Care
   - University of Cambridge
   - Cambridge, UK
   - https://jinghuazhao.github.io/
