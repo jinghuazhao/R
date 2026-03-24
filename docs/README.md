@@ -1,4 +1,4 @@
-## utilities
+## Utilities
 
 This directory contains various utility scripts.
 
