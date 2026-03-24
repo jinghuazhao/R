@@ -120,10 +120,8 @@ unzip ~/D/R/library
 sudo dnf update
 sudo dnf install gcc kernel-devel kernel-headers dkms make bzip2 perl
 
-# CRAN-ASAN
+# CRAN
 {sudo dnf builddep R
 sudo dnf install clang flang llvm gcc-c++ make texinfo
 sudo dnf install llvm-symbolizer
 svn checkout https://svn.r-project.org/R/trunk R-devel
-
-# rocker containers (rocker/r-devel-san and rocker/r-devel-ubsan-clang) from https://rocker-project.org/images/base/r-devel.html

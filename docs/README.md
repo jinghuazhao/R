@@ -251,3 +251,38 @@ This command counts packages updated from `blockmodeling`.
 ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
 ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
 ```
+
+## sif
+
+Web, <https://rocker-project.org/images/base/r-devel.html>.
+
+The site hosts the rocker containers (rocker/r-devel-san and rocker/r-devel-ubsan-clang).
+The Docker counterparts
+
+```
+docker pull rocker/r-devel-san:latest
+docker pull rocker/r-devel-ubsan-clang
+```
+
+have apptainer equivalents
+
+```bash
+apptainer pull docker://rocker/r-devel-san:latest
+apptainer pull docker://rocker/r-devel-ubsan-clang:latest
+```
+
+that can be executed as
+
+```bash
+singularity shell r-devel-san_latest.sif
+apptainer shell r-devel-ubsan-clang_latest.sif
+```
+
+We would avoid messing up with ceuadmin/R/latest inside apptainer:
+
+```bash
+export R_LIBS=$HPC_WORK/work:~/rds/software/R:~/rds/software/R-gcc12
+RScript -e 'install.packages(c("rlang","vctrs","glue","magrittr","cli","tibble","dplyr","rbibutils",
+  "farver","S7","xfun","digest","fastmap","htmltools","V8"))'
+R CMD check --as-cran gap_1.15.tar.gz
+```
