@@ -274,7 +274,7 @@ apptainer pull docker://rocker/r-devel-ubsan-clang:latest
 that can be executed as
 
 ```bash
-singularity shell r-devel-san_latest.sif
+apptainer shell r-devel-san_latest.sif
 apptainer shell r-devel-ubsan-clang_latest.sif
 ```
 
@@ -314,5 +314,8 @@ From: r-devel-ubsan-clang_latest.sif
 ```
 
 ```bash
+apptainer exec r-devel-ubsan-clang-pandoc.sif pandoc --version
+apptainer exec r-devel-ubsan-clang-pandoc.sif qpdf --version
+apptainer exec r-devel-ubsan-clang-pandoc.sif locale
 apptainer build ubsan-clang.sif ubsan-clang.def &
 ```

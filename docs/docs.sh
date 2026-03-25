@@ -1,7 +1,7 @@
 # 30-8-2024 JHZ
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
-for f in gap.html shinygap.html; do cp -p ~/hpc-work/R/gap/doc/${f} ~/R/vignettes; done
+rsync -av ~/hpc-work/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
