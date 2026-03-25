@@ -279,43 +279,64 @@ apptainer shell r-devel-ubsan-clang_latest.sif
 ```
 
 Since it misses pandoc, qpdf and libiconv, some packages cannot be loaded, so we install them inside apptainer while not messing up with
-ceuadmin/R/latest:
-
-```bash
-export R_LIBS=$HPC_WORK/work:~/rds/software/R:~/rds/software/R-gcc12
-RScript -e 'install.packages(c("rlang","vctrs","glue","magrittr","cli","tibble","dplyr","rbibutils",
-  "farver","S7","xfun","digest","fastmap","htmltools","V8"))'
-R CMD check --as-cran gap_1.15.tar.gz
-```
-
-It is more desirable to rebuild a module with them via definition `ubsan-clang.def`:
+ceuadmin/R/latest. Specifically, we have definition `ubsan-clang.def`:
 
 ```
-Bootstrap: localimage
-From: r-devel-ubsan-clang_latest.sif
+Bootstrap: docker
+From: rocker/r-devel-ubsan-clang:latest
 
-%post
-    apt-get update
-    apt-get install -y \
-        pandoc \
-        qpdf \
-        locales \
-        libc6-dev
-    apt-get clean
-
-    locale-gen en_GB.UTF-8
+%labels
+    Author Jing Hua Zhao
+    Description "R-devel UBSan + Clang with CMake, HTML Tidy, and NLopt"
 
 %environment
-    export LANG=en_GB.UTF-8
-    export LC_ALL=en_GB.UTF-8
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+    export PATH=/usr/local/bin:/usr/bin:/bin
+
+%post
+    set -e
+
+    apt-get update && apt-get install -y \
+        pandoc \
+        qpdf \
+        libv8-dev \
+        cmake \
+        tidy \
+        libnlopt-dev \
+        pkg-config \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Verify tools and libs
+    cmake --version
+    tidy --version
+    pkg-config --modversion nlopt || echo "NLopt pkg-config not found"
 
 %runscript
     exec "$@"
+
+%test
+    set -e
+    command -v cmake
+    command -v tidy
+    pkg-config --exists nlopt
 ```
 
+so could do
+
 ```bash
-apptainer exec r-devel-ubsan-clang-pandoc.sif pandoc --version
-apptainer exec r-devel-ubsan-clang-pandoc.sif qpdf --version
-apptainer exec r-devel-ubsan-clang-pandoc.sif locale
 apptainer build ubsan-clang.sif ubsan-clang.def &
+apptainer exec ubsan-clang.sif pandoc --version
+apptainer exec ubsan-clang.sif qpdf --version
+apptainer shell --env LANG=C --env LC_ALL=C ubsan-clang.sif
+export R_LIBS=$HPC_WORK/work:~/rds/software/R:~/rds/software/R-gcc12
+RScript -e '
+pkgs <- c("CompQuadForm","Rcpp", "S7", "V8",
+"cachem", "cli", "colorspace", "curl", "digest", "dplyr", "farver", "fastmap", "glue",
+"htmltools", "jsonlite", "magrittr", "minqa", "nloptr". "quadprog", "rbibutils", "readr", "rlang",
+"sass", "tibble", "tzdb", "vctrs", "xfun", "yaml")
+install.packages(pkgs)
+'
+R CMD check --as-cran gap_1.15.tar.gz
 ```
