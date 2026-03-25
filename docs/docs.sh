@@ -1,4 +1,4 @@
-# 30-8-2024 JHZ
+# 25-3-2026 JHZ
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
 rsync -av ~/hpc-work/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
