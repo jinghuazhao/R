@@ -3,9 +3,6 @@
 \name{gcontrol}
 \alias{gcontrol}
 \title{genomic control}
-\source{
-\url{https://www.cmu.edu/dietrich/statistics-datascience/index.html}
-}
 \usage{
 gcontrol(
   data,
