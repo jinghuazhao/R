@@ -278,11 +278,41 @@ singularity shell r-devel-san_latest.sif
 apptainer shell r-devel-ubsan-clang_latest.sif
 ```
 
-We would avoid messing up with ceuadmin/R/latest inside apptainer:
+Since it misses pandoc, qpdf and libiconv, some packages cannot be loaded, so we install them inside apptainer while not messing up with
+ceuadmin/R/latest:
 
 ```bash
 export R_LIBS=$HPC_WORK/work:~/rds/software/R:~/rds/software/R-gcc12
 RScript -e 'install.packages(c("rlang","vctrs","glue","magrittr","cli","tibble","dplyr","rbibutils",
   "farver","S7","xfun","digest","fastmap","htmltools","V8"))'
 R CMD check --as-cran gap_1.15.tar.gz
+```
+
+It is more desirable to rebuild a module with them via definition `ubsan-clang.def`:
+
+```
+Bootstrap: localimage
+From: r-devel-ubsan-clang_latest.sif
+
+%post
+    apt-get update
+    apt-get install -y \
+        pandoc \
+        qpdf \
+        locales \
+        libc6-dev
+    apt-get clean
+
+    locale-gen en_GB.UTF-8
+
+%environment
+    export LANG=en_GB.UTF-8
+    export LC_ALL=en_GB.UTF-8
+
+%runscript
+    exec "$@"
+```
+
+```bash
+apptainer build ubsan-clang.sif ubsan-clang.def &
 ```
