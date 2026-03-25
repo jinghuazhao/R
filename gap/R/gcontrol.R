@@ -28,8 +28,6 @@
 #' associated with the disorder is given. The latter is not a p-value but any value
 #' greater than 0.5 (pout) suggests association. 
 #'
-#' @source \url{https://www.cmu.edu/dietrich/statistics-datascience/index.html}
-#'
 #' @return The returned value is a list containing:
 #' - deltot the probability of being an outlier.
 #' - x2 the \eqn{\chi^2}{chi-squared} statistic.
