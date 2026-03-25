@@ -323,7 +323,7 @@ From: rocker/r-devel-ubsan-clang:latest
     pkg-config --exists nlopt
 ```
 
-so could do
+so as to
 
 ```bash
 apptainer build ubsan-clang.sif ubsan-clang.def &
@@ -334,8 +334,8 @@ export R_LIBS=$HPC_WORK/work:~/rds/software/R:~/rds/software/R-gcc12
 RScript -e '
 pkgs <- c("CompQuadForm","Rcpp", "S7", "V8",
 "cachem", "cli", "colorspace", "curl", "digest", "dplyr", "farver", "fastmap", "glue",
-"htmltools", "jsonlite", "magrittr", "minqa", "nloptr". "quadprog", "rbibutils", "readr", "rlang",
-"sass", "tibble", "tzdb", "vctrs", "xfun", "yaml")
+"htmltools", "jsonlite", "magrittr", "minqa", "nloptr". "quadprog",
+"rbibutils", "readr", "rlang", "sass", "tibble", "tzdb", "vctrs", "xfun", "yaml")
 install.packages(pkgs)
 '
 R CMD check --as-cran gap_1.15.tar.gz
