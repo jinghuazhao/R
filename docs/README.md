@@ -260,68 +260,32 @@ The site hosts the rocker containers (rocker/r-devel-san and rocker/r-devel-ubsa
 We have
 
 ```bash
-# Docker
+# Docker containers
 docker pull rocker/r-devel-san:latest
 docker pull rocker/r-devel-ubsan-clang
-# Apptainer
+# rocker apptainers
 apptainer pull docker://rocker/r-devel-san:latest
 apptainer pull docker://rocker/r-devel-ubsan-clang:latest
 apptainer shell r-devel-san_latest.sif
 apptainer shell r-devel-ubsan-clang_latest.sif
+# CSD3 apptainders
+apptainer build R-devel-san.sif R-devel-san.def
+apptainer build R-devel-ubsan-clang.sif R-devel-ubsan-clang.def
+apptainer shell R-devel-san.sif
+apptainer shell R-devel-ubsan-clang.sif
 ```
 
-Since it misses pandoc, qpdf and libiconv, some packages cannot be loaded, so we install them inside apptainer while not messing up with
-ceuadmin/R/latest. Specifically, we have definition `ubsan-clang.def`:
+The rocker containers miss pandoc, qpdf and libiconv without which some packages cannot be loaded, so we install them inside apptainer
+into /rds/user/$USER/work (aka $HPC_WORK) while not messing up with ceuadmin/R/latest. Specifically, we have definitions
 
-```
-Bootstrap: docker
-From: rocker/r-devel-ubsan-clang:latest
+Definition      | rocker entry
+----------------|------------------------------------------
+[R-devel-san.def](R-devel-san.def) | rocker/r-devel-san:latest
+[R-devel-ubsan-clang.def](R-devel-ubsan-clang.def) | rocker/r-devel-ubsan-clang:latest
 
-%labels
-    Author Jing Hua Zhao
-    Description "R-devel UBSan + Clang with CMake, HTML Tidy, and NLopt"
-
-%environment
-    export LANG=C.UTF-8
-    export LC_ALL=C.UTF-8
-    export PATH=/usr/local/bin:/usr/bin:/bin
-
-%post
-    set -e
-
-    apt-get update && apt-get install -y \
-        pandoc \
-        qpdf \
-        libv8-dev \
-        cmake \
-        tidy \
-        libnlopt-dev \
-        pkg-config \
-        && apt-get clean \
-        && rm -rf /var/lib/apt/lists/*
-
-    # Verify tools and libs
-    cmake --version
-    tidy --version
-    pkg-config --modversion nlopt || echo "NLopt pkg-config not found"
-
-%runscript
-    exec "$@"
-
-%test
-    set -e
-    command -v cmake
-    command -v tidy
-    pkg-config --exists nlopt
-```
-
-so as to
+and enable R-related operations inside either CSD3 container
 
 ```bash
-apptainer build ubsan-clang.sif ubsan-clang.def &
-apptainer exec ubsan-clang.sif pandoc --version
-apptainer exec ubsan-clang.sif qpdf --version
-apptainer shell --env LANG=C --env LC_ALL=C ubsan-clang.sif
 export R_LIBS=$HPC_WORK/work:~/rds/software/R:~/rds/software/R-gcc12
 RScript -e '
 pkgs <- c("CompQuadForm","Rcpp", "S7", "V8",

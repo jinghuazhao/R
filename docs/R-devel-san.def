@@ -1,0 +1,39 @@
+Bootstrap: docker
+From: rocker/r-devel-san:latest
+
+%labels
+    Author Jing Hua Zhao
+    Description "R-devel UBSan + Clang with CMake, HTML Tidy, and NLopt"
+
+%environment
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+    export PATH=/usr/local/bin:/usr/bin:/bin
+
+%post
+    set -e
+
+    apt-get update && apt-get install -y \
+        pandoc \
+        qpdf \
+        libv8-dev \
+        cmake \
+        tidy \
+        libnlopt-dev \
+        pkg-config \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Verify tools and libs
+    cmake --version
+    tidy --version
+    pkg-config --modversion nlopt || echo "NLopt pkg-config not found"
+
+%runscript
+    exec "$@"
+
+%test
+    set -e
+    command -v cmake
+    command -v tidy
+    pkg-config --exists nlopt
