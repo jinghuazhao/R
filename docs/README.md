@@ -299,3 +299,5 @@ R CMD check --as-cran gap_1.15.tar.gz
 ```
 
 As noted elsewhere, apptainer uses ~/.apptainer/cache for tempoary/cache directory.
+
+Under Fedora 43, apptainer 1.4.5-3 can be enabled by `sudo dnf install apptainer`.
