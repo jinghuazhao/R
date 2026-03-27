@@ -300,4 +300,18 @@ R CMD check --as-cran gap_1.15.tar.gz
 
 As noted elsewhere, apptainer uses ~/.apptainer/cache for tempoary/cache directory.
 
-Under Fedora 43, apptainer 1.4.5-3 can be enabled by `sudo dnf install apptainer`.
+## Fedora 43
+
+apptainer 1.4.5-3 can be enabled by `sudo dnf install apptainer`.
+
+```bash
+# Under Bash
+cd ~/work
+apptainer shell R-devel-san.sif
+# Under apptainer
+## ~/work/R is installed from apptainer
+## ~/R-devel/library is installed under Bash
+export R_LIBS=~/work/R:~/R-devel/library
+cd ~/Downloads
+R CMD check --as-cran $1
+```
