@@ -276,7 +276,7 @@ apptainer shell R-devel-ubsan-clang.sif
 ```
 
 The rocker containers miss pandoc, qpdf and libiconv without which some packages cannot be loaded, so we install them inside apptainer
-into /rds/user/$USER/work (aka $HPC_WORK) while not messing up with ceuadmin/R/latest. Specifically, we have definitions
+into /rds/user/$USER/hpc-work/work (aka $HPC_WORK) while not messing up with ceuadmin/R/latest. Specifically, we have definitions
 
 Definition      | rocker entry
 ----------------|------------------------------------------
