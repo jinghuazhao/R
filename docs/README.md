@@ -315,3 +315,5 @@ export R_LIBS=~/work/R:~/R-devel/library
 cd ~/Downloads
 R CMD check --as-cran $1
 ```
+
+In the case of gap_1.15.tar.gz, gap.datasets and MASS packages need to be installed under apptainer.
