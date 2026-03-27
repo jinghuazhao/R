@@ -302,7 +302,8 @@ As noted elsewhere, apptainer uses ~/.apptainer/cache for tempoary/cache directo
 
 ## Fedora 43
 
-apptainer 1.4.5-3 can be enabled by `sudo dnf install apptainer`.
+It is possible to enable apptainer 1.4.5-3 by `sudo dnf install apptainer`, and the same
+.sif from above can be used.
 
 ```bash
 # Under Bash
