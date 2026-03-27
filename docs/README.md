@@ -314,7 +314,7 @@ apptainer shell R-devel-san.sif
 ## ~/R-devel/library is installed under Bash
 export R_LIBS=~/work/R:~/R-devel/library
 cd ~/Downloads
-R CMD check --as-cran $1
+R CMD check --as-cran gap_1.15.tar.gz
 ```
 
-In the case of gap_1.15.tar.gz, gap.datasets and MASS packages need to be installed under apptainer.
+As for gap_1.15.tar.gz, gap.datasets and MASS packages need to be reinstalled under apptainer.
