@@ -257,23 +257,15 @@ ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
 Web, <https://rocker-project.org/images/base/r-devel.html>.
 
 The site hosts the rocker containers (rocker/r-devel-san and rocker/r-devel-ubsan-clang).
-The Docker counterparts
+We have
 
-```
+```bash
+# Docker
 docker pull rocker/r-devel-san:latest
 docker pull rocker/r-devel-ubsan-clang
-```
-
-have apptainer equivalents
-
-```bash
+# Apptainer
 apptainer pull docker://rocker/r-devel-san:latest
 apptainer pull docker://rocker/r-devel-ubsan-clang:latest
-```
-
-that can be executed as
-
-```bash
 apptainer shell r-devel-san_latest.sif
 apptainer shell r-devel-ubsan-clang_latest.sif
 ```
@@ -341,3 +333,5 @@ install.packages(pkgs)
 '
 R CMD check --as-cran gap_1.15.tar.gz
 ```
+
+As noted elsewhere, apptainer uses ~/.apptainer/cache for tempoary/cache directory.
