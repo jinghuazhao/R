@@ -1,69 +1,14 @@
-## Utilities
+# Notes
 
-This directory contains various utility scripts.
+Materials here are self-evident and reflect evolution over time.
 
-* [check.sh](check.sh) is the standard CRAN submission check, e.g.,
-```bash
-check.sh gap
-```
-* [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` to work properly, it is necessary to load the modules in it.
-
-* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as orignally described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
-```bash
-export CC=/usr/bin/gcc
-export CXX=/usr/bin/g++
-export FC=/usr/bin/gfortran
-export CFLAGS="-g -O2 -Wall -pedantic -mtune=native"
-export FFLAGS="-g -O2 -mtune=native -Wall -pedantic"
-export CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-parentheses -Warray-parameter"
-export LDFLAGS="-L/usr/lib64 -L/usr/lib64"
-```
-followed by `R-devel CMD INSTALL gap_1.2.3.tar.gz`, say. They could also be part of $HOME/.R/Makevars, omitting `export`.
-
-The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
-
-> Warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
-
-It also shows how to install `gap` from GitHub via `Rscript`.
-
-* [register.R](register.R) can be used as 
-```bash
-[Rscript] register.R gap
-```
-to produce `package_native_routine_registration_skeleton.c`.
-
-It is more apporopriate for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
-```bash
-gfortran -c -fc-prototypes-external lmm.f
-```
-as in package 'lmm'.
-
-* [docs.sh](docs.sh) is a batch file for GitHub.
-
-* [suggests.R](suggests.R) is useful to install susggested packages.
-
-pQTLtools is somewhat poorly mirrored here, <https://rdrr.io/github/jinghuazhao/pQTLtools/>.
-
-## clang / gcc errror messages
-
-The settings below are derived from the following links,
-
-* clang, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang>
-* gcc, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc>
-
-Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
-
-Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `cairo-devel`, `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
-
-Note that some errors can only be seen through R CMD INSTALL.
-
-### .Rprofile
+## .Rprofile
 
 ```
 options(repos = c(CRAN="https://cran.r-project.org"))
 ```
 
-### .R/Makevars
+## .R/Makevars
 
 ```bash
 export _R_CHECK_INSTALL_DEPENDS_ true
@@ -105,7 +50,25 @@ export _R_CHECK_RD_VALIDATE_RD2HTML_ true
 export _R_CHECK_RD_MATH_RENDERING_ true
 ```
 
-### R-devel
+## html
+
+This is standard, e.g.,
+
+```bash
+pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+```
+
+## R version
+
+R version x.x.x. can be parsed as follows,
+
+```bash
+export version=4.2.2
+IFS=\. read major minor1 minor2 <<<${version}
+echo ${major}.${minor1}.${minor2}
+```
+
+## R-devel
 
 This is how R-devel is compiled,
 
@@ -126,6 +89,18 @@ ln -sf R-devel/bin/R ${HOME}/bin/R-devel
 
 A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37, 41 & 43.
 
+### clang / gcc error messages
+
+The settings below are derived from the following links,
+
+* clang, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang>
+* gcc, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc>
+
+Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
+
+Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `cairo-devel`, `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
+
+Note that some errors can only be seen through R CMD INSTALL.
 
 ### R CMD build
 
@@ -209,41 +184,9 @@ See
 for details.
 ```
 
-On Cambridge University's CSD3 system, one only needs to use `module load texlive` first.
+On CSD3 system, one only needs to use `module load texlive` first.
 
-## html
-
-This is standard, e.g.,
-
-```bash
-pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
-```
-
-## R version
-
-R version x.x.x. can be parsed as follows,
-
-```bash
-export version=4.2.2
-IFS=\. read major minor1 minor2 <<<${version}
-echo ${major}.${minor1}.${minor2}
-```
-
-## CentOS 7/8
-
-Three batch files have been created,
-
-- `csd3.sh` CentOS 7, gcc/6
-- `csd3-gcc11.sh` CentOS 7/8, gcc/11
-- `csd3-gcc12.sh` CentOS 8, gcc/12
-- `csd3-icelake.sh` CentOS 8.
-
-
-but after decommissioning CentOS 7, they are default to `csd3.sh` and `csd3-gcc.sh`.
-
-Except `csd3-icelake.sh`, there is difficulty to install R directly to $CEUADMIN/R so symbolic links are used instead.
-
-## Updated packages
+### Updated packages
 
 This command counts packages updated from `blockmodeling`.
 
@@ -252,7 +195,7 @@ ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
 ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
 ```
 
-## sif
+### sif
 
 Web, <https://rocker-project.org/images/base/r-devel.html>.
 
@@ -300,7 +243,7 @@ R CMD check --as-cran gap_1.15.tar.gz
 
 As noted elsewhere, apptainer uses ~/.apptainer/cache for tempoary/cache directory.
 
-## Fedora 43
+### Fedora 43
 
 One can enable apptainer 1.4.5-3 by `sudo dnf install apptainer` to use the same .sif from above.
 
@@ -317,3 +260,51 @@ R CMD check --as-cran gap_1.15.tar.gz
 ```
 
 As for gap_1.15.tar.gz, gap.datasets and MASS packages need to be reinstalled under apptainer.
+
+## Utilities
+
+There are various utility scripts.
+
+* [check.sh](check.sh) is the standard CRAN submission check, e.g.,
+```bash
+check.sh gap
+```
+* [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` to work properly, it is necessary to load the modules in it.
+
+Scripts `csd3-gcc[11|12].sh` serve as alternatives to the default CentOS 8 with gcc 8.5.0-20.
+
+* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as orignally described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
+```bash
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export FC=/usr/bin/gfortran
+export CFLAGS="-g -O2 -Wall -pedantic -mtune=native"
+export FFLAGS="-g -O2 -mtune=native -Wall -pedantic"
+export CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-parentheses -Warray-parameter"
+export LDFLAGS="-L/usr/lib64 -L/usr/lib64"
+```
+followed by `R-devel CMD INSTALL gap_1.2.3.tar.gz`, say. They could also be part of $HOME/.R/Makevars, omitting `export`.
+
+The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
+
+> Warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+
+It also shows how to install `gap` from GitHub via `Rscript`.
+
+* [register.R](register.R) can be used as
+```bash
+[Rscript] register.R gap
+```
+to produce `package_native_routine_registration_skeleton.c`; nevertheless function prototypes still require agreement with their definitions in C.
+
+It is more apporopriate for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
+```bash
+gfortran -c -fc-prototypes-external lmm.f
+```
+as in package 'lmm'.
+
+* [docs.sh](docs.sh) is a batch file for GitHub.
+
+* [suggests.R](suggests.R) is useful to install susggested packages.
+
+pQTLtools is somewhat poorly mirrored here, <https://rdrr.io/github/jinghuazhao/pQTLtools/>.
