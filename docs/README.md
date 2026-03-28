@@ -278,10 +278,10 @@ apptainer shell R-devel-ubsan-clang.sif
 The rocker containers miss pandoc, qpdf and libiconv without which some packages cannot be loaded, so we install them inside apptainer
 into /rds/user/$USER/hpc-work/work (aka $HPC_WORK) while not messing up with ceuadmin/R/latest. Specifically, we have definitions
 
-Definition      | Compiler | rocker entry
+Compiler | Definition      | rocker entry
 ----------------|----------|------------------------------------------
-[R-devel-san.def](R-devel-san.def) | gcc | rocker/r-devel-san:latest
-[R-devel-ubsan-clang.def](R-devel-ubsan-clang.def) | clang | rocker/r-devel-ubsan-clang:latest
+gcc | [R-devel-san.def](R-devel-san.def) | rocker/r-devel-san:latest
+clang | [R-devel-ubsan-clang.def](R-devel-ubsan-clang.def) | rocker/r-devel-ubsan-clang:latest
 
 and enable R-related operations inside either CSD3 container
 
