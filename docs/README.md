@@ -259,7 +259,7 @@ There are various utility scripts.
 
 * [check.sh](check.sh) is the standard CRAN submission check, e.g.,
 ```bash
-check.sh gap
+check.sh gap_1.15.tar.gz
 ```
 * [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` to work properly, it is necessary to load the modules in it.
 
