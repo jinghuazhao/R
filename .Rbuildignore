@@ -1,0 +1,17 @@
+^\.github$
+^CGR$
+^kinship$
+^gap$
+^pan$
+^lmm$
+^tdthap$
+^gaawr2$
+^pQTLdata$
+^pQTLtools$
+^NeRiT-work$
+^work$
+^docs$
+^.*\\.tar\\.gz$
+^.*\\.zip$
+^.*\\.Rcheck$
+^.*-00build\\.log$
