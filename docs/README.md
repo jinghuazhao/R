@@ -144,23 +144,6 @@ IFS=\. read major minor1 minor2 <<<${version}
 echo ${major}.${minor1}.${minor2}
 ```
 
-## Updated packages
-
-This command counts packages updated from `blockmodeling`.
-
-```bash
-ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
-ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
-```
-
-## html
-
-This is standard, e.g.,
-
-```bash
-pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
-```
-
 ## R-devel
 
 This is how R-devel is compiled,
@@ -261,6 +244,15 @@ R CMD check --as-cran gap_1.15.tar.gz
 
 As for gap_1.15.tar.gz, gap.datasets and MASS packages need to be reinstalled under apptainer.
 
+## Updated packages
+
+This command counts packages updated from `blockmodeling`.
+
+```bash
+ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
+ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
+```
+
 ## Utilities
 
 There are various utility scripts.
@@ -308,3 +300,11 @@ as in package 'lmm'.
 * [suggests.R](suggests.R) is useful to install susggested packages.
 
 pQTLtools is somewhat poorly mirrored here, <https://rdrr.io/github/jinghuazhao/pQTLtools/>.
+
+## html
+
+This is standard, e.g.,
+
+```bash
+pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+```
