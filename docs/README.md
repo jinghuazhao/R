@@ -50,59 +50,7 @@ export _R_CHECK_RD_VALIDATE_RD2HTML_ true
 export _R_CHECK_RD_MATH_RENDERING_ true
 ```
 
-## html
-
-This is standard, e.g.,
-
-```bash
-pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
-```
-
-## R version
-
-R version x.x.x. can be parsed as follows,
-
-```bash
-export version=4.2.2
-IFS=\. read major minor1 minor2 <<<${version}
-echo ${major}.${minor1}.${minor2}
-```
-
-## R-devel
-
-This is how R-devel is compiled,
-
-```bash
-cd ${HOME}
-wget -qO- https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz | \
-tar xfz -
-cd R-devel
-
-CFLAGS="-g -O2 -Wall -pedantic -mtune=native -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection -Werror=implicit-function-declaration -Wstrict-prototypes" \
-FFLAGS="-g -O2 -mtune=native -Wall -pedantic" \
-CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-parentheses -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" \
-JAVA_HOME=/usr/lib/jvm/java-11 \
-./configure
-make
-ln -sf R-devel/bin/R ${HOME}/bin/R-devel
-```
-
-A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37, 41 & 43.
-
-### clang / gcc error messages
-
-The settings below are derived from the following links,
-
-* clang, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang>
-* gcc, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc>
-
-Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
-
-Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `cairo-devel`, `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
-
-Note that some errors can only be seen through R CMD INSTALL.
-
-### R CMD build
+## R CMD build
 
 With these messages,
 
@@ -118,7 +66,7 @@ ERROR: package installation failed
 
 We need to remove inst/doc and build/ first.
 
-### R CMD check
+## R CMD check
 
 This is standard,
 
@@ -186,7 +134,17 @@ for details.
 
 On CSD3 system, one only needs to use `module load texlive` first.
 
-### Updated packages
+## R version
+
+R version x.x.x. can be parsed as follows,
+
+```bash
+export version=4.2.2
+IFS=\. read major minor1 minor2 <<<${version}
+echo ${major}.${minor1}.${minor2}
+```
+
+## Updated packages
 
 This command counts packages updated from `blockmodeling`.
 
@@ -194,6 +152,48 @@ This command counts packages updated from `blockmodeling`.
 ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
 ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
 ```
+
+## html
+
+This is standard, e.g.,
+
+```bash
+pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+```
+
+## R-devel
+
+This is how R-devel is compiled,
+
+```bash
+cd ${HOME}
+wget -qO- https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz | \
+tar xfz -
+cd R-devel
+
+CFLAGS="-g -O2 -Wall -pedantic -mtune=native -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection -Werror=implicit-function-declaration -Wstrict-prototypes" \
+FFLAGS="-g -O2 -mtune=native -Wall -pedantic" \
+CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-parentheses -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" \
+JAVA_HOME=/usr/lib/jvm/java-11 \
+./configure
+make
+ln -sf R-devel/bin/R ${HOME}/bin/R-devel
+```
+
+A version of these is noted in [R-devel.sh](R-devel.sh) for Fedora 37, 41 & 43.
+
+### clang / gcc error messages
+
+The settings below are derived from the following links,
+
+* clang, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-clang>
+* gcc, <https://www.stats.ox.ac.uk/pub/bdr/Rconfig/r-devel-linux-x86_64-fedora-gcc>
+
+Both ininove Fedora 36, which has gcc 12.0.1 and clang 14.0.5 although the error mesages were indicated as for clang 15 on CRAN.
+
+Fedora 36 setup gets easier to start with 'sudo dnf install R-devel' followed by adding `cmake`, `pandoc`, `ImageMagick` as well as `cairo-devel`, `libcurl-devel`, `libjpeg-turbo-devel`, `readline-devel`, `v8-devel`, `xorg-x11-fonts*`.
+
+Note that some errors can only be seen through R CMD INSTALL.
 
 ### sif
 
