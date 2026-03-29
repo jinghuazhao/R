@@ -24,10 +24,10 @@ jobs:
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Install dependencies (no pak)
+      - name: Install dependencies
         run: |
           install.packages(c("rcmdcheck", "remotes"))
-          remotes::install_deps("gap", dependencies = c("Depends", "Imports"))
+          remotes::install_deps("gap", dependencies = TRUE)
         shell: Rscript {0}
 
       - name: Check
