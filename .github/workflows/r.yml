@@ -24,6 +24,10 @@ jobs:
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
+      - name: Set graphics device (avoid X11/cairo issues)
+        run: |
+          echo "options(device = 'png')" >> ~/.Rprofile
+
       - name: Install dependencies
         run: |
           install.packages(c("rcmdcheck", "remotes"))
