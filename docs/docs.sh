@@ -1,4 +1,4 @@
-# 25-3-2026 JHZ
+# 28-3-2026 JHZ
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
 rsync -av ~/hpc-work/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
@@ -12,7 +12,7 @@ fi
 
 git add .github
 git commit -m ".github"
-git add .gitignore
+git add .gitignore .Rbuildignore
 git commit -m "These are ignored"
 git add CGR CGR_1.0-5.tar.gz
 git commit -m "Classic Genetics in R"
