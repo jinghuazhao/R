@@ -24,9 +24,9 @@ jobs:
       - name: Install dependencies (no pak)
         run: |
           install.packages(c("rcmdcheck", "remotes"))
-          remotes::install_deps(dependencies = c("Depends", "Imports"))
+          remotes::install_deps("gap", dependencies = c("Depends", "Imports"))
         shell: Rscript {0}
 
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        run: rcmdcheck::rcmdcheck("gap", args = "--no-manual", error_on = "error")
         shell: Rscript {0}
