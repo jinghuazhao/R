@@ -31,6 +31,9 @@ knitr::opts_chunk$set(
   comment = "#>",
   dev = function(...) grDevices::png(filename = tempfile(fileext = ".png"), ...)
 )
+if (dev.cur() == 1) {
+  grDevices::png(filename = tempfile(fileext = ".png"))
+}
 ```
 
 # Introduction
