@@ -157,7 +157,7 @@ cd R-devel
 CFLAGS="-g -O2 -Wall -pedantic -mtune=native -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection -Werror=implicit-function-declaration -Wstrict-prototypes" \
 FFLAGS="-g -O2 -mtune=native -Wall -pedantic" \
 CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-parentheses -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" \
-JAVA_HOME=/usr/lib/jvm/java-11 \
+JAVA_HOME=/usr/lib/jvm/java-1.8.0 \
 ./configure
 make
 ln -sf R-devel/bin/R ${HOME}/bin/R-devel
