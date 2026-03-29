@@ -21,6 +21,9 @@ jobs:
         with:
           r-version: '4.3'
 
+      - name: Set up Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
       - name: Install dependencies (no pak)
         run: |
           install.packages(c("rcmdcheck", "remotes"))
