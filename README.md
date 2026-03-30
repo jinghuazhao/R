@@ -4,7 +4,7 @@
 
 ## A summary
 
-Shown below are links to packages I have maintained[^1], with individual files to be found from [https://github.com/jinghuazhao/R](https://github.com/jinghuazhao/R).
+Shown below are links to packages I have maintained[^packages], with individual files to be found from [https://github.com/jinghuazhao/R](https://github.com/jinghuazhao/R).
 
 See also documentation reformatted by datacamp, <https://www.rdocumentation.org/>: [gap](https://www.rdocumentation.org/packages/gap/),
  [gap.datasets](https://www.rdocumentation.org/packages/gap.datasets),
@@ -12,9 +12,9 @@ See also documentation reformatted by datacamp, <https://www.rdocumentation.org/
  [pan](https://www.rdocumentation.org/packages/pan).
  [tdthap](https://www.rdocumentation.org/packages/tdthap).
 
-**Packages**[^2] | [CRAN](http://cran.r-project.org) | Vignette | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
+**Packages**[^ctv] | [CRAN](http://cran.r-project.org) | Vignette | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|---------|---------------------|---------------------------------------------
-**gap** | [https://cran.r-project.org/package=gap](https://cran.r-project.org/package=gap) | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^3]   | [https://github.com/cran/gap](https://github.com/cran/gap) | [https://rdrr.io/cran/gap/](https://rdrr.io/cran/gap/)
+**gap** | [https://cran.r-project.org/package=gap](https://cran.r-project.org/package=gap) | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^use]   | [https://github.com/cran/gap](https://github.com/cran/gap) | [https://rdrr.io/cran/gap/](https://rdrr.io/cran/gap/)
  &nbsp; | &nbsp; | [jss](https://doi.org/10.18637/jss.v023.i08)
  &nbsp; | &nbsp; | [manual](https://jinghuazhao.github.io/R/vignettes/gap-manual.pdf)
  &nbsp; | &nbsp; | [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html)
@@ -26,7 +26,7 @@ See also documentation reformatted by datacamp, <https://www.rdocumentation.org/
 **lmm** | [https://cran.r-project.org/package=lmm](https://cran.r-project.org/package=lmm) | [lmm](https://cran.r-project.org/web/packages/lmm/vignettes/lmm-tr.pdf) | [https://github.com/cran/lmm](https://github.com/cran/lmm) | [https://rdrr.io/cran/lmm/](https://rdrr.io/cran/lmm/)
 **pan** | [https://cran.r-project.org/package=pan](https://cran.r-project.org/package=pan) | [pan](https://cran.r-project.org/web/packages/pan/vignettes/pan-tr.pdf) | [https://github.com/cran/pan](https://github.com/cran/pan) | [https://rdrr.io/cran/pan/](https://rdrr.io/cran/pan/)
 **tdthap**  | [https://cran.r-project.org/package=tdthap](https://cran.r-project.org/package=tdthap) | [tdthap](https://cran.r-project.org/web/packages/tdthap/vignettes/tdthap-paper.pdf)| [https://github.com/cran/tdthap](https://github.com/cran/tdthap) | [https://rdrr.io/cran/tdthap/](https://rdrr.io/cran/tdthap/)
-**kinship**[^4] | [https://cran.r-project.org/src/contrib/Archive/kinship/](https://cran.r-project.org/src/contrib/Archive/kinship/) | [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf) | [https://github.com/cran/kinship](https://github.com/cran/kinship)
+**kinship**[^kinship] | [https://cran.r-project.org/src/contrib/Archive/kinship/](https://cran.r-project.org/src/contrib/Archive/kinship/) | [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf) | [https://github.com/cran/kinship](https://github.com/cran/kinship)
 
 It contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. 
 
@@ -44,19 +44,18 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 
 ---
 
-[^1]: Contributed work
+[^packages]: Contributed work
 
     > - Network Regression method in TWAS, [NeRiT](https://github.com/XiuyuanJin/NeRiT).
     > - `g.binread` function, [**GGIR**](https://cran.r-project.org/package=GGIR) & [GGIRread](https://cran.r-project.org/web/packages/GGIRread/index.html).
     > - [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC.
 
-[^2]: Featured CRAN task views:
+[^cyv]: Featured CRAN task views:
 
     > - Genetics: **gap**, **tdthap**
     > - Meta-Analysis: **gap**
     > - Social science: **lmm**, **pan**
 
-[^3]: Additional use can be found from a package vignette [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html).
+[^use]: Additional use can be found from a package vignette [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html).
 
-[^4]: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
-
+[^kinship]: Windows package [kinship_1.1.4.zip](kinship_1.1.4.zip) is built from [kinship_1.1.4.tar.gz](kinship_1.1.4.tar.gz) via https://win-builder.r-project.org/.
