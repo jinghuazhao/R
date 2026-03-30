@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
   fig.path = "./",
   collapse = TRUE,
   comment = "#>",
-  dev = function(...) grDevices::png(filename = tempfile(fileext = ".png"), ...)
+  dev = "png")
 )
 if (dev.cur() == 1) {
   grDevices::png(filename = tempfile(fileext = ".png"))
