@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15
-24-03-2026	Additional experiment on vignettes
+28-03-2026	Additional experiment on vignettes
 
 Version 1.14
 19-02-2026	Adopt --use-valgrind / .valgrindrc
