@@ -46,7 +46,7 @@
 #'       {
 #'          for(q in c(0.1,0.2))
 #'          {
-#'             power <- ccsize(n,q,pD,p1,alpha,theta)
+#'             power <- ccsize(n,q,pD,p1,theta,alpha)
 #'             cat(n,"\t",pD,"\t",p1,"\t",theta,"\t",q,"\t",signif(power,3),"\n",
 #'                 file=outfile,append=TRUE)
 #'          }
@@ -62,7 +62,7 @@
 #'       {
 #'          for(q in c(0.01,0.02))
 #'          {
-#'             power <- ccsize(n,q,pD,p1,alpha,theta)
+#'             power <- ccsize(n,q,pD,p1,theta,alpha)
 #'             cat(n,"\t",pD,"\t",p1,"\t",theta,"\t",q,"\t",signif(power,3),"\n",
 #'                 file=outfile,append=TRUE)
 #'          }
@@ -84,8 +84,8 @@
 #' for(i in 1:3)
 #' {
 #'   q <- s_nb[i]/n
-#'   power <- ccsize(n,q,pD,p1,alpha,log(theta[i]))
-#'   ssize <- ccsize(n,q,pD,p1,alpha,log(theta[i]),beta1)
+#'   power <- ccsize(n,q,pD,p1,log(theta[i],alpha))
+#'   ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta1)
 #'   cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",signif(power,3),"\t",ssize,"\n",
 #'       file=outfile,append=TRUE)
 #' }
@@ -107,7 +107,7 @@
 #'    {
 #'       for(hr in s_hr)
 #'       {
-#'          ssize <- ccsize(n,q,pD,p1,alpha,log(hr),power)
+#'          ssize <- ccsize(n,q,pD,p1,log(hr),alpha,power)
 #'          if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",ssize,"\n",
 #'                           file=outfile,append=TRUE)
 #'       }
@@ -127,7 +127,7 @@
 #'       {
 #'          for(q in s_q)
 #'          {
-#'             power <- ccsize(n,q,pD,p1,alpha,log(hr))
+#'             power <- ccsize(n,q,pD,p1,log(hr),alpha)
 #'             cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",q*n,"\t",alpha,"\t",power,"\n",
 #'                 file=outfile,append=TRUE)
 #'          }
@@ -141,25 +141,28 @@
 #' @note Programmed for EPIC study.
 #' keywords misc
 
-ccsize <- function(n,q,pD,p1,theta,alpha,beta=0.2,power=TRUE,verbose=FALSE)
+ccsize <- function(n, q, pD, p1, theta, alpha,
+                   beta = 0.2, power = TRUE, verbose = FALSE)
 {
-   p2 <- 1 - p1
-   if (power)
-   {
-   # equation (5)
-     z_alpha <- qnorm(alpha)
-     z <- z_alpha + sqrt(n) * theta * sqrt(p1 * p2 / (1 / pD + (1 / q - 1)))
-     invisible(pnorm(z))
-   } else {
-   # equation (6)
-     z_alpha <- qnorm(alpha, lower.tail=FALSE)
-     z_beta <- qnorm(beta, lower.tail=FALSE)
-     theta_lon <- (z_alpha + z_beta) / sqrt(p1 * p2 * pD)
-     d <- (theta / theta_lon)^2 - (1 - pD) / n
-     nb <- ceiling(pD / d)
-     nb [nb > n] <- -999
-     if (any(d <= 0) & verbose) cat("bad hazard ratio =", exp(theta), "\n")
-     else if (any(nb > n) & verbose) cat("bad subcohort size", nb, "\n")
-     invisible(nb)
-   }
+  p2 <- 1 - p1
+  if (power)
+  {
+    # Equation (5): power
+    z_alpha <- qnorm(alpha)
+    m <- n * q
+    z <- z_alpha +
+         sqrt(m) * theta *
+         sqrt(p1 * p2 * pD / (q + (1 - q) * pD))
+    return(pnorm(z))
+  } else {
+    # Equation (6): sample size
+    z_alpha <- qnorm(alpha, lower.tail = FALSE)
+    z_beta  <- qnorm(beta,  lower.tail = FALSE)
+    B <- (z_alpha + z_beta)^2 / (theta^2 * p1 * p2 * pD)
+    nb <- ceiling(n * B * pD / (n - B * (1 - pD)))
+    nb[nb > n] <- NA
+    if (any(nb <= 0) && verbose)
+      cat("Infeasible configuration\n")
+    return(nb)
+  }
 }

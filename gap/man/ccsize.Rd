@@ -62,7 +62,7 @@ for(pD in c(0.10,0.05))
       {
          for(q in c(0.1,0.2))
          {
-            power <- ccsize(n,q,pD,p1,alpha,theta)
+            power <- ccsize(n,q,pD,p1,theta,alpha)
             cat(n,"\t",pD,"\t",p1,"\t",theta,"\t",q,"\t",signif(power,3),"\n",
                 file=outfile,append=TRUE)
          }
@@ -78,7 +78,7 @@ for(pD in c(0.05,0.01))
       {
          for(q in c(0.01,0.02))
          {
-            power <- ccsize(n,q,pD,p1,alpha,theta)
+            power <- ccsize(n,q,pD,p1,theta,alpha)
             cat(n,"\t",pD,"\t",p1,"\t",theta,"\t",q,"\t",signif(power,3),"\n",
                 file=outfile,append=TRUE)
          }
@@ -100,8 +100,8 @@ cat("n","pD","p1","hr","q","power","ssize\n",file=outfile,sep="\t")
 for(i in 1:3)
 {
   q <- s_nb[i]/n
-  power <- ccsize(n,q,pD,p1,alpha,log(theta[i]))
-  ssize <- ccsize(n,q,pD,p1,alpha,log(theta[i]),beta1)
+  power <- ccsize(n,q,pD,p1,log(theta[i],alpha))
+  ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta1)
   cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",signif(power,3),"\t",ssize,"\n",
       file=outfile,append=TRUE)
 }
@@ -123,7 +123,7 @@ for(pD in s_pD)
    {
       for(hr in s_hr)
       {
-         ssize <- ccsize(n,q,pD,p1,alpha,log(hr),power)
+         ssize <- ccsize(n,q,pD,p1,log(hr),alpha,power)
          if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",ssize,"\n",
                           file=outfile,append=TRUE)
       }
@@ -143,7 +143,7 @@ for(pD in s_pD)
       {
          for(q in s_q)
          {
-            power <- ccsize(n,q,pD,p1,alpha,log(hr))
+            power <- ccsize(n,q,pD,p1,log(hr),alpha)
             cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",q*n,"\t",alpha,"\t",power,"\n",
                 file=outfile,append=TRUE)
          }
