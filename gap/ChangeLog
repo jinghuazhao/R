@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15
-30-03-2026	Additional experiment on vignettes
+31-03-2026	Additional experiment on vignettes
 		Fix R/.github/workflows/r.yml
 		Fix ccsize.R, inst/shinygap/server.R
 

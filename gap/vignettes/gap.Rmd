@@ -446,7 +446,7 @@ knitr::kable(table5,caption="Sample size of population-based design")
 
 We obtain results for ARIC and EPIC studies.
 
-```{r}
+```{r cc}
 library(gap)
 # ARIC study
 outfile <- "aric.txt"
@@ -486,7 +486,7 @@ for(pD in s_pD)
       for(hr in s_hr)
       {
          ssize <- ccsize(n,q,pD,p1,log(hr),alpha,beta,FALSE)
-         if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
+         if (!is.na(ssize)) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
                           ssize,"\n",
                           file=outfile,append=TRUE)
       }
