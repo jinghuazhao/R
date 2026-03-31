@@ -124,7 +124,7 @@ for(pD in s_pD)
       for(hr in s_hr)
       {
          ssize <- ccsize(n,q,pD,p1,log(hr),alpha,power)
-         if (ssize>0) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",ssize,"\n",
+         if (!is.na(ssize)) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",ssize,"\n",
                           file=outfile,append=TRUE)
       }
    }
