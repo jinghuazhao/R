@@ -472,11 +472,12 @@ unlink(outfile)
 # EPIC study
 outfile <- "epic.txt"
 n <- 25000
-alpha <- 0.00000005
-beta <- 0.2
+q <- 0.1
 s_pD <- c(0.3,0.2,0.1,0.05)
 s_p1 <- seq(0.1,0.5,by=0.1)
 s_hr <- seq(1.1,1.4,by=0.1)
+alpha <- 0.00000005
+beta <- 0.2
 cat("n","pD","p1","hr","alpha","ssize\n",file=outfile,sep="\t")
 # direct calculation
 for(pD in s_pD)
@@ -486,13 +487,16 @@ for(pD in s_pD)
       for(hr in s_hr)
       {
          ssize <- ccsize(n,q,pD,p1,log(hr),alpha,beta,FALSE)
-         if (!is.na(ssize)) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
+         if (!is.na(ssize) && ssize > 0)
+            cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
                           ssize,"\n",
                           file=outfile,append=TRUE)
       }
    }
 }
-knitr::kable(read.table(outfile,header=TRUE,sep="\t"),caption="Sample size of case-cohort designs")
+df <- read.table(outfile, header=TRUE, sep="\t", stringsAsFactors=FALSE)
+df$alpha <- formatC(as.numeric(df$alpha), format="e", digits=2)
+knitr::kable(df,caption="Sample size of case-cohort designs")
 unlink(outfile)
 ```
 
