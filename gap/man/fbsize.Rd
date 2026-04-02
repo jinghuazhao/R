@@ -97,7 +97,7 @@ fbsize(g,p)
 }
 \references{
 \insertAllCited{}
-\insertRef{risch96}{gap}\insertRef{risch97}{gap}\insertRef{sph97}{gap}
+\insertRef{risch96}{gap}\insertRef{risch97}{gap}\insertRef{scott97}{gap}
 }
 \seealso{
 \code{\link{pbsize}}
