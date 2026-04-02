@@ -96,14 +96,8 @@ fbsize(g,p)
 
 }
 \references{
-Risch, N. and K. Merikangas (1996). The future of genetic studies of
-complex human diseases. Science 273(September): 1516-1517.
-
-Risch, N. and K. Merikangas (1997). Reply to Scott el al. Science
-275(February): 1329-1330.
-
-Scott, W. K., M. A. Pericak-Vance, et al. (1997). Genetic analysis of
-complex diseases. Science 275: 1327.
+\insertAllCited{}
+\insertRef{risch96}{gap}\insertRef{risch97}{gap}\insertRef{sph97}{gap}
 }
 \seealso{
 \code{\link{pbsize}}

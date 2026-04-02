@@ -367,37 +367,24 @@ The example is as follows,
 ```{r fb}
 options(width=150)
 library(gap)
-models <- matrix(c(
-         4.0, 0.01,
-         4.0, 0.10,
-         4.0, 0.50, 
-         4.0, 0.80,
-         2.0, 0.01,
-         2.0, 0.10,
-         2.0, 0.50,
-         2.0, 0.80,
-         1.5, 0.01,    
-         1.5, 0.10,
-         1.5, 0.50,
-         1.5, 0.80), ncol=2, byrow=TRUE)
-outfile <- "fbsize.txt"
-cat("gamma","p","Y","N_asp","P_A","H1","N_tdt","H2","N_asp/tdt",
-    "L_o","L_s\n",file=outfile,sep="\t")
-for(i in 1:12) {
-    g <- models[i,1]
-    p <- models[i,2]
-    z <- fbsize(g,p)
-    cat(z$gamma,z$p,z$y,z$n1,z$pA,z$h1,z$n2,z$h2,z$n3,
-        z$lambdao,z$lambdas,file=outfile,append=TRUE,sep="\t")
-    cat("\n",file=outfile,append=TRUE)
-}
-table1 <- read.table(outfile,header=TRUE,sep="\t")
-nc <- c(4,7,9)
-table1[,nc] <- ceiling(table1[,nc])
-dc <- c(3,5,6,8,10,11)
-table1[,dc] <- round(table1[,dc],2)
-unlink(outfile)
-knitr::kable(table1,caption="Power/Sample size of family-based designs")
+models <- data.frame(
+  gamma = c(4,4,4,4, 2,2,2,2, 1.5,1.5,1.5,1.5),
+  p     = c(0.01,0.10,0.50,0.80,
+            0.01,0.10,0.50,0.80,
+            0.01,0.10,0.50,0.80)
+)
+res <- t(mapply(function(g, p) {
+  z <- fbsize(g, p)
+  with(z, c(gamma, p, y, n1, pA, h1, n2, h2, n3, lambdao, lambdas))
+}, models$gamma, models$p))
+table1 <- as.data.frame(res)
+names(table1) <- c("gamma","p","Y","N_asp","P_A","H1",
+                   "N_tdt","H2","N_asp_tdt","L_o","L_s")
+int_cols <- c("N_asp", "N_tdt", "N_asp_tdt")
+dec_cols <- c("Y", "P_A", "H1", "H2", "L_o", "L_s")
+table1[int_cols] <- lapply(table1[int_cols], ceiling)
+table1[dec_cols] <- lapply(table1[dec_cols], round, 2)
+knitr::kable(table1, caption = "Power/Sample size of family-based designs")
 ```
 
 As for APOE4 and Alzheimer's @sph97
@@ -415,33 +402,19 @@ The example is as follows,
 
 ```{r pb}
 library(gap)
-kp <- c(0.01,0.05,0.10,0.2)
-models <- matrix(c(
-          4.0, 0.01,
-          4.0, 0.10,
-          4.0, 0.50, 
-          4.0, 0.80,
-          2.0, 0.01,
-          2.0, 0.10,
-          2.0, 0.50,
-          2.0, 0.80,
-          1.5, 0.01,    
-          1.5, 0.10,
-          1.5, 0.50,
-          1.5, 0.80), ncol=2, byrow=TRUE)
-outfile <- "pbsize.txt"
-cat("gamma","p","p1","p5","p10","p20\n",sep="\t",file=outfile)
-for(i in 1:dim(models)[1])
-{
-   g <- models[i,1]
-   p <- models[i,2]
-   n <- vector()
-   for(k in kp) n <- c(n,ceiling(pbsize(k,g,p)))
-   cat(models[i,1:2],n,sep="\t",file=outfile,append=TRUE)
-   cat("\n",file=outfile,append=TRUE)
-} 
-table5 <- read.table(outfile,header=TRUE,sep="\t")
-knitr::kable(table5,caption="Sample size of population-based design")
+kp <- c(0.01, 0.05, 0.10, 0.20)
+models <- data.frame(
+  gamma = c(4,4,4,4, 2,2,2,2, 1.5,1.5,1.5,1.5),
+  p     = c(0.01,0.10,0.50,0.80,
+            0.01,0.10,0.50,0.80,
+            0.01,0.10,0.50,0.80)
+)
+res <- t(mapply(function(g, p) {
+  ceiling(sapply(kp, function(k) pbsize(k, g, p)))
+}, models$gamma, models$p))
+table5 <- cbind(models, as.data.frame(res))
+names(table5) <- c("gamma", "p", "p1", "p5", "p10", "p20")
+knitr::kable(table5, caption = "Sample size of population-based design")
 ```
 
 ## Case-cohort design

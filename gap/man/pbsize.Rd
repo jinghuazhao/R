@@ -78,12 +78,7 @@ cat("\nPopulation-based result: Kp =",k, "Kq =",s, "n =",ceiling(n),"\n")
 }
 \references{
 \insertAllCited{}
-
-Long AD, Grote MN, Langley CH (1997). Genetic analysis of complex traits. Science 275: 1328.
-
-\insertRef{rosner00}{gap}
-
-\insertRef{armitage05}{gap}
+\insertRef{scott97}{gap}\insertRef{rosner00}{gap}\insertRef{armitage05}{gap}
 }
 \seealso{
 \code{\link{fbsize}}
