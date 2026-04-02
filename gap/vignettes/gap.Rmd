@@ -449,55 +449,31 @@ We obtain results for ARIC and EPIC studies.
 ```{r cc}
 library(gap)
 # ARIC study
-outfile <- "aric.txt"
-n <- 15792
-pD <- 0.03
-p1 <- 0.25
-alpha <- 0.05
-theta <- c(1.35,1.40,1.45)
-beta <- 0.2
-s_nb <- c(1463,722,468)
-cat("n","pD","p1","hr","q","power","ssize\n",file=outfile,sep="\t")
-for(i in 1:3)
-{
-  q <- s_nb[i]/n
-  power <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta,TRUE)
-  ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta,FALSE)
-  cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",
-      signif(power,3),"\t",ssize,"\n",
-      file=outfile,append=TRUE)
-}
-read.table(outfile,header=TRUE,sep="\t")
-unlink(outfile)
+n <- 15792; pD <- 0.03; p1 <- 0.25; alpha <- 0.05; beta <- 0.2
+hr <- c(1.35, 1.40, 1.45); q <- c(1463, 722, 468) / n
+aric <- data.frame(
+  n, pD, p1, hr, q,
+  power = signif(mapply(ccsize, n, q, pD, p1, log(hr),
+                        MoreArgs = list(alpha = alpha, beta = beta, power = TRUE)), 3),
+  ssize = mapply(ccsize, n, q, pD, p1, log(hr),
+                 MoreArgs = list(alpha = alpha, beta = beta, power = FALSE))
+)
+aric
 # EPIC study
-outfile <- "epic.txt"
-n <- 25000
-q <- 0.1
-s_pD <- c(0.3,0.2,0.1,0.05)
-s_p1 <- seq(0.1,0.5,by=0.1)
-s_hr <- seq(1.1,1.4,by=0.1)
-alpha <- 0.00000005
-beta <- 0.2
-cat("n","pD","p1","hr","alpha","ssize\n",file=outfile,sep="\t")
-# direct calculation
-for(pD in s_pD)
-{
-   for(p1 in s_p1)
-   {
-      for(hr in s_hr)
-      {
-         ssize <- ccsize(n,q,pD,p1,log(hr),alpha,beta,FALSE)
-         if (!is.na(ssize) && ssize > 0)
-            cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",
-                          ssize,"\n",
-                          file=outfile,append=TRUE)
-      }
-   }
-}
-df <- read.table(outfile, header=TRUE, sep="\t", stringsAsFactors=FALSE)
-df$alpha <- formatC(as.numeric(df$alpha), format="e", digits=2)
-knitr::kable(df,caption="Sample size of case-cohort designs")
-unlink(outfile)
+n <- 25000; q <- 0.1; alpha <- 5e-8; beta <- 0.2
+epic <- subset(
+  transform(
+    expand.grid(pD = c(0.3, 0.2, 0.1, 0.05),
+                p1 = seq(0.1, 0.5, 0.1),
+                hr = seq(1.1, 1.4, 0.1)),
+    n = n,
+    alpha = formatC(alpha, format = "e", digits = 2),
+    ssize = mapply(ccsize, n, q, pD, p1, log(hr),
+                   MoreArgs = list(alpha = alpha, beta = beta, power = FALSE))
+  ),
+  !is.na(ssize) & ssize > 0
+)
+knitr::kable(epic,caption="Sample size of case-cohort designs")
 ```
 
 # Graphics

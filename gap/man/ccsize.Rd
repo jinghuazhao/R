@@ -50,108 +50,99 @@ keywords misc
 \examples{
 \dontrun{
 # Table 1 of Cai & Zeng (2004).
-outfile <- "table1.txt"
-cat("n","pD","p1","theta","q","power\n",file=outfile,sep="\t")
 alpha <- 0.05
-n <- 1000
-for(pD in c(0.10,0.05))
-{
-   for(p1 in c(0.3,0.5))
-   {
-      for(theta in c(0.5,1.0))
-      {
-         for(q in c(0.1,0.2))
-         {
-            power <- ccsize(n,q,pD,p1,theta,alpha)
-            cat(n,"\t",pD,"\t",p1,"\t",theta,"\t",q,"\t",signif(power,3),"\n",
-                file=outfile,append=TRUE)
-         }
-      }
-   }
-}
-n <- 5000
-for(pD in c(0.05,0.01))
-{
-   for(p1 in c(0.3,0.5))
-   {
-      for(theta in c(0.5,1.0))
-      {
-         for(q in c(0.01,0.02))
-         {
-            power <- ccsize(n,q,pD,p1,theta,alpha)
-            cat(n,"\t",pD,"\t",p1,"\t",theta,"\t",q,"\t",signif(power,3),"\n",
-                file=outfile,append=TRUE)
-         }
-      }
-   }
-}
-table1<-read.table(outfile,header=TRUE,sep="\t")
-unlink(outfile)
+table1 <- rbind(
+  transform(
+    within(expand.grid(
+      pD = c(0.10, 0.05),
+      p1 = c(0.3, 0.5),
+      theta = c(0.5, 1.0),
+      q = c(0.1, 0.2)
+    ), {
+      n <- 1000
+      power <- mapply(ccsize,
+        n = n, q = q, pD = pD, p1 = p1, theta = theta,
+        MoreArgs = list(alpha = alpha)
+      )
+    }),
+    power = signif(power, 3)
+  ),
+  transform(
+    within(expand.grid(
+      pD = c(0.05, 0.01),
+      p1 = c(0.3, 0.5),
+      theta = c(0.5, 1.0),
+      q = c(0.01, 0.02)
+    ), {
+      n <- 5000
+      power <- mapply(ccsize,
+        n = n, q = q, pD = pD, p1 = p1, theta = theta,
+        MoreArgs = list(alpha = alpha)
+      )
+    }),
+    power = signif(power, 3)
+  )
+)
+
 # ARIC study
-outfile <- "aric.txt"
-n <- 15792
-pD <- 0.03
-p1 <- 0.25
-alpha <- 0.05
-theta <- c(1.35,1.40,1.45)
-beta1 <- 0.8
-s_nb <- c(1463,722,468)
-cat("n","pD","p1","hr","q","power","ssize\n",file=outfile,sep="\t")
-for(i in 1:3)
-{
-  q <- s_nb[i]/n
-  power <- ccsize(n,q,pD,p1,log(theta[i],alpha))
-  ssize <- ccsize(n,q,pD,p1,log(theta[i]),alpha,beta1)
-  cat(n,"\t",pD,"\t",p1,"\t",theta[i],"\t",q,"\t",signif(power,3),"\t",ssize,"\n",
-      file=outfile,append=TRUE)
-}
-aric<-read.table(outfile,header=TRUE,sep="\t")
-unlink(outfile)
+aric <- within(
+  data.frame(
+    n = 15792,
+    pD = 0.03,
+    p1 = 0.25,
+    hr = c(1.35, 1.40, 1.45),
+    q = c(1463, 722, 468) / 15792
+  ), {
+    alpha <- 0.05
+    beta <- 0.2
+    power <- mapply(ccsize,
+      n = n, q = q, pD = pD, p1 = p1, theta = log(hr),
+      MoreArgs = list(alpha = alpha)
+    )
+    ssize <- mapply(ccsize,
+      n = n, q = q, pD = pD, p1 = p1, theta = log(hr),
+      MoreArgs = list(alpha = alpha, beta = beta, power = FALSE)
+    )
+    power <- signif(power, 3)
+  }
+)
+
 # EPIC study
-outfile <- "epic.txt"
-n <- 25000
-alpha <- 0.00000005
-power <- 0.8
-s_pD <- c(0.3,0.2,0.1,0.05)
-s_p1 <- seq(0.1,0.5,by=0.1)
-s_hr <- seq(1.1,1.4,by=0.1)
-cat("n","pD","p1","hr","alpha","ssize\n",file=outfile,sep="\t")
-# direct calculation
-for(pD in s_pD)
-{
-   for(p1 in s_p1)
-   {
-      for(hr in s_hr)
-      {
-         ssize <- ccsize(n,q,pD,p1,log(hr),alpha,power)
-         if (!is.na(ssize)) cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",alpha,"\t",ssize,"\n",
-                          file=outfile,append=TRUE)
-      }
-   }
-}
-epic<-read.table(outfile,header=TRUE,sep="\t")
-unlink(outfile)
+epic <- within(
+  expand.grid(
+    pD = c(0.3, 0.2, 0.1, 0.05),
+    p1 = seq(0.1, 0.5, by = 0.1),
+    hr = seq(1.1, 1.4, by = 0.1)
+  ), {
+    n <- 25000
+    q <- 0.1
+    alpha <- 5e-8
+    beta <- 0.2
+    ssize <- mapply(ccsize,
+      n = n, q = q, pD = pD, p1 = p1, theta = log(hr),
+      MoreArgs = list(alpha = alpha, beta = beta, power = FALSE)
+    )
+  }
+)
+epic <- subset(epic, !is.na(ssize) & ssize > 0)
+
 # exhaustive search
-outfile <- "search.txt"
-s_q <- seq(0.01,0.5,by=0.01)
-cat("n","pD","p1","hr","nq","alpha","power\n",file=outfile,sep="\t")
-for(pD in s_pD)
-{
-   for(p1 in s_p1)
-   {
-      for(hr in s_hr)
-      {
-         for(q in s_q)
-         {
-            power <- ccsize(n,q,pD,p1,log(hr),alpha)
-            cat(n,"\t",pD,"\t",p1,"\t",hr,"\t",q*n,"\t",alpha,"\t",power,"\n",
-                file=outfile,append=TRUE)
-         }
-      }
-   }
-}
-search<-read.table(outfile,header=TRUE,sep="\t")
-unlink(outfile)
+search <- within(
+  expand.grid(
+    pD = c(0.3, 0.2, 0.1, 0.05),
+    p1 = seq(0.1, 0.5, by = 0.1),
+    hr = seq(1.1, 1.4, by = 0.1),
+    q  = seq(0.01, 0.5, by = 0.01)
+  ), {
+    n <- 25000
+    alpha <- 5e-8
+    power <- mapply(ccsize,
+      n = n, q = q, pD = pD, p1 = p1, theta = log(hr),
+      MoreArgs = list(alpha = alpha)
+    )
+    nq <- n * q
+  }
+)
 }
 }
 \references{
