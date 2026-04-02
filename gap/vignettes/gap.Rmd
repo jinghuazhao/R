@@ -72,6 +72,8 @@ Notable recent technical updates include:
 
 3. an experimental shiny App (`runshinygap`()).
 
+4. lately, vibe coding has been conducted notably regarding `ccsize()`.
+
 These experiences can be useful for others in their package development. I found it
 useful to use specific functions without loading the whole package, i.e., `library(gap)`,
 e.g.,`invnormal <- gap::invnormal`, `log10p <- gap::log10p`.
