@@ -12,6 +12,7 @@ module load gdal/3.7.0-icl openssl/3.3.0-dev
 module load ceuadmin/geos/3.8.4
 module load ceuadmin/proj/6.3.0
 module load rstudio/2024.04.2+764
+module load ceuadmin/texinfo/7.2
 
 function my_load()
 {
