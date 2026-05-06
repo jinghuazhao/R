@@ -75,7 +75,7 @@ Draws theoretical quantile-comparison plots for variables and for studentized re
 
 Any distribution for which quantile and density functions exist in R (with prefixes \code{q} and \code{d}, respectively) may be used. Studentized residuals are plotted against the appropriate t-distribution.
 
-This is adapted from \code{\link[car:car-defunct]{car::qq.plot}} with different values for points and lines, more options, more transparent code and examples in the current setting. Another similar but sophisticated function is \code{\link[lattice:qqmath]{lattice::qqmath}}.
+This is adapted from \code{\link[car:qq.plot]{car::qq.plot}} with different values for points and lines, more options, more transparent code and examples in the current setting. Another similar but sophisticated function is \code{\link[lattice:qqmath]{lattice::qqmath}}.
 }
 \examples{
 \dontrun{

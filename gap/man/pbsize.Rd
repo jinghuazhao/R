@@ -24,7 +24,7 @@ The returned value is scaler containing the required sample size.
 Power for population-based association design
 }
 \details{
-This function implements \insertCite{sph97;textual}{gap} statistics for population-based
+This function implements \insertCite{scott97;textual}{gap} statistics for population-based
 association design. This is based on a contingency table test and accurate level of
 significance can be obtained by Fisher's exact test.
 }
