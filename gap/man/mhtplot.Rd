@@ -99,14 +99,14 @@ dev.off()
 data <- with(mhtdata,cbind(chr,pos,p))
 glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3","PPP1R3B",
          "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
-hdata <- subset(mhtdata,gene\\%in\\%glist)[c("chr","pos","p","gene")]
+hdata <- subset(mhtdata,gene\%in\%glist)[c("chr","pos","p","gene")]
 color <- rep(c("lightgray","gray"),11)
 glen <- length(glist)
 hcolor <- rep("red",glen)
 par(las=2, xpd=TRUE, cex.axis=1.8, cex=0.4)
 ops <- mht.control(colors=color,yline=1.5,xline=3,labels=paste("chr",1:22,sep=""),
                    srt=270)
-hops <- hmht.control(data=hdata,colors=hcolor)
+hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
 mhtplot(data,ops,hops,pch=19)
 axis(2,pos=2,at=1:16)
 title("Manhattan plot with genes highlighted",cex.main=1.8)

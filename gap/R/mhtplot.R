@@ -83,14 +83,14 @@
 #' data <- with(mhtdata,cbind(chr,pos,p))
 #' glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3","PPP1R3B",
 #'          "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
-#' hdata <- subset(mhtdata,gene\%in\%glist)[c("chr","pos","p","gene")]
+#' hdata <- subset(mhtdata,gene%in%glist)[c("chr","pos","p","gene")]
 #' color <- rep(c("lightgray","gray"),11)
 #' glen <- length(glist)
 #' hcolor <- rep("red",glen)
 #' par(las=2, xpd=TRUE, cex.axis=1.8, cex=0.4)
 #' ops <- mht.control(colors=color,yline=1.5,xline=3,labels=paste("chr",1:22,sep=""),
 #'                    srt=270)
-#' hops <- hmht.control(data=hdata,colors=hcolor)
+#' hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
 #' mhtplot(data,ops,hops,pch=19)
 #' axis(2,pos=2,at=1:16)
 #' title("Manhattan plot with genes highlighted",cex.main=1.8)
@@ -107,12 +107,6 @@
 #' @keywords hplot
 
 mhtplot <- function(data, control=mht.control(), hcontrol=hmht.control(), ...) {
-  for(p in c("grid")) {
-     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-        if (!requireNamespace(p, quietly = TRUE))
-        warning(paste("mhtplot needs package `", p, "' to be fully functional; please install", sep=""))
-     }
-  }
   data2 <- data[!apply(is.na(data),1,any),]
   n2 <- dim(data2[1])
   chr <- data2[,1]
@@ -212,8 +206,26 @@ mhtplot <- function(data, control=mht.control(), hcontrol=hmht.control(), ...) {
              l1 <- hl-l+1
              l2 <- hu-l+1
              col.chr[l1:l2] <- hcolors[j]
-             if (hboxed) textbox(hchrs[k], name="tbt", vp=grid::viewport(x = CM[chr][l1]/max(CM), y = (max(y[l1:l2]) +  hyoffs)/max(y)))
-             else text(CM[chr][l1],max(y[l1:l2]+hyoffs),hchrs[k],cex=1,font=3)
+             hx <- CM[chr][l1]
+             hy <- max(y[l1:l2]) + hyoffs
+           # if (hboxed) {text(hx, hy, hchrs[k], cex=1, font=3, bg="white")} else {text(hx, hy, hchrs[k], cex=1, font=3)}
+             hx <- CM[chr][l1]
+             hy <- max(y[l1:l2]) + hyoffs
+             lab <- hchrs[k]
+             if (hboxed) {
+                usr <- par("usr")            # plot limits
+                pin <- par("pin")            # plot size in inches
+                # convert inches → user coords
+                xinch <- diff(usr[1:2]) / pin[1]
+                yinch <- diff(usr[3:4]) / pin[2]
+                w <- strwidth(lab, units="inches") * xinch * 1.3
+                h <- strheight(lab, units="inches") * yinch * 1.6
+                rect(hx - w/2, hy - h/2, hx + w/2, hy + h/2,
+                     col="white", border="black")
+                text(hx, hy, lab, cex=1, font=3)
+             } else {
+                text(hx, hy, lab, cex=1, font=3)
+             }
              points(CM[l+(l1:l2)],y[l1:l2],col=col.chr[l1:l2],cex=pcex,...)
              j <- j+1
           }

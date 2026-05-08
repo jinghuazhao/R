@@ -142,17 +142,9 @@
 #'
 #' @import dplyr gap.datasets
 #' @importFrom grDevices dev.off palette pdf xy.coords
-#' @importFrom graphics abline arrows axis box boxplot
-#'             identify legend lines mtext par points
-#'             segments text title
-#' @importFrom stats as.formula coef coefficients cor
-#'             complete.cases dnorm glm integrate lm median
-#'             nlm pchisq pf pnorm ppoints pt qchisq qnorm
-#'             qqplot qt quantile rbinom rexp rnorm
-#'             runif sd setNames var
-#' @importFrom utils data head packageDescription read.csv
-#'             read.delim read.table tail write.table
-#'             globalVariables
+#' @importFrom graphics abline arrows axis box boxplot identify legend lines mtext par points segments text title rect strwidth strheight
+#' @importFrom stats as.formula coef coefficients cor complete.cases dnorm glm integrate lm median nlm pchisq pf pnorm ppoints pt qchisq qnorm qqplot qt quantile rbinom rexp rnorm runif sd setNames var
+#' @importFrom utils data head packageDescription read.csv read.delim read.table tail write.table globalVariables
 #' @importFrom Rdpack reprompt
 #' @useDynLib gap
 #'

@@ -2,7 +2,7 @@ Type: Package
 Package: gap
 Title: Genetic Analysis Package
 Version: 1.15
-Date: 2026-5-6
+Date: 2026-5-8
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -27,7 +27,7 @@ Depends: R (>= 2.10), gap.datasets (>= 0.0.6)
 Imports: dplyr, ggplot2, plotly, Rdpack
 Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags,
           bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
-          foreign, genetics, grid, haplo.stats, htmlwidgets, jsonlite,
+          foreign, genetics, haplo.stats, htmlwidgets, jsonlite,
           kinship2, knitr, lattice, magic, matrixStats, meta, metafor,
           nlme, pedigree, pedigreemm, plotrix, readr, reshape, rmarkdown,
           rms, survival, valr
