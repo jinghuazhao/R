@@ -511,9 +511,8 @@ glen <- length(glist)
 hcolor <- rep("red",glen)  
 par(las=2, xpd=TRUE, cex.axis=1.8, cex=0.4)
 ops <- mht.control(colors=color,yline=1.5,xline=3)
-hops <- hmht.control(data=hdata,colors=hcolor)
+hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
 mhtplot(data,ops,hops,pch=19)
-axis(2,pos=2,at=1:16,cex.axis=0.5)
 ```
 
 All these look familiar, so revised form of the function called `mhtplot2` was
