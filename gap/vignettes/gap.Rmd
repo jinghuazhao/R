@@ -474,29 +474,23 @@ the use of gaps to separate chromosomes.
 
 ```{r chicken, fig.cap="A genome-wide association study on chickens", fig.height=7, fig.width=7, results="hide"}
 w4 <- w4[order(w4$chr, w4$pos), ]
-oldpar <- par(no.readonly = TRUE)
-par(mar = c(6,4,2,1))
 colors <- c(rep(c("blue","red"),15),"red")
+suggestiveline <- -log10(3.60036E-05)
+genomewideline <- -log10(1.8E-06)
 mhtplot(
   w4,
   control = mht.control(
     colors  = colors,
     gap     = 1000,
     cex     = 0.6,
-    lab.cex = 1.2,
+    cutoffs = c(suggestiveline,genomewideline),
+    lab.cex = 1.1,
     xline   = 3,
     yline   = 3
   ),
   pch = 19,
   srt = 0
 )
-axis(2, cex.axis = 1.2)
-suggestiveline <- -log10(3.60036E-05)
-genomewideline <- -log10(1.8E-06)
-abline(h=suggestiveline, col="blue")
-abline(h=genomewideline, col="green")
-abline(h=0)
-par(oldpar)
 ```
 
 The code below obtains a Manhattan plot with gene annotation @kilpelainen11,
