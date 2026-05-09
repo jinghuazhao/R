@@ -32,8 +32,8 @@
 #'   colour[c3] <- 552
 #' })
 #' mdata <- mdata[,c("CHR","POS","P","gene","colour")]
-#' ops <- mht.control(colors=rep(c("lightgray","gray"),11),yline=1.5,xline=2,srt=0)
-#' hops <- hmht.control(data=subset(mdata,!is.na(gene)))
+#' ops <- mht.control(colors=rep(c("lightgray","gray"),11),yline=1.5,xline=2)
+#' hops <- hmht.control(data=subset(mdata,!is.na(gene)),boxed=TRUE)
 #' v <- "Verdana"
 #' ifelse(Sys.info()['sysname']=="Windows", windowsFonts(ffamily=windowsFont(v)),
 #'        ffamily <- v)
@@ -50,8 +50,8 @@
 #' # in response to query from Vallejo, Roger <Roger.Vallejo@ARS.USDA.GOV>
 #' opar <- par()
 #' par(cex=0.4)
-#' ops <- mht.control(colors=rep(c("lightgray","lightblue"),11),srt=0,yline=2.5,xline=2)
-#' mhtplot2(data.frame(mhtdata[,c("chr","pos","p")],gene=NA,color=NA),ops,xlab="",ylab="",srt=0)
+#' ops <- mht.control(colors=rep(c("lightgray","lightblue"),11),yline=2.5,xline=2)
+#' mhtplot2(data.frame(mhtdata[,c("chr","pos","p")],gene=NA,color=NA),ops,xlab="",ylab="")
 #' axis(2,at=1:16)
 #' title("data in mhtplot used by mhtplot2")
 #' par(opar)
@@ -60,7 +60,7 @@
 #' \insertRef{denhoed13}{gap}
 #' @author Jing Hua Zhao
 #' @keywords hplot
-
+#'
 mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), ...)
 {
     for(p in c("grid")) {
@@ -190,25 +190,23 @@ mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), 
                   l2 <- hu - l + 1
                   col.index <- as.integer(colnames(namecol)[gmat[rownames(gmat)==hchrs[k]]])
                   col.label <- colors()[col.index]
-#                  if (hboxed) textbox(hchrs[k], name="tbt", vp=grid::viewport(x = CM[chr][l1]/max(CM), y = (max(y[l1:l2]) +  hyoffs)/max(y)))
-#                  else text(CM[chr][l1], max(y[l1:l2] + hyoffs), hchrs[k],
-#                       col=col.label, cex = hcex, font=3, ...)
-             hx <- CM[idx][l1]
-             hy <- max(y[l1:l2]) + hyoffs
-             lab <- hchrs[k]
-             if (hboxed) {
-                usr <- par("usr")
-                pin <- par("pin")
-                xinch <- diff(usr[1:2]) / pin[1]
-                yinch <- diff(usr[3:4]) / pin[2]
-                w <- strwidth(lab, units="inches") * xinch * 1.3
-                h <- strheight(lab, units="inches") * yinch * 1.6
-                rect(hx - w/2, hy - h/2, hx + w/2, hy + h/2,
-                     col="white", border="black")
-                text(hx, hy, lab, cex=hcex, font=3)
-             } else {
-                text(hx, hy, lab, cex=hcex, font=3)
-             }
+                  idx <- chr
+                  hx <- CM[idx][l1]
+                  hy <- max(y[l1:l2]) + hyoffs
+                  lab <- hchrs[k]
+                  if (hboxed) {
+                     usr <- par("usr")
+                     pin <- par("pin")
+                     xinch <- diff(usr[1:2]) / pin[1]
+                     yinch <- diff(usr[3:4]) / pin[2]
+                     w <- strwidth(lab, units="inches") * xinch * 1.3
+                     h <- strheight(lab, units="inches") * yinch * 1.6
+                     rect(hx - w/2, hy - h/2, hx + w/2, hy + h/2,
+                          col="white", border="black")
+                     text(hx, hy, lab, cex=hcex, font=3)
+                  } else {
+                     text(hx, hy, lab, cex=hcex, font=3)
+                  }
  #                 points(CM[l + (l1:l2)], y[l1:l2], col = col.label, cex = pcex, ...)
                   j <- j + 1
                 }

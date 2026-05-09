@@ -9,32 +9,14 @@ mhtplot2(data, control = mht.control(), hcontrol = hmht.control(), ...)
 \arguments{
 \item{data}{a data frame with three columns representing chromosome, position and p values.}
 
-\item{control}{A control function named mht.control() with the following arguments:
-\itemize{
-\item type a flag with value "p" or "l" indicating if points or lines are to be drawn.
-\item usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE.
-\item logscale a flag to indicate if p value is to be log-transformed with default value TRUE.
-\item base the base of the logarithm with default value 10.
-\item cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL.
-\item colors the color for different chromosome(s), and random if unspecified with default values NULL.
-\item labels labels for the ticks on x-axis with default value NULL.
-\item srt degree to which labels are rotated with default value of 45.
-\item gap gap between chromosomes with default value NULL.
-\item cex cex for the data points.
-\item yline Margin line position.
-\item xline Margin line position.
-}}
+\item{control}{A list produced by \code{\link[=mht.control]{mht.control()}} controlling plot behaviour.}
 
-\item{hcontrol}{A control function named hmht.control() with the following arguments:
-\itemize{
-\item data chunk of data to be highlighted with default value NULL.
-\item colors colors for annotated genes.
-\item yoffset offset above the data point showing most significant p value with default value 0.5.
-\item cex shrinkage factor for data points with default value 1.5.
-\item boxed if the label for the highlited region with default value FALSE.
-}}
+\item{hcontrol}{A list produced by \code{\link[=hmht.control]{hmht.control()}} defining highlighted
+markers or regions and labels.}
 
-\item{...}{other options in compatible with the R plot function.}
+\item{...}{Additional graphical arguments passed to \code{\link[graphics:plot]{graphics::plot()}}
+(e.g. \code{pch}, \code{bg}, \code{xlab}, \code{ylab}, \code{ylim}).
+If \code{mar} is supplied, the default margins are not modified.}
 }
 \value{
 The plot is shown on or saved to the appropriate device.
@@ -49,9 +31,6 @@ Note that with real chromosomal positions, it is also appropriate to plot and so
 
 It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other
 context.
-
-To maintain back compatibility options as in \code{\link{mhtplot}} are used. The positions of the horizontal
-labels are now in the middle rather than at the beginning of their bands in the plot.
 }
 \examples{
 \dontrun{
@@ -66,8 +45,8 @@ mdata <- within(hr1420,{
   colour[c3] <- 552
 })
 mdata <- mdata[,c("CHR","POS","P","gene","colour")]
-ops <- mht.control(colors=rep(c("lightgray","gray"),11),yline=1.5,xline=2,srt=0)
-hops <- hmht.control(data=subset(mdata,!is.na(gene)))
+ops <- mht.control(colors=rep(c("lightgray","gray"),11),yline=1.5,xline=2)
+hops <- hmht.control(data=subset(mdata,!is.na(gene)),boxed=TRUE)
 v <- "Verdana"
 ifelse(Sys.info()['sysname']=="Windows", windowsFonts(ffamily=windowsFont(v)),
        ffamily <- v)
@@ -84,8 +63,8 @@ dev.off()
 # in response to query from Vallejo, Roger <Roger.Vallejo@ARS.USDA.GOV>
 opar <- par()
 par(cex=0.4)
-ops <- mht.control(colors=rep(c("lightgray","lightblue"),11),srt=0,yline=2.5,xline=2)
-mhtplot2(data.frame(mhtdata[,c("chr","pos","p")],gene=NA,color=NA),ops,xlab="",ylab="",srt=0)
+ops <- mht.control(colors=rep(c("lightgray","lightblue"),11),yline=2.5,xline=2)
+mhtplot2(data.frame(mhtdata[,c("chr","pos","p")],gene=NA,color=NA),ops,xlab="",ylab="")
 axis(2,at=1:16)
 title("data in mhtplot used by mhtplot2")
 par(opar)
