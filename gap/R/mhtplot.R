@@ -209,6 +209,12 @@
 #' mhtplot(gwas, control = ops, pch = 19)
 #' par(opar)
 #' dev.off()
+#'
+#' ## -----------------------------------------------------------
+#' ## 8. Miamiplot (see vignette for polished ones)
+#' ## -----------------------------------------------------------
+#' gwas <- within(gwas, {pr=1-p})
+#' miamiplot(test,chr="chr",bp="pos",p="p",pr="pr")
 #' }
 #'
 #' @author Jing Hua Zhao
