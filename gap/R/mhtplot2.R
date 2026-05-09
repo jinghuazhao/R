@@ -1,26 +1,12 @@
 #' Manhattan plot with annotations
 #'
 #' @param data a data frame with three columns representing chromosome, position and p values.
-#' @param control A control function named mht.control() with the following arguments:
-#' - type a flag with value "p" or "l" indicating if points or lines are to be drawn.
-#' - usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE.
-#' - logscale a flag to indicate if p value is to be log-transformed with default value TRUE.
-#' - base the base of the logarithm with default value 10.
-#' - cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL.
-#' - colors the color for different chromosome(s), and random if unspecified with default values NULL.
-#' - labels labels for the ticks on x-axis with default value NULL.
-#' - srt degree to which labels are rotated with default value of 45.
-#' - gap gap between chromosomes with default value NULL.
-#' - cex cex for the data points.
-#' - yline Margin line position.
-#' - xline Margin line position.
-#' @param hcontrol A control function named hmht.control() with the following arguments:
-#' - data chunk of data to be highlighted with default value NULL.
-#' - colors colors for annotated genes.
-#' - yoffset offset above the data point showing most significant p value with default value 0.5.
-#' - cex shrinkage factor for data points with default value 1.5.
-#' - boxed if the label for the highlited region with default value FALSE.
-#' @param ... other options in compatible with the R plot function.
+#' @param control A list produced by [mht.control()] controlling plot behaviour.
+#' @param hcontrol A list produced by [hmht.control()] defining highlighted
+#'   markers or regions and labels.
+#' @param ... Additional graphical arguments passed to [graphics::plot()]
+#'   (e.g. `pch`, `bg`, `xlab`, `ylab`, `ylim`).
+#'   If `mar` is supplied, the default margins are not modified.
 #'
 #' @details
 #' To generate Manhattan plot with annotations. The function is generic and for instance could be used for genomewide
@@ -29,9 +15,6 @@
 #'
 #' It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other
 #' context.
-#'
-#' To maintain back compatibility options as in [`mhtplot`] are used. The positions of the horizontal
-#' labels are now in the middle rather than at the beginning of their bands in the plot.
 #'
 #' @export
 #' @return
@@ -207,9 +190,25 @@ mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), 
                   l2 <- hu - l + 1
                   col.index <- as.integer(colnames(namecol)[gmat[rownames(gmat)==hchrs[k]]])
                   col.label <- colors()[col.index]
-                  if (hboxed) textbox(hchrs[k], name="tbt", vp=grid::viewport(x = CM[chr][l1]/max(CM), y = (max(y[l1:l2]) +  hyoffs)/max(y)))
-                  else text(CM[chr][l1], max(y[l1:l2] + hyoffs), hchrs[k],
-                       col=col.label, cex = hcex, font=3, ...)
+#                  if (hboxed) textbox(hchrs[k], name="tbt", vp=grid::viewport(x = CM[chr][l1]/max(CM), y = (max(y[l1:l2]) +  hyoffs)/max(y)))
+#                  else text(CM[chr][l1], max(y[l1:l2] + hyoffs), hchrs[k],
+#                       col=col.label, cex = hcex, font=3, ...)
+             hx <- CM[idx][l1]
+             hy <- max(y[l1:l2]) + hyoffs
+             lab <- hchrs[k]
+             if (hboxed) {
+                usr <- par("usr")
+                pin <- par("pin")
+                xinch <- diff(usr[1:2]) / pin[1]
+                yinch <- diff(usr[3:4]) / pin[2]
+                w <- strwidth(lab, units="inches") * xinch * 1.3
+                h <- strheight(lab, units="inches") * yinch * 1.6
+                rect(hx - w/2, hy - h/2, hx + w/2, hy + h/2,
+                     col="white", border="black")
+                text(hx, hy, lab, cex=hcex, font=3)
+             } else {
+                text(hx, hy, lab, cex=hcex, font=3)
+             }
  #                 points(CM[l + (l1:l2)], y[l1:l2], col = col.label, cex = pcex, ...)
                   j <- j + 1
                 }

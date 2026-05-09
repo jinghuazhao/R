@@ -484,7 +484,7 @@ mhtplot(
     gap     = 1000,
     cex     = 0.6,
     cutoffs = c(suggestiveline,genomewideline),
-    lab.cex = 1.1,
+    lab.cex = 0.8,
     xline   = 3,
     yline   = 3
   ),

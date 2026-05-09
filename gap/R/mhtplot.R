@@ -214,7 +214,7 @@
 #' ## 8. Miamiplot (see vignette for polished ones)
 #' ## -----------------------------------------------------------
 #' gwas <- within(gwas, {pr=1-p})
-#' miamiplot(test,chr="chr",bp="pos",p="p",pr="pr")
+#' miamiplot(gwas,chr="chr",bp="pos",p="p",pr="pr")
 #' }
 #'
 #' @author Jing Hua Zhao
