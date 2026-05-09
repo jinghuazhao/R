@@ -1,13 +1,13 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15
-08-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
+09-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
 		Amend references/examples for fbsize/pbsize
 		Drop b in forest plot and experiment on vignettes
 		Drop escape \%in\% in mhtplot.R
 		Fix R/.github/workflows/r.yml
 		Fix ccsize.R, inst/shinygap/server.R
-		Fix boxed=TRUE in mhtplot (finally!)
+		Fix boxed=TRUE in mhtplot() & mhtplot2()(finally!)
 		Polish DESCRIPTION esp. drop grid and add grDevices in Suggests
 
 Version 1.14
