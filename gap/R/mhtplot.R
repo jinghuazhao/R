@@ -212,10 +212,13 @@
 #' dev.off()
 #'
 #' ## -----------------------------------------------------------
-#' ## 8. Miamiplot (see vignette for polished ones)
+#' ## 8. Miamiplot (see also vignette)
 #' ## -----------------------------------------------------------
-#' gwas <- within(gwas, {pr=1-p})
-#' miamiplot(gwas,chr="chr",bp="pos",p="p",pr="pr")
+#' if (requireNamespace("gap.datasets", quietly = TRUE)) {
+#'   data("mhtdata", package = "gap.datasets")
+#'   mhtdata <- within(mhtdata,{pr=p})
+#'   miamiplot(mhtdata,chr="chr",bp="pos",p="p",pr="pr",snp="rsn")
+#' }
 #' }
 #'
 #' @author Jing Hua Zhao
