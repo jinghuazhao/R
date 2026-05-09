@@ -2,30 +2,49 @@
 % Please edit documentation in R/mhtplot.R
 \name{hmht.control}
 \alias{hmht.control}
-\title{Controls for highlights}
+\title{Controls for highlighted regions in mhtplot}
 \usage{
 hmht.control(
   data = NULL,
-  colors = NULL,
+  colors = "red",
   yoffset = 0.25,
-  cex = 1.5,
+  cex = 1.2,
   boxed = FALSE
 )
 }
 \arguments{
-\item{data}{Data.}
+\item{data}{Data frame with \strong{four columns}:
+chromosome, position, value and label (e.g. gene name).}
 
-\item{colors}{Colors.}
+\item{colors}{Character vector of colours used for highlighted regions.
+Colours are recycled if multiple labels are present.}
 
-\item{yoffset}{Y offset.}
+\item{yoffset}{Numeric vertical offset added to the highest highlighted
+point before placing the label.}
 
-\item{cex}{Scaling factor.}
+\item{cex}{Numeric scaling factor for label text.}
 
-\item{boxed}{Label in box.}
+\item{boxed}{Logical. If \code{TRUE}, labels are drawn inside a white box with
+black border.}
 }
 \value{
-A list as above.
+A list of highlight control parameters for \code{\link[=mhtplot]{mhtplot()}}.
 }
 \description{
-Specification of highlights
+Helper function defining highlighted markers or genomic regions to be
+emphasised in \code{\link[=mhtplot]{mhtplot()}}.
+}
+\examples{
+## Example highlight specification
+hdata <- data.frame(
+  chr  = c(1,3,5),
+  pos  = c(10000,50000,90000),
+  p    = c(1e-8,1e-7,1e-9),
+  gene = c("GENE1","GENE2","GENE3")
+)
+hmht.control(data = hdata, colors = "red", boxed = TRUE)
+
+}
+\seealso{
+\code{\link[=mhtplot]{mhtplot()}}, \code{\link[=mht.control]{mht.control()}}
 }

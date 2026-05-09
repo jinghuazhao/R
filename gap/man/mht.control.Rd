@@ -2,7 +2,7 @@
 % Please edit documentation in R/mhtplot.R
 \name{mht.control}
 \alias{mht.control}
-\title{Controls for mhtplot}
+\title{Controls for Manhattan plot}
 \usage{
 mht.control(
   type = "p",
@@ -12,41 +12,64 @@ mht.control(
   cutoffs = NULL,
   colors = NULL,
   labels = NULL,
-  srt = 45,
   gap = NULL,
   cex = 0.4,
+  lab.cex = 1,
+  axis.cex = 1.2,
+  axis.lwd = 1.2,
+  axis.tck = -0.02,
   yline = 3,
-  xline = 3
+  xline = 3,
+  verbose = FALSE
 )
 }
 \arguments{
-\item{type}{Type of plot.}
+\item{type}{Character. Either \code{"p"} (points) or \code{"l"} (lines).}
 
-\item{usepos}{A flag.}
+\item{usepos}{Logical. Use real chromosomal positions instead of ordinal
+marker order.}
 
-\item{logscale}{A flag for log-scale.}
+\item{logscale}{Logical. If \code{TRUE}, values are transformed using
+\code{-log(base)(value)} before plotting.}
 
-\item{base}{Base of log.}
+\item{base}{Numeric. Base of logarithm used when \code{logscale = TRUE}.}
 
-\item{cutoffs}{Cutoffs of P-value, etc.}
+\item{cutoffs}{Numeric vector of horizontal reference lines to draw.}
 
-\item{colors}{Colours for chromosomes.}
+\item{colors}{Vector of chromosome colours. Recycled as needed.}
 
-\item{labels}{Labels for chromosomes.}
+\item{labels}{Optional chromosome labels for the x-axis.}
 
-\item{srt}{Rotation degrees.}
+\item{gap}{Numeric. Gap inserted between chromosomes on the x-axis.}
 
-\item{gap}{Gap between data points.}
+\item{cex}{Numeric. Scaling factor for plotted points.}
 
-\item{cex}{Scaling factor of data points.}
+\item{lab.cex}{Numeric. Scaling factor for chromosome labels on the x-axis.}
 
-\item{yline}{Vertical adjustment.}
+\item{axis.cex}{Numeric. Scaling factor for axis tick labels.
+Increase when exporting high-resolution figures.}
 
-\item{xline}{Horiztonal adjustment.}
+\item{axis.lwd}{Numeric. Line width for axes and tick marks.}
+
+\item{axis.tck}{Numeric. Length and direction of tick marks.
+Negative values draw ticks outward (recommended for publication plots).}
+
+\item{yline}{Numeric. Margin line for the y-axis label.}
+
+\item{xline}{Numeric. Margin line for the x-axis label.}
+
+\item{verbose}{Logical. Print plotting progress messages.}
 }
 \value{
-A list as above.
+a named list of control parameters for \code{\link[=mhtplot]{mhtplot()}}.
 }
 \description{
-Parameter specification through function
+Parameter specification helper for \code{\link[=mhtplot]{mhtplot()}}. This function creates a list
+of graphical and behavioural settings used when generating Manhattan plots.
+}
+\examples{
+mht.control()
+}
+\seealso{
+\code{\link[=mhtplot]{mhtplot()}}, \code{\link[=hmht.control]{hmht.control()}}
 }

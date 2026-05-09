@@ -72,7 +72,7 @@ Notable recent technical updates include:
 
 3. an experimental shiny App (`runshinygap`()).
 
-4. lately, vibe coding has been conducted notably regarding `ccsize()`.
+4. lately, vibe coding has been conducted notably regarding `ccsize()` and `mhtplot()`.
 
 These experiences can be useful for others in their package development. I found it
 useful to use specific functions without loading the whole package, i.e., `library(gap)`,
@@ -473,18 +473,30 @@ Based on a chicken genome scan data, the code below generates a Manhattan plot, 
 the use of gaps to separate chromosomes.
 
 ```{r chicken, fig.cap="A genome-wide association study on chickens", fig.height=7, fig.width=7, results="hide"}
-ord <- with(w4,order(chr,pos))
-w4 <- w4[ord,]
-oldpar <- par()
-par(cex=0.6)
+w4 <- w4[order(w4$chr, w4$pos), ]
+oldpar <- par(no.readonly = TRUE)
+par(mar = c(6,4,2,1))
 colors <- c(rep(c("blue","red"),15),"red")
-mhtplot(w4,control=mht.control(colors=colors,gap=1000),pch=19,srt=0)
-axis(2,cex.axis=2)
+mhtplot(
+  w4,
+  control = mht.control(
+    colors  = colors,
+    gap     = 1000,
+    cex     = 0.6,
+    lab.cex = 1.2,
+    xline   = 3,
+    yline   = 3
+  ),
+  pch = 19,
+  srt = 0
+)
+axis(2, cex.axis = 1.2)
 suggestiveline <- -log10(3.60036E-05)
 genomewideline <- -log10(1.8E-06)
 abline(h=suggestiveline, col="blue")
 abline(h=genomewideline, col="green")
 abline(h=0)
+par(oldpar)
 ```
 
 The code below obtains a Manhattan plot with gene annotation @kilpelainen11,

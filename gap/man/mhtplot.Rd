@@ -7,123 +7,238 @@
 mhtplot(data, control = mht.control(), hcontrol = hmht.control(), ...)
 }
 \arguments{
-\item{data}{a data frame with three columns representing chromosome, position and p values.}
-
-\item{control}{A control function named mht.control() with the following arguments:
-\itemize{
-\item type a flag with value "p" or "l" indicating if points or lines are to be drawn.
-\item usepos a flag to use real chromosomal positions as composed to ordinal positions with default value FALSE.
-\item logscale a flag to indicate if p value is to be log-transformed with default value TRUE.
-\item base the base of the logarithm with default value 10.
-\item cutoffs the cut-offs where horizontal line(s) are drawn with default value NULL.
-\item colors the color for different chromosome(s), and random if unspecified with default values NULL.
-\item labels labels for the ticks on x-axis with default value NULL.
-\item srt degree to which labels are rotated with default value of 45.
-\item gap gap between chromosomes with default value NULL.
-\item cex cex for the data points.
-\item yline Margin line position.
-\item xline Margin line position.
+\item{data}{A matrix or data frame with at least three columns.
+The first three columns are interpreted as:
+\enumerate{
+\item chromosome
+\item position
+\item value (typically p-value)
+Column names are ignored. Factors are automatically converted.
 }}
 
-\item{hcontrol}{A control function named hmht.control() with the following arguments:
-\itemize{
-\item data. chunk of data to be highlighted with default value NULL.
-\item colors. colors for annotated genes.
-\item yoffset. offset above the data point showing most significant p value with default value 0.5.
-\item cex shrinkage factor for data points with default value 1.5.
-\item boxed if the label for the highlited region with default value FALSE.
-}}
+\item{control}{A list produced by \code{\link[=mht.control]{mht.control()}} controlling plot behaviour.}
 
-\item{...}{other options in compatible with the R plot function.}
+\item{hcontrol}{A list produced by \code{\link[=hmht.control]{hmht.control()}} defining highlighted
+markers or regions and labels.}
+
+\item{...}{Additional graphical arguments passed to \code{\link[graphics:plot]{graphics::plot()}}
+(e.g. \code{pch}, \code{bg}, \code{xlab}, \code{ylab}, \code{ylim}).
+If \code{mar} is supplied, the default margins are not modified.}
 }
 \value{
-The plot is shown on or saved to the appropriate device.
+invisibly returns \code{NULL}.
 }
 \description{
-Manhattan plot
+Draw a Manhattan plot for genome-wide association studies (GWAS) or any
+genome-indexed numeric score.
 }
 \details{
-To generate Manhattan plot, e.g., of genomewide significance (p values) and
-a random variable that is uniformly distributed. By default, a log10-transformation is applied.
-Note that with real chromosomal positions, it is also appropriate to plot and some but not all chromosomes.
+Produces a Manhattan plot in which genomic markers are arranged along the
+x-axis by chromosome and position.
 
-It is possible to specify options such as xlab and ylim when the plot is requested for data in other context.
+By default the y-axis shows \code{-log10(p)}, the standard GWAS significance
+scale. Set \code{logscale = FALSE} in \code{\link[=mht.control]{mht.control()}} to plot raw values instead.
+
+Rows containing missing values are removed automatically before plotting.
+\subsection{Chromosome handling}{
+
+Chromosomes may be numeric or character. The prefix \code{"chr"} is removed
+automatically. Chromosomes are ordered numerically first, followed by
+character chromosomes (e.g. X, Y, MT).
 }
-\examples{
-\dontrun{
-# foo example
-test <- matrix(c(1,1,4,1,1,6,1,10,3,2,1,5,2,2,6,2,4,8),byrow=TRUE,6)
-mhtplot(test)
-mhtplot(test,mht.control(logscale=FALSE))
 
-# fake example with Affy500k data
-affy <-c(40220, 41400, 33801, 32334, 32056, 31470, 25835, 27457, 22864, 28501, 26273,
-         24954, 19188, 15721, 14356, 15309, 11281, 14881, 6399, 12400, 7125, 6207)
-CM <- cumsum(affy)
+\subsection{X-axis spacing}{
+\itemize{
+\item \code{usepos = FALSE} (default): markers are spaced evenly within chromosomes.
+\item \code{usepos = TRUE}: real chromosomal positions are used.
+\item \code{gap} inserts spacing between chromosomes when using real positions.
+}
+}
+
+\subsection{Colours}{
+
+Chromosome colours alternate by default. Custom colours can be supplied via
+\code{colors} in \code{\link[=mht.control]{mht.control()}}; colours are recycled as needed.
+}
+
+\subsection{Axis tuning}{
+
+Axis appearance can be controlled using:
+\itemize{
+\item \code{axis.cex} — tick label size
+\item \code{axis.lwd} — axis and tick thickness
+\item \code{axis.tck} — tick length and direction
+}
+
+These settings are particularly useful when exporting high-resolution figures.
+}
+
+\subsection{Horizontal thresholds}{
+
+Horizontal reference lines can be drawn using the \code{cutoffs} parameter.
+}
+
+\subsection{Highlighting regions}{
+
+Highlighted regions are defined using \code{\link[=hmht.control]{hmht.control()}}. Matching markers are
+recoloured, labelled, and optionally boxed. Matching is performed by
+chromosome and position range.
+}
+}
+\section{Mathematical background}{
+
+
+A Manhattan plot visualises genome-wide association statistics by mapping
+genetic markers to a two-dimensional coordinate system.
+
+\strong{Y-axis transformation}
+
+P-values are transformed to improve visibility of small values:
+
+\deqn{y = -\log_{10}(p)}
+
+Small p-values therefore appear as large positive values and form the
+characteristic peaks used to identify strong associations.
+
+\strong{Genome linearisation}
+
+Markers originate from multiple chromosomes and must be mapped onto a
+single continuous axis. For chromosome \eqn{c}:
+
+\deqn{x_i = pos_i + offset_c}
+
+where the chromosome offset is
+
+\deqn{offset_c = \sum_{k < c} \max(pos_k)}
+
+This produces a continuous genome coordinate system in which chromosomes
+appear sequentially without overlap.
+
+\strong{Chromosome label placement}
+
+Chromosome labels are positioned at the midpoint of each chromosome:
+
+\deqn{mid_c = (\min(x_c) + \max(x_c)) / 2}
+
+This centres labels regardless of chromosome length.
+
+\strong{Plot limits}
+
+The plotting region is defined using axis tick locations so that ticks and
+plotting limits coincide exactly.
+
+Conceptually, a Manhattan plot is defined by two transformations:
+
+\deqn{x = \text{linearised genome coordinate}}
+\deqn{y = -\log_{10}(p)}
+
+All other elements (colouring, thresholds, highlighting) are visual
+annotations applied to these transformed coordinates.
+}
+
+\examples{
+\donttest{
+## -----------------------------------------------------------
+## 1. Minimal example
+## -----------------------------------------------------------
+test <- matrix(c(
+  1,1,4,
+  1,1,6,
+  1,10,3,
+  2,1,5,
+  2,2,6,
+  2,4,8),
+  byrow=TRUE, ncol=3)
+mhtplot(test)
+## Raw values instead of -log10
+mhtplot(test, mht.control(logscale = FALSE))
+
+## -----------------------------------------------------------
+## 2. Simulated GWAS dataset
+## -----------------------------------------------------------
+set.seed(1)
+affy <- c(40220,41400,33801,32334,32056,31470,25835,27457,22864,
+          28501,26273,24954,19188,15721,14356,15309,11281,14881,
+          6399,12400,7125,6207)
 n.markers <- sum(affy)
 n.chr <- length(affy)
-test <- data.frame(chr=rep(1:n.chr,affy),pos=1:n.markers,p=runif(n.markers))
+gwas <- data.frame(
+  chr = rep(1:n.chr, affy),
+  pos = 1:n.markers,
+  p   = runif(n.markers)
+)
+mhtplot(gwas)
 
-# to reduce size of the plot
-# bitmap("mhtplot.bmp",res=72*5)
-oldpar <- par()
-par(cex=0.6)
-colors <- rep(c("blue","green"),11)
-# other colors, e.g.
-# colors <- c("red","blue","green","cyan","yellow","gray","magenta","red","blue","green",
-#             "cyan","yellow","gray","magenta","red","blue","green","cyan","yellow","gray",
-#             "magenta","red")
-mhtplot(test,control=mht.control(colors=colors),pch=19,srt=0)
-title("A simulated example according to EPIC-Norfolk QCed SNPs")
-axis(2)
-axis(1,pos=0,labels=FALSE,tick=FALSE)
-abline(0,0)
-# dev.off()
-par(oldpar)
+## -----------------------------------------------------------
+## 3. Publication-style figure
+## -----------------------------------------------------------
+ops <- mht.control(
+  axis.cex = 1.4,
+  axis.lwd = 2,
+  axis.tck = -0.03
+)
+mhtplot(gwas, control = ops, pch = 19)
 
-mhtplot(test,control=mht.control(usepos=TRUE,colors=colors,gap=10000),pch=19,bg=colors)
-title("Real positions with a gap of 10000 bp between chromosomes")
-box()
+## -----------------------------------------------------------
+## 4. Real positions + chromosome gaps
+## -----------------------------------------------------------
+ops2 <- mht.control(usepos = TRUE, gap = 10000)
+mhtplot(gwas, control = ops2, pch = 19)
 
-png("manhattan.png",height=3600,width=6000,res=600)
+## -----------------------------------------------------------
+## 5. Genome-wide significance thresholds
+## -----------------------------------------------------------
+ops3 <- mht.control(cutoffs = c(5, 7.3))
+mhtplot(gwas, control = ops3, pch = 19)
+
+## -----------------------------------------------------------
+## 6. Highlight selected genes
+## -----------------------------------------------------------
+hdata <- data.frame(
+  chr  = c(1,3,5),
+  pos  = c(10000,50000,90000),
+  p    = c(1e-8,1e-7,1e-9),
+  gene = c("GENE1","GENE2","GENE3")
+)
+hops <- hmht.control(
+  data = hdata,
+  colors = "red",
+  boxed = TRUE
+)
+mhtplot(gwas, control = ops, hcontrol = hops, pch = 19)
+## A real study (data from gap.datasets package)
+if (requireNamespace("gap.datasets", quietly = TRUE)) {
+  data("mhtdata", package = "gap.datasets")
+
+  data <- with(mhtdata, cbind(chr, pos, p))
+  glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3",
+             "WISP3","PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
+  hdata <- subset(mhtdata, gene \%in\% glist)[c("chr","pos","p","gene")]
+
+  ops  <- mht.control(colors = rep(c("lightgray","gray"),11),
+                      labels = paste("chr",1:22,sep=""),
+                      yline = 1.5, xline = 3)
+  hops <- hmht.control(data = hdata, colors = "red", boxed = TRUE)
+
+  mhtplot(data, ops, hops, pch = 19)
+  title("Manhattan plot with genes highlighted")
+}
+
+## -----------------------------------------------------------
+## 7. Export high-resolution PNG
+## -----------------------------------------------------------
+png("manhattan.png", height = 3600, width = 6000, res = 600)
 opar <- par()
-par(cex=0.4)
-ops <- mht.control(colors=rep(c("lightgray","lightblue"),11),srt=0,yline=2.5,xline=2)
-require(gap.datasets)
-mhtplot(mhtdata[,c("chr","pos","p")],ops,xlab="",ylab="",srt=0)
-axis(2,at=1:16)
-title("An adaptable plot as .png")
+par(cex = 0.7)
+mhtplot(gwas, control = ops, pch = 19)
 par(opar)
 dev.off()
-
-data <- with(mhtdata,cbind(chr,pos,p))
-glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3","PPP1R3B",
-         "RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
-hdata <- subset(mhtdata,gene\%in\%glist)[c("chr","pos","p","gene")]
-color <- rep(c("lightgray","gray"),11)
-glen <- length(glist)
-hcolor <- rep("red",glen)
-par(las=2, xpd=TRUE, cex.axis=1.8, cex=0.4)
-ops <- mht.control(colors=color,yline=1.5,xline=3,labels=paste("chr",1:22,sep=""),
-                   srt=270)
-hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
-mhtplot(data,ops,hops,pch=19)
-axis(2,pos=2,at=1:16)
-title("Manhattan plot with genes highlighted",cex.main=1.8)
-
-mhtplot(data,mht.control(cutoffs=c(4,6,8,16)),pch=19)
-title("Another plain Manhattan plot")
-
-# Miami plot
-
-test <- within(test, {pr=1-p})
-miamiplot(test,chr="chr",bp="pos",p="p",pr="pr")
 }
+
 }
 \seealso{
-\code{\link{qqunif}}
+\code{\link[=mht.control]{mht.control()}}, \code{\link[=hmht.control]{hmht.control()}}
 }
 \author{
 Jing Hua Zhao
 }
-\keyword{hplot}
