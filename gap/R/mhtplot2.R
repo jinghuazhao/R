@@ -2,8 +2,7 @@
 #'
 #' @param data a data frame with three columns representing chromosome, position and p values.
 #' @param control A list produced by [mht.control()] controlling plot behaviour.
-#' @param hcontrol A list produced by [hmht.control()] defining highlighted
-#'   markers or regions and labels.
+#' @param hcontrol A list produced by [hmht.control()] defining highlighted markers or regions and labels.
 #' @param ... Additional graphical arguments passed to [graphics::plot()]
 #'   (e.g. `pch`, `bg`, `xlab`, `ylab`, `ylim`).
 #'   If `mar` is supplied, the default margins are not modified.
@@ -14,15 +13,12 @@
 #' Note that with real chromosomal positions, it is also appropriate to plot and some but not all chromosomes.
 #'
 #' It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other
-#' context.
+#' context. The example uses only chromosomes 14 and 20 of \insertCite{denhoed13}{gap}.
 #'
 #' @export
-#' @return
-#' The plot is shown on or saved to the appropriate device.
+#' @return shown on or saved to the appropriate device.
 #' @examples
 #' \dontrun{
-#' The following example uses only chromosomes 14 and 20 of the Nat Genet paper.
-#'
 #' mdata <- within(hr1420,{
 #'   c1<-colour==1
 #'   c2<-colour==2
@@ -58,8 +54,8 @@
 #' }
 #' @references
 #' \insertRef{denhoed13}{gap}
+#'
 #' @author Jing Hua Zhao
-#' @keywords hplot
 #'
 mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), ...)
 {
@@ -162,7 +158,6 @@ mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), 
         text(ifelse(i == 1, CM[1]+(CM[u]-CM[l])/2, CM[l]+(CM[u]-CM[l])/2), y1, pos = 1, offset = 1.5, 
              labels[i], srt = srt, ...)
     }
-    j <- 1
     for (i in 1:n.chr) {
         u <- CMindex[i]
         l <- CMindex[i] - allchr[i] + 1
@@ -207,8 +202,6 @@ mhtplot2 <- function (data, control = mht.control(), hcontrol = hmht.control(), 
                   } else {
                      text(hx, hy, lab, cex=hcex, font=3)
                   }
- #                 points(CM[l + (l1:l2)], y[l1:l2], col = col.label, cex = pcex, ...)
-                  j <- j + 1
                 }
             }
         }

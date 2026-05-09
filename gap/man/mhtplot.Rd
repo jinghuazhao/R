@@ -227,7 +227,8 @@ if (requireNamespace("gap.datasets", quietly = TRUE)) {
 ## -----------------------------------------------------------
 ## 7. Export high-resolution PNG
 ## -----------------------------------------------------------
-png("manhattan.png", height = 3600, width = 6000, res = 600)
+f <- tempfile(fileext = ".png")
+png(f, height = 3600, width = 6000, res = 600)
 opar <- par()
 par(cex = 0.7)
 mhtplot(gwas, control = ops, pch = 19)

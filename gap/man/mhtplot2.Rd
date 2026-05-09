@@ -11,15 +11,14 @@ mhtplot2(data, control = mht.control(), hcontrol = hmht.control(), ...)
 
 \item{control}{A list produced by \code{\link[=mht.control]{mht.control()}} controlling plot behaviour.}
 
-\item{hcontrol}{A list produced by \code{\link[=hmht.control]{hmht.control()}} defining highlighted
-markers or regions and labels.}
+\item{hcontrol}{A list produced by \code{\link[=hmht.control]{hmht.control()}} defining highlighted markers or regions and labels.}
 
 \item{...}{Additional graphical arguments passed to \code{\link[graphics:plot]{graphics::plot()}}
 (e.g. \code{pch}, \code{bg}, \code{xlab}, \code{ylab}, \code{ylim}).
 If \code{mar} is supplied, the default margins are not modified.}
 }
 \value{
-The plot is shown on or saved to the appropriate device.
+shown on or saved to the appropriate device.
 }
 \description{
 Manhattan plot with annotations
@@ -30,12 +29,10 @@ p values or any random variable that is uniformly distributed. By default, a log
 Note that with real chromosomal positions, it is also appropriate to plot and some but not all chromosomes.
 
 It is possible to specify options such as xlab, ylim and font family when the plot is requested for data in other
-context.
+context. The example uses only chromosomes 14 and 20 of \insertCite{denhoed13}{gap}.
 }
 \examples{
 \dontrun{
-The following example uses only chromosomes 14 and 20 of the Nat Genet paper.
-
 mdata <- within(hr1420,{
   c1<-colour==1
   c2<-colour==2
@@ -76,4 +73,3 @@ par(opar)
 \author{
 Jing Hua Zhao
 }
-\keyword{hplot}
