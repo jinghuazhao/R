@@ -91,7 +91,16 @@ METAL_forestplot <- function(tbl,all,rsid,flag="",package="meta",method="REML",s
        {
          meta::settings.meta(method.tau=method)
          mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=TITLE,method.tau.ci="")
-         meta::forest(mg,colgap.forest.left = "1cm",leftlabs=c("Study","b","SE"),...)
+         meta::forest(
+           mg,
+           colgap.forest.left = "1cm",
+           colgap.left = "6mm", colgap.right = "6mm",
+           leftcols = c("studlab","effect","seTE","ci"),
+           leftlabs = c("Study","b","SE","95% CI"),
+           rightcols = c("w.common","w.random"),
+           rightlabs = c("Weight (FE)","Weight (RE)"),
+           ...
+         )
          grid::grid.text(TITLE,0.5,0.9)
          with(mg,cat("prot =", p, "MarkerName =", m, "Q =", Q, "df =", df.Q, "p =", pval.Q,
                      "I2 =", I2, "[", lower.I2, ",", upper.I2, "]\n"))
