@@ -93,8 +93,8 @@ METAL_forestplot <- function(tbl,all,rsid,flag="",package="meta",method="REML",s
          mg <- meta::metagen(BETA,SE,sprintf("%s (%.0f)",study,N),title=TITLE,method.tau.ci="")
          meta::forest(
            mg,
-           colgap.forest.left = "3cm",
-           colgap.left = "2mm", colgap.right = "2mm",
+           colgap.forest.left = "2cm",
+           colgap.left = "1mm", colgap.right = "2mm",
            leftcols = c("studlab","effect","seTE","ci"),
            leftlabs = c("Study","b","SE","95% CI"),
            rightcols = c("w.common","w.random"),
