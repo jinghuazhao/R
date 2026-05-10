@@ -260,7 +260,7 @@ vignettes. They can be accessed via `vignette("rnews",package="gap.examples")` a
 
 We also demonstrate through pedigree 10081 example @zhao06c with `pedtodot_verbatim`.
 
-```{r, echo=FALSE}
+```{r gawfam, echo=FALSE}
 p1 <- "
  1  2   3  2  2  7/7  7/10
  2  0   0  1  1  -/-  -/-
@@ -387,7 +387,7 @@ table1[dec_cols] <- lapply(table1[dec_cols], round, 2)
 knitr::kable(table1, caption = "Power/Sample size of family-based designs")
 ```
 
-As for APOE4 and Alzheimer's @sph97
+As for APOE4 and Alzheimer's @scott97
 
 ```{r alz}
 g <- 4.5
@@ -745,7 +745,7 @@ used as `log10pvalue(p)` when p<=1e-323, or log10pvalue(base=1,exponent=-323) ot
 One can also derive logpvalue for natural base (e) similarly.
 
 We end with a quick look-up table
-```{r}
+```{r ptable}
 require(gap)
 zlist <- c(5,10,30,40,50,100,500,1000,2000,3000,5000)
 zp <- sapply(zlist,function(z) {c(z,pvalue(z),logp(z),log10p(z))})
@@ -916,7 +916,7 @@ A record of the eQTLGen data is shown below
 
 from which we obtain the effect size and its standard error as follows,
 
-```{r}
+```{r bse}
 get_b_se(0.6396966,23991,4.7245)
 ```
 
@@ -929,7 +929,7 @@ standard error is based on variance of the ratio (correction=TRUE) or $r^2$.
 
 We continue with the eQTLGen example above,
 
-```{r}
+```{r sdy}
 get_sdy(0.6396966,23991,0.04490488,0.009504684)
 ```
 
@@ -1064,15 +1064,15 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
 ```
 
-```{r, fig.cap="Forest plots for MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
-mr_forestplot(tnfb, colgap.forest.left="1mm", colgap.forest.right="1mm", fontsize=10,
+```{r fp1, fig.cap="Forest plots for MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+mr_forestplot(tnfb, fontsize=12,
              leftcols=c("studlab","effect","seTE","ci"), leftlabs=c("Outcome","b","SE","95% CI"),
              rightcols=c("w.common","w.random"),rightlabs=c("Weight (FE)","Weight (RE)"),
              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
              spacing=1.6, digits.TE=2, digits.seTE=2, xlab="Effect size", type.study="square", col.inside="black", col.square="black")
 ```
 
-```{r, fig.cap="Forest plots for MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+```{r fp2, fig.cap="Forest plots for MR results on TNFB (no summary statistics)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               leftcols="studlab", leftlabs="Outcome", plotwidth="3inch", sm="OR", rightlabs="ci",
               sortvar=tnfb[["Effect"]],
@@ -1080,7 +1080,7 @@ mr_forestplot(tnfb, colgap.forest.left="0.05cm", fontsize=14,
               backtransf=TRUE, spacing=1.6,type.study="square",col.inside="black",col.square="black")
 ```
 
-```{r, fig.cap="Forest plots for MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
+```{r fp3, fig.cap="Forest plots for MR results on TNFB (with P values)", fig.align="left", fig.height=6, fig.width=9, results="hide"}
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               leftcols=c("studlab"), leftlabs=c("Outcome"),
               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
@@ -1095,7 +1095,7 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
 ## chr_pos_a1_a2 and inv_chr_pos_a1_a2
 
 They are functions to handle SNPid.
-```{r}
+```{r pos_a1_a2}
 require(gap)
 s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
 s
@@ -1107,14 +1107,14 @@ inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 
 Here is the documentation example on rs3784099 and breast cancer @shu12.
 
-```{r}
+```{r cims}
 example(ci2ms)
 ```
 
 ## gc.lambda
 
 The definition is as follows,
-```{r}
+```{r gclambda}
 gc.lambda <- function(x, logscale=FALSE, z=FALSE) {
   v <- x[!is.na(x)]
   n <- length(v)
@@ -1151,11 +1151,11 @@ lambda1000 <- function(lambda, ncases, ncontrols)
 ## invnormal
 
 The function is widely used in various consortium analyses and defined as follows,
-```{r}
+```{r invn}
 invnormal <- function(x) qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x)))
 ```
 An example use on data from Poisson distribution is as follows,
-```{r}
+```{r pois}
 set.seed(12345)
 Ni <- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
 y <- invnormal(Ni)
@@ -1171,7 +1171,7 @@ sd(y)
 
 This functions obtains allele(s) on the opposite strand.
 
-```{r}
+```{r strand}
 alleles <- c("a","c","G","t")
 revStrand(alleles)
 ```
@@ -1210,7 +1210,7 @@ of datasets, respectvely. If this looks odd to you, you might try
 `search()` within `R` to examine what is available in your
 environment before issuing the `lsf.str` command.
 
-```{r, echo=FALSE}
+```{r appendix, echo=FALSE}
 library(gap)
 search()
 lsf.str("package:gap")
