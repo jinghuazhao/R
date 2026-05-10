@@ -484,7 +484,7 @@ mhtplot(
     gap     = 1000,
     cex     = 0.6,
     cutoffs = c(suggestiveline,genomewideline),
-    lab.cex = 0.8,
+    lab.cex = 0.6,
     xline   = 3,
     yline   = 3
   ),
@@ -500,18 +500,14 @@ data <- with(mhtdata,cbind(chr,pos,p))
 glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
            "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 hdata <- subset(mhtdata,gene%in%glist)[c("chr","pos","p","gene")]
-color <- rep(c("lightgray","gray"),11)
-glen <- length(glist)
-hcolor <- rep("red",glen)  
-par(las=2, xpd=TRUE, cex.axis=1.8, cex=0.4)
-ops <- mht.control(colors=color,yline=1.5,xline=3)
+hcolor <- rep("red",length(glist))
+ops <- mht.control(axis.tck=0.02,cex=0.4,xline=4)
 hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
 mhtplot(data,ops,hops,pch=19)
 ```
 
 All these look familiar, so revised form of the function called `mhtplot2` was
-created for additional features such as centering the chromosome ticks, allowing for 
-more sophisticated coloring schemes, using prespecified fonts, etc. Please refer to
+created, allowing for more sophisticated coloring schemes, using prespecified fonts, etc. Please refer to
 the function's documentation example.
 
 We could also go further with a circos Manhattan plot,
