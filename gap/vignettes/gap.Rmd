@@ -64,15 +64,14 @@ Notable recent technical updates include:
 
 1. documentaion from R code via **roxygen2** and **devtools** to allow for easier
    generation of the .Rd files and NAMESPACE.
-
 2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** that allows
    for numbered sectioning, multiple figures generated from a code chunk, and
    Citation Style Language (CSL) (https://citationstyles.org/). **Rdpack** is now
    employed for BibTeX citations in the .Rd files.
-
 3. an experimental shiny App (`runshinygap`()).
-
 4. lately, vibe coding has been conducted notably regarding `ccsize()` and `mhtplot()`.
+5. Historically, the package is hosted together with other CRAN packages at GitHub,
+   See pQTLtools package for a pkgdown-style setup.
 
 These experiences can be useful for others in their package development. I found it
 useful to use specific functions without loading the whole package, i.e., `library(gap)`,
@@ -1065,7 +1064,7 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
 ```
 
 ```{r fp1, fig.cap="Forest plots for MR results on TNFB", fig.align="left", fig.height=6, fig.width=9, results="hide"}
-mr_forestplot(tnfb, fontsize=12,
+mr_forestplot(tnfb, fontsize=13,
              leftcols=c("studlab","effect","seTE","ci"), leftlabs=c("Outcome","b","SE","95% CI"),
              rightcols=c("w.common","w.random"),rightlabs=c("Weight (FE)","Weight (RE)"),
              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
