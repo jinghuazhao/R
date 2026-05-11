@@ -3,6 +3,7 @@ Version history of the R genetic analysis package (R/gap)
 Version 1.15
 10-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
 		Add labels for code chunks/@scott97 from @sph in vignette as indicated by devtools::build_vignettes()
+		Add src/Makevars and amend .Rbuildignore
 		Amend references/examples for fbsize/pbsize
 		Drop escape \%in\% in mhtplot.R and xix boxed=TRUE in mhtplot() & mhtplot2()(finally!)
 		Fix R/.github/workflows/r.yml
