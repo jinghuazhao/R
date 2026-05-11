@@ -4,6 +4,18 @@ set -euo pipefail
 cd ~/R
 module load ceuadmin/R
 
+version=$(awk '/^Version:/{print $2}' ~/R/gap/DESCRIPTION)
+
+# ---- Legacy workflow ----
+R CMD build --compact-vignettes=both --md5 --resave-data --log gap
+rm -f gap/src/*.so gap/src/*.o || true
+R CMD INSTALL --compact-docs --data-compress=xz gap_${version}.tar.gz
+R CMD check --as-cran gap_${version}.tar.gz
+
+if command -v valgrind >/dev/null; then
+  R CMD check --use-valgrind gap_${version}.tar.gz
+fi
+
 # ---- CRAN env ----
 export _R_CHECK_CRAN_INCOMING_=TRUE
 export _R_CHECK_CRAN_INCOMING_REMOTE_=TRUE
@@ -24,15 +36,3 @@ Rscript -e '
     error_on="warning"
   )
 '
-
-version=$(awk '/^Version:/{print $2}' ~/R/gap/DESCRIPTION)
-
-# ---- Legacy workflow ----
-R CMD build --compact-vignettes=both --md5 --resave-data --log gap
-rm -f gap/src/*.so gap/src/*.o || true
-R CMD INSTALL --compact-docs --data-compress=xz gap_${version}.tar.gz
-R CMD check --as-cran gap_${version}.tar.gz
-
-if command -v valgrind >/dev/null; then
-  R CMD check --use-valgrind gap_${version}.tar.gz
-fi
