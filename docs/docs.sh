@@ -1,7 +1,7 @@
-# 28-3-2026 JHZ
+# 13-5-2026 JHZ
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
-rsync -av ~/hpc-work/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
+rsync -av ~/rds/software/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
