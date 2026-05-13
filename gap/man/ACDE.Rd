@@ -103,7 +103,7 @@ and dominance (D). ACE and ADE models should be interpreted jointly.
 }
 }
 \note{
-This complements \cite{pbsize()} and \cite{fbsize()}.
+This complements \code{\link[=pbsize]{pbsize()}} and \code{\link[=fbsize]{fbsize()}}.
 }
 \section{Required columns in \code{data}}{
 
