@@ -12,7 +12,6 @@ version=$(awk '/^Version:/{print $2}' ~/R/gap/DESCRIPTION)
 R CMD build --compact-vignettes=both --md5 --resave-data --log gap
 R CMD INSTALL --compact-docs --data-compress=xz gap_${version}.tar.gz
 R CMD check --as-cran --run-donttest gap_${version}.tar.gz
-rm -f gap/src/*.so gap/src/*.o || true
 
 if command -v valgrind >/dev/null; then
   R CMD check --use-valgrind gap_${version}.tar.gz
@@ -39,3 +38,4 @@ Rscript -e '
     error_on="warning"
   )
 '
+rm -f gap/src/*.so gap/src/*.o || true
