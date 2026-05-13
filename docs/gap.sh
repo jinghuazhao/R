@@ -37,7 +37,8 @@ Rscript -e '
   rcmdcheck::rcmdcheck(
     tarball,
     args = c("--as-cran","--run-donttest"),
-    error_on = "warning"
+    error_on = "warning",
+    check_dir = "."
   )
 '
 rm -f gap/src/*.so gap/src/*.o || true
