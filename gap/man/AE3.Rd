@@ -47,7 +47,6 @@ AE3(bwt ~ male + first + midage + highage + birthyr,
 }
 \references{
 \insertAllCited{}
-\insertRef{rh08}{gap}
 }
 \author{
 Jing Hua Zhao

@@ -77,7 +77,6 @@ cat("\nPopulation-based result: Kp =",k, "Kq =",s, "n =",ceiling(n),"\n")
 
 }
 \references{
-\insertAllCited{}
 \insertRef{scott97}{gap}\insertRef{rosner00}{gap}\insertRef{armitage05}{gap}
 }
 \seealso{

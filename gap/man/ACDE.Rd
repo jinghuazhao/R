@@ -102,6 +102,9 @@ Nuclear family data cannot fully separate shared environment (C)
 and dominance (D). ACE and ADE models should be interpreted jointly.
 }
 }
+\note{
+This complements \cite{pbsize()} and \cite{fbsize()}.
+}
 \section{Required columns in \code{data}}{
 
 
@@ -196,4 +199,7 @@ summary(AE)
 summary(ACE)
 summary(ADE)
 
+}
+\author{
+ChatGPT
 }

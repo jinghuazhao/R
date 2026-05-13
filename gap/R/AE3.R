@@ -20,7 +20,6 @@
 #'
 #' @references
 #' \insertAllCited{}
-#' \insertRef{rh08}{gap}
 #'
 #' @examples
 #' \dontrun{

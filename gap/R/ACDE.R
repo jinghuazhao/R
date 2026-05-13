@@ -107,6 +107,7 @@
 #' Nuclear family data cannot fully separate shared environment (C)
 #' and dominance (D). ACE and ADE models should be interpreted jointly.
 #'
+#' @note This complements [pbsize()] and [fbsize()].
 #' @return Object of class `"ACDEfit"` containing:
 #' \describe{
 #' \item{fit}{`nlme::lme` object}
@@ -175,6 +176,7 @@
 #' summary(ACE)
 #' summary(ADE)
 #'
+#' @author ChatGPT
 #' @export
 #'
 ACDE <- function(model, data, type=c("AE","ACE","ADE"), method="ML")

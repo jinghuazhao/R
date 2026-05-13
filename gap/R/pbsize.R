@@ -16,7 +16,6 @@
 #' The returned value is scaler containing the required sample size.
 #'
 #' @references
-#' \insertAllCited{}
 #' \insertRef{scott97}{gap}\insertRef{rosner00}{gap}\insertRef{armitage05}{gap}
 #'
 #' @seealso [`fbsize`]
