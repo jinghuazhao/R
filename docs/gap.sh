@@ -32,10 +32,12 @@ Rscript -e 'cat(R.version.string,"\n")'
 Rscript -e '
   devtools::document("gap")
   tarball <- pkgbuild::build("gap")
+  install.packages(tarball, repos = NULL, type = "source")
+  library(gap)
   rcmdcheck::rcmdcheck(
     tarball,
-    args=c("--as-cran","--run-donttest"),
-    error_on="warning"
+    args = c("--as-cran","--run-donttest"),
+    error_on = "warning"
   )
 '
 rm -f gap/src/*.so gap/src/*.o || true
