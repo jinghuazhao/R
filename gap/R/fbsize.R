@@ -8,7 +8,7 @@
 #' @param error 0=use the correct formula,1=the original paper.
 #'
 #' @details
-#' This function implements Risch and Merikangas (1996) statistics 
+#' This function implements \insertCite{risch96;textual}{gap} statistics
 #' evaluating power for family-based linkage (affected sib pairs, ASP) and
 #' association design. They are potentially useful in the prospect of
 #' genome-wide association studies.

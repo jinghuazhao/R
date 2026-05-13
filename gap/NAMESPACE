@@ -2,6 +2,7 @@
 
 S3method(plot,hap.score)
 S3method(print,hap.score)
+export(ACDE)
 export(AE3)
 export(BFDP)
 export(ESplot)

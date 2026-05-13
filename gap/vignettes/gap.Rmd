@@ -62,14 +62,14 @@ initiative has been made in the **pQTLtools** package.
 
 Notable recent technical updates include:
 
-1. documentaion from R code via **roxygen2** and **devtools** to allow for easier
+1. Documentaion from R code via **roxygen2** and **devtools** to allow for easier
    generation of the .Rd files and NAMESPACE.
-2. vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** that allows
+2. Vignettes with noweb/Sweave as well as **rmarkdown** and **bookdown** that allows
    for numbered sectioning, multiple figures generated from a code chunk, and
    Citation Style Language (CSL) (https://citationstyles.org/). **Rdpack** is now
    employed for BibTeX citations in the .Rd files.
-3. an experimental shiny App (`runshinygap`()).
-4. lately, vibe coding has been conducted notably regarding `ccsize()` and `mhtplot()`.
+3. An experimental shiny App (`runshinygap`()).
+4. Lately, vibe coding has been conducted notably regarding `ACDE()`, `ccsize()` and `mhtplot()`.
 5. Historically, the package is hosted together with other CRAN packages at GitHub,
    See pQTLtools package for a pkgdown-style setup.
 
@@ -84,6 +84,7 @@ The currently available functions are shown below,
 Name              |      Description
 ------------------|------------------------------------------------------------------
 **ANALYSIS** | &nbsp;
+ACDE              |      AE/ACE/ADE models using nuclear families
 AE3               |      AE model using nuclear family trios
 bt                |      Bradley-Terry model for contingency table
 ccsize            |      Power and sample size for case-cohort design

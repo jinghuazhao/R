@@ -8,7 +8,7 @@
 #' @param verbose a flag for printing out results.
 #'
 #' @details
-#' This function is adapted from example 7.1 of Rabe-Hesketh et al. (2008). It
+#' This function is adapted from example 7.1 of \insertCite{rh08;textual}{gap}. It
 #' also procides heritability estimate and confidence intervals.
 #'
 #' @export
@@ -19,6 +19,7 @@
 #' - CL confidence intervals.
 #'
 #' @references
+#' \insertAllCited{}
 #' \insertRef{rh08}{gap}
 #'
 #' @examples

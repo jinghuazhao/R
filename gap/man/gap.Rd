@@ -21,6 +21,7 @@ We have incorporated functions for a wide range of problems as shown below.
 \cr
 \strong{ANALYSIS}\cr
 \cr
+ACDE              \tab      AE/ACE/ADE models using nuclear families\cr
 AE3               \tab      AE model using nuclear family trios\cr
 bt                \tab      Bradley-Terry model for contingency table\cr
 ccsize            \tab      Power and sample size for case-cohort design\cr

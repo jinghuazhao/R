@@ -31,7 +31,7 @@ The returned value is a list containing:
 AE model using nuclear family trios
 }
 \details{
-This function is adapted from example 7.1 of Rabe-Hesketh et al. (2008). It
+This function is adapted from example 7.1 of \insertCite{rh08;textual}{gap}. It
 also procides heritability estimate and confidence intervals.
 }
 \note{
@@ -46,6 +46,7 @@ AE3(bwt ~ male + first + midage + highage + birthyr,
 
 }
 \references{
+\insertAllCited{}
 \insertRef{rh08}{gap}
 }
 \author{
