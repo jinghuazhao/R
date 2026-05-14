@@ -4,16 +4,12 @@
 \alias{pedtodot_verbatim}
 \title{Pedigree-drawing with graphviz}
 \usage{
-pedtodot_verbatim(f, run = FALSE, toDOT = FALSE, ...)
+pedtodot_verbatim(f, run = FALSE)
 }
 \arguments{
 \item{f}{A data.frame containing pedigrees, each with pedigree id, individual id, father id, mother id, sex and affection status.}
 
 \item{run}{A flag to run dot/neato on the generated .dot file(s).}
-
-\item{toDOT}{A flag to generate script for \code{DOT::dot()}.}
-
-\item{...}{Other flag(s) for \code{DOT::dot()}.}
 }
 \value{
 No value is returned but outputs in .dot, .pdf, and .svg.
@@ -33,7 +29,7 @@ Adapted from Bash/awk script by David Duffy
 }
 \examples{
 \dontrun{
-# pedigree p3 in pedtodot
-  pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
+# pedigree p3 in pedtodot / toDOT=TRUE
+  pedtodot_verbatim(p3,run=TRUE,return="verbatim")
 }
 }

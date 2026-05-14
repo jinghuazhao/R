@@ -2,7 +2,7 @@ Type: Package
 Package: gap
 Title: Genetic Analysis Package
 Version: 1.15.0
-Date: 2026-05-13
+Date: 2026-05-14
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -25,7 +25,7 @@ URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
 Depends: R (>= 2.10), gap.datasets (>= 0.0.6)
 Imports: dplyr, ggplot2, plotly, Rdpack
-Suggests: BradleyTerry2, DiagrammeR, DOT, MASS, Matrix, MCMCglmm, R2jags,
+Suggests: BradleyTerry2, DiagrammeR, MASS, Matrix, MCMCglmm, R2jags,
           bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
           foreign, genetics, grDevices, haplo.stats, htmlwidgets, jsonlite,
           kinship2, knitr, lattice, magic, matrixStats, meta, metafor,

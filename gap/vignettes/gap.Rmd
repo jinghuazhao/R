@@ -288,12 +288,11 @@ p3 <- data.frame(pid=10081,p2)
 ```{r pedtodot, fig.cap="An example pedigree", fig.height=8, fig.width=7}
 library(gap)
 knitr::kable(p3,caption="An example pedigree")
-library(DOT)
-# one can see the diagram in RStudio
-pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
+# visible diagram in RStudio / toDOT=TRUE here
+gap::pedtodot_verbatim(p3,run=TRUE)
 library(DiagrammeR)
-pedtodot_verbatim(p3)
-grViz(readr::read_file("10081.dot"))
+gap::pedtodot_verbatim(p3)
+DiagrammeR::grViz(readr::read_file("10081.dot"))
 ```
 
 ## Kinship calculation

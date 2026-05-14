@@ -199,6 +199,13 @@ summary(AE)
 summary(ACE)
 summary(ADE)
 
+require(gap.datasets)
+model <- bwt ~ male + first + midage + highage + birthyr
+AE <- ACDE(model,mfblong)
+ACE <- ACDE(model,mfblong,type="ACE")
+ADE <- ACDE(model,mfblong,type="ADE")
+anova(AE$fit,ACE$fit,ADE$fit)
+
 }
 \author{
 ChatGPT

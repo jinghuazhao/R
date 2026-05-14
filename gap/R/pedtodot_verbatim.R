@@ -2,8 +2,6 @@
 #'
 #' @param f A data.frame containing pedigrees, each with pedigree id, individual id, father id, mother id, sex and affection status.
 #' @param run A flag to run dot/neato on the generated .dot file(s).
-#' @param toDOT A flag to generate script for `DOT::dot()`.
-#' @param ... Other flag(s) for `DOT::dot()`.
 #'
 #' @details
 #' Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and optionally
@@ -18,12 +16,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' # pedigree p3 in pedtodot
-#'   pedtodot_verbatim(p3,run=TRUE,toDOT=TRUE,return="verbatim")
+#' # pedigree p3 in pedtodot / toDOT=TRUE
+#'   pedtodot_verbatim(p3,run=TRUE)
 #' }
 #' @note Adapted from Bash/awk script by David Duffy
 
-pedtodot_verbatim <- function(f,run=FALSE,toDOT=FALSE,...)
+pedtodot_verbatim <- function(f,run=FALSE)
 {
   shape <- shade <- array()
   shape["f"] <- "box,regular=1"
@@ -38,6 +36,7 @@ pedtodot_verbatim <- function(f,run=FALSE,toDOT=FALSE,...)
   shade["1"] <- "white"
   shade["x"] <- "white"
   shade["0"] <- "white"
+  toDOT <- FALSE
   eol <- ifelse(toDOT,"","\n")
 
   uid <- unique(f[,1])
@@ -94,8 +93,8 @@ pedtodot_verbatim <- function(f,run=FALSE,toDOT=FALSE,...)
          system(sprintf("neato -Tsvg %s.dot -o %s_neato.svg",p,p))
        } else {
          cat(sprintf("running DOT::dot on %s\n",p))
-         requireNamespace("DOT")
-         source(paste0(p,".R"))
+       # requireNamespace("DOT")
+       # source(paste0(p,".R"))
        }
     }
   }
