@@ -30,6 +30,6 @@ Adapted from Bash/awk script by David Duffy
 \examples{
 \dontrun{
 # pedigree p3 in pedtodot / toDOT=TRUE
-  pedtodot_verbatim(p3,run=TRUE,return="verbatim")
+  pedtodot_verbatim(p3,run=TRUE)
 }
 }
