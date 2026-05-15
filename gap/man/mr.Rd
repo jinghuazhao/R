@@ -2,54 +2,104 @@
 % Please edit documentation in R/mr.R
 \name{mr}
 \alias{mr}
-\title{Mendelian randomization analysis}
+\title{Mendelian Randomization wrapper (IVW, Egger, Weighted Median, Penalised WM)}
 \usage{
 mr(data, X, Y, alpha = 0.05, other_plots = FALSE)
 }
 \arguments{
-\item{data}{Data to be used.}
+\item{data}{Data frame containing SNP summary statistics in wide format.}
 
-\item{X}{Exposure.}
+\item{X}{Character string. Exposure trait name.}
 
-\item{Y}{Outcome.}
+\item{Y}{Character vector. Outcome trait names.}
 
-\item{alpha}{type I error rate for confidence intervals.}
+\item{alpha}{Significance level used for confidence intervals (default 0.05).}
 
-\item{other_plots}{To add funnel and forest plots.}
+\item{other_plots}{Logical. If TRUE, produces metafor funnel and forest plots.
+
+Performs two–sample Mendelian Randomization using summary statistics
+stored in a wide data frame with columns named:
+
+\itemize{
+\item SNP
+\item b.trait   : effect estimate
+\item SE.trait  : standard error
+}
+
+For each outcome in \code{Y}, the function:
+\enumerate{
+\item Extracts instruments for exposure \code{X}
+\item Computes IVW, MR-Egger, Weighted Median and Penalised Weighted Median estimates
+\item Computes Cochran’s Q heterogeneity statistic
+\item Produces MR scatter plots
+}}
 }
 \value{
-The result and plots.
+Invisible list with components:
+\describe{
+\item{r}{Matrix of MR estimates for each exposure–outcome pair.}
+\item{plots}{List of ggplot objects (MR scatter plots).}
+}
 }
 \description{
-Mendelian randomization analysis
+Mendelian Randomization wrapper (IVW, Egger, Weighted Median, Penalised WM)
 }
 \details{
-The function initially intends to rework on GSMR outputs, but it would be appropriate for general use.
+Methods implemented:
+\itemize{
+\item IVW (inverse-variance weighted regression)
+\item MR-Egger regression
+\item Weighted median estimator
+\item Penalised weighted median
+\item Cochran’s Q heterogeneity statistic (metafor)
+}
+
+Required packages:
+\code{metafor}, \code{ggplot2}, \code{cowplot}.
+Functions \code{weighted.median()} and \code{mr.boot()} must be available
+in the environment (e.g. from Mendelian randomization toolkits).
 }
 \examples{
-library(ggplot2)
-library(gap)
-mrdat <- '
- rs188743906  0.6804   0.1104  0.00177 0.01660        NA        NA
-   rs2289779 -0.0788   0.0134  0.00104 0.00261 -0.007543 0.0092258
- rs117804300 -0.2281   0.0390 -0.00392 0.00855  0.109372 0.0362219
-   rs7033492 -0.0968   0.0147 -0.00585 0.00269  0.022793 0.0119903
-  rs10793962  0.2098   0.0212  0.00378 0.00536 -0.014567 0.0138196
-    rs635634 -0.2885   0.0153 -0.02040 0.00334  0.077157 0.0117123
-    rs176690 -0.0973   0.0142  0.00293 0.00306 -0.000007 0.0107781
- rs147278971 -0.2336   0.0378 -0.01240 0.00792  0.079873 0.0397491
-  rs11562629  0.1155   0.0181  0.00960 0.00378 -0.010040 0.0151460
-'
-v <- c("SNP", "b.LIF.R", "SE.LIF.R", "b.FEV1", "SE.FEV1", "b.CAD", "SE.CAD")
-mrdat <- setNames(as.data.frame(scan(file=textConnection(mrdat),
-                                     what=list("",0,0,0,0,0,0))), v)
-knitr::kable(mrdat,caption="Table 2. LIF.R and CAD/FEV1")
+\dontrun{
+if (requireNamespace("metafor", quietly = TRUE) &&
+    requireNamespace("ggplot2", quietly = TRUE) &&
+    requireNamespace("cowplot", quietly = TRUE)) {
+txt <- "
+rs188743906  0.6804 0.1104  0.00177 0.01660        NA        NA
+rs2289779   -0.0788 0.0134  0.00104 0.00261 -0.007543 0.0092258
+rs117804300 -0.2281 0.0390 -0.00392 0.00855  0.109372 0.0362219
+rs7033492   -0.0968 0.0147 -0.00585 0.00269  0.022793 0.0119903
+rs10793962   0.2098 0.0212  0.00378 0.00536 -0.014567 0.0138196
+rs635634    -0.2885 0.0153 -0.02040 0.00334  0.077157 0.0117123
+rs176690    -0.0973 0.0142  0.00293 0.00306 -0.000007 0.0107781
+rs147278971 -0.2336 0.0378 -0.01240 0.00792  0.079873 0.0397491
+rs11562629   0.1155 0.0181  0.00960 0.00378 -0.010040 0.0151460
+"
+v <- c("SNP","b.LIF.R","SE.LIF.R","b.FEV1","SE.FEV1","b.CAD","SE.CAD")
+mrdat <- setNames(as.data.frame(scan(text = txt,
+                  what = list("",0,0,0,0,0,0), quiet=TRUE)), v)
 res <- mr(mrdat, "LIF.R", c("CAD","FEV1"), other_plots=TRUE)
-s <- res$r[-1,]
-colnames(s) <- res$r[1,]
-r <- matrix(as.numeric(s[,-1]),nrow(s),dimnames=list(res$r[-1,1],res$r[1,-1]))
-p <- sapply(c("IVW","EGGER","WM","PWM"), function(x)
-     format(2*pnorm(-abs(r[,paste0("b",x)]/r[,paste0("seb",x)])),digits=3,scientific=TRUE))
-rp <- t(data.frame(round(r,3),p))
-knitr::kable(rp,align="r",caption="Table 3. LIFR variant rs635634 and CAD/FEV1")
+r <- as.data.frame(res$r, stringsAsFactors=FALSE)
+rownames(r) <- r$IV
+r$IV <- NULL
+r[] <- lapply(r, function(x) as.numeric(as.character(x)))
+b_cols  <- grep("^b[A-Z]", names(r), value=TRUE)
+se_cols <- paste0("se", substring(b_cols, 2))
+keep <- se_cols \%in\% names(r)
+b_cols <- b_cols[keep]; se_cols <- se_cols[keep]
+if(length(b_cols) > 0){
+  pvals <- sapply(seq_along(b_cols), function(i)
+    2 * pnorm(-abs(r[[b_cols[i]]] / r[[se_cols[i]]])))
+  pvals <- as.data.frame(pvals)
+  colnames(pvals) <- substring(b_cols, 2)
+  pvals[] <- lapply(pvals, format.pval, digits=3, eps=1e-4)
+  results_table <- cbind(round(r,3), pvals)
+} else {
+  results_table <- round(r,3)
+}
+results_table
+res$plots
+}
+}
+
 }

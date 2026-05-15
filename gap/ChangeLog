@@ -1,8 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15
-14-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
-		Add ACDE upon revisiting AE3
+15-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
+		Add ACDE() upon revisiting AE3()
 		Add labels for code chunks/@scott97 from @sph in vignette as indicated by devtools::build_vignettes()
 		Amend .Rbuildignore
 		Amend references/examples for fbsize/pbsize
@@ -12,7 +12,7 @@ Version 1.15
 		Fix ccsize.R, inst/shinygap/server.R
 		Polish DESCRIPTION esp. drop grid and add grDevices in Suggests
 		Revise METAL/mr_forestplot along with their documentation and vignettes
-		Rewrite metap()
+		Rewrite metap() / metareg(), mr()
 
 Version 1.14
 19-02-2026	Adopt --use-valgrind / .valgrindrc

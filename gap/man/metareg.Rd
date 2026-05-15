@@ -4,7 +4,7 @@
 \alias{metareg}
 \title{Fixed and random effects model for meta-analysis}
 \usage{
-metareg(data, N, verbose = "Y", prefixb = "b", prefixse = "se")
+metareg(data, N, verbose = TRUE, prefixb = "b", prefixse = "se")
 }
 \arguments{
 \item{data}{Data frame to be used.}

@@ -500,7 +500,7 @@ glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
            "PPP1R3B","RP1L1","FDFT1","SLC39A14","GFRA1","MC4R")
 hdata <- subset(mhtdata,gene%in%glist)[c("chr","pos","p","gene")]
 hcolor <- rep("red",length(glist))
-ops <- mht.control(axis.tck=0.02,cex=0.4,xline=4)
+ops <- mht.control(axis.tck=0.02,cex=0.4,lab.cex=0.8,xline=4)
 hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
 mhtplot(data,ops,hops,pch=19)
 ```
@@ -985,7 +985,7 @@ environment (ACE) model, e.g., [10.1038/s41562-023-01530-y](https://doi.org/10.1
 The function `mr` was originally developed to rework on data generated from GSMR @zhu18, although it could be any harmonised data. The following example is from analysis of a real data on LIF-R protein and CVD/FEV1.
 
 ```{r mrdat, echo=FALSE}
-mrdat <- '
+txt <- '
  rs188743906  0.6804   0.1104  0.00177 0.01660        NA        NA
    rs2289779 -0.0788   0.0134  0.00104 0.00261 -0.007543 0.0092258
  rs117804300 -0.2281   0.0390 -0.00392 0.00855  0.109372 0.0362219
@@ -996,8 +996,8 @@ mrdat <- '
  rs147278971 -0.2336   0.0378 -0.01240 0.00792  0.079873 0.0397491
   rs11562629  0.1155   0.0181  0.00960 0.00378 -0.010040 0.0151460
 '
-mrdat <- setNames(as.data.frame(scan(file=textConnection(mrdat), what=list("",0,0,0,0,0,0))), 
-         c("SNP", "b.LIF.R", "SE.LIF.R", "b.FEV1", "SE.FEV1", "b.CAD", "SE.CAD"))
+v <- c("SNP","b.LIF.R","SE.LIF.R","b.FEV1","SE.FEV1","b.CAD","SE.CAD")
+mrdat <- setNames(as.data.frame(scan(text = txt, what = list("",0,0,0,0,0,0), quiet = TRUE)),v)
 knitr::kable(mrdat,caption="LIF-R and CAD/FEV1")
 ```
 
@@ -1005,13 +1005,16 @@ The MR analysis is as follows,
 
 ```{r mr, echo=FALSE, fig.cap="Mendelian randomization", fig.height=7, fig.width=7}
 res <- mr(mrdat, "LIF.R", c("CAD","FEV1"), other_plots=TRUE)
-s <- res$r[-1,]
-colnames(s) <- res$r[1,]
-r <- matrix(as.numeric(s[,-1]),nrow(s),dimnames=list(res$r[-1,1],res$r[1,-1]))
-p <- sapply(c("IVW","EGGER","WM","PWM"), function(x)
-     format(2*pnorm(-abs(r[,paste0("b",x)]/r[,paste0("seb",x)])),digits=3,scientific=TRUE))
-rp <- t(data.frame(round(r,3),p))
-knitr::kable(rp, align="r", caption="LIFR variant rs635634 and CAD/FEV1")
+r <- res$r
+rownames(r) <- r[,1]
+r <- r[,-1,drop=FALSE]
+r <- apply(r, 2, as.numeric)
+methods <- c("IVW","EGGER","WM","PWM")
+p <- sapply(methods, function(m) 2*pnorm(-abs(r[,paste0("b",m)]/r[,paste0("seb",m)])))
+colnames(p) <- paste0("p",methods)
+knitr::kable(t(data.frame(round(r,3), format(p,3,scientific=TRUE), check.names=FALSE)),
+             align="r", caption="LIFR variant rs635634 and CAD/FEV1"
+)
 ```
 
 This is close to Ligthart et al. @ligthart18 as used one time at workplace which turns to overlap with TwoSampleMR @hemani18.

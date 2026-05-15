@@ -271,3 +271,5 @@ ci2ms <- function(ci,logscale=TRUE,alpha=0.05)
   direction <- sapply(m,function(x) {if(sign(x)==-1) "-" else if(sign(x)==0) "0" else "+"})
   invisible(list(m=m,s=s,direction=direction))
 }
+
+utils::globalVariables(c("intercept","slope","method"))
