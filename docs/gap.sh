@@ -31,12 +31,12 @@ Rscript -e 'cat(R.version.string,"\n")'
 # Modern workflow
 Rscript -e '
   devtools::document("gap")
-  tarball <- pkgbuild::build("gap")
-  install.packages(tarball, repos = NULL, type = "source")
+  tarball <- pkgbuild::build("gap", clean=TRUE)
+  install.packages(tarball, repos=NULL, type="source")
   library(gap)
   rcmdcheck::rcmdcheck(
     tarball,
-    args = c("--as-cran","--run-donttest"),
+    args = c("--as-cran", "--run-donttest", "--timings"),
     error_on = "warning",
     check_dir = "."
   )
