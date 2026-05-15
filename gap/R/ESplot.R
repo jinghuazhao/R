@@ -66,6 +66,7 @@
 #' @author Jing Hua Zhao
 #' @keywords hplot
 #' @export
+#'
 ESplot <- function(
   ESdat,
   alpha = 0.05,
@@ -81,44 +82,43 @@ ESplot <- function(
   z <- abs(qnorm(alpha/2))
   lcl <- ES - z*SE
   ucl <- ES + z*SE
+
   if (transform == "exp") {
-    ES  <- exp(ES)
-    lcl <- exp(lcl)
-    ucl <- exp(ucl)
+    ES  <- exp(ES); lcl <- exp(lcl); ucl <- exp(ucl)
     ref <- 1
     if (is.null(xlab)) xlab <- "Odds ratio"
   } else {
     ref <- 0
     if (is.null(xlab)) xlab <- "Effect size"
   }
-  N <- nrow(ESdat)
-  y <- 1:N
-  ESdata <- data.frame(ES, y, lcl, ucl, id)
+  y <- 1:nrow(ESdat)
+  ESdata <- data.frame(ES,y,lcl,ucl,id)
   requireNamespace("ggplot2", quietly=TRUE)
   p <- ggplot2::ggplot(ESdata, ggplot2::aes(x=ES, y=y)) +
     ggplot2::geom_point(size=2) +
     ggplot2::geom_errorbar(
       ggplot2::aes(xmin=lcl, xmax=ucl),
-      width=0.15,
-      linewidth=0.6,
-      orientation="y"
+      width=0.15, linewidth=0.6, orientation="y"
     ) +
     ggplot2::scale_y_continuous(
-      breaks=y,
-      labels=id,
-      name="",
-      trans="reverse"
+      breaks=y, labels=id, name="", trans="reverse"
     ) +
     ggplot2::geom_vline(xintercept=ref, linetype="dashed", alpha=.5) +
     ggplot2::theme_minimal() +
     ggplot2::theme(
       text=ggplot2::element_text(size=fontsize, colour="black"),
       panel.grid=ggplot2::element_blank(),
+      axis.line.x  = ggplot2::element_line(colour="black"),
+      axis.ticks.x = ggplot2::element_line(colour="black"),
       panel.spacing=ggplot2::unit(1,"lines")
     )
-  if (transform == "exp")
-    p <- p + ggplot2::scale_x_log10(name=xlab)
-  else
-    p <- p + ggplot2::scale_x_continuous(name=xlab)
+  if (transform == "exp") {
+    ticks <- c(0.25,0.5,1,2,4,8)
+    p <- p + ggplot2::scale_x_log10(name=xlab, breaks=ticks, labels=ticks)
+  } else {
+    p <- p + ggplot2::scale_x_continuous(
+      name=xlab, breaks=scales::pretty_breaks(n=6)
+    )
+  }
   p
 }
