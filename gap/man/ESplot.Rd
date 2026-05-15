@@ -2,51 +2,85 @@
 % Please edit documentation in R/ESplot.R
 \name{ESplot}
 \alias{ESplot}
-\title{Effect-size plot}
+\title{Effect-size / Odds-ratio forest plot}
 \usage{
-ESplot(ESdat, alpha = 0.05, fontsize = 12)
+ESplot(
+  ESdat,
+  alpha = 0.05,
+  fontsize = 12,
+  transform = c("none", "exp"),
+  xlab = NULL
+)
 }
 \arguments{
-\item{ESdat}{A data frame consisting of model id, parameter estimates and standard errors.}
+\item{ESdat}{Data frame with \strong{three columns}:
+\describe{
+\item{id}{Model or trait label}
+\item{b}{Effect estimate (beta or log(OR)/log(HR))}
+\item{se}{Standard error of the estimate}
+}}
 
-\item{alpha}{Type-I error rate used to construct 100(1-alpha) confidence interval.}
+\item{alpha}{Type-I error rate for the confidence interval
+(default 0.05 for 95\% CI).}
 
-\item{fontsize}{size of font.}
+\item{fontsize}{Base font size used in the plot.}
+
+\item{transform}{Either \code{"none"} (linear scale) or \code{"exp"}
+(exponentiated scale).}
+
+\item{xlab}{Optional x-axis label. If \code{NULL}, a sensible default is used.}
 }
 \value{
-A high resolution plot object.
+A \code{ggplot2} plot object.
 }
 \description{
-Effect-size plot
+The function accepts parameter estimates and their standard errors
+from one or more models and produces a horizontal forest plot with
+confidence intervals.
+
+Two plotting modes are supported:
+\itemize{
+\item \code{transform="none"} (default): plots estimates on the linear scale
+(typical for GWAS or Mendelian randomisation beta coefficients).
+\item \code{transform="exp"}: plots exponentiated estimates on a log10 axis
+(typical for odds ratios or hazard ratios). Confidence intervals are
+computed on the log scale and back-transformed.
+}
 }
 \details{
-The function accepts parameter estimates and their standard errors for a range of models.
+Create a publication-ready forest plot for model effect estimates.
+The function supports both linear effect sizes (e.g. regression betas)
+and exponentiated effects (e.g. odds ratios or hazard ratios).
+
+Confidence intervals are computed as
+
+\deqn{ estimate \pm z_{\alpha/2} \times SE }
+
+When \code{transform="exp"}, estimates are interpreted as log(OR) or log(HR)
+and are exponentiated before plotting. The x-axis is displayed on a
+log10 scale and the reference line is placed at 1.
+
+This function replaces an earlier base-R implementation and provides a
+consistent interface for GWAS, Mendelian randomisation, and
+epidemiological regression analyses.
 }
 \examples{
-rs12075 <- data.frame(id=c("CCL2","CCL7","CCL8","CCL11","CCL13","CXCL6","Monocytes"),
-                      b=c(0.1694,-0.0899,-0.0973,0.0749,0.189,0.0816,0.0338387),
-                      se=c(0.0113,0.013,0.0116,0.0114,0.0114,0.0115,0.00713386))
+## Example 1: Linear effect sizes (GWAS / MR)
+rs12075 <- data.frame(
+  id=c("CCL2","CCL7","CCL8","CCL11","CCL13","CXCL6","Monocytes"),
+  b=c(0.1694,-0.0899,-0.0973,0.0749,0.189,0.0816,0.0338387),
+  se=c(0.0113,0.013,0.0116,0.0114,0.0114,0.0115,0.00713386)
+)
 ESplot(rs12075)
 
-# The function replaces an older implementation.
-within(data.frame(
-       id=c("Basic model","Adjusted","Moderately adjusted","Heavily adjusted","Other"),
-       b=log(c(4.5,3.5,2.5,1.5,1)),
-       se=c(0.2,0.1,0.2,0.3,0.2)
-), {
-   lcl <- exp(b-1.96*se)
-   ucl <- exp(b+1.96*se)
-   x <- seq(-2,8,length=length(id))
-   y <- 1:length(id)
-   plot(x,y,type="n",xlab="",ylab="",axes=FALSE)
-   points((lcl+ucl)/2,y,pch=22,bg="black",cex=3)
-   segments(lcl,y,ucl,y,lwd=3,lty="solid")
-   axis(1,cex.axis=1.5,lwd=0.5)
-   par(las=1)
-   abline(v=1)
-   axis(2,labels=id,at=y,lty="blank",hadj=0.2,cex.axis=1.5)
-   title("A fictitious plot")
-})
+## Example 2: Odds ratios
+dat <- data.frame(
+  id=c("Basic","Adjusted","Moderate","Heavy","Other"),
+  b=log(c(4.5,3.5,2.5,1.5,1)),
+  se=c(0.2,0.1,0.2,0.3,0.2)
+)
+ESplot(dat, transform="exp")
+
 }
 \author{
 Jing Hua Zhao

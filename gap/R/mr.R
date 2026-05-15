@@ -160,7 +160,7 @@ mr <- function (data, X, Y, alpha = 0.05, other_plots = FALSE)
             ggplot2::geom_errorbarh(ggplot2::aes(xmin=bzxLCL,xmax=bzxUCL)) +
             ggplot2::geom_abline(data=group4,
                                  ggplot2::aes(intercept=intercept,slope=slope,colour=method),
-                                 size=1) +
+                                 linewidth=1) +
             ggplot2::scale_colour_manual(values=group4$colour) +
             ggplot2::theme(legend.position="bottom") +
             ggplot2::ggtitle(graph_title) +

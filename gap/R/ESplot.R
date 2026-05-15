@@ -1,64 +1,124 @@
-#' Effect-size plot
+#' Effect-size / Odds-ratio forest plot
 #'
-#' @param ESdat A data frame consisting of model id, parameter estimates and standard errors.
-#' @param alpha Type-I error rate used to construct 100(1-alpha) confidence interval.
-#' @param fontsize size of font.
-#' 
+#' Create a publication-ready forest plot for model effect estimates.
+#' The function supports both linear effect sizes (e.g. regression betas)
+#' and exponentiated effects (e.g. odds ratios or hazard ratios).
+#'
+#' @description
+#' The function accepts parameter estimates and their standard errors
+#' from one or more models and produces a horizontal forest plot with
+#' confidence intervals.
+#'
+#' Two plotting modes are supported:
+#'
+#' * `transform="none"` (default): plots estimates on the linear scale  
+#'   (typical for GWAS or Mendelian randomisation beta coefficients).
+#'
+#' * `transform="exp"`: plots exponentiated estimates on a log10 axis  
+#'   (typical for odds ratios or hazard ratios). Confidence intervals are
+#'   computed on the log scale and back-transformed.
+#'
+#' @param ESdat Data frame with **three columns**:
+#'   \describe{
+#'     \item{id}{Model or trait label}
+#'     \item{b}{Effect estimate (beta or log(OR)/log(HR))}
+#'     \item{se}{Standard error of the estimate}
+#'   }
+#' @param alpha Type-I error rate for the confidence interval
+#'   (default 0.05 for 95% CI).
+#' @param fontsize Base font size used in the plot.
+#' @param transform Either `"none"` (linear scale) or `"exp"`
+#'   (exponentiated scale).
+#' @param xlab Optional x-axis label. If `NULL`, a sensible default is used.
+#'
 #' @details
-#' The function accepts parameter estimates and their standard errors for a range of models.
+#' Confidence intervals are computed as
 #'
-#' @export
-#' @return A high resolution plot object.
+#' \deqn{ estimate \pm z_{\alpha/2} \times SE }
+#'
+#' When `transform="exp"`, estimates are interpreted as log(OR) or log(HR)
+#' and are exponentiated before plotting. The x-axis is displayed on a
+#' log10 scale and the reference line is placed at 1.
+#'
+#' This function replaces an earlier base-R implementation and provides a
+#' consistent interface for GWAS, Mendelian randomisation, and
+#' epidemiological regression analyses.
+#'
+#' @return A `ggplot2` plot object.
 #'
 #' @examples
-#' rs12075 <- data.frame(id=c("CCL2","CCL7","CCL8","CCL11","CCL13","CXCL6","Monocytes"),
-#'                       b=c(0.1694,-0.0899,-0.0973,0.0749,0.189,0.0816,0.0338387),
-#'                       se=c(0.0113,0.013,0.0116,0.0114,0.0114,0.0115,0.00713386))
+#' ## Example 1: Linear effect sizes (GWAS / MR)
+#' rs12075 <- data.frame(
+#'   id=c("CCL2","CCL7","CCL8","CCL11","CCL13","CXCL6","Monocytes"),
+#'   b=c(0.1694,-0.0899,-0.0973,0.0749,0.189,0.0816,0.0338387),
+#'   se=c(0.0113,0.013,0.0116,0.0114,0.0114,0.0115,0.00713386)
+#' )
 #' ESplot(rs12075)
 #'
-#' # The function replaces an older implementation.
-#' within(data.frame(
-#'        id=c("Basic model","Adjusted","Moderately adjusted","Heavily adjusted","Other"),
-#'        b=log(c(4.5,3.5,2.5,1.5,1)),
-#'        se=c(0.2,0.1,0.2,0.3,0.2)
-#' ), {
-#'    lcl <- exp(b-1.96*se)
-#'    ucl <- exp(b+1.96*se)
-#'    x <- seq(-2,8,length=length(id))
-#'    y <- 1:length(id)
-#'    plot(x,y,type="n",xlab="",ylab="",axes=FALSE)
-#'    points((lcl+ucl)/2,y,pch=22,bg="black",cex=3)
-#'    segments(lcl,y,ucl,y,lwd=3,lty="solid")
-#'    axis(1,cex.axis=1.5,lwd=0.5)
-#'    par(las=1)
-#'    abline(v=1)
-#'    axis(2,labels=id,at=y,lty="blank",hadj=0.2,cex.axis=1.5)
-#'    title("A fictitious plot")
-#' })
+#' ## Example 2: Odds ratios
+#' dat <- data.frame(
+#'   id=c("Basic","Adjusted","Moderate","Heavy","Other"),
+#'   b=log(c(4.5,3.5,2.5,1.5,1)),
+#'   se=c(0.2,0.1,0.2,0.3,0.2)
+#' )
+#' ESplot(dat, transform="exp")
+#'
 #' @author Jing Hua Zhao
 #' @keywords hplot
-
-ESplot <- function(ESdat,alpha=0.05,fontsize=12)
+#' @export
+ESplot <- function(
+  ESdat,
+  alpha = 0.05,
+  fontsize = 12,
+  transform = c("none","exp"),
+  xlab = NULL
+)
 {
-   id <- ESdat[,1]
-   ES <- ESdat[,2]
-   SE <- ESdat[,3]
-   z <- abs(qnorm(alpha / 2))
-   lcl <- ES - z * SE
-   ucl <- ES + z * SE
-   N <- nrow(ESdat)
-   y <- 1:N
-   ESdata <- data.frame(ES,y,lcl,ucl,id)
-   requireNamespace("ggplot2", quietly=TRUE)
-   f <- ggplot2::ggplot(data=ESdata, ggplot2::aes(y, x=ES))+
-        ggplot2::geom_point()+
-        ggplot2::geom_errorbarh(ggplot2::aes(xmax = ucl, xmin = lcl, height=0.001))+
-        ggplot2::scale_x_continuous(name="Effect size")+
-        ggplot2::scale_y_continuous(breaks=y,label=with(ESdata,id),name="",trans="reverse")+
-        ggplot2::geom_vline(xintercept=0, color="black", linetype="dashed", alpha=.5)+
-        ggplot2::theme_minimal()+
-        ggplot2::theme(text=ggplot2::element_text(size=fontsize, color="black"))+
-        ggplot2::theme(panel.grid=ggplot2::element_blank())+
-        ggplot2::theme(panel.spacing = ggplot2::unit(1, "lines"))
-   f
+  transform <- match.arg(transform)
+  id <- ESdat[,1]
+  ES <- ESdat[,2]
+  SE <- ESdat[,3]
+  z <- abs(qnorm(alpha/2))
+  lcl <- ES - z*SE
+  ucl <- ES + z*SE
+  if (transform == "exp") {
+    ES  <- exp(ES)
+    lcl <- exp(lcl)
+    ucl <- exp(ucl)
+    ref <- 1
+    if (is.null(xlab)) xlab <- "Odds ratio"
+  } else {
+    ref <- 0
+    if (is.null(xlab)) xlab <- "Effect size"
+  }
+  N <- nrow(ESdat)
+  y <- 1:N
+  ESdata <- data.frame(ES, y, lcl, ucl, id)
+  requireNamespace("ggplot2", quietly=TRUE)
+  p <- ggplot2::ggplot(ESdata, ggplot2::aes(x=ES, y=y)) +
+    ggplot2::geom_point(size=2) +
+    ggplot2::geom_errorbar(
+      ggplot2::aes(xmin=lcl, xmax=ucl),
+      width=0.15,
+      linewidth=0.6,
+      orientation="y"
+    ) +
+    ggplot2::scale_y_continuous(
+      breaks=y,
+      labels=id,
+      name="",
+      trans="reverse"
+    ) +
+    ggplot2::geom_vline(xintercept=ref, linetype="dashed", alpha=.5) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(
+      text=ggplot2::element_text(size=fontsize, colour="black"),
+      panel.grid=ggplot2::element_blank(),
+      panel.spacing=ggplot2::unit(1,"lines")
+    )
+  if (transform == "exp")
+    p <- p + ggplot2::scale_x_log10(name=xlab)
+  else
+    p <- p + ggplot2::scale_x_continuous(name=xlab)
+  p
 }
