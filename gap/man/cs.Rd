@@ -2,38 +2,47 @@
 % Please edit documentation in R/cs.R
 \name{cs}
 \alias{cs}
-\title{Credible set}
+\title{Credible set from summary statistics}
 \usage{
 cs(tbl, b = "Effect", se = "StdErr", log_p = NULL, cutoff = 0.95)
 }
 \arguments{
-\item{tbl}{Input data.}
+\item{tbl}{A data.frame containing summary statistics.}
 
-\item{b}{Effect size.}
+\item{b}{Name of column containing effect sizes.}
 
-\item{se}{Standard error.}
+\item{se}{Name of column containing standard errors.}
 
-\item{log_p}{if not NULL it will be used to derive z-statistic}
+\item{log_p}{Optional column name containing log p-values.
+If supplied, z-scores are derived from p-values instead of
+effect sizes and standard errors.}
 
-\item{cutoff}{Threshold for inclusion.}
+\item{cutoff}{Cumulative posterior probability threshold.
+Default is 0.95 (95\% credible set).}
 }
 \value{
-Credible set.
+A subset of \code{tbl} containing variants in the credible set,
+ordered by decreasing posterior probability of association.
 }
 \description{
-Credible set
+Computes a Bayesian credible set from GWAS summary statistics
+using Wakefield-style approximate Bayes factors.
 }
 \details{
-The function implements credible set as in fine-mapping.
+Credible set is often used in fine-mapping.
+
+Posterior probabilities are computed from z-statistics using a
+numerically stable log-sum-exp implementation from matrixStats.
 }
 \examples{
 \dontrun{
 \preformatted{
-  zcat METAL/4E.BP1-1.tbl.gz | \
+  zcat ~/rds/results/private/proteomics/scallop-inf1/4E.BP1-1.tbl.gz | \
   awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' > 4E.BP1.z
 }
   tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
   z <- cs(tbl)
   l <- cs(tbl,log_p="logp")
 }
+
 }

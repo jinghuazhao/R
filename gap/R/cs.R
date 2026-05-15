@@ -1,31 +1,48 @@
-#' Credible set
+#' Credible set from summary statistics
 #'
-#' @param tbl Input data.
-#' @param b Effect size.
-#' @param se Standard error.
-#' @param log_p if not NULL it will be used to derive z-statistic
-#' @param cutoff Threshold for inclusion.
+#' Computes a Bayesian credible set from GWAS summary statistics
+#' using Wakefield-style approximate Bayes factors.
+#'
+#' @param tbl A data.frame containing summary statistics.
+#' @param b Name of column containing effect sizes.
+#' @param se Name of column containing standard errors.
+#' @param log_p Optional column name containing log p-values.
+#'   If supplied, z-scores are derived from p-values instead of
+#'   effect sizes and standard errors.
+#' @param cutoff Cumulative posterior probability threshold.
+#'   Default is 0.95 (95% credible set).
+#'
+#' @return A subset of `tbl` containing variants in the credible set,
+#' ordered by decreasing posterior probability of association.
 #'
 #' @details
-#' The function implements credible set as in fine-mapping.
+#' Credible set is often used in fine-mapping.
+#'
+#' Posterior probabilities are computed from z-statistics using a
+#' numerically stable log-sum-exp implementation from matrixStats.
 #'
 #' @export
-#' @return Credible set.
 #' @examples
 #' \dontrun{
 #' \preformatted{
-#'   zcat METAL/4E.BP1-1.tbl.gz | \
+#'   zcat ~/rds/results/private/proteomics/scallop-inf1/4E.BP1-1.tbl.gz | \
 #'   awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' > 4E.BP1.z
 #' }
 #'   tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
 #'   z <- cs(tbl)
 #'   l <- cs(tbl,log_p="logp")
 #' }
-
+#'
 cs <- function(tbl, b="Effect", se="StdErr", log_p=NULL, cutoff=0.95)
 # credible set based on METAL sumstats
 {
-  requireNamespace("matrixStats")
+  if (!requireNamespace("matrixStats", quietly = TRUE)) {
+    stop(
+      "The 'cs()' function requires the 'matrixStats' package.\n",
+      "Please install it with install.packages('matrixStats').",
+      call. = FALSE
+    )
+  }
   tbl <- within(tbl, {
            if (is.null(log_p)) z <- tbl[[b]]/tbl[[se]]
            else z <- qnorm(tbl[[log_p]]-log(2), lower.tail=FALSE, log.p=TRUE)
