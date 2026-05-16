@@ -66,7 +66,6 @@ Convert p-values to Z:
 
 Sample-size weights:
 \deqn{w_i = \sqrt{n_i}}
-
 \deqn{Z_{FE} = \frac{\sum w_i z_i}{\sqrt{\sum w_i^2}}}
 }
 
@@ -83,7 +82,6 @@ DerSimonian–Laird variance:
 
 Random-effects weights:
 \deqn{w_i^* = 1/(1/w_i + \tau^2)}
-
 \deqn{Z_{RE} = \frac{\sum w_i^* z_i}{\sqrt{\sum w_i^*}}}
 }
 }

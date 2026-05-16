@@ -24,7 +24,6 @@
 #' }
 #'
 #' @details
-#'
 #' This function implements the meta-analysis approach used in the
 #' Genetic Investigation of ANThropometric Traits (GIANT) consortium.
 #'
@@ -32,32 +31,26 @@
 #' contributing studies may vary across variants.
 #'
 #' ## Fisher’s method
-#'
 #' \deqn{X^2 = -2 \sum_{i=1}^k \log(p_i) \sim \chi^2_{2k}}
 #'
 #' ## Fixed-effect weighted Stouffer Z
-#'
 #' Convert p-values to Z:
 #' \deqn{z_i = \Phi^{-1}(1 - p_i/2)}
 #'
 #' Sample-size weights:
 #' \deqn{w_i = \sqrt{n_i}}
-#'
 #' \deqn{Z_{FE} = \frac{\sum w_i z_i}{\sqrt{\sum w_i^2}}}
 #'
 #' ## Heterogeneity
-#'
 #' \deqn{Q = \sum w_i (z_i - \bar z)^2}
 #' \deqn{I^2 = \max(0, (Q-(k-1))/Q)}
 #'
 #' ## Random-effects Z meta-analysis
-#'
 #' DerSimonian–Laird variance:
 #' \deqn{\tau^2 = \max\left(0,\frac{Q-(k-1)}{\sum w_i - \sum w_i^2/\sum w_i}\right)}
 #'
 #' Random-effects weights:
 #' \deqn{w_i^* = 1/(1/w_i + \tau^2)}
-#'
 #' \deqn{Z_{RE} = \frac{\sum w_i^* z_i}{\sqrt{\sum w_i^*}}}
 #'
 #' @examples
@@ -129,83 +122,54 @@ metap <- function(
   prefixbeta=NULL, prefixdir=NULL
 ){
   sided <- match.arg(sided)
-
   stopifnot(is.data.frame(data), N >= 1)
-
   p_cols <- paste0(prefixp, seq_len(N))
   n_cols <- paste0(prefixn, seq_len(N))
-
   if (!all(p_cols %in% names(data)))
     stop("Missing p columns: ", paste(setdiff(p_cols,names(data)),collapse=", "))
   if (!all(n_cols %in% names(data)))
     stop("Missing n columns: ", paste(setdiff(n_cols,names(data)),collapse=", "))
-
   P    <- as.matrix(data[p_cols])
   Nmat <- as.matrix(data[n_cols])
   M    <- nrow(P)
-
-  ## ---- optional direction ----
+  ## optional direction
   sign_mat <- matrix(1, M, N)
-
   if (!is.null(prefixbeta))
     sign_mat <- sign(as.matrix(data[paste0(prefixbeta, seq_len(N))]))
-
   if (!is.null(prefixdir))
     sign_mat <- as.matrix(data[paste0(prefixdir, seq_len(N))])
-
-  ## ---- convert p -> Z ----
+  ## convert p -> Z
   if (sided=="two") Z <- qnorm(1 - P/2)
   if (sided=="one") Z <- qnorm(1 - P)
   Z <- Z * sign_mat
-
-  ## ---- outputs ----
   k_used <- fisher_p <- stouffer_FE <- stouffer_RE <- rep(NA, M)
   Q <- I2 <- tau2 <- rep(NA, M)
-
   for (j in seq_len(M)) {
-
     keep <- which(!is.na(P[j,]) & !is.na(Nmat[j,]) & P[j,] > 0 & P[j,] <= 1)
     k <- length(keep)
     if (k == 0) next
-
     pj <- P[j,keep]
     nj <- Nmat[j,keep]
     zj <- Z[j,keep]
-
     k_used[j] <- k
-
-    ## =========================================================
     ## Fisher method (now handles missing studies correctly)
-    ## =========================================================
     x2 <- -2 * sum(log(pj))
     fisher_p[j] <- pchisq(x2, df = 2*k, lower.tail = FALSE)
-
-    ## =========================================================
     ## Fixed-effect Stouffer
-    ## =========================================================
     w <- sqrt(nj)
     z_FE <- sum(w * zj) / sqrt(sum(w^2))
     stouffer_FE[j] <- 2 * pnorm(-abs(z_FE))
-
-    ## =========================================================
     ## Heterogeneity + Random effects
-    ## =========================================================
     if (k > 1) {
-
       wi <- nj                     # inverse-variance approx
       z_bar <- sum(wi*zj) / sum(wi)
-
       Q[j] <- sum(wi * (zj - z_bar)^2)
-
       denom <- sum(wi) - sum(wi^2)/sum(wi)
       tau2[j] <- max(0, (Q[j] - (k-1)) / denom)
-
       wi_star <- 1 / (1/wi + tau2[j])
       z_RE <- sum(wi_star*zj) / sqrt(sum(wi_star))
       stouffer_RE[j] <- 2 * pnorm(-abs(z_RE))
-
       I2[j] <- max(0, (Q[j] - (k-1)) / Q[j])
-
     } else {
       ## only one study → FE = RE
       stouffer_RE[j] <- stouffer_FE[j]
@@ -214,7 +178,6 @@ metap <- function(
       tau2[j] <- 0
     }
   }
-
   out <- data.frame(
     k = k_used,
     fisher_p,
@@ -222,11 +185,9 @@ metap <- function(
     stouffer_RE,
     Q, I2, tau2
   )
-
   if (verbose) {
     cat("\nMeta-analysis summary:\n")
     print(head(out))
   }
-
   return(out)
 }

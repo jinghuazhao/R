@@ -2,79 +2,120 @@
 % Please edit documentation in R/metareg.R
 \name{metareg}
 \alias{metareg}
-\title{Fixed and random effects model for meta-analysis}
+\title{Fixed and random effects meta-analysis (vectorised implementation)}
 \usage{
-metareg(data, N, verbose = TRUE, prefixb = "b", prefixse = "se")
+metareg(data, N, verbose = FALSE, prefixb = "b", prefixse = "se")
 }
 \arguments{
-\item{data}{Data frame to be used.}
+\item{data}{A data frame containing regression coefficients and
+standard errors in wide format.}
 
-\item{N}{Number of studies.}
+\item{N}{Integer. Number of studies included in the meta-analysis.}
 
-\item{verbose}{A control for screen output.}
+\item{verbose}{Logical. If \code{TRUE}, prints a completion message.}
 
-\item{prefixb}{Prefix of estimate; default value is "b".}
+\item{prefixb}{Character. Prefix for regression coefficients.
+Default is \code{"b"} (columns \verb{b1, b2, …, bN}).}
 
-\item{prefixse}{Prefix of standard error; default value is "se".
-The function accepts a wide format data with estimates as \eqn{b1,...,bN}
-and standard errors as \eqn{se1,...,seN}. More generally, they can be specified
-by prefixes in the function argument.}
+\item{prefixse}{Character. Prefix for standard errors.
+Default is \code{"se"} (columns \verb{se1, se2, …, seN}).}
 }
 \value{
-The returned value is a data frame with the following variables:
-\itemize{
-\item p_f P value (fixed effects model).
-\item p_r P value (random effects model).
-\item beta_f regression coefficient.
-\item beta_r regression coefficient.
-\item se_f standard error.
-\item se_r standard error.
-\item z_f z value.
-\item z_r z value.
-\item p_heter heterogeneity test p value.
-\item i2 \eqn{I^2}{I^2} statistic.
-\item k No of tests used.
-\item eps smallest double-precision number.
+A data frame with one row per meta-analysis containing:
+
+\describe{
+\item{beta_f}{Fixed-effects pooled estimate}
+\item{se_f}{Standard error of fixed-effects estimate}
+\item{z_f}{Z statistic (fixed effects)}
+\item{p_f}{P value (fixed effects)}
+\item{beta_r}{Random-effects pooled estimate}
+\item{se_r}{Standard error of random-effects estimate}
+\item{z_r}{Z statistic (random effects)}
+\item{p_r}{P value (random effects)}
+\item{p_heter}{Cochran's Q heterogeneity test p-value}
+\item{i2}{\eqn{I^2} heterogeneity statistic}
+\item{k}{Number of studies contributing to each row}
+\item{eps}{Smallest double-precision number used for stability}
 }
 }
 \description{
-Fixed and random effects model for meta-analysis
+Performs inverse-variance weighted fixed- and random-effects
+meta-analysis across multiple studies supplied in wide format.
 }
 \details{
-Given \eqn{k=n} studies with \eqn{b_1, ..., b_N} being \eqn{\beta}'s and
-\eqn{se_1, ..., se_N} standard errors from regression, the fixed effects
-model uses inverse variance weighting such that \eqn{w_1=1/se_1^2}, ...,
-\eqn{w_N=1/se_N^2} and the combined \eqn{\beta} as the weighted average,
-\eqn{\beta_f=(b_1*w_1+...+b_N*w_N)/w}, with \eqn{w=w_1+...+w_N}
-being the total weight, the se for this estimate is \eqn{se_f=\sqrt{1/w}}.
-A normal z-statistic is obtained as \eqn{z_f=\beta_f/se_f}, and the
-corresponding p value \eqn{p_f=2*pnorm(-abs(z_f))}. For the random effects
-model, denote \eqn{q_w=w_1*(b_1-\beta_f)^2+...+w_N*(b_N-\beta_f)^2}
-and \eqn{dl=max(0,(q_w-(k-1))/(w-(w_1^2+...+w_N^2)/w))}, corrected
-weights are obtained such that \eqn{{w_1}_c=1/(1/w_1+dl)}, ...,
-\eqn{{w_N}_c=1/(1/w_N+dl)}, totaling \eqn{w_c={w_1}_c+...+{w_N}_c}.
-The combined \eqn{\beta} and se are then \eqn{\beta_r=(b_1*{w_1}_c+...+b_N*{w_N}_c)/w_c}
-and \eqn{se_r=\sqrt(1/w_c)}{se_r=sqrt(1/wc)}, leading to a z-statistic
-\eqn{z_r=\beta_r/se_r} and a p-value \eqn{p_r=2*pnorm(-abs(z_r))}. Moreover, a
-p-value testing for heterogeneity is \eqn{p_{heter}=pchisq(q_w,k-1,lower.tail=FALSE)}.
+The function is designed for high-throughput settings (e.g. GWAS),
+where each row represents an independent meta-analysis.
+
+The function accepts wide-format input with estimates
+\eqn{b_1,\ldots,b_N} and standard errors \eqn{se_1,\ldots,se_N}.
+Missing values are automatically ignored on a per-row basis.
+\subsection{Fixed effects model}{
+
+For \eqn{k} studies, inverse-variance weights are defined as
+\deqn{w_i = 1 / se_i^2}
+
+The pooled estimate is
+\deqn{\beta_f = \frac{\sum_i b_i w_i}{\sum_i w_i}}
+
+with standard error
+\deqn{se_f = \sqrt{1 / \sum_i w_i}}
+
+and test statistic
+\deqn{z_f = \beta_f / se_f}
+
+with p-value
+\deqn{p_f = 2\,\Phi(-|z_f|)}.
 }
-\note{
-Adapted from a SAS macro, 23-7-2009 MRC-Epid JHZ
+
+\subsection{Random effects model (DerSimonian–Laird)}{
+
+Cochran's Q statistic:
+\deqn{Q = \sum_i w_i (b_i - \beta_f)^2}
+
+Between-study variance:
+\deqn{\tau^2 = \max\left(0, \frac{Q - (k-1)}{\sum w_i - \sum w_i^2 / \sum w_i}\right)}
+
+Corrected weights:
+\deqn{w_i^* = 1 / (1/w_i + \tau^2)}
+
+Random-effects pooled estimate:
+\deqn{\beta_r = \frac{\sum_i b_i w_i^*}{\sum_i w_i^*}}
+
+with standard error
+\deqn{se_r = \sqrt{1/\sum_i w_i^*}}
+
+and p-value
+\deqn{p_r = 2\,\Phi(-|z_r|)}.
+
+Heterogeneity p-value:
+\deqn{p_{heter} = P(\chi^2_{k-1} > Q)}.
+
+The heterogeneity statistic is reported as
+\deqn{I^2 = \max(0, (Q-(k-1))/Q)}.
+}
 }
 \examples{
 \dontrun{
-abc <- data.frame(chromosome=1,rsn='abcd',startpos=1234,
-                  b1=1,se1=2,p1=0.1,b2=2,se2=6,p2=0,b3=3,se3=8,p3=0.5)
-metareg(abc,3)
-abc2 <- data.frame(b1=c(1,2),se1=c(2,4),b2=c(2,3),se2=c(4,6),b3=c(3,4),se3=c(6,8))
-print(metareg(abc2,3))
-}
+df <- data.frame(
+  b1 = 1,  se1 = 2,
+  b2 = 2,  se2 = 6,
+  b3 = 3,  se3 = 8
+)
+metareg(df, 3)
 
+df2 <- data.frame(
+  b1 = c(1,2), se1 = c(2,4),
+  b2 = c(2,3), se2 = c(4,6),
+  b3 = c(3,4), se3 = c(6,8)
+)
+metareg(df2, 3)
+}
 }
 \references{
 \insertRef{higgins03}{gap}
 }
 \author{
-Shengxu Li, Jing Hua Zhao
+ChatGPT
 }
+\keyword{meta-analysis}
 \keyword{models}
