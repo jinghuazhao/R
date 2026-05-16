@@ -2,71 +2,141 @@
 % Please edit documentation in R/hwe.R
 \name{hwe}
 \alias{hwe}
-\title{Hardy-Weinberg equlibrium test for a multiallelic marker}
+\title{Hardy-Weinberg Equilibrium Test (Multiallelic, Unified Interface)}
 \usage{
-hwe(data, data.type = "allele", yates.correct = FALSE, miss.val = 0)
+hwe(
+  data,
+  type = c("alleles", "genotypes", "counts"),
+  verbose = TRUE,
+  yates.correct = FALSE,
+  B = 1e+05,
+  seed = 123
+)
 }
 \arguments{
-\item{data}{A rectangular data containing the genotype, or an array of genotype counts.}
+\item{data}{genotype data in one of three formats:
+\itemize{
+\item alleles two-column allele pairs
+\item genotypes integer genotype IDs (triangular encoding)
+\item counts symmetric genotype count matrix
+}}
 
-\item{data.type}{An option taking values "allele", "genotype", "count"  if data is alleles, genotype or genotype count.}
+\item{type}{input format: "alleles", "genotypes", or "counts"}
 
-\item{yates.correct}{A flag indicating if Yates' correction is used for Pearson \eqn{\chi^2}{chi-squared} statistic.}
+\item{verbose}{logical; if TRUE, prints full test output}
 
-\item{miss.val}{A list of missing values.}
+\item{yates.correct}{logical; if TRUE applies Yates continuity correction
+to Pearson chi-square statistic only}
+
+\item{B}{number of Monte Carlo replicates for exact test}
+
+\item{seed}{random seed for Monte Carlo exact test}
 }
 \value{
-The returned value is a list containing:
+Named list containing:
 \itemize{
-\item allele.freq Frequencies of alleles.
-\item x2 Pearson \eqn{\chi^2}{chi-square}.
-\item p.x2 p value for \eqn{\chi^2}{chi-square}.
-\item lrt Log-likelihood ratio test statistic.
-\item p.lrt p value for lrt.
-\item df Degree(s) of freedom.
-\item rho \eqn{\sqrt{\chi^2/N}}{sqrt{chi-square/N}} the contingency table coefficient.
+\item \code{source} — input representation used ("alleles", "genotypes", or "counts")
+\item \code{X2} — Pearson chi-square statistic
+\item \code{p_X2} — asymptotic p-value of Pearson chi-square test
+\item \code{LRT} — likelihood ratio statistic
+\item \code{p_LRT} — asymptotic p-value of likelihood ratio test
+\item \code{p_exact} — Monte Carlo exact test p-value
+\item \code{freq} — allele frequency vector
+\item \code{rho} — inbreeding coefficient
 }
 }
 \description{
-Hardy-Weinberg equlibrium test for a multiallelic marker
+Unified Hardy-Weinberg equilibrium (HWE) testing procedure for multiallelic loci.
+All input formats are internally converted to a single genotype count matrix,
+ensuring identical inference across representations.
 }
 \details{
-Hardy-Weinberg equilibrium test.
+Let allele frequencies be:
+\deqn{p_i = \frac{c_i}{2n}}
 
-This function obtains Hardy-Weinberg equilibrium test statistics. It can
-handle data coded as allele numbers (default), genotype identifiers (by
-setting data.type="genotype") and counts corresponding to individual genotypes
-(by setting data.type="count") which requires that genotype counts for all n(n+1) possible genotypes,
-with n being the number of alleles.
+Under Hardy–Weinberg equilibrium:
+\deqn{
+P_{ii} = p_i^2,\quad P_{ij} = 2p_i p_j \ (i \ne j)
+}
 
-For highly polymorphic markers when asymptotic results do not hold, please resort to \code{\link{hwe.hardy}}.
+Expected genotype counts:
+\deqn{E_{ij} = n P_{ij}}
+
+All input formats are mapped to the same genotype matrix,
+ensuring algebraic equivalence.
+
+\emph{Pearson chi-square}
+\deqn{
+X^2 = \sum_{i \le j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+}
+
+With optional Yates correction:
+\deqn{
+X^2 = \sum \frac{(|O_{ij} - E_{ij}| - 0.5)^2}{E_{ij}}
+}
+
+\emph{Likelihood ratio test}
+\deqn{
+G^2 = 2 \sum_{i \le j} O_{ij} \log(O_{ij}/E_{ij})
+}
+
+with convention 0log(0) = 0.
+
+\emph{Inbreeding coefficient}
+\deqn{
+F = \frac{H_{obs} - H_{exp}}{1 - H_{exp}}
+}
+
+where:
+\deqn{
+H_{obs} = \sum_i O_{ii}/n,\quad H_{exp} = \sum_i p_i^2
+}
+
+Under:
+\deqn{X \sim \text{Multinomial}(n, P)}
+
+the p-value is:
+\deqn{
+p = \Pr(\ell(X^{sim}) \le \ell(X^{obs}))
+}
+
+where:
+\deqn{
+\ell(x) = \sum x_i \log p_i + \log \frac{n!}{\prod x_i!}
+}
+
+\deqn{
+\text{alleles} \equiv \text{genotype IDs} \equiv \text{count matrix}
+\rightarrow M_{ij}
+}
+
+Hence all statistics are identical up to Monte Carlo variation.
+}
+\note{
+Note that
+\itemize{
+\item Zero-frequency alleles are removed automatically
+\item Exact test is Monte Carlo (fixed seed for reproducibility)
+\item All statistics are computed on the same standardized genotype matrix
+}
 }
 \examples{
 \dontrun{
-a <- c(3,2,2)
-a.out <- hwe(a,data.type="genotype")
-a.out
-a.out <- hwe(a,data.type="count")
-a.out
-require(haplo.stats)
-data(hla)
-hla.DQR <- hwe(hla[,3:4])
-summary(hla.DQR)
-# multiple markers
-s <- vector()
-for(i in seq(3,8,2))
-{
-  hwe_i <- hwe(hla[,i:(i+1)])
-  s <- rbind(s,hwe_i)
+a1 <- c(1,1,1,1,2,2,2,3,3,1,2,3,1,2,3,1,2,3)
+a2 <- c(1,2,3,1,2,3,2,3,1,2,3,1,1,1,2,3,2,3)
+r1 <- hwe(cbind(a1,a2), "alleles", FALSE)
+g <- a2g(a1,a2)
+r2 <- hwe(g, "genotypes", FALSE)
+g_tab <- table(g)
+pairs <- g2a(as.integer(names(g_tab)))
+k <- max(pairs)
+M <- matrix(0, k, k)
+for(i in seq_len(nrow(pairs))) {
+  M[pairs[i,1], pairs[i,2]] <- g_tab[i]
 }
-s
+r3 <- hwe(M, "counts", FALSE)
+r <- lapply(list(r1, r2, r3), \(x) within(as.data.frame(x), {
+     freq <- paste(round(as.numeric(freq), 3), collapse=";")})[1,])
+do.call(rbind,r)
 }
-
 }
-\seealso{
-\link{hwe.hardy}
-}
-\author{
-Jing Hua Zhao
-}
-\keyword{htest}

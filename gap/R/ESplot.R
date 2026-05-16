@@ -75,6 +75,13 @@ ESplot <- function(
   xlab = NULL
 )
 {
+  if (!requireNamespace("scales", quietly = TRUE)) {
+    stop(
+      "The 'cs()' function requires the 'scales' package.\n",
+      "Please install it with install.packages('scales').",
+      call. = FALSE
+    )
+  }
   transform <- match.arg(transform)
   id <- ESdat[,1]
   ES <- ESdat[,2]

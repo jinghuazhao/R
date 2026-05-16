@@ -52,7 +52,7 @@ kin.morgan(werner[,1:3])
 
 }
 \references{
-Morgan V2.1 \url{https://faculty.washington.edu/eathomp/Genepi/MORGAN/Morgan.shtml}
+Morgan V2.1, https://faculty.washington.edu/eathomp/Genepi/MORGAN/Morgan.shtml
 }
 \seealso{
 \code{\link{gif}}
