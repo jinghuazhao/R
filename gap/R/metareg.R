@@ -62,21 +62,18 @@
 #' \deqn{I^2 = \max(0, (Q-(k-1))/Q)}.
 #'
 #' @return A data frame with one row per meta-analysis containing:
-#'
-#' \describe{
-#'   \item{beta_f}{Fixed-effects pooled estimate}
-#'   \item{se_f}{Standard error of fixed-effects estimate}
-#'   \item{z_f}{Z statistic (fixed effects)}
-#'   \item{p_f}{P value (fixed effects)}
-#'   \item{beta_r}{Random-effects pooled estimate}
-#'   \item{se_r}{Standard error of random-effects estimate}
-#'   \item{z_r}{Z statistic (random effects)}
-#'   \item{p_r}{P value (random effects)}
-#'   \item{p_heter}{Cochran's Q heterogeneity test p-value}
-#'   \item{i2}{\eqn{I^2} heterogeneity statistic}
-#'   \item{k}{Number of studies contributing to each row}
-#'   \item{eps}{Smallest double-precision number used for stability}
-#' }
+#' - beta_f Fixed-effects pooled estimate
+#' - se_f Standard error of fixed-effects estimate
+#' - z_f Z statistic (fixed effects)
+#' - p_f P value (fixed effects)
+#' - beta_r Random-effects pooled estimate
+#' - se_r Standard error of random-effects estimate
+#' - z_r Z statistic (random effects)
+#' - p_r P value (random effects)
+#' - p_heter Cochran's Q heterogeneity test p-value
+#' - i2 \eqn{I^2} heterogeneity statistic
+#' - k Number of studies contributing to each row
+#' - eps Smallest double-precision number used for stability
 #'
 #' @references
 #' \insertRef{higgins03}{gap}

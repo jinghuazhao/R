@@ -8,36 +8,27 @@
 #'
 #' Performs two–sample Mendelian Randomization using summary statistics
 #' stored in a wide data frame with columns named:
-#'
-#' \itemize{
-#'   \item SNP
-#'   \item b.trait   : effect estimate
-#'   \item SE.trait  : standard error
-#' }
+#' - SNP
+#' - b.trait   : effect estimate
+#' - SE.trait  : standard error
 #'
 #' For each outcome in `Y`, the function:
-#' \enumerate{
-#'   \item Extracts instruments for exposure `X`
-#'   \item Computes IVW, MR-Egger, Weighted Median and Penalised Weighted Median estimates
-#'   \item Computes Cochran’s Q heterogeneity statistic
-#'   \item Produces MR scatter plots
-#' }
+#' 1. Extracts instruments for exposure `X`
+#' 2. Computes IVW, MR-Egger, Weighted Median and Penalised Weighted Median estimates
+#' 3. Computes Cochran’s Q heterogeneity statistic
+#' 4. Produces MR scatter plots
 #'
 #' @return Invisible list with components:
-#' \describe{
-#'   \item{r}{Matrix of MR estimates for each exposure–outcome pair.}
-#'   \item{plots}{List of ggplot objects (MR scatter plots).}
-#' }
+#' - r Matrix of MR estimates for each exposure–outcome pair.
+#' - plots List of ggplot objects (MR scatter plots).
 #'
 #' @details
 #' Methods implemented:
-#' \itemize{
-#'   \item IVW (inverse-variance weighted regression)
-#'   \item MR-Egger regression
-#'   \item Weighted median estimator
-#'   \item Penalised weighted median
-#'   \item Cochran’s Q heterogeneity statistic (metafor)
-#' }
+#' - IVW (inverse-variance weighted regression)
+#' - MR-Egger regression
+#' - Weighted median estimator
+#' - Penalised weighted median
+#' - Cochran’s Q heterogeneity statistic (metafor)
 #'
 #' Required packages:
 #' \code{metafor}, \code{ggplot2}, \code{cowplot}.

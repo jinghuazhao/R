@@ -22,20 +22,19 @@ Default is \code{"se"} (columns \verb{se1, se2, …, seN}).}
 }
 \value{
 A data frame with one row per meta-analysis containing:
-
-\describe{
-\item{beta_f}{Fixed-effects pooled estimate}
-\item{se_f}{Standard error of fixed-effects estimate}
-\item{z_f}{Z statistic (fixed effects)}
-\item{p_f}{P value (fixed effects)}
-\item{beta_r}{Random-effects pooled estimate}
-\item{se_r}{Standard error of random-effects estimate}
-\item{z_r}{Z statistic (random effects)}
-\item{p_r}{P value (random effects)}
-\item{p_heter}{Cochran's Q heterogeneity test p-value}
-\item{i2}{\eqn{I^2} heterogeneity statistic}
-\item{k}{Number of studies contributing to each row}
-\item{eps}{Smallest double-precision number used for stability}
+\itemize{
+\item beta_f Fixed-effects pooled estimate
+\item se_f Standard error of fixed-effects estimate
+\item z_f Z statistic (fixed effects)
+\item p_f P value (fixed effects)
+\item beta_r Random-effects pooled estimate
+\item se_r Standard error of random-effects estimate
+\item z_r Z statistic (random effects)
+\item p_r P value (random effects)
+\item p_heter Cochran's Q heterogeneity test p-value
+\item i2 \eqn{I^2} heterogeneity statistic
+\item k Number of studies contributing to each row
+\item eps Smallest double-precision number used for stability
 }
 }
 \description{

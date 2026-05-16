@@ -34,9 +34,9 @@
 #' character chromosomes (e.g. X, Y, MT).
 #'
 #' ## X-axis spacing
-#' * `usepos = FALSE` (default): markers are spaced evenly within chromosomes.
-#' * `usepos = TRUE`: real chromosomal positions are used.
-#' * `gap` inserts spacing between chromosomes when using real positions.
+#' - `usepos = FALSE` (default): markers are spaced evenly within chromosomes.
+#' - `usepos = TRUE`: real chromosomal positions are used.
+#' - `gap` inserts spacing between chromosomes when using real positions.
 #'
 #' ## Colours
 #' Chromosome colours alternate by default. Custom colours can be supplied via
@@ -44,9 +44,9 @@
 #'
 #' ## Axis tuning
 #' Axis appearance can be controlled using:
-#' * `axis.cex` — tick label size
-#' * `axis.lwd` — axis and tick thickness
-#' * `axis.tck` — tick length and direction
+#' - `axis.cex` — tick label size
+#' - `axis.lwd` — axis and tick thickness
+#' - `axis.tck` — tick length and direction
 #'
 #' These settings are particularly useful when exporting high-resolution figures.
 #'

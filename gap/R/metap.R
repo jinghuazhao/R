@@ -14,14 +14,12 @@
 #' @param prefixdir optional prefix for sign columns (+1/-1).
 #'
 #' @return data.frame with
-#' \describe{
-#'   \item{fisher_p}{Fisher combined p-value}
-#'   \item{stouffer_FE}{Fixed-effect Z meta p-value}
-#'   \item{stouffer_RE}{Random-effects Z meta p-value}
-#'   \item{Q}{Cochran heterogeneity statistic}
-#'   \item{I2}{Proportion heterogeneity}
-#'   \item{tau2}{Between-study variance}
-#' }
+#' -  fisher_p Fisher combined p-value
+#' -  stouffer_FE Fixed-effect Z meta p-value
+#' -  stouffer_RE Random-effects Z meta p-value
+#' -  Q Cochran heterogeneity statistic
+#' -  I2 Proportion heterogeneity
+#' -  tau2 Between-study variance
 #'
 #' @details
 #' This function implements the meta-analysis approach used in the

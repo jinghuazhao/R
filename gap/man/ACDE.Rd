@@ -17,18 +17,18 @@ ACDE(model, data, type = c("AE", "ACE", "ADE"), method = "ML")
 }
 \value{
 Object of class \code{"ACDEfit"} containing:
-\describe{
-\item{fit}{\code{nlme::lme} object}
-\item{var}{Variance components (A,C,D,E)}
-\item{h2}{Narrow-sense heritability}
-\item{c2}{Shared environment (ACE only)}
-\item{d2}{Dominance (ADE only)}
-\item{H2}{Broad-sense heritability (ADE only)}
+\itemize{
+\item fit \code{nlme::lme} object
+\item var Variance components (A,C,D,E)
+\item h2 Narrow-sense heritability
+\item c2 Shared environment (ACE only)
+\item d2 Dominance (ADE only)
+\item H2 Broad-sense heritability (ADE only)
 }
 }
 \description{
 Fits classical biometric variance–decomposition models using a linear
-mixed model formulation implemented with \code{nlme::lme}.
+mixed model formulation implemented with \link[nlme:lme]{nlme::lme}.
 }
 \details{
 The function estimates additive genetic (A), shared environmental (C),
@@ -47,7 +47,6 @@ correct additive-genetic parameterisation.
 Only AE, ACE and ADE models are fitted.
 
 Phenotypic variance is decomposed as
-
 \deqn{V_P = V_A + V_C + V_D + V_E}
 
 The model is fitted as a linear mixed model with family-level random
@@ -64,7 +63,6 @@ The function detects whether families contain one or multiple offspring.
 \subsection{Trio parameterisation}{
 
 Additive effects represented as:
-
 \deqn{A = 0.5 Mother + 0.5 Father + 1 Child}
 
 This reproduces the expected parent–offspring covariance:
@@ -84,7 +82,6 @@ For offspring:
 \deqn{A = A_m + A_f + M_s}
 
 Total additive variance:
-
 \deqn{V_A = 2(\sigma^2_{Am} + \sigma^2_{Af}) + \sigma^2_{Ms}}
 
 This produces correct covariances:
@@ -107,12 +104,11 @@ This complements \code{\link[=pbsize]{pbsize()}} and \code{\link[=fbsize]{fbsize
 }
 \section{Required columns in \code{data}}{
 
-
-\describe{
-\item{familyid}{Nuclear family identifier.}
-\item{var1}{Maternal transmission coefficient.}
-\item{var2}{Paternal transmission coefficient.}
-\item{var3}{Offspring (Mendelian sampling) indicator.}
+\itemize{
+\item familyid Nuclear family identifier.
+\item var1 Maternal transmission coefficient.
+\item var2 Paternal transmission coefficient.
+\item var3 Offspring (Mendelian sampling) indicator.
 }
 
 These variables encode expected genetic transmission and \strong{are not role
@@ -143,7 +139,6 @@ sib3       1     1     1
 
 \examples{
 library(nlme)
-
 set.seed(1)
 
 simulate_families <- function(n_fam = 200)

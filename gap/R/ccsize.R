@@ -22,9 +22,8 @@
 #'
 #' When infeaisble configurations are specified, a sample size of -999 is returned.
 #'
+#' @return a value indicating the power or required sample size.
 #' @export
-#' @return
-#' The returned value is a value indicating the power or required sample size.
 #'
 #' @references
 #' \insertRef{cai04}{gap}

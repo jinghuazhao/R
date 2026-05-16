@@ -26,7 +26,7 @@ ccsize(n, q, pD, p1, theta, alpha, beta = 0.2, power = TRUE, verbose = FALSE)
 \item{verbose}{error messages are explicitly printed out.}
 }
 \value{
-The returned value is a value indicating the power or required sample size.
+a value indicating the power or required sample size.
 }
 \description{
 Power and sample size for case-cohort design

@@ -10,20 +10,16 @@
 #' confidence intervals.
 #'
 #' Two plotting modes are supported:
-#'
-#' * `transform="none"` (default): plots estimates on the linear scale  
+#' - `transform="none"` (default): plots estimates on the linear scale
 #'   (typical for GWAS or Mendelian randomisation beta coefficients).
-#'
-#' * `transform="exp"`: plots exponentiated estimates on a log10 axis  
+#' - `transform="exp"`: plots exponentiated estimates on a log10 axis
 #'   (typical for odds ratios or hazard ratios). Confidence intervals are
 #'   computed on the log scale and back-transformed.
 #'
 #' @param ESdat Data frame with **three columns**:
-#'   \describe{
-#'     \item{id}{Model or trait label}
-#'     \item{b}{Effect estimate (beta or log(OR)/log(HR))}
-#'     \item{se}{Standard error of the estimate}
-#'   }
+#' - id Model or trait label
+#' - b Effect estimate (beta or log(OR)/log(HR))
+#' - se Standard error of the estimate
 #' @param alpha Type-I error rate for the confidence interval
 #'   (default 0.05 for 95% CI).
 #' @param fontsize Base font size used in the plot.
@@ -33,7 +29,6 @@
 #'
 #' @details
 #' Confidence intervals are computed as
-#'
 #' \deqn{ estimate \pm z_{\alpha/2} \times SE }
 #'
 #' When `transform="exp"`, estimates are interpreted as log(OR) or log(HR)

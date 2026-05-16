@@ -34,13 +34,13 @@ metap(
 }
 \value{
 data.frame with
-\describe{
-\item{fisher_p}{Fisher combined p-value}
-\item{stouffer_FE}{Fixed-effect Z meta p-value}
-\item{stouffer_RE}{Random-effects Z meta p-value}
-\item{Q}{Cochran heterogeneity statistic}
-\item{I2}{Proportion heterogeneity}
-\item{tau2}{Between-study variance}
+\itemize{
+\item fisher_p Fisher combined p-value
+\item stouffer_FE Fixed-effect Z meta p-value
+\item stouffer_RE Random-effects Z meta p-value
+\item Q Cochran heterogeneity statistic
+\item I2 Proportion heterogeneity
+\item tau2 Between-study variance
 }
 }
 \description{

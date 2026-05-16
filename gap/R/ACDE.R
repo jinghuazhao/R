@@ -1,15 +1,15 @@
 #' Fit AE, ACE or ADE biometric mixed models to nuclear family data
 #'
 #' Fits classical biometric variance–decomposition models using a linear
-#' mixed model formulation implemented with `nlme::lme`.
+#' mixed model formulation implemented with [nlme::lme].
 #'
 #' The function estimates additive genetic (A), shared environmental (C),
 #' dominance genetic (D), and unique environmental (E) variance components
 #' from **nuclear family data (parents and offspring)** in long format.
 #'
 #' Supported family structures:
-#' * Parent-child trios (one offspring)
-#' * Nuclear families with **any number of siblings**
+#' - Parent-child trios (one offspring)
+#' - Nuclear families with **any number of siblings**
 #'
 #' The function automatically detects the family structure and selects the
 #' correct additive-genetic parameterisation.
@@ -22,13 +22,10 @@
 #' @param method Estimation method: `"ML"` (default) or `"REML"`.
 #'
 #' @section Required columns in `data`:
-#'
-#' \describe{
-#' \item{familyid}{Nuclear family identifier.}
-#' \item{var1}{Maternal transmission coefficient.}
-#' \item{var2}{Paternal transmission coefficient.}
-#' \item{var3}{Offspring (Mendelian sampling) indicator.}
-#' }
+#' - familyid Nuclear family identifier.
+#' - var1 Maternal transmission coefficient.
+#' - var2 Paternal transmission coefficient.
+#' - var3 Offspring (Mendelian sampling) indicator.
 #'
 #' These variables encode expected genetic transmission and **are not role
 #' indicators**.
@@ -56,71 +53,57 @@
 #' }
 #'
 #' @details
-#'
 #' Phenotypic variance is decomposed as
-#'
 #' \deqn{V_P = V_A + V_C + V_D + V_E}
 #'
 #' The model is fitted as a linear mixed model with family-level random
 #' effects and individual residual variance.
 #'
 #' ## Automatic family detection
-#'
 #' The function detects whether families contain one or multiple offspring.
-#'
-#' * **Trios:** collapsed additive parameterisation.
-#' * **Siblings:** transmission decomposition parameterisation.
+#' - **Trios:** collapsed additive parameterisation.
+#' - **Siblings:** transmission decomposition parameterisation.
 #'
 #' ## Trio parameterisation
-#'
 #' Additive effects represented as:
-#'
 #' \deqn{A = 0.5 Mother + 0.5 Father + 1 Child}
 #'
 #' This reproduces the expected parent–offspring covariance:
 #' \deqn{Cov = 1/2 V_A}
 #'
 #' ## Multi-sibling parameterisation
-#'
 #' Additive genetic variance is decomposed into:
-#'
-#' * maternal transmission (\eqn{A_m})
-#' * paternal transmission (\eqn{A_f})
-#' * Mendelian sampling (\eqn{M_s})
+#' - maternal transmission (\eqn{A_m})
+#' - paternal transmission (\eqn{A_f})
+#' - Mendelian sampling (\eqn{M_s})
 #'
 #' For offspring:
 #' \deqn{A = A_m + A_f + M_s}
 #'
 #' Total additive variance:
-#'
 #' \deqn{V_A = 2(\sigma^2_{Am} + \sigma^2_{Af}) + \sigma^2_{Ms}}
 #'
 #' This produces correct covariances:
-#'
-#' * Parent–offspring: \eqn{1/2 V_A}
-#' * Sibling–sibling:  \eqn{1/2 V_A}
+#' - Parent–offspring: \eqn{1/2 V_A}
+#' - Sibling–sibling:  \eqn{1/2 V_A}
 #'
 #' This formulation generalises to **any number of siblings**.
 #'
 #' ## Identifiability of C and D
-#'
 #' Nuclear family data cannot fully separate shared environment (C)
 #' and dominance (D). ACE and ADE models should be interpreted jointly.
 #'
 #' @note This complements [pbsize()] and [fbsize()].
 #' @return Object of class `"ACDEfit"` containing:
-#' \describe{
-#' \item{fit}{`nlme::lme` object}
-#' \item{var}{Variance components (A,C,D,E)}
-#' \item{h2}{Narrow-sense heritability}
-#' \item{c2}{Shared environment (ACE only)}
-#' \item{d2}{Dominance (ADE only)}
-#' \item{H2}{Broad-sense heritability (ADE only)}
-#' }
+#' - fit `nlme::lme` object
+#' - var Variance components (A,C,D,E)
+#' - h2 Narrow-sense heritability
+#' - c2 Shared environment (ACE only)
+#' - d2 Dominance (ADE only)
+#' - H2 Broad-sense heritability (ADE only)
 #'
 #' @examples
 #' library(nlme)
-#'
 #' set.seed(1)
 #'
 #' simulate_families <- function(n_fam = 200)

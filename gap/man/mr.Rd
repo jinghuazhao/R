@@ -19,7 +19,6 @@ mr(data, X, Y, alpha = 0.05, other_plots = FALSE)
 
 Performs two–sample Mendelian Randomization using summary statistics
 stored in a wide data frame with columns named:
-
 \itemize{
 \item SNP
 \item b.trait   : effect estimate
@@ -36,9 +35,9 @@ For each outcome in \code{Y}, the function:
 }
 \value{
 Invisible list with components:
-\describe{
-\item{r}{Matrix of MR estimates for each exposure–outcome pair.}
-\item{plots}{List of ggplot objects (MR scatter plots).}
+\itemize{
+\item r Matrix of MR estimates for each exposure–outcome pair.
+\item plots List of ggplot objects (MR scatter plots).
 }
 }
 \description{

@@ -86,7 +86,6 @@ with convention 0log(0) = 0.
 \deqn{
 F = \frac{H_{obs} - H_{exp}}{1 - H_{exp}}
 }
-
 where:
 \deqn{
 H_{obs} = \sum_i O_{ii}/n,\quad H_{exp} = \sum_i p_i^2
@@ -99,7 +98,6 @@ the p-value is:
 \deqn{
 p = \Pr(\ell(X^{sim}) \le \ell(X^{obs}))
 }
-
 where:
 \deqn{
 \ell(x) = \sum x_i \log p_i + \log \frac{n!}{\prod x_i!}

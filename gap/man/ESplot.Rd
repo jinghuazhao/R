@@ -14,10 +14,10 @@ ESplot(
 }
 \arguments{
 \item{ESdat}{Data frame with \strong{three columns}:
-\describe{
-\item{id}{Model or trait label}
-\item{b}{Effect estimate (beta or log(OR)/log(HR))}
-\item{se}{Standard error of the estimate}
+\itemize{
+\item id Model or trait label
+\item b Effect estimate (beta or log(OR)/log(HR))
+\item se Standard error of the estimate
 }}
 
 \item{alpha}{Type-I error rate for the confidence interval
@@ -53,7 +53,6 @@ The function supports both linear effect sizes (e.g. regression betas)
 and exponentiated effects (e.g. odds ratios or hazard ratios).
 
 Confidence intervals are computed as
-
 \deqn{ estimate \pm z_{\alpha/2} \times SE }
 
 When \code{transform="exp"}, estimates are interpreted as log(OR) or log(HR)

@@ -67,7 +67,6 @@ WEIGHTLABEL N
 }
 \references{
 \insertRef{schwarzer07}{gap}
-
 \insertRef{willer10}{gap}
 }
 \author{
