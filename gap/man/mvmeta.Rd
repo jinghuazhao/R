@@ -2,93 +2,121 @@
 % Please edit documentation in R/mvmeta.R
 \name{mvmeta}
 \alias{mvmeta}
-\title{Multivariate meta-analysis based on generalized least squares}
+\title{Multivariate fixed-effects meta-analysis via generalized least squares}
 \usage{
 mvmeta(b, V)
 }
 \arguments{
-\item{b}{the parameter estimates.}
+\item{b}{Matrix of study estimates (studies × parameters).}
 
-\item{V}{the triangular variance-covariance matrix.}
+\item{V}{may be supplied with
+\itemize{
+\item a matrix of upper-triangular rows
+\item a list of covariance matrices
+\item a 3D array (p × p × k)
+}}
 }
 \value{
-The returned value is a list containing:
+An object of class \code{"mvmeta"} with the following elements:
 \itemize{
-\item d the compact parameter estimates.
-\item Psi the compact covariance-covariance matrix.
-\item X the design matrix.
-\item beta the pooled parameter estimates.
-\item cov.beta the pooled variance-covariance matrix.
-\item X2 the Chi-squared statistic for heterogeneity.
-\item df the degrees(s) of freedom.
-\item p the p value.
+\item beta: pooled estimates
+\item vcov: covariance matrix of pooled estimates
+\item se: standard errors
+\item z: z statistics
+\item pval: p values
+\item ci: 95\% confidence intervals
+\item X2, df, p: heterogeneity test
+\item logLik: model log-likelihood
+\item k: number of studies
+\item p_outcomes: number of pooled outcomes
 }
 }
 \description{
-Multivariate meta-analysis based on generalized least squares
+Performs multivariate meta-analysis by pooling study-specific parameter
+estimates using generalized least squares (GLS) under a fixed-effects model.
 }
 \details{
-This function accepts a data matrix of parameter estimates and their variance-covariance matrix
-from individual studies and obtain a generalized least squares (GLS) estimate and heterogeneity statistic.
+The function accepts a matrix of parameter estimates and the corresponding
+within-study covariance matrices (stored in upper-triangular vector form).
 
-For instance, this would be appropriate for combining linear correlation coefficients of single
-nucleotide polymorphisms (SNPs) for a given region.
+This approach is appropriate when combining correlated effect estimates,
+for example correlation coefficients of SNPs across studies.
+
+The function fits a multivariate \strong{fixed-effects meta-analysis}
+using generalized least squares (GLS).
+
+For study \eqn{i = 1,\dots,k}, let \eqn{d_i} be the vector of observed
+parameter estimates and \eqn{\Psi_i} the corresponding within-study
+covariance matrix:
+\deqn{d_i \sim N(\beta,\; \Psi_i)}
+where \eqn{\beta} is the vector of common (pooled) parameters.
+
+The study estimates are stacked into a single vector
+\deqn{d = (d_1^T,\dots,d_k^T)^T}
+with block-diagonal covariance matrix
+\deqn{\Psi = \mathrm{blockdiag}(\Psi_1,\dots,\Psi_k).}
+
+The model can then be written in GLS regression form
+\deqn{d = X\beta + \varepsilon, \qquad \varepsilon \sim N(0,\Psi)}
+where \eqn{X} is a block design matrix that repeats an identity matrix
+for each study (intercept-only multivariate meta-analysis). Missing
+outcomes are automatically removed when constructing \eqn{d},
+\eqn{\Psi} and \eqn{X}.
+
+The pooled estimator is the GLS estimator
+\deqn{\hat{\beta} =
+(X^T \Psi^{-1} X)^{-1} X^T \Psi^{-1} d.}
+
+Heterogeneity is assessed using the multivariate Cochran Q statistic
+\deqn{Q = (d - X\hat{\beta})^T \Psi^{-1} (d - X\hat{\beta}),}
+which is asymptotically \eqn{\chi^2_{N-p}}, where \eqn{N} is the number
+of observed estimates and \eqn{p} the number of pooled parameters.
+
+This implementation corresponds to the multivariate fixed-effects
+model described in Hartung et al. (2008, Example 11.3).
 }
 \examples{
 \dontrun{
-# example 11.3 from Hartung et al.
-#
+# Example 11.3 from Hartung et al.
 b <- matrix(c(
 0.808, 1.308, 1.379, NA, NA,
 NA, 1.266, 1.828, 1.962, NA,
 NA, 1.835, NA, 2.568, NA,
 NA, 1.272, NA, NA, 2.038,
 1.171, 2.024, 2.423, 3.159, NA,
-0.681, NA, NA, NA, NA),ncol=5, byrow=TRUE)
+0.681, NA, NA, NA, NA), ncol=5, byrow=TRUE)
 
 psi1 <- psi2 <- psi3 <- psi4 <- psi5 <- psi6 <- matrix(0,5,5)
+psi1[1,1] <- 0.0985; psi1[1,2] <- 0.0611; psi1[1,3] <- 0.0623
+psi1[2,2] <- 0.1142; psi1[2,3] <- 0.0761; psi1[3,3] <- 0.1215
 
-psi1[1,1] <- 0.0985
-psi1[1,2] <- 0.0611
-psi1[1,3] <- 0.0623
-psi1[2,2] <- 0.1142
-psi1[2,3] <- 0.0761
-psi1[3,3] <- 0.1215
+psi2[2,2] <- 0.0713; psi2[2,3] <- 0.0539; psi2[2,4] <- 0.0561
+psi2[3,3] <- 0.0938; psi2[3,4] <- 0.0698; psi2[4,4] <- 0.0981
 
-psi2[2,2] <- 0.0713
-psi2[2,3] <- 0.0539
-psi2[2,4] <- 0.0561
-psi2[3,3] <- 0.0938
-psi2[3,4] <- 0.0698
-psi2[4,4] <- 0.0981
+psi3[2,2] <- 0.1228; psi3[2,4] <- 0.1119; psi3[4,4] <- 0.1790
+psi4[2,2] <- 0.0562; psi4[2,5] <- 0.0459; psi4[5,5] <- 0.0815
 
-psi3[2,2] <- 0.1228
-psi3[2,4] <- 0.1119
-psi3[4,4] <- 0.1790
-
-psi4[2,2] <- 0.0562
-psi4[2,5] <- 0.0459
-psi4[5,5] <- 0.0815
-
-psi5[1,1] <- 0.0895
-psi5[1,2] <- 0.0729
-psi5[1,3] <- 0.0806
-psi5[1,4] <- 0.0950
-psi5[2,2] <- 0.1350
-psi5[2,3] <- 0.1151
-psi5[2,4] <- 0.1394
-psi5[3,3] <- 0.1669
-psi5[3,4] <- 0.1609
+psi5[1,1] <- 0.0895; psi5[1,2] <- 0.0729; psi5[1,3] <- 0.0806
+psi5[1,4] <- 0.0950; psi5[2,2] <- 0.1350; psi5[2,3] <- 0.1151
+psi5[2,4] <- 0.1394; psi5[3,3] <- 0.1669; psi5[3,4] <- 0.1609
 psi5[4,4] <- 0.2381
 
 psi6[1,1] <- 0.0223
 
-V <- rbind(psi1[upper.tri(psi1,diag=TRUE)],psi2[upper.tri(psi2,diag=TRUE)],
-psi3[upper.tri(psi3,diag=TRUE)],psi4[upper.tri(psi4,diag=TRUE)],
-psi5[upper.tri(psi5,diag=TRUE)],psi6[upper.tri(psi6,diag=TRUE)])
+V <- rbind(psi1[upper.tri(psi1,diag=TRUE)],
+           psi2[upper.tri(psi2,diag=TRUE)],
+           psi3[upper.tri(psi3,diag=TRUE)],
+           psi4[upper.tri(psi4,diag=TRUE)],
+           psi5[upper.tri(psi5,diag=TRUE)],
+           psi6[upper.tri(psi6,diag=TRUE)])
 
-mvmeta(b,V)
+fit <- mvmeta(b, V)
+summary(fit)
+logLik(fit)
+AIC(fit)
+BIC(fit)
 }
+
 }
 \references{
 \insertRef{hartung08}{gap}
@@ -99,4 +127,3 @@ mvmeta(b,V)
 \author{
 Jing Hua Zhao
 }
-\keyword{datagen}

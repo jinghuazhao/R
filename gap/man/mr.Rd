@@ -15,8 +15,19 @@ mr(data, X, Y, alpha = 0.05, other_plots = FALSE)
 
 \item{alpha}{Significance level used for confidence intervals (default 0.05).}
 
-\item{other_plots}{Logical. If TRUE, produces metafor funnel and forest plots.
-
+\item{other_plots}{Logical. If TRUE, produces metafor funnel and forest plots.}
+}
+\value{
+Invisible list with components:
+\itemize{
+\item r Matrix of MR estimates for each exposure–outcome pair.
+\item plots List of ggplot objects (MR scatter plots).
+}
+}
+\description{
+Mendelian Randomization wrapper (IVW, Egger, Weighted Median, Penalised WM)
+}
+\details{
 Performs two–sample Mendelian Randomization using summary statistics
 stored in a wide data frame with columns named:
 \itemize{
@@ -31,19 +42,8 @@ For each outcome in \code{Y}, the function:
 \item Computes IVW, MR-Egger, Weighted Median and Penalised Weighted Median estimates
 \item Computes Cochran’s Q heterogeneity statistic
 \item Produces MR scatter plots
-}}
 }
-\value{
-Invisible list with components:
-\itemize{
-\item r Matrix of MR estimates for each exposure–outcome pair.
-\item plots List of ggplot objects (MR scatter plots).
-}
-}
-\description{
-Mendelian Randomization wrapper (IVW, Egger, Weighted Median, Penalised WM)
-}
-\details{
+
 Methods implemented:
 \itemize{
 \item IVW (inverse-variance weighted regression)

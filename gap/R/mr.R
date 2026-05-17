@@ -6,6 +6,7 @@
 #' @param alpha Significance level used for confidence intervals (default 0.05).
 #' @param other_plots Logical. If TRUE, produces metafor funnel and forest plots.
 #'
+#' @details
 #' Performs two–sample Mendelian Randomization using summary statistics
 #' stored in a wide data frame with columns named:
 #' - SNP
@@ -18,11 +19,6 @@
 #' 3. Computes Cochran’s Q heterogeneity statistic
 #' 4. Produces MR scatter plots
 #'
-#' @return Invisible list with components:
-#' - r Matrix of MR estimates for each exposure–outcome pair.
-#' - plots List of ggplot objects (MR scatter plots).
-#'
-#' @details
 #' Methods implemented:
 #' - IVW (inverse-variance weighted regression)
 #' - MR-Egger regression
@@ -34,6 +30,10 @@
 #' \code{metafor}, \code{ggplot2}, \code{cowplot}.
 #' Functions \code{weighted.median()} and \code{mr.boot()} must be available
 #' in the environment (e.g. from Mendelian randomization toolkits).
+#'
+#' @return Invisible list with components:
+#' - r Matrix of MR estimates for each exposure–outcome pair.
+#' - plots List of ggplot objects (MR scatter plots).
 #'
 #' @examples
 #' \dontrun{

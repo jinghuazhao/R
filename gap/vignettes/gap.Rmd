@@ -501,7 +501,7 @@ glist <- c("IRS1","SPRY2","FTO","GRIK3","SNED1","HTR1A","MARCH3","WISP3",
 hdata <- subset(mhtdata,gene%in%glist)[c("chr","pos","p","gene")]
 hcolor <- rep("red",length(glist))
 ops <- mht.control(axis.tck=0.02,cex=0.4,lab.cex=0.8,xline=4)
-hops <- hmht.control(data=hdata,colors=hcolor,boxed=TRUE)
+hops <- hmht.control(data=hdata,cex=0.8,colors=hcolor,boxed=TRUE)
 mhtplot(data,ops,hops,pch=19)
 ```
 

@@ -489,7 +489,7 @@ mht.control <- function(type="p", usepos=FALSE, logscale=TRUE, base=10,
 #'   p    = c(1e-8,1e-7,1e-9),
 #'   gene = c("GENE1","GENE2","GENE3")
 #' )
-#' hmht.control(data = hdata, colors = "red", boxed = TRUE)
+#' hmht.control(data = hdata, cex=0.8, colors = "red", boxed = TRUE)
 #'
 hmht.control <- function(data=NULL, colors="red", yoffset=0.25, cex=1.2, boxed=FALSE) {
   list(data=data,colors=colors,yoffset=yoffset,cex=cex,boxed=boxed)
