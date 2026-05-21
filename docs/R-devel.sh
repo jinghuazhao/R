@@ -46,6 +46,7 @@ sudo dnf install v8-devel
 sudo dnf install xorg-x11-fonts-100dpi
 sudo dnf install xorg-x11-fonts-75dpi
 sudo dnf install xz-devel
+sudo dnf install -y xorg-x11-server-Xorg xorg-x11-drivers xorg-x11-xinit
 
 # JAGS
 export version=4.3.2
