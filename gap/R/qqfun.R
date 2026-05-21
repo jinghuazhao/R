@@ -14,7 +14,7 @@
 #' @param ylim the y limits of the plot.
 #' @param pch plotting character for points; default is `1` (a circle, see [`graphics::par`]).
 #' @param bg background color of points.
-#' @param cex factor for expanding the size of plotted symbols; the default is `.4.
+#' @param cex factor for expanding the size of plotted symbols; the default is `.4`.
 #' @param lwd line width; default is `1` (see [`graphics::par`]). Confidence envelopes are drawn at half this line width.
 #' @param line `"quartiles"` to pass a line through the quartile-pairs, or `"robust"` for a robust-regression line; the latter uses the `rlm` function in the `MASS` package. Specifying `line = "none"` suppresses the line.
 #' @param \dots arguments such as \code{df} to be passed to the appropriate quantile function.
@@ -23,7 +23,7 @@
 #' Plots empirical quantiles of a variable against theoretical quantiles of a comparison distribution.
 #'
 #' Draws theoretical quantile-comparison plots for variables and for studentized residuals from a linear model. A comparison line is drawn on the plot either through the quartiles of the two distributions, or by robust regression.
-#'  
+#'
 #' Any distribution for which quantile and density functions exist in R (with prefixes `q` and `d`, respectively) may be used. Studentized residuals are plotted against the appropriate t-distribution.
 #'
 #' This is adapted from [`car::qq.plot`] with different values for points and lines, more options, more transparent code and examples in the current setting. Another similar but sophisticated function is [`lattice::qqmath`].
@@ -34,7 +34,6 @@
 #'
 #' @references
 #' \insertRef{davison03}{gap}
-#'
 #' \insertRef{leemis08}{gap}
 #'
 #' @author John Fox, Jing Hua Zhao
@@ -44,67 +43,95 @@
 #' \dontrun{
 #' p <- runif(100)
 #' alpha <- 1/log(10)
-#' qqfun(p,dist="unif")
-#' qqfun(-log10(p),dist="exp",rate=alpha,pch=21)
-
+#'
+#' qqfun(p,distribution="unif")
+#' qqfun(-log10(p),distribution="exp",rate=alpha,pch=21)
+#'
 #' library(car)
 #' qq.plot(p,dist="unif")
 #' qq.plot(-log10(p),dist="exp",rate=alpha)
 #'
 #' library(lattice)
-#' qqmath(~ -log10(p), distribution = function(p) qexp(p,rate=alpha))
+#' qqmath(~ -log10(p), distribution=function(p) qexp(p,rate=alpha))
 #' }
 #'
 #' @keywords distribution univar regression
-
-qqfun <- function(x, distribution="norm", ylab=deparse(substitute(x)),
-            xlab=paste(distribution, "quantiles"), main=NULL, las=par("las"),
-            envelope=.95, labels=FALSE, col=palette()[4], lcol=palette()[2], 
-            xlim=NULL, ylim=NULL, lwd=1, pch=1, bg=palette()[4], cex=.4,
-            line=c("quartiles", "robust", "none"), ...)
+#'
+qqfun <- function(x,distribution="norm",ylab=deparse(substitute(x)),
+                  xlab=paste(distribution,"quantiles"),main=NULL,
+                  las=par("las"),envelope=.95,labels=FALSE,
+                  col=palette()[4],lcol=palette()[2],
+                  xlim=NULL,ylim=NULL,lwd=1,pch=1,
+                  bg=palette()[4],cex=.4,
+                  line=c("quartiles","robust","none"),...)
 {
     result <- NULL
     line <- match.arg(line)
+    if (!identical(envelope,FALSE)) {
+        if (!is.numeric(envelope) || length(envelope) != 1 ||
+            envelope <= 0 || envelope >= 1) {
+            stop("'envelope' must be FALSE or a number in (0,1)")
+        }
+    }
     good <- !is.na(x)
     ord <- order(x[good])
     ord.x <- x[good][ord]
-    qfun <- eval(parse(text=paste("q",distribution,sep="")))
-    dfun <- eval(parse(text=paste("d",distribution,sep="")))
+    if (!length(ord.x)) stop("no valid observations")
+    qname <- paste0("q",distribution)
+    dname <- paste0("d",distribution)
+    if (!exists(qname,mode="function")) {
+        stop("quantile function not found")
+    }
+    if (!exists(dname,mode="function")) {
+        stop("density function not found")
+    }
+    qfun <- get(qname,mode="function")
+    dfun <- get(dname,mode="function")
     n <- length(ord.x)
     P <- ppoints(n)
-    z <- qfun(P, ...)
-    plot(z, ord.x, xlab=xlab, ylab=ylab, main=main, las=las, col=col, pch=pch, cex=cex, bg=bg, xlim=xlim, ylim=ylim)
-    if (line=="quartiles") {
-        Qx <- quantile(ord.x, c(.25,.75))
-        Qz <- qfun(c(.25,.75), ...)
-        b <- (Qx[2]-Qx[1])/(Qz[2]-Qz[1])
-        a <- Qx[1]-b*Qz[1]
-        abline(a, b, col=lcol, lwd=lwd)
+    z <- qfun(P,...)
+    plot(z,ord.x,
+         xlab=xlab,
+         ylab=ylab,
+         main=main,
+         las=las,
+         col=col,
+         pch=pch,
+         cex=cex,
+         bg=bg,
+         xlim=xlim,
+         ylim=ylim)
+    if (line == "quartiles") {
+        Qx <- quantile(ord.x,c(.25,.75))
+        Qz <- qfun(c(.25,.75),...)
+        b <- (Qx[2] - Qx[1]) / (Qz[2] - Qz[1])
+        a <- Qx[1] - b * Qz[1]
+        abline(a,b,col=lcol,lwd=lwd)
     }
-    if (line=="robust") {
-        for(p in c("MASS")) {
-           if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-              if (!requireNamespace(p, quietly = TRUE))
-              warning(paste("qqfun needs package `", p, "' to be fully functional; please install", sep=""))
-           }
+    if (line == "robust") {
+        if (!requireNamespace("MASS",quietly=TRUE)) {
+            stop("package 'MASS' is required for line='robust'")
         }
-        coef <- coefficients(MASS::rlm(ord.x~z))
+        coef <- coefficients(MASS::rlm(ord.x ~ z))
         a <- coef[1]
         b <- coef[2]
-        abline(a,b,col=palette()[2])
+        abline(a,b,col=lcol,lwd=lwd)
     }
-    if (line != 'none' & envelope != FALSE) {
-        zz <- qnorm(1-(1-envelope)/2)
-        SE <- (b/dfun(z, ...))*sqrt(P*(1-P)/n)
-        fit.value <- a+b*z
-        upper <- fit.value+zz*SE
-        lower <- fit.value-zz*SE
-        lines(z, upper, lty=2, lwd=lwd/2, col=lcol)
-        lines(z, lower, lty=2, lwd=lwd/2, col=lcol)
+    if (line != "none" && !identical(envelope,FALSE)) {
+        zz <- qnorm(1 - (1 - envelope) / 2)
+        SE <- (b / dfun(z,...)) * sqrt(P * (1 - P) / n)
+        fit.value <- a + b * z
+        upper <- fit.value + zz * SE
+        lower <- fit.value - zz * SE
+
+        lines(z,upper,lty=2,lwd=lwd/2,col=lcol)
+        lines(z,lower,lty=2,lwd=lwd/2,col=lcol)
     }
-    if (labels[1]==TRUE & length(labels)==1) labels<-seq(along=z)
-    if (labels[1] != FALSE) {
-        selected <- identify(z, ord.x, labels[good][ord])
+    if (isTRUE(labels) && length(labels) == 1) {
+        labels <- seq(along=z)
+    }
+    if (!identical(labels,FALSE)) {
+        selected <- identify(z,ord.x,labels[good][ord])
         result <- seq(along=x)[good][ord][selected]
     }
     if (is.null(result)) invisible(result) else sort(result)

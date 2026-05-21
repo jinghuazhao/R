@@ -2,7 +2,7 @@
 % Please edit documentation in R/qqunif.R
 \name{qqunif}
 \alias{qqunif}
-\title{Q-Q plot for uniformly distributed random variable}
+\title{Q-Q plot for uniformly distributed random variables}
 \usage{
 qqunif(
   u,
@@ -17,57 +17,53 @@ qqunif(
 )
 }
 \arguments{
-\item{u}{a vector of uniformly distributed random variables.}
+\item{u}{A vector of uniformly distributed random variables.}
 
-\item{type}{string option to specify distribution: "unif"=uniform, "exp"=exponential.}
+\item{type}{Distribution type: \code{"unif"} for uniform order statistics or \code{"exp"} for exponential order statistics.}
 
-\item{logscale}{to use logscale.}
+\item{logscale}{Logical; use log scale.}
 
-\item{base}{the base of the log function.}
+\item{base}{Base of the logarithm.}
 
-\item{col}{color for points.}
+\item{col}{Color for points.}
 
-\item{lcol}{color for the diagonal line.}
+\item{lcol}{Color for the diagonal reference line.}
 
-\item{ci}{logical option to show confidence interval.}
+\item{ci}{Logical; show confidence intervals.}
 
-\item{alpha}{1-confidence level, e.g., 0.05.}
+\item{alpha}{Significance level for confidence intervals.}
 
-\item{...}{other options as appropriae for the qqplot function.}
+\item{...}{Additional graphical arguments passed to \code{qqplot()}.}
 }
 \value{
-The returned value is a list with components of a qqplot:
-\itemize{
-\item x expected value for uniform order statistics or its -log(,base) counterpart.
-\item y observed value or its -log(,base) counterpart.
+Invisibly returns the list produced by \code{qqplot()} with components:
+\describe{
+\item{x}{Expected quantiles.}
+\item{y}{Observed quantiles.}
 }
 }
 \description{
-Q-Q plot for uniformly distributed random variable
+Q-Q plot for uniformly distributed random variables
 }
 \details{
-This function produces Q-Q plot for a random variable following uniform distribution with or
-without using log-scale. Note that the log-scale is by default for type "exp", which is a plot based on
-exponential order statistics. This appears to be more appropriate than the commonly used procedure whereby
-the expected value of uniform order statistics is directly log-transformed.
+This function produces a Q-Q plot for a random variable following a uniform distribution, optionally on a logarithmic scale.
+
+For \code{type = "exp"}, the plot is based on exponential order statistics, which is generally more appropriate than directly log-transforming the expected uniform order statistics.
 }
 \examples{
 \dontrun{
-# Q-Q Plot for 1000 U(0,1) r.v., marking those <= 1e-5
 u_obs <- runif(1000)
 r <- qqunif(u_obs,pch=21,bg="blue",bty="n")
 u_exp <- r$y
 hits <- u_exp >= 2.30103
 points(r$x[hits],u_exp[hits],pch=21,bg="green")
-legend("topleft",sprintf("GC.lambda=\\%.4f",gc.lambda(u_obs)))
+legend("topleft",sprintf("GC.lambda = \%.4f",gc.lambda(u_obs)))
 }
 
 }
 \references{
 \insertRef{balakrishnan03}{gap}
-
 \insertRef{casella02}{gap}
-
 \insertRef{davison03}{gap}
 }
 \seealso{
