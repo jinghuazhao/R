@@ -8,7 +8,7 @@
 A vector containing lengths of chromosomes.
 }
 \usage{
-data(hg19)
+hg19
 }
 \description{
 Data are used in other functions.

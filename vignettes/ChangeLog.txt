@@ -1,15 +1,16 @@
 Version history of the R genetic analysis package (R/gap)
 
-Version 1.15
-17-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
+Version 1.15.0
+21-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
 		Add ACDE() upon revisiting AE3()
 		Add labels for code chunks/@scott97 from @sph in vignette as indicated by devtools::build_vignettes()
-		Amend .Rbuildignore
+		Amend DESCRIPTION/.Rbuildignore to build vignettes locally
 		Amend references/examples for fbsize/pbsize
 		Drop DOT from Suggests since it is not used in vignette after all
 		Drop escape \%in\% in mhtplot.R and xix boxed=TRUE in mhtplot() & mhtplot2()(finally!)
 		Fix R/.github/workflows/r.yml
 		Fix ccsize.R, inst/shinygap/server.R
+		Fix pfc.sim.f Obsolescent feature: Old-style character length as indicated by CRAN.
 		Polish DESCRIPTION esp. drop grid and add grDevices in Suggests
 		Revise METAL/mr_forestplot along with their documentation and vignettes
 		Rewrite metap() / metareg(), mr(), ESplot(), cs(), hwe(), mvmeta()

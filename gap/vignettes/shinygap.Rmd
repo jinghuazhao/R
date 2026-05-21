@@ -14,7 +14,7 @@ author:
   - https://jinghuazhao.github.io/
 date: '`r Sys.Date()`'
 bibliography: '`r system.file("REFERENCES.bib", package="gap")`'
-csl: nature-genetics.csl
+csl: '`r system.file("nature-genetics.csl", package="gap")`'
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Shiny for Genetic Analysis Package (gap) Designs}

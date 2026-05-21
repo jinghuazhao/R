@@ -8,7 +8,7 @@
 A vector containing lengths of chromosomes.
 }
 \usage{
-data(hg38)
+hg38
 }
 \description{
 Data are used in other functions.
