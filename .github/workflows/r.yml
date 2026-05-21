@@ -32,6 +32,8 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           working-directory: gap
+          extra-packages: |
+            any::rcmdcheck
 
       - name: Check package
         run: |
