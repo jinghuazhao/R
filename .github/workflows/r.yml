@@ -24,23 +24,23 @@ jobs:
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Set graphics device
+      - name: Install system settings
         run: |
-          echo "options(device = 'png')" >> ~/.Rprofile
+          echo "options(device='png')" >> ~/.Rprofile
 
       - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          working-directory: gap
-          extra-packages: any::rcmdcheck
-
-      - name: Check
-        run: |
-          rcmdcheck::rcmdcheck(
-            "gap",
-            args = "--no-manual",
-            error_on = "error"
-          )
         shell: Rscript {0}
+        run: |
+          install.packages(c("remotes"))
+          remotes::install_deps("gap", dependencies = TRUE)
+
+      - name: Build package
+        run: |
+          R CMD build gap
+
+      - name: Check package
+        run: |
+          R CMD check --no-manual gap_*.tar.gz
         env:
           _R_CHECK_FORCE_SUGGESTS_: false
+          R_INSTALL_STAGED: false
