@@ -1,14 +1,8 @@
-# 13-5-2026 JHZ
+# 21-5-2026 JHZ
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
-rsync -av ~/rds/software/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
+rsync -av --partial ~/R-devel/library/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
-
-if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
-   echo icelake
-   module load ceuadmin/libssh/0.10.6-icelake
-   module load ceuadmin/openssh/9.7p1-icelake
-fi
 
 git add .github
 git commit -m ".github"
