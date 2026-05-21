@@ -10,12 +10,11 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
@@ -29,21 +28,19 @@ jobs:
         run: |
           echo "options(device = 'png')" >> ~/.Rprofile
 
-      - name: Install R package dependencies
+      - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           working-directory: gap
-          extra-packages: |
-            any::rcmdcheck
+          extra-packages: any::rcmdcheck
 
-      - name: Check package
+      - name: Check
         run: |
           rcmdcheck::rcmdcheck(
             "gap",
-            args = c("--no-manual"),
+            args = "--no-manual",
             error_on = "error"
           )
         shell: Rscript {0}
         env:
           _R_CHECK_FORCE_SUGGESTS_: false
-          R_INSTALL_STAGED: false
