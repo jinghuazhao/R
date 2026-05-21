@@ -39,15 +39,10 @@ jobs:
         run: |
           rcmdcheck::rcmdcheck(
             "gap",
-            args = c(
-              "--no-manual",
-              "--ignore-vignettes",
-              "--no-build-vignettes"
-            ),
+            args = "--no-manual",
             error_on = "error"
           )
         shell: Rscript {0}
         env:
           _R_CHECK_FORCE_SUGGESTS_: false
           R_INSTALL_STAGED: false
-          R_BUILD_VIGNETTES: false
