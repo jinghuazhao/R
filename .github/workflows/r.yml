@@ -25,7 +25,7 @@ jobs:
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Install system dependencies
+      - name: Set graphics device
         run: |
           echo "options(device = 'png')" >> ~/.Rprofile
 
@@ -46,3 +46,4 @@ jobs:
         shell: Rscript {0}
         env:
           _R_CHECK_FORCE_SUGGESTS_: false
+          R_INSTALL_STAGED: false
