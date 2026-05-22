@@ -21,7 +21,7 @@ Column names are ignored. Factors are automatically converted.
 \item{hcontrol}{A list produced by \code{\link[=hmht.control]{hmht.control()}} defining highlighted
 markers or regions and labels.}
 
-\item{...}{Additional graphical arguments passed to \code{\link[graphics:plot.default]{graphics::plot()}}
+\item{...}{Additional graphical arguments passed to \code{\link[graphics:plot]{graphics::plot()}}
 (e.g. \code{pch}, \code{bg}, \code{xlab}, \code{ylab}, \code{ylim}).
 If \code{mar} is supplied, the default margins are not modified.}
 }
