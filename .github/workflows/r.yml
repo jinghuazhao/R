@@ -19,30 +19,23 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "4.3"
+          r-version: '4.3'
 
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Set graphics device
+      - name: Set graphics device (avoid X11/cairo issues)
         run: |
-          echo "options(device='png')" >> ~/.Rprofile
+          echo "options(device = 'png')" >> ~/.Rprofile
 
       - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          working-directory: gap
-          extra-packages: |
-            any::rcmdcheck
-
-      - name: Check package
         run: |
-          rcmdcheck::rcmdcheck(
-            "gap",
-            args = "--no-manual",
-            error_on = "error"
-          )
+          install.packages(c("rcmdcheck", "remotes"))
+          remotes::install_deps("gap", dependencies = TRUE)
+        shell: Rscript {0}
+
+      - name: Check
+        run: rcmdcheck::rcmdcheck("gap", args = "--no-manual", error_on = "error")
         shell: Rscript {0}
         env:
           _R_CHECK_FORCE_SUGGESTS_: false
-          R_INSTALL_STAGED: false
