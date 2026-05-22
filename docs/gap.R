@@ -12,16 +12,14 @@ export _R_CHECK_LIMIT_CORES_=TRUE
 export _R_CHECK_BUILD_VIGNETTES_=FALSE
 
 Rscript -e '
-pkg <- "gap"
 cat(R.version.string, "\n")
-
-pkg <- file.path(getwd(), pkg)
-
+pkg <- "gap"
 devtools::document(pkg)
-tarball <- pkgbuild::build(pkg, clean = TRUE)
-
-install.packages(tarball, repos = NULL, type = "source")
-
+dir.create("gap/inst/doc", recursive=TRUE, showWarnings=FALSE)
+rmarkdown::render("vignettes/gap.Rmd",
+           output_file="gap_incl.html", output_dir="gap/inst/doc", quiet=TRUE)
+tarball <- pkgbuild::build(pkg, clean=TRUE, args=c("--compact-vignettes=both"))
+install.packages(tarball, repos=NULL, type="source")
 rcmdcheck::rcmdcheck(
   tarball,
   args = c("--as-cran", "--run-donttest", "--timings"),

@@ -1,6 +1,53 @@
 # Notes
 
-Materials here are self-evident and reflect evolution over time.
+Materials here are self-evident and reflect evolution over time; as yet two scripts are worth mentioning.
+
+* [gap.sh](gap.sh). Bash script use to build/install/check package gap. [gap.R](gap.R) is a mock to it but not working if gap.Rmd wraps a prebuild .html.
+* [docs.sh](docs.sh). Bash script to commit changes to GitHub.
+
+There are various other utility scripts.
+
+* [check.sh](check.sh) is the standard CRAN submission check, e.g.,
+```bash
+check.sh gap_1.15.tar.gz
+```
+* [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` to work properly, it is necessary to load the modules in it.
+
+Scripts `csd3-gcc[11|12].sh` serve as alternatives to the default CentOS 8 with gcc 8.5.0-20.
+
+* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as orignally described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
+```bash
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export FC=/usr/bin/gfortran
+export CFLAGS="-g -O2 -Wall -pedantic -mtune=native"
+export FFLAGS="-g -O2 -mtune=native -Wall -pedantic"
+export CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-parentheses -Warray-parameter"
+export LDFLAGS="-L/usr/lib64 -L/usr/lib64"
+```
+followed by `R-devel CMD INSTALL gap_1.2.3.tar.gz`, say. They could also be part of $HOME/.R/Makevars, omitting `export`.
+
+The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
+
+> Warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+
+It also shows how to install `gap` from GitHub via `Rscript`.
+
+* [register.R](register.R) can be used as
+```bash
+[Rscript] register.R gap
+```
+to produce `package_native_routine_registration_skeleton.c`; nevertheless function prototypes still require agreement with their definitions in C.
+
+It is more apporopriate for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
+```bash
+gfortran -c -fc-prototypes-external lmm.f
+```
+as in package 'lmm'.
+
+* [suggests.R](suggests.R) is useful to install susggested packages.
+
+pQTLtools is somewhat poorly mirrored here, <https://rdrr.io/github/jinghuazhao/pQTLtools/>.
 
 ## .Rprofile
 
@@ -252,54 +299,6 @@ This command counts packages updated from `blockmodeling`.
 ls -rtl |   awk '/blockmodeling/{f=1} f' | wc -l
 ls -rtl |   sed '1,/blockmodeling/d' | expr `wc -l` + 1
 ```
-
-## Utilities
-
-There are various utility scripts.
-
-* [check.sh](check.sh) is the standard CRAN submission check, e.g.,
-```bash
-check.sh gap_1.15.tar.gz
-```
-* [csd3.sh](csd3.sh) contains steps to install R under CSD3. Note that for `check.sh` to work properly, it is necessary to load the modules in it.
-
-Scripts `csd3-gcc[11|12].sh` serve as alternatives to the default CentOS 8 with gcc 8.5.0-20.
-
-* [install.sh](install.sh) is a sophisticated way of installation. One could implement a more restrictive gcc9 specifications, as orignally described in [https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt](https://www.stats.ox.ac.uk/pub/bdr/gcc9/README.txt), as follows,
-```bash
-export CC=/usr/bin/gcc
-export CXX=/usr/bin/g++
-export FC=/usr/bin/gfortran
-export CFLAGS="-g -O2 -Wall -pedantic -mtune=native"
-export FFLAGS="-g -O2 -mtune=native -Wall -pedantic"
-export CXXFLAGS="-g -O2 -Wall -pedantic -mtune=native -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-parentheses -Warray-parameter"
-export LDFLAGS="-L/usr/lib64 -L/usr/lib64"
-```
-followed by `R-devel CMD INSTALL gap_1.2.3.tar.gz`, say. They could also be part of $HOME/.R/Makevars, omitting `export`.
-
-The CPPFLAGS="-D_FORTIFY_SOURCE=2" produces
-
-> Warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
-
-It also shows how to install `gap` from GitHub via `Rscript`.
-
-* [register.R](register.R) can be used as
-```bash
-[Rscript] register.R gap
-```
-to produce `package_native_routine_registration_skeleton.c`; nevertheless function prototypes still require agreement with their definitions in C.
-
-It is more apporopriate for `gfortran` 9.2 and later to extract C prototypes for Fortran subroutines with a special flag:
-```bash
-gfortran -c -fc-prototypes-external lmm.f
-```
-as in package 'lmm'.
-
-* [docs.sh](docs.sh) is a batch file for GitHub.
-
-* [suggests.R](suggests.R) is useful to install susggested packages.
-
-pQTLtools is somewhat poorly mirrored here, <https://rdrr.io/github/jinghuazhao/pQTLtools/>.
 
 ## html
 

@@ -11,6 +11,8 @@ export _R_CHECK_LIMIT_CORES_=TRUE
 export MAKEFLAGS="-j$(nproc)"
 
 Rscript -e 'cat(R.version.string,"\n");devtools::document("gap")'
+Rscript -e 'rmarkdown::render("vignettes/gap.Rmd",
+            output_file="gap_incl.html", output_dir="gap/inst/doc", quiet=TRUE)'
 R CMD build --compact-vignettes=both gap
 TARBALL=$(ls -t gap_*.tar.gz | head -1)
 R CMD INSTALL "$TARBALL"
