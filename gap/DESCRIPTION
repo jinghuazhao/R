@@ -27,7 +27,7 @@ Depends: R (>= 2.10), gap.datasets (>= 0.0.6)
 Imports: dplyr, ggplot2, plotly, Rdpack
 Suggests: BradleyTerry2, DiagrammeR, MASS, Matrix, MCMCglmm, R2jags,
         bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
-        foreign, genetics, grDevices, haplo.stats, htmlwidgets,
+        foreign, genetics, grDevices, haplo.stats, htmltools, htmlwidgets,
         jsonlite, kinship2, knitr, lattice, magic, matrixStats, meta,
         metafor, nlme, pedigree, pedigreemm, plotrix, readr, reshape,
         rmarkdown, rms, scales, survival, valr

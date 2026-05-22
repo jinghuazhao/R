@@ -10,8 +10,9 @@ Version 1.15.0
 		Drop escape \%in\% in mhtplot.R and xix boxed=TRUE in mhtplot() & mhtplot2()(finally!)
 		Fix R/.github/workflows/r.yml
 		Fix ccsize.R, inst/shinygap/server.R
-		Fix pfc.sim.f Obsolescent feature: Old-style character length as indicated by CRAN.
+		Fix pfc.sim.f Obsolescent feature: Old-style character length as indicated by CRAN
 		Polish DESCRIPTION esp. drop grid and add grDevices in Suggests
+		Pull back gap.Rmd as precompiled html, so Suggests htmltools
 		Revise METAL/mr_forestplot along with their documentation and vignettes
 		Rewrite metap() / metareg(), mr(), ESplot(), cs(), hwe(), mvmeta(), qqfun(), qqunif()
 
