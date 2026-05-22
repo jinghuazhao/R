@@ -6,6 +6,7 @@ rsync -av --partial ~/R-devel/library/gap/doc/{gap.html,gap_incl.html,shinygap.h
 else
 rsync -av --partial ~/rds/software/R/gap/doc/{gap.html,gap_incl.html,shinygap.html} ~/R/vignettes/
 fi
+mv ~/R/vignettes/gap_incl.html ~/R/vignettes/gap.html
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 git add .github
