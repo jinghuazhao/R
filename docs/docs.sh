@@ -1,8 +1,11 @@
 # 21-5-2026 JHZ
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
-rsync -av --partial ~/R-devel/library/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
-rsync -av --partial ~/rds/software/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
+if [ -d ~/R-devel/library/gap/doc ]; then
+rsync -av --partial ~/R-devel/library/gap/doc/{gap.html,gap_incl.html,shinygap.html} ~/R/vignettes/
+else
+rsync -av --partial ~/rds/software/R/gap/doc/{gap.html,gap_incl.html,shinygap.html} ~/R/vignettes/
+fi
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 git add .github
