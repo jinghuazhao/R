@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.0
-21-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
+22-05-2026	Accommodate roxygen2 7.3+ change of @importFrom so one package per tag
 		Add ACDE() upon revisiting AE3()
 		Add labels for code chunks/@scott97 from @sph in vignette as indicated by devtools::build_vignettes()
 		Amend DESCRIPTION/.Rbuildignore to build vignettes locally
