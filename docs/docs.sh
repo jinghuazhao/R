@@ -2,6 +2,7 @@
 
 cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
 rsync -av --partial ~/R-devel/library/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
+rsync -av --partial ~/rds/software/R/gap/doc/{gap.html,shinygap.html} ~/R/vignettes/
 cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
 
 git add .github
