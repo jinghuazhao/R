@@ -1,5 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.15.2
+24-05-2026	Fix gap.Rmd
+
 Version 1.15.1
 24-05-2026	Fix qqunif() handling 0/1
 		Rewrite mhtplot.trunc()
