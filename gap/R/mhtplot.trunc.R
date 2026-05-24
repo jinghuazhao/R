@@ -316,7 +316,7 @@ mhtplot.trunc <- function(
       by = y.ax.space,
       length.out = upper.n
     )
-    y.labels <- c(lower.labels, upper.labels)
+    y.labels <- ceiling(c(lower.labels, upper.labels))
     axis(
       side = 2,
       at = y.tick.pos,
