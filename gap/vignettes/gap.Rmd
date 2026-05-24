@@ -11,7 +11,7 @@ pkgdown:
   as_is: true
 
 vignette: >
-  %\VignetteIndexEntry{An Overview of pQTLtools}
+  %\VignetteIndexEntry{Genetic Analysis Package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -27,6 +27,9 @@ knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin:auto"',
   dev = "CairoPNG"
 )
+```
+
+The document is also available from <https://jinghuazhao.github.io/R/vignettes/gap.html>.
 
 ```{r gap_incl, echo=FALSE}
 htmltools::tags$iframe(
