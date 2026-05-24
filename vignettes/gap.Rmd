@@ -562,22 +562,51 @@ labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c("AnonymousGene","FTO
 and a truncated Manhattan plot, noting that only data points with -log10(P)>=2 are shown,
 
 ```r
-par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
-mhtplot.trunc(filter(IL.12B,log10P>=2), chr="Chromosome", bp="Position", z="Z",
-   snp="MarkerName",
-   suggestiveline=FALSE, genomewideline=-log10(5e-10),
-   cex.mtext=1.2, cex.text=1.2,
-   annotatelog10P=-log10(5e-10), annotateTop = FALSE,
-   highlight=with(genes,gene),
-   mtext.line=3, y.brk1=115, y.brk2=300, trunc.yaxis=TRUE, delta=0.01,
-   cex.axis=1.5, cex=0.8, font=3, font.axis=1.5,
-   y.ax.space=20,
-   col = c("blue4", "skyblue")
+library(Cairo)
+hl <- c("BHLHE40", "LPP", "IL12B", "MHC", "SH2B3;TRAFD1", "FLT3", "RAD51B", "TRAF3")
+dat <- IL.12B_truncated
+dat <- dat[order(dat$Chromosome, dat$Position), ]
+CairoPNG("IL-12B_mhtplot.trunc.png", width = 9, height = 6, units = "in", dpi = 300)
+screen_like <- TRUE
+cex.scale <- if (screen_like) 0.85 else 1
+space.scale <- if (screen_like) 0.85 else 1
+par(mar = c(5, 6.5, 1, 1),cex = cex.scale)
+d <- mhtplot.trunc(
+  dat,
+  chr = "Chromosome",
+  bp = "Position",
+  log10p = "log10P",
+  snp = "MarkerName",
+  highlight = hl,
+  suggestiveline = FALSE,
+  genomewideline = -log10(5e-8),
+  annotateTop = FALSE,
+  annotatelog10P = Inf,
+  y.brk1 = 115,
+  y.brk2 = 300,
+  trunc.yaxis = TRUE,
+  cex.axis = 1.1 * cex.scale,
+  cex = 0.75 * cex.scale,
+  cex.text = 0.85 * cex.scale,
+  y.ax.space = 35 * space.scale,
+  col = c("blue4", "skyblue")
 )
+hl.df <- d[d$SNP %in% hl, ]
+hl.df <- hl.df[order(hl.df$log10P, decreasing = TRUE), ]
+base.space <- 0.9 * space.scale
+hl.df$offset <- (seq_len(nrow(hl.df)) - 1) * base.space
+if (all(c("FLT3", "TRAF3") %in% hl.df$SNP)) {
+  i1 <- which(hl.df$SNP == "FLT3")
+  i2 <- which(hl.df$SNP == "TRAF3")
+  hl.df$offset[i2] <- hl.df$offset[i1] + 2.2 * base.space
+}
+text(x = hl.df$pos, y = hl.df$log10P + hl.df$offset,
+  labels = hl.df$SNP, cex = 0.85 * cex.scale, font = 3, pos = 3)
+dev.off()
 ```
 
 ```{r il12b, echo=FALSE, fig.align="left", fig.cap="Association of IL-12B", fig.height=6, fig.width=6}
-knitr::include_graphics("IL-12B.png")
+knitr::include_graphics("IL-12B_mhtplot.trunc.png")
 ```
 
 The code below obtains a regional association plot with the `asplot` function,
