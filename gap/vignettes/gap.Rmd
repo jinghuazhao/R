@@ -29,8 +29,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-<>
-
 ```{r gap_incl, echo=FALSE, warning=FALSE}
 htmltools::tags$iframe(
   src = "https://jinghuazhao.github.io/R/vignettes/gap.html",
