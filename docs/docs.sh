@@ -2,6 +2,7 @@
 
 make -f vignettes/ChangeLog.txt
 make -f vignettes/gap-manual.pdf
+make -f vignettes/shinygap.html
 
 git add .github
 git commit -m ".github"
