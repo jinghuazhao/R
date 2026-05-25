@@ -12,7 +12,7 @@ export MAKEFLAGS="-j$(nproc)"
 
 Rscript -e 'cat(R.version.string,"\n");devtools::document("gap")'
 Rscript -e 'rmarkdown::render("vignettes/gap.Rmd",
-            output_file="gap_incl.html", output_dir="gap/inst/doc", clean=TRUE, quiet=TRUE)'
+            output_file="gap.html", output_dir="vignettes", clean=TRUE, quiet=TRUE)'
 R CMD build --compact-vignettes=both gap
 TARBALL=$(ls -t gap_*.tar.gz | head -1)
 R CMD INSTALL "$TARBALL"

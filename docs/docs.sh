@@ -1,13 +1,7 @@
-# 21-5-2026 JHZ
+# 25-5-2026 JHZ
 
-cp -p ~/R/gap/ChangeLog ~/R/vignettes/ChangeLog.txt
-if [ -d ~/R-devel/library/gap/doc ]; then
-rsync -av --partial ~/R-devel/library/gap/doc/{gap.html,gap_incl.html,shinygap.html} ~/R/vignettes/
-else
-rsync -av --partial ~/rds/software/R/gap/doc/{gap.html,gap_incl.html,shinygap.html} ~/R/vignettes/
-fi
-mv ~/R/vignettes/gap_incl.html ~/R/vignettes/gap.html
-cp -p ~/R/gap.Rcheck/gap-manual.pdf ~/R/vignettes
+make -f vignettes/ChangeLog.txt
+make -f vignettes/gap-manual.pdf
 
 git add .github
 git commit -m ".github"
