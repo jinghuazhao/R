@@ -29,9 +29,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-The document is also available from <https://jinghuazhao.github.io/R/vignettes/gap.html>.
+<https://jinghuazhao.github.io/R/vignettes/gap.html>
 
-```{r gap_incl, echo=FALSE}
+```{r gap_incl, echo=FALSE, warning=FALSE}
 htmltools::tags$iframe(
   src = "gap_incl.html",
   width = "100%",
