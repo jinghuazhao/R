@@ -50,7 +50,7 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
     > - `g.binread` function, [**GGIR**](https://cran.r-project.org/package=GGIR) & [GGIRread](https://cran.r-project.org/web/packages/GGIRread/index.html).
     > - [**ITHIM** injurymodel](https://github.com/ithim/injurymodel) through a hackathon at MRC.
 
-[^cyv]: Featured CRAN task views:
+[^ctv]: Featured CRAN task views:
 
     > - Genetics: **gap**, **tdthap**
     > - Meta-Analysis: **gap**
