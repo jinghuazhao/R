@@ -14,8 +14,7 @@ Rscript -e 'cat(R.version.string,"\n");devtools::document("gap")'
 Rscript -e 'rmarkdown::render("vignettes/gap.Rmd",
             output_file="gap.html", output_dir="vignettes", clean=TRUE, quiet=TRUE)'
 R CMD build --compact-vignettes=both gap
-shopt -s extglob
-rm vignettes/!(*IL-12B_mhtplot.trunc.png|10081*)*.png
+find vignettes -maxdepth 1 -type f \( -name '*.png' -o -name '10081*' \) ! -name 'IL-12B_mhtplot.trunc.png' -delete
 TARBALL=$(ls -t gap_*.tar.gz | head -1)
 R CMD INSTALL "$TARBALL"
 R CMD check --as-cran --run-donttest "$TARBALL"
