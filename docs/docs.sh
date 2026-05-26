@@ -1,8 +1,8 @@
 # 25-5-2026 JHZ
 
-make -f vignettes/ChangeLog.txt
-make -f vignettes/gap-manual.pdf
-make -f vignettes/shinygap.html
+make -f docs/Makefile vignettes/ChangeLog.txt
+make -f docs/Makefile vignettes/gap-manual.pdf
+make -f docs/Makefile vignettes/shinygap.html
 
 git add .github
 git commit -m ".github"
