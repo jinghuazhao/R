@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.2
-25-05-2026	Fix gap.Rmd
+26-05-2026	Fix gap.Rmd/pfc.sim.f
 
 Version 1.15.1
 24-05-2026	Fix qqunif() handling 0/1
