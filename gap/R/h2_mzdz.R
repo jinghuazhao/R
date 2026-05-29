@@ -28,7 +28,7 @@
 #' \deqn{Var(r) \approx \frac{(1-r^2)^2}{n-1}}
 #' Given MZ/DZ data or their correlations and sample sizes, it obtains
 #' heritability and variance estimates under an ACE model as in
-#' \doi{10.1038/s41562-023-01530-y} and \insertCite{keeping95;textual}{gap}.
+#' \insertCite{gidziela23;textual}{gap} and \insertCite{keeping95;textual}{gap}.
 #'
 #' @return
 #' A data.frame containing:
@@ -95,6 +95,7 @@
 #' @export
 #' @references
 #' \insertRef{elks12}{gap}
+#'
 #' \insertAllCited{}
 #'
 h2_mzdz <- function(
