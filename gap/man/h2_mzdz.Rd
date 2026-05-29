@@ -2,7 +2,7 @@
 % Please edit documentation in R/h2_mzdz.R
 \name{h2_mzdz}
 \alias{h2_mzdz}
-\title{Heritability estimation according to twin correlations}
+\title{ACE heritability estimation from MZ/DZ twin correlations}
 \usage{
 h2_mzdz(
   mzDat = NULL,
@@ -11,81 +11,120 @@ h2_mzdz(
   rdz = NULL,
   nmz = NULL,
   ndz = NULL,
-  selV = NULL
+  selV = NULL,
+  use = "complete.obs",
+  ci = TRUE,
+  bounds = FALSE,
+  digits = 3
 )
 }
 \arguments{
-\item{mzDat}{a data frame for monzygotic twins (MZ).}
+\item{mzDat}{Optional data.frame containing MZ twin data.}
 
-\item{dzDat}{a data frame for dizygotic twins (DZ).}
+\item{dzDat}{Optional data.frame containing DZ twin data.}
 
-\item{rmz}{correlation for MZ twins.}
+\item{rmz}{Optional numeric scalar. Correlation for MZ twins.}
 
-\item{rdz}{correlation for DZ twins.}
+\item{rdz}{Optional numeric scalar. Correlation for DZ twins.}
 
-\item{nmz}{sample size for MZ twins.}
+\item{nmz}{Optional integer. Sample size for MZ twins.}
 
-\item{ndz}{sample size for DZ twins.}
+\item{ndz}{Optional integer. Sample size for DZ twins.}
 
-\item{selV}{names of variables for twin and cotwin.}
+\item{selV}{Character vector of length 2 specifying twin variables.}
+
+\item{use}{Correlation missing-data method passed to stats::cor().
+Default is "complete.obs".}
+
+\item{ci}{Logical; if TRUE, returns approximate 95\% confidence intervals.}
+
+\item{bounds}{Logical; if TRUE, constrain h2/c2/e2 estimates to \eqn{[0,1]}.}
+
+\item{digits}{Integer controlling printed rounding.}
 }
 \value{
-A data.frame with variables h2, c2, e2, vh2, vc2, ve2.
+A data.frame containing:
+\itemize{
+\item \code{h2}: additive genetic variance estimate.
+\item \code{c2}: shared environmental variance estimate.
+\item \code{e2}: unique environmental variance estimate.
+\item \code{vh2}: estimated variance of \code{h2}.
+\item \code{vc2}: estimated variance of \code{c2}.
+\item \code{ve2}: estimated variance of \code{e2}.
+\item \code{se_h2}: standard error of \code{h2}.
+\item \code{se_c2}: standard error of \code{c2}.
+\item \code{se_e2}: standard error of \code{e2}.
+\item \code{lcl_h2}: lower 95\% confidence limit for \code{h2}.
+\item \code{ucl_h2}: upper 95\% confidence limit for \code{h2}.
+\item \code{lcl_c2}: lower 95\% confidence limit for \code{c2}.
+\item \code{ucl_c2}: upper 95\% confidence limit for \code{c2}.
+\item \code{lcl_e2}: lower 95\% confidence limit for \code{e2}.
+\item \code{ucl_e2}: upper 95\% confidence limit for \code{e2}.
+}
 }
 \description{
-Heritability estimation according to twin correlations
+Estimates additive genetic (A), shared environmental (C), and
+unique environmental (E) variance components using Falconer's
+equations from monozygotic (MZ) and dizygotic (DZ) twin data.
 }
 \details{
+Falconer's estimators are:
+
+\eqn{h^2 = 2(r_{MZ} - r_{DZ})},
+\eqn{c^2 = 2r_{DZ} - r_{MZ}}, and
+\eqn{e^2 = 1 - r_{MZ}}.
+
+Approximate variances are computed using
+\deqn{Var(r) \approx \frac{(1-r^2)^2}{n-1}}
 Given MZ/DZ data or their correlations and sample sizes, it obtains
 heritability and variance estimates under an ACE model as in
 \doi{10.1038/s41562-023-01530-y} and \insertCite{keeping95;textual}{gap}.
 }
 \examples{
 \dontrun{
+# From raw data
+h2_mzdz(mzDat = mz_df,
+        dzDat = dz_df,
+        selV = c("trait1", "trait2"))
+
+# From correlations only
+h2_mzdz(rmz = 0.72,
+        rdz = 0.33,
+        nmz = 384,
+        ndz = 243)
+
 library(mvtnorm)
 set.seed(12345)
-mzm <- as.data.frame(rmvnorm(195, c(22.75,22.75),
-                     matrix(2.66^2*c(1, 0.67, 0.67, 1), 2)))
-dzm <- as.data.frame(rmvnorm(130, c(23.44,23.44),
-                     matrix(2.75^2*c(1, 0.32, 0.32, 1), 2)))
-mzw <- as.data.frame(rmvnorm(384, c(21.44,21.44),
-                     matrix(3.08^2*c(1, 0.72, 0.72, 1), 2)))
-dzw <- as.data.frame(rmvnorm(243, c(21.72,21.72),
-                     matrix(3.12^2*c(1, 0.33, 0.33, 1), 2)))
-selVars <- c('bmi1','bmi2')
-names(mzm) <- names(dzm) <- names(mzw) <- names(dzw) <- selVars
-ACE_CI <- function(mzData,dzData,n.sim=5,selV=NULL,verbose=TRUE)
-{
-  ACE_obs <- h2_mzdz(mzDat=mzData,dzDat=dzData,selV=selV)
-  cat("\n\nheritability according to correlations\n\n")
-  print(format(ACE_obs,digits=3),row.names=FALSE)
-  nmz <- nrow(mzData)
-  ndz <- nrow(dzData)
-  r <- data.frame()
-  for(i in 1:n.sim)
-  {
-    cat("\rRunning # ",i,"/", n.sim,"\r",sep="")
-    sampled_mz <- sample(1:nmz, replace=TRUE)
-    sampled_dz <- sample(1:ndz, replace=TRUE)
-    mzDat <- mzData[sampled_mz,]
-    dzDat <- dzData[sampled_dz,]
-    ACE_i <- h2_mzdz(mzDat=mzDat,dzDat=dzDat,selV=selV)
-    if (verbose) print(ACE_i)
-    r <- rbind(r,ACE_i)
-  }
-  m <- apply(r,2,mean,na.rm=TRUE)
-  s <- apply(r,2,sd,na.rm=TRUE)
-  allr <- data.frame(mean=m,sd=s,lcl=m-1.96*s,ucl=m+1.96*s)
-  print(format(allr,digits=3))
-}
-ACE_CI(mzm,dzm,n.sim=500,selV=selVars,verbose=FALSE)
-ACE_CI(mzw,dzw,n.sim=500,selV=selVars,verbose=FALSE)
+selVars <- c("bmi1", "bmi2")
+mzm <- as.data.frame(
+  mvtnorm::rmvnorm(
+    195,
+    c(22.75, 22.75),
+    matrix(2.66^2 * c(1, 0.67, 0.67, 1), 2)
+  )
+)
+dzm <- as.data.frame(
+  mvtnorm::rmvnorm(
+    130,
+    c(23.44, 23.44),
+    matrix(2.75^2 * c(1, 0.32, 0.32, 1), 2)
+  )
+)
+names(mzm) <- selVars
+names(dzm) <- selVars
+res <- ACE_CI(
+  mzData = mzm,
+  dzData = dzm,
+  selV = selVars,
+  n.boot = 50,
+  seed = 123,
+  verbose = FALSE
+)
+print(res)
 }
 
 }
 \references{
 \insertRef{elks12}{gap}
-
 \insertAllCited{}
 }
-\keyword{htest}
