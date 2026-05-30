@@ -51,17 +51,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' # From raw data
-#' h2_mzdz(mzDat = mz_df,
-#'         dzDat = dz_df,
-#'         selV = c("trait1", "trait2"))
-#'
-#' # From correlations only
 #' h2_mzdz(rmz = 0.72,
 #'         rdz = 0.33,
 #'         nmz = 384,
 #'         ndz = 243)
-#'
 #' library(mvtnorm)
 #' set.seed(12345)
 #' selVars <- c("bmi1", "bmi2")
