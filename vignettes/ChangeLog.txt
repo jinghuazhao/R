@@ -1,11 +1,11 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.3
-29-05-2026	Amend h2_mzdz()
-		Minor change in gap.Rmd
+30-05-2026	Amend h2_mzdz()
+		Reset iframe(style="height:100vh") in gap.Rmd
 
 Version 1.15.2
-26-05-2026	Fix gap.Rmd/pfc.sim.f
+26-05-2026	Fix title and use GitHub page for gap.Rmd/pfc.sim.f
 
 Version 1.15.1
 24-05-2026	Fix qqunif() handling 0/1
