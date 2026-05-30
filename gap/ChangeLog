@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.3
-30-05-2026	Amend h2_mzdz()
+30-05-2026	Amend h2_mzdz(), qtlFinder()
 		Reset iframe(style="height:100vh") in gap.Rmd
 
 Version 1.15.2

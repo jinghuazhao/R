@@ -22,55 +22,103 @@ qtlFinder(
 )
 }
 \arguments{
-\item{d}{input data.}
+\item{d}{Input data frame containing summary association statistics.}
 
-\item{Chromosome}{chromosome.}
+\item{Chromosome}{Chromosome column.}
 
-\item{Position}{position.}
+\item{Position}{Genomic position column (bp).}
 
-\item{MarkerName}{RSid or SNPid.}
+\item{MarkerName}{Variant identifier (e.g. rsID or SNP ID).}
 
-\item{Allele1}{effect allele.}
+\item{Allele1}{Effect allele.}
 
-\item{Allele2}{other allele.}
+\item{Allele2}{Other allele.}
 
-\item{EAF}{effect allele frequency.}
+\item{EAF}{Effect allele frequency.}
 
-\item{Effect}{b.}
+\item{Effect}{Effect estimate.}
 
-\item{StdErr}{SE.}
+\item{StdErr}{Standard error of the effect estimate.}
 
-\item{log10P}{-log(P).}
+\item{log10P}{Column containing log10(P) values, typically as produced by
+METAL. Values are converted internally to -log10(P) for ranking signals.}
 
-\item{N}{sample size.}
+\item{N}{Sample size.}
 
-\item{radius}{a flanking distance.}
+\item{radius}{Maximum gap (bp) allowed between consecutive variants when
+defining a locus.}
 
-\item{collapse.hla}{a flag to collapse signals in the HLA region.}
+\item{collapse.hla}{Logical flag indicating whether variants within the HLA
+region should be collapsed.}
 
-\item{build}{genome build to define the HLA region.}
+\item{build}{Genome build used to define HLA boundaries ("hg19" or "hg38").}
 }
 \value{
-The function lists QTLs and meta-information.
+A tibble containing one lead variant per non-overlapping genomic locus.
+
+Loci are defined by single-linkage clustering of variants separated by at most
+\code{radius} base pairs. Each locus is represented by its most significant variant
+(largest \code{-log10(P)}).
+\subsection{Output columns}{
+\itemize{
+\item \strong{chrom}: chromosome
+\item \strong{start, end}: position of the lead variant
+\item \strong{rsid}: variant identifier
+\item \strong{a1, a2}: effect and other allele
+\item \strong{EAF}: effect allele frequency
+\item \strong{b}: effect size
+\item \strong{SE}: standard error
+\item \strong{mlog10p}: -log10(P) used for ranking
+\item \strong{n}: sample size
+\item \strong{regionStart, regionEnd}: boundaries of the merged locus
+}
+}
+
+\subsection{Notes}{
+
+Each row corresponds to a non-overlapping locus defined using
+\code{valr::bed_merge(max_dist = radius)}.
+
+The lead variant is selected as the SNP with the highest \code{mlog10p}.
+}
 }
 \description{
 Distance-based signal identification
 }
 \details{
-This function implements an iterative merging algorithm to identify signals.
-The setup follows output from METAL. When collapse.hla=TRUE, a single most
-significant signal in the HLA region is chosen. The Immunogenomics paper gives
-hg19/GRCh37: chr6:28477797-33448354 (6p22.1-21.3),
-hg38/GRCh38: chr6:28510020-33480577.
+Variants are merged into non-overlapping loci using
+\code{valr::bed_merge(max_dist = radius)}. Variants connected through a chain of
+gaps less than or equal to \code{radius} belong to the same locus.
+
+The most significant variant (largest -log10(P)) within each merged locus is
+selected as the lead signal.
+
+When \code{collapse.hla=TRUE}, signals within the HLA region are collapsed using
+HLA boundaries:
+\itemize{
+\item hg19/GRCh37: chr6:28477797-33448354
+\item hg38/GRCh38: chr6:28510020-33480577
+}
 }
 \examples{
 \dontrun{
-  f <- "ZPI_dr.p.gz"
-  varlist=c("Chromosome","Position","MarkerName","Allele1","Allele2",
-            "Freq1","FreqSE","MinFreq","MaxFreq",
-            "Effect","StdErr","log10P","Direction",
-            "HetISq","HetChiSq","HetDf","logHetP","N")
-  d <- read.table(f,col.names=varlist,check.names=FALSE)
-  qtlFinder(d)
+f <- "ZPI_dr.p.gz"
+
+varlist <- c(
+  "Chromosome","Position","MarkerName","Allele1","Allele2",
+  "Freq1","FreqSE","MinFreq","MaxFreq",
+  "Effect","StdErr","log10P","Direction",
+  "HetISq","HetChiSq","HetDf","logHetP","N"
+)
+d <- read.table(f, col.names = varlist, check.names = FALSE)
+
+res <- qtlFinder(d)
+subset(res,mlog10p>=-log10(5*10^-8))
+A tibble: 2 × 14
+# Groups:   chrom, regionStart, regionEnd [2]
+  chrom     start       end rsid            mlog10p  regionStart regionEnd
+1 chr13 113800622 113800622 13:113800622_C…    69.0     19020047 115109852
+2 chr14  94750486  94750486 14:94750486_C_T    28.5     19000059 107289436
 }
+
 }
