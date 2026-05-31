@@ -2,7 +2,7 @@
 % Please edit documentation in R/qtl2dplotly.R
 \name{qtl2dplotly}
 \alias{qtl2dplotly}
-\title{2D QTL plotly}
+\title{2D QTL cis/trans visualization (Plotly)}
 \usage{
 qtl2dplotly(
   d,
@@ -18,38 +18,53 @@ qtl2dplotly(
 )
 }
 \arguments{
-\item{d}{Data in qtl2dplot() format.}
+\item{d}{Data frame containing QTL data. Must include SNP, chromosome,
+position, gene mapping, and cis/trans classification.}
 
-\item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
+\item{chrlen}{Chromosome length reference (default: \code{gap::hg19}).}
 
-\item{qtl.id}{QTL id.}
+\item{qtl.id}{Prefix for SNP identifier in tooltip.}
 
-\item{qtl.prefix}{QTL prefix.}
+\item{qtl.prefix}{Prefix for QTL coordinate label.}
 
-\item{qtl.gene}{QTL gene.}
+\item{qtl.gene}{Prefix for gene coordinate label.}
 
-\item{target.type}{Type of target, e.g., protein.}
+\item{target.type}{Label for target entity type.}
 
-\item{TSS}{to use TSS when TRUE.}
+\item{TSS}{Logical. If TRUE, uses transcription start site.}
 
-\item{xlab}{X-axis title.}
+\item{xlab}{Label for x-axis.}
 
-\item{ylab}{Y-axis title.}
+\item{ylab}{Label for y-axis.}
 
-\item{...}{Additional arguments, e.g., target, log10p, to qtl2dplot.}
+\item{...}{Additional arguments passed to \code{gap::qtl2dplot()}.}
 }
 \value{
-A plotly figure.
+A \code{plotly} object.
 }
 \description{
-2D QTL plotly
+Interactive visualization of QTL–gene relationships in 2D genomic space,
+separating cis and trans associations into stable Plotly traces.
+}
+\details{
+This function wraps \code{gap::qtl2dplot()} and converts the output into an
+interactive Plotly scatter plot.
+
+Unlike the original implementation, this version:
+\itemize{
+\item avoids \code{color = ~cistrans} (prevents row dropping in Plotly)
+\item uses explicit traces for cis/trans groups
+\item ensures stable HTML widget rendering
+\item eliminates "Ignoring observations" warnings
+}
 }
 \examples{
 \dontrun{
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 r <- qtl2dplotly(d)
-htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.qtl2dplotly.html"))
+htmlwidgets::saveWidget(r,file="INF1.qtl2dplotly.html")
 r
 }
+
 }

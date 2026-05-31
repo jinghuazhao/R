@@ -2,7 +2,7 @@
 % Please edit documentation in R/qtl3dplotly.R
 \name{qtl3dplotly}
 \alias{qtl3dplotly}
-\title{3D QTL plot}
+\title{3D QTL plot (cis/trans genomic visualization)}
 \usage{
 qtl3dplotly(
   d,
@@ -19,42 +19,57 @@ qtl3dplotly(
 )
 }
 \arguments{
-\item{d}{Data in qtl2d() format.}
+\item{d}{Data frame in \code{qtl2dplot()}-compatible format.}
 
-\item{chrlen}{Lengths of chromosomes for specific build: hg18, hg19, hg38.}
+\item{chrlen}{Chromosome lengths (e.g. \code{gap::hg19}, \code{hg38}).}
 
-\item{zmax}{Maximum value (e.g., -log10p) to truncate, above which they would be set to this value.}
+\item{zmax}{Maximum value for z-axis truncation.}
 
-\item{qtl.id}{QTL id.}
+\item{qtl.id}{Prefix for SNP identifier.}
 
-\item{qtl.prefix}{QTL prefix.}
+\item{qtl.prefix}{Prefix for QTL coordinate label.}
 
-\item{qtl.gene}{QTL target gene.}
+\item{qtl.gene}{Prefix for gene coordinate label.}
 
-\item{target.type}{Type of target, e.g., protein.}
+\item{target.type}{Label for target entity type.}
 
-\item{TSS}{to use TSS when TRUE.}
+\item{TSS}{Logical; use transcription start site if TRUE.}
 
-\item{xlab}{X-axis title.}
+\item{xlab}{X-axis label.}
 
-\item{ylab}{Y-axis title.}
+\item{ylab}{Y-axis label.}
 
-\item{...}{Additional arguments, e.g., to qtl2dplot().}
+\item{...}{Additional arguments passed to \code{qtl2dplot()}.}
 }
 \value{
-A plotly figure.
+A \code{plotly} 3D scatter object.
 }
 \description{
-3D QTL plot
+Interactive 3D visualization of QTL–gene relationships using a scatter3D plot.
+}
+\details{
+This function extends \code{gap::qtl2dplot()} into a 3D representation by adding
+a z-axis (typically \-log10(p) or similar association strength).
+
+Features:
+\itemize{
+\item caps extreme values at \code{zmax}
+\item colors cis/trans associations
+\item provides interactive hover labels
+}
 }
 \examples{
 \dontrun{
 suppressMessages(library(dplyr))
 INF <- Sys.getenv("INF")
-d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE) \%>\%
-     mutate(log10p=-log10p)
-r <- qtl3dplotly(d,zmax=300)
-htmlwidgets::saveWidget(r,file=file.path(INF,"INF1.qtl3dplotly.html"))
+d <- read.csv(
+  file.path(INF, "work", "INF1.merge.cis.vs.trans"),
+  as.is = TRUE
+) \%>\%
+  dplyr::mutate(log10p = -log10p)
+r <- qtl3dplotly(d, zmax = 300)
+htmlwidgets::saveWidget(r, file = "INF1.qtl3dplotly.html")
 r
 }
+
 }
