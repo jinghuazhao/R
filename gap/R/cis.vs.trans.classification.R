@@ -1,98 +1,99 @@
-#' A cis/trans classifier
+#' Cis/trans classification of pQTL signals
 #'
-#' @param hits Data to be used, which contains prot, Chr, bp, id and/or other information such as SNPid.
-#' @param panel Panel data.
-#' @param id Identifier.
-#' @param radius The flanking distance for variants.
+#' Classify genetic association signals as cis or trans relative to the gene
+#' encoding the target protein.
 #'
-#' @details
-#' The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
+#' A variant is classified as cis if it lies on the same chromosome as the
+#' gene and within a specified window around the gene start and end positions.
+#'
+#' @param hits Data frame of association signals. Must contain:
+#'   - identifier column (default: `uniprot`)
+#'   - chromosome column (`Chr`)
+#'   - position column (`bp`)
+#' @param panel Annotation data frame with columns:
+#'   - `uniprot`, `gene`, `chr`, `start`, `end`
+#' @param id Join key (default: `"uniprot"`).
+#' @param chr Chromosome column in `hits` (default: `"Chr"`).
+#' @param pos Position column in `hits` (default: `"bp"`).
+#' @param radius Cis window size in base pairs (default: `1e6`).
+#' @param verbose Logical; print summary if TRUE.
+#'
+#' @return A list containing:
+#' - **data**: annotated data frame with cis/trans classification
+#' - **table**: gene × cis/trans contingency table
+#' - **overall**: total counts of cis and trans variants
+#'
+#' @examples
+#' \dontrun{
+#' ct <- cis.vs.trans.classification(hits, inf1)
+#' ct$overall
+#' head(ct$data)
+#' with(ct$data, table(p.gene, cis.trans))
+#' subset(ct$data, cis.trans == "cis")[1:10,
+#'        c("uniprot", "p.gene", "Chr", "bp", "cis.trans")]
+#' }
 #'
 #' @export
-#' @return
-#' The cis/trans classification.
-#' @examples
-#' cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
-#' \dontrun{
-#' INF <- Sys.getenv("INF")
-#' f <- file.path(INF,"work","INF1.merge")
-#' clumped <- read.delim(f,as.is=TRUE)
-#' hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
-#'               inf1[c("prot","uniprot")],by="prot")
-#' names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
-#' cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
-#' cis.vs.trans <- with(cistrans,data)
-#' knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
-#' with(cistrans,total)
-#' }
-#' @author James Peters
-
-cis.vs.trans.classification <- function(hits, panel, id, radius=1e6)
-# cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
+#'
+cis.vs.trans.classification <- function(hits,
+                      panel,
+                      id = "uniprot",
+                      chr = "Chr",
+                      pos = "bp",
+                      radius = 1e6,
+                      verbose = TRUE)
 {
-  p.start <- p.end <- Chr <- p.chr <- bp <- dist.inds <- same.inds <- NA
-
-# "Thu Nov  8 12:13:07 2018"
-
-# author jp549@cam.ac.uk
-
-# identify cis vs trans hits
-
-# rule: a cis acting variant lies within the region
-# from 1MB upstream of the start position to 1MB downstream of the end position 
-# of the gene that encodes the protein being tested in the GWAS
-
-# All signals that are outside this window will be defined as trans
-
-# add a prefix 'p.' so we know these cols refer to the protein being GWAS'd
-
-  colnames(panel) <- paste0("p.", colnames(panel))
-
-# map on to the hits file, using UniProtID as the common reference
-
-  hits_panel <- merge(x=hits, y=panel, by.x=id, by.y=paste0('p.',id), all.x=TRUE)
-
-# classify into cis and trans
-
-# set cis as -1MB upstream to +1MB downstream
-
-  N <- nrow(hits_panel)
-  hits_panel <- within(hits_panel,
-  { 
-    cis.start <- p.start - radius
-    if (any(cis.start < 0 )) cis.start[which(cis.start<0)] <- 0
-    cis.end <- p.end + radius
-
-# any variant on a different chromosome to the gene encoding the target protein is not cis
-
-    dist.inds <<- which(Chr != p.chr)
-    cis <- rep(NA, N)
-    if (length(dist.inds)>0)  cis[dist.inds] <- FALSE
-
-# for ones on the same chr, we can't be sure without looking at position
-
-    same.inds <<- which(Chr == p.chr)
-
-# see if variant lies in the cis region
-
-    if (length(same.inds)>0) cis[same.inds] <- bp[same.inds] > cis.start[same.inds] & bp[same.inds] < cis.end[same.inds]
-    cis.trans <- rep(NA, N)
-    cis.trans[cis] <- "cis"
-    cis.trans[!cis] <- "trans"
-  })
-
-# split by protein
-
-  list.by.prot <- split(hits_panel, f=with(hits_panel,p.gene))
-
-# get the breakdown of cis vs trans per protein
-# sapply(list.by.prot, function(x) table(with(x, cis.trans)))
-
-  x <- with(hits_panel,table(p.gene, cis.trans))
-  s <- sum(x)
-  total <- apply(x,2,sum)
-  xx <- rbind(x,total)
-  total <- apply(xx,1,sum)
-  x <- cbind(xx,total)
-  invisible(list(data=hits_panel,table=x,total=s))
+  norm_chr <- function(x)
+  {
+    x <- as.character(x)
+    sub("^chr", "", x, ignore.case = TRUE)
+  }
+  if (!id %in% names(hits))
+    stop("Missing column in hits: ", id)
+  if (!id %in% names(panel))
+    stop("Missing column in panel: ", id)
+  if (!chr %in% names(hits))
+    stop("Missing column in hits: ", chr)
+  if (!pos %in% names(hits))
+    stop("Missing column in hits: ", pos)
+  required_panel <- c("gene", "chr", "start", "end")
+  missing_panel <- setdiff(required_panel, names(panel))
+  if (length(missing_panel))
+    stop("Missing panel columns: ",
+         paste(missing_panel, collapse = ", "))
+  panel2 <- panel[, c(
+    id,
+    "gene", "chr", "start", "end"
+  ), drop = FALSE]
+  names(panel2)[names(panel2) == "gene"]  <- "p.gene"
+  names(panel2)[names(panel2) == "chr"]   <- "p.chr"
+  names(panel2)[names(panel2) == "start"] <- "p.start"
+  names(panel2)[names(panel2) == "end"]   <- "p.end"
+  dat <- merge(hits, panel2, by = id, all.x = TRUE)
+  dat$cis.start <- pmax(0, dat$p.start - radius)
+  dat$cis.end   <- dat$p.end + radius
+  dat[[chr]] <- norm_chr(dat[[chr]])
+  dat$p.chr  <- norm_chr(dat$p.chr)
+  dat$cis <-
+    dat[[chr]] == dat$p.chr &
+    dat[[pos]] >= dat$cis.start &
+    dat[[pos]] <= dat$cis.end
+  dat$cis[is.na(dat$cis)] <- FALSE
+  dat$cis.trans <- ifelse(dat$cis, "cis", "trans")
+  summary_table <- with(dat, table(p.gene, cis.trans))
+  overall <- table(dat$cis.trans)
+  if (verbose)
+  {
+    cat("\nCis/trans classification\n")
+    cat("------------------------\n")
+    cat("Variants :", nrow(dat), "\n")
+    cat("Proteins :", length(unique(dat$p.gene)), "\n\n")
+    print(overall)
+    cat("\n")
+  }
+  list(
+    data = dat,
+    table = summary_table,
+    overall = overall
+  )
 }

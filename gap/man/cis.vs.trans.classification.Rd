@@ -2,43 +2,65 @@
 % Please edit documentation in R/cis.vs.trans.classification.R
 \name{cis.vs.trans.classification}
 \alias{cis.vs.trans.classification}
-\title{A cis/trans classifier}
+\title{Cis/trans classification of pQTL signals}
 \usage{
-cis.vs.trans.classification(hits, panel, id, radius = 1e+06)
+cis.vs.trans.classification(
+  hits,
+  panel,
+  id = "uniprot",
+  chr = "Chr",
+  pos = "bp",
+  radius = 1e+06,
+  verbose = TRUE
+)
 }
 \arguments{
-\item{hits}{Data to be used, which contains prot, Chr, bp, id and/or other information such as SNPid.}
+\item{hits}{Data frame of association signals. Must contain:
+\itemize{
+\item identifier column (default: \code{uniprot})
+\item chromosome column (\code{Chr})
+\item position column (\code{bp})
+}}
 
-\item{panel}{Panel data.}
+\item{panel}{Annotation data frame with columns:
+\itemize{
+\item \code{uniprot}, \code{gene}, \code{chr}, \code{start}, \code{end}
+}}
 
-\item{id}{Identifier.}
+\item{id}{Join key (default: \code{"uniprot"}).}
 
-\item{radius}{The flanking distance for variants.}
+\item{chr}{Chromosome column in \code{hits} (default: \code{"Chr"}).}
+
+\item{pos}{Position column in \code{hits} (default: \code{"bp"}).}
+
+\item{radius}{Cis window size in base pairs (default: \code{1e6}).}
+
+\item{verbose}{Logical; print summary if TRUE.}
 }
 \value{
-The cis/trans classification.
+A list containing:
+\itemize{
+\item \strong{data}: annotated data frame with cis/trans classification
+\item \strong{table}: gene × cis/trans contingency table
+\item \strong{overall}: total counts of cis and trans variants
+}
 }
 \description{
-A cis/trans classifier
+Classify genetic association signals as cis or trans relative to the gene
+encoding the target protein.
 }
 \details{
-The function classifies variants into cis/trans category according to a panel which contains id, chr, start, end, gene variables.
+A variant is classified as cis if it lies on the same chromosome as the
+gene and within a specified window around the gene start and end positions.
 }
 \examples{
-cis.vs.trans.classification(hits=jma.cojo, panel=inf1, id="uniprot")
 \dontrun{
-INF <- Sys.getenv("INF")
-f <- file.path(INF,"work","INF1.merge")
-clumped <- read.delim(f,as.is=TRUE)
-hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
-              inf1[c("prot","uniprot")],by="prot")
-names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
-cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
-cis.vs.trans <- with(cistrans,data)
-knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
-with(cistrans,total)
+ct <- cis.vs.trans.classification(hits, inf1)
+ct$overall
+head(ct$data)
+with(ct$data, table(p.gene, cis.trans))
+subset(ct$data, cis.trans == "cis")[1:10,
+       c("uniprot", "p.gene", "Chr", "bp", "cis.trans")]
 }
-}
-\author{
-James Peters
+
 }
