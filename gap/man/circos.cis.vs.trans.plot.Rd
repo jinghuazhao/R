@@ -2,30 +2,57 @@
 % Please edit documentation in R/circos.cis.vs.trans.plot.R
 \name{circos.cis.vs.trans.plot}
 \alias{circos.cis.vs.trans.plot}
-\title{circos plot of cis/trans classification}
+\title{Circos plot of cis vs trans protein associations}
 \usage{
-circos.cis.vs.trans.plot(hits, panel, id, radius = 1e+06)
+circos.cis.vs.trans.plot(f, panel, id, radius = 1e+06)
 }
 \arguments{
-\item{hits}{A text file as input data with varibles named "CHR","BP","SNP","prot".}
+\item{f}{Character string. Path to a tab-delimited file containing
+pQTL hits. Must include columns: \code{CHR}, \code{BP}, \code{SNP}, and \code{prot}.}
 
-\item{panel}{Protein panel with prot(ein), uniprot (id) and "chr","start","end","gene".}
+\item{panel}{Data frame. Annotation panel containing at least:
+\code{prot}, \code{uniprot}, \code{chr}, \code{start}, \code{end}, and \code{gene}.}
 
-\item{id}{Identifier.}
+\item{id}{Character identifier passed to
+\code{cis.vs.trans.classification()}.}
 
-\item{radius}{The flanking distance as cis.}
+\item{radius}{Numeric distance threshold defining the cis region
+(default: \code{1e6} base pairs).}
 }
 \value{
-None.
+A Circos plot is drawn to the current graphics device.
+The function returns invisibly.
 }
 \description{
-circos plot of cis/trans classification
+Visualizes cis- and trans-protein associations along chromosomes using a
+circular genome plot (Circos plot).
 }
 \details{
-The function implements a circos plot at the early stage of SCALLOP-INF meta-analysis.
+The function classifies protein-QTL (pQTL) hits into cis and trans
+associations and displays genomic links between protein loci and target
+genes.
+
+This version is robust to differences in column naming conventions
+(e.g. dot vs underscore formats).
+
+This function relies on \strong{circlize} for visualization and assumes that
+\code{cis.vs.trans.classification()} returns a list containing a data frame
+\code{data} with cis/trans annotations.
+
+Column names may vary depending on package version. The implementation
+attempts flexible matching of:
+\itemize{
+\item \code{p.chr} or \code{p_chr}
+\item \code{cis.start} or \code{cis_start}
+\item \code{cis.end} or \code{cis_end}
+\item \code{p.gene} or \code{p_gene}
+\item \code{p.prot} or \code{p_prot} or \code{prot}
+}
 }
 \examples{
 \dontrun{
-  circos.cis.vs.trans.plot(hits="INF1.merge", panel=inf1, id="uniprot")
+f <- file.path(find.package("pQTLtools"),"tests","INF1.merge")
+circos.cis.vs.trans.plot(f, inf1, id = "uniprot")
 }
+
 }
