@@ -63,7 +63,7 @@ Unlike the original implementation, this version:
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 r <- qtl2dplotly(d)
-htmlwidgets::saveWidget(r,file="INF1.qtl2dplotly.html")
+htmlwidgets::saveWidget(r,file="qtl2dplotly.html")
 r
 }
 

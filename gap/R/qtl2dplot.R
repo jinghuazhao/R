@@ -54,7 +54,7 @@
 #'           TSS=TRUE,cis="cis",plot=TRUE,cex.labels=0.6,cex.points=0.6,
 #'           xlab="pQTL position",ylab="Gene position")
 #' }
-
+#'
 qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_pos="bp",
                       gene_chr="p.chr", gene_start="p.start", gene_end="p.end",
                       trait="p.target.short", gene="p.gene", TSS=FALSE,
@@ -68,13 +68,13 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
   chr1 <- d[[snp_chr]]
   chr1[chr1=="X"] <- 23
   chr1[chr1=="Y"] <- 24
-  pos1 <- CM[chr1] + d[[snp_pos]]
+  pos1 <- CM[as.integer(chr1)] + d[[snp_pos]]
   chr2 <- d[[gene_chr]]
   chr2[chr2=="X"] <- 23
   chr2[chr2=="Y"] <- 24
   pos <- (d[[gene_start]] + d[[gene_end]])/2
   if (TSS) pos <- d[[gene_start]]
-  pos2 <- CM[chr2] + pos
+  pos2 <- CM[as.integer(chr2)] + pos
   if (plot) {
      points(pos1, pos2, cex=cex.points, col=ifelse(d[[cis]],"red","blue"), pch=19)
      legend("top", legend=c("cis","trans"), box.lty=0, cex=cex.points, col=c("red","blue"),

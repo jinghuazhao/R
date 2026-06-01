@@ -101,4 +101,5 @@ qtl2dplot(cis.vs.trans,chrlen=gap::hg19,
           TSS=TRUE,cis="cis",plot=TRUE,cex.labels=0.6,cex.points=0.6,
           xlab="pQTL position",ylab="Gene position")
 }
+
 }

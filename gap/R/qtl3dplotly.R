@@ -34,7 +34,7 @@
 #' ) %>%
 #'   dplyr::mutate(log10p = -log10p)
 #' r <- qtl3dplotly(d, zmax = 300)
-#' htmlwidgets::saveWidget(r, file = "INF1.qtl3dplotly.html")
+#' htmlwidgets::saveWidget(r, file = "qtl3dplotly.html")
 #' r
 #' }
 #'
