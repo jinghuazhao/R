@@ -61,23 +61,32 @@
 #'
 #' @examples
 #' \dontrun{
-#' f <- "ZPI_dr.p.gz"
-#'
+#' threshold <- log10(5*10^-8)
 #' varlist <- c(
 #'   "Chromosome","Position","MarkerName","Allele1","Allele2",
 #'   "Freq1","FreqSE","MinFreq","MaxFreq",
 #'   "Effect","StdErr","log10P","Direction",
 #'   "HetISq","HetChiSq","HetDf","logHetP","N"
 #' )
-#' d <- read.table(f, col.names = varlist, check.names = FALSE)
-#'
-#' res <- qtlFinder(d)
-#' subset(res,mlog10p>=-log10(5*10^-8))
-#' A tibble: 2 × 14
+#' tbl <- "~/Caprion/analysis/METAL_dr/ZPI_dr-1.tbl.gz"
+#' sumstats <- read.table(tbl, col.names = varlist, check.names = FALSE)
+#' res1 <- qtlFinder(sumstats)
+#' res1
+#' subset(res1,mlog10p>=-threshold)
+#' d <- subset(sumstats, log10P <= threshold)
+#' res2 <- qtlFinder(d)
+#' res2
+#' sentinels <- "~/Caprion/analysis/METAL_dr/sentinels/ZPI_dr.p.gz"
+#' d2 <- read.table(sentinels, col.names = varlist, check.names = FALSE)
+#' res3 <- qtlFinder(d2)
+#' res3
+#' # A tibble: 2 × 14
 #' # Groups:   chrom, regionStart, regionEnd [2]
-#'   chrom     start       end rsid            mlog10p  regionStart regionEnd
-#' 1 chr13 113800622 113800622 13:113800622_C…    69.0     19020047 115109852
-#' 2 chr14  94750486  94750486 14:94750486_C_T    28.5     19000059 107289436
+#'   chrom     start       end rsid   a1    a2      EAF      b     SE mlog10p     n
+#'   <chr>     <dbl>     <dbl> <chr>  <chr> <chr> <dbl>  <dbl>  <dbl>   <dbl> <int>
+#' 1 chr13 113800622 113800622 13:11… t     c     0.373 -0.541 0.0306    69.0  2491
+#' 2 chr14  94750486  94750486 14:94… t     c     0.989  1.52  0.136     28.5  2491
+#' # 3 more variables: regionStart <dbl>, regionEnd <dbl>, .overlap <int>
 #' }
 #'
 #' @export
