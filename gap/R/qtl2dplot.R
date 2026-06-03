@@ -70,7 +70,7 @@ qtl2dplot <- function(d, chrlen=gap::hg19, snp_name="SNP", snp_chr="Chr", snp_po
   pos2 <- CM[as.integer(chr2)] + pos
   if (plot) {
      points(pos1, pos2, cex=cex.points, col=ifelse(d[[cis]],"red","blue"), pch=19)
-     legend("top", legend=c("cis","trans"), box.lty=0, cex=cex.points, col=c("red","blue"),
+     legend("top", legend=c("cis","trans"), box.lty=0, cex=cex.labels, col=c("red","blue"),
             horiz=TRUE, inset=c(0,1), xpd=TRUE, pch=19)
   }
   return(list(n=n, CM=CM, data=data.frame(id=d[[snp_name]],
