@@ -21,9 +21,9 @@
 #' transmitted through mediator \eqn{M}.
 #'
 #' Standard errors of the indirect effect are approximated using the delta method:
-#' Sobel: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2}}  
-#' Aroian: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 + s_a^2 s_b^2}}  
-#' Goodman: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 - s_a^2 s_b^2}}
+#' - Sobel: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2}}  
+#' - Aroian: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 + s_a^2 s_b^2}}  
+#' - Goodman: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 - s_a^2 s_b^2}}
 #'
 #' The z-statistic is \eqn{z = ab / SE(ab)}, assumed to follow a standard normal
 #' distribution under \eqn{H_0: ab = 0}.
