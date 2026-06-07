@@ -2,77 +2,81 @@
 % Please edit documentation in R/ab.R
 \name{ab}
 \alias{ab}
-\title{Test/Power calculation for mediating effect}
+\title{Test/Power Calculation for Mediating Effect}
 \usage{
 ab(
-  type = "power",
+  type = c("power", "test"),
   n = 25000,
   a = 0.15,
   sa = 0.01,
   b = log(1.19),
   sb = 0.01,
   alpha = 0.05,
-  fold = 1
+  fold = 1,
+  method = c("sobel", "aroian", "goodman")
 )
 }
 \arguments{
-\item{type}{string option: "test", "power".}
+\item{type}{One of \code{"test"} or \code{"power"}.}
 
-\item{n}{default sample size to be used for power calculation.}
+\item{n}{Numeric; default sample size used for power calculation.}
 
-\item{a}{regression coefficient from indepdendent variable to mediator.}
+\item{a}{Numeric; regression coefficient from independent variable to mediator.}
 
-\item{sa}{SE(a).}
+\item{sa}{Numeric; standard error of \code{a}.}
 
-\item{b}{regression coefficient from mediator variable to outcome.}
+\item{b}{Numeric; regression coefficient from mediator to outcome.}
 
-\item{sb}{SE(b).}
+\item{sb}{Numeric; standard error of \code{b}.}
 
-\item{alpha}{size of siginficance test for power calculation.}
+\item{alpha}{Numeric; significance level (default 0.05) for power calculation.}
 
-\item{fold}{fold change for power calculation, as appropriate for a range of sample sizes.}
+\item{fold}{Numeric; fold change for power calculation (useful for a range of sample sizes).}
+
+\item{method}{One of \code{"sobel"}, \code{"aroian"}, or \code{"goodman"} specifying the variance formula.}
 }
 \value{
-The returned value are z-test and significance level for significant testing or sample size/power for a
-given fold change of the default sample size.
+For \code{type = "test"}, a named numeric vector containing:
+\itemize{
+\item \code{effect}: indirect effect estimate (\eqn{ab}).
+\item \code{se}: standard error of the indirect effect.
+\item \code{z}: z-statistic.
+\item \code{p}: two-sided p-value.
+\item \code{lcl}: lower 95\% confidence limit.
+\item \code{ucl}: upper 95\% confidence limit.
+}
+
+For \code{type = "power"}, a named numeric vector containing:
+\itemize{
+\item \code{sample_size}: effective sample size (\code{fold * n}).
+\item \code{power}: estimated statistical power.
+}
 }
 \description{
-Test/Power calculation for mediating effect
+This function tests for or calculates power of a mediation (indirect) effect based on
+regression coefficients from independent variable to mediator (\code{a}) and from mediator to
+outcome (\code{b}), along with their standard errors. It supports Sobel, Aroian, and Goodman variants.
 }
 \details{
-This function tests for or obtains power of mediating effect based on estimates of
-two regression coefficients and their standard errors. Note that for binary outcome
-or mediator, one should use log-odds ratio and its standard error.
+The function computes the indirect effect (\eqn{ab}) and its standard error, then
+calculates the z-statistic and p-value. For power calculation, it treats the
+\eqn{z^2} statistic as a non-central chi-square statistic and computes the
+probability of detection at the specified sample size.
 }
 \examples{
 \dontrun{
-ab()
-n <- power <- vector()
-for (j in 1:10)
-{
-   z <- ab(fold=j*0.01)
-   n[j] <- z[1]
-   power[j] <- z[2]
-}
-plot(n,power,xlab="Sample size",ylab="Power")
-title("SNP-BMI-T2D association in EPIC-Norfolk study")
+# Test mediation effect
+ab(a = 0.15, sa = 0.01, b = log(1.19), sb = 0.01, method = "aroian")
+
+# Power calculation for 10\% increase in sample size
+ab(type = "power", n = 25000, a = 0.15, sa = 0.01,
+   b = log(1.19), sb = 0.01, fold = 1.1)
 }
 
 }
 \references{
 \insertRef{freathy08}{gap}
-
-Kline RB. Principles and practice of structural equation modeling, Second Edition. The Guilford Press 2005.
-
-MacKinnon DP. Introduction to Statistical Mediation Analysis. Taylor & Francis Group 2008.
-
-Preacher KJ, Leonardelli GJ. Calculation for the Sobel Test-An interactive calculation tool for mediation tests
-https://quantpsy.org/sobel/sobel.htm
+\insertRef{kline05}{gap}
+\insertRef{mackinnon08}{gap}
+\insertRef{preacher01}{gap}
 }
-\seealso{
-\code{\link{ccsize}}
-}
-\author{
-Jing Hua Zhao
-}
-\keyword{htest}
