@@ -1,155 +1,168 @@
-#' Sample size calculation for mediation analysis
+#' Sample Size Calculation for Mediation Analysis
 #'
-#' The function computes sample size for regression problems where the goal is to assess mediation of the effects of a 
-#' primary predictor by an intermediate variable or mediator.
+#' Computes sample size requirements for regression models in which the effect
+#' of a primary predictor (\eqn{X_1}) is evaluated in the presence of a mediator
+#' (\eqn{X_2}). The calculation is based on the expected information matrix of
+#' the full model and a Wald test under the alternative hypothesis.
 #'
-#' Mediation has been thought of in terms of the proportion of effect explained, or the relative attenuation of b1, the 
-#' coefficient for the primary predictor X1, when the mediator, X2, is added to the model. The goal is to show that b1*, 
-#' the coefficient for X1 in the reduced model (i.e., the model with only X1, differs from b1, its coefficient in the full 
-#' model (i.e., the model with both X1 and the mediator X2. If X1 and X2 are correlated, then showing that b2, the 
-#' coefficient for X2, differs from zero is equivalent to showing b1* differs from b1. Thus the problem reduces to 
-#' detecting an effect of X2, controlling for X1. In short, it amounts to the more familiar problem of inflating sample 
-#' size to account for loss of precision due to adjustment for X1.
+#' The framework applies to linear, logistic, Poisson, and Cox regression models
+#' and supports four predictor–mediator configurations:
 #'
-#' The approach here is to approximate the expected information matrix from the regression model including both X1 and X2, 
-#' to obtain the expected standard error of the estimate of b2, evaluated at the MLE. The sample size follows from 
-#' comparing the Wald test statistic (i.e., the ratio of the estimate of b2 to its SE) to the standard normal distribution, 
-#' with the expected value of the numerator and denominator of the statistic computed under the alternative hypothesis. 
-#' This reflects the Wald test for the statistical significance of a coefficient implemented in most regression packages.
+#' CpCm: continuous X1 and continuous X2.
+#' BpCm: binary X1 and continuous X2.
+#' CpBm: continuous X1 and binary X2.
+#' BpBm: binary X1 and binary X2.
 #'
-#' The function provides methods to calculate sample sizes for the mediation problem for linear, logistic, Poisson, and Cox 
-#' regression models in four cases for each model:
+#' The same formulation can also be used to evaluate the effect of a predictor
+#' in the presence of a confounder by swapping the roles of X1 and X2.
 #'
-#' \tabular{ll}{
-#'     CpCm \tab continuous primary predictor, continuous mediator\cr
-#'     BpCm \tab binary primary predictor, continuous mediator\cr
-#'     CpBm \tab continuous primary predictor, binary mediator\cr
-#'     BpBm \tab binary primary predictor, binary mediator
-#' }
+#' Throughout, X1 denotes the primary predictor and X2 denotes the mediator.
+#' Coefficients b1 and b2 correspond to X1 and X2 respectively, and f1 and f2
+#' denote prevalences when variables are binary. rho denotes the correlation
+#' between X1 and X2.
 #'
-#' The function is also generally applicable to the analogous problem of calculating sample size adequate to detect the 
-#' effect of a primary predictor in the presence of confounding. Simply treat X2 as the primary predictor and consider X1 
-#' the confounder.
+#' The function is also applicable to the analogous problem of detecting the effect
+#' of a primary predictor in the presence of a confounder by treating X2 as the
+#' primary predictor and X1 as the confounder.
 #'
-#' @param model "lineari", "logisticj", "poissonk", "coxl", where i,j,k,l range from 1 to 4,5,9,9, respectively.
-#' @param opts A list specific to the model
-#'   \tabular{ll}{
-#'    b1 \tab regression coefficient for the primary predictor X1\cr
-#'    b2 \tab regression coefficient for the mediator X2\cr
-#'    rho \tab correlation between X1 and X2\cr
-#'    sdx1, sdx2 \tab standard deviations (SDs) of X1 and X2\cr
-#'    f1, f2 \tab prevalence of binary X1 and X2\cr
-#'    sdy \tab residual SD of the outcome for the linear model\cr
-#'    p \tab marginal prevalence of the binary outcome in the logistic model\cr
-#'    m \tab marginal mean of the count outcome in a Poisson model\cr
-#'    f \tab proportion of uncensored observations for the Cox model\cr
-#'    fc \tab proportion of observations censored early\cr
-#'    alpha \tab one-sided type-I error rate\cr
-#'    gamma \tab type-II error rate\cr
-#'    ns \tab number of observations to be simulated\cr
-#'    seed \tab random number seed
-#'    }
+#' @param model A character string specifying the model type:
+#'  - Linear models: "linear1", "linear2", "linear3", "linear4"
+#'  - Logistic models: "logistic1"–"logistic5"
+#'  - Poisson models: "poisson1"–"poisson9"
+#'  - Cox models: "cox1"–"cox9"
 #'
-#' For linear model, the arguments are b2, rho, sdx2, sdy, alpha, and gamma. For cases CpBm and BpBm, set sdx2 = 
-#' \eqn{\sqrt{f2(1-f2)}}{sqrt(f2*(1-f2))}. Three alternative functions are included for the linear model. These functions 
-#' make it possible to supply other combinations of input parameters affecting mediation:
+#' @param opts Named list of model-specific parameters, which may include:
+#' b1 regression coefficient for X1.
+#' b1star coefficient for X1 in the reduced model.
+#' b2 regression coefficient for X2.
+#' PTE proportion of total effect explained.
+#' rho correlation between X1 and X2.
+#' sdx1, sdx2 standard deviations of X1 and X2.
+#' f1, f2 prevalences for binary X1 and X2.
+#' sdy residual SD (linear models).
+#' p marginal outcome prevalence (logistic models).
+#' m marginal outcome mean (Poisson models).
+#' f proportion of uncensored observations (Cox models).
+#' fc early censoring proportion (Cox extensions).
+#' ns simulation size for simulation-based methods.
+#' seed random seed.
 #'
-#' \tabular{ll}{
-#'     b1* \tab coefficient for the primary predictor \cr
-#'         \tab in the reduced model excluding the mediator (b1star)\cr
-#'     b1  \tab coefficient for the primary predictor \cr
-#'         \tab in the full model including the mediator \cr
-#'     PTE \tab proportion of the effect of the primary predictor \cr
-#'         \tab explained by the mediator, defined as (b1*-b1)/b1*\cr
-#' }
-#'
-#' These alternative functions for the linear model require specification of an extra parameter, but are provided for
-#' convenience, along with two utility files for computing PTE and b1* from the other parameters. The required arguments
-#' are explained in comments within the R code.
-#' @param alpha Type-I error rate, one-sided.
+#' @param alpha One-sided type I error rate.
 #' @param gamma Type-II error rate.
 #'
 #' @details
-#' For linear model, a single function, linear, implements the analytic solution for all four cases, based on Hsieh et al., 
-#' is to inflate sample size by a variance inflation factor, \eqn{1/(1-rho^2)}, where rho is the correlation of X1 and X2. 
-#' This also turns out to be the analytic solution in cases CpCm and BpCm for the Poisson model, and underlies approximate 
-#' solutions for the logistic and Cox models. An analytic solution is also given for cases CpBm and BpBm for the Poisson 
-#' model. Since analytic solutions are not available for the logistic and Cox models, a simulation approach is used to 
+#' Let b1* (b1star) denote the coefficient of X1 in the reduced model excluding X2, and b1 the
+#' coefficient in the full model. Mediation can be expressed as attenuation b1* - b1 or proportion
+#' of total effect explained (PTE):
+#'
+#' \deqn{PTE = (b_1^* - b_1) / b_1^*.}
+#'
+#' Testing mediation is equivalent (linear models) or approximately equivalent (GLMs and Cox models)
+#' to testing the coefficient of X2 in the full model. Sample size is therefore derived from a Wald
+#' test on b2 using the expected information matrix.
+#'
+#' For binary variables, use sqrt(f*(1-f)) for the corresponding standard deviation.
+#'
+#' Linear models parameters are based on \insertCite{hsieh98;textual}{gap} and use a variance inflation
+#' factor \eqn{1/(1-\rho^2)}, where \eqn{\rho} is the correlation between X1 and X2. Logistic and Cox models
+#' generally require simulation to estimate information, while Poisson models admit analytic solutions in
+#' most cases.
+#'
+#' The naming convention is:
+#' "cc" continuous-continuous, "bc" binary-continuous, "cb" continuous-binary, "bb" binary-binary.
+#' Methods ending in "approx" use analytic approximations, while methods ending in "s" use simulation.
+#'
+#' The quantity PTE and b1star parameter for linear model are provided as follows,
+#'
+#' \code{getPTE <- function(b1, b2, rho, sdx1=1, sdx2=1) b2*sdx2*rho/((b1+b2*sdx2*rho/sdx1)*sdx1)}
+#' \code{getb1star <- function(b1, b2, rho, sdx1=1, sdx2=1) b1+b2*sdx2*rho/sdx1}
+#'
+#' This also turns out to be the analytic solution in cases CpCm and BpCm for the Poisson model, and underlies approximate
+#' solutions for the logistic and Cox models. An analytic solution is also given for cases CpBm and BpBm for the Poisson
+#' model. Since analytic solutions are not available for the logistic and Cox models, a simulation approach is used to
 #' obtain the expected information matrix instead.
 #'
-#' For logistic model, the approximate solution due to Hsieh is implemented in the function logistic.approx, and can be 
-#' used for all four cases. Arguments are p, b2, rho, sdx2, alpha, and gamma. For a binary mediator with prevalence f2, 
-#' sdx2 should be reset to \eqn{\sqrt{f2(1-f2)}}{sqrt(f2*(1-f2))}. Simulating the information matrix of the logistic model 
-#' provides somewhat more accurate sample size estimates than the Hsieh approximation. The functions for cases CpCm, BpCm, 
-#' CpBm, and BpBm are respectively logistic.ccs, logistic.bcs, logistic.cbs, and logistic.bbs, as for the Poisson and Cox 
-#' models. Arguments for these functions include p, b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, and ns. As in other 
-#' functions, sdx1, sdx2, alpha, and gamma are set to the defaults listed above. These four functions call two utility 
-#' functions, getb0 (to calculate the intercept parameter from the others) and plogis, which are supplied.
+#' For logistic model, the approximate solution due to Hsieh is implemented in the function logistic.approx, and can be
+#' used for all four cases. Arguments are p, b2, rho, sdx2, alpha, and gamma. Simulating the information matrix of the logistic model
+#' provides somewhat more accurate sample size estimates than the Hsieh approximation. The functions for cases CpCm, BpCm,
+#' CpBm, and BpBm are respectively logistic.ccs, logistic.bcs, logistic.cbs, and logistic.bbs, as for the Poisson and Cox
+#' models. Arguments for these functions include p, b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, and ns. As in other
+#' functions, sdx1, sdx2, alpha, and gamma are set to the defaults listed above. These four functions call the utility
+#' functions and getb0 (to calculate the intercept parameter from the others), which are supplied.
 #'
-#' For Poisson model, The function implementing the approximate solution based on the variance inflation factor is 
-#' poisson.approx, and can be used for all four cases. Arguments are EY (the marginal mean of the Poisson outcome), b2, 
-#' sdx2, rho, alpha and gamma, with sdx2, alpha and gamma set to the usual defaults; use 
-#' sdx2=\eqn{\sqrt{f2(1-f2)}}{sqrt(f2*(1-f2))} for a binary mediator with prevalence f2 (cases CpBm and BpBm). For cases 
-#' CpCm and BpCm (continuous mediators), the approximate formula is also the analytic solution. For these cases, we supply 
-#' redundant functions poisson.cc and poisson.bc, with the same arguments and defaults as for poisson.approx (it's the same 
-#' function). For the two cases with binary mediators, the functions are poisson.cb and poisson.bb. In addition to m, b2, 
-#' f2, rho, alpha, and gamma, b1 and sdx1 or f1 must be specified. Defaults are as usual. Functions using simulation for 
-#' the Poisson model are available: poisson.ccs, poisson.bcs, poisson.cbs, and poisson.bbs. As in the logistic case, these 
-#' require arguments b1 and sdx1 or f1. For this case, however, the analytic functions are faster, avoid simulation error, 
-#' and should be used. We include these functions as templates that could be adapted to other joint predictor 
-#' distributions.
-
-#' For Cox model, the function implementing the approximate solution, using the variance inflation factor and derived by 
-#' Schmoor et al., is cox.approx, and can be used for all four cases. Arguments are b2, sdx2, rho, alpha, gamma, and f. For 
-#' binary X2 set sdx2 = \eqn{\sqrt{f2(1-f2)}}{sqrt(f2*(1-f2))}. The approximation works very well for cases CpCm and BpCm 
-#' (continuous mediators), but is a bit less accurate for cases CpBm and BpBm (binary mediators). We get some improvement 
-#' for those cases using the simulation approach. This approach is implemented for all four, as functions cox.ccs, cox.bcs, 
-#' cox.cbs, and cox.bbs. Arguments are b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, f, and ns, with defaults as 
-#' described above. Slight variants of these functions, cox.ccs2, cox.bcs2, cox.cbs2, and cox.bbs2, make it possible to 
-#' allow for early censoring of a fraction fc of observations; but in our experience this has virtually no effect, even 
-#' with values of fc of 0.5. The default for fc is 0.
-#'
-#' A summary of the argumentss is as follows, noting that additional parameter seed can be supplied for simulation-based 
-#' method.
-#'
-#' \tabular{lll}{
-#' model \tab arguments \tab description\cr
-#' \cr
-#' linear1 \tab b2, rho, sdx2, sdy \tab linear \cr
-#' linear2 \tab b1star, PTE, rho, sdx1, sdy \tab lineara\cr
-#' linear3 \tab b1star, b2, PTE, sdx1, sdx2, sdy \tab linearb\cr
-#' linear4 \tab b1star, b1, b2, sdx1, sdx2, sdy \tab linearc\cr
-#' \cr
-#' logistic1 \tab p, b2, rho, sdx2 \tab logistic.approx\cr
-#' logistic2 \tab p, b1, b2, rho, sdx1, sdx2, ns \tab logistic.ccs\cr
-#' logistic3 \tab p, b1, f1, b2, rho, sdx2, ns \tab logistic.bcs\cr
-#' logistic4 \tab p, b1, b2, f2, rho, sdx1, ns \tab logistic.cbs\cr
-#' logistic5 \tab p, b1, f1, b2, f2, rho, ns \tab logistic.bbs\cr
-#' \cr
-#' poisson1 \tab m, b2, rho, sdx2 \tab poisson.approx\cr
-#' poisson2 \tab m, b2, rho, sdx2 \tab poisson.cc\cr
-#' poisson3 \tab m, b2, rho, sdx2 \tab poisson.bc\cr
-#' poisson4 \tab m, b1, b2, f2, rho, sdx1 \tab poisson.cb\cr
-#' poisson5 \tab m, b1, f1, b2, f2, rho \tab poisson.bb\cr
-#' poisson6 \tab m, b1, b2, rho, sdx1, sdx2, ns \tab poisson.ccs\cr
-#' poisson7 \tab m, b1, f1, b2, rho, sdx2, ns \tab poisson.bcs\cr
-#' poisson8 \tab m, b1, b2, f2, rho, sdx1, ns \tab poisson.cbs\cr
-#' poisson9 \tab m, b1, f1, b2, f2, rho, ns\tab poisson.bbs\cr
-#' \cr
-#' cox1 \tab b2, rho, f, sdx2 \tab cox.approx\cr
-#' cox2 \tab b1, b2, rho, f, sdx1, sdx2, ns \tab cox.ccs\cr
-#' cox3 \tab b1, f1, b2, rho, f, sdx2, ns\tab cox.bcs\cr
-#' cox4 \tab b1, b2, f2, rho, f, sdx1, ns\tab cox.cbs\cr
-#' cox5 \tab b1, f1, b2, f2, rho, f, ns\tab cox.bbs\cr
-#' cox6 \tab b1, b2, rho, f, fc, sdx1, sdx2, ns\tab cox.ccs2\cr
-#' cox7 \tab b1, f1, b2, rho, f, fc, sdx2, ns\tab cox.bcs2\cr
-#' cox8 \tab b1, b2, f2, rho, f, fc, sdx1, ns\tab cox.cbs2\cr
-#' cox9 \tab b1, f1, b2, f2, rho, f, fc, ns\tab cox.bbs2\cr
+#' \code{
+#' getb0 <- function(p, X, b1, b2)
+#' {
+#'   stopifnot(is.numeric(p), length(p) == 1, p > 0, p < 1)
+#'   eta0 <- X[,2] * b1 + X[,3] * b2
+#'   f <- function(b0) mean(plogis(b0+eta0)) - p
+#'   uniroot(f, interval = c(-50,50), tol = 1e-10)$root
+#' }
 #' }
 #'
+#' For Poisson model, The function implementing the approximate solution based on the variance inflation factor is
+#' poisson.approx, and can be used for all four cases. Arguments are EY (the marginal mean of the Poisson outcome), b2,
+#' sdx2, rho, alpha and gamma, with sdx2, alpha and gamma set to the usual defaults; For cases 
+#' CpCm and BpCm (continuous mediators), the approximate formula is also the analytic solution. For these cases, we supply
+#' redundant functions poisson.cc and poisson.bc, with the same arguments and defaults as for poisson.approx (it's the same
+#' function). For the two cases with binary mediators, the functions are poisson.cb and poisson.bb. In addition to m, b2,
+#' f2, rho, alpha, and gamma, b1 and sdx1 or f1 must be specified. Defaults are as usual. Functions using simulation for
+#' the Poisson model are available: poisson.ccs, poisson.bcs, poisson.cbs, and poisson.bbs. As in the logistic case, these
+#' require arguments b1 and sdx1 or f1. For this case, however, the analytic functions are faster, avoid simulation error,
+#' and should be used. We include these functions as templates that could be adapted to other joint predictor distributions.
+
+#' For Cox model, the function implementing the approximate solution, using the variance inflation factor and derived by
+#' \insertCite{schmoor00;textual}{gap} is cox.approx, and can be used for all four cases. Arguments are b2, sdx2, rho,
+#' alpha, gamma, and f. The approximation works very well for cases CpCm and BpCm (continuous mediators), but is a bit
+#' less accurate for cases CpBm and BpBm (binary mediators). #' We get some improvement for those cases using the simulation
+#' approach. This approach is implemented for all four, as functions cox.ccs, cox.bcs, cox.cbs, and cox.bbs. Arguments are
+#' b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, f, and ns, with defaults as described above. Slight variants of these
+#' functions, cox.ccs2, cox.bcs2, cox.cbs2, and cox.bbs2, make it possible to allow for early censoring of a fraction fc
+#' of observations; but in our experience this has virtually no effect, even with values of fc of 0.5. The default for fc is 0.
+#'
+#' A summary of the arguments is as follows, noting that additional parameter seed can be supplied for simulation-based
+#' method.
+#'
+#' model   | arguments          | description
+#' --------|--------------------|--------------------------
+#' Linear models: |
+#' linear1 | b2, rho, sdx2, sdy  | linear
+#' linear2 | b1star, PTE, rho, sdx1, sdy | lineara
+#' linear3 | b1star, b2, PTE, sdx1, sdx2, sdy | linearb
+#' linear4 | b1star, b1, b2, sdx1, sdx2, sdy | linearc
+#' Logistic models: |
+#' logistic1 | p, b2, rho, sdx2 | logistic.approx
+#' logistic2 | p, b1, b2, rho, sdx1, sdx2, ns | logistic.ccs
+#' logistic3 | p, b1, f1, b2, rho, sdx2, ns | logistic.bcs
+#' logistic4 | p, b1, b2, f2, rho, sdx1, ns | logistic.cbs
+#' logistic5 | p, b1, f1, b2, f2, rho, ns | logistic.bbs
+#' Poission models: |
+#' poisson1 | m, b2, rho, sdx2 | poisson.approx
+#' poisson2 | m, b2, rho, sdx2 | poisson.cc
+#' poisson3 | m, b2, rho, sdx2 | poisson.bc
+#' poisson4 | m, b1, b2, f2, rho, sdx1 | poisson.cb
+#' poisson5 | m, b1, f1, b2, f2, rho | poisson.bb
+#' poisson6 | m, b1, b2, rho, sdx1, sdx2, ns | poisson.ccs
+#' poisson7 | m, b1, f1, b2, rho, sdx2, ns | poisson.bcs
+#' poisson8 | m, b1, b2, f2, rho, sdx1, ns | poisson.cbs
+#' poisson9 | m, b1, f1, b2, f2, rho, ns | poisson.bbs
+#' Cox models: |
+#' cox1 | b2, rho, f, sdx2 | cox.approx
+#' cox2 | b1, b2, rho, f, sdx1, sdx2, ns | cox.ccs
+#' cox3 | b1, f1, b2, rho, f, sdx2, ns | cox.bcs
+#' cox4 | b1, b2, f2, rho, f, sdx1, ns | cox.cbs
+#' cox5 | b1, f1, b2, f2, rho, f, ns | cox.bbs
+#' cox6 | b1, b2, rho, f, fc, sdx1, sdx2, ns | cox.ccs2
+#' cox7 | b1, f1, b2, rho, f, fc, sdx2, ns | cox.bcs2
+#' cox8 | b1, b2, f2, rho, f, fc, sdx1, ns | cox.cbs2
+#' cox9 | b1, f1, b2, f2, rho, f, fc, ns | cox.bbs2
+#'
+#' @return A list containing:
+#' - desc Description of the selected method.
+#' - n Required sample size.
+#' - d Required number of events (Cox models only).
+#'
 #' @export
-#' @return A short description of model (desc, b=binary, c=continuous, s=simulation) and sample size (n). In the case of Cox model, 
-#' number of events (d) is also indicated.
 #'
 #' @references
 #' \insertRef{hsieh98}{gap}
@@ -179,7 +192,6 @@
 #' masize("logistic4",opts)
 #' opts <- list(p=0.25, b1=log(1.5), sdx1=1, b2=log(0.5), f2=0.5, rho=0.5, ns=10000,
 #'              seed=1234)
-#' masize("logistic4",opts)
 #' opts <- list(p=0.25, b1=log(1.5), sdx1=4.5, b2=log(0.5), f2=0.5, rho=0.5, ns=50000,
 #'              seed=1234)
 #' masize("logistic4",opts)
@@ -737,7 +749,3 @@ getb0 <- function(p, X, b1, b2)
   f <- function(b0) mean(plogis(b0+eta0)) - p
   uniroot(f, interval = c(-50,50), tol = 1e-10)$root
 }
-
-# Proportion of effect explained (PTE) & b1star utility functions
-getPTE <- function(b1, b2, rho, sdx1=1, sdx2=1) b2*sdx2*rho/((b1+b2*sdx2*rho/sdx1)*sdx1)
-getb1star <- function(b1, b2, rho, sdx1=1, sdx2=1) b1+b2*sdx2*rho/sdx1
