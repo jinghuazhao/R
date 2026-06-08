@@ -117,7 +117,7 @@
 #' the Poisson model are available: poisson.ccs, poisson.bcs, poisson.cbs, and poisson.bbs. As in the logistic case, these
 #' require arguments b1 and sdx1 or f1. For this case, however, the analytic functions are faster, avoid simulation error,
 #' and should be used. We include these functions as templates that could be adapted to other joint predictor distributions.
-
+#'
 #' For Cox model, the function implementing the approximate solution, using the variance inflation factor and derived by
 #' \insertCite{schmoor00;textual}{gap} is cox.approx, and can be used for all four cases. Arguments are b2, sdx2, rho,
 #' alpha, gamma, and f. The approximation works very well for cases CpCm and BpCm (continuous mediators), but is a bit
@@ -130,7 +130,7 @@
 #' A summary of the arguments is as follows, noting that additional parameter seed can be supplied for simulation-based
 #' method.
 #'
-#' model   | arguments          | description
+#' Model   | Arguments          | Description
 #' --------|--------------------|--------------------------
 #' Linear models: |
 #' linear1 | b2, rho, sdx2, sdy  | linear

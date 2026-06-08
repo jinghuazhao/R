@@ -140,6 +140,7 @@ f2, rho, alpha, and gamma, b1 and sdx1 or f1 must be specified. Defaults are as 
 the Poisson model are available: poisson.ccs, poisson.bcs, poisson.cbs, and poisson.bbs. As in the logistic case, these
 require arguments b1 and sdx1 or f1. For this case, however, the analytic functions are faster, avoid simulation error,
 and should be used. We include these functions as templates that could be adapted to other joint predictor distributions.
+
 For Cox model, the function implementing the approximate solution, using the variance inflation factor and derived by
 \insertCite{schmoor00;textual}{gap} is cox.approx, and can be used for all four cases. Arguments are b2, sdx2, rho,
 alpha, gamma, and f. The approximation works very well for cases CpCm and BpCm (continuous mediators), but is a bit
@@ -151,7 +152,7 @@ of observations; but in our experience this has virtually no effect, even with v
 
 A summary of the arguments is as follows, noting that additional parameter seed can be supplied for simulation-based
 method.\tabular{lll}{
-   model \tab arguments \tab description \cr
+   Model \tab Arguments \tab Description \cr
    Linear models: \tab  \tab  \cr
    linear1 \tab b2, rho, sdx2, sdy \tab linear \cr
    linear2 \tab b1star, PTE, rho, sdx1, sdy \tab lineara \cr
