@@ -99,7 +99,7 @@ provides somewhat more accurate sample size estimates than the Hsieh approximati
 CpBm, and BpBm are respectively logistic.ccs, logistic.bcs, logistic.cbs, and logistic.bbs, as for the Poisson and Cox
 models. Arguments for these functions include p, b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, and ns. As in other
 functions, sdx1, sdx2, alpha, and gamma are set to the defaults listed above. These four functions call two utility
-functions, getb0 (to calculate the intercept parameter from the others) and antilogit, which are supplied.
+functions, getb0 (to calculate the intercept parameter from the others) and plogis, which are supplied.
 
 For Poisson model, The function implementing the approximate solution based on the variance inflation factor is
 poisson.approx, and can be used for all four cases. Arguments are EY (the marginal mean of the Poisson outcome), b2,

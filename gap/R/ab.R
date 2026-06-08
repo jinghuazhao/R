@@ -2,8 +2,8 @@
 #'
 #' This function computes the indirect (mediated) effect in a mediation model
 #' and either tests its significance or calculates statistical power.
-#' It uses regression coefficients from an independent variable to a mediator (`a`) 
-#' and from the mediator to an outcome (`b`) with their standard errors. 
+#' It uses regression coefficients from an independent variable to a mediator (`a`)
+#' and from the mediator to an outcome (`b`) with their standard errors.
 #' Variance can be estimated using Sobel, Aroian, or Goodman formulas.
 #'
 #' @param type Character; `"test"` to perform a significance test, `"power"` to estimate power.
@@ -17,23 +17,23 @@
 #' @param method Character; one of `"sobel"`, `"aroian"`, `"goodman"` specifying the variance formula.
 #'
 #' @details
-#' The indirect effect is \eqn{ab}, representing the portion of the effect of \eqn{X} on \eqn{Y} 
+#' The indirect effect is \eqn{ab}, representing the portion of the effect of \eqn{X} on \eqn{Y}
 #' transmitted through mediator \eqn{M}.
 #'
 #' Standard errors of the indirect effect are approximated using the delta method:
-#' - Sobel: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2}}  
-#' - Aroian: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 + s_a^2 s_b^2}}  
+#' - Sobel: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2}}
+#' - Aroian: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 + s_a^2 s_b^2}}
 #' - Goodman: \eqn{SE = \sqrt{b^2 s_a^2 + a^2 s_b^2 - s_a^2 s_b^2}}
 #'
 #' The z-statistic is \eqn{z = ab / SE(ab)}, assumed to follow a standard normal
 #' distribution under \eqn{H_0: ab = 0}.
 #'
-#' Two-sided p-value: \eqn{p = 2 \Phi(-|z|)}  
+#' Two-sided p-value: \eqn{p = 2 \Phi(-|z|)}
 #' 95% confidence interval: \eqn{ab \pm 1.96 \cdot SE(ab)}
 #'
 #' Power is based on a non-central chi-square approximation:
-#' \eqn{\lambda = z^2 \cdot \text{fold}}  
-#' \eqn{Power = P(\chi^2_1(\lambda) > \chi^2_{1,1-\alpha})},  
+#' \eqn{\lambda = z^2 \cdot \text{fold}}
+#' \eqn{Power = P(\chi^2_1(\lambda) > \chi^2_{1,1-\alpha})},
 #' where \eqn{\chi^2_{1,1-\alpha}} is the critical value at significance level \eqn{\alpha}.
 #'
 #' These tests assume large samples. For small samples, bootstrap confidence intervals are recommended.

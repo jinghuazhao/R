@@ -1,32 +1,3 @@
-antilogit <- function(x) 1/(1+exp(-x))
-
-getPTE <- function(b1, b2, rho, sdx1=1, sdx2=1) b2*sdx2*rho/((b1+b2*sdx2*rho/sdx1)*sdx1)
-
-getb1star <- function(b1, b2, rho, sdx1=1, sdx2=1) b1+b2*sdx2*rho/sdx1
-
-getb0 <- function(p, X, b1, b2)
-{
-      b0 <- 1
-      p.test <- 0.9999
-      while(p.test>p) {
-            b0 <- b0-0.1
-            p.test <- mean(antilogit(X%*%as.matrix(c(b0, b1, b2))))
-        }
-      while(p.test<p) {
-            b0 <- b0+0.01
-            p.test <- mean(antilogit(X%*%as.matrix(c(b0, b1, b2))))
-        }
-      while(p.test>p) {
-            b0 <- b0-0.001
-            p.test <- mean(antilogit(X%*%as.matrix(c(b0, b1, b2))))
-        }
-      while(p.test<p) {
-            b0 <- b0+0.0001
-            p.test <- mean(antilogit(X%*%as.matrix(c(b0, b1, b2))))
-        }
-      b0
-}
-
 #' Sample size calculation for mediation analysis
 #'
 #' The function computes sample size for regression problems where the goal is to assess mediation of the effects of a 
@@ -113,7 +84,7 @@ getb0 <- function(p, X, b1, b2)
 #' CpBm, and BpBm are respectively logistic.ccs, logistic.bcs, logistic.cbs, and logistic.bbs, as for the Poisson and Cox 
 #' models. Arguments for these functions include p, b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, and ns. As in other 
 #' functions, sdx1, sdx2, alpha, and gamma are set to the defaults listed above. These four functions call two utility 
-#' functions, getb0 (to calculate the intercept parameter from the others) and antilogit, which are supplied.
+#' functions, getb0 (to calculate the intercept parameter from the others) and plogis, which are supplied.
 #'
 #' For Poisson model, The function implementing the approximate solution based on the variance inflation factor is 
 #' poisson.approx, and can be used for all four cases. Arguments are EY (the marginal mean of the Poisson outcome), b2, 
@@ -313,7 +284,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
         S <- matrix(c(sdx1^2, rho*sdx1*sdx2, rho*sdx1*sdx2, sdx2^2), 2, 2)
         X <- cbind(rep(1, ns), matrix(rnorm(2*ns), ns, 2) %*% chol(S))
         b0 <- getb0(p, X, b1, b2)
-        pi <- antilogit(X%*%as.matrix(c(b0, b1, b2)))
+        pi <- plogis(X%*%as.matrix(c(b0, b1, b2)))
         XVX <- crossprod(X*as.vector(sqrt(pi*(1-pi))))
         desc <- "logistic.ccs"
         n <- (qnorm(alpha)+qnorm(gamma))^2*solve(XVX/ns)[3,3]/(b2^2)
@@ -335,7 +306,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
         X <- rbind(cbind(rep(1, n0), rep(0, n0), rnorm(n0, mean=mu0, sd=sdx2.1)),
                    cbind(rep(1, n1), rep(1, n1), rnorm(n1, mean=mu1, sd=sdx2.1)))
         b0 <- getb0(p, X, b1, b2)
-        pi <- antilogit(X%*%as.matrix(c(b0, b1, b2)))
+        pi <- plogis(X%*%as.matrix(c(b0, b1, b2)))
         XVX <- crossprod(X*as.vector(sqrt(pi*(1-pi))))
         desc <- "logistic.bcs"
         n <- (qnorm(alpha)+qnorm(gamma))^2*solve(XVX/ns)[3,3]/b2^2
@@ -357,7 +328,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
         X <- rbind(cbind(rep(1, n0), rnorm(n0, mean=mu0, sd=sdx1.2), rep(0, n0)),
                    cbind(rep(1, n1), rnorm(n1, mean=mu1, sd=sdx1.2), rep(1, n1)))
         b0 <- getb0(p, X, b1, b2)
-        pi <- antilogit(X%*%as.matrix(c(b0, b1, b2)))
+        pi <- plogis(X%*%as.matrix(c(b0, b1, b2)))
         XVX <- crossprod(X*as.vector(sqrt(pi*(1-pi))))
         desc <- "logistic.cbs"
         n <- (qnorm(alpha)+qnorm(gamma))^2*solve(XVX/ns)[3,3]/b2^2
@@ -383,7 +354,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
                    cbind(rep(1, n01), rep(0, n01), rep(1, n01)),
                    cbind(rep(1, n11), rep(1, n11), rep(1, n11)))
         b0 <- getb0(p, X, b1, b2)
-        pi <- antilogit(X%*%as.matrix(c(b0, b1, b2)))
+        pi <- plogis(X%*%as.matrix(c(b0, b1, b2)))
         XVX <- crossprod(X*as.vector(sqrt(pi*(1-pi))))
         desc <- "logistic.bbs"
         n <- (qnorm(alpha)+qnorm(gamma))^2*solve(XVX/ns)[3,3]/b2^2
@@ -457,7 +428,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
         b1 <- opts$b1   # regression coefficient (log rate-ratio) for continuous primary predictor
         b2 <- opts$b2   # regression coefficient (log rate-ratio) for continuous mediator
         rho <- opts$rho # correlation of primary predictor and mediator
-        sdx1 <- opts$adx1 # SD of primary predictor
+        sdx1 <- opts$sdx1 # SD of primary predictor
         sdx2 <- opts$sdx2 # SD of mediator
         ns <- opts$ns     # number of observations in simulated dataset
         S <- matrix(c(sdx1^2, rho*sdx1*sdx2, rho*sdx1*sdx2, sdx2^2), 2, 2)
@@ -495,7 +466,7 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
         b2 <- opts$b2                    # regression coefficient (log rate-ratio) for continuous mediator
         f2 <- opts$f2                    # prevalence of mediator
         rho <- opts$rho                  # correlation of primary predictor and mediator
-        sdx1 <- opts$sdc1                # SD of primary predictor
+        sdx1 <- opts$sdx1                # SD of primary predictor
         ns <- opts$ns                    # number of observations in simulated dataset
         n1 <- round(ns*f2)
         n0 <- ns-n1
@@ -759,4 +730,14 @@ masize <- function(model,opts, alpha=0.025, gamma=0.2)
    else list(desc=desc, d=round(d), n = round(n))
 }
 
-# 23-6-2010 MRC-Epid JHZ
+getb0 <- function(p, X, b1, b2)
+{
+  stopifnot(is.numeric(p), length(p) == 1, p > 0, p < 1)
+  eta0 <- X[,2] * b1 + X[,3] * b2
+  f <- function(b0) mean(plogis(b0+eta0)) - p
+  uniroot(f, interval = c(-50,50), tol = 1e-10)$root
+}
+
+# Proportion of effect explained (PTE) & b1star utility functions
+getPTE <- function(b1, b2, rho, sdx1=1, sdx2=1) b2*sdx2*rho/((b1+b2*sdx2*rho/sdx1)*sdx1)
+getb1star <- function(b1, b2, rho, sdx1=1, sdx2=1) b1+b2*sdx2*rho/sdx1
