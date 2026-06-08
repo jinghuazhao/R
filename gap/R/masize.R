@@ -32,20 +32,20 @@
 #'  - Cox models: "cox1"–"cox9"
 #'
 #' @param opts Named list of model-specific parameters, which may include:
-#' b1 regression coefficient for X1.
-#' b1star coefficient for X1 in the reduced model.
-#' b2 regression coefficient for X2.
-#' PTE proportion of total effect explained.
-#' rho correlation between X1 and X2.
-#' sdx1, sdx2 standard deviations of X1 and X2.
-#' f1, f2 prevalences for binary X1 and X2.
-#' sdy residual SD (linear models).
-#' p marginal outcome prevalence (logistic models).
-#' m marginal outcome mean (Poisson models).
-#' f proportion of uncensored observations (Cox models).
-#' fc early censoring proportion (Cox extensions).
-#' ns simulation size for simulation-based methods.
-#' seed random seed.
+#' - b1 regression coefficient for X1.
+#' - b1star coefficient for X1 in the reduced model.
+#' - b2 regression coefficient for X2.
+#' - PTE proportion of total effect explained.
+#' - rho correlation between X1 and X2.
+#' - sdx1, sdx2 standard deviations of X1 and X2.
+#' - f1, f2 prevalences for binary X1 and X2.
+#' - sdy residual SD (linear models).
+#' - p marginal outcome prevalence (logistic models).
+#' - m marginal outcome mean (Poisson models).
+#' - f proportion of uncensored observations (Cox models).
+#' - fc early censoring proportion (Cox extensions).
+#' - ns simulation size for simulation-based methods.
+#' - seed random seed.
 #'
 #' @param alpha One-sided type I error rate.
 #' @param gamma Type-II error rate.
@@ -55,13 +55,13 @@
 #' coefficient in the full model. Mediation can be expressed as attenuation b1* - b1 or proportion
 #' of total effect explained (PTE):
 #'
-#' \deqn{PTE = (b_1^* - b_1) / b_1^*.}
+#' \deqn{PTE = \frac{(b_1^*-b_1)}{b_1^*}}
 #'
 #' Testing mediation is equivalent (linear models) or approximately equivalent (GLMs and Cox models)
 #' to testing the coefficient of X2 in the full model. Sample size is therefore derived from a Wald
 #' test on b2 using the expected information matrix.
 #'
-#' For binary variables, use sqrt(f*(1-f)) for the corresponding standard deviation.
+#' For binary variables, use \eqn{\sqrt(f(1-f))} for the corresponding standard deviation.
 #'
 #' Linear models parameters are based on \insertCite{hsieh98;textual}{gap} and use a variance inflation
 #' factor \eqn{1/(1-\rho^2)}, where \eqn{\rho} is the correlation between X1 and X2. Logistic and Cox models
@@ -74,7 +74,8 @@
 #'
 #' The quantity PTE and b1star parameter for linear model are provided as follows,
 #'
-#' \code{getPTE <- function(b1, b2, rho, sdx1=1, sdx2=1) b2*sdx2*rho/((b1+b2*sdx2*rho/sdx1)*sdx1)}
+#' \code{getPTE <- function(b1, b2, rho, sdx1=1, sdx2=1)
+#'                          b2*sdx2*rho/((b1+b2*sdx2*rho/sdx1)*sdx1)}
 #' \code{getb1star <- function(b1, b2, rho, sdx1=1, sdx2=1) b1+b2*sdx2*rho/sdx1}
 #'
 #' This also turns out to be the analytic solution in cases CpCm and BpCm for the Poisson model, and underlies approximate
@@ -90,7 +91,7 @@
 #' functions, sdx1, sdx2, alpha, and gamma are set to the defaults listed above. These four functions call the utility
 #' functions and getb0 (to calculate the intercept parameter from the others), which are supplied.
 #'
-#' \code{
+#' \preformatted{
 #' getb0 <- function(p, X, b1, b2)
 #' {
 #'   stopifnot(is.numeric(p), length(p) == 1, p > 0, p < 1)
