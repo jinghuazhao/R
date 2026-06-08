@@ -84,11 +84,6 @@
 #'  getb1star <- function(b1, b2, rho, sdx1=1, sdx2=1) b1+b2*sdx2*rho/sdx1
 #'  }
 #'
-#' This also turns out to be the analytic solution in cases CpCm and BpCm for the Poisson model, and underlies approximate
-#' solutions for the logistic and Cox models. An analytic solution is also given for cases CpBm and BpBm for the Poisson
-#' model. Since analytic solutions are not available for the logistic and Cox models, a simulation approach is used to
-#' obtain the expected information matrix instead.
-#'
 #' For logistic model, the approximate solution due to Hsieh is implemented in the function logistic.approx, and can be
 #' used for all four cases. Arguments are p, b2, rho, sdx2, alpha, and gamma. Simulating the information matrix of the logistic model
 #' provides somewhat more accurate sample size estimates than the Hsieh approximation. The functions for cases CpCm, BpCm,
@@ -121,7 +116,7 @@
 #' For Cox model, the function implementing the approximate solution, using the variance inflation factor and derived by
 #' \insertCite{schmoor00;textual}{gap} is cox.approx, and can be used for all four cases. Arguments are b2, sdx2, rho,
 #' alpha, gamma, and f. The approximation works very well for cases CpCm and BpCm (continuous mediators), but is a bit
-#' less accurate for cases CpBm and BpBm (binary mediators). #' We get some improvement for those cases using the simulation
+#' less accurate for cases CpBm and BpBm (binary mediators). We get some improvement for those cases using the simulation
 #' approach. This approach is implemented for all four, as functions cox.ccs, cox.bcs, cox.cbs, and cox.bbs. Arguments are
 #' b1, sdx1 or f1, b2, sdx2 or f2, rho, alpha, gamma, f, and ns, with defaults as described above. Slight variants of these
 #' functions, cox.ccs2, cox.bcs2, cox.cbs2, and cox.bbs2, make it possible to allow for early censoring of a fraction fc
