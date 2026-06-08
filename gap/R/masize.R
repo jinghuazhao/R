@@ -8,10 +8,18 @@
 #' The framework applies to linear, logistic, Poisson, and Cox regression models
 #' and supports four predictor–mediator configurations:
 #'
-#' CpCm: continuous X1 and continuous X2.
-#' BpCm: binary X1 and continuous X2.
-#' CpBm: continuous X1 and binary X2.
-#' BpBm: binary X1 and binary X2.
+#' - CpCm: continuous X1 and continuous X2.
+#' - BpCm: binary X1 and continuous X2.
+#' - CpBm: continuous X1 and binary X2.
+#' - BpBm: binary X1 and binary X2.
+#'
+#' The naming convention is:
+#' - "cc" continuous-continuous.
+#' - "bc" binary-continuous.
+#' - "cb" continuous-binary.
+#' - "bb" binary-binary.
+#' - ".approx" use analytic approximations.
+#' - ".s" use simulation.
 #'
 #' The same formulation can also be used to evaluate the effect of a predictor
 #' in the presence of a confounder by swapping the roles of X1 and X2.
@@ -67,14 +75,6 @@
 #' factor \eqn{1/(1-\rho^2)}, where \eqn{\rho} is the correlation between X1 and X2. Logistic and Cox models
 #' generally require simulation to estimate information, while Poisson models admit analytic solutions in
 #' most cases.
-#'
-#' The naming convention is:
-#' - "cc" continuous-continuous.
-#' - "bc" binary-continuous.
-#' - "cb" continuous-binary.
-#' - "bb" binary-binary.
-#' - ".approx" use analytic approximations.
-#' - ".s" use simulation.
 #'
 #' The quantity PTE and b1star parameter for linear model are provided as follows,
 #'
