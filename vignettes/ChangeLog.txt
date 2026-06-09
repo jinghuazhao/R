@@ -1,7 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.3
-08-06-2026	Amend ab(), cis.vs.trans.classification|plot(), h2_mzdz(), masize(), qtlFinder(), qtl2dplot, qtl[2|3]dplotly()
+09-06-2026	Amend ab(), cis.vs.trans.classification|plot(), h2_mzdz(), masize(), makeRLEplot(),
+		qtlFinder(), qtl2dplot, qtl[2|3]dplotly()
 		Reset iframe(style="height:100vh") in gap.Rmd
 
 Version 1.15.2
