@@ -33,6 +33,7 @@
 #'   Control = "steelblue",
 #'   Treatment = "tomato"
 #' )
+#' par(mar = c(10,4,4,2))
 #' makeRLEplot(
 #'   E,
 #'   log2.data = TRUE,
@@ -86,16 +87,11 @@ makeRLEplot <- function(
   E.rle <- sweep(E, 1, g.medians, FUN = "-")
   boxplot(
     E.rle,
-    xaxt = "n",
-    las = 2,
-    col = mycol,
+    cex.axis=0.7,
+    las=2,
+    col=mycol,
+    names=colnames(E.rle),
     ...
-  )
-  axis(
-    1,
-    at = seq_len(ncol(E.rle)),
-    labels = colnames(E.rle),
-    tick = FALSE
   )
   if (isTRUE(showTitle)) {
     mtext(title, side = 3, line = 0.1)

@@ -56,6 +56,7 @@ col.group <- c(
   Control = "steelblue",
   Treatment = "tomato"
 )
+par(mar = c(10,4,4,2))
 makeRLEplot(
   E,
   log2.data = TRUE,
