@@ -44,28 +44,14 @@ values are displayed for each sample.
 \examples{
 \dontrun{
 set.seed(123)
-E <- matrix(
-  rlnorm(987 * 200, meanlog = 5, sdlog = 1),
-  nrow = 987,
-  ncol = 200
-)
+E <- matrix(rlnorm(987*200, meanlog=5, sdlog=1), nrow=987, ncol=200)
 colnames(E) <- paste0("Sample_", seq_len(200))
 rownames(E) <- paste0("Gene_", seq_len(987))
-group <- rep(c("Control", "Treatment"), each = 100)
-col.group <- c(
-  Control = "steelblue",
-  Treatment = "tomato"
-)
+group <- rep(c("Control", "Treatment"), each=100)
+col.group <- c(Control="steelblue", Treatment="tomato")
 par(mar = c(10,4,4,2))
-makeRLEplot(
-  E,
-  log2.data = TRUE,
-  groups = group,
-  col.group = col.group,
-  cex = 0.4,
-  showTitle = TRUE,
-  title = "RLE plot (987 genes × 200 samples)"
-)
+makeRLEplot(E, log2.data=TRUE, groups=group, col.group=col.group,
+  cex=0.4, showTitle=TRUE, title="RLE plot (987 genes × 200 samples)")
 }
 
 }
