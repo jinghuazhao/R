@@ -21,31 +21,18 @@
 #' @examples
 #' \dontrun{
 #' set.seed(123)
-#' E <- matrix(
-#'   rlnorm(987 * 200, meanlog = 5, sdlog = 1),
-#'   nrow = 987,
-#'   ncol = 200
-#' )
+#' E <- matrix(rlnorm(987*200, meanlog=5, sdlog=1), nrow=987, ncol=200)
 #' colnames(E) <- paste0("Sample_", seq_len(200))
 #' rownames(E) <- paste0("Gene_", seq_len(987))
-#' group <- rep(c("Control", "Treatment"), each = 100)
-#' col.group <- c(
-#'   Control = "steelblue",
-#'   Treatment = "tomato"
-#' )
+#' group <- rep(c("Control", "Treatment"), each=100)
+#' col.group <- c(Control="steelblue", Treatment="tomato")
 #' par(mar = c(10,4,4,2))
-#' makeRLEplot(
-#'   E,
-#'   log2.data = TRUE,
-#'   groups = group,
-#'   col.group = col.group,
-#'   cex = 0.4,
-#'   showTitle = TRUE,
-#'   title = "RLE plot (987 genes × 200 samples)"
-#' )
+#' makeRLEplot(E, log2.data=TRUE, groups=group, col.group=col.group,
+#'   cex=0.4, showTitle=TRUE, title="RLE plot (987 genes × 200 samples)")
 #' }
 #'
 #' @export
+#'
 #'
 makeRLEplot <- function(
   E,
@@ -57,9 +44,7 @@ makeRLEplot <- function(
   ...
 ) {
   E <- as.matrix(E)
-  if (!is.numeric(E)) {
-    stop("'E' must contain numeric values")
-  }
+  storage.mode(E) <- "numeric"
   if (nrow(E) == 0L || ncol(E) < 2L) {
     stop("'E' must have at least one row and two columns")
   }
@@ -85,14 +70,29 @@ makeRLEplot <- function(
   }
   g.medians <- matrixStats::rowMedians(E, na.rm = TRUE)
   E.rle <- sweep(E, 1, g.medians, FUN = "-")
-  boxplot(
-    E.rle,
-    cex.axis=0.7,
-    las=2,
-    col=mycol,
-    names=colnames(E.rle),
-    ...
+  dots <- list(...)
+  n <- ncol(E.rle)
+  cex.axis.use <- if (!is.null(dots$cex.axis)) {
+    dots$cex.axis
+  } else {
+    if (n > 100) 0.4 else if (n > 50) 0.6 else 0.8
+  }
+  dots$cex.axis <- NULL
+  sample.labels <- colnames(E.rle)
+  if (is.null(sample.labels)) {
+    sample.labels <- seq_len(ncol(E.rle))
+  }
+  args <- c(
+    list(
+      E.rle,
+      cex.axis = cex.axis.use,
+      las = 2,
+      col = mycol,
+      names = sample.labels
+    ),
+    dots
   )
+  do.call(boxplot, args)
   if (isTRUE(showTitle)) {
     mtext(title, side = 3, line = 0.1)
   }
