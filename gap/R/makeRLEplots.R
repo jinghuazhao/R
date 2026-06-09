@@ -27,8 +27,8 @@
 #' group <- rep(c("Control", "Treatment"), each=100)
 #' col.group <- c(Control="steelblue", Treatment="tomato")
 #' par(mar = c(10,4,4,2))
-#' makeRLEplot(E, log2.data=TRUE, groups=group, col.group=col.group,
-#'   cex=0.4, showTitle=TRUE, title="RLE plot (987 genes × 200 samples)")
+#' makeRLEplot(E,log2.data=TRUE,groups=group,col.group=col.group,cex=0.4,
+#'   cex.axis=0.5,showTitle=TRUE,title="RLE plot (987 genes×200 samples)")
 #' }
 #'
 #' @export
