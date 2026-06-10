@@ -37,8 +37,6 @@ p3 <- data.frame(pid=10081,p2)
 
 library(gap)
 knitr::kable(p3,caption="An example pedigree")
-# visible diagram in RStudio / toDOT=TRUE here
-gap::pedtodot_verbatim(p3,run=TRUE)
 library(DiagrammeR)
 gap::pedtodot_verbatim(p3)
 DiagrammeR::grViz(readr::read_file("10081.dot"))
