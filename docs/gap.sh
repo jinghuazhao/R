@@ -11,6 +11,7 @@ export _R_CHECK_LIMIT_CORES_=TRUE
 export MAKEFLAGS="-j$(nproc)"
 
 Rscript -e 'cat(R.version.string,"\n");devtools::document("gap")'
+R CMD INSTALL gap
 Rscript -e 'rmarkdown::render("vignettes/gap.Rmd",
             output_file="gap.html", output_dir="vignettes", clean=TRUE, quiet=TRUE);
             knitr::purl("vignettes/gap.Rmd", output="vignettes/gap.R", documentation=0)'
