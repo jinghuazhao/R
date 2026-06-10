@@ -4,32 +4,29 @@
 \alias{pedtodot_verbatim}
 \title{Pedigree-drawing with graphviz}
 \usage{
-pedtodot_verbatim(f, run = FALSE)
+pedtodot_verbatim(f)
 }
 \arguments{
 \item{f}{A data.frame containing pedigrees, each with pedigree id, individual id, father id, mother id, sex and affection status.}
-
-\item{run}{A flag to run dot/neato on the generated .dot file(s).}
 }
 \value{
-No value is returned but outputs in .dot, .pdf, and .svg.
+For each pedigree, a Graphviz DOT file is written to the working directory.
 }
 \description{
 Pedigree-drawing with graphviz
 }
 \details{
-Read a GAS or LINKAGE format pedigree, return a digraph in the dot language and optionally
-call dot/neato to make pedigree drawing.
+Read a GAS or LINKAGE pedigree and write a Graphviz DOT representation for each pedigree.
 
-This is a verbatim translation of the original pedtodot implemneted in Bash/awk in contrast to \code{pedtodot} which was largely a mirror.
-To check independently, try \verb{xsel -i < <(cat pedtodot_verbatim.R)} or \verb{cat pedtodot_verbatim.R | xsel -i} and paste into an R session.
+This is a verbatim translation of the original \code{pedtodot} implemented in Bash/awk.
+To check independently, try \code{xclip < pedtodot_verbatim.R} and paste into an R session.
 }
 \note{
 Adapted from Bash/awk script by David Duffy
 }
 \examples{
 \dontrun{
-# pedigree p3 in pedtodot / toDOT=TRUE
-  pedtodot_verbatim(p3,run=TRUE)
+# pedigree p3 in pedtodot
+  pedtodot_verbatim(p3)
 }
 }
