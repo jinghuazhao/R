@@ -120,7 +120,6 @@ p1 <- scan(nlines=16,what=list(0,0,0,0,0,"",""))
 p2 <- as.data.frame(p1)
 names(p2) <-c("id","fid","mid","sex","aff","GABRB1","D4S1645")
 p3 <- data.frame(pid=10081,p2)
-attach(p3)
 pedtodot(p3)
 #
 # Three examples of pedigree-drawing
