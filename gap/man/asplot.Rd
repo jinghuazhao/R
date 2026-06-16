@@ -48,46 +48,6 @@ require(gap.datasets)
 asplot(CDKNlocus, CDKNmap, CDKNgenes)
 title("CDKN2A/CDKN2B Region")
 asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))
-
-## NCBI2R
-
-options(stringsAsFactors=FALSE)
-p <- with(CDKNlocus,data.frame(SNP=NAME,PVAL))
-hit <- subset(p,PVAL==min(PVAL,na.rm=TRUE))$SNP
-
-library(NCBI2R)
-# LD under build 36
-chr_pos <- GetSNPInfo(with(p,SNP))[c("chr","chrpos")]
-l <- with(chr_pos,min(as.numeric(chrpos),na.rm=TRUE))
-u <- with(chr_pos,max(as.numeric(chrpos),na.rm=TRUE))
-LD <- with(chr_pos,GetLDInfo(unique(chr),l,u))
-# We have complaints; a possibility is to get around with 
-# https://ftp.ncbi.nlm.nih.gov/hapmap/
-hit_LD <- subset(LD,SNPA==hit)
-hit_LD <- within(hit_LD,{RSQR=r2})
-info <- GetSNPInfo(p$SNP)
-haldane <- function(x) 0.5*(1-exp(-2*x))
-locus <- with(info, data.frame(CHR=chr,POS=chrpos,NAME=marker,
-                    DIST=(chrpos-min(chrpos))/1000000,
-                    THETA=haldane((chrpos-min(chrpos))/100000000)))
-locus <- merge.data.frame(locus,hit_LD,by.x="NAME",by.y="SNPB",all=TRUE)
-locus <- merge.data.frame(locus,p,by.x="NAME",by.y="SNP",all=TRUE)
-locus <- subset(locus,!is.na(POS))
-ann <- AnnotateSNPList(p$SNP)
-genes <- with(ann,data.frame(ID=locusID,CLASS=fxn_class,PATH=pathways,
-                             START=GeneLowPoint,STOP=GeneHighPoint,
-                             STRAND=ori,GENE=genesymbol,BUILD=build,CYTO=cyto))
-attach(genes)
-ugenes <- unique(GENE)
-ustart <- as.vector(as.table(by(START,GENE,min))[ugenes])
-ustop <- as.vector(as.table(by(STOP,GENE,max))[ugenes])
-ustrand <- as.vector(as.table(by(as.character(STRAND),GENE,max))[ugenes])
-detach(genes)
-genes <- data.frame(START=ustart,STOP=ustop,STRAND=ustrand,GENE=ugenes)
-genes <- subset(genes,START!=0)
-rm(l,u,ugenes,ustart,ustop,ustrand)
-# Assume we have the latest map as in CDKNmap
-asplot(locus,CDKNmap,genes)
 }
 
 }
