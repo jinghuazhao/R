@@ -1004,9 +1004,13 @@ documented. Functions `h2.jags` and `hwe.jags` are also available. The function
 dizygotic (DZ) twin correlations under the additive genetics, common and specific
 environment (ACE) model, e.g., [10.1038/s41562-023-01530-y](https://doi.org/10.1038/s41562-023-01530-y).
 
-# Mendelian randomization
+# Mediation analysis
 
-## The `mr` function
+## Power calculations
+
+Two functions are notable, i.e., `ab` and `masize`. See their documentation for examples.
+
+## Mendelian randomization
 
 The function `mr` was originally developed to rework on data generated from GSMR @zhu18, although it could be any harmonised data. The following example is from analysis of a real data on LIF-R protein and CVD/FEV1.
 
