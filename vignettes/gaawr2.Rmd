@@ -1,0 +1,580 @@
+---
+title: "Genetic Association Analysis"
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+fontsize: 11pt
+bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
+csl: '`r system.file("csl", "nature-genetics.csl", package = "gaawr2")`'
+pkgdown:
+  as_is: true
+vignette: >
+  %\VignetteIndexEntry{gaawr2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r envs, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.height = 8,
+  fig.path = "gaawr2/",
+  fig.width = 8,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "CairoPNG")
+```
+
+```{r setup, message=FALSE, warning=FALSE}
+pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
+          "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
+          "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
+has_pkg <- function(x) requireNamespace(x, quietly = TRUE)
+installed <- pkgs[vapply(pkgs, has_pkg, logical(1))]
+missing <- setdiff(pkgs, installed)
+if (length(missing)) {
+  message("Missing packages: ", paste(missing, collapse = ", "))
+}
+invisible(lapply(installed, function(p)
+  suppressMessages(library(p, character.only = TRUE))
+))
+sys_options <- options()
+new_options <- options(digits=2)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+desc <- read.dcf(system.file("DESCRIPTION", package="gaawr2"))
+description <- desc[, "Description"]
+description <- gsub(
+  "(doi:[0-9\\.a-zA-Z]+/[0-9A-Z]+)",
+  "[\\1](https://doi.org/\\1)",
+  description
+)
+description <- gsub("\n+", " ", description)
+knitr::asis_output(description)
+```
+
+It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
+
+# Hello, world!
+
+We start with several ways of printting a `Hello, world!` message.
+
+## R
+
+R can be started from either command line interface (CLI) or a graphical user interface (GUI),
+
+```{r welcome}
+print("Hello, world!\n")
+```
+
+## Linux
+
+As it is very powerful, we more often embed R in a Linux script as follows,
+
+```{bash linux}
+export message="Hello, world!"
+echo "print('$message')" > hello.R
+R CMD BATCH hello.R
+R --no-save -q < hello.R
+R --no-save -q <<END
+message <- Sys.getenv("message"); print(message)
+source("hello.R")
+END
+echo ${message} | \
+Rscript -e '
+message <- scan("stdin", what="", sep="\n", quiet=TRUE);
+write.table(message, col.names=FALSE, row.names=FALSE,
+            quote=FALSE)
+' | \
+cat
+rm hello.*
+```
+
+where the backslash (`\`) is for line continuation.
+
+As shown in the example, one can take advantage of powerful data handling facilities in the Linux
+environment, through either Linux itself or software followed by their counterparts in R with
+options to feed back to the Linux envornment again for further use.
+
+Moreover, R could be an integrated component of a workflow, e.g., as curated in **pQTLtools**
+involving **snakemake**, <https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html>.
+
+# Language elements
+
+Basic data manipulation of the `iris` data includes
+
+```{r iris}
+class(iris)
+dim(iris)
+str(iris)
+head(iris,1)
+tail(iris,1)
+```
+
+We would like to highlight two types of operators,
+
+- the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
+- the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
+
+```{r diabetes, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8, messages=FALSE}
+options(new_options)
+data(diabetes,package="gaawr2")
+
+mean_values <- diabetes %>%
+  dplyr::filter(CLASS %in% c("Y", "N", "P")) %>%
+  dplyr::mutate(
+    Gender = dplyr::recode(Gender, "F" = "Female", "M" = "Male"),
+    CLASS = dplyr::recode(CLASS, "Y" = "Yes", "N" = "No", "P" = "Predicted")
+  ) %>%
+  dplyr::group_by(CLASS, Gender) %>%
+  dplyr::select(AGE:BMI) %>%
+  dplyr::summarize(dplyr::across(dplyr::everything(), \(x) mean(x, na.rm = TRUE)))
+kableExtra::kbl(mean_values,caption="Mean value by gender and diabetes category") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+
+mean_values_long <- mean_values %>%
+  tidyr::pivot_longer(
+    cols = AGE:BMI,
+    names_to = "Variable",
+    values_to = "Mean_Value"
+  )
+ggplot2::ggplot(mean_values_long,
+  ggplot2::aes(x = Variable, y = Mean_Value, fill = CLASS)) +
+  ggplot2::geom_col(position = ggplot2::position_dodge()) +
+  ggplot2::facet_wrap(~ Gender) +
+  ggplot2::labs(
+    title = "",
+    x = "Variable",
+    y = "Mean Value",
+    fill = "Diabetes Status" # Modified legend title for clarity
+  ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+options(sys_options)
+```
+
+We see higher mean age and HbA1c values in the "Yes" diabetes group as well as noticeable differences in BMI, which align with
+the known associations between these variables and diabetes.
+
+The Comprehensive R Archive Network (CRAN) host and Bioconductor host many fined-tuned user-contributed packages, their installation is furnished through
+
+- `install.packages()` which is a standard way to install from CRAN
+- `BiocManager::install() which is the current approach to install package from the Bioconductor project.`
+- All packages, including those archived, can be installed with `devtools::install_github(cran/package-name)`, e.g., **kinship** and **GenABEL**.
+
+# Data analysis
+
+Topics in this section underpins large-scale genome data analysis such as Genomewide association study (GWAS) and vary from those
+classic models such as **mets** for twin data to heavily featured in candidate gene studies, such as Hardy-Weinberg equilirium (HWE), to
+GWAS such as various types of association statistics, QQ/Manhattan/local association plots.
+
+There has been a lot of interests in machine learning (ML), artificial language (AI), including deep learning, just to add one more
+acronym, the bulk of which is also readily available.
+
+## HardyWeinberg
+
+We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
+a chromosome X SNP and a HLA/DQR,
+
+```{r hwe, fig.cap="SNP ternary plot", fig.height=8, fig.width=10, messages=FALSE}
+# MN blood group
+SNP <- c(MM = 298, MN = 489, NN = 213)
+HardyWeinberg::maf(SNP)
+HardyWeinberg::HWTernaryPlot(SNP,region=0,grid=TRUE,markercol="blue")
+HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
+# Chromosome X
+xSNP <- c(A=10, B=20, AA=30, AB=20, BB=10)
+HardyWeinberg::HWChisq(xSNP,cc=0,x.linked=TRUE,verbose=TRUE)
+# HLA/DQR
+DQR <- gap.datasets::hla[,3:4]
+a1 <- DQR[1]
+a2 <- DQR[2]
+GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
+kableExtra::kbl(GenotypeCounts,caption="Genotype distribution of DQR") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=300)
+HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=300)
+```
+
+The MN locus is seen to be close to the HWE line from the ternary plot. Only 300 permutations are done for the HLA/DQR data to illustrate.
+
+## SNPassoc
+
+The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.
+
+We first look at some meta-data, include HWE.
+
+```{r snpassoc1, warning=FALSE}
+data(asthma, package = "SNPassoc")
+str(asthma, list.len=8)
+knitr::kable(asthma[1:3,1:8],caption="First three records & two SNPs")
+snpCols <- colnames(asthma)[6+(1:2)]
+snps <- SNPassoc::setupSNP(data=asthma[snpCols], colSNPs=1:length(snpCols), sep="")
+head(snps)
+summary(snps, print=FALSE)
+lapply(snps, head)
+lapply(snps, summary)
+SNPassoc::tableHWE(snps)
+```
+
+where variable `snpCols` skips six columns of non-SNP data for two SNPs.
+
+We then turn to genetic models for the first one,
+
+```{r snpassoc2, warning=FALSE}
+asthma.snps <- asthma %>%
+               dplyr::rename(cc=casecontrol) %>%
+               SNPassoc::setupSNP(colSNPs=(6+1):ncol(.), sep="")
+# Model 1: Simple SNP association with BMI
+SNPassoc::association(bmi ~ rs4490198, data = asthma.snps)
+
+# Model 2: SNP association with case-control status
+SNPassoc::association(cc ~ rs4490198, data = asthma.snps)
+
+# Model 3: SNP association with covariates (country and smoke)
+SNPassoc::association(cc ~ rs4490198 + country + smoke, data = asthma.snps)
+
+# Model 4: SNP association with stratification by gender
+SNPassoc::association(cc ~ rs4490198 + survival::strata(gender), data = asthma.snps)
+
+# Model 5: SNP association with subset (only Spain)
+SNPassoc::association(cc ~ rs4490198, data = asthma.snps, subset = country == "Spain")
+
+# Model 6: Interaction between SNP (dominant model) and smoking
+SNPassoc::association(cc ~ SNPassoc::dominant(rs4490198) * factor(smoke), data = asthma.snps)
+
+# Model 7: Interaction between two SNPs (dominant model for rs4490198)
+SNPassoc::association(cc ~ rs4490198 * factor(rs11123242), data = asthma.snps, model.interaction = "dominant")
+```
+
+## haplo.stats
+
+This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).
+
+```{r haplostats, warning=FALSE}
+# Association with the first three SNPs
+snpsH <- names(asthma.snps)[6+(1:3)]
+genoH <- SNPassoc::make.geno(asthma.snps, snpsH)
+em <- haplo.stats::haplo.em(genoH, locus.label = snpsH, miss.val = c(0, NA))
+haplo_table <- with(em,cbind(haplotype,hap.prob))
+knitr::kable(haplo_table,caption="Haplotypes of the first three SNPs")
+modH <- haplo.stats::haplo.glm(cc ~ genoH, data=asthma.snps,
+                               family="binomial",
+                               locus.label=snpsH,
+                               allele.lev=attributes(genoH)$unique.alleles,
+                               control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
+modH
+SNPassoc::intervals(modH)
+
+# Model comparison with / without haplotypes
+mod.adj.ref <- glm(cc ~ smoke, data=asthma.snps, family="binomial")
+mod.adj <- haplo.glm(cc ~ genoH + smoke, data=asthma.snps,
+                 family="binomial",
+                 locus.label=snpsH,
+                 allele.lev=attributes(genoH3)$unique.alleles,
+                 control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
+mod.adj
+lrt.adj <- mod.adj.ref$deviance - mod.adj$deviance
+pchisq(lrt.adj, mod.adj$lrt$df, lower=FALSE)
+
+# Four variable slide windows over nine SNPs
+snpsH <- labels(asthma.snps)[6+(1:9)]
+genoH <- SNPassoc::make.geno(asthma.snps, snpsH)
+haploH <- list()
+for (i in 1:4) haploH[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, genoH,
+                              trait.type="binomial",
+                              n.slide=i,
+                              locus.label=snpsH,
+                              simulate=TRUE,
+                              sim.control=haplo.stats::score.sim.control(min.sim=50,max.sim=100))
+```
+
+## GWAS
+
+We return to the asthma data used in **SNPassoc**.
+
+```
+assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
+assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
+assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
+assoc %>%
+  as.data.frame() %>%
+  dplyr::select(-comments) %>%
+  knitr::kable(caption="SNP association")
+assoc.adj %>%
+  as.data.frame() %>%
+  dplyr::select(-comments) %>%
+  knitr::kable(caption="with adjustment for contountry & smoking")
+assoc.maxstat %>%
+  `[`(,) %>%
+  t() %>%
+  knitr::kable(caption = "Max stat association statistics")
+```
+
+where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.
+
+## GMMAT
+
+The following is modified slightly from the package vignette,
+
+```{r gmmat, message=FALSE}
+data(example,package="GMMAT")
+attach(example)
+model0 <- GMMAT::glmmkin(disease ~ age + sex, data = pheno, kins = GRM,
+                         id = "id", family = binomial(link = "logit"))
+model1 <- GMMAT::glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
+                         id = "id", family = gaussian(link = "identity"))
+model2 <- GMMAT::glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
+                         id = "id", groups = "disease",
+                         family = gaussian(link = "identity"))
+snps <- c("SNP10", "SNP25", "SNP1", "SNP0")
+geno.file <- system.file("extdata", "geno.bgen", package = "GMMAT")
+samplefile <- system.file("extdata", "geno.sample", package = "GMMAT")
+outfile <- "glmm.score.txt"
+GMMAT::glmm.score(model0, infile = geno.file, BGEN.samplefile = samplefile,
+                  outfile = outfile)
+read.delim(outfile) |>
+     head(n=4) |>
+     knitr::kable(caption="Score tests under GLMM on four SNPs",digits=2)
+unlink(outfile)
+bed.file <- system.file("extdata", "geno.bed", package = "GMMAT") |>
+            tools::file_path_sans_ext()
+model.wald <- GMMAT::glmm.wald(fixed = disease ~ age + sex, data = pheno,
+                               kins = GRM, id = "id", family = binomial(link = "logit"),
+                               infile = bed.file, snps = snps)
+knitr::kable(model.wald,caption="Wald tests under GLMM on four SNPs")
+detach(example)
+```
+
+where both BGEN and PLINK binary file are illustrated.
+
+## h2.jags
+
+The function uses JAGS (<https://mcmc-jags.sourceforge.io/>) for heritability estimation @zhao18,
+
+```{r jags, message=FALSE}
+set.seed(1234567)
+meyer <- within(gap.datasets::meyer,{
+         y[is.na(y)] <- rnorm(length(y[is.na(y)]),mean(y,na.rm=TRUE),sd(y,na.rm=TRUE))
+         g1 <- ifelse(generation==1,1,0)
+         g2 <- ifelse(generation==2,1,0)
+         id <- animal
+         animal <- ifelse(!is.na(animal),animal,0)
+         dam <- ifelse(!is.na(dam),dam,0)
+         sire <- ifelse(!is.na(sire),sire,0)
+     })
+G <- gap::kin.morgan(meyer)$kin.matrix*2
+r <- regress::regress(y~-1+g1+g2,~G,data=meyer)
+r
+with(r,gap::h2G(sigma,sigma.cov))
+eps <- 0.001
+y <- with(meyer,y)
+x <- with(meyer,cbind(g1,g2))
+ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014,n.chains=1,n.iter=80)
+kableExtra::kbl(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer data") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+To avoid multithread and excessive time for CRAN checking, only one chain and 80 iterations are run, 40 of which are burn-ins and
+every iteraction is kept (n.thin=1).
+
+## powerEQTL
+
+Consider `powereQTL.SLR` (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
+0.005~0.5, $\alpha$=0.05. We have,
+
+```{r eqtl, fig.cap="Power Estimation for eQTL Studies of 240 SNPs", fig.height=6, fig.width=8, messages=FALSE}
+n.designs <- 6
+designs <- 1:n.designs
+N <- 50 * designs
+n.grids <- 100
+index <- 1:n.grids
+grids <- index / n.grids
+MAF <- seq(0.005, n.grids/2, by=0.5) / n.grids
+plot(MAF,grids,type="n",ylab="Power")
+mtext(expression(paste("(",alpha," = 0.05)")),1,line=4.5)
+colors <- grDevices::hcl.colors(n.designs)
+for (design in designs)
+{
+  power.SLR <- rep(NA,n.grids)
+  for (j in index) power.SLR[j] <- powerEQTL::powerEQTL.SLR(MAF = MAF[j], FWER = 0.05, nTests = 240, slope = 0.13,
+                                                            n = N[design], sigma.y = 0.13)
+  lines(MAF,power.SLR,col=colors[design])
+}
+legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, horiz=FALSE, cex=0.8, lty=designs)
+```
+
+The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
+
+# Annotations
+
+## EnsDb.Hsapiens.v75
+
+```{r ensdb, eval=has_pkg("ensembldb") && has_pkg("EnsDb.Hsapiens.v75"), messages=FALSE}
+data("EnsDb.Hsapiens.v75", package="EnsDb.Hsapiens.v75")
+ensembldb::metadata(EnsDb.Hsapiens.v75)
+genes <- ensembldb::genes(EnsDb.Hsapiens.v75)
+head(genes)
+transcripts_data <- ensembldb::transcripts(EnsDb.Hsapiens.v75)
+head(transcripts_data)
+```
+One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)` but it is skipped for being considerably longer.
+
+## biomaRt
+
+```
+if (!biomaRt::martBMCheck(mart)) {
+  stop("The BioMart service is currently unavailable.")
+}
+biomaRt::listMarts()
+ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
+biomaRt::listDatasets(ensembl)
+attr <- biomaRt::listAttributes(ensembl)
+attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol',
+                 'transcription_start_site')
+gene <- biomaRt::getBM(attributes = attr_select, mart = ensembl)
+filter <- biomaRt::listFilters(ensembl)
+biomaRt::searchFilters(mart = ensembl, pattern = "gene")
+# GRCh38
+ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl")
+```
+
+## Experimental Factor Ontology (EFO)
+
+The ontology of traits/disease is formally available as this @malone10. The script below assumes that efo-3.26.0 has been downloaded.
+
+```
+library(ontologyIndex)
+id <- function(ontology)
+{
+  inflammatory <- grep(ontology$name,pattern="inflammatory")
+  immune <- grep(ontology$name,pattern="immune")
+  inf <- union(inflammatory,immune)
+  list(id=ontology$id[inf],name=ontology$name[inf])
+}
+# GO
+data(go)
+goidname <- id(go)
+# EFO
+file <- "efo.obo" # efo-3.26.0
+get_relation_names(file)
+efo <- get_ontology(file, extract_tags="everything")
+length(efo) # 89
+length(efo$id) # 27962
+efoidname <- id(efo)
+diseases <- get_descendants(efo,"EFO:0000408")
+efo_0000540 <- get_descendants(efo,"EFO:0000540")
+efo_0000540name <- efo$name[efo_0000540]
+isd <- data.frame(efo_0000540,efo_0000540name)
+library(ontologyPlot)
+onto_plot(efo,efo_0000540)
+```
+
+## OpenTargets
+
+```{r ot, messages=FALSE}
+gene_id <- "ENSG00000164308"
+query_string = "
+  query target($ensemblId: String!){
+    target(ensemblId: $ensemblId){
+      id
+      approvedSymbol
+      biotype
+      geneticConstraint {
+        constraintType
+        exp
+        obs
+        score
+        oe
+        oeLower
+        oeUpper
+      }
+      tractability {
+        label
+        modality
+        value
+      }
+    }
+  }
+"
+base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
+variables <- list("ensemblId" = gene_id)
+post_body <- list(query = query_string, variables = variables)
+r <- httr::POST(url=base_url, body=post_body, encode='json')
+data <- iconv(r, "", "ASCII")
+content <- jsonlite::fromJSON(data)
+target <- content$data$target
+scalar_fields <- data.frame(
+  Field = c("ID", "Approved Symbol", "Biotype"),
+  Value = c(target$id, target$approvedSymbol, target$biotype)
+)
+tractability_data <- target$tractability
+kableExtra::kbl(scalar_fields,caption="(a) Basic Information") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+kableExtra::kbl(target$geneticConstraint, caption="(b) Genetic Constraint Metrics") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+kableExtra::kbl(tractability_data,caption="(c) Tractability Information") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
+
+# Additional packages
+
+Packages `gwasrapidd` provides easy access to the GWAS Catalog, while `rentrez` enables search for GenBank and PubMed.
+
+An overview on proteogenomics is available @suhre20. Some aspects of the analysis is given by `pQTLtools`,
+<https://jinghuazhao.github.io/pQTLtools/>.
+
+# gaawr2
+
+While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
+documentation and featured articles. The workflow is shown in the following diagram.
+
+<div class="mermaid">graph TB; A[Package creation] &#45;&#45;&gt; B[GitHub respository]; B &#45;&#45;&gt; C[Pkgdown styling];C &#45;&#45;&gt; D[Refinement];D &#45;&#45;&gt; E[Testing]</div>
+
+The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
+
+- `gaawr2.R` creates the package in R.
+- `github.sh` creates `gaawr2` at GitHub from the command line.
+- `pkgdown.sh` makes a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
+- `docs.sh` adds, commits and pushes files to GitHub.
+- `cran.sh` build, install and check the package in CRAN-style.
+
+Note that for creation of the GitHub repository, an SSH key is assumed in place. In order for `pkgdown.sh` to function well, all
+required files such as `nature-genetics.csl` need to be available.
+
+Moreover, the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates documentation files (.Rd),
+which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml`
+workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>, e.g., flagging missing packages
+in package building.
+
+A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
+Upon use of `pkgdown`, an article can be seen from the menu item `Articles`.
+
+We carry on adding files such as `NEWS.md` and `_pkgdown.yml`, involing MathJax and mermaid:
+
+```
+math-rendering: mathjax
+includes:
+  after_body: <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
+```
+
+In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:
+
+```{r desc, results="asis"}
+suggests <- read.dcf(file = system.file("DESCRIPTION", package = "gaawr2"), fields = c("Suggests"))
+write.dcf(suggests)
+```
+
+# Summary
+
+Following the earlier talk, we have further explored various aspects of genetic association analysis in
+R, particularly in the context of computing systems like Linux. While these serve as a solid foundation,
+a more in-depth data analysis coupled with more rigorous development is surely fruitful and rewarding.
+
+# References
