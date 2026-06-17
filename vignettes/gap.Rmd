@@ -1136,7 +1136,7 @@ lsf.str("package:gap")
 data(package="gap")$results
 ```
 
-[^1]: Aspects of linear regression
+[^1]: # Aspects of linear regression
 
     ## Some preparations
     
@@ -1251,4 +1251,6 @@ data(package="gap")$results
     
     As the sample size increases, the estimates are quite close nevertheless quite small while the ratios approach 1 quickly from opposite sides after $N\approx 300$.
 
-[^2]: Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
+[^2]: Variance of a ratio estimator
+
+    Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
