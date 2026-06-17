@@ -793,7 +793,7 @@ See the IL-12B example above.
 
 # Linear regression
 
-Several functions related to linear regression are detailed here[^1; ^2].
+Several functions related to linear regression are detailed here[^1].
 
 ## Effect size and standard error
 
@@ -1152,7 +1152,7 @@ data(package="gap")$results
     
     Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known @kotz06 to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
     
-    We also need some established results of a ratio (R/S)[^1], i.e., the mean
+    We also need some established results of a ratio (R/S)[^2], i.e., the mean
     
     $$
     \begin{align}
