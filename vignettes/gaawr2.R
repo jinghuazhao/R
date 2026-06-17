@@ -3,8 +3,8 @@ knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
   fig.height = 8,
-  fig.path = "gaawr2/",
   fig.width = 8,
+  fig.path = "gaawr2/",
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")
