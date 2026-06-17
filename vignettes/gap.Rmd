@@ -793,7 +793,7 @@ See the IL-12B example above.
 
 # Linear regression
 
-Several functions related to linear regression are detailed here[^1].
+Several functions related to linear regression are detailed here[^1] using results on ratio estimator[^2].
 
 ## Effect size and standard error
 
@@ -1136,7 +1136,9 @@ lsf.str("package:gap")
 data(package="gap")$results
 ```
 
-[^1]: # Aspects of linear regression
+[^1]:
+
+    # Aspects of linear regression
 
     ## Some preparations
     
@@ -1251,6 +1253,8 @@ data(package="gap")$results
     
     As the sample size increases, the estimates are quite close nevertheless quite small while the ratios approach 1 quickly from opposite sides after $N\approx 300$.
 
-[^2]: Variance of a ratio estimator
+[^2]:
+
+    # Variance of a ratio estimator
 
     Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
