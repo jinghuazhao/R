@@ -793,120 +793,7 @@ See the IL-12B example above.
 
 # Linear regression
 
-Several functions related to linear regression are detailed here.
-
-## Some preparations
-
-Let $\mbox{x} = SNP\ dosage$. Note that $\mbox{Var}(\mbox{x})=2f(1-f)$, $f=MAF$ or $1-MAF$ by symmetry.
-
-Our linear regression model is $\mbox{y}=a + b\mbox{x} + e$. We have $\mbox{Var}(\mbox{y}) = b^2\mbox{Var}(\mbox{x}) + \mbox{Var}(e)$. Moreover, $\mbox{Var}(b)=\mbox{Var}(e)(\mbox{x}'\mbox{x})^{-1}=\mbox{Var}(e)/S_\mbox{xx}$, we have $\mbox{Var}(e) = \mbox{Var}(b)S_\mbox{xx} = N \mbox{Var}(b) \mbox{Var}(\mbox{x})$. Consequently, let $z = {b}/{SE(b)}$, we have
-
-\begin{eqnarray*}
-\mbox{Var}(\mbox{y}) &=& \mbox{Var}(\mbox{x})(b^2+N\mbox{Var}(b)) \hspace{100cm} \cr
-                     &=& \mbox{Var}(\mbox{x})\mbox{Var}(\mbox{b})(z^2+N) \cr
-                     &=& 2f(1-f)(z^2+N)\mbox{Var}(b)
-\end{eqnarray*} 
-
-Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known @kotz06 to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
-
-We also need some established results of a ratio (R/S)[^1], i.e., the mean
-
-$$
-\begin{align}
-E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_S^2\mu_R}{\mu_S^3} \hspace{100cm} 
-(\#eq:meanRatio)
-\end{align}
-$$
-
-and more importantly the variance
-
-$$
-\begin{align}
-\mbox{Var}(R/S) \approx \frac{\mu_R^2}{\mu_S^2} \left[
-                        \frac{\sigma_R^2}{\mu_R^2} -2\frac{\mbox{Cov}(R,S)}{\mu_R\;\mu_S}
-                       +\frac{\sigma_S^2}{\mu_S^2} \right] \hspace{100cm}
-(\#eq:varRatio)
-\end{align}
-$$
-
-where $\mu_R$, $\mu_S$, $\sigma_R^2$, $\sigma_S^2$ are the means and the variances for R and S, respectively.
-
-Finally, we need some facts about $\chi_1^2$, $\chi^2$ distribution of one degree of freedom. For $z \sim N(0,1)$, $z^2\sim \chi_1^2$, whose mean and variance are 1 and 2, respectively.
-
-We now have the following results.
-
-## Proportion of variance explained
-
-We have
-
-$$
-\begin{align}
-\mbox{PVE}_{\mbox{linear regression}} & = \frac{\mbox{Var}(b\mbox{x})}{\mbox{Var}(\mbox{y})} \hspace{100cm} \\
-           & = \frac{\mbox{Var}(\mbox{x})b^2}{\mbox{Var}(\mbox{x})(b^2+N\mbox{Var}(b))} \\
-           & = \frac{\mbox{z}^2}{\mbox{z}^2+N}
-(\#eq:pveLR)
-\end{align}
-$$
-
-On the other hand, for a simple linear regression $R^2\equiv r^2$ where $r$ is the Pearson correlation coefficient, which is readily from the $t$-statistic of the regression slope, i.e., $r={t}/{\sqrt{t^2+N-2}}$. so assuming $t \equiv \ z \sim \chi_1^2$
-
-$$
-\begin{align}
-\mbox{PVE}_{t-\mbox{statistic}} & = \frac{\chi^2}{\chi^2+N-2} \hspace{100cm}
-(\#eq:pvet)
-\end{align}
-$$
-
-To obtain coherent estimates of the asymptotic means and variances of both forms we resort to variance of a ratio (R/S). All the required elements are listed in a table below.
-
-Characteristics   | Linear regression | $t$-statistic
-------------------|-------------------|--------------
-$\mu_R$           |  1    | 1
-$\sigma_R^2$      |  2    | 2
-$\mu_S$           | $N+1$ | $N-1$
-$\sigma_S^2$      |  2    | 2
-$\mbox{Cov}(R,S)$ |  2    | 2
-
-then we have the means and the variances for PVE.
-
-Characteristics          | Linear regression | $t$-statistic
--------------------------|:-----------------:|:--------------------------------------------------------------:
-mean  | $\frac{1}{N+1}\left[1-\frac{2}{N+1}+\frac{2}{(N+1)^2}\right]$ | $\frac{1}{N-1}\left[1-\frac{2}{N-1}+\frac{2}{(N-1)^2}\right]$
-variance | $\frac{2}{(N+1)^2}\left[1-\frac{1}{N+1}\right]^2$ | $\frac{2}{(N-1)^2}\left[1-\frac{1}{N-1}\right]^2$
-
-Finally, our approximation of PVE for a protein with $T$ independent pQTLs from the meta-analysis
-
-Characteristics          | Linear regression | $t$-statistic
--------------------------|:-----------------:|:----------------------------------------------------------:
-estimate | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i}}$ | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i-2}}$
-variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
-
-Therefore they differ from the asymptotic results @kotz06 by ratios of $(N-2)(N+1)/(N-1)^2$ and $(N-2)/(N+1)$ for
-linear regression and $t$-statistic, respectively.
-
-```{r pve, echo=FALSE, fig.cap="Comparisons of Var($R^2$) estimates", fig.height=6, fig.width=14, messages=FALSE, warning=FALSE}
-oldpar <- par()
-par(mfrow=c(1,2))
-N <- 2:500
-R2 <- 2*(N-2)/(N-1)^2/(N+1)
-R2LR <- 2/(N+1)^2
-R2t <- 2/(N-1)^2
-plot(N,R2,cex=0.6,xaxt="n",xlab="Sample size",ylab=expression(Var(R^2)),col="black",pch=20)
-points(N,R2LR,cex=0.6,pch=15,col="red")
-points(N,R2t,cex=0.6,pch=17,col="blue")
-axis(1,at=c(2,(1:5)*100))
-legend(400,0.03,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
-sLR <- (N-2)*(N+1)/(N-1)^2
-st <- (N-2)/(N+1)
-plot(N,sLR,cex=0.6,xaxt="n",xlab="Sample size",ylab="Asymptotic/approximation estimator ratio",col="red",pch=20)
-points(N,st,cex=0.6,pch=15,col="blue")
-abline(h=1,col="black")
-axis(1,at=c(2,(1:5)*100))
-legend(400,0.2,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
-par(oldpar)
-```
-
-As the sample size increases, the estimates are quite close nevertheless quite small while the ratios approach 1 quickly from opposite sides after $N\approx 300$.
+Several functions related to linear regression are detailed here[^1][^2].
 
 ## Effect size and standard error
 
@@ -1249,4 +1136,119 @@ lsf.str("package:gap")
 data(package="gap")$results
 ```
 
-[^1]: Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
+[^1]: Aspects of linear regression
+
+    ## Some preparations
+    
+    Let $\mbox{x} = SNP\ dosage$. Note that $\mbox{Var}(\mbox{x})=2f(1-f)$, $f=MAF$ or $1-MAF$ by symmetry.
+    
+    Our linear regression model is $\mbox{y}=a + b\mbox{x} + e$. We have $\mbox{Var}(\mbox{y}) = b^2\mbox{Var}(\mbox{x}) + \mbox{Var}(e)$. Moreover, $\mbox{Var}(b)=\mbox{Var}(e)(\mbox{x}'\mbox{x})^{-1}=\mbox{Var}(e)/S_\mbox{xx}$, we have $\mbox{Var}(e) = \mbox{Var}(b)S_\mbox{xx} = N \mbox{Var}(b) \mbox{Var}(\mbox{x})$. Consequently, let $z = {b}/{SE(b)}$, we have
+    
+    \begin{eqnarray*}
+    \mbox{Var}(\mbox{y}) &=& \mbox{Var}(\mbox{x})(b^2+N\mbox{Var}(b)) \hspace{100cm} \cr
+                         &=& \mbox{Var}(\mbox{x})\mbox{Var}(\mbox{b})(z^2+N) \cr
+                         &=& 2f(1-f)(z^2+N)\mbox{Var}(b)
+    \end{eqnarray*} 
+    
+    Moreover, the mean and the variance of the multiple correlation coefficient or the coefficient of determination ($R^2$) are known @kotz06 to be ${1}/{(N-1)}$ and ${2(N-2)}/{\left[(N-1)^2(N+1)\right]}$, respectively.
+    
+    We also need some established results of a ratio (R/S)[^1], i.e., the mean
+    
+    $$
+    \begin{align}
+    E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_S^2\mu_R}{\mu_S^3} \hspace{100cm} 
+    (\#eq:meanRatio)
+    \end{align}
+    $$
+    
+    and more importantly the variance
+    
+    $$
+    \begin{align}
+    \mbox{Var}(R/S) \approx \frac{\mu_R^2}{\mu_S^2} \left[
+                            \frac{\sigma_R^2}{\mu_R^2} -2\frac{\mbox{Cov}(R,S)}{\mu_R\;\mu_S}
+                           +\frac{\sigma_S^2}{\mu_S^2} \right] \hspace{100cm}
+    (\#eq:varRatio)
+    \end{align}
+    $$
+    
+    where $\mu_R$, $\mu_S$, $\sigma_R^2$, $\sigma_S^2$ are the means and the variances for R and S, respectively.
+    
+    Finally, we need some facts about $\chi_1^2$, $\chi^2$ distribution of one degree of freedom. For $z \sim N(0,1)$, $z^2\sim \chi_1^2$, whose mean and variance are 1 and 2, respectively.
+    
+    We now have the following results.
+    
+    ## Proportion of variance explained
+    
+    We have
+    
+    $$
+    \begin{align}
+    \mbox{PVE}_{\mbox{linear regression}} & = \frac{\mbox{Var}(b\mbox{x})}{\mbox{Var}(\mbox{y})} \hspace{100cm} \\
+               & = \frac{\mbox{Var}(\mbox{x})b^2}{\mbox{Var}(\mbox{x})(b^2+N\mbox{Var}(b))} \\
+               & = \frac{\mbox{z}^2}{\mbox{z}^2+N}
+    (\#eq:pveLR)
+    \end{align}
+    $$
+    
+    On the other hand, for a simple linear regression $R^2\equiv r^2$ where $r$ is the Pearson correlation coefficient, which is readily from the $t$-statistic of the regression slope, i.e., $r={t}/{\sqrt{t^2+N-2}}$. so assuming $t \equiv \ z \sim \chi_1^2$
+    
+    $$
+    \begin{align}
+    \mbox{PVE}_{t-\mbox{statistic}} & = \frac{\chi^2}{\chi^2+N-2} \hspace{100cm}
+    (\#eq:pvet)
+    \end{align}
+    $$
+    
+    To obtain coherent estimates of the asymptotic means and variances of both forms we resort to variance of a ratio (R/S). All the required elements are listed in a table below.
+    
+    Characteristics   | Linear regression | $t$-statistic
+    ------------------|-------------------|--------------
+    $\mu_R$           |  1    | 1
+    $\sigma_R^2$      |  2    | 2
+    $\mu_S$           | $N+1$ | $N-1$
+    $\sigma_S^2$      |  2    | 2
+    $\mbox{Cov}(R,S)$ |  2    | 2
+    
+    then we have the means and the variances for PVE.
+    
+    Characteristics          | Linear regression | $t$-statistic
+    -------------------------|:-----------------:|:--------------------------------------------------------------:
+    mean  | $\frac{1}{N+1}\left[1-\frac{2}{N+1}+\frac{2}{(N+1)^2}\right]$ | $\frac{1}{N-1}\left[1-\frac{2}{N-1}+\frac{2}{(N-1)^2}\right]$
+    variance | $\frac{2}{(N+1)^2}\left[1-\frac{1}{N+1}\right]^2$ | $\frac{2}{(N-1)^2}\left[1-\frac{1}{N-1}\right]^2$
+    
+    Finally, our approximation of PVE for a protein with $T$ independent pQTLs from the meta-analysis
+    
+    Characteristics          | Linear regression | $t$-statistic
+    -------------------------|:-----------------:|:----------------------------------------------------------:
+    estimate | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i}}$ | $\sum_{i=1}^T{\frac{\chi_i^2}{\chi_i^2+N_i-2}}$
+    variance |$\sum_{i=1}^T\frac{2}{(N_i+1)^2}$ | $\sum_{i=1}^T\frac{2}{(N_i-1)^2}$
+    
+    Therefore they differ from the asymptotic results @kotz06 by ratios of $(N-2)(N+1)/(N-1)^2$ and $(N-2)/(N+1)$ for
+    linear regression and $t$-statistic, respectively.
+    
+    ```{r pve, echo=FALSE, fig.cap="Comparisons of Var($R^2$) estimates", fig.height=6, fig.width=14, messages=FALSE, warning=FALSE}
+    oldpar <- par()
+    par(mfrow=c(1,2))
+    N <- 2:500
+    R2 <- 2*(N-2)/(N-1)^2/(N+1)
+    R2LR <- 2/(N+1)^2
+    R2t <- 2/(N-1)^2
+    plot(N,R2,cex=0.6,xaxt="n",xlab="Sample size",ylab=expression(Var(R^2)),col="black",pch=20)
+    points(N,R2LR,cex=0.6,pch=15,col="red")
+    points(N,R2t,cex=0.6,pch=17,col="blue")
+    axis(1,at=c(2,(1:5)*100))
+    legend(400,0.03,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
+    sLR <- (N-2)*(N+1)/(N-1)^2
+    st <- (N-2)/(N+1)
+    plot(N,sLR,cex=0.6,xaxt="n",xlab="Sample size",ylab="Asymptotic/approximation estimator ratio",col="red",pch=20)
+    points(N,st,cex=0.6,pch=15,col="blue")
+    abline(h=1,col="black")
+    axis(1,at=c(2,(1:5)*100))
+    legend(400,0.2,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
+    par(oldpar)
+    ```
+    
+    As the sample size increases, the estimates are quite close nevertheless quite small while the ratios approach 1 quickly from opposite sides after $N\approx 300$.
+
+[^2]: Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.

@@ -225,26 +225,6 @@ zp <- sapply(zlist,function(z) {c(z,pvalue(z),logp(z),log10p(z))})
 rownames(zp) <- c("z","P","log(P)","log10(P)")
 knitr::kable(t(zp),caption="z, P, log(P) and log10(P)")
 
-oldpar <- par()
-par(mfrow=c(1,2))
-N <- 2:500
-R2 <- 2*(N-2)/(N-1)^2/(N+1)
-R2LR <- 2/(N+1)^2
-R2t <- 2/(N-1)^2
-plot(N,R2,cex=0.6,xaxt="n",xlab="Sample size",ylab=expression(Var(R^2)),col="black",pch=20)
-points(N,R2LR,cex=0.6,pch=15,col="red")
-points(N,R2t,cex=0.6,pch=17,col="blue")
-axis(1,at=c(2,(1:5)*100))
-legend(400,0.03,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
-sLR <- (N-2)*(N+1)/(N-1)^2
-st <- (N-2)/(N+1)
-plot(N,sLR,cex=0.6,xaxt="n",xlab="Sample size",ylab="Asymptotic/approximation estimator ratio",col="red",pch=20)
-points(N,st,cex=0.6,pch=15,col="blue")
-abline(h=1,col="black")
-axis(1,at=c(2,(1:5)*100))
-legend(400,0.2,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
-par(oldpar)
-
 get_b_se(0.6396966,23991,4.7245)
 
 get_sdy(0.6396966,23991,0.04490488,0.009504684)
@@ -390,3 +370,23 @@ library(gap)
 search()
 lsf.str("package:gap")
 data(package="gap")$results
+
+oldpar <- par()
+par(mfrow=c(1,2))
+N <- 2:500
+R2 <- 2*(N-2)/(N-1)^2/(N+1)
+R2LR <- 2/(N+1)^2
+R2t <- 2/(N-1)^2
+plot(N,R2,cex=0.6,xaxt="n",xlab="Sample size",ylab=expression(Var(R^2)),col="black",pch=20)
+points(N,R2LR,cex=0.6,pch=15,col="red")
+points(N,R2t,cex=0.6,pch=17,col="blue")
+axis(1,at=c(2,(1:5)*100))
+legend(400,0.03,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
+sLR <- (N-2)*(N+1)/(N-1)^2
+st <- (N-2)/(N+1)
+plot(N,sLR,cex=0.6,xaxt="n",xlab="Sample size",ylab="Asymptotic/approximation estimator ratio",col="red",pch=20)
+points(N,st,cex=0.6,pch=15,col="blue")
+abline(h=1,col="black")
+axis(1,at=c(2,(1:5)*100))
+legend(400,0.2,c("Asymptotic","LR","t-statistic"),col=c("black","red","blue"),pch=c(20,15,17))
+par(oldpar)
