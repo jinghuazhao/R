@@ -1,5 +1,5 @@
 ---
-title: "Web facilities"
+title: "Web Facilities"
 output:
   bookdown::html_document2:
     toc: true
@@ -10,7 +10,7 @@ csl: '`r system.file("csl", "nature-genetics.csl", package = "gaawr2")`'
 pkgdown:
   as_is: true
 vignette: >
-  %\VignetteIndexEntry{Web facilities}
+  %\VignetteIndexEntry{web}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

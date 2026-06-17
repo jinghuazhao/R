@@ -1138,9 +1138,9 @@ data(package="gap")$results
 
 [^1]:
 
-    # Aspects of linear regression
+    ## Aspects of linear regression
 
-    ## Some preparations
+    ### Some preparations
     
     Let $\mbox{x} = SNP\ dosage$. Note that $\mbox{Var}(\mbox{x})=2f(1-f)$, $f=MAF$ or $1-MAF$ by symmetry.
     
@@ -1180,7 +1180,7 @@ data(package="gap")$results
     
     We now have the following results.
     
-    ## Proportion of variance explained
+    ### Proportion of variance explained
     
     We have
     
@@ -1255,6 +1255,6 @@ data(package="gap")$results
 
 [^2]:
 
-    # Variance of a ratio estimator
+    ## Variance of a ratio estimator
 
     Notes by Howard Seltman from Carnegie Mellon University: Pittsburgh, PA, USA.
