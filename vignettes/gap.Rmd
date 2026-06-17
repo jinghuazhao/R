@@ -793,7 +793,7 @@ See the IL-12B example above.
 
 # Linear regression
 
-Several functions related to linear regression are detailed here[^1][^2].
+Several functions related to linear regression are detailed here[^1; ^2].
 
 ## Effect size and standard error
 
