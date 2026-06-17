@@ -14,7 +14,8 @@ See also documentation reformatted by datacamp, <https://www.rdocumentation.org/
 
 **Packages**[^ctv] | [CRAN](http://cran.r-project.org) | Vignette | [GitHub](https://github.com/cran) | [R package documentation](https://rdrr.io/)
 --------|---------------------------------------------|---------|---------------------|---------------------------------------------
-**gap** | <https://cran.r-project.org/package=gap> | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^use] ([source](https://raw.githubusercontent.com/jinghuazhao/R/refs/heads/master/vignettes/gap.Rmd), [R code](https://raw.githubusercontent.com/jinghuazhao/R/refs/heads/master/vignettes/gap.R))   | [https://github.com/cran/gap](https://github.com/cran/gap) | <https://rdrr.io/cran/gap/>
+**gaawr2** | <https://cran.r-project.org/package=gaawr2> | [gaawr2](https://jinghuazhao.github.io/R/vignettes/gaawr2.html) ([source](https://raw.githubusercontent.com/jinghuazhao/R/refs/heads/master/vignettes/gaawr2.Rmd), [R code](https://raw.githubusercontent.com/jinghuazhao/R/refs/heads/master/vignettes/gaawr2.R)) | <https://github.com/cran/gaawr2> | <https://rdrr.io/cran/gaawr2/>
+**gap** | <https://cran.r-project.org/package=gap> | [gap](https://jinghuazhao.github.io/R/vignettes/gap.html)[^use] ([source](https://raw.githubusercontent.com/jinghuazhao/R/refs/heads/master/vignettes/gap.Rmd), [R code](https://raw.githubusercontent.com/jinghuazhao/R/refs/heads/master/vignettes/gap.R))   | <https://github.com/cran/gap> | <https://rdrr.io/cran/gap/>
  &nbsp; | &nbsp; | [jss](https://doi.org/10.18637/jss.v023.i08)
  &nbsp; | &nbsp; | [manual](https://jinghuazhao.github.io/R/vignettes/gap-manual.pdf)
  &nbsp; | &nbsp; | [shinygap](https://jinghuazhao.github.io/R/vignettes/shinygap.html)
