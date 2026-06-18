@@ -3,7 +3,6 @@ title: "Genetic Analysis Package"
 subtitle: "Jing Hua Zhao"
 output:
   bookdown::html_document2:
-    css: '`r system.file("styles.css", package="gap")`'
     toc: true
     toc_float: true
 author:
