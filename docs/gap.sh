@@ -12,13 +12,13 @@ export MAKEFLAGS="-j$(nproc)"
 
 Rscript -e 'cat(R.version.string,"\n");devtools::document("gap")'
 R CMD INSTALL gap
+R CMD build --compact-vignettes=both gap
+TARBALL=$(ls -t gap_*.tar.gz | head -1)
+R CMD INSTALL "$TARBALL"
 Rscript -e 'rmarkdown::render("vignettes/gap.Rmd",
             output_file="gap.html", output_dir="vignettes", clean=TRUE, quiet=TRUE);
             knitr::purl("vignettes/gap.Rmd", output="vignettes/gap.R", documentation=0)'
-R CMD build --compact-vignettes=both gap
 find vignettes -maxdepth 1 -type f \( -name '*.png' -o -name '10081*' \) ! -name 'IL-12B_mhtplot.trunc.png' -delete
-TARBALL=$(ls -t gap_*.tar.gz | head -1)
-R CMD INSTALL "$TARBALL"
 R CMD check --as-cran --run-donttest "$TARBALL"
 
 rm -f gap/src/*.{o,so} 2>/dev/null || true
