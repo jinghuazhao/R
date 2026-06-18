@@ -1,7 +1,7 @@
 .citation {
-  color: blue;
+  color: blue !important;
 }
 
 .footnote-ref {
-  color: red;
+  color: red !important;
 }
