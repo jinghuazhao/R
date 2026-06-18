@@ -17,7 +17,7 @@ bibliography: '`r system.file("REFERENCES.bib", package="gap")`'
 csl: '`r system.file("nature-genetics.csl", package="gap")`'
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Shiny for Genetic Analysis Package (gap) Designs}
+  %\VignetteIndexEntry{shinygap}
   %\VignetteEncoding{UTF-8}
 ---
 

@@ -11,7 +11,7 @@ pkgdown:
   as_is: true
 
 vignette: >
-  %\VignetteIndexEntry{Genetic Analysis Package}
+  %\VignetteIndexEntry{gap}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -32,6 +32,5 @@ knitr::opts_chunk$set(
 ```{r gap_incl, echo=FALSE, warning=FALSE}
 htmltools::tags$iframe(
   src = "https://jinghuazhao.github.io/R/vignettes/gap.html",
-  width = "100%",
-  style = "height:100vh; border:none;"
+  style = "width:100%; height:100vh; border:none;"
 )
