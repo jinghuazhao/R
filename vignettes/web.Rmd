@@ -15,6 +15,26 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({
+    type: "setHeight",
+    height: height
+  }, "*");
+}
+window.addEventListener("load", sendHeight);
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 1000);
+setTimeout(sendHeight, 2000);
+</script>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+</style>
+
 ```{r setup, include=FALSE}
 set.seed(0)
 knitr::opts_chunk$set(
