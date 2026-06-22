@@ -278,7 +278,10 @@ div.tocify {
 
 <script>
 function sendHeight() {
-  const height = document.body.scrollHeight;
+  const height = Math.max(
+    document.documentElement.scrollHeight,
+    document.body.scrollHeight
+  );
   window.parent.postMessage({
     type: "setHeight",
     height: height
@@ -287,12 +290,12 @@ function sendHeight() {
 window.addEventListener("load", sendHeight);
 setTimeout(sendHeight, 300);
 setTimeout(sendHeight, 1000);
+setTimeout(sendHeight, 2000);
 </script>
 <style>
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 </style>
 <div id="introduction" class="section level1" number="1">

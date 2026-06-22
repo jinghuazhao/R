@@ -5,6 +5,7 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
+    number_sections: true
     self_contained: false
 author:
   - University of Cambridge
@@ -39,10 +40,7 @@ if (dev.cur() == 1) {
 
 <script>
 function sendHeight() {
-  const height = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight
-  );
+  const height = document.documentElement.scrollHeight;
   window.parent.postMessage({
     type: "setHeight",
     height: height
