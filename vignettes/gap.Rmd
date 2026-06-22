@@ -5,6 +5,7 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
+    self_contained: false
 author:
   - University of Cambridge
   - Cambridge, UK
@@ -35,6 +36,26 @@ if (dev.cur() == 1) {
   grDevices::png(filename = tempfile(fileext = ".png"))
 }
 ```
+
+<script>
+function sendHeight() {
+  const height = document.body.scrollHeight;
+  window.parent.postMessage({
+    type: "setHeight",
+    height: height
+  }, "*");
+}
+window.addEventListener("load", sendHeight);
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 1000);
+</script>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+</style>
 
 # Introduction
 
