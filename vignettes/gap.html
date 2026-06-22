@@ -278,10 +278,7 @@ div.tocify {
 
 <script>
 function sendHeight() {
-  const height = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight
-  );
+  const height = document.documentElement.scrollHeight;
   window.parent.postMessage({
     type: "setHeight",
     height: height
