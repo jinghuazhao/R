@@ -4,6 +4,7 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
+    self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
 csl: '`r system.file("csl", "nature-genetics.csl", package = "gaawr2")`'
@@ -41,7 +42,6 @@ knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
   fig.height = 8,
-  fig.path = "web/",
   fig.width = 8,
   collapse = TRUE,
   comment = "#>",

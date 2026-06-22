@@ -3,7 +3,6 @@ knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
   fig.height = 8,
-  fig.path = "web/",
   fig.width = 8,
   collapse = TRUE,
   comment = "#>",

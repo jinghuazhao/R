@@ -4,7 +4,6 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.height = 8,
   fig.width = 8,
-  fig.path = "gaawr2/",
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")
