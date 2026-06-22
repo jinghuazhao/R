@@ -1,11 +1,14 @@
 NeRiT*
 gaawr2/
-gaawr2[_-]*
+gaawr2-*
+gaawr2_*gz
+!vignettes/gaawr2_files/
+!vignettes/gaawr2_files/**
 gap.datasets_*
 gap.examples_*
 gap/inst/shinygap/.Rhistory
 gap-00build.log
-vignettes/gap_*.gz
+gap_*.gz
 !vignettes/gap_files/
 !vignettes/gap_files/**
 lmm_*
