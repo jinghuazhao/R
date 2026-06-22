@@ -5,6 +5,9 @@ gap.datasets_*
 gap.examples_*
 gap/inst/shinygap/.Rhistory
 gap-00build.log
+vignettes/gap_*.gz
+!vignettes/gap_files/
+!vignettes/gap_files/**
 lmm_*
 pan_*
 pQTLdata*
