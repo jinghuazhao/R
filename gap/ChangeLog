@@ -1,7 +1,7 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.3
-18-06-2026	Amend ab(), cis.vs.trans.classification|plot(), h2_mzdz(), masize(), makeRLEplot(),
+22-06-2026	Amend ab(), cis.vs.trans.classification|plot(), h2_mzdz(), masize(), makeRLEplot(),
 		pedtodot_verbatim(), qtlFinder(), qtl2dplot, qtl[2|3]dplotly()
 		Deprecate 2nd example for asplot() as detailed in pQTLtools/Locus.js.Rmd
 		Fix VignetteIndexEntry() for gap.Rmd / shinygap.Rmd
