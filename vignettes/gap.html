@@ -1061,7 +1061,7 @@ library(kinship2)
 ped &lt;- with(lukas,pedigree(id,father,mother,sex))
 plot(ped,cex=0.4)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lukas"></span>
-<img src="lukas-1.png" alt="A pedigree diagram" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/lukas-1.png" alt="A pedigree diagram" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 5.2: A pedigree diagram
 </p>
@@ -1842,7 +1842,7 @@ hits &lt;- u_exp &gt;= 2.30103
 points(r$x[hits],u_exp[hits],pch=21,bg=&quot;green&quot;)
 legend(&quot;topleft&quot;,sprintf(&quot;GC.lambda=%.4f&quot;,gc.lambda(u_obs)))</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:qq"></span>
-<img src="qq-1.png" alt="A Q-Q plot" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/qq-1.png" alt="A Q-Q plot" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.1: A Q-Q plot
 </p>
@@ -1868,7 +1868,7 @@ mhtplot(
   srt = 0
 )</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:chicken"></span>
-<img src="chicken-1.png" alt="A genome-wide association study on chickens" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/chicken-1.png" alt="A genome-wide association study on chickens" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.2: A genome-wide association study on chickens
 </p>
@@ -1883,7 +1883,7 @@ ops &lt;- mht.control(axis.tck=0.02,cex=0.4,lab.cex=0.8,xline=4)
 hops &lt;- hmht.control(data=hdata,cex=0.8,colors=hcolor,boxed=TRUE)
 mhtplot(data,ops,hops,pch=19)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mhtplot"></span>
-<img src="mhtplot-1.png" alt="A Manhattan plot with gene annotation" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mhtplot-1.png" alt="A Manhattan plot with gene annotation" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.3: A Manhattan plot with gene annotation
 </p>
@@ -1895,7 +1895,7 @@ the function’s documentation example.</p>
 <pre class="r"><code>circos.mhtplot(mhtdata, glist)
 #&gt; Note: 11 points are out of plotting region in sector &#39;chr16&#39;, track &#39;3&#39;.</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:circos"></span>
-<img src="circos-1.png" alt="A circos Manhattan plot" width="768" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/circos-1.png" alt="A circos Manhattan plot" width="768" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.4: A circos Manhattan plot
 </p>
@@ -1931,7 +1931,7 @@ ticks &lt;- 0:2*5
 circos.mhtplot2(dat,labs,ticks=ticks,ymax=max(ticks))
 #&gt; Note: 43 points are out of plotting region in sector &#39;chr16&#39;, track &#39;5&#39;.</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:circos2"></span>
-<img src="circos2-1.png" alt="Another circos Manhattan plot" width="768" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/circos2-1.png" alt="Another circos Manhattan plot" width="768" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.5: Another circos Manhattan plot
 </p>
@@ -1948,7 +1948,7 @@ htmlwidgets::saveWidget(mhttest,&quot;mhttest.html&quot;)</code></pre>
 <pre class="r"><code>mhtdata &lt;- within(mhtdata,{pr=p})
 miamiplot(mhtdata,chr=&quot;chr&quot;,bp=&quot;pos&quot;,p=&quot;p&quot;,pr=&quot;pr&quot;,snp=&quot;rsn&quot;)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:miami-1"></span>
-<img src="miami-1.png" alt="Miami plots" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/miami-1.png" alt="Miami plots" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.6: Miami plots
 </p>
@@ -1960,7 +1960,7 @@ chrmaxpos &lt;- miamiplot2(gwas,gwas,name1=&quot;Batch 2&quot;,name2=&quot;Batch
 #&gt; Warning in max(c(dat1$pos[dat1$chr == i], dat2$pos[dat2$chr == i]), na.rm = TRUE): no non-missing arguments to max; returning -Inf
 labelManhattan(chr=c(2,16),pos=c(226814165,52373776),name=c(&quot;AnonymousGene&quot;,&quot;FTO&quot;),gwas,gwasZLab=&quot;z&quot;,chrmaxpos=chrmaxpos)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:miami-2"></span>
-<img src="miami-2.png" alt="Miami plots" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/miami-2.png" alt="Miami plots" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.7: Miami plots
 </p>
@@ -2018,7 +2018,7 @@ Figure 7.8: Association of IL-12B
 #&gt; - CDKN2B
 title(&quot;CDKN2A/CDKN2B Region&quot;)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:asplot"></span>
-<img src="asplot-1.png" alt="A regional association plot" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/asplot-1.png" alt="A regional association plot" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.9: A regional association plot
 </p>
@@ -2032,7 +2032,7 @@ the option open for generating such plots on the fly and locally.</p>
 <p>A plot of copy number variation (CNV) is shown here,</p>
 <pre class="r"><code>cnvplot(gap.datasets::cnv)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cnv"></span>
-<img src="cnv-1.png" alt="A CNV plot" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/cnv-1.png" alt="A CNV plot" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.10: A CNV plot
 </p>
@@ -2047,7 +2047,7 @@ rs12075 &lt;- data.frame(id=c(&quot;CCL2&quot;,&quot;CCL7&quot;,&quot;CCL8&quot;
                       se=c(0.0113,0.013,0.0116,0.0114,0.0114,0.0115,0.00713386))
 ESplot(rs12075)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:esplot"></span>
-<img src="esplot-1.png" alt="rs12075 and traits" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/esplot-1.png" alt="rs12075 and traits" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.11: rs12075 and traits
 </p>
@@ -2063,13 +2063,13 @@ METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se
 #&gt; Joining with `by = join_by(MarkerName)`
 #&gt; Joining with `by = join_by(MarkerName)`</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:forest-1"></span>
-<img src="forest-1.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/forest-1.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.12: Forest plots
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:forest-2"></span>
-<img src="forest-2.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/forest-2.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.13: Forest plots
 </p>
@@ -2079,13 +2079,13 @@ Figure 7.13: Forest plots
 #&gt; Joining with `by = join_by(MarkerName)`
 #&gt; Joining with `by = join_by(MarkerName)`</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:forest-3"></span>
-<img src="forest-3.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/forest-3.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.14: Forest plots
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:forest-4"></span>
-<img src="forest-4.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/forest-4.png" alt="Forest plots" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 7.15: Forest plots
 </p>
@@ -2096,7 +2096,7 @@ Figure 7.15: Forest plots
 <h1><span class="header-section-number">8</span> Significance</h1>
 <p>Our focus is on z ~ Normal(0,1), whose schematic diagram is shown below.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:normal"></span>
-<img src="normal-1.png" alt="Normal(0,1) distribution" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/normal-1.png" alt="Normal(0,1) distribution" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 8.1: Normal(0,1) distribution
 </p>
@@ -2479,37 +2479,37 @@ environment (ACE) model, e.g., <a href="https://doi.org/10.1038/s41562-023-01530
 </table>
 <p>The MR analysis is as follows,</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr-1"></span>
-<img src="mr-1.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr-1.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.1: Mendelian randomization
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr-2"></span>
-<img src="mr-2.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr-2.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.2: Mendelian randomization
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr-3"></span>
-<img src="mr-3.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr-3.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.3: Mendelian randomization
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr-4"></span>
-<img src="mr-4.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr-4.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.4: Mendelian randomization
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr-5"></span>
-<img src="mr-5.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr-5.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.5: Mendelian randomization
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr-6"></span>
-<img src="mr-6.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr-6.png" alt="Mendelian randomization" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.6: Mendelian randomization
 </p>
@@ -2622,7 +2622,7 @@ p
 #&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).
 #&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`geom_segment()`).</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mr2"></span>
-<img src="mr2-1.png" alt="Combined forest plots for LIF.R, FEV1 and CAD" width="672" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/mr2-1.png" alt="Combined forest plots for LIF.R, FEV1 and CAD" width="672" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.7: Combined forest plots for LIF.R, FEV1 and CAD
 </p>
@@ -2637,7 +2637,7 @@ Figure 12.7: Combined forest plots for LIF.R, FEV1 and CAD
              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
              spacing=1.6, digits.TE=2, digits.seTE=2, xlab=&quot;Effect size&quot;, type.study=&quot;square&quot;, col.inside=&quot;black&quot;, col.square=&quot;black&quot;)</code></pre>
 <div class="figure" style="text-align: left"><span style="display:block;" id="fig:fp1"></span>
-<img src="fp1-1.png" alt="Forest plots for MR results on TNFB" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/fp1-1.png" alt="Forest plots for MR results on TNFB" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.8: Forest plots for MR results on TNFB
 </p>
@@ -2648,7 +2648,7 @@ Figure 12.8: Forest plots for MR results on TNFB
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
               backtransf=TRUE, spacing=1.6,type.study=&quot;square&quot;,col.inside=&quot;black&quot;,col.square=&quot;black&quot;)</code></pre>
 <div class="figure" style="text-align: left"><span style="display:block;" id="fig:fp2"></span>
-<img src="fp2-1.png" alt="Forest plots for MR results on TNFB (no summary statistics)" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/fp2-1.png" alt="Forest plots for MR results on TNFB (no summary statistics)" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.9: Forest plots for MR results on TNFB (no summary statistics)
 </p>
@@ -2661,7 +2661,7 @@ Figure 12.9: Forest plots for MR results on TNFB (no summary statistics)
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
               addrow=TRUE, backtransf=TRUE, spacing=1.6,type.study=&quot;square&quot;,col.inside=&quot;black&quot;,col.square=&quot;black&quot;)</code></pre>
 <div class="figure" style="text-align: left"><span style="display:block;" id="fig:fp3"></span>
-<img src="fp3-1.png" alt="Forest plots for MR results on TNFB (with P values)" width="864" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/fp3-1.png" alt="Forest plots for MR results on TNFB (with P values)" width="864" style="display:block; margin: auto" />
 <p class="caption">
 Figure 12.10: Forest plots for MR results on TNFB (with P values)
 </p>
@@ -3169,7 +3169,7 @@ E(R/S) \approx \frac{\mu_R}{\mu_S}-\frac{\mbox{Cov}(R,S)}{\mu_S^2}+\frac{\sigma_
 <p>Therefore they differ from the asymptotic results<span class="citation"><sup>17</sup></span> by ratios of <span class="math inline">\((N-2)(N+1)/(N-1)^2\)</span> and <span class="math inline">\((N-2)/(N+1)\)</span> for
 linear regression and <span class="math inline">\(t\)</span>-statistic, respectively.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pve"></span>
-<img src="pve-1.png" alt="Comparisons of Var($R^2$) estimates" width="1344" style="display:block; margin: auto" />
+<img src="gap_files/figure-html/pve-1.png" alt="Comparisons of Var($R^2$) estimates" width="1344" style="display:block; margin: auto" />
 <p class="caption">
 Figure 15.1: Comparisons of Var(<span class="math inline">\(R^2\)</span>) estimates
 </p>
