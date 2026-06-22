@@ -38,16 +38,15 @@ htmltools::tagList(
       width: 100%;
       border: none;
       display: block;
-      height: 200px;
+      min-height: 200px;
     "
   ),
   htmltools::tags$script(htmltools::HTML("
 window.addEventListener('message', function(event) {
   if (!event.data || event.data.type !== 'setHeight') return;
   var iframe = document.getElementById('gapframe');
-  if (iframe && event.data.height) {
-    iframe.style.height = event.data.height + 'px';
-  }
+  if (!iframe) return;
+  iframe.style.height = Math.max(event.data.height, 200) + 'px';
 });
   "))
 )
