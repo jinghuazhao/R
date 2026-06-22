@@ -3,7 +3,6 @@ gaawr2/
 gaawr2[_-]*
 gap.datasets_*
 gap.examples_*
-gap_*
 gap/inst/shinygap/.Rhistory
 gap-00build.log
 lmm_*
