@@ -3,6 +3,7 @@ This directory contains information on experimental work.
 C/		C program
 R/		R program
 comp.score/	Example for comp.score
+htr/		HTR test data as in demo/gap.demo.R from gap_0.3.tar.gz
 kinship/	Work related to kinship modeling
 twinan90/	Deprecated twinan90 files
 xls/		Original BFDP and FPRP function
