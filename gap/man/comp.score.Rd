@@ -63,7 +63,7 @@ Adapt from score2.r.
 # function "system".
 
 cwd <- getwd()
-cs.dir <- file.path(find.package("gap"),"tests/comp.score")
+cs.dir <- file.path(find.package("gap.examples"),"tests/comp.score")
 setwd(cs.dir)
 dir()
 # system("gh < gh.inp")

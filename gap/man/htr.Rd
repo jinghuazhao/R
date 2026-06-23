@@ -50,7 +50,8 @@ Permutation p-values are computed using
 \dontrun{
 ## 26-10-2003
 ## This example is now part of the demo.
-test2 <- read.table("test2.dat")
+filespec <- file.path(find.package("gap.examples"),"tests/htr/test2.dat")
+test2 <- read.table(filespec)
 y <- test2[, 1]
 x <- test2[, -1]
 

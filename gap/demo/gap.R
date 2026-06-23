@@ -34,8 +34,8 @@ summary(ex.gc)
 #
 # This is an example extracted from HTR program by Dr D Zaykin
 #
-filespec <- file.path(path.package("gap.examples"),"tests/ehp/htr.R")
-source(filespec)
+filespec <- file.path(path.package("gap.examples"),"tests/htr/test2.dat")
+test2 <- read.table(filespec)
 htr.test2<-htr(y,x)
 htr.test2
 htr.test2<-htr(y,x,n.sim=10)
@@ -57,7 +57,7 @@ unlink("0.ped")
 #
 # To produce a pedigree diagram as a .dot file
 #
-filespec <- file.path(path.package("gap.datasets"),"tests/kinship/ped.1.3.pre")
+filespec <- file.path(path.package("gap.examples"),"tests/kinship/ped.1.3.pre")
 pre <- read.table(filespec,as.is=TRUE)
 pre
 pedtodot(pre,dir="forward")
@@ -92,4 +92,4 @@ title("A simulated example according to EPIC-Norfolk QCed SNPs")
 require(gap.datasets)
 asplot(CDKNlocus, CDKNmap, CDKNgenes)
 title("CDKN2A/CDKN2B Region")
-asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6))
+asplot(CDKNlocus, CDKNmap, CDKNgenes, best.pval=5.4e-8, sf=c(3,6), pch=23)

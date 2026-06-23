@@ -18,6 +18,7 @@
 #' Permutation p-values are computed using
 #' \eqn{(b + 1) / (B + 1)} to avoid zero-valued estimates.
 #'
+#' @export
 #' @return
 #' A list with the following components:
 #'
@@ -42,7 +43,8 @@
 #' \dontrun{
 #' ## 26-10-2003
 #' ## This example is now part of the demo.
-#' test2 <- read.table("test2.dat")
+#' filespec <- file.path(find.package("gap.examples"),"tests/htr/test2.dat")
+#' test2 <- read.table(filespec)
 #' y <- test2[, 1]
 #' x <- test2[, -1]
 #'
