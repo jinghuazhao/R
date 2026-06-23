@@ -2,65 +2,88 @@
 % Please edit documentation in R/htr.R
 \name{htr}
 \alias{htr}
-\title{Haplotype trend regression}
+\title{Haplotype Trend Regression}
 \usage{
-htr(y, x, n.sim = 0)
+htr(y, x, n.sim = 0L)
 }
 \arguments{
-\item{y}{a vector of phenotype.}
+\item{y}{Numeric phenotype vector.}
 
-\item{x}{a haplotype table.}
+\item{x}{Haplotype dosage matrix.}
 
-\item{n.sim}{the number of permutations.}
+\item{n.sim}{Number of permutations (default 0).}
 }
 \value{
-The returned value is a list containing:
-\itemize{
-\item f the F statistic for overall association.
-\item p the p value for overall association.
-\item fv the F statistics for individual haplotypes.
-\item pi the p values for individual haplotypes.
-}
+A list with the following components:
+
+\strong{f}
+Overall F statistic for global haplotype association.
+
+\strong{p}
+P-value for the overall test (asymptotic or permutation-based).
+
+\strong{fv}
+Vector of F statistics for individual haplotypes.
+
+\strong{pi}
+Vector of p-values for individual haplotypes.
 }
 \description{
-Haplotype trend regression
+Haplotype Trend Regression
 }
 \details{
-Haplotype trend regression (with permutation)
+Performs haplotype trend regression (HTR) with optional permutation testing.
+The method follows \insertCite{zaykin02;textual}{gap}.
+
+The model fits a linear regression of phenotype on haplotype dosage
+indicators and computes:
+\itemize{
+\item Overall F statistic for joint haplotype effects
+\item Individual haplotype F statistics
+\item Optional permutation-based p-values for both
 }
-\note{
-adapted from emgi.cpp, a pseudorandom number seed will be added on.
+
+Permutation p-values are computed using
+\eqn{(b + 1) / (B + 1)} to avoid zero-valued estimates.
 }
 \examples{
 \dontrun{
-# 26-10-03
-# this is now part of demo
-test2<-read.table("test2.dat")
-y<-test2[,1]
-x<-test2[,-1]
-y<-as.matrix(y)
-x<-as.matrix(x)
-htr.test2<-htr(y,x)
-htr.test2
-htr.test2<-htr(y,x,n.sim=10)
+## 26-10-2003
+## This example is now part of the demo.
+test2 <- read.table("test2.dat")
+y <- test2[, 1]
+x <- test2[, -1]
+
+y <- as.matrix(y)
+x <- as.matrix(x)
+
+htr.test2 <- htr(y, x)
 htr.test2
 
-# 13-11-2003
-require(gap.datasets)
+htr.test2 <- htr(y, x, n.sim = 10)
+htr.test2
+
+## 13-11-2003
+library(gap.datasets)
 data(apoeapoc)
-apoeapoc.gc<-gc.em(apoeapoc[,5:8])
-y<-apoeapoc$y
-for(i in 1:length(y)) if(y[i]==2) y[i]<-1
-htr(y,apoeapoc.gc$htrtable)
 
-# 20-8-2008
-# part of the example from useR!2008 tutorial by Andrea Foulkes
-# It may be used beyond the generalized linear model (GLM) framework
-HaploEM <- haplo.em(Geno,locus.label=SNPnames)
+apoeapoc.gc <- gc.em(apoeapoc[, 5:8])
+y <- apoeapoc$y
+y[y == 2] <- 1
+
+htr(y, apoeapoc.gc$htrtable)
+
+## 20-08-2008
+## Part of the useR! 2008 tutorial by Andrea Foulkes.
+## The approach may be used beyond the generalized linear
+## model (GLM) framework.
+HaploEM <- haplo.em(Geno, locus.label = SNPnames)
 HapMat <- HapDesign(HaploEM)
-m1 <- lm(Trait~HapMat)
-m2 <- lm(Trait~1)
-anova(m2,m1)
+
+m1 <- lm(Trait ~ HapMat)
+m2 <- lm(Trait ~ 1)
+
+anova(m2, m1)
 }
 
 }
@@ -69,10 +92,3 @@ anova(m2,m1)
 
 \insertRef{xie05}{gap}
 }
-\seealso{
-\code{\link{hap.score}}
-}
-\author{
-Dimitri Zaykin, Jing Hua Zhao
-}
-\keyword{regression}

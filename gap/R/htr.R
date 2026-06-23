@@ -1,122 +1,171 @@
-#' Haplotype trend regression
+#' Haplotype Trend Regression
 #'
-#' @param y a vector of phenotype.
-#' @param x a haplotype table.
-#' @param n.sim the number of permutations.
+#' @param y Numeric phenotype vector.
+#' @param x Haplotype dosage matrix.
+#' @param n.sim Number of permutations (default 0).
 #'
 #' @details
-#' Haplotype trend regression (with permutation)
+#' Performs haplotype trend regression (HTR) with optional permutation testing.
+#' The method follows \insertCite{zaykin02;textual}{gap}.
+#'
+#' The model fits a linear regression of phenotype on haplotype dosage
+#' indicators and computes:
+#'
+#' - Overall F statistic for joint haplotype effects
+#' - Individual haplotype F statistics
+#' - Optional permutation-based p-values for both
+#'
+#' Permutation p-values are computed using
+#' \eqn{(b + 1) / (B + 1)} to avoid zero-valued estimates.
 #'
 #' @return
-#' The returned value is a list containing:
-#' - f the F statistic for overall association.
-#' - p the p value for overall association.
-#' - fv the F statistics for individual haplotypes.
-#' - pi the p values for individual haplotypes.
-#' 
+#' A list with the following components:
+#'
+#' **f**  
+#' Overall F statistic for global haplotype association.
+#'
+#' **p**  
+#' P-value for the overall test (asymptotic or permutation-based).
+#'
+#' **fv**  
+#' Vector of F statistics for individual haplotypes.
+#'
+#' **pi**  
+#' Vector of p-values for individual haplotypes.
+#'
 #' @references
 #' \insertRef{zaykin02}{gap}
 #'
 #' \insertRef{xie05}{gap}
 #'
-#' @seealso [`hap.score`]
-#'
 #' @examples
 #' \dontrun{
-#' # 26-10-03
-#' # this is now part of demo
-#' test2<-read.table("test2.dat")
-#' y<-test2[,1]
-#' x<-test2[,-1]
-#' y<-as.matrix(y)
-#' x<-as.matrix(x)
-#' htr.test2<-htr(y,x)
-#' htr.test2
-#' htr.test2<-htr(y,x,n.sim=10)
+#' ## 26-10-2003
+#' ## This example is now part of the demo.
+#' test2 <- read.table("test2.dat")
+#' y <- test2[, 1]
+#' x <- test2[, -1]
+#'
+#' y <- as.matrix(y)
+#' x <- as.matrix(x)
+#'
+#' htr.test2 <- htr(y, x)
 #' htr.test2
 #'
-#' # 13-11-2003
-#' require(gap.datasets)
+#' htr.test2 <- htr(y, x, n.sim = 10)
+#' htr.test2
+#'
+#' ## 13-11-2003
+#' library(gap.datasets)
 #' data(apoeapoc)
-#' apoeapoc.gc<-gc.em(apoeapoc[,5:8])
-#' y<-apoeapoc$y
-#' for(i in 1:length(y)) if(y[i]==2) y[i]<-1
-#' htr(y,apoeapoc.gc$htrtable)
 #'
-#' # 20-8-2008
-#' # part of the example from useR!2008 tutorial by Andrea Foulkes
-#' # It may be used beyond the generalized linear model (GLM) framework
-#' HaploEM <- haplo.em(Geno,locus.label=SNPnames)
+#' apoeapoc.gc <- gc.em(apoeapoc[, 5:8])
+#' y <- apoeapoc$y
+#' y[y == 2] <- 1
+#'
+#' htr(y, apoeapoc.gc$htrtable)
+#'
+#' ## 20-08-2008
+#' ## Part of the useR! 2008 tutorial by Andrea Foulkes.
+#' ## The approach may be used beyond the generalized linear
+#' ## model (GLM) framework.
+#' HaploEM <- haplo.em(Geno, locus.label = SNPnames)
 #' HapMat <- HapDesign(HaploEM)
-#' m1 <- lm(Trait~HapMat)
-#' m2 <- lm(Trait~1)
-#' anova(m2,m1)
+#'
+#' m1 <- lm(Trait ~ HapMat)
+#' m2 <- lm(Trait ~ 1)
+#'
+#' anova(m2, m1)
 #' }
 #'
-#' @author Dimitri Zaykin, Jing Hua Zhao
-#' @note adapted from emgi.cpp, a pseudorandom number seed will be added on.
-#' @keywords regression
-
-htr <- function(y, x, n.sim=0)
+htr <- function(y, x, n.sim = 0L)
 {
-   mlr <- function(y,x)
-   {
-      N <- length(y)
-      L <- dim(x)[2]
-      l <- L - 1
-      x1 <- cbind(rep(1,N),x[,1:l])
-      b1 <- MASS::ginv(t(x1) %*% x1) %*% t(x1) %*% y
-      y2 <- sum(y)^2
-      redss <- y2 / N
-      dtssc <- t(y) %*% y - redss
-      dssm <- t(b1) %*% t(x1) %*% y
-      reg.ss <- dssm - redss
-      reg.df <- L - 1
-      err.df <- (N - 1) - reg.df
-      err.ss <- dtssc - reg.ss
-      reg.ms <- reg.ss / reg.df
-      err.ms <- err.ss / err.df
-      fstat <- reg.ms / err.ms
-      pv.fstat <- 1- pf(fstat, reg.df, err.df)
-      fv <- rep(1,L)
-      pi <- rep(1,L)
-      for (i in 1:L)
-      {
-          x2 <- cbind(rep(1,N),x[,i])
-          b2 <- MASS::ginv(t(x2) %*% x2) %*% t(x2) %*% y
-          dssm <- t(b2) %*% t(x2) %*% y
-          reg.ss <- dssm - redss
-          reg.df <- dim(x2)[2] - 1
-          err.df <- (N - 1) - reg.df
-          err.ss <- dtssc - reg.ss
-          reg.ms <- reg.ss / reg.df
-          err.ms <- err.ss / err.df
-          b.fstat <- reg.ms / err.ms
-          b.pv <- 1 - pf(b.fstat, reg.df, err.df)
-          fv[i] <- b.fstat
-          pi[i] <- b.pv
-      }
-      list(f=fstat,p=pv.fstat,fv=fv,pi=pi)
-   }
-
-   N <- length(y)
-   L <- dim(x)[2]
-   z0 <- mlr(y,x)
-   if (n.sim==0) list(f=z0$f,p=z0$p,fv=z0$fv,pi=z0$pi)
-   else
-   {
-      p <- 0
-      pi <- rep(0,L)
-      for (i in 1:n.sim)
-      {
-          rand.ord <- order(runif(N))
-          y <- y[rand.ord]
-          z <- htr(y,x)
-          if (z$f >= z0$f)  p <- p + 1
-          for (j in 1:L) if (z$fv[j] >= z0$fv[j]) pi[j] <- pi[j] + 1
-      }
-      p <- p / n.sim
-      for (j in 1:L) pi[j] <- pi[j] / n.sim
-      list(f=z0$f,p=p,fv=z0$fv,pi=pi)
-   }
+    # ---------- checks ----------
+    y <- as.numeric(y)
+    x <- as.matrix(x)
+    if (length(y) != nrow(x))
+        stop("length(y) must equal nrow(x)")
+    if (!is.numeric(x))
+        stop("x must be numeric")
+    if (n.sim < 0L)
+        stop("n.sim must be non-negative")
+    n.sim <- as.integer(n.sim)
+    # ---------- core analysis ----------
+    mlr <- function(y, x)
+    {
+        N <- length(y)
+        L <- ncol(x)
+        if (L < 2)
+            stop("x must contain at least two haplotype columns")
+        # HTR parameterization:
+        # last haplotype is the reference category
+        X <- cbind("(Intercept)" = 1,
+                   x[, seq_len(L - 1), drop = FALSE])
+        fit <- lm.fit(X, y)
+        rss1 <- sum(fit$residuals^2)
+        rss0 <- sum((y - mean(y))^2)
+        reg.df <- L - 1
+        err.df <- N - ncol(X)
+        reg.ss <- rss0 - rss1
+        reg.ms <- reg.ss / reg.df
+        err.ms <- rss1 / err.df
+        fstat <- reg.ms / err.ms
+        pv.fstat <- pf(fstat,
+                       df1 = reg.df,
+                       df2 = err.df,
+                       lower.tail = FALSE)
+        # ---------- single-haplotype tests ----------
+        fv <- numeric(L)
+        pi <- numeric(L)
+        for (i in seq_len(L))
+        {
+            Xi <- cbind("(Intercept)" = 1,
+                        x[, i, drop = FALSE])
+            fit.i <- lm.fit(Xi, y)
+            rss.i <- sum(fit.i$residuals^2)
+            reg.ss.i <- rss0 - rss.i
+            reg.df.i <- 1L
+            err.df.i <- N - ncol(Xi)
+            f.i <- (reg.ss.i / reg.df.i) /
+                   (rss.i / err.df.i)
+            p.i <- pf(f.i,
+                      df1 = reg.df.i,
+                      df2 = err.df.i,
+                      lower.tail = FALSE)
+            fv[i] <- f.i
+            pi[i] <- p.i
+        }
+        list(
+            f  = unname(as.numeric(fstat)),
+            p  = unname(as.numeric(pv.fstat)),
+            fv = unname(as.numeric(fv)),
+            pi = unname(as.numeric(pi))
+        )
+    }
+    # ---------- observed statistics ----------
+    z0 <- mlr(y, x)
+    if (n.sim == 0L)
+        return(z0)
+    # ---------- permutations ----------
+    overall.count <- 0L
+    hap.count <- integer(length(z0$fv))
+    N <- length(y)
+    for (b in seq_len(n.sim))
+    {
+        yperm <- y[sample.int(N)]
+        z <- mlr(yperm, x)
+        if (z$f >= z0$f)
+            overall.count <- overall.count + 1L
+        hap.count <- hap.count + (z$fv >= z0$fv)
+    }
+    ## Phipson & Smyth (2010):
+    ## permutation p-values should never be zero
+    p.emp <- (overall.count + 1) / (n.sim + 1)
+    pi.emp <- (hap.count + 1) / (n.sim + 1)
+    list(
+        f  = z0$f,
+        p  = p.emp,
+        fv = z0$fv,
+        pi = pi.emp
+    )
 }

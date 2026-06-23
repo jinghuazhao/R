@@ -144,7 +144,7 @@
 #' @import dplyr gap.datasets
 #' @importFrom grDevices dev.off palette pdf xy.coords
 #' @importFrom graphics abline arrows axis box boxplot identify legend lines mtext par points segments text title rect strwidth strheight
-#' @importFrom stats as.formula coef coefficients cor complete.cases dnorm glm integrate lm logLik median nlm pchisq pf plogis pnorm ppoints pt qchisq qnorm qqplot qt quantile rbinom rexp rmultinom rnorm runif sd setNames uniroot var
+#' @importFrom stats as.formula coef coefficients cor complete.cases dnorm glm integrate lm lm.fit logLik median nlm pchisq pf plogis pnorm ppoints pt qchisq qnorm qqplot qt quantile rbinom rexp rmultinom rnorm runif sd setNames uniroot var
 #' @importFrom utils data head packageDescription read.csv read.delim read.table tail write.table globalVariables
 #' @importFrom Rdpack reprompt
 #' @useDynLib gap
