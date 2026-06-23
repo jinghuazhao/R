@@ -34,7 +34,7 @@ summary(ex.gc)
 #
 # This is an example extracted from HTR program by Dr D Zaykin
 #
-filespec <- file.path(path.package("gap.examples"),"tests/htr/test2.dat")
+filespec <- file.path(find.package("gap.examples"),"tests/htr/test2.dat")
 test2 <- read.table(filespec)
 htr.test2<-htr(y,x)
 htr.test2
