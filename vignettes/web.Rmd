@@ -34,6 +34,10 @@ html, body {
   margin: 0;
   padding: 0;
 }
+.main-container {
+  max-width: none !important;
+  width: 100% !important;
+}
 </style>
 
 ```{r setup, include=FALSE}
