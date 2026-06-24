@@ -1,11 +1,12 @@
 Version history of the R genetic analysis package (R/gap)
 
 Version 1.15.3
-23-06-2026	Amend ab(), cis.vs.trans.classification|plot(), comp.score(), demo/gap.R, h2_mzdz(), htr(),
+24-06-2026	Amend ab(), cis.vs.trans.classification|plot(), comp.score(), demo/gap.R, h2_mzdz(), htr(),
 		masize(), makeRLEplot(), pedtodot_verbatim(), qtlFinder(), qtl2dplot, qtl[2|3]dplotly()
 		Deprecate 2nd example for asplot() as detailed in pQTLtools/Locus.js.Rmd
 		Fix VignetteIndexEntry() for gap.Rmd / shinygap.Rmd
 		Migrate from iframe(style="width:100%; height:100vh") to parent/child integration in gap.Rmd
+		Suggests remotes for demo/gap.R
 
 Version 1.15.2
 26-05-2026	Fix title and use GitHub page for gap.Rmd/pfc.sim.f

@@ -2,7 +2,7 @@ Type: Package
 Package: gap
 Title: Genetic Analysis Package
 Version: 1.15.3
-Date: 2026-06-23
+Date: 2026-06-24
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -29,8 +29,8 @@ Suggests: BradleyTerry2, DiagrammeR, MASS, Matrix, MCMCglmm, R2jags,
         bdsmatrix, bookdown, calibrate, circlize, coda, cowplot, coxme,
         foreign, genetics, grDevices, haplo.stats, htmltools, htmlwidgets,
         jsonlite, kinship2, knitr, lattice, magic, matrixStats, meta,
-        metafor, nlme, pedigree, pedigreemm, plotrix, readr, reshape,
-        rmarkdown, rms, scales, survival, valr
+        metafor, nlme, pedigree, pedigreemm, plotrix, readr, remotes,
+        reshape, rmarkdown, rms, scales, survival, valr
 Enhances: shiny
 LazyData: Yes
 LazyLoad: Yes

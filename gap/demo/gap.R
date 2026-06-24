@@ -34,11 +34,18 @@ summary(ex.gc)
 #
 # This is an example extracted from HTR program by Dr D Zaykin
 #
-filespec <- file.path(find.package("gap.examples"),"tests/htr/test2.dat")
+if (!requireNamespace("gap.examples", quietly = TRUE))
+    remotes::install_github("jinghuazhao/R/gap.examples")
+filespec <- file.path(
+    find.package("gap.examples"),
+    "tests", "htr", "test2.dat"
+)
 test2 <- read.table(filespec)
-htr.test2<-htr(y,x)
+y <- test2[, 1]
+x <- test2[, -1]
+htr.test2 <- htr(y,x)
 htr.test2
-htr.test2<-htr(y,x,n.sim=10)
+htr.test2 <- htr(y,x,n.sim=10)
 htr.test2
 
 #
@@ -57,7 +64,7 @@ unlink("0.ped")
 #
 # To produce a pedigree diagram as a .dot file
 #
-filespec <- file.path(path.package("gap.examples"),"tests/kinship/ped.1.3.pre")
+filespec <- file.path(find.package("gap.examples"),"tests/kinship/ped.1.3.pre")
 pre <- read.table(filespec,as.is=TRUE)
 pre
 pedtodot(pre,dir="forward")

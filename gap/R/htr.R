@@ -43,17 +43,20 @@
 #' \dontrun{
 #' ## 26-10-2003
 #' ## This example is now part of the demo.
-#' filespec <- file.path(find.package("gap.examples"),"tests/htr/test2.dat")
+#' if (!requireNamespace("gap.examples", quietly = TRUE))
+#'     remotes::install_github("jinghuazhao/R/gap.examples")
+#'
+#' filespec <- file.path(
+#'     find.package("gap.examples"),
+#'     "tests", "htr", "test2.dat"
+#' )
 #' test2 <- read.table(filespec)
 #' y <- test2[, 1]
 #' x <- test2[, -1]
-#'
 #' y <- as.matrix(y)
 #' x <- as.matrix(x)
-#'
 #' htr.test2 <- htr(y, x)
 #' htr.test2
-#'
 #' htr.test2 <- htr(y, x, n.sim = 10)
 #' htr.test2
 #'
