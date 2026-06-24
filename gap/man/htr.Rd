@@ -46,6 +46,51 @@ indicators and computes:
 Permutation p-values are computed using
 \eqn{(b + 1) / (B + 1)} to avoid zero-valued estimates.
 }
+\examples{
+\dontrun{
+## 26-10-2003
+## This example is now part of the demo.
+if (!requireNamespace("gap.examples", quietly = TRUE))
+    remotes::install_github("jinghuazhao/R/gap.examples")
+
+filespec <- file.path(
+    find.package("gap.examples"),
+    "tests", "htr", "test2.dat"
+)
+test2 <- read.table(filespec)
+y <- test2[, 1]
+x <- test2[, -1]
+y <- as.matrix(y)
+x <- as.matrix(x)
+htr.test2 <- htr(y, x)
+htr.test2
+htr.test2 <- htr(y, x, n.sim = 10)
+htr.test2
+
+## 13-11-2003
+library(gap.datasets)
+data(apoeapoc)
+
+apoeapoc.gc <- gc.em(apoeapoc[, 5:8])
+y <- apoeapoc$y
+y[y == 2] <- 1
+
+htr(y, apoeapoc.gc$htrtable)
+
+## 20-08-2008
+## Part of the useR! 2008 tutorial by Andrea Foulkes.
+## The approach may be used beyond the generalized linear
+## model (GLM) framework.
+HaploEM <- haplo.em(Geno, locus.label = SNPnames)
+HapMat <- HapDesign(HaploEM)
+
+m1 <- lm(Trait ~ HapMat)
+m2 <- lm(Trait ~ 1)
+
+anova(m2, m1)
+}
+
+}
 \references{
 \insertRef{zaykin02}{gap}
 
