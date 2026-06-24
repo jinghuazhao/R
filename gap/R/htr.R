@@ -43,6 +43,7 @@
 #' \dontrun{
 #' ## 26-10-2003
 #' ## This example is now part of the demo.
+#' \dontrun{
 #' if (!requireNamespace("gap.examples", quietly = TRUE))
 #'     remotes::install_github("jinghuazhao/R/gap.examples")
 #'
