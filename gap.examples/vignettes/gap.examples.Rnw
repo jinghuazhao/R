@@ -22,7 +22,7 @@
 \maketitle
 
 \begin{center}
-Department of Public Health and Primary Care, University of Cambridge, Cambridge, UK \\
+University of Cambridge, Cambridge, UK \\
 \url{https://jinghuazhao.github.io/}
 \end{center}
 
@@ -51,4 +51,4 @@ Several other vignettes have also been moved here.
 
 \end{document}
 
-% Date last modified: 20-6-2019
+% Date last modified: 24-6-2026

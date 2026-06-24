@@ -1,6 +1,6 @@
 Package: gap.examples
 Version: 0.0.2
-Date: 2026-6-23
+Date: 2026-6-24
 Title: Examples for 'gap'
 Authors@R: person(given = c("Jing", "Hua"),
                   family = "Zhao",
