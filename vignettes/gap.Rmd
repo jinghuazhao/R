@@ -273,7 +273,7 @@ library(gap)
 demo(gap)
 ```
 
-See examples of haplotype analysis there.
+for pedigree-drawing, haplotype analysis and plots in genomewide association studies.
 
 # Pedigrees and kinship
 
