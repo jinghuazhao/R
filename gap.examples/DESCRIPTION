@@ -2,7 +2,11 @@ Package: gap.examples
 Version: 0.0.2
 Date: 2026-6-23
 Title: Examples for 'gap'
-Author: Jing Hua Zhao
+Authors@R: person(given = c("Jing", "Hua"),
+                  family = "Zhao",
+                  role = c("aut", "cre"),
+                  email = "jinghuazhao@hotmail.com",
+                  comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582"))
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 URL: https://github.com/jinghuazhao/R
 BugReports: https://github.com/jinghuazhao/R/issues
