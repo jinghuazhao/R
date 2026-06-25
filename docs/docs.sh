@@ -3,6 +3,7 @@
 make -f docs/Makefile vignettes/ChangeLog.txt
 make -f docs/Makefile vignettes/gap-manual.pdf
 make -f docs/Makefile vignettes/shinygap.html
+make -f docs/Makefile vignettes/gap.examples.pdf
 
 git add .github
 git commit -m ".github"
