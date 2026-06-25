@@ -1,14 +1,23 @@
-vignettes/ChangeLog.txt: $(HOME)/R/gap/ChangeLog
-	cp $(HOME)/R/gap/ChangeLog vignettes/ChangeLog.txt
+HOME_R       := $(HOME)/R
+SOFTWARE_R   := /rds/project/rds-4o5vpvAowP0/software/R
 
-vignettes/gap-manual.pdf: $(HOME)/R/gap.Rcheck/gap-manual.pdf
-	cp $(HOME)/R/gap.Rcheck/gap-manual.pdf vignettes/
+CHANGELOG    := $(HOME_R)/gap/ChangeLog
+GAP_CHECK    := $(HOME_R)/gap.Rcheck/gap-manual.pdf
+SHINYGAP     := $(SOFTWARE_R)/gap/doc/shinygap.html
+GAP_EXAMPLES := $(SOFTWARE_R)/gap.examples/doc/gap.examples.pdf
+TDTHAP       := $(SOFTWARE_R)/tdthap/doc/tdthap.pdf
 
-vignettes/shinygap.html: /rds/project/rds-4o5vpvAowP0/software/R/gap/doc/shinygap.html
-	cp /rds/project/rds-4o5vpvAowP0/software/R/gap/doc/shinygap.html vignettes/
+vignettes/ChangeLog.txt: $(CHANGELOG)
+	cp $< $@
 
-vignettes/gap.examples.pdf: /rds/project/rds-4o5vpvAowP0/software/R/gap.examples/doc/gap.examples.pdf
-	cp /rds/project/rds-4o5vpvAowP0/software/R/gap.examples/doc/gap.examples.pdf vignettes/
+vignettes/gap-manual.pdf: $(GAP_CHECK)
+	cp $< vignettes/
 
-vignettes/tdthap.pdf: /rds/project/rds-4o5vpvAowP0/software/R/tdthap/doc/tdthap.pdf
-        cp /rds/project/rds-4o5vpvAowP0/software/R/tdthap/doc/tdthap.pdf vignettes/
+vignettes/shinygap.html: $(SHINYGAP)
+	cp $< vignettes/
+
+vignettes/gap.examples.pdf: $(GAP_EXAMPLES)
+	cp $< vignettes/
+
+vignettes/tdthap.pdf: $(TDTHAP)
+	cp $< vignettes/
