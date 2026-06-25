@@ -26,7 +26,7 @@ See also documentation reformatted by datacamp, <https://www.rdocumentation.org/
  &nbsp;          | &nbsp; | [rnews](https://jinghuazhao.github.io/R/vignettes/rnews.pdf)
 **lmm** | <https://cran.r-project.org/package=lmm> | [lmm](https://cran.r-project.org/web/packages/lmm/vignettes/lmm-tr.pdf) | <https://github.com/cran/lmm> | <https://rdrr.io/cran/lmm/>
 **pan** | <https://cran.r-project.org/package=pan> | [pan](https://cran.r-project.org/web/packages/pan/vignettes/pan-tr.pdf) | <https://github.com/cran/pan> | <https://rdrr.io/cran/pan/>
-**tdthap**  | <https://cran.r-project.org/package=tdthap> | [tdthap](https://cran.r-project.org/web/packages/tdthap/vignettes/tdthap-paper.pdf)| <https://github.com/cran/tdthap> | <https://rdrr.io/cran/tdthap/>
+**tdthap**  | <https://cran.r-project.org/package=tdthap> | [tdthap](https://jinghuazhao.github.io/R/vignettes/tdthap.pdf)| <https://github.com/cran/tdthap> | <https://rdrr.io/cran/tdthap/>
 **kinship**[^kinship] | <https://cran.r-project.org/src/contrib/Archive/kinship/> | [kinship](https://jinghuazhao.github.io/R/vignettes/kinship.pdf) | <https://github.com/cran/kinship>
 
 It contains packages **CGR** which is not available from CRAN and **kinship** which has additional update. 
