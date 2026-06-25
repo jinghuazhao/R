@@ -2,7 +2,7 @@ Package: gap.examples
 Version: 0.0.2
 Date: 2026-6-25
 Title: Examples for 'gap'
-Authors@R: person(given = c("Jing", "Hua"),
+Authors@R: person(given = c("Jing Hua"),
                   family = "Zhao",
                   role = c("aut", "cre"),
                   email = "jinghuazhao@hotmail.com",
