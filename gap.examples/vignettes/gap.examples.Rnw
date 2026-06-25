@@ -5,7 +5,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{Sweave}
 \usepackage{url}
-\usepackage{amsmath,epsfig}
+\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[authoryear,round]{natbib}
 \bibliographystyle{plainnat}
@@ -38,16 +38,22 @@ to be expanded in the near future.
 
 After installation, you will be able to issue
 \texttt{library(help=gap.examples)} or to view the list within a web browser via 
-\texttt{help.start()}. To load the package, issue
-\texttt{library(gap.examples)}, and you can use \texttt{lsf.str("package:gap.examples")} and 
-\texttt{data(package="gap.examples")} to generate a list of datasets.
+\texttt{help.start()}. To load the package, issue \texttt{library(gap.examples)}.
 
-A PDF version of this file can be viewed with command \\
+The package consists primarily of example scripts and supplementary documents installed
+under the package directory. To explore installed files, use \texttt{system.file()} or
+view documentation via \texttt{browseVignettes("gap.examples")}.
 
-\texttt{vignette("gap.examples",package="gap.examples")}.\\
+<<echo=FALSE, print=TRUE>>=
+sort(list.files(system.file("doc", package = "gap.examples")))
+@
+
+A PDF version of this vignette is generated automatically and can be viewed with
+
+\texttt{vignette("gap.examples",package="gap.examples")}
 
 Several other vignettes have also been moved here.
 
 \end{document}
 
-% Date last modified: 24-6-2026
+% Date last modified: 25-6-2026
