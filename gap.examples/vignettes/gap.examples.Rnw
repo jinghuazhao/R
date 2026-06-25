@@ -1,22 +1,26 @@
-%% \VignetteIndexEntry{gap.examples}
-%% \Vignettekeywords{human genetics, linkage analysis, association analysis}
+%% \VignetteIndexEntry{Examples for Genetic Analysis Package (gap.examples)}
+%% \VignetteKeywords{human genetics, linkage analysis, association studies, genetics, GWAS, R}
 %% \VignettePackage{gap.examples}
 
 \documentclass[11pt,a4paper]{article}
+
 \usepackage{Sweave}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
 \bibliographystyle{plainnat}
 
-% \newcommand{\keywords}[1]{\addvspace{\baselineskip}\noindent{{\bf Keywords.} #1}}
-
-\parindent 0in
+\parindent 0pt
+\setlength{\parskip}{0.5em}
 
 \begin{document}
-\SweaveOpts{engine=R,echo=FALSE,pdf=TRUE}
-\title{Examples for Genetic Analysis Package (gap)}
+
+\SweaveOpts{engine=R,echo=TRUE}
+
+\title{Examples for Genetic Analysis Package (\texttt{gap.examples})}
 \author{Jing Hua Zhao}
 \date{}
 \maketitle
@@ -27,38 +31,45 @@
 
 \tableofcontents
 
-% library(tools)
-% Rnwfile<- file.path("/gap.examples/inst/doc","gap.examples.Rnw")
-% Sweave(Rnwfile,pdf=TRUE,eps=TRUE,stylepath=TRUE,driver=RweaveLatex())
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
 
-This package is a spin-off of the package \texttt{gap}, whereas this vignette is a skeleton
-to be expanded in the near future.
+This package is a spin-off of the package \texttt{gap}. This vignette provides
+example workflows and supplementary materials included in \texttt{gap.examples}.
 
-After installation, you will be able to issue
-\texttt{library(help=gap.examples)} or to view the list within a web browser via 
-\texttt{help.start()}. To load the package, issue \texttt{library(gap.examples)}.
+The package consists primarily of example scripts and supporting documents installed
+under the package directory.
 
-The package consists primarily of example scripts and supplementary documents installed
-under the package directory. To explore installed files, use \texttt{system.file()} or
-view documentation via \texttt{browseVignettes("gap.examples")}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<<echo=FALSE>>=
-pdfs <- c(
-  "gap.examples.pdf",
-  "h2.pdf",
-  "pedtodot.pdf",
-  "rnews.pdf"
-)
-print(pdfs)
+\section{Installation}
+
+\begin{verbatim}
+if (!requireNamespace("remotes", quietly = TRUE))
+    install.packages("remotes")
+
+remotes::install_github("jinghuazhao/gap.examples")
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Help and navigation}
+
+\begin{verbatim}
+help(package = "gap.examples")
+browseVignettes("gap.examples")
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Package contents}
+
+<<echo=TRUE>>=
+system.file(package = "gap.examples")
 @
 
-A PDF version of this vignette is generated automatically and can be viewed with
-
-\texttt{vignette("gap.examples",package="gap.examples")}
-
-Several other vignettes have also been moved here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
 
