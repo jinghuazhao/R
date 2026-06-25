@@ -45,7 +45,13 @@ under the package directory. To explore installed files, use \texttt{system.file
 view documentation via \texttt{browseVignettes("gap.examples")}.
 
 <<echo=FALSE>>=
-sort(list.files(file.path(find.package("gap.examples"),"doc")))
+pdfs <- c(
+  "gap.examples.pdf",
+  "h2.pdf",
+  "pedtodot.pdf",
+  "rnews.pdf"
+)
+print(pdfs)
 @
 
 A PDF version of this vignette is generated automatically and can be viewed with
