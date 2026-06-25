@@ -44,8 +44,8 @@ The package consists primarily of example scripts and supplementary documents in
 under the package directory. To explore installed files, use \texttt{system.file()} or
 view documentation via \texttt{browseVignettes("gap.examples")}.
 
-<<echo=FALSE, print=TRUE>>=
-sort(list.files(system.file("doc", package = "gap.examples")))
+<<echo=FALSE>>=
+sort(list.files(file.path(find.package("gap.examples"),"doc")))
 @
 
 A PDF version of this vignette is generated automatically and can be viewed with
