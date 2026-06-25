@@ -1,4 +1,4 @@
-# 25-5-2026 JHZ
+# 25-6-2026 JHZ
 
 make -f docs/Makefile vignettes/ChangeLog.txt
 make -f docs/Makefile vignettes/gap-manual.pdf
