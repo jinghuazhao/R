@@ -22,7 +22,6 @@
 \maketitle
 
 \begin{center}
-University of Cambridge\\
 \url{https://jinghuazhao.github.io/}
 \end{center}
 
