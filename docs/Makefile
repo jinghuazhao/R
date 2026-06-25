@@ -9,3 +9,6 @@ vignettes/shinygap.html: /rds/project/rds-4o5vpvAowP0/software/R/gap/doc/shinyga
 
 vignettes/gap.examples.pdf: /rds/project/rds-4o5vpvAowP0/software/R/gap.examples/doc/gap.examples.pdf
 	cp /rds/project/rds-4o5vpvAowP0/software/R/gap.examples/doc/gap.examples.pdf vignettes/
+
+vignettes/tdthap.pdf: /rds/project/rds-4o5vpvAowP0/software/R/tdthap/doc/tdthap.pdf
+        cp /rds/project/rds-4o5vpvAowP0/software/R/tdthap/doc/tdthap.pdf vignettes/
