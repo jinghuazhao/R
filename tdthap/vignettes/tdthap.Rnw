@@ -1,0 +1,9 @@
+%% \VignettePackage{tdthap}
+%% \VignetteIndexEntry{Disequilibrium Tests for Extended Marker Haplotypes}
+%% \Vignettekeywords{genetic association, family studies}
+
+\documentclass[oneside]{article}
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages=-,pagecommand={},fitpaper=true]{clayton99.pdf}
+\end{document}

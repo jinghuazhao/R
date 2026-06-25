@@ -1,3 +1,7 @@
+v1.4
+
+2026-06-25	Suppress vignette to be the AJHG paper.
+
 v1.3
 
 2023-11-29	rm trailing blanks in C/add format to REprintf() in nuc_fam.c based on CRAN check/Kurt
