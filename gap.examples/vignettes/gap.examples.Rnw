@@ -1,4 +1,4 @@
-%% \VignetteIndexEntry{An overview of gap.examples}
+%% \VignetteIndexEntry{gap.examples}
 %% \Vignettekeywords{human genetics, linkage analysis, association analysis}
 %% \VignettePackage{gap.examples}
 
@@ -16,13 +16,13 @@
 
 \begin{document}
 \SweaveOpts{engine=R,echo=FALSE,pdf=TRUE}
-\title{Examples to Genetic Analysis Package (gap)}
+\title{Examples for Genetic Analysis Package (gap)}
 \author{Jing Hua Zhao}
 \date{}
 \maketitle
 
 \begin{center}
-University of Cambridge, Cambridge, UK \\
+University of Cambridge\\
 \url{https://jinghuazhao.github.io/}
 \end{center}
 
