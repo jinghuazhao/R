@@ -1,8 +1,14 @@
 Package: pan
-Version: 1.9
-Date: 2023-8-19
+Version: 2.0
+Date: 2026-06-25
 Title:  Multiple Imputation for Multivariate Panel or Clustered Data
-Author: Original by Joseph L. Schafer 
+Authors@R: c(person(given = c("Original", "by", "Joseph", "L."),
+                    family = "Schafer",
+                    role = "aut"),
+             person(given = c("Jing", "hua"),
+                    family = "Zhao",
+                    role = "cre",
+                    email = "jinghuazhao@hotmail.com"))
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Suggests: mitools, lme4
 LazyData: Yes

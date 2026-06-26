@@ -19,7 +19,6 @@
 
 \tableofcontents
 \thispagestyle{empty}
-\newpage
 
 \thispagestyle{empty}
 \section{Maintainer's note}
