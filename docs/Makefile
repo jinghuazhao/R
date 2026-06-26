@@ -5,6 +5,7 @@ CHANGELOG    := $(HOME_R)/gap/ChangeLog
 GAP_CHECK    := $(HOME_R)/gap.Rcheck/gap-manual.pdf
 SHINYGAP     := $(SOFTWARE_R)/gap/doc/shinygap.html
 GAP_EXAMPLES := $(SOFTWARE_R)/gap.examples/doc/gap.examples.pdf
+KINSHIP      := $(SOFTWARE_R)/kinship/doc/kinship.pdf
 TDTHAP       := $(SOFTWARE_R)/tdthap/doc/tdthap.pdf
 
 vignettes/ChangeLog.txt: $(CHANGELOG)
@@ -17,6 +18,9 @@ vignettes/shinygap.html: $(SHINYGAP)
 	cp $< vignettes/
 
 vignettes/gap.examples.pdf: $(GAP_EXAMPLES)
+	cp $< vignettes/
+
+vignettes/kinship.pdf: $(KINSHIP)
 	cp $< vignettes/
 
 vignettes/tdthap.pdf: $(TDTHAP)
