@@ -1,82 +1,71 @@
 useDynLib(kinship)
-import(lattice,methods,nlme,survival)
-importFrom("graphics", "frame", "lines", "par", "points", "polygon",
-           "segments", "strheight", "strwidth", "text")
-importFrom("stats", "as.formula", "formula", "lm", "median",
-           "model.extract", "model.matrix", "naprint", "optim",
-           "pchisq", "runif", "terms", "var")
-importFrom("utils", "packageDescription")
-export ("align.pedigree",
-       "alignped1",
-       "alignped2",
-       "alignped3",
-       "alignped4",
-       "as.matrix.bdsmatrix",
-       "as.matrix.gchol",
-       "as.matrix.gchol.bdsmatrix",
-       "autohint",
-       "bdsBlock",
-       "bdsI",
-       "bdsmatrix",
-       "bdsmatrix.ibd",
-       "bdsmatrix.reconcile",
-       "besthint",
-       "coxme",
-       "coxme.control",
-       "coxme.fit",
-       "coxme.varcheck",
-       "familycheck",
-       "gchol",
-       "getCovariateFormula2",
-       "getCrossedTerms",
-       "getGroupsFormula2",
-       "is.bdsmatrix",
-       "is.gchol.bdsmatrix",
-       "is.list.bdsmatrix",
-       "is.list.gchol.bdsmatrix",
-       "is.matrix.bdsmatrix",
-       "is.matrix.gchol.bdsmatrix",
-       "kindepth",
-       "kinship",
-       "lmekin",
-       "makefamid",
-       "makekinship",
-       "pedigree",
-       "plot.pedigree",
-       "print.coxme",
-       "print.lmekin",
-       "solve.bdsmatrix",
-       "solve.gchol",
-       "solve.gchol.bdsmatrix",
-       "strata2"
-       )
-S3method(as.matrix,bdsmatrix)
-S3method(as.matrix,gchol)
-S3method(as.matrix,gchol.bdsmatrix)
-S3method(is.list,bdsmatrix)
-S3method(is.list,gchol.bdsmatrix)
-S3method(is.matrix,bdsmatrix)
-S3method(is.matrix,gchol.bdsmatrix)
-S3method(is,bdsmatrix)
-S3method(is,gchol.bdsmatrix)
-S3method(plot,pedigree)
-S3method(print,coxme)
-S3method(print,lmekin)
-S3method(solve,bdsmatrix)
-S3method(solve,gchol)
-S3method(solve,gchol.bdsmatrix)
-exportClasses(
-             "bdsmatrix",
-             "gchol",
-             "gchol.bdsmatrix"
-             )
 
-exportMethods(
-             "%*%",
-             "diag",
-             "diag<-",
-             "gchol",
-             "Math","Math2","Ops",
-             "show",
-             "unique"
-             )
+import(methods, survival, nlme, lattice)
+
+importFrom(graphics,
+           frame, lines, par, points, polygon,
+           segments, strheight, strwidth, text)
+
+importFrom(stats,
+           as.formula, formula, lm, median,
+           model.extract, model.matrix, naprint,
+           optim, pchisq, runif, terms, var)
+
+importFrom(utils, packageDescription)
+
+# ----------------------------
+# CLASSES
+# ----------------------------
+exportClasses(
+  "bdsmatrix",
+  "gchol",
+  "gchol.bdsmatrix"
+)
+
+# ----------------------------
+# FUNCTIONS
+# ----------------------------
+export(
+  "bdsI",
+  "bdsmatrix",
+  "coxme",
+  "coxme.control",
+  "coxme.fit",
+  "coxme.varcheck",
+  "lmekin",
+  "kinship",
+  "pedigree"
+)
+
+# ----------------------------
+# S3 METHODS
+# ----------------------------
+S3method(solve, bdsmatrix)
+S3method(solve, gchol)
+S3method(solve, gchol.bdsmatrix)
+
+S3method(plot, pedigree)
+S3method(print, coxme)
+S3method(print, lmekin)
+
+# ----------------------------
+# S4 METHODS (IMPORTANT)
+# ----------------------------
+exportMethods("%*%")
+exportMethods("[")
+exportMethods("Math")
+exportMethods("Math2")
+exportMethods("Ops")
+exportMethods("all")
+exportMethods("any")
+exportMethods("diag")
+exportMethods("dim")
+exportMethods("dimnames")
+exportMethods("dimnames<-")
+exportMethods("max")
+exportMethods("min")
+exportMethods("prod")
+exportMethods("range")
+exportMethods("sum")
+exportMethods("show")
+exportMethods("unique")

@@ -38,7 +38,7 @@ setMethod('Math2', signature(x='bdsmatrix'),
 #  when x1, x2, etc are all numeric.  (Up to 50 times faster!)
 #
 setMethod("max", signature("bdsmatrix"),
-	  function(x, ..., na.rm=F) {
+	  function(x, ..., na.rm=FALSE) {
 	      if (length(x@rmat))
 	           max(c(x@offdiag, x@blocks, x@rmat), na.rm=na.rm)
 	      else
@@ -46,15 +46,15 @@ setMethod("max", signature("bdsmatrix"),
 	      })
 
 setMethod("min", signature("bdsmatrix"),
-	  function(x, ..., na.rm=F ) {
-	      if (length(rmat))
+	  function(x, ..., na.rm=FALSE ) {
+	      if (length(x@rmat))
 	           min(c(x@offdiag, x@blocks, x@rmat), na.rm=na.rm)
 	      else
 	           min(c(x@offdiag, x@blocks), na.rm=na.rm)
 	      }, valueClass="numeric")
 
 setMethod('range',signature('bdsmatrix'),
-	  function(x, ..., na.rm=F) {
+	  function(x, ..., na.rm=FALSE) {
 	      if (length(x@rmat))
 	           range(c(x@offdiag, x@blocks, x@rmat), na.rm=na.rm)
 	      else
@@ -62,7 +62,7 @@ setMethod('range',signature('bdsmatrix'),
 	      })
 
 setMethod('any', signature('bdsmatrix'),
-	  function(x, ..., na.rm=F) {
+	  function(x, ..., na.rm=FALSE) {
 	      if (length(x@rmat))
 	           any(c(x@offdiag, x@blocks, x@rmat), na.rm=na.rm)
 	      else
@@ -70,7 +70,7 @@ setMethod('any', signature('bdsmatrix'),
 	      })
 
 setMethod('all', signature('bdsmatrix'),
-	  function(x, ..., na.rm=F) {
+	  function(x, ..., na.rm=FALSE) {
 	      if (length(x@rmat))
 	           all(c(x@offdiag, x@blocks, x@rmat), na.rm=na.rm)
 	      else
@@ -78,7 +78,7 @@ setMethod('all', signature('bdsmatrix'),
 	      })
 
 setMethod('sum', signature('bdsmatrix'),
-	  function(x, ..., na.rm=F) {
+	  function(x, ..., na.rm=FALSE) {
 	      d <- x@.Dim
 	      d3 <- sum(x@blocksize)
 	      temp <- .C('bdsmatrix_index1',
@@ -106,7 +106,7 @@ setMethod('sum', signature('bdsmatrix'),
 	      })
 
 setMethod('prod', signature('bdsmatrix'),
-	  function(x, ..., na.rm=F) {
+	  function(x, ..., na.rm=FALSE) {
 	      d <- x@.Dim
 	      d3 <- sum(x@blocksize)
 	      temp <- .C('bdsmatrix_index1',
@@ -154,7 +154,7 @@ setMethod('Ops', signature(e1='bdsmatrix', e2='numeric'),
 		  e1
 		  }
 	      else {
-		  bdsize <- .Options$bdsmatrixsize
+                  bdsize <- getOption("bdsmatrixsize", 1000)
 		  if (is.null(bdsize)) bdsize <- 1000
 		  if (prod(e1@.Dim) > bdsize)
 		      stop("Automatic conversion would too large a matrix")
@@ -260,10 +260,10 @@ bdsmatrix <- function(blocksize, blocks, rmat, dimnames=NULL) {
                       .Dimnames=dimnames)
     }
 
-setGeneric("bdsmatrix")
+setGeneric("bdsmatrix", function(blocksize, blocks, rmat, dimnames=NULL) standardGeneric("bdsmatrix"))
 setMethod('[', 'bdsmatrix', 
- function(x, i, j, ..., drop=T) {
-    if (class(x) != 'bdsmatrix') stop("Must be a bdsmatrix object")
+ function(x, i, j, ..., drop=TRUE) {
+    if (!inherits(x,'bdsmatrix')) stop("Must be a bdsmatrix object")
     allargs <- list(...)
 #   if (nDotArgs(...) !=2) stop("Two subscripts are required")
 #   if (length(allargs)!=2) stop("Two subscripts are required")
@@ -309,7 +309,7 @@ setMethod('[', 'bdsmatrix',
 	x@blocksize <- temp$bsize[temp$bsize>0]
 	x@blocks <- x@blocks[temp$indexc]
 	if (length(x@rmat)) {
-	    if (any(cols>d3)) x@rmat <- x@rmat[rows, cols[cols>d3]-d3, drop=F]
+	    if (any(cols>d3)) x@rmat <- x@rmat[rows, cols[cols>d3]-d3, drop=FALSE]
 	    else              x@rmat <- numeric(0)
 	    }
 	if (!is.null(x@.Dimnames)) 
@@ -362,7 +362,7 @@ setMethod('[', 'bdsmatrix',
 		    }
 		}
 	    }
-	else newmat <-x@rmat[rows, cols[cols>d3]-d3, drop=F]
+	else newmat <-x@rmat[rows, cols[cols>d3]-d3, drop=FALSE]
 	
 	if (!is.null(x@.Dimnames)) 
 	    dimnames(newmat)<- list((x@.Dimnames[[1]])[rows],
@@ -422,5 +422,5 @@ is.matrix.bdsmatrix <- function(x, ...) is(x, "bdsmatrix")
 is.matrix.gchol.bdsmatrix <- function(x, ...) is(x,"gchol.bdsmatrix")
 is.list.bdsmatrix <- function(x, ...) !is(x, "bdsmatrix")
 is.list.gchol.bdsmatrix <- function(x, ...) !is(x, "gchol.bdsmatrix")
-is.bdsmatrix <- function(x) inherits(x, "bdsmatrix")
-is.gchol.bdsmatrix <- function(x) inherits(x, "gchol.bdsmatrix")
+#is.bdsmatrix <- function(x) inherits(x, "bdsmatrix")
+#is.gchol.bdsmatrix <- function(x) inherits(x, "gchol.bdsmatrix")

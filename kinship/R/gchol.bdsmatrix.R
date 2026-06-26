@@ -11,7 +11,7 @@ setClass('gchol.bdsmatrix',
 			.Dimnames = 'list or NULL'))
 
 gchol.bdsmatrix <- function(x, tolerance=1e-9) {
-    if (class(x) != 'bdsmatrix') stop ("Bad argument")
+    if (!inherits(x,'bdsmatrix')) stop ("Bad argument")
     if (x@offdiag !=0) return(gchol(as.matrix(x)))
     dd <- x@.Dim
     if (length(x@rmat) >0) {
@@ -106,8 +106,8 @@ setMethod('show', 'gchol.bdsmatrix',
 #   the main difference being that the bdsmatrix method fills in symmetry
 #   when the result is not sparse
 setMethod('[', 'gchol.bdsmatrix', 
- function(x, i, j, ..., drop=T) {
-    if (class(x) != 'gchol.bdsmatrix') stop("Must be a gchol.bdsmatrix object")
+ function(x, i, j, ..., drop=TRUE) {
+    if (!inherits(x,'gchol.bdsmatrix')) stop("Must be a gchol.bdsmatrix object")
     allargs <- list(...)
 #   if (nDotArgs(...) !=2) stop("Two subscripts are required")
 #   if (length(allargs)!=2) stop("Two subscripts are required")
@@ -152,7 +152,7 @@ setMethod('[', 'gchol.bdsmatrix',
         x@blocksize <- temp$bsize[temp$bsize>0]
         x@blocks <- x@blocks[temp$indexc]
         if (length(x@rmat)) {
-            if (any(cols>d3)) x@rmat <- x@rmat[rows, cols[cols>d3]-d3, drop=F]
+            if (any(cols>d3)) x@rmat <- x@rmat[rows, cols[cols>d3]-d3, drop=FALSE]
             else              x@rmat <- numeric(0)
             }
         if (!is.null(x@.Dimnames)) 
@@ -197,7 +197,7 @@ setMethod('[', 'gchol.bdsmatrix',
                     }
                 }
             }
-        else newmat <-x@rmat[rows, cols[cols>d3]-d3, drop=F]
+        else newmat <-x@rmat[rows, cols[cols>d3]-d3, drop=FALSE]
 
         if (!is.null(x@.Dimnames)) 
             dimnames(newmat)<- list((x@.Dimnames[[1]])[rows],

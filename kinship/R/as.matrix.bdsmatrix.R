@@ -1,7 +1,7 @@
 # $Id: as.matrix.bdsmatrix.s,v 1.2 2002/12/26 22:54:47 Therneau Exp $
 as.matrix.bdsmatrix <- function(x,...)
 {
-  if (class(x) != 'bdsmatrix') stop('argument must be a bdsmatrix object')
+  if (!inherits(x,'bdsmatrix')) stop('argument must be a bdsmatrix object')
       dd <- dim(x)
       d3 <- sum(x@blocksize)   # dim of square portion
       d4 <- sum(x@blocksize^2) # size of x@blocks
@@ -28,8 +28,7 @@ as.matrix.bdsmatrix <- function(x,...)
 setAs('bdsmatrix', 'matrix', function(from) as.matrix.bdsmatrix(from))
 setMethod('dim', 'bdsmatrix', function(x) x@.Dim)
 setMethod('dimnames', 'bdsmatrix', function(x) x@.Dimnames)
-setMethod('dimnames<-', 'bdsmatrix',
-function(x, value)
+setReplaceMethod('dimnames', signature(x ='bdsmatrix'), function(x, value)
 {
   dd <- x@.Dim
     if (is.null(value)) x@.Dimnames <- NULL
@@ -75,7 +74,7 @@ setMethod('show', 'bdsmatrix', function(object) show(as(object,'matrix')))
 # 
 as.vector.bdsmatrix <- function(x, mode='any')
 {
-  if(class(x) != 'bdsmatrix') stop('argument must be a bdsmatrix object')
+  if(!inherits(x,'bdsmatrix')) stop('argument must be a bdsmatrix object')
   temp <- as.vector(as.matrix.bdsmatrix(x), mode)
   temp
 }

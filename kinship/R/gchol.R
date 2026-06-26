@@ -13,7 +13,7 @@
 #package='kinship',valueClass=c('gchol.bdsmatrix',"gchol"))
 
 # JH Zhao 27/3/2004
-setGeneric("gchol", function(x,tolerance=1e-10) if(class(x) == 'matrix')
+setGeneric("gchol", function(x,tolerance=1e-10) if(inherits(x,'matrix'))
          standardGeneric("gchol") else gchol.bdsmatrix(x,tolerance))
 
 setClass('gchol', 

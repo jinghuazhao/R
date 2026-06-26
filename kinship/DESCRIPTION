@@ -1,19 +1,15 @@
 Package: kinship
 Version: 1.1.4
-Date: 2018-6-30
+Date: 2026-06-25
 Title: Mixed-Effects Cox Models, Sparse Matrices, and Modeling Data from Large Pedigrees
-Author: Beth Atkinson (atkinson@mayo.edu) for pedigree
-        functions. Terry Therneau (therneau@mayo.edu) for all other functions.
-Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
-Depends: methods, survival, nlme, lattice, R (>= 2.8.0)
-LazyLoad: Yes
-LazyData: Yes
-Description: It consists of three major parts,
-        coxme: general mixed-effects Cox models; kinship: routines
-        to create and manipulate n by n matrices that describe the
-        genetic relationships between n persons; pedigree: create and
-        plot pedigrees; bdsmatrix: a class of objects for sparse
-        block-diagonal matrices (which is how kinship matrices are
-        stored); gchol: generalized cholesky decompositions.
+Authors@R: c(person("Beth", "Atkinson", email="atkinson@mayo.edu", role="aut", comment="Pedigree functions"), person("Terry", "Therneau", email="therneau@mayo.edu", role="aut", comment="All other functions"), person("Jing Hua", "Zhao", email="jinghuazhao@hotmail.com", role="cre"))
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
+Depends: R (>= 2.8.0), methods, survival, nlme, lattice
+Description: It consists of three major parts: 'coxme' for
+    mixed-effects Cox models; 'kinship' for routines to create and
+    manipulate n by n matrices describing the genetic relationships
+    among individuals; and 'pedigree' for creating and plotting
+    pedigrees. The 'bdsmatrix' class provides sparse block-diagonal
+    matrices used to store kinship matrices, together with 'gchol' for
+    generalized Cholesky decompositions.
 License: GPL (>= 2)
-Packaged: 2009-08-25 13:03:30 UTC; jhz22

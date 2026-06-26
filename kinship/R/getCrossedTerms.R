@@ -17,7 +17,7 @@
 #  S is not the language of choice for manipulating parse trees.
 # 
 getCrossedTerms <- function(x) {
-    if (class(x)=='formula') x2 <- x[[2]]  #get the heart of the formula
+    if (inherits(x,'formula')) x2 <- x[[2]]  #get the heart of the formula
         
     nbar <- function(x) {
         # count the number of bars

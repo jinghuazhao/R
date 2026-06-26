@@ -1,7 +1,7 @@
 # $Id: diag.bdsmatrix.s,v 1.2 2002/12/26 22:54:52 Therneau Exp $
 setMethod('diag', signature(x='bdsmatrix'),
 function(x, nrow=1, ncol=1) {
-    if (class(x) != 'bdsmatrix') stop("Argument must be a bdsmatrix object")
+    if (!inherits(x,'bdsmatrix')) stop("Argument must be a bdsmatrix object")
     
     d <- x@.Dim
     d3 <- sum(x@blocksize)
@@ -24,7 +24,7 @@ function(x, nrow=1, ncol=1) {
 
 setMethod('diag<-', signature(x='bdsmatrix'),
 function(x, value) {
-    if (class(x) != 'bdsmatrix') stop("Argument must be a bdsmatrix object")
+    if (!inherits(x,'bdsmatrix')) stop("Argument must be a bdsmatrix object")
     
     d <- x@.Dim
     if (length(value) != d[1]) stop("Wrong length for diagonal")

@@ -142,7 +142,8 @@ alignped1 <- function(x, id, dad, mom, level, horder, sorder, packed) {
 
     # Remove the ones we'll take care of from the spouselist
     toss <- (spouselist[sex,]==x  & !is.na(match(spouselist[3-sex,], spouse))) 
-    assign('spouselist', spouselist[,!toss, drop=F], envir=as.environment(sys.frame()))
+  # assign('spouselist', spouselist[,!toss, drop=F], envir=as.environment(sys.frame()))
+    spouselist <<- spouselist
 	
     # Now to work  
     # For each spouse, find the children.  If there are any, call alignped2

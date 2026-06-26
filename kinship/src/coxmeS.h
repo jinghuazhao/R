@@ -11,27 +11,34 @@
 **   the ALLOC macro allows me to have common C code for the two versions,
 **   with only this file "survS.h" changed.
 */
+#ifndef COXMES_H
+#define COXMES_H
+
 #define time timexxx
-#include "S.h"
+#include <R.h>
+#include <R_ext/Memory.h>
 #undef time
 
 /*
-** Memory defined with S_alloc is removed automatically by S.
-**  That with "CALLOC" I have to remove myself.  Use the
-**  latter for objects that need to to persist between calls
+** Memory allocated with R_alloc() is automatically released when the
+** .C/.Call invocation returns. Memory allocated with Calloc() must be
+** released explicitly with Free().
 */
-#if( defined(SPLUS_VERSION) && SPLUS_VERSION >= 5000)
-#define ALLOC(a,b)  S_alloc(a,b,S_evaluator)
-#define CALLOC(a,b) S_ok_calloc((size_t)(a), b, S_evaluator)
-#else
-#define ALLOC(a,b)  S_alloc(a,b)
-#define CALLOC(a,b) S_ok_calloc((unsigned)(a), b)
+#define ALLOC(a, b) ((b *) R_alloc((R_xlen_t)(a), sizeof(b)))
+
+#ifndef Calloc
+#define Calloc(n, type) ((type *) R_Calloc((R_SIZE_T)(n), type))
+#endif
+
+#ifndef Free
+#define Free(p) R_Free(p)
 #endif
 
 /*
-** This next is to make it easier to have common code with R, where
-** "integers" are int.  In S they are long.
+** Compatibility typedef retained for the original sources.
 */
 #ifndef Sint
 #define Sint int
+#endif
+
 #endif

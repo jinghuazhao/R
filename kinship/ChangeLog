@@ -1,3 +1,6 @@
+26/06/2026 Revise DESCRIPTION/vignette with original PDFs only
+	   Deprecate S.h in coxmeS.h/bdsS.h, replace (class(x) ops 'bdsmatrix') with inherits()
+	   Add bdsmatrix-methods.Rd
 30/06/2018 Change onAttach as in gap
 	   Remove coxph.wtest since it is available from survival.
 	   Be more explicit with routines in coxme.fit.R

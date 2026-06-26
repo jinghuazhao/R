@@ -68,7 +68,8 @@ align.pedigree <- function(ped, packed=T, hints=ped$hints, width=6, align=T) {
     hash <- hash[!duplicated(hash)]   #eliminate duplicates
     hash <- hash -1                   #change to range of 0 to n-1 (for %%)
     spouselist <- rbind(1+ hash%%n, floor(hash/n))  # uncompress it
-    assign('spouselist', spouselist, envir=as.environment(sys.frame()))
+  # assign('spouselist', spouselist, envir=as.environment(sys.frame()))
+    spouselist <<- spouselist
 
     #
     # Process the founders, 1 by 1 (choose females, with males to the

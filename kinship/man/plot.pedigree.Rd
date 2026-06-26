@@ -106,8 +106,7 @@ The second is \code{align}, a vector of 2 alignment parameters $a$ and $b$.
 For each set of siblings at a set of locations
 \code{x} and with parents at \code{p=c(p1,p2)} the
 alignment penalty is
-\deqn{(1/k^a)\sum{i=1}{k} [(x_i - (p1+p2)/2)]^2}
-        {sum(x- mean(p))^2/(k^a)}
+\deqn{(1/k^a)\sum{i=1}{k} [(x_i - (p1+p2)/2)]^2}{sum(x- mean(p))^2/(k^a)}
 where k is the number of siblings in the set.
 when $a=1$ moving a sibship with $k$ sibs one unit to the left or
 right of optimal will incur the same cost as moving one with only 1 or
@@ -160,4 +159,5 @@ dev.off()
 }
 }
 
-\keyword{hplot, genetics}
+\keyword{hplot}
+\keyword{genetics}
