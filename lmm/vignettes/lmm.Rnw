@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+\usepackage{Sweave}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[authoryear,round]{natbib}
+
+\bibliographystyle{plainnat}
+\setlength{\parindent}{0pt}
+
+%% \VignetteIndexEntry{Some Improved Procedures for Linear Mixed Models}
+%% \VignetteKeywords{linear mixed model}
+%% \VignettePackage{lmm}
+
+\begin{document}
+\title{Some Improved Procedures for Linear Mixed Models}
+\author{Joseph L. Schafer}
+\date{}
+
+\maketitle
+\thispagestyle{empty}
+
+\section*{Maintainer's note}
+This vignette reproduces the technical report
+
+\emph{Schafer, J. L. (1998). Some Improved Procedures for Linear Mixed Models.
+Department of Statistics, The Pennsylvania State University.}
+
+The report is distributed with the \texttt{lmm} package for historical reference
+and can be viewed from R with \texttt{vignette("lmm")}.
+
+Table~\ref{tab:marijuana} reproduces the marijuana data used throughout the
+report. The same data are included in the package and are used in the
+accompanying examples.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Change in heart rate (beats per minute above baseline) measured
+15 and 90 minutes after marijuana use. Missing values are denoted by ``--''.}
+\label{tab:marijuana}
+
+\begin{tabular}{crrrccc}
+\toprule
+& \multicolumn{3}{c}{15 minutes}
+& \multicolumn{3}{c}{90 minutes} \\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+Subject & Placebo & Low & High & Placebo & Low & High \\
+\midrule
+1 & 16 & 20 & 16 & 20 & -6 & -4 \\
+2 & 12 & 24 & 12 & -6 & 4 & -8 \\
+3 & 8 & 8 & 26 & -4 & 4 & 8 \\
+4 & 20 & 8 & -- & -- & 20 & -4 \\
+5 & 8 & 4 & -8 & -- & 22 & -8 \\
+6 & 10 & 20 & 28 & -20 & -4 & -4 \\
+7 & 4 & 28 & 24 & 12 & 8 & 18 \\
+8 & -8 & 20 & 24 & -3 & 8 & -24 \\
+9 & -- & 20 & 24 & 8 & 12 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+After loading the package, run the example with
+\texttt{example(example)}. The corresponding source code is available via
+\texttt{help(example, package = "lmm")}.
+
+\clearpage
+\includepdf[pages=-]{improve.pdf}
+\end{document}
