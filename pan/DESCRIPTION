@@ -1,6 +1,6 @@
 Package: pan
 Version: 2.0
-Date: 2026-06-25
+Date: 2026-06-30
 Title:  Multiple Imputation for Multivariate Panel or Clustered Data
 Authors@R: c(person(given = c("Original", "by", "Joseph", "L."),
                     family = "Schafer",

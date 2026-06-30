@@ -1,6 +1,8 @@
 Version 2.0
 
-2026-06-25	Revise DESCRIPTION/vignette
+2026-06-30	Eventually get going with YData.csv with
+		YData <- YData[order(YData$ID, YData$time), ]
+		Revise DESCRIPTION/vignette
 
 Version 1.9
 
