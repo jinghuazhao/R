@@ -20,7 +20,8 @@ Prior.Distribution <- list(a = a.parameter,
                            Binv = Binv.parameter, 
                            c = c.parameter, 
                            Dinv = Dinv.parameter)
-Imputation.Result <- pan(Yi.Matrix, Subj.vector, Pred.Matrix, xcol, zcol, Prior.Distribution, seed=44896, iter=1000)
+Imputation.Result <- pan(Yi.Matrix, Subj.vector, Pred.Matrix, xcol, zcol, 
+                         Prior.Distribution, seed=44896, iter=1000)
 }
 }
 \usage{data(YWC.data)}
