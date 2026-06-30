@@ -1,21 +1,25 @@
 Package: pan
 Version: 2.1
 Date: 2026-06-30
-Title:  Multiple Imputation for Multivariate Panel or Clustered Data
-Authors@R: c(person(given = c("Original", "by", "Joseph", "L."),
-                    family = "Schafer",
-                    role = "aut"),
-             person(given = c("Jing", "hua"),
-                    family = "Zhao",
-                    role = "cre",
-                    email = "jinghuazhao@hotmail.com"))
+Title: Multiple Imputation for Multivariate Panel or Clustered Data
+Authors@R: c(
+    person(given = c("Joseph", "L."),
+           family = "Schafer",
+           role = "aut",
+           comment = "Original author"),
+    person(given = c("Jing", "hua"),
+           family = "Zhao",
+           role = "cre",
+           email = "jinghuazhao@hotmail.com"))
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Suggests: mitools, lme4
-LazyData: Yes
-LazyLoad: Yes
-Description:  It provides functions and examples for maximum likelihood estimation for
-              generalized linear mixed models and Gibbs sampler for multivariate linear
-              mixed models with incomplete data, as described in Schafer JL (1997)
-              "Imputation of missing covariates under a multivariate linear mixed model".
-              Technical report 97-04, Dept. of Statistics, The Pennsylvania State University.
+LazyData: true
+Description: Provides functions and examples for maximum likelihood estimation
+    of generalized linear mixed models and Gibbs sampling for multivariate
+    linear mixed models with incomplete data, based on Schafer (1997),
+    "Imputation of Missing Covariates under a Multivariate Linear Mixed
+    Model", Technical Report 97-04, Department of Statistics, The
+    Pennsylvania State University.
 License: GPL-3
+URL: https://github.com/jinghuazhao/R
+BugReports: https://github.com/jinghuazhao/R/issues
