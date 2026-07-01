@@ -53,9 +53,10 @@ install_github("jinghuazhao/R/gap", build_vignettes = TRUE)
 
 [^ctv]: Featured CRAN task views:
 
-    > - Genetics: **gap**, **tdthap**
-    > - Meta-Analysis: **gap**
-    > - Social science: **lmm**, **pan**
+    > - Bayesian: **lmm**
+    > - Genetics (legacy): **gap**, **tdthap**
+    > - MetaAnalysis: **gap**
+    > - MisssingData, MixedModels: **pan**
 
 [^use]: Additional use can be found from a package vignette [pQTLtools](https://jinghuazhao.github.io/pQTLtools/articles/pQTLtools.html).
 
