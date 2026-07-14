@@ -8,7 +8,7 @@ module load ceuadmin/brotli/1.1.0 ceuadmin/glpk/4.57 ceuadmin/icu/70.1 ceuadmin/
 module load curl/7.79.0/gcc/75dxv7ac netcdf-c/4.8.1/gcc/intel-oneapi-mpi/2765z52t ceuadmin/libiconv/1.17 ceuadmin/libarrow
 module load ceuadmin/texinfo/7.2
 
-export version=4.6.0
+export version=4.6.1
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
 export prefix=${CEUADMIN}/R
