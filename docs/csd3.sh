@@ -14,18 +14,6 @@ module load ceuadmin/proj/7.2.1
 module load rstudio/2024.04.2+764
 module load ceuadmin/texinfo/7.2
 
-function my_load()
-{
-  module load curl/7.79.0/gcc/75dxv7ac gettext/0.21/gcc/qnrcglqo libiconv/1.16/intel/64iicvbf
-  module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/gcc/bumlt4j6
-  module load texlive
-  module load libdeflate/1.10/gcc/6ij3yqv2
-  module load ceuadmin/json-c/0.17-20230812-icelake ceuadmin/krb5/1.21.2-icelake
-  module load ceuadmin/nettle/3.9-icelake ceuadmin/qpdf/11.9.1
-
-  module unload gcc/6
-}
-
 export version=4.6.1
 IFS=\. read major minor1 minor2 <<<${version}
 export rds=/rds/project/rds-4o5vpvAowP0/software
@@ -42,6 +30,18 @@ cd ${dest}
             LDFLAGS='-L/usr/local/Cluster-Apps/ceuadmin/libiconv/1.17/lib -liconv'
 make
 export R_LIBS=${rds}/R
+
+function my_load()
+{
+  module load curl/7.79.0/gcc/75dxv7ac gettext/0.21/gcc/qnrcglqo libiconv/1.16/intel/64iicvbf
+  module load libpng/1.6.37/intel/jfrl6z6c pcre2/10.36/gcc/sya23vzi readline/8.1/gcc/bumlt4j6
+  module load texlive
+  module load libdeflate/1.10/gcc/6ij3yqv2
+  module load ceuadmin/json-c/0.17-20230812-icelake ceuadmin/krb5/1.21.2-icelake
+  module load ceuadmin/nettle/3.9-icelake ceuadmin/qpdf/11.9.1
+
+  module unload gcc/6
+}
 
 function legacy()
 {
