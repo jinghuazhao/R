@@ -6,7 +6,7 @@ GAP_CHECK    := $(HOME_R)/gap.Rcheck/gap-manual.pdf
 SHINYGAP     := $(SOFTWARE_R)/gap/doc/shinygap.html
 GAP_EXAMPLES := $(SOFTWARE_R)/gap.examples/doc/gap.examples.pdf
 KINSHIP      := $(SOFTWARE_R)/kinship/doc/kinship.pdf
-LMM          := $(SOFTWARE_R)/pan/doc/lmm.pdf
+LMM          := $(SOFTWARE_R)/lmm/doc/lmm.pdf
 PAN          := $(SOFTWARE_R)/pan/doc/pan.pdf
 TDTHAP       := $(SOFTWARE_R)/tdthap/doc/tdthap.pdf
 
