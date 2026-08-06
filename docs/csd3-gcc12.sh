@@ -6,14 +6,12 @@ module load geos-3.6.2-gcc-5.4.0-vejexvy gettext-0.19.8.1-gcc-5.4.0-5iqkv5z pcre
 module load image-magick-7.0.5-9-gcc-5.4.0-d4lemcc libpng/1.6.37/gcc/bkdpz5q4 protobuf-3.4.0-gcc-5.4.0-zkpendv
 module load ceuadmin/brotli/1.1.0 ceuadmin/glpk/4.57 ceuadmin/icu/70.1 ceuadmin/jq/1.6 ceuadmin/NLopt/2.7.1
 module load curl/7.79.0/gcc/75dxv7ac netcdf-c/4.8.1/gcc/intel-oneapi-mpi/2765z52t ceuadmin/libiconv/1.17 ceuadmin/libarrow
-module load ceuadmin/texinfo/7.2
+module load ceuadmin/texinfo/7.2 ceuadmin/gdal/3.10.3 ceuadmin/proj/7.2.1
 
 export version=4.6.1
 IFS=\. read major minor1 minor2 <<<${version}
-export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
 export prefix=${CEUADMIN}/R
 export dest=${version}-gcc12
-export R_LIBS=${rds}/R-gcc12
 cd ${prefix}
 mkdir ${dest}
 umask 022

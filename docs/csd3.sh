@@ -16,7 +16,6 @@ module load ceuadmin/texinfo/7.2
 
 export version=4.6.1
 IFS=\. read major minor1 minor2 <<<${version}
-export rds=/rds/project/rds-4o5vpvAowP0/software
 export prefix=$CEUADMIN/R
 export dest=${version}-icelake
 umask 022
@@ -29,7 +28,6 @@ cd ${dest}
             CPPFLAGS=-I/usr/local/Cluster-Apps/ceuadmin/libiconv/1.17/include \
             LDFLAGS='-L/usr/local/Cluster-Apps/ceuadmin/libiconv/1.17/lib -liconv'
 make
-export R_LIBS=${rds}/R
 
 function my_load()
 {

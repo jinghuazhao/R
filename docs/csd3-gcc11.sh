@@ -10,10 +10,8 @@ module load ceuadmin/gdal/3.10.3 ceuadmin/texinfo/7.2
 
 export version=4.6.1
 IFS=\. read major minor1 minor2 <<<${version}
-export rds=/rds/project/jmmh2/rds-jmmh2-public_databases/software
 export prefix=${CEUADMIN}/R
 export dest=${version}-gcc11
-export R_LIBS=${rds}/R-gcc11
 cd ${prefix}
 mkdir ${dest}
 umask 022
