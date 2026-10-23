@@ -4,6 +4,7 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
+    number_sections: true
     self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
