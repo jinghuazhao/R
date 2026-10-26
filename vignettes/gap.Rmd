@@ -94,9 +94,10 @@ Notable recent technical updates include:
    Citation Style Language (CSL) (https://citationstyles.org/). **Rdpack** is now
    employed for BibTeX citations in the .Rd files.
 3. An experimental shiny App (`runshinygap`()).
-4. Lately, vibe coding has been conducted notably regarding `ACDE()`, `ccsize()` and `mhtplot()`.
-5. Historically, the package is hosted together with other CRAN packages at GitHub,
+4. Historically, the package is hosted together with other CRAN packages at GitHub,
    See pQTLtools package for a pkgdown-style setup.
+5. Lately, vibe coding has been conducted notably regarding `ACDE()`, `ccsize()`
+   and `mhtplot()`. It also facilitates use of **testthat**.
 
 These experiences can be useful for others in their package development. I found it
 useful to use specific functions without loading the whole package, i.e., `library(gap)`,
