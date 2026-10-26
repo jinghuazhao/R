@@ -2,7 +2,7 @@ Type: Package
 Package: gap
 Title: Genetic Analysis Package
 Version: 1.15.3
-Date: 2026-09-29
+Date: 2026-10-26
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -30,7 +30,7 @@ Suggests: BradleyTerry2, DiagrammeR, MASS, Matrix, MCMCglmm, R2jags,
         foreign, genetics, haplo.stats, htmltools, htmlwidgets,
         jsonlite, kinship2, knitr, lattice, magic, matrixStats, meta,
         metafor, nlme, pedigree, pedigreemm, plotrix, readr, remotes,
-        reshape, rmarkdown, rms, scales, survival, valr
+        reshape, rmarkdown, rms, scales, survival, testthat, valr
 Enhances: shiny
 LazyData: Yes
 LazyLoad: Yes
@@ -39,6 +39,7 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown=TRUE)
 RdMacros: Rdpack
+Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0
 RoxygenNote: 7.3.3
 Packaged: 2026-05-19 21:45:40 UTC; jhz22
