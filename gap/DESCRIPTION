@@ -1,8 +1,8 @@
 Type: Package
 Package: gap
 Title: Genetic Analysis Package
-Version: 1.15.3
-Date: 2026-10-26
+Version: 1.15.4
+Date: 2026-10-28
 Authors@R: c(
     person("Jing Hua", "Zhao", role = c("aut", "cre"),
            email = "jinghuazhao@hotmail.com",
@@ -36,7 +36,7 @@ LazyData: Yes
 LazyLoad: Yes
 NeedsCompilation: yes
 Encoding: UTF-8
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown, bookdown
 Roxygen: list(markdown=TRUE)
 RdMacros: Rdpack
 Config/testthat/edition: 3

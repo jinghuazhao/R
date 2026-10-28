@@ -1,5 +1,8 @@
 Version history of the R genetic analysis package (R/gap)
 
+Version 1.15.4
+28-10-2026	VignetteBuilder: knitr, rmarkdown, bookdown to mirror gaawr2
+
 Version 1.15.3
 26-10-2026	Amend ab(), chow.test(), cis.vs.trans.classification|plot(), comp.score(), demo/gap.R,
 		h2_mzdz(), htr(), masize(), makeRLEplot(), pbsize2(), pedtodot_verbatim(),
