@@ -1,16 +1,12 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/* FIXME:
-   Check these declarations against the C/Fortran source code.
-*/
-
 /* .C calls */
-extern void get_tdt_similarity(void *, void *, void *, void *);
-extern void hap_read(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void hap_transmit(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
-extern void set_tdt_similarity(void *, void *, void *, void *);
-extern void tdt_quad(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void get_tdt_similarity(int *, double *, int *, double *);
+extern void hap_read(int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, int *, char **);
+extern void hap_transmit(int *, int *, int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, char **);
+extern void set_tdt_similarity(int *, double *, int *, double *);
+extern int tdt_quad(int *, int *, char **, int *, int *, int *, int *, int *, int *, double *);
 
 static const R_CMethodDef CEntries[] = {
     {"get_tdt_similarity", (DL_FUNC) &get_tdt_similarity,  4},
